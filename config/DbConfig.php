@@ -1,4 +1,5 @@
 <?php
+// https://stackoverflow.com/questions/3228694/php-database-connection-class
 class Dbconfig {
     protected $serverName;
     protected $userName;
