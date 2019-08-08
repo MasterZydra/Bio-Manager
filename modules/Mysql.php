@@ -1,4 +1,5 @@
 <?php
+// https://stackoverflow.com/questions/3228694/php-database-connection-class
 
 include 'config/DbConfig.php';
 
@@ -56,7 +57,7 @@ function selectWhere($tableName,$rowName,$operator,$value,$valueType)   {
     else if($valueType == 'char')   {
         $this -> sqlQuery .= "'".$value."'";
     }
-    $this -> dataSet = mysql_query($this -> sqlQuery,$this -> connectionString);
+    $this -> dataSet = $this -> connectionString -> query($this -> sqlQuery);
     $this -> sqlQuery = NULL;
     return $this -> dataSet;
     #return $this -> sqlQuery;
@@ -89,7 +90,7 @@ function insertInto($tableName,$values) {
 }
 
 function selectFreeRun($query)  {
-    $this -> dataSet = mysql_query($query,$this -> connectionString);
+    $this -> dataSet = $this -> connectionString -> query($query);
     return $this -> dataSet;
 }
 
