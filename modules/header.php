@@ -12,7 +12,7 @@
         <div>
             <a href="index.php">Startseite</a>
         </div>
-        <div class="header-right">
+        <div>
             <?php
                 if(!isset($_SESSION['userId'])) {
             ?>
