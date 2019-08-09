@@ -1,17 +1,16 @@
 <?php
     include 'modules/header_user.php';
     include 'modules/header.php';
+
+    include 'modules/Mysql.php';
 ?>
 <h1>Lieferanten hinzufügen</h1>
 
 <p>
-    <a href="vendors.php">Alle Lieferanten anzeigen</a>
+    <a href="vendor.php">Alle Lieferanten anzeigen</a>
 </p>
 <?php
     if(isset($_GET['add'])) {
-        include 'modules/Mysql.php';
-        include 'modules/helperFunctions.php';
-        
         $conn = new Mysql();
         $conn -> dbConnect();
         
