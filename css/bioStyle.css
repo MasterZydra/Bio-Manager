@@ -43,3 +43,27 @@ table th {
   background-color: #4a8a16;
   color: white;
 }
+
+/**************************
+* Infobox
+**************************/
+.infobox {
+    background-color: #4a8a16;
+    padding: 10px;
+    color: white;
+}
+
+/**************************
+* Stop iOS rounded style
+**************************/
+/*
+textarea,
+input.text,
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+button,
+.input-checkbox {
+    -webkit-appearance: none;
+    border-radius: 0;
+}*/
