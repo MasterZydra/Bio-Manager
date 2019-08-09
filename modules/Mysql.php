@@ -69,7 +69,7 @@ function insertInto($tableName,$values) {
 
     $this -> sqlQuery = 'INSERT INTO '.$tableName.' VALUES (';
     $i = 0;
-    while($values[$i]["val"] != NULL && $values[$i]["type"] != NULL)    {
+    while(count($values) > $i && $values[$i]["val"] != NULL && $values[$i]["type"] != NULL) {
         if($values[$i]["type"] == "char")   {
             $this -> sqlQuery .= "'";
             $this -> sqlQuery .= $values[$i]["val"];
@@ -82,7 +82,7 @@ function insertInto($tableName,$values) {
             $this -> sqlQuery .= 'NULL';
         }
         $i++;
-        if($values[$i]["val"] != NULL)  {
+        if(count($values) > $i && $values[$i]["val"] != NULL)  {
             $this -> sqlQuery .= ',';
         }
     }
