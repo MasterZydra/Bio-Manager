@@ -9,7 +9,7 @@
     <label>Name:
         <input type="text" placeholder="Name des Lieferanten" name="vendor_name" required>
     </label><br>
-    <button type="submit">Hinzufügen</button>
+    <button>Hinzufügen</button>
 </form>
 
 <?php
