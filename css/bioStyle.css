@@ -1,9 +1,10 @@
 /**************************
 * General settings
 **************************/
+
 body {
     margin: 0;
-    padding: 0;   
+    padding: 0;
     font: normal 12px sans-serif;
 }
 
@@ -24,21 +25,22 @@ main div {
 /**************************
 * Header
 **************************/
-header{
+
+header {
     margin: 0;
     padding: 5px 10px 10px 20px;
     background-color: #4a8a16;
-	box-sizing: border-box;
-	width: 100%;
-	text-align: left;
-	font: normal 16px sans-serif;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    font: normal 16px sans-serif;
     color: white;
 }
 
-header div{
-    font-size:18px;
+header div {
+    font-size: 18px;
     font-weight: bold;
-    color:  #ffffff;
+    color: #ffffff;
     margin: 0 0 10px;
     padding: 0;
 }
@@ -46,45 +48,54 @@ header div{
 /***************
 * Header - Link
 ****************/
-header div a{
-    display:inline-block;
+
+header div a {
+    display: inline-block;
     line-height: 1.8;
     text-decoration: none;
-    color:  inherit;
+    color: inherit;
 }
-header div a:hover{
+
+header div a:hover {
     text-decoration: underline;
 }
 
 /**************************
 * Table
 **************************/
+
 table {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  /*width: 100%;*/
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    /*width: 100%;*/
 }
 
-table td, table th {
-  border: 1px solid #ddd;
-  padding: 8px;
+table td,
+table th {
+    border: 1px solid #ddd;
+    padding: 8px;
 }
 
-table tr:nth-child(even){background-color: #f2f2f2;}
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 
-table tr:hover {background-color: #ddd;}
+table tr:hover {
+    background-color: #ddd;
+}
 
 table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #4a8a16;
-  color: white;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4a8a16;
+    color: white;
 }
 
 /**************************
 * Infobox
 **************************/
+
 .infobox {
     background-color: #4a8a16;
     padding: 10px;
@@ -102,6 +113,7 @@ table th {
 /**************************
 * Stop iOS rounded style
 **************************/
+
 /*
 textarea,
 input.text,
