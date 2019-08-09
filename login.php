@@ -10,7 +10,6 @@
 
     if(isset($_GET['login'])) {
         include 'modules/Mysql.php';
-        include 'modules/helperFunctions.php';
         
         $login = $_POST['user_login'];
         $password = $_POST['user_password'];
@@ -72,11 +71,11 @@
 ?>
     <form action="?login=1" method="post">
         <label>Anmeldename:<br>
-            <input type="text" size="40" maxlength="250" name="user_login">
+            <input type="text" size="40" maxlength="250" name="user_login" required>
         </label><br>
         <label>Passwort:<br>
-            <input type="password" size="40"  maxlength="250" name="user_password">
-        </label><br>       
+            <input type="password" size="40"  maxlength="250" name="user_password" required>
+        </label><br>
         <button>Anmelden</button>
     </form>
 <?php
