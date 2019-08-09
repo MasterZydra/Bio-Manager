@@ -3,7 +3,7 @@
 
 include 'config/DbConfig.php';
 
-class Mysql extends Dbconfig    {
+class Mysql extends Dbconfig {
 
 public $connectionString;
 public $dataSet;
@@ -14,7 +14,7 @@ protected $hostName;
 protected $userName;
 protected $passCode;
 
-function __construct()    {
+function __construct() {
     $this -> connectionString = NULL;
     $this -> sqlQuery = NULL;
     $this -> dataSet = NULL;
@@ -27,7 +27,7 @@ function __construct()    {
     $dbPara = NULL;
 }
 
-function dbConnect()    {
+function dbConnect() {
     $this -> connectionString = new mysqli($this -> serverName,$this -> userName,$this -> passCode);
     mysqli_select_db($this -> connectionString, $this -> databaseName);
     return $this -> connectionString;
@@ -43,13 +43,13 @@ function dbDisconnect() {
     $this -> passCode = NULL;
 }
 
-function selectAll($tableName)  {
+function selectAll($tableName) {
     $this -> sqlQuery = 'SELECT * FROM '.$this -> databaseName.'.'.$tableName;
     $this -> dataSet = $this -> connectionString -> query($this -> sqlQuery);
-            return $this -> dataSet;
+    return $this -> dataSet;
 }
 
-function selectWhere($tableName,$rowName,$operator,$value,$valueType)   {
+function selectWhere($tableName,$rowName,$operator,$value,$valueType) {
     $this -> sqlQuery = 'SELECT * FROM '.$tableName.' WHERE '.$rowName.' '.$operator.' ';
     if($valueType == 'int') {
         $this -> sqlQuery .= $value;
@@ -87,9 +87,9 @@ function insertInto($tableName,$values) {
         }
     }
     $this -> sqlQuery .= ')';
-            #echo $this -> sqlQuery;
+    #echo $this -> sqlQuery;
     $this -> connectionString -> query($this -> sqlQuery);
-            return $this -> sqlQuery;
+    return $this -> sqlQuery;
     #$this -> sqlQuery = NULL;
 }
 
@@ -98,7 +98,7 @@ function selectFreeRun($query)  {
     return $this -> dataSet;
 }
 
-function freeRun($query)    {
+function freeRun($query) {
     return $this -> connectionString -> query($query);
   }
 }
