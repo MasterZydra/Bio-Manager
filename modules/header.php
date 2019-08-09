@@ -1,3 +1,10 @@
+<?php
+    // Show PHP messages and warnings if user is developer
+    if($_SESSION['isDeveloper']) {
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+    }
+?>
 <!DOCTYPE html>
 <html>
     <head>
