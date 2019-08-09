@@ -1,11 +1,13 @@
 <?php
     include 'modules/header_user.php';
     include 'modules/header.php';
+
+    include 'modules/Mysql.php';
+    include 'modules/helperFunctions.php';
 ?>
 <script src="js/filterDataTable.js"></script>
 
 <h1>Lieferanten</h1>
-
 
 <p>
     <a href="addVendor.php">Lieferant hinzufügen</a>    
@@ -15,9 +17,6 @@
 </p>
 
 <?php
-    include 'modules/Mysql.php';
-    include 'modules/helperFunctions.php';
-
     $conn = new Mysql();
     $conn -> dbConnect();
     $result = $conn->selectAll('T_Vendor');
