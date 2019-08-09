@@ -84,7 +84,7 @@ function insertInto($tableName,$values) {
     }
     $this -> sqlQuery .= ')';
             #echo $this -> sqlQuery;
-    mysql_query($this -> sqlQuery,$this ->connectionString);
+    $this -> connectionString -> query($this -> sqlQuery);
             return $this -> sqlQuery;
     #$this -> sqlQuery = NULL;
 }
@@ -95,7 +95,7 @@ function selectFreeRun($query)  {
 }
 
 function freeRun($query)    {
-    return mysql_query($query,$this -> connectionString);
+    return $this -> connectionString -> query($query);
   }
 }
 ?>
