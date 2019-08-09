@@ -1,4 +1,5 @@
 <?php
+    include 'modules/header_user.php';
     include 'modules/header.php';
 ?>
 

@@ -1,3 +1,4 @@
+    include 'modules/header_user.php';
 
 <?php
 
