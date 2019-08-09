@@ -1,4 +1,39 @@
 /**************************
+* Header
+**************************/
+header{
+    background-color: #4a8a16;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  font: normal 16px sans-serif;
+  padding-left: 5%;
+    padding-bottom: 20px;
+    color: white;
+}
+
+header div{
+    font-size:18px;
+    font-weight: bold;
+    color:  #ffffff;
+    margin: 0 0 10px;
+    padding: 0;
+}
+
+/***************
+* Header - Link
+****************/
+header div a{
+    display:inline-block;
+    line-height: 1.8;
+    text-decoration: none;
+    color:  inherit;
+}
+header div a:hover{
+    text-decoration: underline;
+}
+
+/**************************
 * General settings
 **************************/
 body {
@@ -19,7 +54,7 @@ main {
 }
 
 /**************************
-* Tabel formatting
+* Table
 **************************/
 table {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
