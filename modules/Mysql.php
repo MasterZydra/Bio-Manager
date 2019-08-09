@@ -57,6 +57,7 @@ function selectWhere($tableName,$rowName,$operator,$value,$valueType)   {
     else if($valueType == 'char')   {
         $this -> sqlQuery .= "'".$value."'";
     }
+    #echo $this -> sqlQuery;
     $this -> dataSet = $this -> connectionString -> query($this -> sqlQuery);
     $this -> sqlQuery = NULL;
     return $this -> dataSet;
@@ -76,6 +77,9 @@ function insertInto($tableName,$values) {
         }
         else if($values[$i]["type"] == 'int')   {
             $this -> sqlQuery .= $values[$i]["val"];
+        }
+        else if($values[$i]["type"] == 'null')   {
+            $this -> sqlQuery .= 'NULL';
         }
         $i++;
         if($values[$i]["val"] != NULL)  {
