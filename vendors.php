@@ -8,7 +8,7 @@
 
 
 <p>
-    <a href="addVendorForm">Lieferant hinzufügen</a>    
+    <a href="addVendor.php">Lieferant hinzufügen</a>    
 </p>
 <p>
     <input type="text" id="filterInput-tableVendors" onkeyup="filterData(&quot;tableVendors&quot;)" placeholder="Suchtext eingeben..." title="Suchtext"> 
