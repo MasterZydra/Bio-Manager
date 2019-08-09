@@ -1,6 +1,3 @@
-<?php
-    session_start();
-?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,6 +11,24 @@
         <h1>Bio-Manager des OGV Eichelsbach e.V.</h1>
         <div>
             <a href="index.php">Startseite</a>
+        </div>
+        <div class="header-right">
+            <?php
+                if(!isset($_SESSION['userId'])) {
+            ?>
+            <form action="login.php">
+                <input type="submit" value="Anmelden"/>
+            </form>
+            <?php
+                }
+                else {
+            ?>
+            <form action="logout.php">
+                <input type="submit" value="Abmelden" />
+            </form>
+            <?php
+                }
+            ?>
         </div>
     </header>
     <main>
