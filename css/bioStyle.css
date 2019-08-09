@@ -17,6 +17,10 @@ main a:visited {
     color: blue;
 }
 
+main div {
+    margin-bottom: 20px;
+}
+
 /**************************
 * Header
 **************************/
