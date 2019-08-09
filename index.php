@@ -7,8 +7,7 @@
 <h1>Willkommen beim Bio-Manager</h1>
 Der Bio-Manger ist zum Verwalten von Anlieferungen von Lieferanten. Durch die Eingebe der Lieferscheine, Flurstücke und Liefermenge können Rechnungen an die Kelterei und Auswertungen zu Liefermenge und der Verteilung auf Flurstücke erstellt werden.
 <?php
-}
-else {
+    } else {
 ?>
 <h1>Willkommen im Mitgliederbereich</h1>
 
@@ -16,6 +15,11 @@ else {
     <strong>Lieferanten</strong><br>
     <a href="vendors.php">Alle Lieferanten anzeigen</a><br>
     <a href="addVendorForm.php">Lieferanten hinzufügen</a>
+</div>
+
+<div>
+    <strong>Mein Konto</strong><br>
+    <a href="changePwd.php">Passwort ändern</a>
 </div>
 
 <?php
