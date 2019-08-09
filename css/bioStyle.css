@@ -85,6 +85,14 @@ table th {
 .infobox {
     background-color: #4a8a16;
     padding: 10px;
+    margin: 10px 0 10px 0;
+    color: white;
+}
+
+.warning {
+    background-color: #b01c1c;
+    padding: 10px;
+    margin: 10px 0 10px 0;
     color: white;
 }
 
