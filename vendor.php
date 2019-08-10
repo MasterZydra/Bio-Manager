@@ -1,8 +1,8 @@
 <?php
     include 'modules/header_user.php';
+    include 'modules/permissionCheck.php';
     include 'modules/header.php';
-
-    include 'modules/Mysql.php';
+    
     include 'modules/helperFunctions.php';
 ?>
 <script src="js/filterDataTable.js"></script>
