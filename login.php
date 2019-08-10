@@ -21,6 +21,7 @@
         }
         else {
             $row = $result->fetch_assoc();
+            $forcePwdChange = $row['forcePwdChange'];
             // Check password
             if (!password_verify($password, $row['password'])) {
                 $invalidLogin = true;
@@ -40,12 +41,18 @@
                     // Save session data
                     $row = $result->fetch_assoc();
                     $_SESSION['userId'] = $row['userId'];
-                    $_SESSION['isAdmin'] = $row['isAdmin'];
-                    $_SESSION['isDeveloper'] = $row['isDeveloper'];
-                    echo '<div class="infobox">';
-                    echo 'Anmeldung erfolgreich. Automatische Weiterleitung zur <a href="index.php">Startseite</a> erfolgt.';
-                    echo '</div>';
-                    echo '<script>window.location.replace("index.php");</script>';
+                    
+                    if($forcePwdChange) {
+                        echo '<div class="warning">';
+                        echo 'Sie müssen Ihr Passwort ändern. Automatische Weiterleitung zu <a href="changePwd.php">Passwort ändern</a> erfolgt.';
+                        echo '</div>';
+                        echo '<script>window.location.replace("changePwd.php");</script>';
+                    } else {
+                        echo '<div class="infobox">';
+                        echo 'Anmeldung erfolgreich. Automatische Weiterleitung zur <a href="index.php">Startseite</a> erfolgt.';
+                        echo '</div>';
+                        echo '<script>window.location.replace("index.php");</script>';
+                    }
                 }
             }
         }
@@ -76,18 +83,5 @@
     </form>
 <?php
     include 'modules/footer.php';
-        
-  /*
-                    
-
-//            echo 'Force: ' . $user['forcePwdChange'];
-            
-//            if ($user['forcePwdChange'] == 1) {
-//                echo 'Change pwd';
-//                die();
-//            }
-            
-            
-            exit();*/
 ?>
 
