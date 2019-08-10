@@ -63,6 +63,16 @@ function selectWhere($tableName,$rowName,$operator,$value,$valueType) {
     return $this -> dataSet;
     #return $this -> sqlQuery;
 }
+    
+/*
+    $orderByCommand: 'id desc'
+*/
+function selectOrderBy($tableName, $orderByCommand) {
+    $this -> sqlQuery = 'SELECT * FROM '.$tableName.' ORDER BY ' . $orderByCommand;
+    $this -> dataSet = $this -> connectionString -> query($this -> sqlQuery);
+    #echo $this -> sqlQuery;
+    return $this -> dataSet;
+}
 
 function insertInto($tableName,$values) {
     $i = NULL;
