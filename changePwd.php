@@ -43,7 +43,11 @@
         else {
             $conn = new Mysql();
             $conn -> dbConnect();
-            $conn -> freeRun("UPDATE T_UserLogin SET password='" . password_hash($newPassword, PASSWORD_DEFAULT) . "' WHERE userId = " . $_SESSION['userId']);
+            $conn -> freeRun(
+                'UPDATE T_UserLogin '
+                . 'SET forcePwdChange=0, '
+                . 'password="' . password_hash($newPassword, PASSWORD_DEFAULT) . '" '
+                . 'WHERE userId = ' . $_SESSION['userId']);
             $conn -> dbDisconnect();
             $conn = NULL;
 
