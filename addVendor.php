@@ -1,8 +1,7 @@
 <?php
     include 'modules/header_user.php';
+    include 'modules/permissionCheck.php';
     include 'modules/header.php';
-
-    include 'modules/Mysql.php';
 ?>
 <h1>Lieferanten hinzufügen</h1>
 
