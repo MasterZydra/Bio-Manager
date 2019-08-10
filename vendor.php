@@ -8,7 +8,38 @@
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
 
-<h1>Lieferanten</h1>
+<h1>Lieferant</h1>
+
+<?php
+    if(isset($_GET['action']) && isset($_GET['id'])) {
+        // Action - Delete vendor
+        if($_GET['action'] == 'delete') {
+            $conn = new Mysql();
+            $conn -> dbConnect();
+            $result = $conn->selectWhere('T_Vendor', 'id', '=', $_GET['id'], 'int');
+            
+            // Check if id is valid 
+            if ($result->num_rows == 0) {
+                echo '<div class="warning">';
+                echo 'Der ausgewählte Lieferant wurde in der Datenbank nicht gefunden';
+                echo '</div>';
+            } else {
+                // Delete vendor 
+                $row = $result->fetch_assoc();
+                $conn -> selectFreeRun('DELETE FROM T_Vendor WHERE id=' . $row['id']);
+                
+                echo '<div class="infobox">';
+                echo 'Der Lieferant <strong>' . $row['name'] . '</strong> wurde gelöscht.';
+                echo '</div>';
+            }
+            $conn->dbDisconnect();
+        } elseif($_GET['action'] == 'edit') {
+            // Action - Edit vendor
+            // Forwording to edit page and add parameters
+            echo '<script>window.location.replace("editVendor.php?id=' . $_GET['id'] . '");</script>';
+        }
+    }
+?>
 
 <p>
     <a href="addVendor.php">Lieferant hinzufügen</a>    
