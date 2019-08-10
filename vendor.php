@@ -6,6 +6,7 @@
     include 'modules/helperFunctions.php';
 ?>
 <script src="js/filterDataTable.js"></script>
+<script src="js/dropdown.js"></script>
 
 <h1>Lieferanten</h1>
 
@@ -20,10 +21,13 @@
     $conn = new Mysql();
     $conn -> dbConnect();
     $result = $conn->selectAll('T_Vendor');
-
-    dataSetToTable($result, array('id', 'name'), 'dataTable-tableVendors', array('Lieferant-Nr.', 'Name'));
-
     $conn->dbDisconnect();
+
+    if(isAllowedToEditVendor()) {
+        dataSetToTableWithDropdown($result, array('id', 'name'), 'dataTable-tableVendors', array('Lieferant-Nr.', 'Name', 'Aktionen'));
+    } else {
+        dataSetToTable($result, array('id', 'name'), 'dataTable-tableVendors', array('Lieferant-Nr.', 'Name'));
+    }
 
     include 'modules/footer.php';
 ?>
