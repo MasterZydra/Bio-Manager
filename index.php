@@ -1,8 +1,9 @@
 <?php
     include 'modules/header_everyone.php';
+    include 'modules/permissionCheck.php';
     include 'modules/header.php';
 
-    if(!isset($_SESSION['userId'])) {
+    if(!isLoggedIn()) {
 ?>
 <h1>Willkommen beim Bio-Manager</h1>
 Der Bio-Manger ist zum Verwalten von Anlieferungen von Lieferanten. Durch die Eingebe der Lieferscheine, Flurstücke und Liefermenge können Rechnungen an die Kelterei und Auswertungen zu Liefermenge und der Verteilung auf Flurstücke erstellt werden.
