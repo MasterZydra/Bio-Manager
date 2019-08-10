@@ -1,16 +1,12 @@
 <?php
-    //error_reporting(E_ALL);
-    //ini_set('display_errors', 1);
-
     include 'modules/header_everyone.php';
+    include 'modules/permissionCheck.php';
     include 'modules/header.php';
 
     $invalidLogin = false;
     $noPermissionsSet = false;
 
-    if(isset($_GET['login'])) {
-        include 'modules/Mysql.php';
-        
+    if(isset($_GET['login'])) {        
         $login = $_POST['user_login'];
         $password = $_POST['user_password'];
         // Get user login data        
