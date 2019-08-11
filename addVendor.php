@@ -1,6 +1,13 @@
 <?php
     include 'modules/header_user.php';
     include 'modules/permissionCheck.php';
+
+    // Check permission
+    if(!isMaintainer()) {
+        header("Location: vendor.php");
+        exit();
+    }
+
     include 'modules/header.php';
 ?>
 <h1>Lieferanten hinzufügen</h1>

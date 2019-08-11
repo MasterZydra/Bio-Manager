@@ -3,7 +3,7 @@
     include 'modules/permissionCheck.php';
     
     // Check permission
-    if(!isAllowedToEditVendor()) {
+    if(!isMaintainer()) {
         header("Location: vendor.php");
         exit();
     }

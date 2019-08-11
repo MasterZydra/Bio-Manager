@@ -1,6 +1,13 @@
 <?php
     include 'modules/header_user.php';
     include 'modules/permissionCheck.php';
+
+    // Check permission
+    if(!isMaintainer()) {
+        header("Location: index.php");
+        exit();
+    }
+
     include 'modules/header.php';
     
     include 'modules/helperFunctions.php';
