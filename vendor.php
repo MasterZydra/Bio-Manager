@@ -39,7 +39,8 @@
                 echo 'Der Lieferant <strong>' . $row['name'] . '</strong> wurde gelöscht.';
                 echo '</div>';
             }
-            $conn->dbDisconnect();
+            $conn -> dbDisconnect();
+            $conn = NULL;
         } elseif($_GET['action'] == 'edit') {
             // Action - Edit vendor
             // Forwording to edit page and add parameters
@@ -58,8 +59,9 @@
 <?php
     $conn = new Mysql();
     $conn -> dbConnect();
-    $result = $conn->selectAll('T_Vendor');
-    $conn->dbDisconnect();
+    $result = $conn -> selectAll('T_Vendor');
+    $conn -> dbDisconnect();
+    $conn = NULL;
 
     if(isAllowedToEditVendor()) {
         dataSetToTableWithDropdown($result, array('id', 'name'), 'dataTable-tableVendors', array('Lieferant-Nr.', 'Name', 'Aktionen'));
