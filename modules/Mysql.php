@@ -104,6 +104,7 @@ function insertInto($tableName,$values) {
 }
 
 function selectFreeRun($query)  {
+    #echo $query;
     $this -> dataSet = $this -> connectionString -> query($query);
     return $this -> dataSet;
 }
