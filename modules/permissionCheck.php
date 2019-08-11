@@ -19,16 +19,20 @@ function checkPermission($permission) {
     return false;
 }
 
-function isAllowedToEditVendor() {
-    return checkPermission('editVendor');
-}
-
 function isDeveloper() {
     return checkPermission('isDeveloper');
 }
 
 function isAdmin() {
     return checkPermission('isAdmin');
+}
+
+function isMaintainer() {
+    return checkPermission('isMaintainer');
+}
+
+function isVendor() {
+    return checkPermission('isVendor');
 }
 
 function isLoggedIn() {
