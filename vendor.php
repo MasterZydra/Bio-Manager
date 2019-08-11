@@ -63,7 +63,7 @@
     $conn -> dbDisconnect();
     $conn = NULL;
 
-    if(isAllowedToEditVendor()) {
+    if(isMaintainer()) {
         dataSetToTableWithDropdown($result, array('id', 'name'), 'dataTable-tableVendors', array('Lieferant-Nr.', 'Name', 'Aktionen'));
     } else {
         dataSetToTable($result, array('id', 'name'), 'dataTable-tableVendors', array('Lieferant-Nr.', 'Name'));
