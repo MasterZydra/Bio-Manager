@@ -57,8 +57,8 @@ Aus den Daten werden die Rechnungen und Auszahlungen generiert. Übersichten fü
 | isInspector | tinyint(1) | Flag for inspector permission |
 
 ## Aufgabenübersicht
-- [ ] **Bestandteile fertigstellen**  
-  Lieferanten
+- [x] **Bestandteile fertigstellen**  
+  Benutzer
     - [ ] Hinzufügen
     - [ ] Bearbeiten
     - [ ] Löschen
@@ -67,7 +67,7 @@ Aus den Daten werden die Rechnungen und Auszahlungen generiert. Übersichten fü
   Lieferscheine
     - [ ] Hinzufügen
     - [ ] Bearbeiten
-    - [ ] Löschen
+    - [x] Löschen
     - [ ] Anzeigen
   
   Flurstücke
