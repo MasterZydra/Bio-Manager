@@ -20,6 +20,39 @@
 <!--<p>
     <a href="addDeliveryNote.php">Lieferschein hinzufügen</a>    
 </p>-->
+
+<?php
+    if(isset($_GET['action']) && isset($_GET['id'])) {
+        // Action - Delete vendor
+        if($_GET['action'] == 'delete') {
+            $conn = new Mysql();
+            $conn -> dbConnect();
+            $result = $conn->selectWhere('T_DeliveryNote', 'id', '=', $_GET['id'], 'int');
+            
+            // Check if id is valid 
+            if ($result->num_rows == 0) {
+                echo '<div class="warning">';
+                echo 'Der ausgewählte Lieferschein wurde in der Datenbank nicht gefunden';
+                echo '</div>';
+            } else {
+                // Delete vendor 
+                $row = $result->fetch_assoc();
+                $conn -> selectFreeRun('DELETE FROM T_DeliveryNote WHERE id=' . $row['id']);
+                
+                echo '<div class="infobox">';
+                echo 'Der Lieferschein wurde gelöscht.';
+                echo '</div>';
+            }
+            $conn -> dbDisconnect();
+            $conn = NULL;
+        } elseif($_GET['action'] == 'edit') {
+            // Action - Edit vendor
+            // Forwording to edit page and add parameters
+            //echo '<script>window.location.replace("editVendor.php?id=' . $_GET['id'] . '");</script>';
+        }
+    }
+?>
+
 <p>
     <input type="text" id="filterInput-tableDeliveryNote" onkeyup="filterData(&quot;tableDeliveryNote&quot;)" placeholder="Suchtext eingeben..." title="Suchtext"> 
 </p>
