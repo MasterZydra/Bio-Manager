@@ -41,7 +41,7 @@
     }
 ?>
 <form action="?add=1" method="POST">
-    <label>Name:
+    <label>Name:<br>
         <input type="text" placeholder="Name des Lieferanten" name="vendor_name" required>
     </label><br>
     <button>Hinzufügen</button>
