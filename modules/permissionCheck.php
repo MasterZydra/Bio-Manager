@@ -18,6 +18,9 @@ function isMaintainer() {
     return checkPermission('isMaintainer');
 }
 
+function isInspector() {
+    return checkPermission('isInspector');
+}
 function isVendor() {
     return checkPermission('isVendor');
 }
