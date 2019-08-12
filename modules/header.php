@@ -17,14 +17,14 @@
                 if(!isset($_SESSION['userId'])) {
             ?>
             <form action="login.php">
-                <input type="submit" value="Anmelden"/>
+                <button>Anmelden</button>
             </form>
             <?php
                 }
                 else {
             ?>
             <form action="logout.php">
-                <input type="submit" value="Abmelden" />
+                <button>Abmelden</button>
             </form>
             <?php
                 }
