@@ -149,7 +149,7 @@ function freeRun($query) {
         }
     }
     // Return result
-    return $this -> connectionString -> query($query);
+    return $this -> dataSet;
   }
 }
 ?>
