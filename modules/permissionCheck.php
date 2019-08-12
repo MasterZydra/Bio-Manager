@@ -1,22 +1,9 @@
 <?php
 include 'modules/Mysql.php';
+include 'modules/Mysql_BioManager.php';
 
 function checkPermission($permission) {
-    // Get user permissions
-    $conn = new Mysql();
-    $conn -> dbConnect();
-    $result = $conn -> selectWhere('T_UserPermission', 'userId', '=', $_SESSION['userId'], 'int');
-    $conn -> dbDisconnect();
-    $conn = NULL;
-    
-    if ($result -> num_rows == 0) {
-        return false;
-    }
-    else {
-        $row = $result->fetch_assoc();
-        return $row[$permission];
-    }
-    return false;
+    return getUserPermission($_SESSION['userId'], $permission);
 }
 
 function isDeveloper() {
