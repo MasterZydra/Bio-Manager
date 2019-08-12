@@ -49,6 +49,19 @@ function selectAll($tableName) {
     return $this -> dataSet;
 }
 
+/*
+    $columns: e.g. 'id, name'
+    $where: e.g. 'id = 1'
+*/
+function selectColumsWhere($tableName, $columns, $whereCondition) {
+    $this -> sqlQuery =
+        'SELECT ' . $columns
+        . ' FROM '.$this -> databaseName.'.'.$tableName
+        . ' WHERE ' . $whereCondition;
+    $this -> dataSet = $this -> connectionString -> query($this -> sqlQuery);
+    return $this -> dataSet;
+}
+    
 function selectWhere($tableName,$rowName,$operator,$value,$valueType) {
     $this -> sqlQuery = 'SELECT * FROM '.$tableName.' WHERE '.$rowName.' '.$operator.' ';
     if($valueType == 'int') {
