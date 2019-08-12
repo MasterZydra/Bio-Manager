@@ -2,7 +2,9 @@
     include 'modules/header_user.php';
     include 'modules/permissionCheck.php';
     include 'modules/header.php';
-
+?>
+<h1>Passwort ändern</h1>
+<?php
     if(isset($_GET['change'])) {
         $curPassword = $_POST['curPassword'];
         $newPassword  = $_POST['newPassword'];
