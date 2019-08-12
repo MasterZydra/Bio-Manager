@@ -44,9 +44,8 @@ function dbDisconnect() {
 }
 
 function selectAll($tableName) {
-    $this -> sqlQuery = 'SELECT * FROM '.$this -> databaseName.'.'.$tableName;
-    $this -> dataSet = $this -> connectionString -> query($this -> sqlQuery);
-    return $this -> dataSet;
+    $query = 'SELECT * FROM '.$this -> databaseName.'.'.$tableName;
+    return $this -> freeRun($query);
 }
 
 /*
@@ -54,72 +53,60 @@ function selectAll($tableName) {
     $where: e.g. 'id = 1'
 */
 function selectColumsWhere($tableName, $columns, $whereCondition) {
-    $this -> sqlQuery =
+    $query =
         'SELECT ' . $columns
         . ' FROM '.$this -> databaseName.'.'.$tableName
         . ' WHERE ' . $whereCondition;
-    $this -> dataSet = $this -> connectionString -> query($this -> sqlQuery);
-    return $this -> dataSet;
+    return $this -> freeRun($query);
 }
     
 function selectWhere($tableName,$rowName,$operator,$value,$valueType) {
-    $this -> sqlQuery = 'SELECT * FROM '.$tableName.' WHERE '.$rowName.' '.$operator.' ';
+    $query = 'SELECT * FROM '.$tableName.' WHERE '.$rowName.' '.$operator.' ';
     if($valueType == 'int') {
-        $this -> sqlQuery .= $value;
+        $query .= $value;
     }
     else if($valueType == 'char')   {
-        $this -> sqlQuery .= "'".$value."'";
+        $query .= "'".$value."'";
     }
-    #echo $this -> sqlQuery;
-    $this -> dataSet = $this -> connectionString -> query($this -> sqlQuery);
-    $this -> sqlQuery = NULL;
-    return $this -> dataSet;
-    #return $this -> sqlQuery;
+    return $this -> freeRun($query);
 }
     
 /*
     $orderByCommand: 'id desc'
 */
 function selectOrderBy($tableName, $orderByCommand) {
-    $this -> sqlQuery = 'SELECT * FROM '.$tableName.' ORDER BY ' . $orderByCommand;
-    $this -> dataSet = $this -> connectionString -> query($this -> sqlQuery);
-    #echo $this -> sqlQuery;
-    return $this -> dataSet;
+    $query = 'SELECT * FROM '.$tableName.' ORDER BY ' . $orderByCommand;
+    return $this -> freeRun($query);
 }
 
 function insertInto($tableName,$values) {
     $i = NULL;
 
-    $this -> sqlQuery = 'INSERT INTO '.$tableName.' VALUES (';
+    $query = 'INSERT INTO '.$tableName.' VALUES (';
     $i = 0;
     while(count($values) > $i && $values[$i]["val"] != NULL && $values[$i]["type"] != NULL) {
         if($values[$i]["type"] == "char")   {
-            $this -> sqlQuery .= "'";
-            $this -> sqlQuery .= $values[$i]["val"];
-            $this -> sqlQuery .= "'";
+            $query .= "'";
+            $query .= $values[$i]["val"];
+            $query .= "'";
         }
         else if($values[$i]["type"] == 'int')   {
-            $this -> sqlQuery .= $values[$i]["val"];
+            $query .= $values[$i]["val"];
         }
         else if($values[$i]["type"] == 'null')   {
-            $this -> sqlQuery .= 'NULL';
+            $query .= 'NULL';
         }
         $i++;
         if(count($values) > $i && $values[$i]["val"] != NULL)  {
-            $this -> sqlQuery .= ',';
+            $query .= ',';
         }
     }
-    $this -> sqlQuery .= ')';
-    #echo $this -> sqlQuery;
-    $this -> connectionString -> query($this -> sqlQuery);
-    return $this -> sqlQuery;
-    #$this -> sqlQuery = NULL;
+    $query .= ')';
+    return $this -> freeRun($query);
 }
 
 function selectFreeRun($query)  {
-    #echo $query;
-    $this -> dataSet = $this -> connectionString -> query($query);
-    return $this -> dataSet;
+    return $this -> freeRun($query);
 }
 
 function freeRun($query) {
