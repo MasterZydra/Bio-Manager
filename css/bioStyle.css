@@ -160,6 +160,29 @@ table th {
 }
 
 /**************************
+* Formulare
+**************************/
+
+/***************
+* Formulare - Button
+****************/
+
+button {
+  background-color: #262525; /* Black */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+}
+
+button:hover {
+  background-color: #555555; /* Black */
+}
+
+/**************************
 * Stop iOS rounded style
 **************************/
 
