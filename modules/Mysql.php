@@ -121,6 +121,13 @@ function insertInto($tableName,$values) {
     return $this -> freeRun($query);
 }
 
+function getFirstRow() {
+    $dataSet = $this -> dataSet;
+    if ($dataSet -> num_rows == 0) {
+        return NULL;
+    } else {
+        return $dataSet -> fetch_assoc();
+    }
 }
 
 function freeRun($query) {
