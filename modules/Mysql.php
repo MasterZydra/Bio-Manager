@@ -1,5 +1,21 @@
 <?php
-// https://stackoverflow.com/questions/3228694/php-database-connection-class
+/*
+* Mysql.php
+* ---------
+* This file contains the class 'Mysql'. It simplifies the connection
+* to the SQL server and executing queries. The connection settings
+* are stored in 'config/DbConfig.php'.
+*
+* @Link to original soure code: https://stackoverflow.com/questions/3228694/php-database-connection-class
+*
+* @Author: David Hein
+* 
+* Changelog:
+* ----------
+* 12.08.2019:
+*   - Extending freeRun() with developer output and change
+*     implementation of other functions to use freeRun().
+*/
 
 include 'config/DbConfig.php';
 
