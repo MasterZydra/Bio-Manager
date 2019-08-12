@@ -27,16 +27,16 @@
         $conn -> dbConnect();
         
         if(isset($_GET['edit'])) {
-            $conn -> selectFreeRun(
+            $conn -> freeRun(
                 'UPDATE T_User '
                 . 'SET name = \'' . $_POST['userName'] . '\' '
                 . 'WHERE id = ' . $_POST['userId']);
-           $conn -> selectFreeRun(
+           $conn -> freeRun(
                 'UPDATE T_UserLogin '
                 . 'SET login = \'' . $_POST['userLogin'] . '\', '
                 . 'forcePwdChange = ' . $_POST['userForcePwdChange'] . ' '
                 . 'WHERE userId = ' . $_POST['userId']);
-            $conn -> selectFreeRun(
+            $conn -> freeRun(
                 'UPDATE T_UserPermission '
                 . 'SET isAdmin = ' . $_POST['userIsAdmin'] . ', '
                 . 'isDeveloper = ' . $_POST['userIsDeveloper'] . ', '
