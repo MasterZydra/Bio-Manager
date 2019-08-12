@@ -13,6 +13,7 @@
     include 'modules/helperFunctions.php';
 ?>
 <script src="js/filterDataTable.js"></script>
+<script src="js/dropdown.js"></script>
 
 <h1>Lieferschein</h1>
 
