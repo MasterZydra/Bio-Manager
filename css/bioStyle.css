@@ -110,6 +110,13 @@ table th {
     color: white;
 }
 
+.log {
+    background-color: #696969;
+    padding: 10px;
+    margin: 10px 0 10px 0;
+    color: white;
+}
+
 /**************************
 * Dropdown button
 **************************/
