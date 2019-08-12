@@ -51,10 +51,10 @@
     }
 ?>
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post">
-    <label>Lieferanten-Nr:
+    <label>Lieferanten-Nr:<br>
         <input type="text" name="vendorId" value="<?php echo $row['id']; ?>" readonly>
     </label><br>
-    <label>Name:
+    <label>Name:<br>
         <input type="text" name="vendorName" value="<?php echo $row['name']; ?>">
     </label><br>
     <button>Änderungen speichern</button>
