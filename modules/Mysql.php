@@ -121,8 +121,6 @@ function insertInto($tableName,$values) {
     return $this -> freeRun($query);
 }
 
-function selectFreeRun($query)  {
-    return $this -> freeRun($query);
 }
 
 function freeRun($query) {
