@@ -27,10 +27,21 @@
     $conn = new Mysql();
     $conn -> dbConnect();
     $result = $conn->selectOrderBy('T_DeliveryNote', 'year DESC, nr ASC');
+    $conn -> dbDisconnect();
+    $conn = NULL;
 
-    dataSetToTable($result, array('year', 'nr', 'deliverDate', 'amount'), 'dataTable-tableDeliveryNote', array('Jahr', 'Nr', 'Lieferdatum', 'Menge'));
-
-    $conn->dbDisconnect();
+    if(isMaintainer()) {
+        dataSetToTableWithDropdown($result,
+            array('year', 'nr', 'deliverDate', 'amount'),
+            'dataTable-tableDeliveryNote',
+            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Aktionen'));
+    } else {
+        dataSetToTable(
+            $result,
+            array('year', 'nr', 'deliverDate', 'amount'),
+            'dataTable-tableDeliveryNote',
+            array('Jahr', 'Nr', 'Lieferdatum', 'Menge'));
+    }
 
     include 'modules/footer.php';
 ?>
