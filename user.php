@@ -23,19 +23,19 @@
         if($_GET['action'] == 'delete') {
             $conn = new Mysql();
             $conn -> dbConnect();
-            $result = $conn->selectWhere('T_User', 'id', '=', $_GET['id'], 'int');
+            $conn -> selectWhere('T_User', 'id', '=', $_GET['id'], 'int');
+            $row = $conn -> getFirstRow();
             
             // Check if id is valid 
-            if ($result->num_rows == 0) {
+            if ($row == NULL) {
                 echo '<div class="warning">';
                 echo 'Der ausgewählte Benutzer wurde in der Datenbank nicht gefunden';
                 echo '</div>';
             } else {
                 // Delete vendor 
-                $row = $result->fetch_assoc();
-                $conn -> selectFreeRun('DELETE FROM T_User WHERE id=' . $row['id']);
-                $conn -> selectFreeRun('DELETE FROM T_UserLogin WHERE userId=' . $row['id']);
-                $conn -> selectFreeRun('DELETE FROM T_UserPermission WHERE userId=' . $row['id']);
+                $conn -> freeRun('DELETE FROM T_User WHERE id=' . $row['id']);
+                $conn -> freeRun('DELETE FROM T_UserLogin WHERE userId=' . $row['id']);
+                $conn -> freeRun('DELETE FROM T_UserPermission WHERE userId=' . $row['id']);
                 
                 echo '<div class="infobox">';
                 echo 'Der Benutzer wurde gelöscht.';
@@ -61,7 +61,7 @@
 <?php
     $conn = new Mysql();
     $conn -> dbConnect();
-    $result = $conn->selectFreeRun(
+    $result = $conn->freeRun(
         'SELECT '
         . 'T_User.id, T_User.id AS userId, name, isAdmin, isDeveloper, isMaintainer, isVendor, isInspector, login, vendorId '
         . 'FROM `T_User` '
