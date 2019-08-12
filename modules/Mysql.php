@@ -123,6 +123,24 @@ function selectFreeRun($query)  {
 }
 
 function freeRun($query) {
+    // Save query
+    $this -> sqlQuery = $query;
+    // Execute query
+    $this -> dataSet = $this -> connectionString -> query($this -> sqlQuery);
+    // Developer output
+    if(isset($_SESSION['devOpt_ShowQuery']) && $_SESSION['devOpt_ShowQuery']) {
+        // Print sql query
+        echo '<div class="log">';
+        echo '<strong>SQL Query</strong>: ' . $this -> sqlQuery;
+        echo '</div>';
+        // Show error if something went wrong
+        if(!($this -> dataSet)) {
+            echo '<div class="warning">';
+            echo '<strong>SQL Query failed</strong>: ' . $this -> connectionString -> error;
+            echo '</div>';
+        }
+    }
+    // Return result
     return $this -> connectionString -> query($query);
   }
 }
