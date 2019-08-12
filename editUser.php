@@ -49,22 +49,21 @@
             echo '</div>';
         }
 
-        $result = $conn->selectFreeRun(
+        $conn->freeRun(
         'SELECT '
         . 'T_User.id, T_User.id AS userId, name, isAdmin, isDeveloper, isMaintainer, isVendor, isInspector, forcePwdChange, login, vendorId '
         . 'FROM `T_User` '
         . 'LEFT JOIN `T_UserPermission` ON `T_UserPermission`.`userId` = `T_User`.`id` '
         . 'LEFT JOIN `T_UserLogin` ON `T_UserLogin`.`userId` = `T_User`.`id`');
+        $row = $conn -> getFirstRow();
         $conn -> dbDisconnect();
         $conn = NULL;
         
         // Check if id is valid 
-        if ($result->num_rows == 0) {
+        if ($row == NULL) {
             echo '<div class="warning">';
             echo 'Der ausgewählte Benutzer wurde in der Datenbank nicht gefunden. Zurück zu <a href="user.php">Alle Benutzer anzeigen</a>';
             echo '</div>';
-        } else {
-            $row = $result->fetch_assoc();
         }
 ?>
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post">
