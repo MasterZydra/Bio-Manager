@@ -3,7 +3,7 @@
     include 'modules/permissionCheck.php';
 
     // Check permission
-    if(!isMaintainer()) {
+    if(!isMaintainer() && !isInspector()) {
         header("Location: index.php");
         exit();
     }
