@@ -16,6 +16,9 @@
 <script src="js/dropdown.js"></script>
 
 <h1>Lieferant</h1>
+<p>
+    <a href="addVendor.php">Lieferant hinzufügen</a>    
+</p>
 
 <?php
     if(isset($_GET['action']) && isset($_GET['id'])) {
@@ -49,9 +52,6 @@
     }
 ?>
 
-<p>
-    <a href="addVendor.php">Lieferant hinzufügen</a>    
-</p>
 <p>
     <input type="text" id="filterInput-tableVendors" onkeyup="filterData(&quot;tableVendors&quot;)" placeholder="Suchtext eingeben..." title="Suchtext"> 
 </p>
