@@ -68,9 +68,6 @@
     }
 ?>
 
-<!--<p>
-    <a href="addDeliveryNote.php">Lieferschein hinzufügen</a>    
-</p>-->
 <p>
     <input type="text" id="filterInput-tableUser" onkeyup="filterData(&quot;tableUser&quot;)" placeholder="Suchtext eingeben..." title="Suchtext"> 
 </p>
