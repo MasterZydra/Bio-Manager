@@ -4,7 +4,7 @@
 
     // Check permission
     if(!isMaintainer()) {
-        header("Location: vendor.php");
+        header("Location: supplier.php");
         exit();
     }
 
@@ -13,7 +13,7 @@
 <h1>Lieferanten hinzufügen</h1>
 
 <p>
-    <a href="vendor.php">Alle Lieferanten anzeigen</a>
+    <a href="supplier.php">Alle Lieferanten anzeigen</a>
 </p>
 <?php
     if(isset($_GET['add'])) {
@@ -25,24 +25,24 @@
             "val" => "null"
         ];
         
-        $vendor_name = [
+        $supplier_name = [
             "type" => "char",
-            "val" => $_POST["vendor_name"]
+            "val" => $_POST["supplier_name"]
         ];
         
-        $data = array($NULL, $vendor_name);
+        $data = array($NULL, $supplier_name);
         
-        $conn -> insertInto('T_Vendor', $data);
+        $conn -> insertInto('T_Supplier', $data);
         $conn -> dbDisconnect();
         
         echo '<div class="infobox">';
-        echo 'Der Lieferant <strong>' . $_POST["vendor_name"] . '</strong> wurde hinzugefügt';
+        echo 'Der Lieferant <strong>' . $_POST["supplier_name"] . '</strong> wurde hinzugefügt';
         echo '</div>';
     }
 ?>
 <form action="?add=1" method="POST">
     <label>Name:<br>
-        <input type="text" placeholder="Name des Lieferanten" name="vendor_name" required>
+        <input type="text" placeholder="Name des Lieferanten" name="supplier_name" required>
     </label><br>
     <button>Hinzufügen</button>
 </form>
