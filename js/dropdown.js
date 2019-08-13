@@ -1,3 +1,9 @@
+/*
+* This logic is used to enable the dropdown buttons.
+*
+* @Author: David Hein
+*/
+
 /* When the user clicks on the button,
  toggle between hiding and showing the dropdown content */
 function openDropdown(id) {
