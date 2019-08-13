@@ -16,8 +16,8 @@
     include 'modules/permissionCheck.php';
 
     // Check permission
-    if(!isMaintainer()) {
-        header("Location: vendor.php");
+    if(!isMaintainer() && !isInspector()) {
+        header("Location: index.php");
         exit();
     }
 
