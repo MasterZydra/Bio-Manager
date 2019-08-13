@@ -1,4 +1,15 @@
 <?php
+/*
+* editUser.php
+* ---------------
+* This form is used to edit a users name, login and permissions.
+*
+* @Author: David Hein
+* 
+* Changelog:
+* ----------
+*/
+
     include 'modules/header_user.php';
     include 'modules/permissionCheck.php';
     
