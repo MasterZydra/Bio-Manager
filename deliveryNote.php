@@ -1,4 +1,17 @@
 <?php
+/*
+* deliveryNote.php
+* ----------------
+* This page shows all delivery notes in a table. A filter can
+* be used to find the wanted rows. With maintainer permission
+* the user can delete and edit a delivery note.
+*
+* @Author: David Hein
+* 
+* Changelog:
+* ----------
+*/
+
     include 'modules/header_user.php';
     include 'modules/permissionCheck.php';
 
