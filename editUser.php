@@ -30,12 +30,12 @@
             $conn -> freeRun(
                 'UPDATE T_User '
                 . 'SET name = \'' . $_POST['userName'] . '\' '
-                . 'WHERE id = ' . $_POST['userId']);
+                . 'WHERE id = ' . $_GET['id']);
            $conn -> freeRun(
                 'UPDATE T_UserLogin '
                 . 'SET login = \'' . $_POST['userLogin'] . '\', '
                 . 'forcePwdChange = ' . $_POST['userForcePwdChange'] . ' '
-                . 'WHERE userId = ' . $_POST['userId']);
+                . 'WHERE userId = ' . $_GET['id']);
             $conn -> freeRun(
                 'UPDATE T_UserPermission '
                 . 'SET isAdmin = ' . $_POST['userIsAdmin'] . ', '
@@ -43,7 +43,7 @@
                 . 'isMaintainer = ' . $_POST['userIsMaintainer'] . ', '
                 . 'isSupplier = ' . $_POST['userIsSupplier'] . ', '
                 . 'isInspector = ' . $_POST['userIsInspector'] . ' '
-                . 'WHERE userId = ' . $_POST['userId']);
+                . 'WHERE userId = ' . $_GET['id']);
             echo '<div class="infobox">';
             echo 'Die Änderungen wurden erfolgreich gespeichert';
             echo '</div>';
