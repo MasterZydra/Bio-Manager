@@ -1,4 +1,14 @@
 <?php
+/*
+* editSupplier.php
+* ---------------
+* This form is used to edit a supplier.
+*
+* @Author: David Hein
+* 
+* Changelog:
+* ----------
+*/
     include 'modules/header_user.php';
     include 'modules/permissionCheck.php';
     
