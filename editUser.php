@@ -41,7 +41,7 @@
                 . 'SET isAdmin = ' . $_POST['userIsAdmin'] . ', '
                 . 'isDeveloper = ' . $_POST['userIsDeveloper'] . ', '
                 . 'isMaintainer = ' . $_POST['userIsMaintainer'] . ', '
-                . 'isVendor = ' . $_POST['userIsVendor'] . ', '
+                . 'isSupplier = ' . $_POST['userIsSupplier'] . ', '
                 . 'isInspector = ' . $_POST['userIsInspector'] . ' '
                 . 'WHERE userId = ' . $_POST['userId']);
             echo '<div class="infobox">';
@@ -51,7 +51,7 @@
 
         $conn->freeRun(
         'SELECT '
-        . 'T_User.id, T_User.id AS userId, name, isAdmin, isDeveloper, isMaintainer, isVendor, isInspector, forcePwdChange, login, vendorId '
+        . 'T_User.id, T_User.id AS userId, name, isAdmin, isDeveloper, isMaintainer, isSupplier, isInspector, forcePwdChange, login, supplierId '
         . 'FROM `T_User` '
         . 'LEFT JOIN `T_UserPermission` ON `T_UserPermission`.`userId` = `T_User`.`id` '
         . 'LEFT JOIN `T_UserLogin` ON `T_UserLogin`.`userId` = `T_User`.`id`'
@@ -96,8 +96,8 @@
         Pfleger
     </label><br>
     <label>
-        <input type="hidden" name="userIsVendor" value="0">
-        <input type="checkbox" name="userIsVendor" value="1" <?php if($row['isVendor']) { echo 'checked'; } ?>>
+        <input type="hidden" name="userIsSupplier" value="0">
+        <input type="checkbox" name="userIsSupplier" value="1" <?php if($row['isSupplier']) { echo 'checked'; } ?>>
         Lieferant
     </label><br>
     <label>
