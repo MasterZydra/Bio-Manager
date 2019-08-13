@@ -1,4 +1,17 @@
 <?php
+/*
+* supplier.php
+* ----------------
+* This page shows all suppliers in a table. A filter can
+* be used to find the wanted rows. With maintainer permissions
+* the user can delete, edit and add a supplier.
+*
+* @Author: David Hein
+* 
+* Changelog:
+* ----------
+*/
+
     include 'modules/header_user.php';
     include 'modules/permissionCheck.php';
 
