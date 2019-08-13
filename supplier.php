@@ -30,7 +30,7 @@
 
 <h1>Lieferant</h1>
 <p>
-    <a href="addSupplier.php">Lieferant hinzufügen</a>    
+    <?php if(isMaintainer()) {?><a href="addSupplier.php">Lieferant hinzufügen</a><?php } ?>  
 </p>
 
 <?php
