@@ -22,7 +22,7 @@
 
 <?php
     if(isset($_GET['action']) && isset($_GET['id'])) {
-        // Action - Delete vendor
+        // Action - Delete user
         if($_GET['action'] == 'delete') {
             $conn = new Mysql();
             $conn -> dbConnect();
@@ -35,7 +35,7 @@
                 echo 'Der ausgewählte Benutzer wurde in der Datenbank nicht gefunden';
                 echo '</div>';
             } else {
-                // Delete vendor 
+                // Delete user
                 $conn -> freeRun('DELETE FROM T_User WHERE id=' . $row['id']);
                 $conn -> freeRun('DELETE FROM T_UserLogin WHERE userId=' . $row['id']);
                 $conn -> freeRun('DELETE FROM T_UserPermission WHERE userId=' . $row['id']);
@@ -66,7 +66,7 @@
     $conn -> dbConnect();
     $result = $conn->freeRun(
         'SELECT '
-        . 'T_User.id, T_User.id AS userId, name, isAdmin, isDeveloper, isMaintainer, isVendor, isInspector, login, vendorId '
+        . 'T_User.id, T_User.id AS userId, name, isAdmin, isDeveloper, isMaintainer, isSupplier, isInspector, login, supplierId '
         . 'FROM `T_User` '
         . 'LEFT JOIN `T_UserPermission` ON `T_UserPermission`.`userId` = `T_User`.`id` '
         . 'LEFT JOIN `T_UserLogin` ON `T_UserLogin`.`userId` = `T_User`.`id`');
@@ -74,7 +74,7 @@
     $conn = NULL;
 
     dataSetToTableWithDropdown($result,
-        array('name', 'login', 'isAdmin', 'isDeveloper', 'isMaintainer', 'isInspector', 'isVendor', 'vendorId'),
+        array('name', 'login', 'isAdmin', 'isDeveloper', 'isMaintainer', 'isInspector', 'isSupplier', 'supplierId'),
         'dataTable-tableUser',
         array('Name', 'Anmeldename', 'Administrator', 'Entwickler', 'Pfleger', 'Prüfer', 'Lieferant', 'Lieferanten-Nr', 'Aktionen'));
 
