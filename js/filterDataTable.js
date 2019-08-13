@@ -1,3 +1,8 @@
+/*
+* This function is neccessary to enable the filtering with an input box.
+*
+* @Author: David Hein
+*/
 function filterData(id) {
     var input, filter, table, tr, td, i;
     input = document.getElementById("filterInput-" + id);
