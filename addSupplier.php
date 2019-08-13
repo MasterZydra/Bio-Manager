@@ -1,4 +1,15 @@
 <?php
+/*
+* addSupplier.php
+* ---------------
+* This form is used to add a new supplier.
+*
+* @Author: David Hein
+* 
+* Changelog:
+* ----------
+*/
+
     include 'modules/header_user.php';
     include 'modules/permissionCheck.php';
 
