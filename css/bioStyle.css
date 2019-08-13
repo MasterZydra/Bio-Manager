@@ -93,18 +93,18 @@ table th {
 }
 
 /**************************
-* Infobox
+* Infoboxes
 **************************/
 
 .infobox {
-    background-color: #4a8a16;
+    background-color: #4a8a16; /* Green */
     padding: 10px;
     margin: 10px 0 10px 0;
     color: white;
 }
 
 .warning {
-    background-color: #b01c1c;
+    background-color: #b01c1c; /* Red */
     padding: 10px;
     margin: 10px 0 10px 0;
     color: white;
