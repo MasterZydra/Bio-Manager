@@ -39,16 +39,16 @@
         if($_GET['action'] == 'delete') {
             $conn = new Mysql();
             $conn -> dbConnect();
-            $result = $conn->selectWhere('T_Supplier', 'id', '=', $_GET['id'], 'int');
+            $conn -> selectWhere('T_Supplier', 'id', '=', $_GET['id'], 'int');
+            $row = $conn -> getFirstRow();
             
             // Check if id is valid 
-            if ($result->num_rows == 0) {
+            if ($row == NULL) {
                 echo '<div class="warning">';
                 echo 'Der ausgewählte Lieferant wurde in der Datenbank nicht gefunden';
                 echo '</div>';
             } else {
                 // Delete vendor 
-                $row = $result->fetch_assoc();
                 $conn -> freeRun('DELETE FROM T_Supplier WHERE id=' . $row['id']);
                 
                 echo '<div class="infobox">';
