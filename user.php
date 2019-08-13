@@ -16,6 +16,9 @@
 <script src="js/dropdown.js"></script>
 
 <h1>Benutzer</h1>
+<p>
+    <a href="addUser.php">Benutzer hinzufügen</a>    
+</p>
 
 <?php
     if(isset($_GET['action']) && isset($_GET['id'])) {
