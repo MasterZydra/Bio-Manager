@@ -13,18 +13,18 @@ Der Bio-Manger ist zum Verwalten von Anlieferungen von Lieferanten. Durch die Ei
 <h1>Willkommen im Mitgliederbereich</h1>
 <?php
         // Links for maintainers
-        if(isMaintainer()) {
+        if(isMaintainer() || isInspector()) {
 ?>
 <div>
     <strong>Lieferant</strong><br>
-    <a href="supplier.php">Alle Lieferanten anzeigen</a><br>
-    <a href="addSupplier.php">Lieferant hinzufügen</a>
+    <a href="supplier.php">Alle Lieferanten anzeigen</a>
+    <?php if(isMaintainer()) {?><br><a href="addSupplier.php">Lieferant hinzufügen</a><?php } ?>
 </div>
 
 <div>
     <strong>Lieferschein</strong><br>
-    <a href="deliveryNote.php">Alle Lieferscheine anzeigen</a><br>
-    <!--<a href="addDeliveryNoter.php">Lieferanten hinzufügen</a>-->
+    <a href="deliveryNote.php">Alle Lieferscheine anzeigen</a>
+    <?php if(isMaintainer()) {?><br><!--<a href="addDeliveryNoter.php">Lieferanten hinzufügen</a>--><?php } ?>
 </div>
 <?php
         }
