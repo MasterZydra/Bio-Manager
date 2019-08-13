@@ -35,7 +35,7 @@
 </p>-->
 
 <?php
-    if(isset($_GET['action']) && isset($_GET['id'])) {
+    if(isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
         // Action - Delete vendor
         if($_GET['action'] == 'delete') {
             $conn = new Mysql();
