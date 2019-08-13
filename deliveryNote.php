@@ -31,7 +31,7 @@
 <h1>Lieferschein</h1>
 
 <!--<p>
-    <a href="addDeliveryNote.php">Lieferschein hinzufügen</a>    
+    <?php if(isMaintainer()) {?><a href="addDeliveryNote.php">Lieferschein hinzufügen</a><?php } ?>
 </p>-->
 
 <?php
