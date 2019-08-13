@@ -13,15 +13,15 @@
         // Check old password
         $conn = new Mysql();
         $conn -> dbConnect();
-        $result = $conn->selectWhere('T_UserLogin', 'userId', '=', $_SESSION['userId'], 'int');
+        $conn -> selectWhere('T_UserLogin', 'userId', '=', $_SESSION['userId'], 'int');
+        $row = $conn -> getFirstRow();
         $conn -> dbDisconnect();
         $conn = NULL;
         $invalidPwd = false;
-        if($result->num_rows == 0) {
+        if($row == NULL) {
             $invalidPwd = true;
         }
         else {
-            $row = $result->fetch_assoc();
             if (!password_verify($curPassword, $row['password'])) {
                 $invalidPwd = true;
             }
