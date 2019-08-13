@@ -35,16 +35,70 @@
             "type" => "int",
             "val" => "0"
         ];
-        
+        // Add user
         $data = array($NULL, $user_name, $user_vendorId);
         $conn -> insertInto('T_User', $data);
+        $data = NULL;
+        // Get user id
+        $conn -> selectColumsWhere('T_User', 'id', 'name = \'' . $_POST["userName"] . '\' ORDER BY id DESC');
+        $user = $conn -> getFirstRow();
+        if($user == NULL) {
+            // Error do not continue
+        }
         
-        //$conn -> selectColumsWhere();
+        $user_id = [
+            "type" => "int",
+            "val" => $user['id']
+        ];
         
+        $user_login = [
+            "type" => "char",
+            "val" => $_POST['userLogin']
+        ];
         
-        //password_hash($newPassword, PASSWORD_DEFAULT)
+        $user_password = [
+            "type" => "char",
+            "val" => password_hash($_POST['userPassword'], PASSWORD_DEFAULT)
+        ];
         
+        $user_forcePwdChange = [
+            "type" => "int",
+            "val" => strval($_POST['userForcePwdChange'])
+        ];
         
+        // Add user login
+        $data = array($NULL, $user_id, $user_login, $user_password, $user_forcePwdChange);
+        $conn -> insertInto('T_UserLogin', $data);
+        $data = NULL;
+        
+        $user_isAmin = [
+            "type" => "int",
+            "val" => strval($_POST['userIsAdmin'])
+        ];
+        
+        $user_isDeveloper = [
+            "type" => "int",
+            "val" => strval($_POST['userIsDeveloper'])
+        ];
+
+        $user_isMaintainer = [
+            "type" => "int",
+            "val" => strval($_POST['userIsMaintainer'])
+        ];
+
+        $user_isSupplier = [
+            "type" => "int",
+            "val" => strval($_POST['userIsSupplier'])
+        ];
+
+        $user_isInspector = [
+            "type" => "int",
+            "val" => strval($_POST['userIsInspector'])
+        ];
+
+        $data = array($NULL, $user_id, $user_isAmin, $user_isDeveloper, $user_isMaintainer, $user_isSupplier, $user_isInspector);
+        $conn -> insertInto('T_UserPermission', $data);
+        $data = NULL;
         
         
         $conn -> dbDisconnect();
@@ -86,8 +140,8 @@
         Pfleger
     </label><br>
     <label>
-        <input type="hidden" name="userIsVendor" value="0">
-        <input type="checkbox" name="userIsVendor" value="1">
+        <input type="hidden" name="userIsSupplier" value="0">
+        <input type="checkbox" name="userIsSupplier" value="1">
         Lieferant
     </label><br>
     <label>
