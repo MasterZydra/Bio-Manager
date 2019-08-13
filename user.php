@@ -1,4 +1,18 @@
 <?php
+/*
+* user.php
+* ----------------
+* This page shows all users in a table. A filter can
+* be used to find the wanted rows. A user needs
+* administrator permissions to see and edit the users.
+* Users can be added, deleted and edited.
+*
+* @Author: David Hein
+* 
+* Changelog:
+* ----------
+*/
+
     include 'modules/header_user.php';
     include 'modules/permissionCheck.php';
 
