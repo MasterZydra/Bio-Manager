@@ -21,38 +21,23 @@
         }
         else {
             $row = $result->fetch_assoc();
-            $forcePwdChange = $row['forcePwdChange'];
             // Check password
             if (!password_verify($password, $row['password'])) {
                 $invalidLogin = true;
             }
             else {
-                // Get user permissions
-                $conn = new Mysql();
-                $conn -> dbConnect();
-                $result = $conn -> selectWhere('T_UserPermission', 'userId', '=', $row['userId'], 'int');
-                $conn -> dbDisconnect();
-                $conn = NULL;
-                
-                if ($result -> num_rows == 0) {
-                    $noPermissionsSet = true;
-                }
-                else {
-                    // Save session data
-                    $row = $result->fetch_assoc();
-                    $_SESSION['userId'] = $row['userId'];
-                    
-                    if($forcePwdChange) {
-                        echo '<div class="warning">';
-                        echo 'Sie müssen Ihr Passwort ändern. Automatische Weiterleitung zu <a href="changePwd.php">Passwort ändern</a> erfolgt.';
-                        echo '</div>';
-                        echo '<script>window.location.replace("changePwd.php");</script>';
-                    } else {
-                        echo '<div class="infobox">';
-                        echo 'Anmeldung erfolgreich. Automatische Weiterleitung zur <a href="index.php">Startseite</a> erfolgt.';
-                        echo '</div>';
-                        echo '<script>window.location.replace("index.php");</script>';
-                    }
+                $_SESSION['userId'] = $row['userId'];
+
+                if($row['forcePwdChange']) {
+                    echo '<div class="warning">';
+                    echo 'Sie müssen Ihr Passwort ändern. Automatische Weiterleitung zu <a href="changePwd.php">Passwort ändern</a> erfolgt.';
+                    echo '</div>';
+                    echo '<script>window.location.replace("changePwd.php");</script>';
+                } else {
+                    echo '<div class="infobox">';
+                    echo 'Anmeldung erfolgreich. Automatische Weiterleitung zur <a href="index.php">Startseite</a> erfolgt.';
+                    echo '</div>';
+                    echo '<script>window.location.replace("index.php");</script>';
                 }
             }
         }
