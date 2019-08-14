@@ -73,7 +73,7 @@
 <?php
     $conn = new Mysql();
     $conn -> dbConnect();
-    $result = $conn->selectOrderBy('T_DeliveryNote', 'year DESC, nr ASC');
+    $result = $conn -> select('T_DeliveryNote', '*', NULL, 'year DESC, nr ASC');
     $conn -> dbDisconnect();
     $conn = NULL;
 
