@@ -74,7 +74,7 @@
 ?>
     <form action="?login=1" method="post">
         <label>Anmeldename:<br>
-            <input type="text" size="40" maxlength="250" name="user_login" required>
+            <input type="text" size="40" maxlength="250" name="user_login" required autofocus>
         </label><br>
         <label>Passwort:<br>
             <input type="password" size="40"  maxlength="250" name="user_password" required>
