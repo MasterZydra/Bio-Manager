@@ -13,7 +13,7 @@
         // Check old password
         $conn = new Mysql();
         $conn -> dbConnect();
-        $conn -> selectWhere('T_UserLogin', 'userId', '=', $_SESSION['userId'], 'int');
+        $conn -> select('T_UserLogin', 'password', 'userId = ' . $_SESSION['userId']);
         $row = $conn -> getFirstRow();
         $conn -> dbDisconnect();
         $conn = NULL;
