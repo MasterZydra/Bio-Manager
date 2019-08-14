@@ -46,7 +46,7 @@
             echo '</div>';
         }
 
-        $result = $conn -> selectWhere('T_Supplier', 'id', '=', $_GET['id'], 'int');
+        $result = $conn -> select('T_Supplier', '*', 'id = ' . $_GET['id']);
         $conn -> dbDisconnect();
         $conn = NULL;
         
