@@ -12,7 +12,7 @@
         // Get user login data        
         $conn = new Mysql();
         $conn -> dbConnect();
-        $result = $conn->selectWhere('T_UserLogin', 'login', '=', $login, 'char');
+        $result = $conn->select('T_UserLogin', '*', 'login = \'' . $login . '\'');
         $conn -> dbDisconnect();
         $conn = NULL;
         
