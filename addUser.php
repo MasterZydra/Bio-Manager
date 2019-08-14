@@ -121,7 +121,7 @@
 ?>
 <form action="?add=1" method="post">
     <label>Name:<br>
-        <input type="text" name="userName" placeholder="Benutzername eingeben" required>
+        <input type="text" name="userName" placeholder="Benutzername eingeben" required autofocus>
     </label><br>
     <label>Anmeldename:<br>
         <input type="text" name="userLogin" placeholder="Anmeldename eingeben" required>
