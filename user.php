@@ -40,7 +40,7 @@
         if($_GET['action'] == 'delete') {
             $conn = new Mysql();
             $conn -> dbConnect();
-            $conn -> selectWhere('T_User', 'id', '=', $_GET['id'], 'int');
+            $conn -> select('T_User', 'id', 'id = ' . $_GET['id']);
             $row = $conn -> getFirstRow();
             
             // Check if id is valid 
