@@ -24,7 +24,7 @@
 
     include 'modules/header.php';
 
-    include 'modules/helperFunctions.php';
+    include 'modules/dataTable_BioManager.php';
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
@@ -84,9 +84,10 @@
     $conn -> dbDisconnect();
     $conn = NULL;
 
-    dataSetToTableWithDropdown($result,
-        array('name', 'login', 'isAdmin', 'isDeveloper', 'isMaintainer', 'isInspector', 'isSupplier', 'supplierId'),
+    dataTable_BioManager::showWithUserActions(
+        $result,
         'dataTable-tableUser',
+        array('name', 'login', 'isAdmin', 'isDeveloper', 'isMaintainer', 'isInspector', 'isSupplier', 'supplierId'),
         array('Name', 'Anmeldename', 'Administrator', 'Entwickler', 'Pfleger', 'Prüfer', 'Lieferant', 'Lieferanten-Nr', 'Aktionen'));
 
     include 'modules/footer.php';
