@@ -204,14 +204,14 @@ table th {
 ****************/
 
 button {
-  background-color: #262525; /* Black */
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 12px;
+    background-color: #262525; /* Black */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
 }
 
 button:hover {
@@ -223,14 +223,14 @@ button:hover {
 ****************/
 
 input[type=text], input[type=password] {
-  width: 50%;
-  padding: 6px 15px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  border: 3px solid #ccc;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  outline: none;
+    width: 50%;
+    padding: 6px 15px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
 }
 
 input[type=text]:focus, input[type=password]:focus {
