@@ -51,7 +51,7 @@
         $conn -> insertInto('T_User', $data);
         $data = NULL;
         // Get user id
-        $conn -> selectColumsWhere('T_User', 'id', 'name = \'' . $_POST["userName"] . '\' ORDER BY id DESC');
+        $conn -> select('T_User', 'id', 'name = \'' . $_POST["userName"] . '\' ORDER BY id DESC');
         $user = $conn -> getFirstRow();
         if($user == NULL) {
             // Error do not continue
