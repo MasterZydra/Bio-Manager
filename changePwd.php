@@ -62,7 +62,7 @@
 ?>
     <form action="?change=1" method="post">
         <label>Aktuelles Passwort:<br>
-            <input type="password" size="40" maxlength="250" name="curPassword" required>
+            <input type="password" size="40" maxlength="250" name="curPassword" required autofocus>
         </label><br><br>
 
         <label>Neues Passwort:<br>
