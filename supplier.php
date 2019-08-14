@@ -39,7 +39,7 @@
         if($_GET['action'] == 'delete') {
             $conn = new Mysql();
             $conn -> dbConnect();
-            $conn -> selectWhere('T_Supplier', 'id', '=', $_GET['id'], 'int');
+            $conn -> select('T_Supplier', '*', 'id = ' . $_GET['id']);
             $row = $conn -> getFirstRow();
             
             // Check if id is valid 
@@ -72,7 +72,7 @@
 <?php
     $conn = new Mysql();
     $conn -> dbConnect();
-    $result = $conn -> selectAll('T_Supplier');
+    $result = $conn -> select('T_Supplier', '*');
     $conn -> dbDisconnect();
     $conn = NULL;
 
