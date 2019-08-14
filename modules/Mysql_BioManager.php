@@ -23,7 +23,7 @@ function getUserPermission($userId, $permission) {
     // Get user permissions
     $conn = new Mysql();
     $conn -> dbConnect();
-    $result = $conn -> selectColumsWhere('T_UserPermission', $permission, 'userId =' . $userId);
+    $result = $conn -> select('T_UserPermission', $permission, 'userId =' . $userId);
     $conn -> dbDisconnect();
     $conn = NULL;
     
