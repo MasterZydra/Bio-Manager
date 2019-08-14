@@ -15,6 +15,8 @@
 * 12.08.2019:
 *   - Extending freeRun() with developer output and change
 *     implementation of other functions to use freeRun().
+* 14.08.2019:
+*   - Add an flexible select function and remove all other select functions.
 */
 
 include 'config/DbConfig.php';
@@ -60,6 +62,14 @@ class Mysql extends Dbconfig {
         $this -> passCode = NULL;
     }
 
+    /**
+    * Execute query on database and returns data set
+    *
+    * @param string    $query  SQL query which will be executed
+    *
+    * @author David Hein
+    * @return data set
+    */
     function freeRun($query) {
         // Save query
         $this -> sqlQuery = $query;
@@ -82,6 +92,12 @@ class Mysql extends Dbconfig {
         return $this -> dataSet;
     }
 
+    /**
+    * Get first row from data set of the last executed query
+    *
+    * @author David Hein
+    * @return data row
+    */
     function getFirstRow() {
         $dataSet = $this -> dataSet;
         if ($dataSet -> num_rows == 0) {
@@ -91,6 +107,17 @@ class Mysql extends Dbconfig {
         }
     }
 
+    /**
+    * Execute a SELECT statement on connected data base
+    *
+    * @param string $tableName      Name of the table without database name. E.g. 'T_Supplier'
+    * @param string $columns        Columns which will be selected. E.g. 'id, name' or '*'
+    * @param string $whereCondition Where condition. If value is NULL, no where condition is added. E.g. 'id = 1'
+    * @param string $orderBy        Order by columns. If value is NULL, no order by is added. E.g. 'id DESC, name ASC'
+    *
+    * @author David Hein
+    * @return data set
+    */
     function select($tableName, $columns, $whereCondition = NULL, $orderBy = NULL) {
         $query =
             'SELECT ' . $columns
