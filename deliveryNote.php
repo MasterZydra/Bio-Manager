@@ -23,7 +23,7 @@
 
     include 'modules/header.php';
 
-    include 'modules/helperFunctions.php';
+    include 'modules/dataTable_BioManager.php';
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
@@ -78,15 +78,16 @@
     $conn = NULL;
 
     if(isMaintainer()) {
-        dataSetToTableWithDropdown($result,
-            array('year', 'nr', 'deliverDate', 'amount'),
+        dataTable_BioManager::showWithDefaultActions(
+            $result,
             'dataTable-tableDeliveryNote',
+            array('year', 'nr', 'deliverDate', 'amount'),
             array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Aktionen'));
     } else {
-        dataSetToTable(
+        dataTable_BioManager::show(
             $result,
-            array('year', 'nr', 'deliverDate', 'amount'),
             'dataTable-tableDeliveryNote',
+            array('year', 'nr', 'deliverDate', 'amount'),
             array('Jahr', 'Nr', 'Lieferdatum', 'Menge'));
     }
 
