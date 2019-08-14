@@ -53,7 +53,7 @@
 ?>
 <form action="?add=1" method="POST">
     <label>Name:<br>
-        <input type="text" placeholder="Name des Lieferanten" name="supplier_name" required>
+        <input type="text" placeholder="Name des Lieferanten" name="supplier_name" required autofocus>
     </label><br>
     <button>Hinzufügen</button>
 </form>
