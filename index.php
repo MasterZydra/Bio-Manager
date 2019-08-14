@@ -1,4 +1,16 @@
 <?php
+/*
+* index.php
+* ---------------
+* This page is the entry point. If the visiter is logged out, a description
+* of this plattform is displayed. After the login the visiter sees the sections
+* with links for viewing, adding and editing data depending on his permissions.
+*
+* @Author: David Hein
+* 
+* Changelog:
+* ----------
+*/
     include 'modules/header_everyone.php';
     include 'modules/permissionCheck.php';
     include 'modules/header.php';
