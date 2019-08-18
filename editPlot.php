@@ -20,6 +20,8 @@
     }
 
     include 'modules/header.php';
+
+    include 'modules/selectBox_BioManager.php';
 ?>
 
 <h1>Flurstück bearbeiten</h1>
@@ -39,11 +41,12 @@
         
         if(isset($_GET['edit'])) {
            $conn -> update(
-                'T_Plot',
-                'nr = \'' . $_POST['plot_nr'] . '\', '
-                . 'name = \'' . $_POST['plot_name'] . '\', '
-                . 'subdistrict = \'' . $_POST['plot_subdistrict'] . '\'',
-                'id = ' . $_GET['id']);
+               'T_Plot',
+               'nr = \'' . $_POST['plot_nr'] . '\', '
+               . 'name = \'' . $_POST['plot_name'] . '\', '
+               . 'subdistrict = \'' . $_POST['plot_subdistrict'] . '\', '
+               . 'supplierId = ' . $_POST["supplierId"],
+               'id = ' . $_GET['id']);
             echo '<div class="infobox">';
             echo 'Die Änderungen wurden erfolgreich gespeichert';
             echo '</div>';
@@ -70,6 +73,9 @@
     </label><br>
     <label>Gemarkung:<br>
         <input type="text" name="plot_subdistrict" value="<?php echo $row['subdistrict']; ?>" required>
+    </label><br>
+    <label>Lieferant:<br>
+        <?php echo supplierSelectBox(true); ?>
     </label><br>
     <button>Änderungen speichern</button>
 </form>
