@@ -73,7 +73,7 @@
 <?php
     $conn = new Mysql();
     $conn -> dbConnect();
-    $result = $conn -> select('T_Plot');
+    $result = $conn -> select('T_Plot LEFT JOIN T_Supplier ON T_Supplier.id = supplierId', 'T_Plot.id, nr, T_Plot.name, subdistrict, T_Supplier.name AS supplierName', NULL, 'T_Plot.nr ASC');
     $conn -> dbDisconnect();
     $conn = NULL;
 
@@ -81,14 +81,14 @@
         dataTable_BioManager::showWithDefaultActions(
             $result,
             'dataTable-tablePlot',
-            array('nr', 'name', 'subdistrict'),
-            array('Nummer', 'Name', 'Gemarkung', 'Aktionen'));
+            array('nr', 'name', 'subdistrict', 'supplierName'),
+            array('Nummer', 'Name', 'Gemarkung', 'Lieferant', 'Aktionen'));
     } else {
         dataTable_BioManager::show(
             $result,
             'dataTable-tablePlot',
-            array('nr', 'name', 'subdistrict'),
-            array('Nummer', 'Name', 'Gemarkung'));
+            array('nr', 'name', 'subdistrict', 'supplierName'),
+            array('Nummer', 'Name', 'Gemarkung', 'Lieferant'));
     }
 
     include 'modules/footer.php';
