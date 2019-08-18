@@ -37,10 +37,10 @@
         $conn -> dbConnect();
         
         if(isset($_GET['edit'])) {
-            $conn -> freeRun(
-                'UPDATE T_Supplier '
-                . 'SET name=\'' . $_POST['supplierName'] .'\' '
-                . 'WHERE id=' . $_POST['supplierId']);
+            $conn -> update(
+                'T_Supplier',
+                'name = \'' . $_POST['supplierName'] .'\'',
+                'id = ' . $_GET['id']);
             echo '<div class="infobox">';
             echo 'Die Änderungen wurden erfolgreich gespeichert';
             echo '</div>';
