@@ -38,13 +38,13 @@
         $conn -> dbConnect();
         
         if(isset($_GET['edit'])) {
-           $conn -> freeRun(
-                'UPDATE T_DeliveryNote '
-                . 'SET year = ' . $_POST['note_year'] . ', '
+           $conn -> update(
+                'T_DeliveryNote',
+                'year = ' . $_POST['note_year'] . ', '
                 . 'nr = ' . $_POST['note_number'] . ', '
                 . 'deliverDate = \'' . $_POST['note_date'] . '\', '
-                . 'amount = ' . $_POST['note_amount'] . ' '
-                . 'WHERE id = ' . $_GET['id']);
+                . 'amount = ' . $_POST['note_amount'],
+                'id = ' . $_GET['id']);
             echo '<div class="infobox">';
             echo 'Die Änderungen wurden erfolgreich gespeichert';
             echo '</div>';
