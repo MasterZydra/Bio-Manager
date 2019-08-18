@@ -40,7 +40,7 @@
         if($_GET['action'] == 'delete') {
             $conn = new Mysql();
             $conn -> dbConnect();
-            $result = $conn->selectWhere('T_DeliveryNote', 'id', '=', $_GET['id'], 'int');
+            $result = $conn -> select('T_DeliveryNote', 'id', 'id = ' . $_GET['id']);
             
             // Check if id is valid 
             if ($result->num_rows == 0) {
@@ -50,7 +50,7 @@
             } else {
                 // Delete vendor 
                 $row = $result->fetch_assoc();
-                $conn -> selectFreeRun('DELETE FROM T_DeliveryNote WHERE id=' . $row['id']);
+                $conn -> freeRun('DELETE FROM T_DeliveryNote WHERE id=' . $row['id']);
                 
                 echo '<div class="infobox">';
                 echo 'Der Lieferschein wurde gelöscht.';
