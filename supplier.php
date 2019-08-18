@@ -80,14 +80,14 @@
         dataTable_BioManager::showWithDefaultActions(
             $result,
             'dataTable-tableSupplier',
-            array('id', 'name'),
-            array('Lieferant-Nr.', 'Name', 'Aktionen'));
+            array('name'),
+            array('Name', 'Aktionen'));
     } else {
         dataTable_BioManager::show(
             $result,
             'dataTable-tableSupplier',
-            array('id', 'name'),
-            array('Lieferant-Nr.', 'Name'));
+            array('name'),
+            array('Name'));
     }
 
     include 'modules/footer.php';
