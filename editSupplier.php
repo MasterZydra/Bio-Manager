@@ -46,17 +46,16 @@
             echo '</div>';
         }
 
-        $result = $conn -> select('T_Supplier', '*', 'id = ' . $_GET['id']);
+        $conn -> select('T_Supplier', '*', 'id = ' . $_GET['id']);
+        $row = $conn -> getFirstRow();
         $conn -> dbDisconnect();
         $conn = NULL;
         
         // Check if id is valid 
-        if ($result->num_rows == 0) {
+        if ($row == NULL) {
             echo '<div class="warning">';
             echo 'Der ausgewählte Lieferant wurde in der Datenbank nicht gefunden. Zurück zu <a href="supplier.php">Alle Lieferanten anzeigen</a>';
             echo '</div>';
-        } else {
-            $row = $result->fetch_assoc();
         }
     }
 ?>
