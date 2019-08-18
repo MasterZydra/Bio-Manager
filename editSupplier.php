@@ -60,9 +60,6 @@
     }
 ?>
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post">
-    <label>Lieferanten-Nr:<br>
-        <input type="text" name="supplierId" value="<?php echo $row['id']; ?>" readonly>
-    </label><br>
     <label>Name:<br>
         <input type="text" name="supplierName" value="<?php echo $row['name']; ?>">
     </label><br>
