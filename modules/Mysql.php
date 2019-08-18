@@ -118,7 +118,7 @@ class Mysql extends Dbconfig {
     * @author David Hein
     * @return data set
     */
-    function select($tableName, $columns, $whereCondition = NULL, $orderBy = NULL) {
+    function select($tableName, $columns = '*', $whereCondition = NULL, $orderBy = NULL) {
         $query =
             'SELECT ' . $columns
             . ' FROM ' . $this -> databaseName . '.' . $tableName;
