@@ -61,7 +61,7 @@
         } elseif($_GET['action'] == 'edit') {
             // Action - Edit vendor
             // Forwarding to edit page and add parameters
-            //echo '<script>window.location.replace("editVendor.php?id=' . $_GET['id'] . '");</script>';
+            echo '<script>window.location.replace("editDeliveryNote.php?id=' . $_GET['id'] . '");</script>';
         }
     }
 ?>
