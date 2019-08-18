@@ -20,6 +20,8 @@
     }
 
     include 'modules/header.php';
+
+    include 'modules/selectBox_BioManager.php';
 ?>
 <h1>Flurstück hinzufügen</h1>
 
@@ -52,8 +54,8 @@
         ];
         
         $supplierId = [
-            "type" => "char",
-            "val" => "0"
+            "type" => "int",
+            "val" => $_POST["supplierId"]
         ];
         
         $data = array($NULL, $plot_nr, $plot_name, $plot_subdistrict, $supplierId);
@@ -75,6 +77,9 @@
     </label><br>
     <label>Gemarkung:<br>
         <input type="text" placeholder="Gemarkung" name="plot_subdistrict" required>
+    </label><br>
+    <label>Lieferant:<br>
+        <?php echo supplierSelectBox(true); ?>
     </label><br>
     <button>Hinzufügen</button>
 </form>
