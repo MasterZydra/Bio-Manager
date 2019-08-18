@@ -30,9 +30,9 @@
 
 <h1>Lieferschein</h1>
 
-<!--<p>
+<p>
     <?php if(isMaintainer()) {?><a href="addDeliveryNote.php">Lieferschein hinzufügen</a><?php } ?>
-</p>-->
+</p>
 
 <?php
     if(isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
