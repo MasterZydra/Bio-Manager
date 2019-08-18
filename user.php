@@ -66,7 +66,7 @@
             echo '<script>window.location.replace("editUser.php?id=' . $_GET['id'] . '");</script>';
         } elseif($_GET['action'] == 'changePwd') {
             // Action - Change user password
-            // Forwording to edit page and add parameters
+            // Forwarding to edit page and add parameters
             echo '<script>window.location.replace("changeUserPwd.php?id=' . $_GET['id'] . '");</script>';
         }
     }

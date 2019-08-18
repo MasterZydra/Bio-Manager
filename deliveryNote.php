@@ -60,7 +60,7 @@
             $conn = NULL;
         } elseif($_GET['action'] == 'edit') {
             // Action - Edit vendor
-            // Forwording to edit page and add parameters
+            // Forwarding to edit page and add parameters
             //echo '<script>window.location.replace("editVendor.php?id=' . $_GET['id'] . '");</script>';
         }
     }
