@@ -40,6 +40,9 @@ Der Bio-Manger ist zum Verwalten von Anlieferungen von Lieferanten. Durch die Ei
 </div>
 
 <div>
+    <strong>Flurstück</strong><br>
+    <a href="plot.php">Alle Flurstücke anzeigen</a>
+    <?php if(isMaintainer()) {?><br><a href="addPlot.php">Flurstück hinzufügen</a><?php } ?>
 </div>
 <?php
         }
