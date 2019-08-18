@@ -35,12 +35,8 @@
     } else {
         $conn = new Mysql();
         $conn -> dbConnect();
-        
         if(isset($_GET['edit'])) {
-            $conn -> update(
-                'T_Supplier',
-                'name = \'' . $_POST['supplierName'] .'\'',
-                'id = ' . $_GET['id']);
+            updateSupplier($conn, $_GET['id'], $_POST['supplierName']);
             echo '<div class="infobox">';
             echo 'Die Änderungen wurden erfolgreich gespeichert';
             echo '</div>';
