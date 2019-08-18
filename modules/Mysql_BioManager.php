@@ -37,4 +37,23 @@ function getUserPermission($userId, $permission) {
     return false;
 }
 
+/*
+* 
+*/
+/**
+* Update a supplier
+*
+* @param DbConnection   $conn   Connection to data base
+* @param int            $id     Supplier id
+* @param string         $name   New supplier name
+*
+* @author David Hein
+*/
+function updateSupplier($conn, $id, $name) {
+    $conn -> update(
+        'T_Supplier',
+        'name = \'' . $name .'\'',
+        'id = ' . $id);
+}
+
 ?>
