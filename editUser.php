@@ -38,23 +38,23 @@
         $conn -> dbConnect();
         
         if(isset($_GET['edit'])) {
-            $conn -> freeRun(
-                'UPDATE T_User '
-                . 'SET name = \'' . $_POST['userName'] . '\' '
-                . 'WHERE id = ' . $_GET['id']);
-           $conn -> freeRun(
-                'UPDATE T_UserLogin '
-                . 'SET login = \'' . $_POST['userLogin'] . '\', '
-                . 'forcePwdChange = ' . $_POST['userForcePwdChange'] . ' '
-                . 'WHERE userId = ' . $_GET['id']);
-            $conn -> freeRun(
-                'UPDATE T_UserPermission '
-                . 'SET isAdmin = ' . $_POST['userIsAdmin'] . ', '
+            $conn -> update(
+                'T_User',
+                'name = \'' . $_POST['userName'] .'\'',
+                'id = ' . $_GET['id']);
+            $conn -> update(
+                'T_UserLogin',
+                'login = \'' . $_POST['userLogin'] . '\', '
+                . 'forcePwdChange = ' . $_POST['userForcePwdChange'],
+                'userId = ' . $_GET['id']);
+            $conn -> update(
+                'T_UserPermission',
+                'isAdmin = ' . $_POST['userIsAdmin'] . ', '
                 . 'isDeveloper = ' . $_POST['userIsDeveloper'] . ', '
                 . 'isMaintainer = ' . $_POST['userIsMaintainer'] . ', '
                 . 'isSupplier = ' . $_POST['userIsSupplier'] . ', '
-                . 'isInspector = ' . $_POST['userIsInspector'] . ' '
-                . 'WHERE userId = ' . $_GET['id']);
+                . 'isInspector = ' . $_POST['userIsInspector'],
+                'userId = ' . $_GET['id']);
             echo '<div class="infobox">';
             echo 'Die Änderungen wurden erfolgreich gespeichert';
             echo '</div>';
