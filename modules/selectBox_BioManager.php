@@ -16,6 +16,7 @@ include 'modules/selectBox.php';
 
 /**
 * Generate a select element for the suppliers.
+* The name of the select element is 'supplierId'.
 *
 * @param boolean    $isRequired     Flag if the field in the form is required
 *
