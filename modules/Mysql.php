@@ -130,7 +130,24 @@ class Mysql extends Dbconfig {
         }
         return $this -> freeRun($query);
     }
-
+    
+    /**
+    * Execute a INSERT statement on connected data base
+    *
+    * @param string $tableName      Name of the table without database name. E.g. 'T_Supplier'
+    * @param string $set            Columns which will be updated and which value is set. E.g. 'isSupplier = 0'
+    * @param string $whereCondition Where condition. If value is NULL, no where condition is added. E.g. 'id = 1'
+    *
+    * @author David Hein
+    * @return data set
+    */
+    function update($tableName, $set, $whereCondition) {
+        $query = 'UPDATE ' . $this -> databaseName . '.' . $tableName . ' '
+            . 'SET ' . $set . ' '
+            . 'WHERE ' . $whereCondition;
+        return $this -> freeRun($query);
+    }
+    
     function insertInto($tableName,$values) {
         $i = NULL;
 
