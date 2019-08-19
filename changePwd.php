@@ -1,4 +1,15 @@
 <?php
+/*
+* changePwd.php
+* ---------------
+* This form is used from the user to change his password.
+*
+* @Author: David Hein
+* 
+* Changelog:
+* ----------
+*/
+
     include 'modules/header_user.php';
     include 'modules/permissionCheck.php';
     include 'modules/header.php';
