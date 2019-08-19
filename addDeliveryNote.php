@@ -20,6 +20,8 @@
     }
 
     include 'modules/header.php';
+
+    include 'modules/selectBox_BioManager.php';
 ?>
 <h1>Lieferscheine hinzufügen</h1>
 
@@ -78,6 +80,9 @@
     </label><br>
     <label>Liefermenge:<br>
         <input type="number" name="note_amount">
+    </label><br>
+    <label>Lieferant:<br>
+        <?php echo supplierSelectBox(false, NULL, false); ?>
     </label><br>
     <button>Hinzufügen</button>
 </form>
