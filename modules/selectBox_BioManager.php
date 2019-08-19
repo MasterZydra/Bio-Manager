@@ -22,18 +22,19 @@ include 'modules/selectBox.php';
 *
 * @param boolean    $isRequired     Flag if the field in the form is required
 * @param int        $selectedValue  The option with this value will be selected. The default value is NULL
+* @param boolean    $disableDefault Disable the default text for selection
 *
 * @Author: David Hein
 * @return String with html code for select element
 */
-function supplierSelectBox($isRequired, $selectedValue = NULL) {
+function supplierSelectBox($isRequired, $selectedValue = NULL, $disableDefault = true) {
     $conn = new Mysql();
     $conn -> dbConnect();
     $result = $conn -> select('T_Supplier', 'id AS value, name', NULL, 'name ASC');
     $conn -> dbDisconnect();
     $conn = NULL;
     
-    return selectBox('supplierId', $isRequired, 'Bitte Lieferant wählen', $result, $selectedValue);
+    return selectBox('supplierId', $isRequired, 'Bitte Lieferant wählen', $result, $selectedValue, $disableDefault);
 }
 ?>
 
