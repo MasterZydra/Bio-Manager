@@ -79,7 +79,7 @@
         <input type="text" placeholder="Gemarkung" name="plot_subdistrict" required>
     </label><br>
     <label>Lieferant:<br>
-        <?php echo supplierSelectBox(true); ?>
+        <?php echo supplierSelectBox(true, NULL, false); ?>
     </label><br>
     <button>Hinzufügen</button>
 </form>
