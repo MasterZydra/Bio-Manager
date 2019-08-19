@@ -45,7 +45,7 @@ class dataTable {
         if(!is_null($headings)) {
             echo '<tr>';
             foreach($headings as $dataCol) {
-                echo '<th>' . $dataCol . '</th>';
+                echo '<th class="center">' . $dataCol . '</th>';
             }
             echo '</tr>';
         }
