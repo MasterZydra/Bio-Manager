@@ -20,6 +20,8 @@
     }
 
     include 'modules/header.php';
+
+    include 'modules/selectBox_BioManager.php';
 ?>
 
 <h1>Benutzer hinzufügen</h1>
@@ -159,6 +161,9 @@
         <input type="hidden" name="userIsInspector" value="0">
         <input type="checkbox" name="userIsInspector" value="1">
         Prüfer
+    </label><br><br>
+    <label>Lieferant:<br>
+        <?php echo supplierSelectBox(false, NULL, false); ?>
     </label><br>
     <button>Hinzufügen</button>
 </form>
