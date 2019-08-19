@@ -75,7 +75,7 @@
         <input type="text" name="plot_subdistrict" value="<?php echo $row['subdistrict']; ?>" required>
     </label><br>
     <label>Lieferant:<br>
-        <?php echo supplierSelectBox(true); ?>
+        <?php echo supplierSelectBox(true, $row['supplierId']); ?>
     </label><br>
     <button>Änderungen speichern</button>
 </form>
