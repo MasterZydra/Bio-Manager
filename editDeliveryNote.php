@@ -20,6 +20,8 @@
     }
 
     include 'modules/header.php';
+
+    include 'modules/selectBox_BioManager.php';
 ?>
 
 <h1>Lieferschein bearbeiten</h1>
@@ -74,6 +76,9 @@
     </label><br>
     <label>Liefermenge:<br>
         <input type="number" name="note_amount" value="<?php echo $row['amount']; ?>" required>
+    </label><br>
+    <label>Lieferant:<br>
+        <?php echo supplierSelectBox(false, $row['supplierId'], false); ?>
     </label><br>
     <button>Änderungen speichern</button>
 </form>
