@@ -120,6 +120,10 @@ table th {
     color: white;
 }
 
+.center {
+    text-align: center;
+}
+
 /**************************
 * Infoboxes
 **************************/
