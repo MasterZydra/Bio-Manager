@@ -40,9 +40,15 @@
         $conn -> dbConnect();
         
         if(isset($_GET['edit'])) {
+            $set = 'name = \'' . $_POST['userName'] .'\'';
+            if(!isset($_POST["supplierId"]) || !$_POST["supplierId"]) {
+                $set .= ', supplierId = NULL';
+            } else {
+                $set .= ', supplierId = ' . $_POST["supplierId"];
+            }
             $conn -> update(
                 'T_User',
-                'name = \'' . $_POST['userName'] .'\'',
+                $set,
                 'id = ' . $_GET['id']);
             $conn -> update(
                 'T_UserLogin',
