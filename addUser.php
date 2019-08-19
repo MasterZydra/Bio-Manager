@@ -44,12 +44,21 @@
             "val" => $_POST["userName"]
         ];
         
-        $user_vendorId = [
-            "type" => "int",
-            "val" => "0"
-        ];
+        // SupplierId
+        if(!isset($_POST["supplierId"]) || !$_POST["supplierId"]) {
+            $user_supplierId = [
+                "type" => "null",
+                "val" => "null"
+            ];
+        } else {
+            $user_supplierId = [
+                "type" => "int",
+                "val" => $_POST["supplierId"]
+            ];
+        }
+  
         // Add user
-        $data = array($NULL, $user_name, $user_vendorId);
+        $data = array($NULL, $user_name, $user_supplierId);
         $conn -> insertInto('T_User', $data);
         $data = NULL;
         // Get user id
