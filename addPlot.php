@@ -53,10 +53,18 @@
             "val" => $_POST["plot_subdistrict"]
         ];
         
-        $supplierId = [
-            "type" => "int",
-            "val" => $_POST["supplierId"]
-        ];
+        // SupplierId
+        if(!isset($_POST["supplierId"]) || !$_POST["supplierId"]) {
+            $supplierId = [
+                "type" => "null",
+                "val" => "null"
+            ];
+        } else {
+            $supplierId = [
+                "type" => "int",
+                "val" => $_POST["supplierId"]
+            ];
+        }
         
         $data = array($NULL, $plot_nr, $plot_name, $plot_subdistrict, $supplierId);
         
@@ -79,7 +87,7 @@
         <input type="text" placeholder="Gemarkung" name="plot_subdistrict" required>
     </label><br>
     <label>Lieferant:<br>
-        <?php echo supplierSelectBox(true, NULL, false); ?>
+        <?php echo supplierSelectBox(false, NULL, false); ?>
     </label><br>
     <button>Hinzufügen</button>
 </form>
