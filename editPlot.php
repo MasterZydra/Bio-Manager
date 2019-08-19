@@ -40,13 +40,18 @@
         $conn -> dbConnect();
         
         if(isset($_GET['edit'])) {
-           $conn -> update(
-               'T_Plot',
-               'nr = \'' . $_POST['plot_nr'] . '\', '
-               . 'name = \'' . $_POST['plot_name'] . '\', '
-               . 'subdistrict = \'' . $_POST['plot_subdistrict'] . '\', '
-               . 'supplierId = ' . $_POST["supplierId"],
-               'id = ' . $_GET['id']);
+            $set = 'nr = \'' . $_POST['plot_nr'] . '\', '
+                . 'name = \'' . $_POST['plot_name'] . '\', '
+                . 'subdistrict = \'' . $_POST['plot_subdistrict'] . '\'';
+            if(!isset($_POST["supplierId"]) || !$_POST["supplierId"]) {
+                $set .= ', supplierId = NULL';
+            } else {
+                $set .= ', supplierId = ' . $_POST["supplierId"];
+            }
+            $conn -> update(
+                'T_Plot',
+                $set,
+                'id = ' . $_GET['id']);
             echo '<div class="infobox">';
             echo 'Die Änderungen wurden erfolgreich gespeichert';
             echo '</div>';
@@ -75,7 +80,7 @@
         <input type="text" name="plot_subdistrict" value="<?php echo $row['subdistrict']; ?>" required>
     </label><br>
     <label>Lieferant:<br>
-        <?php echo supplierSelectBox(true, $row['supplierId']); ?>
+        <?php echo supplierSelectBox(false, $row['supplierId'], false); ?>
     </label><br>
     <button>Änderungen speichern</button>
 </form>
