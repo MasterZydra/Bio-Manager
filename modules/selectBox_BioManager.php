@@ -10,6 +10,8 @@
 * 
 * Changelog:
 * ----------
+* 19.08.2019:
+*   - Add parameter $selectedValue
 */
 
 include 'modules/selectBox.php';
@@ -19,18 +21,19 @@ include 'modules/selectBox.php';
 * The name of the select element is 'supplierId'.
 *
 * @param boolean    $isRequired     Flag if the field in the form is required
+* @param int        $selectedValue  The option with this value will be selected. The default value is NULL
 *
 * @Author: David Hein
 * @return String with html code for select element
 */
-function supplierSelectBox($isRequired) {
+function supplierSelectBox($isRequired, $selectedValue = NULL) {
     $conn = new Mysql();
     $conn -> dbConnect();
     $result = $conn -> select('T_Supplier', 'id AS value, name', NULL, 'name ASC');
     $conn -> dbDisconnect();
     $conn = NULL;
     
-    return selectBox('supplierId', $isRequired, 'Bitte Lieferant wählen', $result);
+    return selectBox('supplierId', $isRequired, 'Bitte Lieferant wählen', $result, $selectedValue);
 }
 ?>
 
