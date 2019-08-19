@@ -81,17 +81,19 @@
     $conn -> dbConnect();
     $result = $conn->freeRun(
         'SELECT '
-        . 'T_User.id, T_User.id AS userId, name, isAdmin, isDeveloper, isMaintainer, isSupplier, isInspector, login, supplierId '
+        . 'T_User.id, T_User.id AS userId, T_User.name, isAdmin, isDeveloper, isMaintainer, isSupplier, isInspector, login, `T_Supplier`.name AS supplierName '
         . 'FROM `T_User` '
         . 'LEFT JOIN `T_UserPermission` ON `T_UserPermission`.`userId` = `T_User`.`id` '
-        . 'LEFT JOIN `T_UserLogin` ON `T_UserLogin`.`userId` = `T_User`.`id`');
+        . 'LEFT JOIN `T_UserLogin` ON `T_UserLogin`.`userId` = `T_User`.`id` '
+        . 'LEFT JOIN `T_Supplier` ON `T_Supplier`.`id` = `T_User`.`supplierId` '
+        . 'ORDER BY T_User.name ASC');
     $conn -> dbDisconnect();
     $conn = NULL;
 
     dataTable_BioManager::showWithUserActions(
         $result,
         'dataTable-tableUser',
-        array('name', 'login', 'isAdmin', 'isDeveloper', 'isMaintainer', 'isInspector', 'isSupplier', 'supplierId'),
+        array('name', 'login', 'isAdmin', 'isDeveloper', 'isMaintainer', 'isInspector', 'isSupplier', 'supplierName'),
         array('Name', 'Anmeldename', 'Administrator', 'Entwickler', 'Pfleger', 'Prüfer', 'Lieferant', 'Lieferanten-Nr', 'Aktionen'));
 
     include 'modules/footer.php';
