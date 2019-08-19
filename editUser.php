@@ -20,6 +20,8 @@
     }
 
     include 'modules/header.php';
+
+    include 'modules/selectBox_BioManager.php';
 ?>
 
 <h1>Benutzer bearbeiten</h1>
@@ -115,6 +117,9 @@
         <input type="hidden" name="userIsInspector" value="0">
         <input type="checkbox" name="userIsInspector" value="1" <?php if($row['isInspector']) { echo 'checked'; } ?>>
         Prüfer
+    </label><br><br>
+    <label>Lieferant:<br>
+        <?php echo supplierSelectBox(false, $row['supplierId'], false); ?>
     </label><br>
     <button>Änderungen speichern</button>
 </form>
