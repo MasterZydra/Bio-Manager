@@ -48,17 +48,46 @@
             "val" => $_POST["note_number"]
         ];
         
-        $note_date = [
-            "type" => "char",
-            "val" => $_POST["note_date"]
-        ];
+        // Deliver Date
+        if(!$_POST["note_date"]) {
+            $note_date = [
+                "type" => "null",
+                "val" => "null"
+            ];
+        } else {
+            $note_date = [
+                "type" => "char",
+                "val" => $_POST["note_date"]
+            ];
+        }
         
-        $note_amount = [
-            "type" => "int",
-            "val" => $_POST["note_amount"]
-        ];
+        // Deliver Amount
+        if(!$_POST["note_amount"]) {
+            echo 'amount null';
+            $note_amount = [
+                "type" => "null",
+                "val" => "null"
+            ];
+        } else {
+            $note_amount = [
+                "type" => "int",
+                "val" => $_POST["note_amount"]
+            ];
+        }
         
-        $data = array($NULL, $note_year, $note_nr, $note_date, $note_amount, $NULL);
+        // SupplierId
+        if(!isset($_POST["supplierId"]) || !$_POST["supplierId"]) {
+            $note_supplierId = [
+                "type" => "null",
+                "val" => "null"
+            ];
+        } else {
+            $note_supplierId = [
+                "type" => "char",
+                "val" => $_POST["supplierId"]
+            ];
+        }
+        $data = array($NULL, $note_year, $note_nr, $note_date, $note_amount, $note_supplierId);
         
         $conn -> insertInto('T_DeliveryNote', $data);
         $conn -> dbDisconnect();
