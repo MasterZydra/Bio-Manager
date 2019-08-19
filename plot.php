@@ -73,7 +73,11 @@
 <?php
     $conn = new Mysql();
     $conn -> dbConnect();
-    $result = $conn -> select('T_Plot LEFT JOIN T_Supplier ON T_Supplier.id = supplierId', 'T_Plot.id, nr, T_Plot.name, subdistrict, T_Supplier.name AS supplierName', NULL, 'T_Plot.nr ASC');
+    $result = $conn -> select(
+        'T_Plot LEFT JOIN T_Supplier ON T_Supplier.id = supplierId',
+        'T_Plot.id, nr, T_Plot.name, subdistrict, T_Supplier.name AS supplierName',
+        NULL,
+        'T_Plot.nr ASC');
     $conn -> dbDisconnect();
     $conn = NULL;
 
