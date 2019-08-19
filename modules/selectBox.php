@@ -23,11 +23,12 @@
 * @param string     $defaultText    This text is the preselected option. It is a placeholder.
 * @param dataSet    $nameValuePairs This dataSet contains all options that will be added
 * @param string/int $selectedValue  The option with this value will be selected. The default value is NULL
+* @param boolean    $disableDefault Disable the default text for selection
 *
 * @Author: David Hein
 * @return String with html code for select element
 */
-function selectBox($elementName, $isRequired, $defaultText, $nameValuePairs, $selectedValue = NULL) {
+function selectBox($elementName, $isRequired, $defaultText, $nameValuePairs, $selectedValue = NULL, $disableDefault = true) {
     // Starting tag
     $selectBox = '<select name="' . $elementName . '"';
     if($isRequired) {
@@ -35,7 +36,10 @@ function selectBox($elementName, $isRequired, $defaultText, $nameValuePairs, $se
     }
     $selectBox .= '>';
     // Default value "select option"
-    $selectBox .= '<option value="" disabled';
+    $selectBox .= '<option value=""';
+    if($disableDefault) {
+        $selectBox .= ' disabled';
+    }
     if(is_null($selectedValue)) {
         $selectBox .= ' selected';
     }
