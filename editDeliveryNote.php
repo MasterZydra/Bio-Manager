@@ -40,12 +40,30 @@
         $conn -> dbConnect();
         
         if(isset($_GET['edit'])) {
-           $conn -> update(
+            // Build set part of query
+            $set = 'year = ' . $_POST['note_year'] . ', '
+                . 'nr = ' . $_POST['note_number'];
+            // Deliver date
+            if($_POST['note_date']) {
+                $set .= ', deliverDate = \'' . $_POST['note_date'] . '\'';
+            } else {
+                $set .= ', deliverDate = NULL';
+            }
+            // Deliver amount
+            if($_POST['note_amount']) {
+                $set .= ', amount = ' . $_POST['note_amount'];
+            } else {
+                $set .= ', amount = NULL';
+            }
+            // Supplier
+            if(isset($_POST["supplierId"]) && $_POST["supplierId"]) {
+                $set .= ', supplierId = ' . $_POST['supplierId'];
+            } else {
+                $set .= ', supplierId = NULL';
+            }
+            $conn -> update(
                 'T_DeliveryNote',
-                'year = ' . $_POST['note_year'] . ', '
-                . 'nr = ' . $_POST['note_number'] . ', '
-                . 'deliverDate = \'' . $_POST['note_date'] . '\', '
-                . 'amount = ' . $_POST['note_amount'],
+                $set,
                 'id = ' . $_GET['id']);
             echo '<div class="infobox">';
             echo 'Die Änderungen wurden erfolgreich gespeichert';
@@ -72,10 +90,10 @@
         <input type="number" name="note_number" value="<?php echo $row['nr']; ?>" required>
     </label><br>
     <label>Lieferdatum:<br>
-        <input type="date" name="note_date" value="<?php echo $row['deliverDate']; ?>" required>
+        <input type="date" name="note_date" value="<?php echo $row['deliverDate']; ?>">
     </label><br>
     <label>Liefermenge:<br>
-        <input type="number" name="note_amount" value="<?php echo $row['amount']; ?>" required>
+        <input type="number" name="note_amount" value="<?php echo $row['amount']; ?>">
     </label><br>
     <label>Lieferant:<br>
         <?php echo supplierSelectBox(false, $row['supplierId'], false); ?>
