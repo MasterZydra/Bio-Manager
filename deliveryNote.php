@@ -73,7 +73,11 @@
 <?php
     $conn = new Mysql();
     $conn -> dbConnect();
-    $result = $conn -> select('T_DeliveryNote', '*', NULL, 'year DESC, nr ASC');
+    $result = $conn -> select(
+        'T_DeliveryNote LEFT JOIN T_Supplier ON T_Supplier.id = supplierId',
+        'T_DeliveryNote.id, year, nr, amount, deliverDate, T_Supplier.name AS supplierName',
+        NULL,
+        'year DESC, nr ASC');
     $conn -> dbDisconnect();
     $conn = NULL;
 
@@ -81,14 +85,14 @@
         dataTable_BioManager::showWithDefaultActions(
             $result,
             'dataTable-tableDeliveryNote',
-            array('year', 'nr', 'deliverDate', 'amount'),
-            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Aktionen'));
+            array('year', 'nr', 'deliverDate', 'amount', 'supplierName'),
+            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Lieferant', 'Aktionen'));
     } else {
         dataTable_BioManager::show(
             $result,
             'dataTable-tableDeliveryNote',
-            array('year', 'nr', 'deliverDate', 'amount'),
-            array('Jahr', 'Nr', 'Lieferdatum', 'Menge'));
+            array('year', 'nr', 'deliverDate', 'amount', 'supplierName'),
+            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Lieferant'));
     }
 
     include 'modules/footer.php';
