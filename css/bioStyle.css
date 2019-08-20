@@ -129,8 +129,20 @@ table th {
     color: white;
 }
 
+.red {
+    background-color: #b01c1c; /* Red */
+}
+
+.completeWidth {
+    width: 100%;
+}
+
 .center {
     text-align: center;
+}
+
+.right {
+    text-align: right;
 }
 
 /**************************
@@ -266,6 +278,14 @@ input[type=date]:focus {
     select {
         width: 100%;
     }
+}
+
+table input[type=text],
+table input[type=password],
+table input[type=number],
+table input[type=date],
+table select {
+    margin: 0px;
 }
 
 /**************************
