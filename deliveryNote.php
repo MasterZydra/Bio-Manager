@@ -59,9 +59,13 @@
             $conn -> dbDisconnect();
             $conn = NULL;
         } elseif($_GET['action'] == 'edit') {
-            // Action - Edit vendor
+            // Action - Edit a delivery note
             // Forwarding to edit page and add parameters
             echo '<script>window.location.replace("editDeliveryNote.php?id=' . $_GET['id'] . '");</script>';
+        } elseif($_GET['action'] == 'volDist') {
+            // Action - Edit volume distribution of a delivery note
+            // Forwarding to edit page and add parameters
+            echo '<script>window.location.replace("editCropVolumeDistribution.php?id=' . $_GET['id'] . '");</script>';
         }
     }
 ?>
@@ -82,7 +86,7 @@
     $conn = NULL;
 
     if(isMaintainer()) {
-        dataTable_BioManager::showWithDefaultActions(
+        dataTable_BioManager::showWithDeliveryNoteActions(
             $result,
             'dataTable-tableDeliveryNote',
             array('year', 'nr', 'deliverDate', 'amount', 'supplierName'),
