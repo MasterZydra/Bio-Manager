@@ -60,8 +60,8 @@ class dataTable_BioManager extends dataTable {
             $dataSet,
             $tableId,
             $columns,
-            array('edit', 'delete', 'changePwd'),
-            array('Bearbeiten', 'Löschen', 'Passwort ändern'),
+            array('edit', 'changePwd', 'delete'),
+            array('Bearbeiten', 'Passwort ändern', 'Löschen'),
             $headings);
     }
 }
