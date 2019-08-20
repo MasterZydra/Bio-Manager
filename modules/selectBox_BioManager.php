@@ -36,5 +36,33 @@ function supplierSelectBox($isRequired, $selectedValue = NULL, $disableDefault =
     
     return selectBox('supplierId', $isRequired, 'Bitte Lieferant wählen', $result, $selectedValue, $disableDefault);
 }
+
+/**
+* Generate a select element for the plots.
+* The name of the select element is 'plotId'.
+*
+* @param string $name   Name of the select element
+* @param int    $selectedValue  The option with this value will be selected. The default value is NULL
+*
+* @Author: David Hein
+* @return String with html code for select element
+*/
+function plotSelectBox($name = NULL, $selectedValue = NULL) {
+    $conn = new Mysql();
+    $conn -> dbConnect();
+    $result = $conn -> select(
+        'T_Plot',
+        'id AS value, CONCAT(nr, " ", name) as name',
+        NULL,
+        'nr ASC, name ASC');
+    $conn -> dbDisconnect();
+    $conn = NULL;
+    
+    if(is_null($name)) {
+        $name = 'plotId';
+    }
+    
+    return selectBox($name, true, 'Bitte Lieferant wählen', $result, $selectedValue);
+}
 ?>
 
