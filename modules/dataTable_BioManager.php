@@ -64,6 +64,26 @@ class dataTable_BioManager extends dataTable {
             array('Bearbeiten', 'Passwort ändern', 'Löschen'),
             $headings);
     }
+    
+    /**
+    * Generate a table without actions for delivery note (edit, delete and volume distribution)
+    *
+    * @param dataSet    $dataSet    Data which will be shown
+    * @param string     $tableId    Id for table. E.g. needed for filterData.js
+    * @param array of string    $columns    All columns which will be shown as a column in the table
+    * @param array of string    $headings   This headings will be shown as columns heading
+    *
+    * @Author: David Hein
+    */
+    public static function showWithDeliveryNoteActions($dataSet, $tableId, $columns, $headings = NULL) {
+        dataTable_BioManager::showWithActions(
+            $dataSet,
+            $tableId,
+            $columns,
+            array('edit', 'volDist', 'delete'),
+            array('Bearbeiten', 'Mengenverteilung', 'Löschen'),
+            $headings);
+    }
 }
 
 ?>
