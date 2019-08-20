@@ -25,22 +25,28 @@
     include 'modules/selectBox_BioManager.php';
 ?>
 <h1>Mengenverteilung</h1>
+
 <p>
     <a href="deliveryNote.php">Alle Lieferscheine anzeigen</a>
 </p>
+
 <?php
     if(!isset($_GET['id'])) {
         echo '<div class="warning">';
         echo 'Es wurde kein Lieferschein übergeben. Zurück zu <a href="deliveryNote.php">Alle Lieferscheine anzeigen</a>';
         echo '</div>';
     } else {
+        // Update the volume distribution
         if(isset($_GET['update'])) {
             $conn = new Mysql();
             $conn -> dbConnect();
             
             $i = 1;
+            // Delete volume distribution for current delivery note
             $conn -> freeRun('DELETE FROM T_CropVolumeDistribution WHERE deliveryNoteId = ' . $_GET['id']);
+            // Add volume distribution for current delivery note
             while (true) {
+                // Insert until POST variable is not set
                 if(!isset($_POST['plot' . (string)$i])) {
                     break;
                 }
@@ -96,11 +102,8 @@
         }
 
     }
-
-
-
-
 ?>
+
 <form action="?id=<?php echo $_GET['id']; ?>&update=1" method="post">
     <table id="delivery" class="completeWidth">
         <tr>
@@ -125,54 +128,56 @@
 </form>
 <button onclick="addRow('distribution')">Flurstück hinzufügen</button>
 <button onclick="deleteRow('distribution')">Flurstück entfernen</button>
+
 <script>
+    var tableRef = document.getElementById('distribution');
+    var sumRef = document.getElementById("distSum");
+    
+    // Sum all amounts from plots
     function sumDistribution() {
-        
-        
-        var tableRef = document.getElementById("distribution");
         var sumtbl = 0;
-
-        
-        for(var i = 1; i < tableRef.rows.length; i++) {
+        // Sum all rows
+        for(var i = 1; i < tableRef.rows.length; i++)
             sumtbl += parseInt(tableRef.rows[i].cells[1].getElementsByTagName("input")[0].value);
-        }
-
-        document.getElementById("distSum").innerHTML = sumtbl;
-        
+        // Write sum into cell
+        sumRef.innerHTML = sumtbl;
+        // Color cell red if sum is greater then delivery amount
         if(parseInt(document.getElementById("delivery").rows[0].cells[1].innerHTML) < sumtbl) {
-            document.getElementById("distSum").classList.add('red');
+            sumRef.classList.add('red');
         } else {
-            document.getElementById("distSum").classList.remove('red');
+            sumRef.classList.remove('red');
         }
-        
     }
     
+    // Get a HTML element from html code
     function htmlToElement(html) {
-    var template = document.createElement('template');
-    html = html.trim(); // Never return a text node of whitespace as the result
-    template.innerHTML = html;
-    return template.content.firstChild;
-}
+        var template = document.createElement('template');
+        html = html.trim();
+        template.innerHTML = html;
+        return template.content.firstChild;
+    }
     
+    // Add a new row with select and input element
     function addRow(tableID) {
-        var tableRef = document.getElementById('distribution');
-        
         var selectBox = "<td><?php echo addslashes(plotSelectBox()); ?></td>";
         var numInput = "<td><input name=\"amount" + tableRef.rows.length.toString() + "\" class=\"right\" type=\"number\" onkeyup=\"sumDistribution()\" required></td>";
+        // Replace element name
         var row = htmlToElement(selectBox);
-        
         row.getElementsByTagName("select")[0].setAttribute("name", "plot" + tableRef.rows.length.toString());
-        
+        // Insert row
         var newRow   = tableRef.insertRow(tableRef.rows.length);
         newRow.innerHTML = row.outerHTML + numInput;
     }
     
+    // Delete a row in a table
     function deleteRow(tableId) {
-        var tableRef = document.getElementById('distribution');
+        var tableRef = document.getElementById(tableId);
         tableRef.deleteRow(tableRef.rows.length - 1);
     }
     
-    if (document.getElementById('distribution').rows.length == 1) addRow('distribution');
+    // Add empty row if no data in data base
+    if (tableRef.rows.length == 1) addRow('distribution');
+    // Calc sum
     sumDistribution();
 </script>
 <?php
