@@ -81,7 +81,7 @@
         'T_DeliveryNote LEFT JOIN T_Supplier ON T_Supplier.id = supplierId',
         'T_DeliveryNote.id, year, nr, amount, deliverDate, T_Supplier.name AS supplierName',
         NULL,
-        'year DESC, nr ASC');
+        'year DESC, nr DESC');
     $conn -> dbDisconnect();
     $conn = NULL;
 
