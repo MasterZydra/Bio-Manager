@@ -49,7 +49,7 @@
                 echo '</div>';
             } else {
                 // Delete vendor 
-                $conn -> freeRun('DELETE FROM T_Supplier WHERE id=' . $row['id']);
+                $conn -> delete('T_Supplier', 'id=' . $row['id']);
                 
                 echo '<div class="infobox">';
                 echo 'Der Lieferant <strong>' . $row['name'] . '</strong> wurde gelöscht.';
