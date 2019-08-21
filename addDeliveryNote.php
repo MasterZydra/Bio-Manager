@@ -43,9 +43,10 @@
             "val" => $_POST["note_year"]
         ];
         
+        $note_number = getNextDeliveryNoteNr($conn, $_POST["note_year"]);
         $note_nr = [
             "type" => "int",
-            "val" => $_POST["note_number"]
+            "val" => $note_number
         ];
         
         // Deliver Date
@@ -63,7 +64,6 @@
         
         // Deliver Amount
         if(!$_POST["note_amount"]) {
-            echo 'amount null';
             $note_amount = [
                 "type" => "null",
                 "val" => "null"
@@ -93,16 +93,13 @@
         $conn -> dbDisconnect();
         
         echo '<div class="infobox">';
-        echo 'Der Lieferschein <strong>' . $_POST["note_year"] . ' ' . $_POST["note_number"] . '</strong> wurde hinzugefügt';
+        echo 'Der Lieferschein <strong>' . $_POST["note_year"] . ' ' . $note_number . '</strong> wurde hinzugefügt';
         echo '</div>';
     }
 ?>
 <form action="?add=1" method="POST">
     <label>Jahr:<br>
         <input type="number" name="note_year" value="<?php echo date("Y"); ?>" required autofocus>
-    </label><br>
-    <label>Nummer des Lieferscheins:<br>
-        <input type="number" name="note_number" value="" required>
     </label><br>
     <label>Lieferdatum:<br>
         <input type="date" name="note_date" value="<?php echo date('Y-m-d'); ?>">
