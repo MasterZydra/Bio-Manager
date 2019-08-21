@@ -71,4 +71,22 @@ function getNextDeliveryNoteNr($conn, $year) {
     return $row['nextId'];
 }
 
+/**
+* Get next invoice number
+*
+* @param DbConnection   $conn   Connection to data base
+* @param int            $year   Year of invoice
+*
+* @author David Hein
+* @return If no invoice exists, it return 1. Else the next number is returned.
+*/
+function getNextInvoiceNr($conn, $year) {
+    $conn -> select('T_Invoice', '(MAX(nr) + 1) AS nextId', 'year = ' . $year);
+    $row = $conn -> getFirstRow();
+    if(is_null($row) || is_null($row['nextId'])) {
+        return 1;
+    }
+    return $row['nextId'];
+}
+
 ?>
