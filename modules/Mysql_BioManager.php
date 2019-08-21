@@ -53,4 +53,22 @@ function updateSupplier($conn, $id, $name) {
         'id = ' . $id);
 }
 
+/**
+* Get next delivery note number
+*
+* @param DbConnection   $conn   Connection to data base
+* @param int            $year   Year of delivery
+*
+* @author David Hein
+* @return If no delivery exists, it return 1. Else the next number is returned.
+*/
+function getNextDeliveryNoteNr($conn, $year) {
+    $conn -> select('T_DeliveryNote', '(MAX(nr) + 1) AS nextId', 'year = ' . $year);
+    $row = $conn -> getFirstRow();
+    if(is_null($row) || is_null($row['nextId'])) {
+        return 1;
+    }
+    return $row['nextId'];
+}
+
 ?>
