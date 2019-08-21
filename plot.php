@@ -50,7 +50,7 @@
             } else {
                 // Delete vendor 
                 $row = $result->fetch_assoc();
-                $conn -> freeRun('DELETE FROM T_Plot WHERE id=' . $row['id']);
+                $conn -> delete('T_Plot', 'id = ' . $row['id']);
                 
                 echo '<div class="infobox">';
                 echo 'Das Flurstück wurde gelöscht.';
