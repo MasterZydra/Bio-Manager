@@ -50,7 +50,7 @@
             } else {
                 // Delete vendor 
                 $row = $result->fetch_assoc();
-                $conn -> freeRun('DELETE FROM T_DeliveryNote WHERE id=' . $row['id']);
+                $conn -> delete('T_DeliveryNote', 'id=' . $row['id']);
                 
                 echo '<div class="infobox">';
                 echo 'Der Lieferschein wurde gelöscht.';
