@@ -40,16 +40,16 @@
         if($_GET['action'] == 'delete') {
             $conn = new Mysql();
             $conn -> dbConnect();
-            $result = $conn -> select('T_Plot', 'id', 'id = ' . $_GET['id']);
+            $conn -> select('T_Plot', 'id', 'id = ' . $_GET['id']);
+            $row = $conn -> getFirstRow();
             
             // Check if id is valid 
-            if ($result->num_rows == 0) {
+            if (is_null($row)) {
                 echo '<div class="warning">';
                 echo 'Das ausgewählte Flurstück wurde in der Datenbank nicht gefunden';
                 echo '</div>';
             } else {
                 // Delete vendor 
-                $row = $result->fetch_assoc();
                 $conn -> delete('T_Plot', 'id = ' . $row['id']);
                 
                 echo '<div class="infobox">';
