@@ -148,6 +148,21 @@ class Mysql extends Dbconfig {
         return $this -> freeRun($query);
     }
     
+    /**
+    * Execute a DELETE statement on connected data base
+    *
+    * @param string $tableName      Name of the table without database name. E.g. 'T_Supplier'
+    * @param string $whereCondition Where condition. If value is NULL, no where condition is added. E.g. 'id = 1'
+    *
+    * @author David Hein
+    * @return data set
+    */
+    function delete($tableName, $whereCondition) {
+        $query = 'DELETE FROM ' . $this -> databaseName . '.' . $tableName . ' '
+            . 'WHERE ' . $whereCondition;
+        return $this -> freeRun($query);
+    }
+    
     function insertInto($tableName,$values) {
         $i = NULL;
 
