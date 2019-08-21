@@ -50,9 +50,9 @@
                 echo '</div>';
             } else {
                 // Delete user
-                $conn -> freeRun('DELETE FROM T_User WHERE id=' . $row['id']);
-                $conn -> freeRun('DELETE FROM T_UserLogin WHERE userId=' . $row['id']);
-                $conn -> freeRun('DELETE FROM T_UserPermission WHERE userId=' . $row['id']);
+                $conn -> delete('T_User', 'id = ' . $row['id']);
+                $conn -> delete('T_UserLogin', 'userId=' . $row['id']);
+                $conn -> delete('T_UserPermission', 'userId=' . $row['id']);
                 
                 echo '<div class="infobox">';
                 echo 'Der Benutzer wurde gelöscht.';
