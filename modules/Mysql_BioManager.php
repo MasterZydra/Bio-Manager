@@ -37,9 +37,6 @@ function getUserPermission($userId, $permission) {
     return false;
 }
 
-/*
-* 
-*/
 /**
 * Update a supplier
 *
