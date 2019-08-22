@@ -65,6 +65,12 @@ Der Bio-Manger ist zum Verwalten von Anlieferungen von Lieferanten. Durch die Ei
     <a href="user.php">Alle Benutzer anzeigen</a><br>
     <a href="addUser.php">Benutzer hinzufügen</a> 
 </div>
+
+<div>
+    <strong>Einstellungen</strong><br>
+    <a href="setting.php">Alle Einstellungen anzeigen</a><br>
+    <a href="editSetting.php">Einstellungen bearbeiten</a>
+</div>
 <?php
         }
         if(isDeveloper()) {
