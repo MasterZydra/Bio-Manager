@@ -132,6 +132,7 @@
 <script>
     var tableRef = document.getElementById('distribution');
     var sumRef = document.getElementById("distSum");
+    var deliveryAmount = parseInt(document.getElementById("delivery").rows[0].cells[1].innerHTML);
     
     // Sum all amounts from plots
     function sumDistribution() {
@@ -142,10 +143,12 @@
         // Write sum into cell
         sumRef.innerHTML = sumtbl;
         // Color cell red if sum is greater then delivery amount
-        if(parseInt(document.getElementById("delivery").rows[0].cells[1].innerHTML) < sumtbl) {
+        sumRef.classList.remove('red');
+        sumRef.classList.remove('grey');
+        if(deliveryAmount < sumtbl) {
             sumRef.classList.add('red');
-        } else {
-            sumRef.classList.remove('red');
+        } else if(deliveryAmount > sumtbl) {
+            sumRef.classList.add('grey');
         }
     }
     
