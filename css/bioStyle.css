@@ -170,6 +170,15 @@ table th {
     color: white;
 }
 
+.infobox a,
+.warning a,
+.log a,
+.infobox a:visited,
+.warning a:visited,
+.log a:visited {
+    color: white;
+}
+
 /**************************
 * Dropdown button
 **************************/
@@ -206,6 +215,10 @@ table th {
 
 .dropdown a:hover {
     background-color: #555555;
+}
+
+.dropdown-content a:visited {
+    color: white;
 }
 
 .dropdown-content a {
