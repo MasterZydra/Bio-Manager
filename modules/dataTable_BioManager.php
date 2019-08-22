@@ -84,6 +84,22 @@ class dataTable_BioManager extends dataTable {
             array('Bearbeiten', 'Mengenverteilung', 'Löschen'),
             $headings);
     }
+    
+    /**
+    * Generate a table of all settings. The table name is 'dataTable-tableSetting'.
+    *
+    * @param dataSet    $dataSet    Data which will be shown
+    *
+    * @Author: David Hein
+    */
+    public static function showSettingsTable($dataSet) {
+        dataTable_BioManager::show(
+            $dataSet,
+           'dataTable-tableSetting',
+            array('name', 'description', 'value'),
+            array('Einstellung', 'Beschreibung', 'Wert'),
+            true);
+    }
 }
 
 ?>
