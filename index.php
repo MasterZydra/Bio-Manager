@@ -27,19 +27,19 @@ Der Bio-Manger ist zum Verwalten von Anlieferungen von Lieferanten. Durch die Ei
         // Links for maintainers
         if(isMaintainer() || isInspector()) {
 ?>
-<div>
+<div class="box">
     <strong>Lieferschein</strong><br>
     <a href="deliveryNote.php">Alle Lieferscheine anzeigen</a>
     <?php if(isMaintainer()) {?><br><a href="addDeliveryNote.php">Lieferanten hinzufügen</a><?php } ?>
 </div>
 
-<div>
+<div class="box">
     <strong>Lieferant</strong><br>
     <a href="supplier.php">Alle Lieferanten anzeigen</a>
     <?php if(isMaintainer()) {?><br><a href="addSupplier.php">Lieferant hinzufügen</a><?php } ?>
 </div>
 
-<div>
+<div class="box">
     <strong>Flurstück</strong><br>
     <a href="plot.php">Alle Flurstücke anzeigen</a>
     <?php if(isMaintainer()) {?><br><a href="addPlot.php">Flurstück hinzufügen</a><?php } ?>
@@ -47,7 +47,7 @@ Der Bio-Manger ist zum Verwalten von Anlieferungen von Lieferanten. Durch die Ei
 <?php
         }
 ?>
-<div>
+<div class="box">
     <strong>Mein Konto</strong><br>
     <a href="changePwd.php">Passwort ändern</a>
 </div>
@@ -60,13 +60,13 @@ Der Bio-Manger ist zum Verwalten von Anlieferungen von Lieferanten. Durch die Ei
     Administration
 </h2>
 
-<div>
+<div class="box">
     <strong>Benutzerverwaltung</strong><br>
     <a href="user.php">Alle Benutzer anzeigen</a><br>
     <a href="addUser.php">Benutzer hinzufügen</a> 
 </div>
 
-<div>
+<div class="box">
     <strong>Einstellungen</strong><br>
     <a href="setting.php">Alle Einstellungen anzeigen</a>
     <?php if(isDeveloper()) {?><br><a href="addSetting.php">Einstellung hinzufügen</a><?php } ?>
@@ -81,7 +81,7 @@ Der Bio-Manger ist zum Verwalten von Anlieferungen von Lieferanten. Durch die Ei
 <div class="warning">
     <strong>Verwendung auf eigene Gefahr!</strong>
 </div>
-<div>
+<div class="box">
     <a href="developerOptions.php">Entwicklereinstellungen</a>
 </div>
 <?php
