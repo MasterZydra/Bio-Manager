@@ -46,6 +46,28 @@
             // Action - Edit setting
             // Forwording to edit page and add parameters
             echo '<script>window.location.replace("editSetting.php?id=' . $_GET['id'] . '");</script>';
+        } elseif(isDeveloper() && $_GET['action'] == 'delete') {
+            // Action - Delete vendor
+            $conn = new Mysql();
+            $conn -> dbConnect();
+            $conn -> select('T_Setting', '*', 'id = ' . $_GET['id']);
+            $row = $conn -> getFirstRow();
+
+            // Check if id is valid
+            if ($row == NULL) {
+                echo '<div class="warning">';
+                echo 'Die ausgewählte Einstellung wurde in der Datenbank nicht gefunden';
+                echo '</div>';
+            } else {
+                // Delete vendor 
+                $conn -> delete('T_Setting', 'id=' . $row['id']);
+
+                echo '<div class="infobox">';
+                echo 'Die Einstellung <strong>' . $row['name'] . '</strong> wurde gelöscht.';
+                echo '</div>';
+            }
+            $conn -> dbDisconnect();
+            $conn = NULL;
         }
     }
 ?>
