@@ -83,7 +83,11 @@
     $conn -> dbDisconnect();
     $conn = NULL;
 
-    dataTable_BioManager::showSettingsTable($result);
+    if(isDeveloper()) {
+        dataTable_BioManager::showSettingsWithDeleteTable($result);
+    } else {
+        dataTable_BioManager::showSettingsTable($result);
+    }
 
     include 'modules/footer.php';
 ?>
