@@ -91,7 +91,7 @@ Der Bio-Manger ist zum Verwalten von Anlieferungen von Lieferanten. Durch die Ei
 ?>
 <script>
     function colorBoxes() {
-        var colors = ['#145C9E', '#11626D', '#4a8a16', '#b01c1c', '#E26D00'];
+        var colors = ['#333138', '#145C9E', '#11626D', '#4a8a16', '#E26D00'];
         $boxes = document.getElementsByClassName('box');
         for(var i = 0; i < $boxes.length; i++) {
             $boxes[i].setAttribute('style', 'background-color: ' + colors[i % colors.length] + ';');
