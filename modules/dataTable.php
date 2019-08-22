@@ -30,17 +30,22 @@ class dataTable {
     * @param array of string    $headings   This headings will be shown as columns heading
     * @param array of string    $actions    Name of the action which will be given in the GET param 'action'
     * @param array of string    $actionNames    Name which will be shown in the action dropdown
+    * @param boolean    $useCompleteWidth   Show table over complete window width. Default is false
     *
     * @Author: David Hein
     */
-    private static function generateTable($dataSet, $tableId, $columns, $headings = NULL, $actions = NULL, $actionNames = NULL) {
+    private static function generateTable($dataSet, $tableId, $columns, $headings = NULL, $actions = NULL, $actionNames = NULL, $useCompleteWidth = false) {
         // Add id to table
         if (!is_null($tableId)) {
-            echo '<table id="' . $tableId . '">';
+            echo '<table id="' . $tableId . '"';
         }
         else {
-            echo '<table>';
+            echo '<table';
         }
+        if($useCompleteWidth) {
+            echo ' class="completeWidth"';
+        }
+        echo '>';
         // Add headings
         if(!is_null($headings)) {
             echo '<tr>';
@@ -105,16 +110,20 @@ class dataTable {
     * @param string     $tableId    Id for table. E.g. needed for filterData.js
     * @param array of string    $columns    All columns which will be shown as a column in the table
     * @param array of string    $headings   This headings will be shown as columns heading
+    * @param boolean    $useCompleteWidth   Show table over complete window width. Default is false
     *
     * @Author: David Hein
     */
-    public static function show($dataSet, $tableId, $columns, $headings = NULL) {
+    public static function show($dataSet, $tableId, $columns, $headings = NULL, $useCompleteWidth = false) {
         dataTable::generateTable(
             $dataSet,
             $tableId,
             $columns,
-            $headings);
-    }
+            $headings,
+            NULL,
+            NULL,
+            $useCompleteWidth);
+    }    
 }
 
 ?>
