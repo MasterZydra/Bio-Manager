@@ -90,17 +90,19 @@ class dataTable {
     * @param array of string    $actions    Name of the action which will be given in the GET param 'action'
     * @param array of string    $actionNames    Name which will be shown in the action dropdown
     * @param array of string    $headings   This headings will be shown as columns heading
+    * @param boolean    $useCompleteWidth   Show table over complete window width. Default is false
     *
     * @Author: David Hein
     */
-    public static function showWithActions($dataSet, $tableId, $columns, $actions, $actionNames, $headings = NULL) {
+    public static function showWithActions($dataSet, $tableId, $columns, $actions, $actionNames, $headings = NULL, $useCompleteWidth = false) {
         dataTable::generateTable(
             $dataSet,
             $tableId,
             $columns,
             $headings,
             $actions,
-            $actionNames);
+            $actionNames,
+            $useCompleteWidth);
     }
     
     /**
