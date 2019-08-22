@@ -30,6 +30,15 @@
 <script src="js/dropdown.js"></script>
 
 <h1>Einstellungen</h1>
+<?php
+    if(isDeveloper()) {
+?>
+<p>
+    <a href="addSetting.php">Einstellung hinzufügen</a>    
+</p>
+<?php
+    }
+?>
 
 <?php
     if(isset($_GET['action']) && isset($_GET['id'])) {
