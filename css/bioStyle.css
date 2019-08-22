@@ -321,3 +321,44 @@ select,
     appearance: none;
     border-radius: 0;
 }
+
+/**************************
+* Box design
+**************************/
+
+h2 {
+    clear: both;
+}
+
+.box {
+    float: left;
+    width: 30%;
+    margin-right: 2%;
+    padding: 20px;
+    box-sizing: border-box;
+    color: white;
+}
+
+.box:last-child {
+    margin-right: 0;
+}
+
+.box a,
+.box a:visited {
+    color: white;
+}
+
+.box {
+    text-align: center;
+}
+
+@media (max-width: 800px) {
+    .box {
+        width: 48%;
+    }
+}
+@media (max-width: 600px) {
+    .box {
+        width: 100%;
+    }
+}
