@@ -133,6 +133,10 @@ table th {
     background-color: #b01c1c; /* Red */
 }
 
+.grey {
+    background-color: #555555; /* Grey */
+}
+
 .completeWidth {
     width: 100%;
 }
