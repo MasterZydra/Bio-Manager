@@ -57,7 +57,7 @@
 ?>
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post">
     <label>Name:<br>
-        <input type="text" name="supplierName" value="<?php echo $row['name']; ?>">
+        <input type="text" name="supplierName" value="<?php echo $row['name']; ?>" autofocus>
     </label><br>
     <button>Änderungen speichern</button>
 </form>
