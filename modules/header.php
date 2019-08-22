@@ -21,13 +21,6 @@
             </form>
             <?php
                 }
-                else {
-            ?>
-            <form action="logout.php">
-                <button>Abmelden</button>
-            </form>
-            <?php
-                }
             ?>
         </div>
     </header>
