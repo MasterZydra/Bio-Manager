@@ -93,12 +93,14 @@ class dataTable_BioManager extends dataTable {
     * @Author: David Hein
     */
     public static function showSettingsTable($dataSet) {
-        dataTable_BioManager::show(
+        dataTable_BioManager::showWithActions(
             $dataSet,
            'dataTable-tableSetting',
             array('name', 'description', 'value'),
-            array('Einstellung', 'Beschreibung', 'Wert'),
-            true);
+            array('edit'),
+            array('Bearbeiten'),
+            array('Einstellung', 'Beschreibung', 'Wert', 'Aktionen'),
+            false);
     }
 }
 
