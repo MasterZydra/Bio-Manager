@@ -46,7 +46,7 @@ class dataTable_BioManager extends dataTable {
     }
 
     /**
-    * Generate a table without actions for user (edit, delete and change password)
+    * Generate a table with actions for user (edit, delete and change password)
     *
     * @param dataSet    $dataSet    Data which will be shown
     * @param string     $tableId    Id for table. E.g. needed for filterData.js
@@ -66,7 +66,7 @@ class dataTable_BioManager extends dataTable {
     }
     
     /**
-    * Generate a table without actions for delivery note (edit, delete and volume distribution)
+    * Generate a table with actions for delivery note (edit, delete and volume distribution)
     *
     * @param dataSet    $dataSet    Data which will be shown
     * @param string     $tableId    Id for table. E.g. needed for filterData.js
