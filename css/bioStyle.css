@@ -33,7 +33,6 @@ main {
     margin-top: 20px;
     margin-left: 3%;
     margin-right: 5%;
-    margin-bottom: 80px;
 }
 
 main a:visited {
@@ -50,7 +49,7 @@ main div {
 
 header {
     margin: 0;
-    padding: 5px 10px 10px 20px;
+    padding: 5px 10px 5px 20px;
     background-color: #4a8a16;
     box-sizing: border-box;
     width: 100%;
@@ -59,11 +58,15 @@ header {
     color: white;
 }
 
+header h1 {
+    margin-bottom: 5px;
+}
+
 header div {
     font-size: 18px;
     font-weight: bold;
     color: #ffffff;
-    margin: 0 0 10px;
+    margin: 0;
     padding: 0;
 }
 
