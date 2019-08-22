@@ -121,7 +121,7 @@
     <table class="completeWidth">
         <tr>
             <th width="70%" class="center">Summe über die Flurstücke</th>
-            <th width="30%" class="right" id="distSum">4000</th>
+            <th width="30%" class="right" id="distSum"></th>
         </tr>
     </table>
     <button>Übernehmen</button>
