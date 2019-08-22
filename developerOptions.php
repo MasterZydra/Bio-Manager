@@ -28,6 +28,9 @@
         <input type="checkbox" name="showQuery" value="1" <?php if(isset($_SESSION['devOpt_ShowQuery']) && $_SESSION['devOpt_ShowQuery']) { echo ' checked'; } ?>>
         SQL Queries anzeigen
     </label><br>
+    <div class="warning">
+        Das Aktivieren kann zu Fehlern führen, da die Ausgabe auch in Drobdowns eingefügt werden kann.
+    </div>
     <button>Übernehmen</button>
 </form>
 
