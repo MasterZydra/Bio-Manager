@@ -86,6 +86,26 @@ class dataTable_BioManager extends dataTable {
     }
     
     /**
+    * Generate a table with actions for delivery note (edit and volume distribution)
+    *
+    * @param dataSet    $dataSet    Data which will be shown
+    * @param string     $tableId    Id for table. E.g. needed for filterData.js
+    * @param array of string    $columns    All columns which will be shown as a column in the table
+    * @param array of string    $headings   This headings will be shown as columns heading
+    *
+    * @Author: David Hein
+    */
+    public static function showWithEvalDeliveryNoteActions($dataSet, $tableId, $columns, $headings = NULL) {
+        dataTable_BioManager::showWithActions(
+            $dataSet,
+            $tableId,
+            $columns,
+            array('edit', 'volDist'),
+            array('Bearbeiten', 'Mengenverteilung'),
+            $headings);
+    }
+    
+    /**
     * Generate a table of all settings. The table name is 'dataTable-tableSetting'.
     *
     * @param dataSet    $dataSet    Data which will be shown
