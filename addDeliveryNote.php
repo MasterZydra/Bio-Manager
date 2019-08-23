@@ -87,7 +87,7 @@
                 "val" => $_POST["supplierId"]
             ];
         }
-        $data = array($NULL, $note_year, $note_nr, $note_date, $note_amount, $note_supplierId);
+        $data = array($NULL, $note_year, $note_nr, $note_date, $note_amount, $note_supplierId, $NULL);
         
         $conn -> insertInto('T_DeliveryNote', $data);
         $conn -> dbDisconnect();
