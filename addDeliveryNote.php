@@ -108,7 +108,7 @@
         <input type="number" name="note_amount" placeholder="Liefermenge eingeben">
     </label><br>
     <label>Lieferant:<br>
-        <?php echo supplierSelectBox(false, NULL, false); ?>
+        <?php echo supplierSelectBox(false, NULL, false, true); ?>
     </label><br>
     <button>Hinzufügen</button>
 </form>
