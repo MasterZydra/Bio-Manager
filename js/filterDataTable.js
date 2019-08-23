@@ -10,18 +10,18 @@ function filterData(id) {
     table = document.getElementById("dataTable-" + id);
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                td = tr[i].getElementsByTagName("td")[1];
-                if (td) {
-                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
+        var maxFilter = -1;
+        for(var j = 0; j < tr[i].getElementsByTagName("td").length; j++) {
+            td = tr[i].getElementsByTagName("td")[j];
+            if (td) {
+                var innerHTML = td.innerHTML.toUpperCase();
+                if(innerHTML.trim().startsWith('<DIV CLASS="DROPDOWN"')) continue;
+                //maxFilter = Math.max(maxFilter, innerHTML.indexOf(filter));
+                if(innerHTML.indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    break;
+                } else {
+                    tr[i].style.display = "none";
                 }
             }
         }
