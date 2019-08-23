@@ -28,15 +28,15 @@ function getUserPermission($userId, $permission) {
     // Get user permissions
     $conn = new Mysql();
     $conn -> dbConnect();
-    $result = $conn -> select('T_UserPermission', $permission, 'userId =' . $userId);
+    $conn -> select('T_UserPermission', $permission, 'userId =' . $userId);
+    $row = $conn -> getFirstRow();
     $conn -> dbDisconnect();
     $conn = NULL;
     
-    if ($result -> num_rows == 0) {
+    if (is_null($row)) {
         return false;
     }
     else {
-        $row = $result->fetch_assoc();
         return $row[$permission];
     }
     return false;
