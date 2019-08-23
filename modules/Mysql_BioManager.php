@@ -119,4 +119,77 @@ function getSetting($setting) {
     }
     return false;
 }
+
+/*
+* Get delivery notes
+*
+* @param boolean    $isComplete true returns complete only complete and false uncomplete delivery notes
+* @param int    $year   Year of the delivery note. NULL if year shall not be checked
+* @param int    $invoiceId  Id of the invoice
+* @param boolean    $joinSupplier   Join the supplier name to query
+* @param boolean    $invertSort Invert the sort order of the delivery notes
+* @param boolean    $isUnused   Return only delivery notes which are not bound to an invoice
+*
+* @author David Hein
+* @return data set of delivery notes
+*/
+function getDeliveryNotes($isComplete = true, $year = NULL, $invoiceId = NULL, $joinSupplier = true, $invertSort = false, $isUnused = false) {
+    if($isComplete) {
+        $whereCondition =
+            '(deliverDate IS NOT NULL '
+            . 'AND amount IS NOT NULL '
+            . 'AND supplierId IS NOT NULL)';
+    } else {
+        $whereCondition =
+            '(deliverDate IS NULL '
+            . 'OR amount IS NULL '
+            . 'OR supplierId IS NULL)'
+            . ' AND invoiceId IS NULL';
+    }
+    
+    if(!is_null($year)) {
+        $whereCondition .= ' AND year = ' . $year;
+    }
+    
+    if(!is_null($invoiceId)) {
+        $whereCondition .= ' AND invoiceId = ' . $invoiceId;
+    }
+    
+    if($isUnused) {
+        $whereCondition .= ' AND invoiceId IS NULL';
+    }
+    
+    $from = 'T_DeliveryNote';
+    $select = 'T_DeliveryNote.id, year, nr, amount, deliverDate';
+    if($joinSupplier) {
+        $from .= ' LEFT JOIN T_Supplier ON T_Supplier.id = supplierId';
+        $select .= ', T_Supplier.name AS supplierName';
+    }
+    
+    if($invertSort) {
+        $orderBy = 'year DESC, nr ASC';
+    } else {
+        $orderBy = 'year DESC, nr DESC';
+    }
+    
+    $conn = new Mysql();
+    $conn -> dbConnect();
+    $result = $conn -> select(
+        $from,
+        $select,
+        $whereCondition,
+        $orderBy);
+    $conn -> dbDisconnect();
+    $conn = NULL;
+    
+    if ($result -> num_rows == 0) {
+        return false;
+    }
+    else {
+        return $result;
+    }
+    return false;
+}
+
+
 ?>
