@@ -1,4 +1,14 @@
 <?php
+/*
+* developerOptions.php
+* ----------------
+* This page can be used to change settings for debugging.
+*
+* @Author: David Hein
+* 
+* Changelog:
+* ----------
+*/
     include 'modules/header_user.php';
     include 'modules/permissionCheck.php';
 
