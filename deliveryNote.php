@@ -98,6 +98,18 @@
             array('year', 'nr', 'deliverDate', 'amount', 'supplierName'),
             array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Lieferant'));
     }
-
+?>
+<script>
+    function formatTableCellRight(tableName, colId) {
+        var tableRef = document.getElementById(tableName);
+        for(var i = 1; i < tableRef.rows.length; i++) {
+            tableRef.rows[i].cells[colId].setAttribute("style", "text-align: right");
+        }
+    }
+    
+    formatTableCellRight("dataTable-tableDeliveryNote", 1);
+    formatTableCellRight("dataTable-tableDeliveryNote", 3);
+</script>
+<?php
     include 'modules/footer.php';
 ?>
