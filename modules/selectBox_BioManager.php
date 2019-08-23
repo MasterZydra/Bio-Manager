@@ -71,5 +71,33 @@ function plotSelectBox($name = NULL, $selectedValue = NULL) {
     
     return selectBox($name, true, 'Bitte Flurstück wählen', $result, $selectedValue);
 }
+
+/**
+* Generate a select element for the product.
+* The default name of the select element is 'productId'.
+*
+* @param string $name   Name of the select element
+* @param int    $selectedValue  The option with this value will be selected. The default value is NULL
+*
+* @Author: David Hein
+* @return String with html code for select element
+*/
+function productSelectBox($name = NULL, $selectedValue = NULL) {
+    $conn = new Mysql();
+    $conn -> dbConnect();
+    $result = $conn -> select(
+        'T_Product',
+        'id AS value, name',
+        NULL,
+        'name ASC');
+    $conn -> dbDisconnect();
+    $conn = NULL;
+    
+    if(is_null($name)) {
+        $name = 'productId';
+    }
+    
+    return selectBox($name, true, 'Bitte Produkt wählen', $result, $selectedValue);
+}
 ?>
 
