@@ -48,13 +48,15 @@ function getUserPermission($userId, $permission) {
 * @param DbConnection   $conn   Connection to data base
 * @param int            $id     Supplier id
 * @param string         $name   New supplier name
+* @param tinyint    $inactive   Flag if user is inactive
 *
 * @author David Hein
 */
-function updateSupplier($conn, $id, $name) {
+function updateSupplier($conn, $id, $name, $inactive) {
     $conn -> update(
         'T_Supplier',
-        'name = \'' . $name .'\'',
+        'name = \'' . $name .'\', '
+        . 'inactive = ' . $inactive,
         'id = ' . $id);
 }
 
