@@ -36,7 +36,7 @@
         $conn = new Mysql();
         $conn -> dbConnect();
         if(isset($_GET['edit'])) {
-            updateSupplier($conn, $_GET['id'], $_POST['supplierName']);
+            updateSupplier($conn, $_GET['id'], $_POST['supplierName'], $_POST['supplierInactive']);
             echo '<div class="infobox">';
             echo 'Die Änderungen wurden erfolgreich gespeichert';
             echo '</div>';
@@ -57,7 +57,12 @@
 ?>
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post">
     <label>Name:<br>
-        <input type="text" name="supplierName" value="<?php echo $row['name']; ?>" autofocus>
+        <input type="text" name="supplierName" value="<?php echo $row['name']; ?>" required autofocus>
+    </label><br>
+    <label>
+        <input type="hidden" name="supplierInactive" value="0">
+        <input type="checkbox" name="supplierInactive" value="1" <?php if($row['inactive']) { echo 'checked'; } ?>>
+        Inaktiv
     </label><br>
     <button>Änderungen speichern</button>
 </form>
