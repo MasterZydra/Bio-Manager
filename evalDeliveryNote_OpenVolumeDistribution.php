@@ -1,10 +1,9 @@
 <?php
 /*
-* deliveryNote.php
-* ----------------
-* This page shows all delivery notes in a table. A filter can
-* be used to find the wanted rows. With maintainer permission
-* the user can delete and edit a delivery note.
+* evalDeliveryNote.php
+* --------------------
+* This page shows an evaluation which delivery notes
+* have no or uncomplete volume distribution.
 *
 * @Author: David Hein
 * 
