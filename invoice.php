@@ -14,7 +14,7 @@
     include 'modules/permissionCheck.php';
 
     // Check permission
-    if(!isMaintainer()) {
+    if(!isMaintainer() && !isInspector()) {
         header("Location: index.php");
         exit();
     }
@@ -28,7 +28,7 @@
 
 <h1>Rechnung</h1>
 <p>
-    <a href="addInvoice.php">Rechnung hinzufügen</a>    
+    <?php if(isMaintainer()) {?><a href="addInvoice.php">Rechnung hinzufügen</a><?php } ?>
 </p>
 
 <?php
