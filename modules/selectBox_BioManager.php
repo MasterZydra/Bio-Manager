@@ -46,7 +46,7 @@ function supplierSelectBox($isRequired, $selectedValue = NULL, $disableDefault =
 
 /**
 * Generate a select element for the plots.
-* The name of the select element is 'plotId'.
+* The default name of the select element is 'plotId'.
 *
 * @param string $name   Name of the select element
 * @param int    $selectedValue  The option with this value will be selected. The default value is NULL
@@ -69,7 +69,7 @@ function plotSelectBox($name = NULL, $selectedValue = NULL) {
         $name = 'plotId';
     }
     
-    return selectBox($name, true, 'Bitte Lieferant wählen', $result, $selectedValue);
+    return selectBox($name, true, 'Bitte Flurstück wählen', $result, $selectedValue);
 }
 ?>
 
