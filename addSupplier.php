@@ -41,7 +41,12 @@
             "val" => $_POST["supplier_name"]
         ];
         
-        $data = array($NULL, $supplier_name);
+        $supplier_inactive = [
+            "type" => "char",
+            "val" => "0"
+        ];
+        
+        $data = array($NULL, $supplier_name, $supplier_inactive);
         
         $conn -> insertInto('T_Supplier', $data);
         $conn -> dbDisconnect();
