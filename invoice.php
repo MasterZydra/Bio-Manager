@@ -31,6 +31,14 @@
     <a href="addInvoice.php">Rechnung hinzufügen</a>    
 </p>
 
+<?php
+    if(isset($_GET['action']) && $_GET['action'] == 'show') {
+        // Action - show selected invoice
+        // Forwarding to edit page and add parameters
+        echo '<script>window.location.replace("showInvoice.php?id=' . $_GET['id'] . '");</script>';
+    }
+?>
+
 <p>
     <input type="text" id="filterInput-tableInvoice" onkeyup="filterData(&quot;tableInvoice&quot;)" placeholder="Suchtext eingeben..." title="Suchtext"> 
 </p>
@@ -42,11 +50,11 @@
     $conn -> dbDisconnect();
     $conn = NULL;
 
-    dataTable_BioManager::show(
+    dataTable_BioManager::showWithInvoiceActions(
         $result,
         'dataTable-tableInvoice',
         array('year', 'nr', 'invoiceDate', 'isPaid'),
-        array('Jahr', 'Nr', 'Datum', 'Bezahlt'));
+        array('Jahr', 'Nr', 'Datum', 'Bezahlt', 'Aktionen'));
 
     include 'modules/footer.php';
 ?>
