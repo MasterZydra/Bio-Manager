@@ -31,10 +31,11 @@ class dataTable {
     * @param array of string    $actions    Name of the action which will be given in the GET param 'action'
     * @param array of string    $actionNames    Name which will be shown in the action dropdown
     * @param boolean    $useCompleteWidth   Show table over complete window width. Default is false
+    * @param boolean    $openInNewTab   Open link in new tab
     *
     * @Author: David Hein
     */
-    private static function generateTable($dataSet, $tableId, $columns, $headings = NULL, $actions = NULL, $actionNames = NULL, $useCompleteWidth = false) {
+    private static function generateTable($dataSet, $tableId, $columns, $headings = NULL, $actions = NULL, $actionNames = NULL, $useCompleteWidth = false, $openInNewTab = false) {
         // Add id to table
         if (!is_null($tableId)) {
             echo '<table id="' . $tableId . '"';
@@ -69,7 +70,11 @@ class dataTable {
                     echo '    <div class="dropdown-content" id="dropdown-' . $row['id'] . '">';
                     $i = 0;
                     foreach($actions as $action){
-                        echo '      <a href="?action=' . $action . '&id=' . $row['id'] . '">' . $actionNames[$i] . '</a>';
+                        echo '      <a href="?action=' . $action . '&id=' . $row['id'] . '"';
+                        if($openInNewTab) {
+                            echo ' target="_blank"';
+                        }
+                        echo '>' . $actionNames[$i] . '</a>';
                         $i++;
                     }
                     echo '    </div>';
@@ -91,10 +96,11 @@ class dataTable {
     * @param array of string    $actionNames    Name which will be shown in the action dropdown
     * @param array of string    $headings   This headings will be shown as columns heading
     * @param boolean    $useCompleteWidth   Show table over complete window width. Default is false
+    * @param boolean    $openInNewTab   Open link in new tab
     *
     * @Author: David Hein
     */
-    public static function showWithActions($dataSet, $tableId, $columns, $actions, $actionNames, $headings = NULL, $useCompleteWidth = false) {
+    public static function showWithActions($dataSet, $tableId, $columns, $actions, $actionNames, $headings = NULL, $useCompleteWidth = false, $openInNewTab = false) {
         dataTable::generateTable(
             $dataSet,
             $tableId,
@@ -102,7 +108,8 @@ class dataTable {
             $headings,
             $actions,
             $actionNames,
-            $useCompleteWidth);
+            $useCompleteWidth,
+            $openInNewTab);
     }
     
     /**
@@ -113,10 +120,11 @@ class dataTable {
     * @param array of string    $columns    All columns which will be shown as a column in the table
     * @param array of string    $headings   This headings will be shown as columns heading
     * @param boolean    $useCompleteWidth   Show table over complete window width. Default is false
+    * @param boolean    $openInNewTab   Open link in new tab
     *
     * @Author: David Hein
     */
-    public static function show($dataSet, $tableId, $columns, $headings = NULL, $useCompleteWidth = false) {
+    public static function show($dataSet, $tableId, $columns, $headings = NULL, $useCompleteWidth = false, $openInNewTab = false) {
         dataTable::generateTable(
             $dataSet,
             $tableId,
@@ -124,7 +132,8 @@ class dataTable {
             $headings,
             NULL,
             NULL,
-            $useCompleteWidth);
+            $useCompleteWidth,
+            $openInNewTab);
     }    
 }
 
