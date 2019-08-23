@@ -1,6 +1,6 @@
 <?php
 /*
-* products.php
+* product.php
 * ----------------
 * This page shows all products in a table. A filter can
 * be used to find the wanted rows. With maintainer permission
