@@ -53,6 +53,7 @@ class Mysql extends Dbconfig {
     }
 
     function dbDisconnect() {
+        mysqli_close($this -> connectionString);
         $this -> connectionString = NULL;
         $this -> sqlQuery = NULL;
         $this -> dataSet = NULL;
