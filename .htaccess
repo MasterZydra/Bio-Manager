@@ -54,7 +54,7 @@ RewriteRule .* index.php [L]
 
 ## Begin - Security
 # Block all direct access for these folders
-RewriteRule ^(\.git|config|ext|modules|tests)/(.*) error [F]
+RewriteRule ^(\.git|config|ext|modules|tests|install)/(.*) error [F]
 # Block access to specific file types for these system folders
 RewriteRule ^(system|vendor)/(.*)\.(txt|xml|md|html|yaml|yml|php|pl|py|cgi|twig|sh|bat)$ error [F]
 # Block access to specific file types for these user folders
