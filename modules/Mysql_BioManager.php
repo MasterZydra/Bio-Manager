@@ -17,7 +17,12 @@
 
 /*
 * Get a permission for a given user id.
-* Returns false if not no data has been found.
+*
+* @param int    $userId     User id of the user whose permission is requested
+* @param string $permission Permission name
+*
+* @author David Hein
+* @return false if not no data has been found.
 */
 function getUserPermission($userId, $permission) {
     // Get user permissions
