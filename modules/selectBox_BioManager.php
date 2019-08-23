@@ -12,6 +12,8 @@
 * ----------
 * 19.08.2019:
 *   - Add parameter $selectedValue
+* 23.08.2019:
+*   - Add parameter $onlyActiveUser
 */
 
 include 'modules/selectBox.php';
@@ -23,14 +25,19 @@ include 'modules/selectBox.php';
 * @param boolean    $isRequired     Flag if the field in the form is required
 * @param int        $selectedValue  The option with this value will be selected. The default value is NULL
 * @param boolean    $disableDefault Disable the default text for selection
+* @param boolean    $onlyActiveUser Show only active users
 *
 * @Author: David Hein
 * @return String with html code for select element
 */
-function supplierSelectBox($isRequired, $selectedValue = NULL, $disableDefault = true) {
+function supplierSelectBox($isRequired, $selectedValue = NULL, $disableDefault = true, $onlyActiveUser = false) {
+    $where = NULL;
+    if($onlyActiveUser) {
+        $where = 'inactive = 0';
+    }
     $conn = new Mysql();
     $conn -> dbConnect();
-    $result = $conn -> select('T_Supplier', 'id AS value, name', NULL, 'name ASC');
+    $result = $conn -> select('T_Supplier', 'id AS value, name', $where, 'name ASC');
     $conn -> dbDisconnect();
     $conn = NULL;
     
