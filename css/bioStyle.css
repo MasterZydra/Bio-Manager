@@ -335,7 +335,7 @@ h2 {
 
 .box {
     float: left;
-    width: 30%;
+    width: 18%;
     margin-right: 2%;
     padding: 20px;
     box-sizing: border-box;
@@ -355,11 +355,24 @@ h2 {
     text-align: center;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1900px) {
+    .box {
+        width: 23%;
+    }
+}
+
+@media (max-width: 1280px) {
+    .box {
+        width: 30%;
+    }
+}
+
+@media (max-width: 900px) {
     .box {
         width: 48%;
     }
 }
+
 @media (max-width: 600px) {
     .box {
         width: 100%;
