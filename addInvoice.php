@@ -15,7 +15,7 @@
 
     // Check permission
     if(!isMaintainer()) {
-        header("Location: supplier.php");
+        header("Location: invoice.php");
         exit();
     }
 
