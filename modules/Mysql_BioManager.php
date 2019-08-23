@@ -94,4 +94,29 @@ function getNextInvoiceNr($conn, $year) {
     return $row['nextId'];
 }
 
+/*
+* Get settings
+*
+* @param string $setting    Setting name
+*
+* @author David Hein
+* @return false if not no data has been found.
+*/
+function getSetting($setting) {
+    // Get setting
+    $conn = new Mysql();
+    $conn -> dbConnect();
+    $conn -> select('T_Setting', 'value', 'name =\'' . $setting . '\'');
+    $row = $conn -> getFirstRow();
+    $conn -> dbDisconnect();
+    $conn = NULL;
+    
+    if (is_null($row)) {
+        return false;
+    }
+    else {
+        return $row['value'];
+    }
+    return false;
+}
 ?>
