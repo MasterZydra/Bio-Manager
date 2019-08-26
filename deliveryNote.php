@@ -79,8 +79,10 @@
     $conn = new Mysql();
     $conn -> dbConnect();
     $result = $conn -> select(
-        'T_DeliveryNote LEFT JOIN T_Supplier ON T_Supplier.id = supplierId',
-        'T_DeliveryNote.id, year, nr, amount, deliverDate, T_Supplier.name AS supplierName',
+        'T_DeliveryNote '
+        . 'LEFT JOIN T_Supplier ON T_Supplier.id = supplierId '
+        . 'LEFT JOIN T_Product ON T_Product.id = productId',
+        'T_DeliveryNote.id, year, nr, amount, deliverDate, T_Supplier.name AS supplierName, T_Product.name AS productName',
         NULL,
         'year DESC, nr DESC');
     $conn -> dbDisconnect();
@@ -90,14 +92,14 @@
         dataTable_BioManager::showWithDeliveryNoteActions(
             $result,
             'dataTable-tableDeliveryNote',
-            array('year', 'nr', 'deliverDate', 'amount', 'supplierName'),
-            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Lieferant', 'Aktionen'));
+            array('year', 'nr', 'deliverDate', 'amount', 'supplierName', 'productName'),
+            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Lieferant', 'Produkt', 'Aktionen'));
     } else {
         dataTable_BioManager::show(
             $result,
             'dataTable-tableDeliveryNote',
-            array('year', 'nr', 'deliverDate', 'amount', 'supplierName'),
-            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Lieferant'));
+            array('year', 'nr', 'deliverDate', 'amount', 'supplierName', 'productName'),
+            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Lieferant', 'Produkt'));
     }
 ?>
 <script>
