@@ -29,7 +29,7 @@
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
 
-<h1>Einstellungen</h1>
+<h1>Einstellung</h1>
 <?php
     if(isDeveloper()) {
 ?>
