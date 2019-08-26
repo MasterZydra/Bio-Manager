@@ -162,7 +162,7 @@ function getDeliveryNotes($isComplete = true, $year = NULL, $invoiceId = NULL, $
     }
     
     $from = 'T_DeliveryNote';
-    $select = 'T_DeliveryNote.id, year, nr, amount, deliverDate';
+    $select = 'T_DeliveryNote.id, year, nr, amount, deliverDate, productId';
     if($joinSupplier) {
         $from .= ' LEFT JOIN T_Supplier ON T_Supplier.id = supplierId';
         $select .= ', T_Supplier.name AS supplierName';
