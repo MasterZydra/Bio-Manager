@@ -27,7 +27,7 @@
 <h1>Einstellung hinzufügen</h1>
 
 <p>
-    <a href="setting.php">Alle Einstellungen anzeigen</a>    
+    <a href="setting.php">Alle Einstellungen anzeigen</a>
 </p>
 <?php
     if(isset($_GET['add'])) {

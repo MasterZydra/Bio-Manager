@@ -27,7 +27,7 @@
 <h1>Benutzer hinzufügen</h1>
 
 <p>
-    <a href="user.php">Alle Benutzer anzeigen</a>    
+    <a href="user.php">Alle Benutzer anzeigen</a>
 </p>
 <?php
     if(isset($_GET['add'])) {
