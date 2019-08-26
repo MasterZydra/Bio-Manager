@@ -35,8 +35,8 @@
 
 <?php
     if(isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
-        // Action - Delete vendor
         if($_GET['action'] == 'delete') {
+            // Action - Delete
             echo '<script>window.location.replace("deleteSupplier.php?id=' . $_GET['id'] . '");</script>';
         } elseif($_GET['action'] == 'edit') {
             // Action - Edit vendor
