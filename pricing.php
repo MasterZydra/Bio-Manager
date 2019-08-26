@@ -34,29 +34,9 @@
 
 <?php
     if(isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
-        // Action - Delete pricing
         if($_GET['action'] == 'delete') {
-            $conn = new Mysql();
-            $conn -> dbConnect();
-            $conn -> select('T_Pricing', 'id', 'id = ' . $_GET['id']);
-            $row = $conn -> getFirstRow();
-            
-            
-            // Check if id is valid 
-            if (is_null($row)) {
-                echo '<div class="warning">';
-                echo 'Der ausgewählte Eintrag wurde in der Datenbank nicht gefunden';
-                echo '</div>';
-            } else {
-                // Delete delivery note
-                $conn -> delete('T_Pricing', 'id=' . $row['id']);
-                
-                echo '<div class="infobox">';
-                echo 'Der Eintrag wurde gelöscht.';
-                echo '</div>';
-            }
-            $conn -> dbDisconnect();
-            $conn = NULL;
+            // Action - Delete
+            echo '<script>window.location.replace("deletePricing.php?id=' . $_GET['id'] . '");</script>';
         } elseif($_GET['action'] == 'edit') {
             // Action - Edit a pricing
             // Forwarding to edit page and add parameters
