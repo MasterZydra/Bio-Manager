@@ -45,7 +45,6 @@
 
 
     $volumeUnit = getSetting('volumeUnit');
-$pricePerUnit = 0.19;
 
 $comment = 'Bla bla';
 
@@ -67,11 +66,22 @@ if(!$deliveryNotes) {
     // No delivery notes found
 } else {
     if($deliveryNotes -> num_rows > 0) {
+        
+        $conn = new Mysql();
+        $conn -> dbConnect();
+        
         while($row = $deliveryNotes -> fetch_assoc()) {
+            // Select price for product
+            $conn -> select('T_Pricing', 'price', 'productId = ' . $row['productId'] . ' AND year = ' . $row['year']);
+            $price = $conn -> getFirstRow();
+            
             $newDate = date("d.m.Y", strtotime($row['deliverDate']));
-            $item = array($row['nr'], $newDate, $row['amount']);
+            $item = array($row['nr'], $newDate, $row['amount'], $price['price']);
             array_push($invoiceItems, $item);
         }
+        
+        $conn -> dbDisconnect();
+        $conn = NULL;
     }
 }
 
@@ -130,7 +140,7 @@ Rechnung
 $totalAmount = 0;
 foreach($invoiceItems as $item) {
     // Calculate price
-    $price = $pricePerUnit * $item[2];
+    $price = $item[3] * $item[2];
     $totalAmount += $price;
     $html .= '
         <tr>
