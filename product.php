@@ -36,28 +36,9 @@
 
 <?php
     if(isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
-        // Action - Delete product
         if($_GET['action'] == 'delete') {
-            $conn = new Mysql();
-            $conn -> dbConnect();
-            $conn -> select('T_Product', 'id, name', 'id = ' . $_GET['id']);
-            $row = $conn -> getFirstRow();
-            
-            // Check if id is valid 
-            if (is_null($row)) {
-                echo '<div class="warning">';
-                echo 'Das ausgewählte Produkt wurde in der Datenbank nicht gefunden';
-                echo '</div>';
-            } else {
-                // Delete product 
-                $conn -> delete('T_Product', 'id=' . $row['id']);
-                
-                echo '<div class="infobox">';
-                echo 'Das Produkt <strong>' . $row['name'] . '</strong> wurde gelöscht.';
-                echo '</div>';
-            }
-            $conn -> dbDisconnect();
-            $conn = NULL;
+            // Action - Delete
+            echo '<script>window.location.replace("deleteProduct.php?id=' . $_GET['id'] . '");</script>';
         } elseif($_GET['action'] == 'edit') {
             // Action - Edit a product
             // Forwarding to edit page and add parameters
