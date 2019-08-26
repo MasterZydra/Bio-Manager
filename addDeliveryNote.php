@@ -107,6 +107,9 @@
     <label>Jahr:<br>
         <input type="number" name="note_year" value="<?php echo date("Y"); ?>" required autofocus>
     </label><br>
+    <label>Produkt:<br>
+        <?php echo productSelectBox(); ?>
+    </label><br>
     <label>Lieferdatum:<br>
         <input type="date" name="note_date" value="<?php echo date('Y-m-d'); ?>">
     </label><br>
@@ -115,9 +118,6 @@
     </label><br>
     <label>Lieferant:<br>
         <?php echo supplierSelectBox(false, NULL, false, true); ?>
-    </label><br>
-    <label>Produkt:<br>
-        <?php echo productSelectBox(); ?>
     </label><br>
     <button>Hinzufügen</button>
 </form>
