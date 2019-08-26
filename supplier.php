@@ -37,26 +37,7 @@
     if(isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
         // Action - Delete vendor
         if($_GET['action'] == 'delete') {
-            $conn = new Mysql();
-            $conn -> dbConnect();
-            $conn -> select('T_Supplier', '*', 'id = ' . $_GET['id']);
-            $row = $conn -> getFirstRow();
-            
-            // Check if id is valid 
-            if ($row == NULL) {
-                echo '<div class="warning">';
-                echo 'Der ausgewählte Lieferant wurde in der Datenbank nicht gefunden';
-                echo '</div>';
-            } else {
-                // Delete vendor 
-                $conn -> delete('T_Supplier', 'id=' . $row['id']);
-                
-                echo '<div class="infobox">';
-                echo 'Der Lieferant <strong>' . $row['name'] . '</strong> wurde gelöscht.';
-                echo '</div>';
-            }
-            $conn -> dbDisconnect();
-            $conn = NULL;
+            echo '<script>window.location.replace("deleteSupplier.php?id=' . $_GET['id'] . '");</script>';
         } elseif($_GET['action'] == 'edit') {
             // Action - Edit vendor
             // Forwarding to edit page and add parameters
