@@ -75,6 +75,12 @@
             ];
         }
         
+        // ProductId
+        $productId = [
+            "type" => "int",
+            "val" => $_POST["productId"]
+        ];
+        
         // SupplierId
         if(!isset($_POST["supplierId"]) || !$_POST["supplierId"]) {
             $note_supplierId = [
@@ -87,7 +93,7 @@
                 "val" => $_POST["supplierId"]
             ];
         }
-        $data = array($NULL, $note_year, $note_nr, $note_date, $note_amount, $note_supplierId, $NULL);
+        $data = array($NULL, $note_year, $note_nr, $note_date, $note_amount, $productId, $note_supplierId, $NULL);
         
         $conn -> insertInto('T_DeliveryNote', $data);
         $conn -> dbDisconnect();
@@ -109,6 +115,9 @@
     </label><br>
     <label>Lieferant:<br>
         <?php echo supplierSelectBox(false, NULL, false, true); ?>
+    </label><br>
+    <label>Produkt:<br>
+        <?php echo productSelectBox(); ?>
     </label><br>
     <button>Hinzufügen</button>
 </form>
