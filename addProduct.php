@@ -21,7 +21,7 @@
 
     include 'modules/header.php';
 ?>
-<h1>Product hinzufügen</h1>
+<h1>Produkt hinzufügen</h1>
 
 <p>
     <a href="product.php">Alle Produkte anzeigen</a>
