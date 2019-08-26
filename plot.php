@@ -36,28 +36,10 @@
 
 <?php
     if(isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
-        // Action - Delete vendor
+        
         if($_GET['action'] == 'delete') {
-            $conn = new Mysql();
-            $conn -> dbConnect();
-            $conn -> select('T_Plot', 'id', 'id = ' . $_GET['id']);
-            $row = $conn -> getFirstRow();
-            
-            // Check if id is valid 
-            if (is_null($row)) {
-                echo '<div class="warning">';
-                echo 'Das ausgewählte Flurstück wurde in der Datenbank nicht gefunden';
-                echo '</div>';
-            } else {
-                // Delete vendor 
-                $conn -> delete('T_Plot', 'id = ' . $row['id']);
-                
-                echo '<div class="infobox">';
-                echo 'Das Flurstück wurde gelöscht.';
-                echo '</div>';
-            }
-            $conn -> dbDisconnect();
-            $conn = NULL;
+            // Action - Delete
+            echo '<script>window.location.replace("deletePlot.php?id=' . $_GET['id'] . '");</script>';
         } elseif($_GET['action'] == 'edit') {
             // Action - Edit plot
             // Forwarding to edit page and add parameters
