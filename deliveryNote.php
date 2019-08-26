@@ -36,29 +36,9 @@
 
 <?php
     if(isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
-        // Action - Delete vendor
         if($_GET['action'] == 'delete') {
-            $conn = new Mysql();
-            $conn -> dbConnect();
-            $conn -> select('T_DeliveryNote', 'id', 'id = ' . $_GET['id']);
-            $row = $conn -> getFirstRow();
-            
-            
-            // Check if id is valid 
-            if (is_null($row)) {
-                echo '<div class="warning">';
-                echo 'Der ausgewählte Lieferschein wurde in der Datenbank nicht gefunden';
-                echo '</div>';
-            } else {
-                // Delete delivery note
-                $conn -> delete('T_DeliveryNote', 'id=' . $row['id']);
-                
-                echo '<div class="infobox">';
-                echo 'Der Lieferschein wurde gelöscht.';
-                echo '</div>';
-            }
-            $conn -> dbDisconnect();
-            $conn = NULL;
+            // Action - Delete supplier
+            echo '<script>window.location.replace("deleteDeliveryNote.php?id=' . $_GET['id'] . '");</script>';
         } elseif($_GET['action'] == 'edit') {
             // Action - Edit a delivery note
             // Forwarding to edit page and add parameters
