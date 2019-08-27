@@ -23,7 +23,7 @@
 
     $conn = new Mysql();
     $conn -> dbConnect();
-    $conn -> select('T_Invoice', 'invoiceDate', 'id = ' . $_GET['id']);
+    $conn -> select('T_Invoice', 'invoiceDate, year, nr', 'id = ' . $_GET['id']);
     $row = $conn -> getFirstRow();
     $conn -> dbDisconnect();
     $conn = NULL;
@@ -34,8 +34,8 @@
 
     $inv -> pdfName             = getSetting('invoiceName');
     $inv -> pdfAuthor           = getSetting('invoiceAuthor');
-    $inv -> invoiceYear = 2019;
-    $inv -> invoiceNr = 1;
+    $inv -> invoiceYear         = $row['year'];
+    $inv -> invoiceNr           = $row['nr'];
     $inv -> invoiceDate         = date("d.m.Y", strtotime($row['invoiceDate']));
     $inv -> invoiceSender       = getSetting('invoiceSender');
     $inv -> invoiceReceiver     = getSetting('invoiceReceiver');
