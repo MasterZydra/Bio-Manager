@@ -269,4 +269,23 @@ function alreadyExistsPlot($plot) {
     return !is_null($row);
 }
 
+/*
+* Check if user already exists
+*
+* @param string $user   User login
+*
+* @author David Hein
+* @return true if user already exists
+*/
+function alreadyExistsUser($user) {
+    $conn = new Mysql();
+    $conn -> dbConnect();
+    $conn -> select('T_UserLogin', 'id', 'login =\'' . $user . '\'');
+    $row = $conn -> getFirstRow();
+    $conn -> dbDisconnect();
+    $conn = NULL;
+    
+    return !is_null($row);
+}
+
 ?>
