@@ -30,104 +30,111 @@
     <a href="user.php">Alle Benutzer anzeigen</a>
 </p>
 <?php
+    $alreadyExist = isset($_POST["userLogin"]) && alreadyExistsUser($_POST["userLogin"]);
     if(isset($_GET['add'])) {
-        $conn = new Mysql();
-        $conn -> dbConnect();
-        
-        $NULL = [
-            "type" => "null",
-            "val" => "null"
-        ];
-        
-        $user_name = [
-            "type" => "char",
-            "val" => $_POST["userName"]
-        ];
-        
-        // SupplierId
-        if(!isset($_POST["supplierId"]) || !$_POST["supplierId"]) {
-            $user_supplierId = [
+        if($alreadyExist) {
+            echo '<div class="warning">';
+            echo 'Ein Benutzer mit dem Login <strong>' . $_POST["userLogin"] . '</strong> existiert bereits';
+            echo '</div>';
+        } else {
+            $conn = new Mysql();
+            $conn -> dbConnect();
+
+            $NULL = [
                 "type" => "null",
                 "val" => "null"
             ];
-        } else {
-            $user_supplierId = [
-                "type" => "int",
-                "val" => $_POST["supplierId"]
+
+            $user_name = [
+                "type" => "char",
+                "val" => $_POST["userName"]
             ];
+
+            // SupplierId
+            if(!isset($_POST["supplierId"]) || !$_POST["supplierId"]) {
+                $user_supplierId = [
+                    "type" => "null",
+                    "val" => "null"
+                ];
+            } else {
+                $user_supplierId = [
+                    "type" => "int",
+                    "val" => $_POST["supplierId"]
+                ];
+            }
+
+            // Add user
+            $data = array($NULL, $user_name, $user_supplierId);
+            $conn -> insertInto('T_User', $data);
+            $data = NULL;
+            // Get user id
+            $conn -> select('T_User', 'id', 'name = \'' . $_POST["userName"] . '\' ORDER BY id DESC');
+            $user = $conn -> getFirstRow();
+            if($user == NULL) {
+                // Error do not continue
+            }
+
+            $user_id = [
+                "type" => "int",
+                "val" => $user['id']
+            ];
+
+            $user_login = [
+                "type" => "char",
+                "val" => $_POST['userLogin']
+            ];
+
+            $user_password = [
+                "type" => "char",
+                "val" => password_hash($_POST['userPassword'], PASSWORD_DEFAULT)
+            ];
+
+            $user_forcePwdChange = [
+                "type" => "int",
+                "val" => strval($_POST['userForcePwdChange'])
+            ];
+
+            // Add user login
+            $data = array($NULL, $user_id, $user_login, $user_password, $user_forcePwdChange);
+            $conn -> insertInto('T_UserLogin', $data);
+            $data = NULL;
+
+            $user_isAmin = [
+                "type" => "int",
+                "val" => strval($_POST['userIsAdmin'])
+            ];
+
+            $user_isDeveloper = [
+                "type" => "int",
+                "val" => strval($_POST['userIsDeveloper'])
+            ];
+
+            $user_isMaintainer = [
+                "type" => "int",
+                "val" => strval($_POST['userIsMaintainer'])
+            ];
+
+            $user_isSupplier = [
+                "type" => "int",
+                "val" => strval($_POST['userIsSupplier'])
+            ];
+
+            $user_isInspector = [
+                "type" => "int",
+                "val" => strval($_POST['userIsInspector'])
+            ];
+
+            $data = array($NULL, $user_id, $user_isAmin, $user_isDeveloper, $user_isMaintainer, $user_isSupplier, $user_isInspector);
+            $conn -> insertInto('T_UserPermission', $data);
+            $data = NULL;
+
+
+            $conn -> dbDisconnect();
+
+            echo '<div class="infobox">';
+            echo 'Der Benutzer <strong>' . $_POST["userName"] . '</strong> wurde hinzugefügt';
+            echo '</div>';
         }
-  
-        // Add user
-        $data = array($NULL, $user_name, $user_supplierId);
-        $conn -> insertInto('T_User', $data);
-        $data = NULL;
-        // Get user id
-        $conn -> select('T_User', 'id', 'name = \'' . $_POST["userName"] . '\' ORDER BY id DESC');
-        $user = $conn -> getFirstRow();
-        if($user == NULL) {
-            // Error do not continue
-        }
-        
-        $user_id = [
-            "type" => "int",
-            "val" => $user['id']
-        ];
-        
-        $user_login = [
-            "type" => "char",
-            "val" => $_POST['userLogin']
-        ];
-        
-        $user_password = [
-            "type" => "char",
-            "val" => password_hash($_POST['userPassword'], PASSWORD_DEFAULT)
-        ];
-        
-        $user_forcePwdChange = [
-            "type" => "int",
-            "val" => strval($_POST['userForcePwdChange'])
-        ];
-        
-        // Add user login
-        $data = array($NULL, $user_id, $user_login, $user_password, $user_forcePwdChange);
-        $conn -> insertInto('T_UserLogin', $data);
-        $data = NULL;
-        
-        $user_isAmin = [
-            "type" => "int",
-            "val" => strval($_POST['userIsAdmin'])
-        ];
-        
-        $user_isDeveloper = [
-            "type" => "int",
-            "val" => strval($_POST['userIsDeveloper'])
-        ];
-
-        $user_isMaintainer = [
-            "type" => "int",
-            "val" => strval($_POST['userIsMaintainer'])
-        ];
-
-        $user_isSupplier = [
-            "type" => "int",
-            "val" => strval($_POST['userIsSupplier'])
-        ];
-
-        $user_isInspector = [
-            "type" => "int",
-            "val" => strval($_POST['userIsInspector'])
-        ];
-
-        $data = array($NULL, $user_id, $user_isAmin, $user_isDeveloper, $user_isMaintainer, $user_isSupplier, $user_isInspector);
-        $conn -> insertInto('T_UserPermission', $data);
-        $data = NULL;
-        
-        
-        $conn -> dbDisconnect();
-        
-        echo '<div class="infobox">';
-        echo 'Der Benutzer <strong>' . $_POST["userName"] . '</strong> wurde hinzugefügt';
-        echo '</div>';
     }
 ?>
 <form action="?add=1" method="post">
