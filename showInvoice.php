@@ -28,6 +28,11 @@
     $conn -> dbDisconnect();
     $conn = NULL;
 
+    // Got to invoice overview if no invoice was found
+    if (is_null($row)) {
+        header("Location: invoice.php");
+        exit();
+    }
 
     $inv = new invoice();
 
