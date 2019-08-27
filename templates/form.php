@@ -29,6 +29,8 @@ class form {
     
     public $heading;
     
+    public $caching;
+    
     function __construct() {
         $this -> accessPermission   = false;
         $this -> returnPage         = "index.php";
@@ -37,6 +39,8 @@ class form {
         $this -> linkElement        = '<a href="index.php">Startseite</a>';
         
         $this -> heading            = "Überschrift";
+        
+        $this -> caching            = "false";
     }
     
     function show($ownCode = "") {        
@@ -48,15 +52,18 @@ class form {
             if(!" . $this -> accessPermission . ") {
                 header(\"Location: " . $this -> returnPage . "\");
                 exit();
-            }
-            ?>" .
+            } ?>" .
+            // Caching
+            "<?php if(" . $this -> caching . ") { ?>" . file_get_contents('modules/cache_top.php') . " <?php } ?>" .
             file_get_contents('modules/header.php') .
             "<h1>" . $this -> heading . "</h1>" .
             "<p>" .
             "<?php if(" . $this -> linkPermission . ") {?>" . $this -> linkElement . "<?php } ?>" .
             "</p>" .
-            (string)$ownCode
-        );
+            // Code of child class
+            (string)$ownCode .
+            // Caching
+            "<?php if(" . $this -> caching . ") {?>" . file_get_contents('modules/cache_bottom.php') . "<?php } ?>");
     }
 }
 
