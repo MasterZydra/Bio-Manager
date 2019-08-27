@@ -1,5 +1,15 @@
 <?php
-// https://pixeltuner.de/php-cache-erstellen/
+/*
+* cache_top.php
+* -------------
+* Logic for caching. This file need to be added at top of the file header
+* Basis for the caching system: https://pixeltuner.de/php-cache-erstellen/
+*
+* @Author: David Hein
+* 
+* Changelog:
+* ----------
+*/
 $url = $_SERVER["SCRIPT_NAME"];
 $break = Explode('/', $url);
 $file = $break[count($break) - 1];
