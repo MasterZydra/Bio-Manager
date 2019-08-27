@@ -30,40 +30,47 @@
     <a href="setting.php">Alle Einstellungen anzeigen</a>
 </p>
 <?php
+    $alreadyExist = isset($_POST["settingName"]) && alreadyExistsSetting($_POST["settingName"]);
     if(isset($_GET['add'])) {
-        $conn = new Mysql();
-        $conn -> dbConnect();
-        
-        $NULL = [
-            "type" => "null",
-            "val" => "null"
-        ];
-        
-        $setting_name = [
-            "type" => "char",
-            "val" => $_POST["settingName"]
-        ];
-        
-        $setting_desc = [
-            "type" => "char",
-            "val" => $_POST["settingDesc"]
-        ];
-        
-        $setting_value = [
-            "type" => "char",
-            "val" => $_POST["settingValue"]
-        ];
-  
-        // Add setting
-        $data = array($NULL, $setting_name, $setting_desc, $setting_value);
-        $conn -> insertInto('T_Setting', $data);
-        $data = NULL;
-        
-        $conn -> dbDisconnect();
-        
-        echo '<div class="infobox">';
-        echo 'Die Einstellung <strong>' . $_POST["settingName"] . '</strong> wurde hinzugefügt';
-        echo '</div>';
+        if($alreadyExist) {
+            echo '<div class="warning">';
+            echo 'Die Einstellung <strong>' . $_POST["settingName"] . '</strong> existiert bereits';
+            echo '</div>';
+        } else {
+            $conn = new Mysql();
+            $conn -> dbConnect();
+
+            $NULL = [
+                "type" => "null",
+                "val" => "null"
+            ];
+
+            $setting_name = [
+                "type" => "char",
+                "val" => $_POST["settingName"]
+            ];
+
+            $setting_desc = [
+                "type" => "char",
+                "val" => $_POST["settingDesc"]
+            ];
+
+            $setting_value = [
+                "type" => "char",
+                "val" => $_POST["settingValue"]
+            ];
+
+            // Add setting
+            $data = array($NULL, $setting_name, $setting_desc, $setting_value);
+            $conn -> insertInto('T_Setting', $data);
+            $data = NULL;
+
+            $conn -> dbDisconnect();
+
+            echo '<div class="infobox">';
+            echo 'Die Einstellung <strong>' . $_POST["settingName"] . '</strong> wurde hinzugefügt';
+            echo '</div>';
+        }
     }
 ?>
 <form action="?add=1" method="post">
