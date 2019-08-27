@@ -139,47 +139,62 @@
 ?>
 <form action="?add=1" method="post">
     <label>Name:<br>
-        <input type="text" name="userName" placeholder="Benutzername eingeben" required autofocus>
+        <input type="text" name="userName" placeholder="Benutzername eingeben" required autofocus
+            <?php if($alreadyExist) { echo ' value="' . $_POST["userName"] . '"'; } ?>>
     </label><br>
     <label>Anmeldename:<br>
-        <input type="text" name="userLogin" placeholder="Anmeldename eingeben" required>
+        <input type="text" name="userLogin" placeholder="Anmeldename eingeben" required
+            <?php if($alreadyExist) { echo ' value="' . $_POST["userLogin"] . '"'; } ?>>
     </label><br>
     <label>Passwort:<br>
-        <input type="password" name="userPassword" placeholder="Passwort eingeben" required>
+        <input type="password" name="userPassword" placeholder="Passwort eingeben" required
+            <?php if($alreadyExist) { echo ' value="' . $_POST["userPassword"] . '"'; } ?>>
     </label><br>
     <label>
         <input type="hidden" name="userForcePwdChange" value="0">
-        <input type="checkbox" name="userForcePwdChange" value="1">
+        <input type="checkbox" name="userForcePwdChange" value="1"
+            <?php if($alreadyExist && $_POST['userForcePwdChange']) { echo ' checked'; } ?>>
         Passwortänderung erzwingen
     </label><br>
     <h2>Berechtigungen</h2>
     <label>
         <input type="hidden" name="userIsAdmin" value="0">
-        <input type="checkbox" name="userIsAdmin" value="1">
+        <input type="checkbox" name="userIsAdmin" value="1"
+            <?php if($alreadyExist && $_POST['userIsAdmin']) { echo ' checked'; } ?>>
         Administrator
     </label><br>
     <label>
         <input type="hidden" name="userIsDeveloper" value="0">
-        <input type="checkbox" name="userIsDeveloper" value="1">
+        <input type="checkbox" name="userIsDeveloper" value="1"
+            <?php if($alreadyExist && $_POST['userIsDeveloper']) { echo ' checked'; } ?>>
         Entwickler
     </label><br>
     <label>
         <input type="hidden" name="userIsMaintainer" value="0">
-        <input type="checkbox" name="userIsMaintainer" value="1">
+        <input type="checkbox" name="userIsMaintainer" value="1"
+            <?php if($alreadyExist && $_POST['userIsMaintainer']) { echo ' checked'; } ?>>
         Pfleger
     </label><br>
     <label>
         <input type="hidden" name="userIsSupplier" value="0">
-        <input type="checkbox" name="userIsSupplier" value="1">
+        <input type="checkbox" name="userIsSupplier" value="1"
+            <?php if($alreadyExist && $_POST['userIsSupplier']) { echo ' checked'; } ?>>
         Lieferant
     </label><br>
     <label>
         <input type="hidden" name="userIsInspector" value="0">
-        <input type="checkbox" name="userIsInspector" value="1">
+        <input type="checkbox" name="userIsInspector" value="1"
+            <?php if($alreadyExist && $_POST['userIsInspector']) { echo ' checked'; } ?>>
         Prüfer
     </label><br><br>
     <label>Lieferant:<br>
-        <?php echo supplierSelectBox(false, NULL, false); ?>
+        <?php
+            if($alreadyExist) {
+                echo supplierSelectBox(false, $_POST["supplierId"], false);
+            } else {
+                echo supplierSelectBox(false, NULL, false);
+            }
+        ?>
     </label><br>
     <button>Hinzufügen</button>
 </form>
