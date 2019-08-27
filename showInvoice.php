@@ -48,17 +48,6 @@
 
 $comment = 'Bla bla';
 
-$rechnungs_nummer = "743";
- 
-$rechnungs_header = '
-PHP-Einfach.de
-Nils Reimers
-www.php-einfach.de';
- 
-$rechnungs_empfaenger = 'Max Musterman
-Musterstraße 17
-12345 Musterstadt';
- 
 //Auflistung eurer verschiedenen Posten im Format [Produktbezeichnung, Menge, Einzelpreis]
 $invoiceItems = array();
 $deliveryNotes = getDeliveryNotes(true, NULL, $_GET['id'], true, true);
@@ -88,7 +77,7 @@ if(!$deliveryNotes) {
 //Höhe eurer Umsatzsteuer. 0.19 für 19% Umsatzsteuer
 $umsatzsteuer = 0.0; 
 
-$pdfName = $inv -> getInvoiceName() . '.pdf'; //"Rechnung_".$rechnungs_nummer.".pdf";
+$pdfName = $inv -> getInvoiceName() . '.pdf';
  
  
 //////////////////////////// Inhalt des PDFs als HTML-Code \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -201,8 +190,8 @@ $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 // Dokumenteninformationen
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor($inv -> pdfAuthor);
-$pdf->SetTitle('Rechnung '.$rechnungs_nummer);
-$pdf->SetSubject('Rechnung '.$rechnungs_nummer);
+$pdf->SetTitle($inv -> getInvoiceName());
+$pdf->SetSubject($inv -> getInvoiceName());
  
  
 // Header und Footer Informationen
