@@ -122,7 +122,7 @@ class Mysql extends Dbconfig {
     function select($tableName, $columns = '*', $whereCondition = NULL, $orderBy = NULL) {
         $query =
             'SELECT ' . $columns
-            . ' FROM ' . $this -> databaseName . '.' . $tableName;
+            . ' FROM `' . $this -> databaseName . '`.' . $tableName;
         if($whereCondition !== NULL) {
             $query .= ' WHERE ' . $whereCondition;
         }
@@ -143,7 +143,7 @@ class Mysql extends Dbconfig {
     * @return data set
     */
     function update($tableName, $set, $whereCondition) {
-        $query = 'UPDATE ' . $this -> databaseName . '.' . $tableName . ' '
+        $query = 'UPDATE `' . $this -> databaseName . '`.' . $tableName . ' '
             . 'SET ' . $set . ' '
             . 'WHERE ' . $whereCondition;
         return $this -> freeRun($query);
@@ -159,7 +159,7 @@ class Mysql extends Dbconfig {
     * @return data set
     */
     function delete($tableName, $whereCondition) {
-        $query = 'DELETE FROM ' . $this -> databaseName . '.' . $tableName . ' '
+        $query = 'DELETE FROM `' . $this -> databaseName . '`.' . $tableName . ' '
             . 'WHERE ' . $whereCondition;
         return $this -> freeRun($query);
     }
