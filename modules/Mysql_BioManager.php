@@ -193,5 +193,23 @@ function getDeliveryNotes($isComplete = true, $year = NULL, $invoiceId = NULL, $
     return false;
 }
 
+/*
+* Check if supplier already exists
+*
+* @param string $supplier   Supplier name
+*
+* @author David Hein
+* @return true if user already exists
+*/
+function alreadyExistSupplier($supplier) {
+    $conn = new Mysql();
+    $conn -> dbConnect();
+    $conn -> select('T_Supplier', 'id', 'name =\'' . $supplier . '\'');
+    $row = $conn -> getFirstRow();
+    $conn -> dbDisconnect();
+    $conn = NULL;
+    
+    return !is_null($row);
+}
 
 ?>
