@@ -29,51 +29,58 @@
     <a href="plot.php">Alle Flurstücke anzeigen</a>
 </p>
 <?php
+    $alreadyExist = isset($_POST["plot_nr"]) && alreadyExistsPlot($_POST["plot_nr"]);
     if(isset($_GET['add'])) {
-        $conn = new Mysql();
-        $conn -> dbConnect();
-        
-        $NULL = [
-            "type" => "null",
-            "val" => "null"
-        ];
-        
-        $plot_nr = [
-            "type" => "char",
-            "val" => $_POST["plot_nr"]
-        ];
-        
-        $plot_name = [
-            "type" => "char",
-            "val" => $_POST["plot_name"]
-        ];
-        
-        $plot_subdistrict = [
-            "type" => "char",
-            "val" => $_POST["plot_subdistrict"]
-        ];
-        
-        // SupplierId
-        if(!isset($_POST["supplierId"]) || !$_POST["supplierId"]) {
-            $supplierId = [
+        if($alreadyExist) {
+            echo '<div class="warning">';
+            echo 'Das Flurstück <strong>' . $_POST["plot_nr"] . '</strong> existiert bereits';
+            echo '</div>';
+        } else {
+            $conn = new Mysql();
+            $conn -> dbConnect();
+
+            $NULL = [
                 "type" => "null",
                 "val" => "null"
             ];
-        } else {
-            $supplierId = [
-                "type" => "int",
-                "val" => $_POST["supplierId"]
+
+            $plot_nr = [
+                "type" => "char",
+                "val" => $_POST["plot_nr"]
             ];
+
+            $plot_name = [
+                "type" => "char",
+                "val" => $_POST["plot_name"]
+            ];
+
+            $plot_subdistrict = [
+                "type" => "char",
+                "val" => $_POST["plot_subdistrict"]
+            ];
+
+            // SupplierId
+            if(!isset($_POST["supplierId"]) || !$_POST["supplierId"]) {
+                $supplierId = [
+                    "type" => "null",
+                    "val" => "null"
+                ];
+            } else {
+                $supplierId = [
+                    "type" => "int",
+                    "val" => $_POST["supplierId"]
+                ];
+            }
+
+            $data = array($NULL, $plot_nr, $plot_name, $plot_subdistrict, $supplierId);
+
+            $conn -> insertInto('T_Plot', $data);
+            $conn -> dbDisconnect();
+
+            echo '<div class="infobox">';
+            echo 'Das Flurstück <strong>' . $_POST["plot_nr"] . ' ' . $_POST["plot_name"] . '</strong> wurde hinzugefügt';
+            echo '</div>';
         }
-        
-        $data = array($NULL, $plot_nr, $plot_name, $plot_subdistrict, $supplierId);
-        
-        $conn -> insertInto('T_Plot', $data);
-        $conn -> dbDisconnect();
-        
-        echo '<div class="infobox">';
-        echo 'Das Flurstück <strong>' . $_POST["plot_nr"] . ' ' . $_POST["plot_name"] . '</strong> wurde hinzugefügt';
-        echo '</div>';
     }
 ?>
 <form action="?add=1" method="POST">
