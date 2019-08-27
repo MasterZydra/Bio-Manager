@@ -231,4 +231,23 @@ function alreadyExistsProduct($product) {
     return !is_null($row);
 }
 
+/*
+* Check if setting already exists
+*
+* @param string $setting    Setting name
+*
+* @author David Hein
+* @return true if setting already exists
+*/
+function alreadyExistsSetting($setting) {
+    $conn = new Mysql();
+    $conn -> dbConnect();
+    $conn -> select('T_Setting', 'id', 'name =\'' . $setting . '\'');
+    $row = $conn -> getFirstRow();
+    $conn -> dbDisconnect();
+    $conn = NULL;
+    
+    return !is_null($row);
+}
+
 ?>
