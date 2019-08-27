@@ -85,16 +85,25 @@
 ?>
 <form action="?add=1" method="POST">
     <label>Nummer:<br>
-        <input type="text" placeholder="Nummer des Flurstücks" name="plot_nr" required autofocus>
+        <input type="text" placeholder="Nummer des Flurstücks" name="plot_nr" required autofocus
+            <?php if($alreadyExist) { echo ' value="' . $_POST["plot_nr"] . '"'; } ?>>
     </label><br>
     <label>Name:<br>
-        <input type="text" placeholder="Name des Flurstücks" name="plot_name" required>
+        <input type="text" placeholder="Name des Flurstücks" name="plot_name" required
+            <?php if($alreadyExist) { echo ' value="' . $_POST["plot_name"] . '"'; } ?>>
     </label><br>
     <label>Gemarkung:<br>
-        <input type="text" placeholder="Gemarkung" name="plot_subdistrict" required>
+        <input type="text" placeholder="Gemarkung" name="plot_subdistrict" required
+            <?php if($alreadyExist) { echo ' value="' . $_POST["plot_subdistrict"] . '"'; } ?>>
     </label><br>
     <label>Lieferant:<br>
-        <?php echo supplierSelectBox(false, NULL, false); ?>
+        <?php
+            if($alreadyExist) {
+                echo supplierSelectBox(false, $_POST["supplierId"], false);
+            } else {
+                echo supplierSelectBox(false, NULL, false);
+            }
+        ?>
     </label><br>
     <button>Hinzufügen</button>
 </form>
