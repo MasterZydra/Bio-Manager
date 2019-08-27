@@ -91,9 +91,13 @@ $html = '
 <table cellpadding="5" cellspacing="0" style="width: 100%; ">
     <tr>
         <td width="60%">' . nl2br(trim($inv -> invoiceSender)) . '</td>
-        <td width="40%">
-Rechnungsnummer: ' . $inv -> invoiceNr . '<br>
-Rechnungsdatum: ' . $inv -> invoiceDate . '
+        <td width="25%">
+Rechnungsnummer:<br>
+Rechnungsdatum:
+         </td>
+        <td width="15%" style="text-align: right;">
+' . $inv -> invoiceNr . '<br>
+' . $inv -> invoiceDate . '
          </td>
      </tr>
      <tr>
