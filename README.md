@@ -6,7 +6,8 @@ Aus den Daten werden die Rechnungen und Auszahlungen generiert. Übersichten fü
 
 **Quellenangaben**  
 Vorlage für die MySQL Klasse https://stackoverflow.com/questions/3228694/php-database-connection-class  
-Vorlage für Rechnung https://www.php-einfach.de/experte/php-codebeispiele/pdf-per-php-erstellen-pdf-rechnung
+Vorlage für Rechnung https://www.php-einfach.de/experte/php-codebeispiele/pdf-per-php-erstellen-pdf-rechnung  
+Vorlage für Caching https://pixeltuner.de/php-cache-erstellen
 
 **Externe Biblioteken**  
 Erstellen von PDF aus HTML mit **TCPDF** https://github.com/tecnickcom/TCPDF
