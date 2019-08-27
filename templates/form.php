@@ -47,8 +47,8 @@ class form {
         betterEval(
             file_get_contents('modules/header_user.php') .
             file_get_contents('modules/permissionCheck.php').
-            "<?php 
             // Check permission
+            "<?php
             if(!" . $this -> accessPermission . ") {
                 header(\"Location: " . $this -> returnPage . "\");
                 exit();
