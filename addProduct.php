@@ -60,7 +60,8 @@
 ?>
 <form action="?add=1" method="POST">
     <label>Name:<br>
-        <input type="text" placeholder="Name des Produktes" name="product_name" required autofocus>
+        <input type="text" placeholder="Name des Produktes" name="product_name" required autofocus
+            <?php if($alreadyExist) { echo ' value="' . $_POST["product_name"] . '"'; } ?>>
     </label><br>
     <button>Hinzufügen</button>
 </form>
