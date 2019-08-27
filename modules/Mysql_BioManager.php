@@ -250,4 +250,23 @@ function alreadyExistsSetting($setting) {
     return !is_null($row);
 }
 
+/*
+* Check if plot already exists
+*
+* @param string $plot    Plot number
+*
+* @author David Hein
+* @return true if plot already exists
+*/
+function alreadyExistsPlot($plot) {
+    $conn = new Mysql();
+    $conn -> dbConnect();
+    $conn -> select('T_Plot', 'id', 'nr =\'' . $plot . '\'');
+    $row = $conn -> getFirstRow();
+    $conn -> dbDisconnect();
+    $conn = NULL;
+    
+    return !is_null($row);
+}
+
 ?>
