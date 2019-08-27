@@ -28,32 +28,38 @@
 </p>
 <?php
     if(isset($_GET['add'])) {
-        $conn = new Mysql();
-        $conn -> dbConnect();
-        
-        $NULL = [
-            "type" => "null",
-            "val" => "null"
-        ];
-        
-        $supplier_name = [
-            "type" => "char",
-            "val" => $_POST["supplier_name"]
-        ];
-        
-        $supplier_inactive = [
-            "type" => "char",
-            "val" => "0"
-        ];
-        
-        $data = array($NULL, $supplier_name, $supplier_inactive);
-        
-        $conn -> insertInto('T_Supplier', $data);
-        $conn -> dbDisconnect();
-        
-        echo '<div class="infobox">';
-        echo 'Der Lieferant <strong>' . $_POST["supplier_name"] . '</strong> wurde hinzugefügt';
-        echo '</div>';
+        if(isset($_POST["supplier_name"]) && alreadyExistSupplier($_POST["supplier_name"])) {
+            echo '<div class="warning">';
+            echo 'Der Lieferant <strong>' . $_POST["supplier_name"] . '</strong> existiert bereits';
+            echo '</div>';
+        } else {
+            $conn = new Mysql();
+            $conn -> dbConnect();
+
+            $NULL = [
+                "type" => "null",
+                "val" => "null"
+            ];
+
+            $supplier_name = [
+                "type" => "char",
+                "val" => $_POST["supplier_name"]
+            ];
+
+            $supplier_inactive = [
+                "type" => "char",
+                "val" => "0"
+            ];
+
+            $data = array($NULL, $supplier_name, $supplier_inactive);
+
+            $conn -> insertInto('T_Supplier', $data);
+            $conn -> dbDisconnect();
+
+            echo '<div class="infobox">';
+            echo 'Der Lieferant <strong>' . $_POST["supplier_name"] . '</strong> wurde hinzugefügt';
+            echo '</div>';
+        }
     }
 ?>
 <form action="?add=1" method="POST">
