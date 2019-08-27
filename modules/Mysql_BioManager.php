@@ -212,4 +212,23 @@ function alreadyExistsSupplier($supplier) {
     return !is_null($row);
 }
 
+/*
+* Check if product already exists
+*
+* @param string $product    Product name
+*
+* @author David Hein
+* @return true if product already exists
+*/
+function alreadyExistsProduct($product) {
+    $conn = new Mysql();
+    $conn -> dbConnect();
+    $conn -> select('T_Product', 'id', 'name =\'' . $product . '\'');
+    $row = $conn -> getFirstRow();
+    $conn -> dbDisconnect();
+    $conn = NULL;
+    
+    return !is_null($row);
+}
+
 ?>
