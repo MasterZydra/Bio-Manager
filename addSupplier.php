@@ -27,7 +27,7 @@
     <a href="supplier.php">Alle Lieferanten anzeigen</a>
 </p>
 <?php
-    $alreadyExist = isset($_POST["supplier_name"]) && alreadyExistSupplier($_POST["supplier_name"]);
+    $alreadyExist = isset($_POST["supplier_name"]) && alreadyExistsSupplier($_POST["supplier_name"]);
     if(isset($_GET['add'])) {
         if($alreadyExist) {
             echo '<div class="warning">';
