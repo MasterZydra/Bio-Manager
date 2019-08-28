@@ -1,6 +1,18 @@
 <?php
-
-// https://www.php-einfach.de/experte/php-codebeispiele/pdf-per-php-erstellen-pdf-rechnung/
+/*
+* invoice.php
+* -----------
+* This file contains the class 'invoice'. It gets the invoice data e.g. from the
+* setting table. This class can be used to get the data from the tables and use them
+* in an invoice.
+*
+* @Author: David Hein
+* 
+* Changelog:
+* ----------
+* 28.08.2019:
+*   - Remove default values and get values from setting table
+*/
 
 class invoice {
     // PDF Data
@@ -21,6 +33,12 @@ class invoice {
     public $volumeUnit;
     public $pricePerUnit;
     
+    /**
+    * Construct invoice object.
+    * Get values from data base.
+    *
+    * @author David Hein
+    */
     function __construct() {
         // PDF Data
         $this -> pdfName            = getSetting('invoiceName');
@@ -43,6 +61,12 @@ class invoice {
         $this -> pricePerUnit = '1';
     }
     
+    /**
+    * Build invoice name.
+    *
+    * @author David Hein
+    * @return invoice name
+    */
     function getInvoiceName() {
         return $this -> pdfName . '_' . (string)$this -> invoiceYear . '_' . (string)$this -> invoiceNr;
     }
