@@ -288,4 +288,24 @@ function alreadyExistsUser($user) {
     return !is_null($row);
 }
 
+/*
+* Check if pricing already exists
+*
+* @param int    $productId Product id
+* @param int    $year   Year
+*
+* @author David Hein
+* @return true if pricing already exists
+*/
+function alreadyExistsPricing($productId, $year) {
+    $conn = new Mysql();
+    $conn -> dbConnect();
+    $conn -> select('T_Pricing', 'id', 'productId = ' . $productId . ' and year = ' . $year);
+    $row = $conn -> getFirstRow();
+    $conn -> dbDisconnect();
+    $conn = NULL;
+    
+    return !is_null($row);
+}
+
 ?>
