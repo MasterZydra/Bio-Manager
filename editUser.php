@@ -96,44 +96,94 @@
 ?>
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post">
     <label>Name:<br>
-        <input type="text" name="userName" value="<?php echo $row['name']; ?>" autofocus>
+        <input type="text" name="userName" required autofocus value=
+            <?php
+                if($alreadyExist) {
+                    echo '"' . $_POST["userName"] . '"';
+                } else {
+                    echo '"' . $row['name'] . '"';
+                }
+            ?>>
     </label><br>
     <label>Anmeldename:<br>
-        <input type="text" name="userLogin" value="<?php echo $row['login']; ?>">
+        <input type="text" name="userLogin" required value=
+            <?php
+                if($alreadyExist) {
+                    echo '"' . $_POST["userLogin"] . '"';
+                } else {
+                    echo '"' . $row['login'] . '"';
+                }
+            ?>>
     </label><br>
     <label>
         <input type="hidden" name="userForcePwdChange" value="0">
-        <input type="checkbox" name="userForcePwdChange" value="1" <?php if($row['forcePwdChange']) { echo 'checked'; } ?>>
+        <input type="checkbox" name="userForcePwdChange" value="1"
+           <?php
+                if($row['forcePwdChange'] || ($alreadyExist && $_POST['userForcePwdChange'])) {
+                    echo 'checked';
+                }
+           ?>>
         Passwortänderung erzwingen
     </label><br>
     <h2>Berechtigungen</h2>
     <label>
         <input type="hidden" name="userIsAdmin" value="0">
-        <input type="checkbox" name="userIsAdmin" value="1" <?php if($row['isAdmin']) { echo 'checked'; } ?>>
+        <input type="checkbox" name="userIsAdmin" value="1"
+            <?php
+                if($row['isAdmin'] || ($alreadyExist && $_POST['userIsAdmin'])) {
+                    echo 'checked';
+                }
+           ?>>
         Administrator
     </label><br>
     <label>
         <input type="hidden" name="userIsDeveloper" value="0">
-        <input type="checkbox" name="userIsDeveloper" value="1" <?php if($row['isDeveloper']) { echo 'checked'; } ?>>
+        <input type="checkbox" name="userIsDeveloper" value="1"
+            <?php
+                if($row['isDeveloper'] || ($alreadyExist && $_POST['userIsDeveloper'])) {
+                    echo 'checked';
+                }
+           ?>>
         Entwickler
     </label><br>
     <label>
         <input type="hidden" name="userIsMaintainer" value="0">
-        <input type="checkbox" name="userIsMaintainer" value="1" <?php if($row['isMaintainer']) { echo 'checked'; } ?>>
+        <input type="checkbox" name="userIsMaintainer" value="1"
+            <?php
+                if($row['isMaintainer'] || ($alreadyExist && $_POST['userIsMaintainer'])) {
+                    echo 'checked';
+                }
+           ?>>
         Pfleger
     </label><br>
     <label>
         <input type="hidden" name="userIsSupplier" value="0">
-        <input type="checkbox" name="userIsSupplier" value="1" <?php if($row['isSupplier']) { echo 'checked'; } ?>>
+        <input type="checkbox" name="userIsSupplier" value="1"
+            <?php
+                if($row['isSupplier'] || ($alreadyExist && $_POST['userIsSupplier'])) {
+                    echo 'checked';
+                }
+           ?>>
         Lieferant
     </label><br>
     <label>
         <input type="hidden" name="userIsInspector" value="0">
-        <input type="checkbox" name="userIsInspector" value="1" <?php if($row['isInspector']) { echo 'checked'; } ?>>
+        <input type="checkbox" name="userIsInspector" value="1"
+            <?php
+                if($row['isInspector'] || ($alreadyExist && $_POST['userIsInspector'])) {
+                    echo 'checked';
+                }
+           ?>>
         Prüfer
     </label><br><br>
     <label>Lieferant:<br>
-        <?php echo supplierSelectBox(false, $row['supplierId'], false); ?>
+        <?php
+            if($alreadyExist && $_POST['supplierId']) {
+                echo supplierSelectBox(false, $_POST['supplierId'], false);
+            } else {
+                echo supplierSelectBox(false, $row['supplierId'], false);
+            }
+         ?>
     </label><br>
     <button>Änderungen speichern</button>
 </form>
