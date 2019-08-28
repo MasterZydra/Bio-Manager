@@ -197,14 +197,19 @@ function getDeliveryNotes($isComplete = true, $year = NULL, $invoiceId = NULL, $
 * Check if supplier already exists
 *
 * @param string $supplier   Supplier name
+* @param int    $ownId  Data row id. If NULL the value is ignored.
 *
 * @author David Hein
 * @return true if supplier already exists
 */
-function alreadyExistsSupplier($supplier) {
+function alreadyExistsSupplier($supplier, $ownId = NULL) {
     $conn = new Mysql();
     $conn -> dbConnect();
-    $conn -> select('T_Supplier', 'id', 'name =\'' . $supplier . '\'');
+    $where = 'name =\'' . $supplier . '\'';
+    if(!is_null($ownId)) {
+        $where .= ' AND id <> ' . $ownId;
+    }
+    $conn -> select('T_Supplier', 'id', $where);
     $row = $conn -> getFirstRow();
     $conn -> dbDisconnect();
     $conn = NULL;
