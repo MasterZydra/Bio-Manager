@@ -91,7 +91,7 @@
     <label>Lieferdatum:<br>
         <input type="date" name="note_date" value="<?php echo $row['deliverDate']; ?>" autofocus>
     </label><br>
-    <label>Liefermenge:<br>
+    <label>Liefermenge (in <?php echo getSetting('volumeUnit'); ?>):<br>
         <input type="number" name="note_amount" value="<?php echo $row['amount']; ?>" placeholder="Menge eingeben">
     </label><br>
     <label>Lieferant:<br>

@@ -113,7 +113,7 @@
     <label>Lieferdatum:<br>
         <input type="date" name="note_date" value="<?php echo date('Y-m-d'); ?>">
     </label><br>
-    <label>Liefermenge:<br>
+    <label>Liefermenge (in <?php echo getSetting('volumeUnit'); ?>):<br>
         <input type="number" name="note_amount" placeholder="Liefermenge eingeben">
     </label><br>
     <label>Lieferant:<br>
