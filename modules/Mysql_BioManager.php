@@ -273,14 +273,19 @@ function alreadyExistsPlot($plot) {
 * Check if user already exists
 *
 * @param string $user   User login
+* @param int    $ownId  Data row id. If NULL the value is ignored.
 *
 * @author David Hein
 * @return true if user already exists
 */
-function alreadyExistsUser($user) {
+function alreadyExistsUser($user, $ownId = NULL) {
     $conn = new Mysql();
     $conn -> dbConnect();
-    $conn -> select('T_UserLogin', 'id', 'login =\'' . $user . '\'');
+    $where = 'login =\'' . $user . '\'';
+    if(!is_null($ownId)) {
+        $where .= ' AND userId <> ' . $ownId;
+    }
+    $conn -> select('T_UserLogin', 'id', $where);
     $row = $conn -> getFirstRow();
     $conn -> dbDisconnect();
     $conn = NULL;
