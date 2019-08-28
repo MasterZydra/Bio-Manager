@@ -28,6 +28,7 @@
 </p>
 
 <?php
+    $alreadyExist = false;
     if(!isset($_GET['id'])) {
         echo '<div class="warning">';
         echo 'Es wurde kein Produkt übergeben. Zurück zu <a href="product.php">Alle Produkte anzeigen</a>';
@@ -35,14 +36,21 @@
     } else {
         $conn = new Mysql();
         $conn -> dbConnect();
+        $alreadyExist = isset($_POST["product_name"]) && alreadyExistsProduct($_POST["product_name"]);
         if(isset($_GET['edit'])) {
-            $conn -> update(
-                'T_Product',
-                'name = \'' . $_POST['product_name'] . '\'',
-                'id = ' . $_GET['id']);
-            echo '<div class="infobox">';
-            echo 'Die Änderungen wurden erfolgreich gespeichert';
-            echo '</div>';
+            if($alreadyExist) {
+                echo '<div class="warning">';
+                echo 'Das Produkt <strong>' . $_POST["product_name"] . '</strong> existiert bereits';
+                echo '</div>';
+            } else {
+                $conn -> update(
+                    'T_Product',
+                    'name = \'' . $_POST['product_name'] . '\'',
+                    'id = ' . $_GET['id']);
+                echo '<div class="infobox">';
+                echo 'Die Änderungen wurden erfolgreich gespeichert';
+                echo '</div>';
+            }
         }
 
         $conn -> select('T_Product', '*', 'id = ' . $_GET['id']);
@@ -60,7 +68,14 @@
 ?>
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post">
     <label>Name:<br>
-        <input type="text" name="product_name" value="<?php echo $row['name']; ?>" required autofocus>
+        <input type="text" name="product_name" <?php echo $row['name']; ?> required autofocus value=
+            <?php
+                if($alreadyExist) {
+                    echo '"' . $_POST["product_name"] . '"';
+                } else {
+                    echo '"' . $row['name'] . '"';
+                }
+            ?>>
     </label><br>
     <button>Änderungen speichern</button>
 </form>
