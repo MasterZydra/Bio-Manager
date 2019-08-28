@@ -94,6 +94,27 @@ function isSupplier() {
     return checkPermission('isSupplier') && !is_null($row) && !is_null($row['supplierId']);
 }
 
+/**
+* Get supplier id for current user
+*
+* @author David Hein
+* @return Supplier id or 0 if no id found
+*/
+function getUserSupplierId() {
+    $conn = new Mysql();
+    $conn -> dbConnect();
+    $conn -> select('T_User', 'supplierId', 'id =' . $_SESSION['userId']);
+    $row = $conn -> getFirstRow();
+    $conn -> dbDisconnect();
+    $conn = NULL;
+    
+    if(is_null($row)){
+        return 0;
+    } else {
+        return $row['supplierId'];
+    }
+}
+
 // Show PHP messages and warnings if user is developer
 if(isDeveloper()) {
     error_reporting(E_ALL);
