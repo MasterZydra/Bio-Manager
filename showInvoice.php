@@ -4,6 +4,8 @@
 * ----------------
 * This page shows an invoice.
 *
+* @Link to original soure code: https://www.php-einfach.de/experte/php-codebeispiele/pdf-per-php-erstellen-pdf-rechnung
+*
 * @Author: David Hein
 * 
 * Changelog:
