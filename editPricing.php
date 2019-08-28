@@ -31,6 +31,7 @@
 </p>
 
 <?php
+    $alreadyExist = false;
     if(!isset($_GET['id'])) {
         echo '<div class="warning">';
         echo 'Es wurde kein Preis übergeben. Zurück zu <a href="pricing.php">Alle Preise anzeigen</a>';
@@ -39,17 +40,25 @@
         $conn = new Mysql();
         $conn -> dbConnect();
         
+        $alreadyExist = isset($_POST["productId"]) && isset($_POST["price_year"]) &&
+            alreadyExistsPricing($_POST["productId"], $_POST["price_year"], $_GET['id']);
         if(isset($_GET['edit'])) {
-            $conn -> update(
-                'T_Pricing',
-                'year = ' . $_POST['price_year'] . ', '
-                . 'productId = ' . $_POST['productId'] . ' ,'
-                . 'price = ' . $_POST['price'] . ', '
-                . 'pricePayOut = ' . $_POST['price_payOut'],
-                'id = ' . $_GET['id']);
-            echo '<div class="infobox">';
-            echo 'Die Änderungen wurden erfolgreich gespeichert';
-            echo '</div>';
+            if($alreadyExist) {
+                echo '<div class="warning">';
+                echo 'Der Preis existiert bereits';
+                echo '</div>';
+            } else {
+                $conn -> update(
+                    'T_Pricing',
+                    'year = ' . $_POST['price_year'] . ', '
+                    . 'productId = ' . $_POST['productId'] . ' ,'
+                    . 'price = ' . $_POST['price'] . ', '
+                    . 'pricePayOut = ' . $_POST['price_payOut'],
+                    'id = ' . $_GET['id']);
+                echo '<div class="infobox">';
+                echo 'Die Änderungen wurden erfolgreich gespeichert';
+                echo '</div>';
+            }
         }
 
         $conn -> select('T_Pricing', '*', 'id = ' . $_GET['id']);
@@ -66,16 +75,43 @@
 ?>
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post">
     <label>Jahr:<br>
-        <input type="number" name="price_year" value="<?php echo $row['year']; ?>" required autofocus>
+        <input type="number" name="price_year" required autofocus value=
+           <?php
+                if($alreadyExist) {
+                    echo '"' . $_POST["price_year"] . '"';
+                } else {
+                    echo '"' . $row['year'] . '"';
+                }
+            ?>>
     </label><br>
     <label>Produkt:<br>
-        <?php echo productSelectBox(NULL, $row['productId']); ?>
+        <?php
+            if($alreadyExist && $_POST['productId']) {
+                echo productSelectBox(NULL, $_POST['productId']);
+            } else {
+                echo productSelectBox(NULL, $row['productId']);
+            }
+        ?>
     </label><br>
     <label>Preis:<br>
-        <input type="number" step="0.01" name="price" placeholder="Preis eingeben" value="<?php echo $row['price']; ?>" required>
+        <input type="number" step="0.01" name="price" placeholder="Preis eingeben" required value=
+           <?php
+                if($alreadyExist) {
+                    echo '"' . $_POST["price"] . '"';
+                } else {
+                    echo '"' . $row['price'] . '"';
+                }
+            ?>>
     </label><br>
     <label>Auszahlung an Lieferanten:<br>
-        <input type="number" step="0.01" name="price_payOut" placeholder="Preis eingeben" value="<?php echo $row['pricePayOut']; ?>" required>
+        <input type="number" step="0.01" name="price_payOut" placeholder="Preis eingeben" required value=
+           <?php
+                if($alreadyExist) {
+                    echo '"' . $_POST["price_payOut"] . '"';
+                } else {
+                    echo '"' . $row['pricePayOut'] . '"';
+                }
+            ?>>
     </label><br>
     <button>Änderungen speichern</button>
 </form>
