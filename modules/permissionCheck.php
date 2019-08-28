@@ -78,6 +78,22 @@ function isLoggedIn() {
     return isset($_SESSION['userId']);
 }
 
+/*
+* Check if user is a supplier
+*
+* @return Boolean if user is supplier
+*/
+function isSupplier() {
+    $conn = new Mysql();
+    $conn -> dbConnect();
+    $conn -> select('T_User', 'supplierId', 'id =' . $_SESSION['userId']);
+    $row = $conn -> getFirstRow();
+    $conn -> dbDisconnect();
+    $conn = NULL;
+    
+    return checkPermission('isSupplier') && !is_null($row) && !is_null($row['supplierId']);
+}
+
 // Show PHP messages and warnings if user is developer
 if(isDeveloper()) {
     error_reporting(E_ALL);
