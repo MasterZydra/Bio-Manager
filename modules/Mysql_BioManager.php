@@ -221,14 +221,19 @@ function alreadyExistsSupplier($supplier, $ownId = NULL) {
 * Check if product already exists
 *
 * @param string $product    Product name
+* @param int    $ownId  Data row id. If NULL the value is ignored.
 *
 * @author David Hein
 * @return true if product already exists
 */
-function alreadyExistsProduct($product) {
+function alreadyExistsProduct($product, $ownId = NULL) {
     $conn = new Mysql();
     $conn -> dbConnect();
-    $conn -> select('T_Product', 'id', 'name =\'' . $product . '\'');
+    $where = 'name =\'' . $product . '\'';
+    if(!is_null($ownId)) {
+        $where .= ' AND id <> ' . $ownId;
+    }
+    $conn -> select('T_Product', 'id', $where);
     $row = $conn -> getFirstRow();
     $conn -> dbDisconnect();
     $conn = NULL;
