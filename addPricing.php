@@ -90,11 +90,11 @@
             }
         ?>
     </label><br>
-    <label>Preis:<br>
+    <label>Preis (pro <?php echo getSetting('volumeUnit'); ?>):<br>
         <input type="number" step="0.01" name="price" placeholder="Preis eingeben" required
                <?php if($alreadyExist) { echo ' value="' . $_POST["price"] . '"'; } ?>>
     </label><br>
-    <label>Auszahlung an Lieferanten:<br>
+    <label>Auszahlung an Lieferanten (pro <?php echo getSetting('volumeUnit'); ?>):<br>
         <input type="number" step="0.01" name="price_outPay" placeholder="Preis eingeben" required
                <?php if($alreadyExist) { echo ' value="' . $_POST["price_outPay"] . '"'; } ?>>
     </label><br>

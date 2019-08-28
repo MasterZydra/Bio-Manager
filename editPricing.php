@@ -93,7 +93,7 @@
             }
         ?>
     </label><br>
-    <label>Preis:<br>
+    <label>Preis (pro <?php echo getSetting('volumeUnit'); ?>):<br>
         <input type="number" step="0.01" name="price" placeholder="Preis eingeben" required value=
            <?php
                 if($alreadyExist) {
@@ -103,7 +103,7 @@
                 }
             ?>>
     </label><br>
-    <label>Auszahlung an Lieferanten:<br>
+    <label>Auszahlung an Lieferanten (pro <?php echo getSetting('volumeUnit'); ?>):<br>
         <input type="number" step="0.01" name="price_payOut" placeholder="Preis eingeben" required value=
            <?php
                 if($alreadyExist) {
