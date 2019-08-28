@@ -28,6 +28,7 @@
 </p>
 
 <?php
+    $alreadyExist = false;
     if(!isset($_GET['id'])) {
         echo '<div class="warning">';
         echo 'Es wurde kein Lieferant übergeben. Zurück zu <a href="supplier.php">Alle Lieferanten anzeigen</a>';
@@ -35,11 +36,19 @@
     } else {
         $conn = new Mysql();
         $conn -> dbConnect();
+        
+        $alreadyExist = isset($_POST["supplierName"]) && alreadyExistsSupplier($_POST["supplierName"], $_GET['id']);
         if(isset($_GET['edit'])) {
-            updateSupplier($conn, $_GET['id'], $_POST['supplierName'], $_POST['supplierInactive']);
-            echo '<div class="infobox">';
-            echo 'Die Änderungen wurden erfolgreich gespeichert';
-            echo '</div>';
+            if($alreadyExist) {
+                echo '<div class="warning">';
+                echo 'Der Lieferant <strong>' . $_POST["supplierName"] . '</strong> existiert bereits';
+                echo '</div>';
+            } else {
+                updateSupplier($conn, $_GET['id'], $_POST['supplierName'], $_POST['supplierInactive']);
+                echo '<div class="infobox">';
+                echo 'Die Änderungen wurden erfolgreich gespeichert';
+                echo '</div>';
+            }
         }
 
         $conn -> select('T_Supplier', '*', 'id = ' . $_GET['id']);
@@ -57,11 +66,23 @@
 ?>
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post">
     <label>Name:<br>
-        <input type="text" name="supplierName" value="<?php echo $row['name']; ?>" required autofocus>
+        <input type="text" name="supplierName" required autofocus value=
+            <?php
+                if($alreadyExist) {
+                    echo '"' . $_POST["supplierName"] . '"';
+                } else {
+                    echo '"' . $row['name'] . '"';
+                }
+            ?>>
     </label><br>
     <label>
         <input type="hidden" name="supplierInactive" value="0">
-        <input type="checkbox" name="supplierInactive" value="1" <?php if($row['inactive']) { echo 'checked'; } ?>>
+        <input type="checkbox" name="supplierInactive" value="1"
+           <?php
+                if((!$alreadyExist && $row['inactive']) || ($alreadyExist && $_POST['supplierInactive'])) {
+                    echo 'checked';
+                }
+           ?>>
         Inaktiv
     </label><br>
     <button>Änderungen speichern</button>
