@@ -31,6 +31,7 @@
 </p>
 
 <?php
+    $alreadyExist = false;
     if(!isset($_GET['id'])) {
         echo '<div class="warning">';
         echo 'Es wurde kein Benutzer übergeben. Zurück zu <a href="user.php">Alle Benutzer anzeigen</a>';
@@ -39,7 +40,7 @@
         $conn = new Mysql();
         $conn -> dbConnect();
         
-        $alreadyExist = isset($_POST["userLogin"]) && alreadyExistsUser($_POST["userLogin"]);
+        $alreadyExist = isset($_POST["userLogin"]) && alreadyExistsUser($_POST["userLogin"], $_GET['id']);
         if(isset($_GET['edit'])) {
             if($alreadyExist) {
                 echo '<div class="warning">';
