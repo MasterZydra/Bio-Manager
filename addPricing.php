@@ -29,43 +29,51 @@
     <a href="pricing.php">Alle Preise anzeigen</a>
 </p>
 <?php
+    $alreadyExist = isset($_POST["productId"]) && isset($_POST["price_year"]) &&
+        alreadyExistsPricing($_POST["productId"], $_POST["price_year"]);
     if(isset($_GET['add'])) {
-        $conn = new Mysql();
-        $conn -> dbConnect();
-        
-        $NULL = [
-            "type" => "null",
-            "val" => "null"
-        ];
-        
-        $productId = [
-            "type" => "int",
-            "val" => $_POST["productId"]
-        ];
-        
-        $price_year = [
-            "type" => "int",
-            "val" => $_POST["price_year"]
-        ];
-        
-        $price_price = [
-            "type" => "int",
-            "val" => $_POST["price"]
-        ];
-        
-        $price_payOut = [
-            "type" => "int",
-            "val" => $_POST["price_outPay"]
-        ];
+        if($alreadyExist) {
+            echo '<div class="warning">';
+            echo 'Der Preis existiert bereits';
+            echo '</div>';
+        } else {
+            $conn = new Mysql();
+            $conn -> dbConnect();
 
-        $data = array($NULL, $productId, $price_year, $price_price, $price_payOut);
-        
-        $conn -> insertInto('T_Pricing', $data);
-        $conn -> dbDisconnect();
-        
-        echo '<div class="infobox">';
-        echo 'Der Preis wurde hinzugefügt';
-        echo '</div>';
+            $NULL = [
+                "type" => "null",
+                "val" => "null"
+            ];
+
+            $productId = [
+                "type" => "int",
+                "val" => $_POST["productId"]
+            ];
+
+            $price_year = [
+                "type" => "int",
+                "val" => $_POST["price_year"]
+            ];
+
+            $price_price = [
+                "type" => "int",
+                "val" => $_POST["price"]
+            ];
+
+            $price_payOut = [
+                "type" => "int",
+                "val" => $_POST["price_outPay"]
+            ];
+
+            $data = array($NULL, $productId, $price_year, $price_price, $price_payOut);
+
+            $conn -> insertInto('T_Pricing', $data);
+            $conn -> dbDisconnect();
+
+            echo '<div class="infobox">';
+            echo 'Der Preis wurde hinzugefügt';
+            echo '</div>';
+        }
     }
 ?>
 <form action="?add=1" method="POST">
