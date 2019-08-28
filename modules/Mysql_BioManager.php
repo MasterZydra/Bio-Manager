@@ -264,14 +264,19 @@ function alreadyExistsSetting($setting) {
 * Check if plot already exists
 *
 * @param string $plot    Plot number
+* @param int    $ownId  Data row id. If NULL the value is ignored.
 *
 * @author David Hein
 * @return true if plot already exists
 */
-function alreadyExistsPlot($plot) {
+function alreadyExistsPlot($plot, $ownId = NULL) {
     $conn = new Mysql();
     $conn -> dbConnect();
-    $conn -> select('T_Plot', 'id', 'nr =\'' . $plot . '\'');
+    $where = 'nr =\'' . $plot . '\'';
+    if(!is_null($ownId)) {
+        $where .= ' AND id <> ' . $ownId;
+    }
+    $conn -> select('T_Plot', 'id', $where);
     $row = $conn -> getFirstRow();
     $conn -> dbDisconnect();
     $conn = NULL;
