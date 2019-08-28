@@ -78,16 +78,25 @@
 ?>
 <form action="?add=1" method="POST">
     <label>Jahr:<br>
-        <input type="number" name="price_year" value="<?php echo date("Y"); ?>" required autofocus>
+        <input type="number" name="price_year" value="<?php echo date("Y"); ?>" required autofocus
+            <?php if($alreadyExist) { echo ' value="' . $_POST["price_year"] . '"'; } ?>>
     </label><br>
     <label>Produkt:<br>
-        <?php echo productSelectBox(); ?>
+        <?php
+            if($alreadyExist) {
+                echo productSelectBox(NULL, $_POST["productId"]);
+            } else {
+                echo productSelectBox();
+            }
+        ?>
     </label><br>
     <label>Preis:<br>
-        <input type="number" step="0.01" name="price" placeholder="Preis eingeben" required>
+        <input type="number" step="0.01" name="price" placeholder="Preis eingeben" required
+               <?php if($alreadyExist) { echo ' value="' . $_POST["price"] . '"'; } ?>>
     </label><br>
     <label>Auszahlung an Lieferanten:<br>
-        <input type="number" step="0.01" name="price_outPay" placeholder="Preis eingeben" required>
+        <input type="number" step="0.01" name="price_outPay" placeholder="Preis eingeben" required
+               <?php if($alreadyExist) { echo ' value="' . $_POST["price_outPay"] . '"'; } ?>>
     </label><br>
     <button>Hinzufügen</button>
 </form>
