@@ -36,20 +36,9 @@
 
     $inv = new invoice();
 
-
-    $inv -> pdfName             = getSetting('invoiceName');
-    $inv -> pdfAuthor           = getSetting('invoiceAuthor');
     $inv -> invoiceYear         = $row['year'];
     $inv -> invoiceNr           = $row['nr'];
     $inv -> invoiceDate         = date("d.m.Y", strtotime($row['invoiceDate']));
-    $inv -> invoiceSender       = getSetting('invoiceSender');
-    $inv -> invoiceReceiver     = getSetting('invoiceReceiver');
-    $inv -> bankDetails_name    = getSetting('invoiceBankName');
-    $inv -> bankDetails_IBAN    = getSetting('invoiceIBAN');
-    $inv -> bankDetails_BIC     = getSetting('invoiceBIC');
-
-
-    $volumeUnit = getSetting('volumeUnit');
 
 $comment = 'Bla bla';
 
@@ -144,7 +133,7 @@ foreach($invoiceItems as $item) {
         <tr>
             <td style="text-align: center;">' . $item[0].  '</td>
             <td style="text-align: center;">' . $item[1] . '</td>
-            <td style="text-align: right;">' . $item[2] . ' ' . $volumeUnit . '</td>
+            <td style="text-align: right;">' . $item[2] . ' ' . $inv -> volumeUnit . '</td>
             <td style="text-align: center;">' . number_format($price, 2, ',', '') . ' Euro</td>
         </tr>';
 }
