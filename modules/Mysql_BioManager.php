@@ -308,14 +308,19 @@ function alreadyExistsUser($user, $ownId = NULL) {
 *
 * @param int    $productId Product id
 * @param int    $year   Year
+* @param int    $ownId  Data row id. If NULL the value is ignored.
 *
 * @author David Hein
 * @return true if pricing already exists
 */
-function alreadyExistsPricing($productId, $year) {
+function alreadyExistsPricing($productId, $year, $ownId = NULL) {
     $conn = new Mysql();
     $conn -> dbConnect();
-    $conn -> select('T_Pricing', 'id', 'productId = ' . $productId . ' and year = ' . $year);
+    $where = 'productId = ' . $productId . ' and year = ' . $year;
+    if(!is_null($ownId)) {
+        $where .= ' AND id <> ' . $ownId;
+    }
+    $conn -> select('T_Pricing', 'id', $where);
     $row = $conn -> getFirstRow();
     $conn -> dbDisconnect();
     $conn = NULL;
