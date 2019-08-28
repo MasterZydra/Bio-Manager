@@ -39,33 +39,40 @@
         $conn = new Mysql();
         $conn -> dbConnect();
         
+        $alreadyExist = isset($_POST["userLogin"]) && alreadyExistsUser($_POST["userLogin"]);
         if(isset($_GET['edit'])) {
-            $set = 'name = \'' . $_POST['userName'] .'\'';
-            if(!isset($_POST["supplierId"]) || !$_POST["supplierId"]) {
-                $set .= ', supplierId = NULL';
+            if($alreadyExist) {
+                echo '<div class="warning">';
+                echo 'Ein Benutzer mit dem Login <strong>' . $_POST["userLogin"] . '</strong> existiert bereits';
+                echo '</div>';
             } else {
-                $set .= ', supplierId = ' . $_POST["supplierId"];
+                $set = 'name = \'' . $_POST['userName'] .'\'';
+                if(!isset($_POST["supplierId"]) || !$_POST["supplierId"]) {
+                    $set .= ', supplierId = NULL';
+                } else {
+                    $set .= ', supplierId = ' . $_POST["supplierId"];
+                }
+                $conn -> update(
+                    'T_User',
+                    $set,
+                    'id = ' . $_GET['id']);
+                $conn -> update(
+                    'T_UserLogin',
+                    'login = \'' . $_POST['userLogin'] . '\', '
+                    . 'forcePwdChange = ' . $_POST['userForcePwdChange'],
+                    'userId = ' . $_GET['id']);
+                $conn -> update(
+                    'T_UserPermission',
+                    'isAdmin = ' . $_POST['userIsAdmin'] . ', '
+                    . 'isDeveloper = ' . $_POST['userIsDeveloper'] . ', '
+                    . 'isMaintainer = ' . $_POST['userIsMaintainer'] . ', '
+                    . 'isSupplier = ' . $_POST['userIsSupplier'] . ', '
+                    . 'isInspector = ' . $_POST['userIsInspector'],
+                    'userId = ' . $_GET['id']);
+                echo '<div class="infobox">';
+                echo 'Die Änderungen wurden erfolgreich gespeichert';
+                echo '</div>';
             }
-            $conn -> update(
-                'T_User',
-                $set,
-                'id = ' . $_GET['id']);
-            $conn -> update(
-                'T_UserLogin',
-                'login = \'' . $_POST['userLogin'] . '\', '
-                . 'forcePwdChange = ' . $_POST['userForcePwdChange'],
-                'userId = ' . $_GET['id']);
-            $conn -> update(
-                'T_UserPermission',
-                'isAdmin = ' . $_POST['userIsAdmin'] . ', '
-                . 'isDeveloper = ' . $_POST['userIsDeveloper'] . ', '
-                . 'isMaintainer = ' . $_POST['userIsMaintainer'] . ', '
-                . 'isSupplier = ' . $_POST['userIsSupplier'] . ', '
-                . 'isInspector = ' . $_POST['userIsInspector'],
-                'userId = ' . $_GET['id']);
-            echo '<div class="infobox">';
-            echo 'Die Änderungen wurden erfolgreich gespeichert';
-            echo '</div>';
         }
 
         $conn->freeRun(
