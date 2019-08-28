@@ -157,6 +157,16 @@
         Pfleger
     </label><br>
     <label>
+        <input type="hidden" name="userIsInspector" value="0">
+        <input type="checkbox" name="userIsInspector" value="1"
+            <?php
+                if((!$alreadyExist && $row['isInspector']) || ($alreadyExist && $_POST['userIsInspector'])) {
+                    echo 'checked';
+                }
+           ?>>
+        Prüfer
+    </label><br>
+    <label>
         <input type="hidden" name="userIsSupplier" value="0">
         <input type="checkbox" name="userIsSupplier" value="1"
             <?php
@@ -166,16 +176,6 @@
            ?>>
         Lieferant
     </label><br>
-    <label>
-        <input type="hidden" name="userIsInspector" value="0">
-        <input type="checkbox" name="userIsInspector" value="1"
-            <?php
-                if((!$alreadyExist && $row['isInspector']) || ($alreadyExist && $_POST['userIsInspector'])) {
-                    echo 'checked';
-                }
-           ?>>
-        Prüfer
-    </label><br><br>
     <label>Lieferant:<br>
         <?php
             if($alreadyExist && $_POST['supplierId']) {
