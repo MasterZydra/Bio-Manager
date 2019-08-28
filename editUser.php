@@ -119,7 +119,7 @@
         <input type="hidden" name="userForcePwdChange" value="0">
         <input type="checkbox" name="userForcePwdChange" value="1"
            <?php
-                if($row['forcePwdChange'] || ($alreadyExist && $_POST['userForcePwdChange'])) {
+                if((!$alreadyExist && $row['forcePwdChange']) || ($alreadyExist && $_POST['userForcePwdChange'])) {
                     echo 'checked';
                 }
            ?>>
@@ -130,7 +130,7 @@
         <input type="hidden" name="userIsAdmin" value="0">
         <input type="checkbox" name="userIsAdmin" value="1"
             <?php
-                if($row['isAdmin'] || ($alreadyExist && $_POST['userIsAdmin'])) {
+                if((!$alreadyExist && $row['isAdmin']) || ($alreadyExist && $_POST['userIsAdmin'])) {
                     echo 'checked';
                 }
            ?>>
@@ -140,7 +140,7 @@
         <input type="hidden" name="userIsDeveloper" value="0">
         <input type="checkbox" name="userIsDeveloper" value="1"
             <?php
-                if($row['isDeveloper'] || ($alreadyExist && $_POST['userIsDeveloper'])) {
+                if((!$alreadyExist && $row['isDeveloper']) || ($alreadyExist && $_POST['userIsDeveloper'])) {
                     echo 'checked';
                 }
            ?>>
@@ -150,7 +150,7 @@
         <input type="hidden" name="userIsMaintainer" value="0">
         <input type="checkbox" name="userIsMaintainer" value="1"
             <?php
-                if($row['isMaintainer'] || ($alreadyExist && $_POST['userIsMaintainer'])) {
+                if((!$alreadyExist && $row['isMaintainer']) || ($alreadyExist && $_POST['userIsMaintainer'])) {
                     echo 'checked';
                 }
            ?>>
@@ -160,7 +160,7 @@
         <input type="hidden" name="userIsSupplier" value="0">
         <input type="checkbox" name="userIsSupplier" value="1"
             <?php
-                if($row['isSupplier'] || ($alreadyExist && $_POST['userIsSupplier'])) {
+                if((!$alreadyExist && $row['isSupplier']) || ($alreadyExist && $_POST['userIsSupplier'])) {
                     echo 'checked';
                 }
            ?>>
@@ -170,7 +170,7 @@
         <input type="hidden" name="userIsInspector" value="0">
         <input type="checkbox" name="userIsInspector" value="1"
             <?php
-                if($row['isInspector'] || ($alreadyExist && $_POST['userIsInspector'])) {
+                if((!$alreadyExist && $row['isInspector']) || ($alreadyExist && $_POST['userIsInspector'])) {
                     echo 'checked';
                 }
            ?>>
