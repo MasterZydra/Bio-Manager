@@ -6,19 +6,20 @@ class invoice {
     // PDF Data
     public $pdfAuthor;
     public $pdfName;
-    // Meta data
+    // Invoice meta data
     public $invoiceYear;
     public $invoiceNr;
     public $invoiceDate;
+    // Sender and receiver
     public $invoiceSender;
     public $invoiceReceiver;
-    
-    public $volumeUnit;
-    public $pricePerUnit;
-
+    // Banking data
     public $bankDetails_name;
     public $bankDetails_IBAN;
     public $bankDetails_BIC;
+    // Product meta data
+    public $volumeUnit;
+    public $pricePerUnit;
     
     function __construct() {
         // PDF Data
