@@ -56,11 +56,19 @@
     $conn -> dbDisconnect();
     $conn = NULL;
 
-    dataTable_BioManager::showWithInvoiceActions(
-        $result,
-        'dataTable-tableInvoice',
-        array('year', 'nr', 'invoiceDate', 'isPaid'),
-        array('Jahr', 'Nr', 'Datum', 'Bezahlt', 'Aktionen'));
+    if(isMaintainer()) {
+        dataTable_BioManager::showInvoiceActionsWithDelete(
+            $result,
+            'dataTable-tableInvoice',
+            array('year', 'nr', 'invoiceDate', 'isPaid'),
+            array('Jahr', 'Nr', 'Datum', 'Bezahlt', 'Aktionen'));
+    } else {
+        dataTable_BioManager::showWithInvoiceActions(
+            $result,
+            'dataTable-tableInvoice',
+            array('year', 'nr', 'invoiceDate', 'isPaid'),
+            array('Jahr', 'Nr', 'Datum', 'Bezahlt', 'Aktionen'));
+    }
 
     include 'modules/footer.php';
 ?>
