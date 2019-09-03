@@ -19,6 +19,8 @@ class deleteForm extends form {
     
     public $overviewPage;
     
+    public $queryBeforeDelete;
+    
     function __construct() {
         parent::__construct();
         $this -> linkAllElements    = '<a href="index.php">Startseite</a>';
@@ -26,6 +28,8 @@ class deleteForm extends form {
         $this -> table              = 'T_Table';
         
         $this -> overviewPage       = 'index.php';
+        
+        $this -> queryBeforeDelete  = '';
     }
     
     function show($ownCode = "") {
@@ -54,8 +58,9 @@ class deleteForm extends form {
                     } else {
                         \$conn = new Mysql();
                         \$conn -> dbConnect();
-                        if(isset(\$_GET['delete'])) {
-                            \$conn -> delete('" . $this -> table . "', 'id = ' . \$_GET['id']);
+                        if(isset(\$_GET['delete'])) {" .
+                            $this -> queryBeforeDelete .
+                            "\$conn -> delete('" . $this -> table . "', 'id = ' . \$_GET['id']);
                             echo '<div class=\"infobox\">';
                             echo 'Der Eintrag  wurde gelöscht.';
                             echo '</div>';
