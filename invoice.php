@@ -56,7 +56,7 @@
 <?php
     $conn = new Mysql();
     $conn -> dbConnect();
-    $result = $conn -> select('T_Invoice', '*', NULL, 'year DESC, nr ASC');
+    $result = $conn -> select('T_Invoice', '*', NULL, 'year DESC, nr DESC');
     $conn -> dbDisconnect();
     $conn = NULL;
 
