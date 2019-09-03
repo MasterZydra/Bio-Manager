@@ -10,6 +10,15 @@
 * ----------
 */
 
+/**
+* Executing given PHP code
+*
+* Source of function: https://www.php.net/manual/en/function.eval.php
+*
+* @param $code  PHP code which shall be executed
+*
+* @return HTML code
+*/
 function betterEval($code) {
     $tmp = tmpfile ();
     $tmpf = stream_get_meta_data ( $tmp );
