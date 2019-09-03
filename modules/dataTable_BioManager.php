@@ -162,7 +162,7 @@ class dataTable_BioManager extends dataTable {
     }
 
     /**
-    * Generate a table with actions for invoices (show and delete)
+    * Generate a table with actions for invoices (show, edit and delete)
     *
     * @param dataSet    $dataSet    Data which will be shown
     * @param string     $tableId    Id for table. E.g. needed for filterData.js
@@ -176,8 +176,8 @@ class dataTable_BioManager extends dataTable {
             $dataSet,
             $tableId,
             $columns,
-            array('show', 'delete'),
-            array('Anzeigen', 'Löschen'),
+            array('show', 'edit', 'delete'),
+            array('Anzeigen', 'Bearbeiten', 'Löschen'),
             $headings,
             false,
             true);
