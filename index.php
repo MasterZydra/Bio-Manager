@@ -124,6 +124,13 @@ Der Bio-Manger ist zum Verwalten von Anlieferungen von Lieferanten. Durch die Ei
         }
     }
 ?>
+<h2>
+    Allgemeines
+</h2>
+<div class="box">
+    <a href="impressum.php">Impressum</a>
+    <?php if(isLoggedIn()) {?><br><a href="about.php">Systeminformationen</a><?php } ?>
+</div>
 <script>
     function colorBoxes() {
         var colors = ['#0E161C', '#3F4045', '#153D6B', '#145C9E', '#11626D', '#2A4D14', '#4a8a16', '#E26D00'];
