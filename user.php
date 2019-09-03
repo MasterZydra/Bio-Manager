@@ -38,28 +38,9 @@
     if(isset($_GET['action']) && isset($_GET['id'])) {
         // Action - Delete user
         if($_GET['action'] == 'delete') {
-            $conn = new Mysql();
-            $conn -> dbConnect();
-            $conn -> select('T_User', 'id', 'id = ' . $_GET['id']);
-            $row = $conn -> getFirstRow();
-            
-            // Check if id is valid 
-            if ($row == NULL) {
-                echo '<div class="warning">';
-                echo 'Der ausgewählte Benutzer wurde in der Datenbank nicht gefunden';
-                echo '</div>';
-            } else {
-                // Delete user
-                $conn -> delete('T_User', 'id = ' . $row['id']);
-                $conn -> delete('T_UserLogin', 'userId=' . $row['id']);
-                $conn -> delete('T_UserPermission', 'userId=' . $row['id']);
-                
-                echo '<div class="infobox">';
-                echo 'Der Benutzer wurde gelöscht.';
-                echo '</div>';
-            }
-            $conn -> dbDisconnect();
-            $conn = NULL;
+            // Action - Delete user
+            // Forwording to edit page and add parameters
+            echo '<script>window.location.replace("deleteUser.php?id=' . $_GET['id'] . '");</script>';
         } elseif($_GET['action'] == 'edit') {
             // Action - Edit user
             // Forwording to edit page and add parameters
