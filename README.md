@@ -11,6 +11,7 @@ Aus den Daten werden die Rechnungen und Auszahlungen generiert. Übersichten fü
 | https://stackoverflow.com/questions/3228694/php-database-connection-class | Vorlage für die MySQL Klasse  (Anpassung an neue PHP Version notwendig) |
 | https://www.php-einfach.de/experte/php-codebeispiele/pdf-per-php-erstellen-pdf-rechnung | Vorlage für Rechnungserstellung |
 | https://pixeltuner.de/php-cache-erstellen | Vorlage für Caching |
+| https://www.php.net/manual/en/function.eval.php | betterEval() für das Ausführen eines String als PHP für die Templates |
 
 **Externe Biblioteken**  
 Erstellen von PDF aus HTML mit **TCPDF** https://github.com/tecnickcom/TCPDF
