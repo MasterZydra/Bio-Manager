@@ -25,6 +25,7 @@
 
     $form -> overviewPage       = 'user.php';
 
+    // Delete data from the tables which contain additional user data
     $form -> queryBeforeDelete  = "\$conn -> delete('T_UserLogin', 'userId=' . \$_GET['id']);" .
                                   "\$conn -> delete('T_UserPermission', 'userId=' . \$_GET['id']);";
 
