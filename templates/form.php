@@ -73,7 +73,7 @@ class form {
     public $caching;
     
     /**
-    * Construct a new form class and set default values for the properties
+    * Construct a new form object and set default values for the properties
     *
     * @author David Hein
     */
