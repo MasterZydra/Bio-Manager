@@ -73,7 +73,7 @@ ORDER BY year DESC, nr DESC
     $conn = NULL;
 
     if(isMaintainer()) {
-        dataTable_BioManager::showWithEvalDeliveryNoteActions(
+        dataTable_BioManager::showWithDeliveryNoteActions(
             $result,
             'dataTable-tableDeliveryNote',
             array('year', 'nr', 'deliverDate', 'amount', 'calcAmount', 'supplierName'),

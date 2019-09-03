@@ -75,7 +75,7 @@ class dataTable_BioManager extends dataTable {
     *
     * @Author: David Hein
     */
-    public static function showWithDeliveryNoteActions($dataSet, $tableId, $columns, $headings = NULL) {
+    public static function showWithDeliveryNoteDefaultActions($dataSet, $tableId, $columns, $headings = NULL) {
         dataTable_BioManager::showWithActions(
             $dataSet,
             $tableId,
@@ -95,7 +95,7 @@ class dataTable_BioManager extends dataTable {
     *
     * @Author: David Hein
     */
-    public static function showWithEvalDeliveryNoteActions($dataSet, $tableId, $columns, $headings = NULL) {
+    public static function showWithDeliveryNoteActions($dataSet, $tableId, $columns, $headings = NULL) {
         dataTable_BioManager::showWithActions(
             $dataSet,
             $tableId,
@@ -112,7 +112,7 @@ class dataTable_BioManager extends dataTable {
     *
     * @Author: David Hein
     */
-    public static function showSettingsTable($dataSet) {
+    public static function showWithSettingsActions($dataSet) {
         dataTable_BioManager::showWithActions(
             $dataSet,
            'dataTable-tableSetting',
@@ -130,7 +130,7 @@ class dataTable_BioManager extends dataTable {
     *
     * @Author: David Hein
     */
-    public static function showSettingsWithDeleteTable($dataSet) {
+    public static function showSettingsWithDefaultActions($dataSet) {
         dataTable_BioManager::showWithDefaultActions(
             $dataSet,
            'dataTable-tableSetting',
@@ -171,7 +171,7 @@ class dataTable_BioManager extends dataTable {
     *
     * @Author: David Hein
     */
-    public static function showInvoiceActionsWithDelete($dataSet, $tableId, $columns, $headings = NULL) {
+    public static function showWithInvoiceDefaultActions($dataSet, $tableId, $columns, $headings = NULL) {
         dataTable_BioManager::showWithActions(
             $dataSet,
             $tableId,

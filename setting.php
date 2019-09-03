@@ -65,9 +65,9 @@
     $conn = NULL;
 
     if(isDeveloper()) {
-        dataTable_BioManager::showSettingsWithDeleteTable($result);
+        dataTable_BioManager::showSettingsWithDefaultActions($result);
     } else {
-        dataTable_BioManager::showSettingsTable($result);
+        dataTable_BioManager::showWithSettingsActions($result);
     }
 
     include 'modules/footer.php';

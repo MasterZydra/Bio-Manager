@@ -61,7 +61,7 @@
     $conn = NULL;
 
     if(isMaintainer()) {
-        dataTable_BioManager::showInvoiceActionsWithDelete(
+        dataTable_BioManager::showWithInvoiceDefaultActions(
             $result,
             'dataTable-tableInvoice',
             array('year', 'nr', 'invoiceDate', 'isPaid'),

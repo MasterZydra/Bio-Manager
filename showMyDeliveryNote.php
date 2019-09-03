@@ -71,7 +71,7 @@
     $conn = NULL;
 
     if(isMaintainer()) {
-        dataTable_BioManager::showWithDeliveryNoteActions(
+        dataTable_BioManager::showWithDeliveryNoteDefaultActions(
             $result,
             'dataTable-tableDeliveryNote',
             array('year', 'nr', 'deliverDate', 'amount', 'productName'),
