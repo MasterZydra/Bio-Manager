@@ -41,7 +41,11 @@
             // Action - Delete invoice
             // Forwarding to edit page and add parameters
             echo '<script>window.location.replace("deleteInvoice.php?id=' . $_GET['id'] . '");</script>';
-        }    
+        } elseif(isMaintainer() && $_GET['action'] == 'edit') {
+            // Action - Edit invoice
+            // Forwarding to edit page and add parameters
+            echo '<script>window.location.replace("editInvoice.php?id=' . $_GET['id'] . '");</script>';
+        }  
     }
 ?>
 
