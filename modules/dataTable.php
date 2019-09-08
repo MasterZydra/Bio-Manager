@@ -19,6 +19,8 @@
 *
 * Changelog:
 * ----------
+* 08.09.2019:
+* - Add ln2br to show line breaks in table
 */
 class dataTable {
     /**
@@ -60,7 +62,7 @@ class dataTable {
             while($row = $dataSet->fetch_assoc()) {
                 echo '<tr>';
                 foreach($columns as $dataCol) {
-                    echo '<td>' . $row[$dataCol] . '</td>';
+                    echo '<td>' . nl2br($row[$dataCol]) . '</td>';
                 }
                 // Dropdown for actions
                 if(!is_null($actions) && !is_null($actionNames)) {
