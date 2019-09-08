@@ -99,5 +99,33 @@ function productSelectBox($name = NULL, $selectedValue = NULL) {
     
     return selectBox($name, true, 'Bitte Produkt wählen', $result, $selectedValue);
 }
-?>
 
+/**
+* Generate a select element for the recipient.
+* The default name of the select element is 'recipientId'.
+*
+* @param string $name   Name of the select element
+* @param int    $selectedValue  The option with this value will be selected. The default value is NULL
+* @param boolean    $boxReadOnly    Set box to readonly
+*
+* @Author: David Hein
+* @return String with html code for select element
+*/
+function recipientSelectBox($name = NULL, $selectedValue = NULL, $boxReadOnly = false) {
+    $conn = new Mysql();
+    $conn -> dbConnect();
+    $result = $conn -> select(
+        'T_Recipient',
+        'id AS value, name',
+        NULL,
+        'name ASC');
+    $conn -> dbDisconnect();
+    $conn = NULL;
+    
+    if(is_null($name)) {
+        $name = 'recipientId';
+    }
+    
+    return selectBox($name, true, 'Bitte Abnehmer wählen', $result, $selectedValue, true , $boxReadOnly);
+}
+?>
