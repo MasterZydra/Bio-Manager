@@ -11,13 +11,6 @@
 */
     include 'modules/header_user.php';
     include 'modules/permissionCheck.php';
-
-    // Check permission
-    if(!isLoggedIn()) {
-        header("Location: index.php");
-        exit();
-    }
-
     include 'modules/header.php';
 ?>
 
