@@ -333,4 +333,28 @@ function alreadyExistsPricing($productId, $year, $ownId = NULL) {
     return !is_null($row);
 }
 
+/*
+* Check if recipient already exists
+*
+* @param string $recipient  Recipient name
+* @param int    $ownId  Data row id. If NULL the value is ignored.
+*
+* @author David Hein
+* @return true if supplier already exists
+*/
+function alreadyExistsRecipient($recipient, $ownId = NULL) {
+    $conn = new Mysql();
+    $conn -> dbConnect();
+    $where = 'name =\'' . $recipient . '\'';
+    if(!is_null($ownId)) {
+        $where .= ' AND id <> ' . $ownId;
+    }
+    $conn -> select('T_Recipient', 'id', $where);
+    $row = $conn -> getFirstRow();
+    $conn -> dbDisconnect();
+    $conn = NULL;
+    
+    return !is_null($row);
+}
+
 ?>
