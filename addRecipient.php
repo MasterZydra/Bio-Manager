@@ -24,7 +24,7 @@
 <h1>Abnehmer hinzufügen</h1>
 
 <p>
-    <a href="recipient.php">Alle Lieferanten anzeigen</a>
+    <a href="recipient.php">Alle Abnehmer anzeigen</a>
 </p>
 <?php
     $alreadyExist = isset($_POST["recipient_name"]) && alreadyExistsRecipient($_POST["recipient_name"]);
