@@ -11,6 +11,8 @@
 * ----------
 * 19.08.2019:
 *   - Add parameter $selectedValue
+* 08.09.2019:
+*   - Add parameter $boxReadOnly
 */
 
 /**
@@ -24,15 +26,19 @@
 * @param dataSet    $nameValuePairs This dataSet contains all options that will be added
 * @param string/int $selectedValue  The option with this value will be selected. The default value is NULL
 * @param boolean    $disableDefault Disable the default text for selection
+* @param boolean    $boxReadOnly    Set box to readonly
 *
 * @Author: David Hein
 * @return String with html code for select element
 */
-function selectBox($elementName, $isRequired, $defaultText, $nameValuePairs, $selectedValue = NULL, $disableDefault = true) {
+function selectBox($elementName, $isRequired, $defaultText, $nameValuePairs, $selectedValue = NULL, $disableDefault = true, $boxReadOnly = false) {
     // Starting tag
     $selectBox = '<select name="' . $elementName . '"';
     if($isRequired) {
         $selectBox .= ' required';
+    }
+    if($boxReadOnly) {
+        $selectBox .= ' disabled';
     }
     $selectBox .= '>';
     // Default value "select option"
