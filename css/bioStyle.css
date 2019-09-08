@@ -271,6 +271,7 @@ input[type=text],
 input[type=password],
 input[type=number],
 input[type=date],
+textarea,
 select {
     width: 50%;
     padding: 6px 15px;
@@ -285,7 +286,8 @@ select {
 input[type=text]:focus,
 input[type=password]:focus,
 input[type=number]:focus,
-input[type=date]:focus {
+input[type=date]:focus,
+textarea:focus {
   border: 3px solid #555;
 }
 
@@ -295,6 +297,7 @@ input[type=date]:focus {
     input[type=password],
     input[type=number],
     input[type=date],
+    textarea,
     select {
         width: 100%;
     }
