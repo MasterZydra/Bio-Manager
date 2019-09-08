@@ -20,6 +20,8 @@
     }
 
     include 'modules/header.php';
+
+    include 'modules/selectBox_BioManager.php';
 ?>
 <h1>Rechnung hinzufügen</h1>
 
@@ -63,8 +65,13 @@
                 "type" => "char",
                 "val" => "0"
             ];
+            
+            $recipientId = [
+                "type" => "int",
+                "val" => $_POST["recipientId"]
+            ];
 
-            $data = array($NULL, $invoice_year, $invoice_nr, $invoice_Date, $invoice_Paid);
+            $data = array($NULL, $invoice_year, $invoice_nr, $invoice_Date, $invoice_Paid, $recipientId);
             $conn -> insertInto('T_Invoice', $data);
             // Get id
             $conn -> select(
@@ -99,6 +106,9 @@
 <form action="?add=1" method="POST">
     <label>Jahr:<br>
         <input type="number" name="invoice_year" value="<?php echo date("Y"); ?>" required autofocus>
+    </label><br>
+    <label>Abnehmer:<br>
+        <?php echo recipientSelectBox(); ?>
     </label><br>
     <button>Hinzufügen</button>
 </form>
