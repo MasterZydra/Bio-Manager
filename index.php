@@ -38,12 +38,6 @@ Der Bio-Manger ist zum Verwalten von Anlieferungen von Lieferanten. Durch die Ei
 </div>
 
 <div class="box">
-    <strong>Lieferant</strong><br>
-    <a href="supplier.php">Alle Lieferanten anzeigen</a>
-    <?php if(isMaintainer()) {?><br><a href="addSupplier.php">Lieferant hinzufügen</a><?php } ?>
-</div>
-
-<div class="box">
     <strong>Flurstück</strong><br>
     <a href="plot.php">Alle Flurstücke anzeigen</a>
     <?php if(isMaintainer()) {?><br><a href="addPlot.php">Flurstück hinzufügen</a><?php } ?>
@@ -66,6 +60,13 @@ Der Bio-Manger ist zum Verwalten von Anlieferungen von Lieferanten. Durch die Ei
     <a href="pricing.php">Alle Preise anzeigen</a>
     <?php if(isMaintainer()) {?><br><a href="addPricing.php">Preis hinzufügen</a><?php } ?>
 </div>
+
+<div class="box">
+    <strong>Lieferant</strong><br>
+    <a href="supplier.php">Alle Lieferanten anzeigen</a>
+    <?php if(isMaintainer()) {?><br><a href="addSupplier.php">Lieferant hinzufügen</a><?php } ?>
+</div>
+
 <div class="box">
     <strong>Abnehmer</strong><br>
     <a href="recipient.php">Alle Abnehmer anzeigen</a>
@@ -126,6 +127,12 @@ Der Bio-Manger ist zum Verwalten von Anlieferungen von Lieferanten. Durch die Ei
 <div class="box">
     <a href="developerOptions.php">Entwicklereinstellungen</a>
 </div>
+
+<div class="box">
+    <strong>Seiten in Entwicklung</strong><br>
+    <a href="evalDeliveryNote_OpenVolumeDistribution.php">Statistik - Offene Verteilungen</a>
+</div>
+
 <?php
         }
     }
