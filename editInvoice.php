@@ -19,6 +19,8 @@
     }
 
     include 'modules/header.php';
+
+    include 'modules/selectBox_BioManager.php';
 ?>
 
 <h1>Rechnung bearbeiten</h1>
@@ -43,7 +45,8 @@
             $conn -> update(
                 'T_Invoice',
                 'invoiceDate = \'' . $_POST['invoiceDate'] . '\', '
-                . 'isPaid = ' . $_POST['invoiceIsPaid'],
+                . 'isPaid = ' . $_POST['invoiceIsPaid'] . ', '
+                . 'recipientId = ' . $_POST['recipientId'],
                 'id = ' . $_GET['id']);
             echo '<div class="infobox">';
             echo 'Die Änderungen wurden erfolgreich gespeichert';
@@ -79,6 +82,17 @@
     <label>Rechnungsdatum:<br>
         <input type="date" name="invoiceDate" value="<?php echo $row['invoiceDate']; ?>" placeholder="Rechnungsdatum geben" 
         <?php if($row['isPaid']){ echo ' readonly'; } else { echo ' required autofocus'; } ?>>
+    </label><br>
+    <label>Abnehmer:<br>
+        <?php
+            if($row['isPaid']){
+                echo recipientSelectBox(NULL, $row['recipientId'], true);
+            } elseif(isset($_POST['recipientId'])) {
+                echo recipientSelectBox(NULL, $_POST['recipientId']);
+            } else {
+                echo recipientSelectBox(NULL, $row['recipientId']);
+            }
+        ?>
     </label><br>
     <label>
         <input type="hidden" name="invoiceIsPaid" value="0">
