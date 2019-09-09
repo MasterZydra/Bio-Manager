@@ -34,7 +34,6 @@ main {
     margin-left: 3%;
     margin-right: 5%;
     margin-bottom: 75px;
-    display: inline-block;
 }
 
 main a:visited {
@@ -43,6 +42,10 @@ main a:visited {
 
 main div {
     margin-bottom: 20px;
+}
+
+.inlineblock {
+    display: inline-block;
 }
 
 /**************************
