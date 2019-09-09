@@ -45,7 +45,7 @@ class invoice {
         $this -> pdfAuthor          = getSetting('invoiceAuthor');
         // Sender and receiver
         $this -> invoiceSender      = getSetting('invoiceSender');
-        $this -> invoiceReceiver    = getSetting('invoiceReceiver');
+        $this -> invoiceReceiver    = "";//getSetting('invoiceReceiver');
         // Banking data
         $this -> bankDetails_name   = getSetting('invoiceBankName');
         $this -> bankDetails_IBAN   = getSetting('invoiceIBAN');
