@@ -26,6 +26,7 @@
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
+<script src="js/formatTableCellRight.js"></script>
 
 <h1>Auswertung - Lieferscheine mit offener Mengenverteilung</h1>
 
@@ -86,14 +87,7 @@ ORDER BY year DESC, nr DESC
             array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Mengenverteilung', 'Lieferant'));
     }
 ?>
-<script>
-    function formatTableCellRight(tableName, colId) {
-        var tableRef = document.getElementById(tableName);
-        for(var i = 1; i < tableRef.rows.length; i++) {
-            tableRef.rows[i].cells[colId].setAttribute("style", "text-align: right");
-        }
-    }
-    
+<script>    
     formatTableCellRight("dataTable-tableDeliveryNote", 1);
     formatTableCellRight("dataTable-tableDeliveryNote", 3);
     formatTableCellRight("dataTable-tableDeliveryNote", 4);

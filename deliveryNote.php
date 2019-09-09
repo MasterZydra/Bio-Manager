@@ -27,6 +27,7 @@
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
+<script src="js/formatTableCellRight.js"></script>
 
 <h1>Lieferschein</h1>
 
@@ -83,13 +84,6 @@
     }
 ?>
 <script>
-    function formatTableCellRight(tableName, colId) {
-        var tableRef = document.getElementById(tableName);
-        for(var i = 1; i < tableRef.rows.length; i++) {
-            tableRef.rows[i].cells[colId].setAttribute("style", "text-align: right");
-        }
-    }
-    
     formatTableCellRight("dataTable-tableDeliveryNote", 1);
     formatTableCellRight("dataTable-tableDeliveryNote", 3);
 </script>
