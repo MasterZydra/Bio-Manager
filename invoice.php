@@ -56,7 +56,11 @@
 <?php
     $conn = new Mysql();
     $conn -> dbConnect();
-    $result = $conn -> select('T_Invoice', '*', NULL, 'year DESC, nr DESC');
+    $result = $conn -> select(
+        'T_Invoice LEFT JOIN T_Recipient ON T_Invoice.recipientId = T_Recipient.id',
+        'T_Invoice.id, year, nr, invoiceDate, isPaid, name',
+        NULL,
+        'year DESC, nr DESC');
     $conn -> dbDisconnect();
     $conn = NULL;
 
@@ -64,14 +68,14 @@
         dataTable_BioManager::showWithInvoiceDefaultActions(
             $result,
             'dataTable-tableInvoice',
-            array('year', 'nr', 'invoiceDate', 'isPaid'),
-            array('Jahr', 'Nr', 'Datum', 'Bezahlt', 'Aktionen'));
+            array('year', 'nr', 'invoiceDate', 'isPaid', 'name'),
+            array('Jahr', 'Nr', 'Datum', 'Bezahlt', 'Abnehmer', 'Aktionen'));
     } else {
         dataTable_BioManager::showWithInvoiceActions(
             $result,
             'dataTable-tableInvoice',
-            array('year', 'nr', 'invoiceDate', 'isPaid'),
-            array('Jahr', 'Nr', 'Datum', 'Bezahlt', 'Aktionen'));
+            array('year', 'nr', 'invoiceDate', 'isPaid', 'name'),
+            array('Jahr', 'Nr', 'Datum', 'Bezahlt', 'Abnehmer', 'Aktionen'));
     }
 
     include 'modules/footer.php';
