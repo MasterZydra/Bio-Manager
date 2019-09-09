@@ -33,6 +33,8 @@ main {
     margin-top: 20px;
     margin-left: 3%;
     margin-right: 5%;
+    margin-bottom: 75px;
+    display: inline-block;
 }
 
 main a:visited {
