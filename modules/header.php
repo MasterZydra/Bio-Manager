@@ -25,4 +25,4 @@
             ?>
         </div>
     </header>
-    <main>
+    <main <?php if (basename($_SERVER['PHP_SELF']) === "index.php") { echo 'class="inlineblock"'; } ?>>
