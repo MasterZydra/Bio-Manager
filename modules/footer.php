@@ -1,6 +1,6 @@
     </main>
-  <!--  <footer>
+    <footer>
         <p>David Hein &copy; 2019</p>
-    </footer>-->
+    </footer>
     </body>
 </html>
