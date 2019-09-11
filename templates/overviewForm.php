@@ -146,11 +146,11 @@ class overviewForm extends form {
                 \$conn -> dbDisconnect();
                 \$conn = NULL;
             
-                if(" . $this -> tablePermission . ") {"
-                . $this -> restrictedTable .
-                "} else {"
-                . $this -> defaultTable .
-                "}
+                if(" . $this -> tablePermission . ") {
+                " . $this -> restrictedTable . "
+                } else {
+                ". $this -> defaultTable . "
+                }
             ?>
             <script>"
             . $script .
