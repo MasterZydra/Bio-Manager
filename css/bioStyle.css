@@ -75,21 +75,6 @@ header div {
     padding: 0;
 }
 
-/***************
-* Header - Link
-****************/
-
-header div a {
-    display: inline-block;
-    line-height: 1.8;
-    text-decoration: none;
-    color: inherit;
-}
-
-header div a:hover {
-    text-decoration: underline;
-}
-
 /**************************
 * Footer section
 **************************/
@@ -102,6 +87,23 @@ footer {
     right: 0;
     background-color: #555555;
     color: white;
+}
+
+/**************************
+* Link appearance
+**************************/
+
+header div a,
+footer a {
+    display: inline-block;
+    line-height: 1.8;
+    text-decoration: none;
+    color: inherit;
+}
+
+header div a:hover,
+footer a {
+    text-decoration: underline;
 }
 
 /**************************
