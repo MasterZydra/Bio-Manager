@@ -63,14 +63,13 @@
             echo '<div class="warning">';
             echo 'Die ausgewählte Rechnung wurde in der Datenbank nicht gefunden. Zurück zu <a href="invoice.php">Alle Rechnungen anzeigen</a>';
             echo '</div>';
-        }
-        
-        if($row['isPaid']){
-            echo '<div class="warning">';
-            echo 'Die Rechnung darf nicht mehr bearbeitet werden';
-            echo '</div>';
-        }
-    }
+        } else {
+            // Show message if invoice is paid
+            if($row['isPaid']){
+                echo '<div class="warning">';
+                echo 'Die Rechnung darf nicht mehr bearbeitet werden';
+                echo '</div>';
+            }
 ?>
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post">
     <label>Jahr:<br>
@@ -107,5 +106,7 @@
     <button <?php if($row['isPaid']){ echo ' disabled'; }?>>Änderungen speichern</button>
 </form>
 <?php
+        }
+    }
     include 'modules/footer.php';
 ?>
