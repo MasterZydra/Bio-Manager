@@ -78,30 +78,30 @@
             $conn -> dbDisconnect();
             $conn = NULL;
         }
-    }
-    $conn = new Mysql();
-    $conn -> dbConnect();
-    // Select amount from delivery note
-    $conn -> select('T_DeliveryNote', 'year, nr, amount', 'id = ' . $_GET['id']);
-    $delivery = $conn -> getFirstRow();
-    // Distribution data
-    $distData = $conn -> select('T_CropVolumeDistribution', '*', 'deliveryNoteId = ' . $_GET['id']);
 
-    $conn -> dbDisconnect();
-    $conn = NULL;
+        $conn = new Mysql();
+        $conn -> dbConnect();
+        // Select amount from delivery note
+        $conn -> select('T_DeliveryNote', 'year, nr, amount', 'id = ' . $_GET['id']);
+        $delivery = $conn -> getFirstRow();
+        // Distribution data
+        $distData = $conn -> select('T_CropVolumeDistribution', '*', 'deliveryNoteId = ' . $_GET['id']);
 
-    if($distData -> num_rows > 0) {
-        $i = 1;
-        $tableData = '';
-        while($row = $distData->fetch_assoc()) {
-            $tableData .= '<tr>';
-            $tableData .= '<td>' . plotSelectBox('plot' . (string)$i, $row['plotId']) . '</td>';
-            $tableData .= '<td><input name="amount' . (string)$i . '" class="right" type="number" onkeyup="sumDistribution()" value="' . $row['amount'] . '" required></td>';
-            $tableData .= '</tr>';
-            $i++;
+        $conn -> dbDisconnect();
+        $conn = NULL;
+
+        if($distData -> num_rows > 0) {
+            $i = 1;
+            $tableData = '';
+            while($row = $distData->fetch_assoc()) {
+                $tableData .= '<tr>';
+                $tableData .= '<td>' . plotSelectBox('plot' . (string)$i, $row['plotId']) . '</td>';
+                $tableData .= '<td><input name="amount' . (string)$i . '" class="right" type="number" onkeyup="sumDistribution()" value="' . $row['amount'] . '" required></td>';
+                $tableData .= '</tr>';
+                $i++;
+            }
+
         }
-
-    }
 ?>
 
 <form action="?id=<?php echo $_GET['id']; ?>&update=1" method="post">
@@ -184,5 +184,6 @@
     sumDistribution();
 </script>
 <?php
+    }
     include 'modules/footer.php';
 ?>
