@@ -107,6 +107,21 @@ class overviewForm extends form {
             $script .= "formatTableCellRight(\"dataTable-data\", " . strval($this -> alignRightColumns[$i]) . ");";
             $i++;
         }
+        
+        // Check if where is NULL or condition is given
+        if (is_null($this -> resultQuery_where)) {
+            $this -> resultQuery_where = "NULL";
+        } else {
+            $this -> resultQuery_where = "'" . $this -> resultQuery_where . "'";
+        }
+        
+        // Check if order by is NULL or given
+        if (is_null($this -> resultQuery_orderBy)) {
+            $this -> resultQuery_orderBy = "NULL";
+        } else {
+            $this -> resultQuery_orderBy = "'" . $this -> resultQuery_orderBy . "'";
+        }
+        
         // Code for page logic
         $code = file_get_contents('modules/dataTable_BioManager.php')
             . "
