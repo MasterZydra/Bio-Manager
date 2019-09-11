@@ -71,7 +71,7 @@
             echo '<div class="warning">';
             echo 'Der ausgewählte Lieferschein wurde in der Datenbank nicht gefunden. Zurück zu <a href="pricing.php">Alle Preise anzeigen</a>';
             echo '</div>';
-        }
+        } else {
 ?>
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post">
     <label>Jahr:<br>
@@ -116,6 +116,7 @@
     <button>Änderungen speichern</button>
 </form>
 <?php
+        }
     }
     include 'modules/footer.php';
 ?>

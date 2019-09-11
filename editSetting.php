@@ -56,8 +56,7 @@
             echo '<div class="warning">';
             echo 'Die ausgewählte Einstellung wurde in der Datenbank nicht gefunden. Zurück zu <a href="setting.php">Alle Einstellungen anzeigen</a>';
             echo '</div>';
-        }
-    }
+        } else {
 ?>
 
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post">
@@ -74,5 +73,7 @@
 </form>
 
 <?php
+        }
+    }
     include 'modules/footer.php';
 ?>

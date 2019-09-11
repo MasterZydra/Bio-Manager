@@ -65,8 +65,7 @@
             echo '<div class="warning">';
             echo 'Der ausgewählte Abnehmer wurde in der Datenbank nicht gefunden. Zurück zu <a href="recipient.php">Alle Abnehmer anzeigen</a>';
             echo '</div>';
-        }
-    }
+        } else {
 ?>
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post">
     <label>Name:<br>
@@ -85,5 +84,7 @@
     <button>Änderungen speichern</button>
 </form>
 <?php
+        }
+    }
     include 'modules/footer.php';
 ?>

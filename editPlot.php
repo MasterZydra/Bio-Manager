@@ -76,7 +76,7 @@
             echo '<div class="warning">';
             echo 'Das ausgewählte Flurstück wurde in der Datenbank nicht gefunden. Zurück zu <a href="plot.php">Alle Flurstücke anzeigen</a>';
             echo '</div>';
-        }
+        } else {
 ?>
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post">
     <label>Nummer:<br>
@@ -121,6 +121,7 @@
     <button>Änderungen speichern</button>
 </form>
 <?php
+        }
     }
     include 'modules/footer.php';
 ?>
