@@ -93,6 +93,19 @@ class overviewForm extends form {
             <p>
                 <input type=\"text\" id=\"filterInput-data\" onkeyup=\"filterData(&quot;data&quot;)\" placeholder=\"Suchtext eingeben...\" title=\"Suchtext\"> 
             </p>
+            <?php
+                \$conn = new Mysql();
+                \$conn -> dbConnect();
+                \$result = " . $this -> resultDataSet . "
+                \$conn -> dbDisconnect();
+                \$conn = NULL;
+            
+                if(" . $this -> tablePermission . ") {"
+                . $this -> restrictedTable .
+                "} else {"
+                . $this -> defaultTable .
+                "}
+            ?>
             <script>"
             . $script .
             "</script>
