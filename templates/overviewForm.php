@@ -87,9 +87,16 @@ class overviewForm extends form {
             $script .= "formatTableCellRight(\"dataTable-data\", " . strval($this -> alignRightColumns[$i]) . ");";
             $i++;
         }
+        // Code for page logic
         $code = file_get_contents('modules/dataTable_BioManager.php')
-            . "<script src=\"js/filterDataTable.js\"></script>
+            . "
+            <?php
+            " . $this -> forwardingLogic . "
+            ?>
+            
+            <script src=\"js/filterDataTable.js\"></script>
             <script src=\"js/dropdown.js\"></script>
+            <script src=\"js/formatTableCellRight.js\"></script>
             <p>
                 <input type=\"text\" id=\"filterInput-data\" onkeyup=\"filterData(&quot;data&quot;)\" placeholder=\"Suchtext eingeben...\" title=\"Suchtext\"> 
             </p>
