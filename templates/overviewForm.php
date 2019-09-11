@@ -40,10 +40,27 @@ class overviewForm extends form {
     public $defaultTable;
 
     /**
-    * Dataset to which will be assigned to the variable $result
+    * Table from which the data will be selected.
     * @var string
     */
-    public $resultDataSet;
+    public $resultQuery_table;
+    /**
+    * Columns which will be selected.
+    * @var string
+    */
+    public $resultQuery_cols;
+    /**
+    * Where condition for the select statement.
+    * NULL if no where condition shall be used.
+    * @var string
+    */
+    public $resultQuery_where;
+    /**
+    * Order by for the select statement.
+    * NULL if no order by shall be used.
+    * @var string
+    */
+    public $resultQuery_orderBy;
     
     /**
     * Array of column indexes where the text shall be aligned right
@@ -65,7 +82,10 @@ class overviewForm extends form {
         $this -> restrictedTable    = "";
         $this -> defaultTable       = "";
         
-        $this -> resultDataSet      = "NULL";
+        $this -> resultQuery_table  = "T_Table";
+        $this -> resultQuery_cols   = "*";
+        $this -> resultQuery_where  = NULL;
+        $this -> resultQuery_orderBy = NULL;
         
         $this -> alignRightColumns  = array();
         
@@ -103,7 +123,11 @@ class overviewForm extends form {
             <?php
                 \$conn = new Mysql();
                 \$conn -> dbConnect();
-                \$result = " . $this -> resultDataSet . "
+                \$result = \$conn -> select(
+                    '" . $this -> resultQuery_table . "',
+                    '" . $this -> resultQuery_cols . "',
+                    " . $this -> resultQuery_where . ",
+                    " . $this -> resultQuery_orderBy . ");
                 \$conn -> dbDisconnect();
                 \$conn = NULL;
             
