@@ -39,7 +39,7 @@
             array('year', 'nr', 'deliverDate', 'amount', 'supplierName', 'productName'),
             array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Lieferant', 'Produkt'));";
 
-     $form -> resultQuery_table =
+    $form -> resultQuery_table =
          "T_DeliveryNote "
           . "LEFT JOIN T_Supplier ON T_Supplier.id = supplierId "
           . "LEFT JOIN T_Product ON T_Product.id = productId";
