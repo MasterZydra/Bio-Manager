@@ -23,6 +23,37 @@ include 'templates/form.php';
 */
 class overviewForm extends form {
     /**
+    * Permission that is necessary to see one table. If false the default table will be shown.
+    * The string is inserted as if condition. E.g. "isMaintainer()"
+    * @var string
+    */
+    public $tablePermission;
+    /**
+    * This table will be shown if permission is is true.
+    * @var string
+    */
+    public $restrictedTable;
+    /**
+    * This table will be shown if permission is is false.
+    * @var string
+    */
+    public $defaultTable;
+
+    /**
+    * Dataset to which will be assigned to the variable $result
+    * @var string
+    */
+    public $resultDataSet;
+    
+    /**
+    * Array of column indexes where the text shall be aligned right
+    * @var array
+    */
+    public $alignRightColumns;
+    
+    public $forwardingLogic;
+    
+    /**
     * Construct a new overviewForm object and set default values for the properties
     *
     * @author David Hein
@@ -30,6 +61,15 @@ class overviewForm extends form {
     function __construct() {
         // Create parent
         parent::__construct();
+        $this -> tablePermission    = "false";
+        $this -> restrictedTable    = "";
+        $this -> defaultTable       = "";
+        
+        $this -> resultDataSet      = "NULL";
+        
+        $this -> alignRightColumns  = array();
+        
+        $this -> forwardingLogic    = "";
     }
     
     /**
