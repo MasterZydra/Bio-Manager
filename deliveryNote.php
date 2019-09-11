@@ -26,13 +26,13 @@
     // Delete form properties
     // ----------------------
     $form -> tablePermission    = "isMaintainer()";
-    $form -> restrictedTable    =
+    $form -> restrictedTable =
         "dataTable_BioManager::showWithDeliveryNoteDefaultActions(
             \$result,
             'dataTable-data',
             array('year', 'nr', 'deliverDate', 'amount', 'supplierName', 'productName'),
             array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Lieferant', 'Produkt', 'Aktionen'));";
-    $form -> defaultTable       =
+    $form -> defaultTable =
         "dataTable_BioManager::show(
             \$result,
             'dataTable-data',
@@ -50,7 +50,7 @@
 
     $form -> alignRightColumns  = array(1, 3);
 
-    $form -> forwardingLogic    =
+    $form -> forwardingLogic =
         "if(isMaintainer() && isset(\$_GET['action']) && isset(\$_GET['id'])) {
             if(\$_GET['action'] == 'delete') {
                 // Action - Delete supplier
