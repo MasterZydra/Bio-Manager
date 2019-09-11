@@ -39,14 +39,14 @@
             array('year', 'nr', 'deliverDate', 'amount', 'supplierName', 'productName'),
             array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Lieferant', 'Produkt'));";
 
-     $form -> resultDataSet     =
-         "\$conn -> select(
-            'T_DeliveryNote '
-          . 'LEFT JOIN T_Supplier ON T_Supplier.id = supplierId '
-          . 'LEFT JOIN T_Product ON T_Product.id = productId',
-            'T_DeliveryNote.id, year, nr, amount, deliverDate, T_Supplier.name AS supplierName, T_Product.name AS productName',
-            NULL,
-            'year DESC, nr DESC');";
+     $form -> resultQuery_table =
+         "T_DeliveryNote "
+          . "LEFT JOIN T_Supplier ON T_Supplier.id = supplierId "
+          . "LEFT JOIN T_Product ON T_Product.id = productId";
+    $form -> resultQuery_cols =
+        "T_DeliveryNote.id, year, nr, amount, deliverDate, T_Supplier.name AS supplierName, T_Product.name AS productName";
+    $form -> resultQuery_orderBy =
+        "year DESC, nr DESC";
 
     $form -> alignRightColumns  = array(1, 3);
 
