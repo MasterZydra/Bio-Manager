@@ -80,12 +80,23 @@ class overviewForm extends form {
     * @author David Hein
     */
     function show($ownCode = "") {
+        // Generate script part for formatting the text alignement
+        $script = "";
+        $i = 0;
+        while(count($this -> alignRightColumns) > $i && $this -> alignRightColumns[$i] != NULL) {
+            $script .= "formatTableCellRight(\"dataTable-data\", " . strval($this -> alignRightColumns[$i]) . ");";
+            $i++;
+        }
         $code = file_get_contents('modules/dataTable_BioManager.php')
             . "<script src=\"js/filterDataTable.js\"></script>
             <script src=\"js/dropdown.js\"></script>
             <p>
                 <input type=\"text\" id=\"filterInput-data\" onkeyup=\"filterData(&quot;data&quot;)\" placeholder=\"Suchtext eingeben...\" title=\"Suchtext\"> 
-            </p>";
+            </p>
+            <script>"
+            . $script .
+            "</script>
+            ";
 
         parent::show($code);
     }
