@@ -64,13 +64,13 @@
     }
 ?>
 <form action="?add=1" method="POST">
-        <label>Name:<br>
-        <input type="text" placeholder="Name des Abnehmers" name="recipient_name" required autofocus
-            <?php if($alreadyExist) { echo ' value="' . $_POST["recipient_name"] . '"'; } ?>>
-    </label><br>
-    <label>Anschrift:<br>
-        <textarea name="recipient_address" placeholder="Adresse des Abnehmers" required><?php if($alreadyExist) { echo $_POST["recipient_address"]; } ?></textarea>
-    </label><br>
+    <label for="recipient_name" class="required">Name:</label><br>
+    <input id="recipient_name" name="recipient_name" type="text" placeholder="Name des Abnehmers" required autofocus
+        <?php if($alreadyExist) { echo ' value="' . $_POST["recipient_name"] . '"'; } ?>><br>
+    
+    <label for="recipient_address" class="required">Anschrift:</label><br>
+    <textarea id="recipient_address" name="recipient_address" placeholder="Adresse des Abnehmers" required><?php if($alreadyExist) { echo $_POST["recipient_address"]; } ?></textarea><br>
+    
     <button>Hinzufügen</button>
 </form>
 <?php
