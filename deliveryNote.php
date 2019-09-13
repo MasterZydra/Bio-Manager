@@ -9,7 +9,6 @@
 * Changelog:
 * ----------
 */
-
     include 'templates/overviewForm.php';
 
     $form = new overviewForm();
