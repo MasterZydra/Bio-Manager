@@ -68,19 +68,18 @@
         } else {
 ?>
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post">
-    <label>Name:<br>
-        <input type="text" name="recipient_name" placeholder="Name des Abnehmers" required autofocus value=
-            <?php
-                if($alreadyExist) {
-                    echo '"' . $_POST["recipient_name"] . '"';
-                } else {
-                    echo '"' . $row['name'] . '"';
-                }
-            ?>>
-    </label><br>
-    <label>Anschrift:<br>
-        <textarea name="recipient_address" placeholder="Adresse des Abnehmers" required><?php if($alreadyExist) { echo $_POST["recipient_address"]; } else { echo $row['address']; } ?></textarea>
-    </label><br>
+    <label for="recipient_name" class="required">Name:</label><br>
+    <input id="recipient_name" name="recipient_name" type="text" placeholder="Name des Abnehmers" required autofocus value=
+        <?php
+            if($alreadyExist) {
+                echo '"' . $_POST["recipient_name"] . '"';
+            } else {
+                echo '"' . $row['name'] . '"';
+            }
+        ?>><br>
+    
+    <label for="recipient_address" class="required">Anschrift:</label><br>
+    <textarea id="recipient_address" name="recipient_address" placeholder="Adresse des Abnehmers" required><?php if($alreadyExist) { echo $_POST["recipient_address"]; } else { echo $row['address']; } ?></textarea><br>
     <button>Änderungen speichern</button>
 </form>
 <?php
