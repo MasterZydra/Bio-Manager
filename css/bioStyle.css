@@ -102,7 +102,7 @@ footer a {
 }
 
 header div a:hover,
-footer a {
+footer a:hover {
     text-decoration: underline;
 }
 
