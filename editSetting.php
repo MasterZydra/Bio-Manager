@@ -63,12 +63,13 @@
     <label>Einstellung:<br>
         <input type="text" value="<?php echo $row['name']; ?>" readonly>
     </label><br>
-    <label>Beschreibung:<br>
-        <input type="text" name="settingDesc" value="<?php echo $row['description']; ?>" required autofocus>
-    </label><br>
-    <label>Wert:<br>
-        <input type="text" name="settingValue" value="<?php echo $row['value']; ?>" required>
-    </label><br>
+    
+    <label for="settingDesc" class="required">Beschreibung:</label><br>
+    <input id="settingDesc" name="settingDesc" type="text" value="<?php echo $row['description']; ?>" required autofocus><br>
+    
+    <label for="settingValue" class="required">Wert:</label><br>
+    <input id="settingValue" name="settingValue" type="text" value="<?php echo $row['value']; ?>" required><br>
+    
     <button>Änderungen speichern</button>
 </form>
 
