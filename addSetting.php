@@ -74,18 +74,18 @@
     }
 ?>
 <form action="?add=1" method="post">
-    <label>Name:<br>
-        <input type="text" name="settingName" placeholder="Name eingeben" required autofocus
-            <?php if($alreadyExist) { echo ' value="' . $_POST["settingName"] . '"'; } ?>>
-    </label><br>
-    <label>Beschreibung:<br>
-        <input type="text" name="settingDesc" placeholder="Beschreibung eingeben" required
-            <?php if($alreadyExist) { echo ' value="' . $_POST["settingDesc"] . '"'; } ?>>
-    </label><br>
-    <label>Wert:<br>
-        <input type="text" name="settingValue" placeholder="Wert eingeben" required
-            <?php if($alreadyExist) { echo ' value="' . $_POST["settingValue"] . '"'; } ?>>
-    </label><br>
+    <label for="settingName" class="required">Name:</label><br>
+    <input id="settingName" name="settingName" type="text" placeholder="Name eingeben" required autofocus
+        <?php if($alreadyExist) { echo ' value="' . $_POST["settingName"] . '"'; } ?>><br>
+    
+    <label for="settingDesc" class="required">Beschreibung:</label><br>
+    <input id="settingDesc" name="settingDesc" type="text" placeholder="Beschreibung eingeben" required
+        <?php if($alreadyExist) { echo ' value="' . $_POST["settingDesc"] . '"'; } ?>><br>
+    
+    <label for="settingValue" class="required">Wert:</label><br>
+    <input id="settingValue" name="settingValue" type="text" placeholder="Wert eingeben" required
+        <?php if($alreadyExist) { echo ' value="' . $_POST["settingValue"] . '"'; } ?>><br>
+    
     <button>Hinzufügen</button>
 </form>
 <?php
