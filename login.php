@@ -69,12 +69,11 @@
 
 ?>
     <form action="?login=1" method="post">
-        <label>Anmeldename:<br>
-            <input type="text" size="40" maxlength="250" name="user_login" required autofocus>
-        </label><br>
-        <label>Passwort:<br>
-            <input type="password" size="40"  maxlength="250" name="user_password" required>
-        </label><br>
+        <label for="user_login" class="required">Anmeldename:</label><br>
+        <input id="user_login" name="user_login" type="text" size="40" maxlength="250" required autofocus><br>
+        
+        <label for="user_password" class="required">Passwort:</label><br>
+        <input id="user_password" name="user_password" type="password" size="40"  maxlength="250" required><br>
         <button>Anmelden</button>
     </form>
 <?php
