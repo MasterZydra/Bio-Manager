@@ -63,9 +63,10 @@
     <label>Anmeldename:<br>
         <input type="text" value="<?php echo $row['login']; ?>" readonly>
     </label><br>
-    <label>Neues Passwort:<br>
-        <input type="password" name="userPassword" autofocus>
-    </label><br>
+    
+    <label for="userPassword" class="required">Neues Passwort:</label><br>
+    <input id="userPassword" name="userPassword" type="password" required autofocus><br>
+    
     <label>
         <input type="hidden" name="userForcePwdChange" value="0">
         <input type="checkbox" name="userForcePwdChange" value="1" <?php if($row['forcePwdChange']) { echo 'checked'; } ?>>
