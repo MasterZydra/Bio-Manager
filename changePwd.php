@@ -72,17 +72,14 @@
     }
 ?>
     <form action="?change=1" method="post">
-        <label>Aktuelles Passwort:<br>
-            <input type="password" size="40" maxlength="250" name="curPassword" required autofocus>
-        </label><br><br>
+        <label for="curPassword" class="required">Aktuelles Passwort:</label><br>
+        <input id="curPassword" name="curPassword" type="password" size="40" maxlength="250" required autofocus><br><br>
 
-        <label>Neues Passwort:<br>
-            <input type="password" size="40" maxlength="250" name="newPassword" required>
-        </label><br>
+        <label for="newPassword" class="required">Neues Passwort:</label><br>
+        <input id="newPassword" name="newPassword" type="password" size="40" maxlength="250" required><br>
 
-        <label>Neues Passwort wiederholen:<br>
-            <input type="password" size="40" maxlength="250" name="newPassword2" required>
-        </label><br>
+        <label for="newPassword2" class="required">Neues Passwort wiederholen:</label><br>
+        <input id="newPassword2" name="newPassword2" type="password" size="40" maxlength="250" required><br>
 
         <button>Passwort ändern</button>
     </form>
