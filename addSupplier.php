@@ -64,10 +64,10 @@
     }
 ?>
 <form action="?add=1" method="POST">
-    <label>Name:<br>
-        <input type="text" placeholder="Name des Lieferanten" name="supplier_name" required autofocus
-            <?php if($alreadyExist) { echo ' value="' . $_POST["supplier_name"] . '"'; } ?>>
-    </label><br>
+    <label for="supplier_name" class="required">Name:</label><br>
+    <input id="supplier_name" name="supplier_name" type="text" placeholder="Name des Lieferanten" required autofocus
+        <?php if($alreadyExist) { echo ' value="' . $_POST["supplier_name"] . '"'; } ?>><br>
+    
     <button>Hinzufügen</button>
 </form>
 <?php
