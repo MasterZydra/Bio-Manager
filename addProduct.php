@@ -59,10 +59,9 @@
     }
 ?>
 <form action="?add=1" method="POST">
-    <label>Name:<br>
-        <input type="text" placeholder="Name des Produktes" name="product_name" required autofocus
-            <?php if($alreadyExist) { echo ' value="' . $_POST["product_name"] . '"'; } ?>>
-    </label><br>
+    <label for="product_name" class="required">Name:</label><br>
+    <input id="product_name" name="product_name"  type="text" placeholder="Name des Produktes" required autofocus
+        <?php if($alreadyExist) { echo ' value="' . $_POST["product_name"] . '"'; } ?>><br>
     <button>Hinzufügen</button>
 </form>
 <?php
