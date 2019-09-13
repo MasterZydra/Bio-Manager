@@ -36,6 +36,14 @@ main {
     margin-bottom: 75px;
 }
 
+main a {
+    text-decoration: none;
+}
+
+main a:hover {
+    text-decoration: underline;
+}
+
 main a:visited {
     color: blue;
 }
