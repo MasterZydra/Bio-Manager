@@ -138,24 +138,25 @@
     }
 ?>
 <form action="?add=1" method="post">
-    <label>Name:<br>
-        <input type="text" name="userName" placeholder="Benutzername eingeben" required autofocus
-            <?php if($alreadyExist) { echo ' value="' . $_POST["userName"] . '"'; } ?>>
-    </label><br>
-    <label>Anmeldename:<br>
-        <input type="text" name="userLogin" placeholder="Anmeldename eingeben" required
-            <?php if($alreadyExist) { echo ' value="' . $_POST["userLogin"] . '"'; } ?>>
-    </label><br>
-    <label>Passwort:<br>
-        <input type="password" name="userPassword" placeholder="Passwort eingeben" required
-            <?php if($alreadyExist) { echo ' value="' . $_POST["userPassword"] . '"'; } ?>>
-    </label><br>
+    <label for="userName" class="required">Name:</label><br>
+    <input id="userName" name="userName" type="text" placeholder="Benutzername eingeben" required autofocus
+        <?php if($alreadyExist) { echo ' value="' . $_POST["userName"] . '"'; } ?>><br>
+    
+    <label for="userLogin" class="required">Anmeldename:</label><br>
+    <input id="userLogin" name="userLogin" type="text" placeholder="Anmeldename eingeben" required
+        <?php if($alreadyExist) { echo ' value="' . $_POST["userLogin"] . '"'; } ?>><br>
+    
+    <label for="userPassword" class="required">Passwort:</label><br>
+    <input id="userPassword" name="userPassword" type="password" placeholder="Passwort eingeben" required
+        <?php if($alreadyExist) { echo ' value="' . $_POST["userPassword"] . '"'; } ?>><br>
+    
     <label>
         <input type="hidden" name="userForcePwdChange" value="0">
         <input type="checkbox" name="userForcePwdChange" value="1"
             <?php if($alreadyExist && $_POST['userForcePwdChange']) { echo ' checked'; } ?>>
         Passwortänderung erzwingen
     </label><br>
+    
     <h2>Berechtigungen</h2>
     <label>
         <input type="hidden" name="userIsAdmin" value="0">
