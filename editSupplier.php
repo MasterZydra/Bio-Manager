@@ -64,16 +64,16 @@
         } else {
 ?>
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post">
-    <label>Name:<br>
-        <input type="text" name="supplierName" required autofocus value=
-            <?php
-                if($alreadyExist) {
-                    echo '"' . $_POST["supplierName"] . '"';
-                } else {
-                    echo '"' . $row['name'] . '"';
-                }
-            ?>>
-    </label><br>
+    <label for="supplierName" class="required">Name:</label><br>
+    <input id="supplierName" name="supplierName" type="text" required autofocus value=
+        <?php
+            if($alreadyExist) {
+                echo '"' . $_POST["supplierName"] . '"';
+            } else {
+                echo '"' . $row['name'] . '"';
+            }
+        ?>><br>
+    
     <label>
         <input type="hidden" name="supplierInactive" value="0">
         <input type="checkbox" name="supplierInactive" value="1"
