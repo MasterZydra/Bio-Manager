@@ -328,6 +328,15 @@ table select {
     width: 100%;
 }
 
+.required::after {
+    content: " *";
+    color: red;
+}
+
+form::after {
+    content: "* Pflichtfeld";
+}
+
 /**************************
 * Stop iOS rounded style
 **************************/
