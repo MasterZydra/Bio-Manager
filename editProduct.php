@@ -66,16 +66,16 @@
         } else {
 ?>
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post">
-    <label>Name:<br>
-        <input type="text" name="product_name" <?php echo $row['name']; ?> required autofocus value=
-            <?php
-                if($alreadyExist) {
-                    echo '"' . $_POST["product_name"] . '"';
-                } else {
-                    echo '"' . $row['name'] . '"';
-                }
-            ?>>
-    </label><br>
+    <label for="product_name" class="required">Name:</label><br>
+    <input id="product_name" name="product_name" type="text" <?php echo $row['name']; ?> required autofocus value=
+        <?php
+            if($alreadyExist) {
+                echo '"' . $_POST["product_name"] . '"';
+            } else {
+                echo '"' . $row['name'] . '"';
+            }
+        ?>><br>
+    
     <button>Änderungen speichern</button>
 </form>
 <?php
