@@ -17,9 +17,7 @@
             <?php
                 if(!isset($_SESSION['userId'])) {
             ?>
-            <form action="login.php">
-                <button>Anmelden</button>
-            </form>
+            <button onclick="window.location.href='login.php'">Anmelden</button>
             <?php
                 }
             ?>
