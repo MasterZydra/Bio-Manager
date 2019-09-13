@@ -310,6 +310,7 @@ textarea:focus {
     }
 }
 
+/* Use complete width in table cell */
 table input[type=text],
 table input[type=password],
 table input[type=number],
@@ -366,24 +367,28 @@ h2 {
     text-align: center;
 }
 
+/* 4 columns */
 @media (max-width: 1900px) {
     .box {
         width: 23%;
     }
 }
 
+/* 3 columns */
 @media (max-width: 1280px) {
     .box {
         width: 30%;
     }
 }
 
+/* 2 columns */
 @media (max-width: 900px) {
     .box {
         width: 48%;
     }
 }
 
+/* 1 column */
 @media (max-width: 600px) {
     .box {
         width: 100%;
