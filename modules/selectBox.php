@@ -13,6 +13,8 @@
 *   - Add parameter $selectedValue
 * 08.09.2019:
 *   - Add parameter $boxReadOnly
+* 14.09.2019:
+*   - Add id attribute for select element
 */
 
 /**
@@ -20,7 +22,7 @@
 * The dataSet must contain the columns 'value' and 'name'.
 * The value will be returned. The name will be shown.
 *
-* @param string     $elementName    Name of the select element for forms
+* @param string     $elementName    Name and id of the select element for forms
 * @param boolean    $isRequired     Flag if the field in the form is required
 * @param string     $defaultText    This text is the preselected option. It is a placeholder.
 * @param dataSet    $nameValuePairs This dataSet contains all options that will be added
@@ -33,7 +35,7 @@
 */
 function selectBox($elementName, $isRequired, $defaultText, $nameValuePairs, $selectedValue = NULL, $disableDefault = true, $boxReadOnly = false) {
     // Starting tag
-    $selectBox = '<select name="' . $elementName . '"';
+    $selectBox = '<select id="' . $elementName . '" name="' . $elementName . '"';
     if($isRequired) {
         $selectBox .= ' required';
     }
