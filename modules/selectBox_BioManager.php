@@ -20,7 +20,7 @@ include 'modules/selectBox.php';
 
 /**
 * Generate a select element for the suppliers.
-* The name of the select element is 'supplierId'.
+* The name and id of the select element is 'supplierId'.
 *
 * @param boolean    $isRequired     Flag if the field in the form is required
 * @param int        $selectedValue  The option with this value will be selected. The default value is NULL
@@ -46,7 +46,7 @@ function supplierSelectBox($isRequired, $selectedValue = NULL, $disableDefault =
 
 /**
 * Generate a select element for the plots.
-* The default name of the select element is 'plotId'.
+* The default name and id of the select element is 'plotId'.
 *
 * @param string $name   Name of the select element
 * @param int    $selectedValue  The option with this value will be selected. The default value is NULL
@@ -74,7 +74,7 @@ function plotSelectBox($name = NULL, $selectedValue = NULL) {
 
 /**
 * Generate a select element for the product.
-* The default name of the select element is 'productId'.
+* The default name and id of the select element is 'productId'.
 *
 * @param string $name   Name of the select element
 * @param int    $selectedValue  The option with this value will be selected. The default value is NULL
@@ -102,7 +102,7 @@ function productSelectBox($name = NULL, $selectedValue = NULL) {
 
 /**
 * Generate a select element for the recipient.
-* The default name of the select element is 'recipientId'.
+* The default name and id of the select element is 'recipientId'.
 *
 * @param string $name   Name of the select element
 * @param int    $selectedValue  The option with this value will be selected. The default value is NULL
