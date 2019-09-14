@@ -79,45 +79,45 @@
         } else {
 ?>
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post">
-    <label>Nummer:<br>
-        <input type="text" name="plot_nr" required autofocus value=
-           <?php
-                if($alreadyExist) {
-                    echo '"' . $_POST["plot_nr"] . '"';
-                } else {
-                    echo '"' . $row['nr'] . '"';
-                }
-            ?>>
-    </label><br>
-    <label>Name:<br>
-        <input type="text" name="plot_name" required value=
-           <?php
-                if($alreadyExist) {
-                    echo '"' . $_POST["plot_name"] . '"';
-                } else {
-                    echo '"' . $row['name'] . '"';
-                }
-            ?>>
-    </label><br>
-    <label>Gemarkung:<br>
-        <input type="text" name="plot_subdistrict" required value=
-           <?php
-                if($alreadyExist) {
-                    echo '"' . $_POST["plot_subdistrict"] . '"';
-                } else {
-                    echo '"' . $row['subdistrict'] . '"';
-                }
-            ?>>
-    </label><br>
-    <label>Lieferant:<br>
-        <?php
-            if($alreadyExist && $_POST['supplierId']) {
-                echo supplierSelectBox(false, $_POST['supplierId'], false);
+    <label for="plot_nr" class="required">Nummer:</label><br>
+    <input id="plot_nr" name="plot_nr" type="text" required autofocus value=
+       <?php
+            if($alreadyExist) {
+                echo '"' . $_POST["plot_nr"] . '"';
             } else {
-                echo supplierSelectBox(false, $row['supplierId'], false);
+                echo '"' . $row['nr'] . '"';
             }
-         ?>
-    </label><br>
+        ?>><br>
+    
+    <label for="plot_name" class="required">Name:</label><br>
+    <input id="plot_name" name="plot_name" type="text" required value=
+       <?php
+            if($alreadyExist) {
+                echo '"' . $_POST["plot_name"] . '"';
+            } else {
+                echo '"' . $row['name'] . '"';
+            }
+        ?>><br>
+    
+    <label for="plot_subdistrict" class="required">Gemarkung:</label><br>
+    <input id="plot_subdistrict" name="plot_subdistrict" type="text" required value=
+       <?php
+            if($alreadyExist) {
+                echo '"' . $_POST["plot_subdistrict"] . '"';
+            } else {
+                echo '"' . $row['subdistrict'] . '"';
+            }
+        ?>><br>
+    
+    <label for="supplierId">Lieferant:</label><br>
+    <?php
+        if($alreadyExist && $_POST['supplierId']) {
+            echo supplierSelectBox(false, $_POST['supplierId'], false);
+        } else {
+            echo supplierSelectBox(false, $row['supplierId'], false);
+        }
+     ?><br>
+    
     <button>Änderungen speichern</button>
 </form>
 <?php

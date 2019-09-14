@@ -73,46 +73,46 @@
             echo '</div>';
         } else {
 ?>
-    <label>Jahr:<br>
-        <input type="number" name="price_year" required autofocus value=
-           <?php
-                if($alreadyExist) {
-                    echo '"' . $_POST["price_year"] . '"';
-                } else {
-                    echo '"' . $row['year'] . '"';
-                }
-            ?>>
-    </label><br>
-    <label>Produkt:<br>
-        <?php
-            if($alreadyExist && $_POST['productId']) {
-                echo productSelectBox(NULL, $_POST['productId']);
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post" class="requiredLegend">
+    <label for="price_year" class="required">Jahr:</label><br>
+    <input id="price_year" name="price_year" type="number" required autofocus value=
+       <?php
+            if($alreadyExist) {
+                echo '"' . $_POST["price_year"] . '"';
             } else {
-                echo productSelectBox(NULL, $row['productId']);
+                echo '"' . $row['year'] . '"';
             }
-        ?>
-    </label><br>
-    <label>Preis (pro <?php echo getSetting('volumeUnit'); ?>):<br>
-        <input type="number" step="0.01" name="price" placeholder="Preis eingeben" required value=
-           <?php
-                if($alreadyExist) {
-                    echo '"' . $_POST["price"] . '"';
-                } else {
-                    echo '"' . $row['price'] . '"';
-                }
-            ?>>
-    </label><br>
-    <label>Auszahlung an Lieferanten (pro <?php echo getSetting('volumeUnit'); ?>):<br>
-        <input type="number" step="0.01" name="price_payOut" placeholder="Preis eingeben" required value=
-           <?php
-                if($alreadyExist) {
-                    echo '"' . $_POST["price_payOut"] . '"';
-                } else {
-                    echo '"' . $row['pricePayOut'] . '"';
-                }
-            ?>>
-    </label><br>
+        ?>><br>
+    
+    <label for="productId" class="required">Produkt:</label><br>
+    <?php
+        if($alreadyExist && $_POST['productId']) {
+            echo productSelectBox(NULL, $_POST['productId']);
+        } else {
+            echo productSelectBox(NULL, $row['productId']);
+        }
+    ?><br>
+    
+    <label for="price" class="required">Preis (pro <?php echo getSetting('volumeUnit'); ?>):</label><br>
+    <input id="price" name="price" type="number" step="0.01" placeholder="Preis eingeben" required value=
+       <?php
+            if($alreadyExist) {
+                echo '"' . $_POST["price"] . '"';
+            } else {
+                echo '"' . $row['price'] . '"';
+            }
+        ?>><br>
+    
+    <label for="price_payOut" class="required">Auszahlung an Lieferanten (pro <?php echo getSetting('volumeUnit'); ?>):</label><br>
+    <input id="price_payOut" name="price_payOut" type="number" step="0.01" placeholder="Preis eingeben" required value=
+       <?php
+            if($alreadyExist) {
+                echo '"' . $_POST["price_payOut"] . '"';
+            } else {
+                echo '"' . $row['pricePayOut'] . '"';
+            }
+        ?>><br>
+    
     <button>Änderungen speichern</button>
 </form>
 <?php

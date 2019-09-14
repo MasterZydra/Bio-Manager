@@ -107,9 +107,9 @@
     <label for="invoice_year" class="required">Jahr:</label><br>
     <input id="invoice_year" name="invoice_year" type="number" value="<?php echo date("Y"); ?>" required autofocus><br>
     
-    <label>Abnehmer:<br>
-        <?php echo recipientSelectBox(); ?>
-    </label><br>
+    <label for="recipientId" class="required">Abnehmer:</label><br>
+    <?php echo recipientSelectBox(); ?><br>
+    
     <button>Hinzufügen</button>
 </form>
 <?php

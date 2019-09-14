@@ -76,28 +76,28 @@
         }
     }
 ?>
-<form action="?add=1" method="POST">
-    <label>Jahr:<br>
-        <input type="number" name="price_year" value="<?php echo date("Y"); ?>" required autofocus
-            <?php if($alreadyExist) { echo ' value="' . $_POST["price_year"] . '"'; } ?>>
-    </label><br>
-    <label>Produkt:<br>
-        <?php
-            if($alreadyExist) {
-                echo productSelectBox(NULL, $_POST["productId"]);
-            } else {
-                echo productSelectBox();
-            }
-        ?>
-    </label><br>
-    <label>Preis (pro <?php echo getSetting('volumeUnit'); ?>):<br>
-        <input type="number" step="0.01" name="price" placeholder="Preis eingeben" required
-               <?php if($alreadyExist) { echo ' value="' . $_POST["price"] . '"'; } ?>>
-    </label><br>
-    <label>Auszahlung an Lieferanten (pro <?php echo getSetting('volumeUnit'); ?>):<br>
-        <input type="number" step="0.01" name="price_outPay" placeholder="Preis eingeben" required
-               <?php if($alreadyExist) { echo ' value="' . $_POST["price_outPay"] . '"'; } ?>>
-    </label><br>
+<form action="?add=1" method="POST" class="requiredLegend">
+    <label for="price_year" class="required">Jahr:</label><br>
+    <input id="price_year" name="price_year" type="number" value="<?php echo date("Y"); ?>" required autofocus
+        <?php if($alreadyExist) { echo ' value="' . $_POST["price_year"] . '"'; } ?>><br>
+    
+    <label for="productId" class="required">Produkt:</label><br>
+    <?php
+        if($alreadyExist) {
+            echo productSelectBox(NULL, $_POST["productId"]);
+        } else {
+            echo productSelectBox();
+        }
+    ?><br>
+    
+    <label for="price" class="required">Preis (pro <?php echo getSetting('volumeUnit'); ?>):</label><br>
+    <input id="price" name="price" type="number" step="0.01" placeholder="Preis eingeben" required
+           <?php if($alreadyExist) { echo ' value="' . $_POST["price"] . '"'; } ?>><br>
+    
+    <label for="price_outPay" class="required">Auszahlung an Lieferanten (pro <?php echo getSetting('volumeUnit'); ?>):</label><br>
+    <input id="price_outPay" name="price_outPay" type="number" step="0.01" placeholder="Preis eingeben" required
+           <?php if($alreadyExist) { echo ' value="' . $_POST["price_outPay"] . '"'; } ?>><br>
+    
     <button>Hinzufügen</button>
 </form>
 <?php

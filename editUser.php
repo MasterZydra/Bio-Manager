@@ -94,27 +94,27 @@
             echo '</div>';
         } else {
 ?>
-    <label>Name:<br>
-        <input type="text" name="userName" required autofocus value=
-            <?php
-                if($alreadyExist) {
-                    echo '"' . $_POST["userName"] . '"';
-                } else {
-                    echo '"' . $row['name'] . '"';
-                }
-            ?>>
-    </label><br>
-    <label>Anmeldename:<br>
-        <input type="text" name="userLogin" required value=
-            <?php
-                if($alreadyExist) {
-                    echo '"' . $_POST["userLogin"] . '"';
-                } else {
-                    echo '"' . $row['login'] . '"';
-                }
-            ?>>
-    </label><br>
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post" class="requiredLegend">
+    <label for="userName" class="required">Name:</label><br>
+    <input id="userName" name="userName" type="text" placeholder="Name des Benutzers" required autofocus value=
+        <?php
+            if($alreadyExist) {
+                echo '"' . $_POST["userName"] . '"';
+            } else {
+                echo '"' . $row['name'] . '"';
+            }
+        ?>><br>
+    
+    <label for="userLogin" class="required">Anmeldename:</label><br>
+    <input id="userLogin" name="userLogin" type="text" placeholder="Anmeldename des Benutzers" required value=
+        <?php
+            if($alreadyExist) {
+                echo '"' . $_POST["userLogin"] . '"';
+            } else {
+                echo '"' . $row['login'] . '"';
+            }
+        ?>><br>
+    
     <label>
         <input type="hidden" name="userForcePwdChange" value="0">
         <input type="checkbox" name="userForcePwdChange" value="1"

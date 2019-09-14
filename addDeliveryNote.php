@@ -107,19 +107,18 @@
     <label for="note_year" class="required">Jahr:</label><br>
     <input id="note_year" name="note_year" type="number" value="<?php echo date("Y"); ?>" required autofocus><br>
     
-    <label>Produkt:<br>
-        <?php echo productSelectBox(); ?>
-    </label><br>
+    <label for="productId" class="required">Produkt:</label><br>
+    <?php echo productSelectBox(); ?><br>
     
     <label for="note_date" class="required">Lieferdatum:</label><br>
     <input id="note_date" name="note_date" type="date" value="<?php echo date('Y-m-d'); ?>"><br>
     
-    <label for="note_amount" class="required">Liefermenge (in <?php echo getSetting('volumeUnit'); ?>):</label><br>
+    <label for="note_amount">Liefermenge (in <?php echo getSetting('volumeUnit'); ?>):</label><br>
     <input id="note_amount" name="note_amount" type="number" placeholder="Liefermenge eingeben"><br>
     
-    <label>Lieferant:<br>
-        <?php echo supplierSelectBox(false, NULL, false, true); ?>
-    </label><br>
+    <label for="supplierId">Lieferant:</label><br>
+    <?php echo supplierSelectBox(false, NULL, false, true); ?><br>
+    
     <button>Hinzufügen</button>
 </form>
 <?php

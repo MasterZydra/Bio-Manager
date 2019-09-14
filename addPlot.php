@@ -83,28 +83,28 @@
         }
     }
 ?>
-    <label>Nummer:<br>
-        <input type="text" placeholder="Nummer des Flurstücks" name="plot_nr" required autofocus
-            <?php if($alreadyExist) { echo ' value="' . $_POST["plot_nr"] . '"'; } ?>>
-    </label><br>
-    <label>Name:<br>
-        <input type="text" placeholder="Name des Flurstücks" name="plot_name" required
-            <?php if($alreadyExist) { echo ' value="' . $_POST["plot_name"] . '"'; } ?>>
-    </label><br>
-    <label>Gemarkung:<br>
-        <input type="text" placeholder="Gemarkung" name="plot_subdistrict" required
-            <?php if($alreadyExist) { echo ' value="' . $_POST["plot_subdistrict"] . '"'; } ?>>
-    </label><br>
-    <label>Lieferant:<br>
-        <?php
-            if($alreadyExist) {
-                echo supplierSelectBox(false, $_POST["supplierId"], false);
-            } else {
-                echo supplierSelectBox(false, NULL, false);
-            }
-        ?>
-    </label><br>
 <form action="?add=1" method="POST" class="requiredLegend">
+    <label for="plot_nr" class="required">Nummer:</label><br>
+    <input id="plot_nr" name="plot_nr" type="text" placeholder="Nummer des Flurstücks" required autofocus
+        <?php if($alreadyExist) { echo ' value="' . $_POST["plot_nr"] . '"'; } ?>><br>
+    
+    <label for="plot_name" class="required">Name:</label><br>
+    <input id="plot_name" name="plot_name" type="text" placeholder="Name des Flurstücks" required
+        <?php if($alreadyExist) { echo ' value="' . $_POST["plot_name"] . '"'; } ?>><br>
+    
+    <label for="plot_subdistrict" class="required">Gemarkung:</label><br>
+    <input id="plot_subdistrict" name="plot_subdistrict" type="text" placeholder="Gemarkung" required
+        <?php if($alreadyExist) { echo ' value="' . $_POST["plot_subdistrict"] . '"'; } ?>><br>
+    
+    <label for="supplierId">Lieferant:</label><br>
+    <?php
+        if($alreadyExist) {
+            echo supplierSelectBox(false, $_POST["supplierId"], false);
+        } else {
+            echo supplierSelectBox(false, NULL, false);
+        }
+    ?><br>
+    
     <button>Hinzufügen</button>
 </form>
 <?php
