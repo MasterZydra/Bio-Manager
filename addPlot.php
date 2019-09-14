@@ -83,7 +83,6 @@
         }
     }
 ?>
-<form action="?add=1" method="POST">
     <label>Nummer:<br>
         <input type="text" placeholder="Nummer des Flurstücks" name="plot_nr" required autofocus
             <?php if($alreadyExist) { echo ' value="' . $_POST["plot_nr"] . '"'; } ?>>
@@ -105,6 +104,7 @@
             }
         ?>
     </label><br>
+<form action="?add=1" method="POST" class="requiredLegend">
     <button>Hinzufügen</button>
 </form>
 <?php

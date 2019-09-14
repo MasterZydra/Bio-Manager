@@ -103,7 +103,7 @@
         echo '</div>';
     }
 ?>
-<form action="?add=1" method="POST">
+<form action="?add=1" method="POST" class="requiredLegend">
     <label for="note_year" class="required">Jahr:</label><br>
     <input id="note_year" name="note_year" type="number" value="<?php echo date("Y"); ?>" required autofocus><br>
     

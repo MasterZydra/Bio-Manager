@@ -73,7 +73,6 @@
             echo '</div>';
         } else {
 ?>
-<form action="?id=<?php echo $row['id']; ?>&edit=1" method="post">
     <label>Jahr:<br>
         <input type="number" name="price_year" required autofocus value=
            <?php
@@ -88,6 +87,7 @@
         <?php
             if($alreadyExist && $_POST['productId']) {
                 echo productSelectBox(NULL, $_POST['productId']);
+<form action="?id=<?php echo $row['id']; ?>&edit=1" method="post" class="requiredLegend">
             } else {
                 echo productSelectBox(NULL, $row['productId']);
             }

@@ -94,7 +94,6 @@
             echo '</div>';
         } else {
 ?>
-<form action="?id=<?php echo $row['id']; ?>&edit=1" method="post">
     <label>Name:<br>
         <input type="text" name="userName" required autofocus value=
             <?php
@@ -115,6 +114,7 @@
                 }
             ?>>
     </label><br>
+<form action="?id=<?php echo $row['id']; ?>&edit=1" method="post" class="requiredLegend">
     <label>
         <input type="hidden" name="userForcePwdChange" value="0">
         <input type="checkbox" name="userForcePwdChange" value="1"

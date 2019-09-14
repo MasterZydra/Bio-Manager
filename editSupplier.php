@@ -63,7 +63,7 @@
             echo '</div>';
         } else {
 ?>
-<form action="?id=<?php echo $row['id']; ?>&edit=1" method="post">
+<form action="?id=<?php echo $row['id']; ?>&edit=1" method="post" class="requiredLegend">
     <label for="supplierName" class="required">Name:</label><br>
     <input id="supplierName" name="supplierName" type="text" required autofocus value=
         <?php

@@ -71,7 +71,7 @@
                 echo '</div>';
             }
 ?>
-<form action="?id=<?php echo $row['id']; ?>&edit=1" method="post">
+<form action="?id=<?php echo $row['id']; ?>&edit=1" method="post" class="requiredLegend">
     <label>Jahr:<br>
         <input type="number" name="invoiceYear" value="<?php echo $row['year']; ?>" readonly>
     </label><br>

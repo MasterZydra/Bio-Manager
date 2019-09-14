@@ -63,7 +63,7 @@
         }
     }
 ?>
-<form action="?add=1" method="POST">
+<form action="?add=1" method="POST" class="requiredLegend">
     <label for="supplier_name" class="required">Name:</label><br>
     <input id="supplier_name" name="supplier_name" type="text" placeholder="Name des Lieferanten" required autofocus
         <?php if($alreadyExist) { echo ' value="' . $_POST["supplier_name"] . '"'; } ?>><br>

@@ -73,7 +73,7 @@
         }
     }
 ?>
-<form action="?add=1" method="post">
+<form action="?add=1" method="post" class="requiredLegend">
     <label for="settingName" class="required">Name:</label><br>
     <input id="settingName" name="settingName" type="text" placeholder="Name eingeben" required autofocus
         <?php if($alreadyExist) { echo ' value="' . $_POST["settingName"] . '"'; } ?>><br>

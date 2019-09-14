@@ -58,7 +58,7 @@
         }
     }
 ?>
-<form action="?add=1" method="POST">
+<form action="?add=1" method="POST" class="requiredLegend">
     <label for="product_name" class="required">Name:</label><br>
     <input id="product_name" name="product_name"  type="text" placeholder="Name des Produktes" required autofocus
         <?php if($alreadyExist) { echo ' value="' . $_POST["product_name"] . '"'; } ?>><br>

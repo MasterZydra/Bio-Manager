@@ -103,7 +103,7 @@
         }
     }
 ?>
-<form action="?add=1" method="POST">
+<form action="?add=1" method="POST" class="requiredLegend">
     <label for="invoice_year" class="required">Jahr:</label><br>
     <input id="invoice_year" name="invoice_year" type="number" value="<?php echo date("Y"); ?>" required autofocus><br>
     
