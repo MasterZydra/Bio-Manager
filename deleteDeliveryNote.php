@@ -8,6 +8,8 @@
 * 
 * Changelog:
 * ----------
+* 16.09.2019:
+*   - Change parameters for changed delete template.
 */
 
     include 'templates/deleteForm.php';
@@ -15,10 +17,10 @@
     $form = new deleteForm();
     $form -> heading            = "Lieferschein löschen";
 
-    $form -> accessPermission   = "isMaintainer()";
+    $form -> accessPermission   = "isMaintainer";
     $form -> returnPage         = "deliveryNote.php";
 
-    $form -> linkPermission     = "true";
+    $form -> linkPermission     = true;
     $form -> linkElement        = '<a href="deliveryNote.php">Alle Lieferscheine anzeigen</a>';
     $form -> linkAllElements    = '<a href="deliveryNote.php">Alle Lieferscheine anzeigen</a>';
 

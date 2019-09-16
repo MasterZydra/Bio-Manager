@@ -8,16 +8,18 @@
 * 
 * Changelog:
 * ----------
+* 16.09.2019:
+*   - Change parameters for changed delete template.
 */
     include 'templates/deleteForm.php';
 
     $form = new deleteForm();
     $form -> heading            = "Flurstück löschen";
 
-    $form -> accessPermission   = "isMaintainer()";
+    $form -> accessPermission   = "isMaintainer";
     $form -> returnPage         = "plot.php";
 
-    $form -> linkPermission     = "true";
+    $form -> linkPermission     = true;
     $form -> linkElement        = '<a href="plot.php">Alle Flurstücke anzeigen</a>';
     $form -> linkAllElements    = '<a href="plot.php">Alle Flurstücke anzeigen</a>';
 

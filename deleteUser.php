@@ -8,16 +8,18 @@
 * 
 * Changelog:
 * ----------
+* 16.09.2019:
+*   - Change parameters for changed delete template.
 */
     include 'templates/deleteForm.php';
 
     $form = new deleteForm();
     $form -> heading            = "Benutzer löschen";
 
-    $form -> accessPermission   = "isAdmin()";
+    $form -> accessPermission   = "isAdmin";
     $form -> returnPage         = "user.php";
 
-    $form -> linkPermission     = "true";
+    $form -> linkPermission     = true;
     $form -> linkElement        = '<a href="user.php">Alle Benutzer anzeigen</a>';
     $form -> linkAllElements    = '<a href="user.php">Alle Benutzer anzeigen</a>';
 
@@ -26,8 +28,9 @@
     $form -> overviewPage       = 'user.php';
 
     // Delete data from the tables which contain additional user data
-    $form -> queryBeforeDelete  = "\$conn -> delete('T_UserLogin', 'userId=' . \$_GET['id']);" .
-                                  "\$conn -> delete('T_UserPermission', 'userId=' . \$_GET['id']);";
+    $form -> deleteBeforeDelete  = array(
+        array('T_UserLogin', 'userId=' . $_GET['id']),
+        array('T_UserPermission', 'userId=' . $_GET['id']));
 
     $form -> show();
 ?>
