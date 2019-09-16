@@ -11,6 +11,7 @@
 */
 
 include 'templates/form.php';
+include 'modules/dataTable_BioManager.php';
 
 /**
 * The class form is generating an HTML template for an overview
@@ -78,7 +79,7 @@ class overviewForm extends form {
     function __construct() {
         // Create parent
         parent::__construct();
-        $this -> tablePermission    = "false";
+        $this -> tablePermission    = false;
         $this -> restrictedTable    = "";
         $this -> defaultTable       = "";
         
@@ -92,6 +93,56 @@ class overviewForm extends form {
         $this -> forwardingLogic    = "";
     }
     
+    protected function showOverview() {
+        // Script imports
+        echo '<script src="js/filterDataTable.js"></script>';
+        echo '<script src="js/dropdown.js"></script>';
+        echo '<script src="js/formatTableCellRight.js"></script>';
+                
+        // Input for search field
+        echo '<p>';
+        echo '<input type="text" id="filterInput-data" onkeyup="filterData(&quot;data&quot;)" placeholder="Suchtext eingeben..." title="Suchtext">';
+        echo '</p>';
+        
+        // Get data from DB
+        $conn = new Mysql();
+        $conn -> dbConnect();
+        $result = $conn -> select(
+            $this -> resultQuery_table,
+            $this -> resultQuery_cols,
+            $this -> resultQuery_where,
+            $this -> resultQuery_orderBy);
+        $conn -> dbDisconnect();
+        $conn = NULL;
+        
+        // Show table
+        if($this -> tablePermission) {
+            echo $this -> restrictedTable;/*
+            if(method_exists(dataTable_BioManager, "showWithDeliveryNoteDefaultActions"))
+            {
+                dataTable_BioManager::"showWithDeliveryNoteDefaultActions"(arg1, arg2);
+            }*/
+            $var1 = "dataTable_BioManager::showWithDeliveryNoteDefaultActions";
+            $var1(
+            /*dataTable_BioManager::{"showWithDeliveryNoteDefaultActions"}(*/
+            $result,
+            'dataTable-data',
+            array('year', 'nr', 'deliverDate', 'amount', 'supplierName', 'productName'),
+            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Lieferant', 'Produkt', 'Aktionen'));
+        } else {
+            echo $this -> defaultTable;
+        }
+        
+        // Generate script part for formatting the text alignement
+        $script = "";
+        $i = 0;
+        while(count($this -> alignRightColumns) > $i && $this -> alignRightColumns[$i] != NULL) {
+            $script .= 'formatTableCellRight("dataTable-data", ' . strval($this -> alignRightColumns[$i]) . ');';
+            $i++;
+        }
+        echo '<script>' . $script . '</script>';
+    }
+    
     /**
     * Show the page content
     *
@@ -99,65 +150,18 @@ class overviewForm extends form {
     *
     * @author David Hein
     */
-    function show($ownCode = "") {
-        // Generate script part for formatting the text alignement
-        $script = "";
-        $i = 0;
-        while(count($this -> alignRightColumns) > $i && $this -> alignRightColumns[$i] != NULL) {
-            $script .= "formatTableCellRight(\"dataTable-data\", " . strval($this -> alignRightColumns[$i]) . ");";
-            $i++;
-        }
-        
-        // Check if where is NULL or condition is given
-        if (is_null($this -> resultQuery_where)) {
-            $this -> resultQuery_where = "NULL";
-        } else {
-            $this -> resultQuery_where = "'" . $this -> resultQuery_where . "'";
-        }
-        
-        // Check if order by is NULL or given
-        if (is_null($this -> resultQuery_orderBy)) {
-            $this -> resultQuery_orderBy = "NULL";
-        } else {
-            $this -> resultQuery_orderBy = "'" . $this -> resultQuery_orderBy . "'";
-        }
-        
+    public function show() {
+        $this -> head();
+        $this -> showOverview();
+        $this -> foot();/*
+
         // Code for page logic
-        $code = file_get_contents('modules/dataTable_BioManager.php')
+        $code = file_get_contents()
             . "
             <?php
             " . $this -> forwardingLogic . "
             ?>
-            
-            <script src=\"js/filterDataTable.js\"></script>
-            <script src=\"js/dropdown.js\"></script>
-            <script src=\"js/formatTableCellRight.js\"></script>
-            <p>
-                <input type=\"text\" id=\"filterInput-data\" onkeyup=\"filterData(&quot;data&quot;)\" placeholder=\"Suchtext eingeben...\" title=\"Suchtext\"> 
-            </p>
-            <?php
-                \$conn = new Mysql();
-                \$conn -> dbConnect();
-                \$result = \$conn -> select(
-                    '" . $this -> resultQuery_table . "',
-                    '" . $this -> resultQuery_cols . "',
-                    " . $this -> resultQuery_where . ",
-                    " . $this -> resultQuery_orderBy . ");
-                \$conn -> dbDisconnect();
-                \$conn = NULL;
-            
-                if(" . $this -> tablePermission . ") {
-                " . $this -> restrictedTable . "
-                } else {
-                ". $this -> defaultTable . "
-                }
-            ?>
-            <script>"
-            . $script .
-            "</script>
-            ";
-
-        parent::show($code);
+*/
     }
 }
 ?>
