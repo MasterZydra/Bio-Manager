@@ -19,7 +19,7 @@
 <table>
     <tr>
         <td>Bio-Manager Version</td>
-        <td style="text-align: right">1.3.5</td>
+        <td style="text-align: right">1.3.6</td>
     </tr>
     <tr>
         <td>Entwickler</td>
