@@ -8,6 +8,8 @@
 * 
 * Changelog:
 * ----------
+* 16.09.2019:
+*   - Change logic. Does not use eval anymore.
 */
 
 /**
