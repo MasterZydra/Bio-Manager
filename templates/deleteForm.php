@@ -151,7 +151,7 @@ class deleteForm extends form {
                     $this -> deleteBeforeDelete($conn);
                     $this -> updateBeforeDelete($conn);
                     // Delete main entry
-                    $conn -> delete($this -> table, 'id = ' . $_GET['id']);
+                    $conn -> delete($this -> table, 'id = ' . $row['id']);
                     echo '<div class="infobox">';
                     echo 'Der Eintrag  wurde gelöscht.';
                     echo '</div>';
