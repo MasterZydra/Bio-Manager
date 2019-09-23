@@ -76,6 +76,31 @@ class mysql_preparedStatement {
             return $dataSet -> fetch_assoc();
         }
     }
+    
+    /**
+    * Select mysqli_result from an given id
+    *
+    * @param string $sqlQuery   SQL query which will be executed
+    * @param int    $givenId    Id of data row which will be selected
+    *
+    * @author David Hein
+    * @return mysqli_result/NULL
+    */
+    public function selectWhereId($sqlQuery, $givenId) {
+        $stmt = $this -> conn -> connectionString -> prepare($sqlQuery);
+        $stmt -> bind_param('i', $id);
+        // Query for developer
+        $this -> showQuery($sqlQuery);
+        // Assign values
+        $id = $givenId;
+        // Execute query
+        if (!$stmt -> execute()) {
+            $this -> showError($stmt -> error);
+            return NULL;
+        } else {
+            return $stmt -> get_result();
+        }
+    }
 }
 
 ?>
