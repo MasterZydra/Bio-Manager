@@ -19,6 +19,8 @@
     }
 
     include 'modules/header.php';
+
+    include 'modules/Mysql_preparedStatement_BioManager.php';
 ?>
 
 <h1>Abnehmer bearbeiten</h1>
@@ -55,10 +57,13 @@
             }
         }
 
-        $conn -> select('T_Recipient', '*', 'id = ' . $_GET['id']);
-        $row = $conn -> getFirstRow();
         $conn -> dbDisconnect();
         $conn = NULL;
+        
+        // Select data
+        $prepStmt = new mysql_preparedStatement_BioManager();
+        $row = $prepStmt -> selectRecipient(intval($_GET['id']));
+        $prepStmt -> destroy();
         
         // Check if id is valid 
         if ($row == NULL) {

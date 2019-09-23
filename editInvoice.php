@@ -21,6 +21,8 @@
     include 'modules/header.php';
 
     include 'modules/selectBox_BioManager.php';
+
+    include 'modules/Mysql_preparedStatement_BioManager.php';
 ?>
 
 <h1>Rechnung bearbeiten</h1>
@@ -53,10 +55,13 @@
             echo '</div>';
         }
 
-        $conn -> select('T_Invoice', '*', 'id = ' . $_GET['id']);
-        $row = $conn -> getFirstRow();
         $conn -> dbDisconnect();
         $conn = NULL;
+        
+        // Select data
+        $prepStmt = new mysql_preparedStatement_BioManager();
+        $row = $prepStmt -> selectInvoice(intval($_GET['id']));
+        $prepStmt -> destroy();
         
         // Check if id is valid 
         if ($row == NULL) {
