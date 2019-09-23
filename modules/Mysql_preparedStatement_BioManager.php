@@ -12,7 +12,7 @@
 * Changelog:
 * ----------
 */
-include 'modules/Mysql_preparedStatement.php';
+include_once 'modules/Mysql_preparedStatement.php';
 
 class mysql_preparedStatement_BioManager extends mysql_preparedStatement {
     /**
