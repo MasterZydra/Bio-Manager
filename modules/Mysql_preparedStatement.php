@@ -102,6 +102,27 @@ class mysql_preparedStatement {
             return $this -> getFirstRow($stmt -> get_result());
         }
     }
+    
+    /**
+    * Delete entry in table with an given id
+    *
+    * @param string $table  Table from where the data will be deleted
+    * @param int    $givenId    Id of data row which will be deleted
+    *
+    * @author David Hein
+    * @return boolean
+    */
+    public function deleteWhereId($table, $givenId) {
+        $sqlQuery = "DELETE FROM ". $this -> conn -> getDatabaseName() . ".$table WHERE id = ?";
+        $stmt = $this -> conn -> connectionString -> prepare($sqlQuery);
+        $stmt -> bind_param('i', $id);
+        // Query for developer
+        $this -> showQuery($sqlQuery);
+        // Assign values
+        $id = $givenId;
+        // Execute query
+        return $stmt -> execute();
+    }
 }
 
 ?>
