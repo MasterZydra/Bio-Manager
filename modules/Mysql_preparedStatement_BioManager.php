@@ -36,6 +36,19 @@ class mysql_preparedStatement_BioManager extends mysql_preparedStatement {
         $sqlQuery = "SELECT * FROM T_Supplier WHERE id = ?";
         return $this -> selectWhereId($sqlQuery, $supplierId);
     }
+    
+    /**
+    * Select setting with given id
+    *
+    * @param int    $settingId  Id of setting which data will be selected
+    *
+    * @author David Hein
+    * @return mysqli_result/NULL
+    */
+    public function selectSetting($settingId) {
+        $sqlQuery = "SELECT * FROM T_Setting WHERE id = ?";
+        return $this -> selectWhereId($sqlQuery, $settingId);
+    }
 }
 
 ?>
