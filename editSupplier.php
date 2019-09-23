@@ -19,6 +19,8 @@
     }
 
     include 'modules/header.php';
+
+    include 'modules/Mysql_preparedStatement_BioManager.php';
 ?>
 
 <h1>Lieferant bearbeiten</h1>
@@ -51,8 +53,12 @@
             }
         }
 
-        $conn -> select('T_Supplier', '*', 'id = ' . $_GET['id']);
-        $row = $conn -> getFirstRow();
+        // Select data
+        $prepStmt = new mysql_preparedStatement_BioManager();
+        $dataSet = $prepStmt -> selectSupplier(intval($_GET['id']));
+        $row = $prepStmt -> getFirstRow($dataSet);
+        $prepStmt -> destroy();
+        
         $conn -> dbDisconnect();
         $conn = NULL;
         
