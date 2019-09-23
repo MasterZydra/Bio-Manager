@@ -10,7 +10,7 @@
 * Changelog:
 * ----------
 */
-include 'modules/Mysql.php';
+include_once 'modules/Mysql.php';
 include 'modules/Mysql_BioManager.php';
 
 /*
