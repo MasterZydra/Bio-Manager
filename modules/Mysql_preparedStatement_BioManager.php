@@ -34,19 +34,7 @@ class mysql_preparedStatement_BioManager extends mysql_preparedStatement {
     */
     public function selectSupplier($supplierId) {
         $sqlQuery = "SELECT * FROM T_Supplier WHERE id = ?";
-        $stmt = $this -> conn -> connectionString -> prepare($sqlQuery);
-        $stmt -> bind_param('i', $id);
-        // Query for developer
-        $this -> showQuery($sqlQuery);
-        // Assign values
-        $id = $supplierId;
-        // Execute query
-        if (!$stmt -> execute()) {
-            $this -> showError($stmt -> error);
-            return NULL;
-        } else {
-            return $stmt -> get_result();
-        }
+        return $this -> selectWhereId($sqlQuery, $supplierId);
     }
 }
 
