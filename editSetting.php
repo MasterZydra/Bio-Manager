@@ -53,8 +53,7 @@
         
         // Select data
         $prepStmt = new mysql_preparedStatement_BioManager();
-        $dataSet = $prepStmt -> selectSetting(intval($_GET['id']));
-        $row = $prepStmt -> getFirstRow($dataSet);
+        $row = $prepStmt -> selectSetting(intval($_GET['id']));
         $prepStmt -> destroy();
         
         // Check if id is valid 

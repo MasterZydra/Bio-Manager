@@ -52,15 +52,14 @@
                 echo '</div>';
             }
         }
-
-        // Select data
-        $prepStmt = new mysql_preparedStatement_BioManager();
-        $dataSet = $prepStmt -> selectSupplier(intval($_GET['id']));
-        $row = $prepStmt -> getFirstRow($dataSet);
-        $prepStmt -> destroy();
         
         $conn -> dbDisconnect();
         $conn = NULL;
+
+        // Select data
+        $prepStmt = new mysql_preparedStatement_BioManager();
+        $row = $prepStmt -> selectSupplier(intval($_GET['id']));
+        $prepStmt -> destroy();
         
         // Check if id is valid 
         if ($row == NULL) {
