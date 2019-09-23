@@ -10,9 +10,12 @@
 * ----------
 * 16.09.2019:
 *   - Change logic. Does not use eval anymore.
+* 23.09.2019:
+*   - Use prepared statements for deleting the data
 */
 
 include 'templates/form.php';
+include_once 'modules/Mysql_preparedStatement.php';
 
 /**
 * The class form is generating an HTML template for a delete page.
@@ -151,7 +154,10 @@ class deleteForm extends form {
                     $this -> deleteBeforeDelete($conn);
                     $this -> updateBeforeDelete($conn);
                     // Delete main entry
-                    $conn -> delete($this -> table, 'id = ' . $row['id']);
+                    $prepStmt = new mysql_preparedStatement();
+                    $prepStmt -> deleteWhereId($this -> table, intval($row['id']));
+                    $prepStmt -> destroy();
+                    
                     echo '<div class="infobox">';
                     echo 'Der Eintrag  wurde gelöscht.';
                     echo '</div>';
