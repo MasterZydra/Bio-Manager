@@ -98,7 +98,7 @@ class mysql_preparedStatement {
             $this -> showError($stmt -> error);
             return NULL;
         } else {
-            return $stmt -> get_result();
+            return $this -> getFirstRow($stmt -> get_result());
         }
     }
 }
