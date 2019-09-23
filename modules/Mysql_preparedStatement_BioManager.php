@@ -49,6 +49,84 @@ class mysql_preparedStatement_BioManager extends mysql_preparedStatement {
         $sqlQuery = "SELECT * FROM T_Setting WHERE id = ?";
         return $this -> selectWhereId($sqlQuery, $settingId);
     }
+    
+    /**
+    * Select recipient with given id
+    *
+    * @param int    $recipientId    Id of recipient whoes data will be selected
+    *
+    * @author David Hein
+    * @return mysqli_result/NULL
+    */
+    public function selectRecipient($recipientId) {
+        $sqlQuery = "SELECT * FROM T_Recipient WHERE id = ?";
+        return $this -> selectWhereId($sqlQuery, $recipientId);
+    }
+    
+    /**
+    * Select product with given id
+    *
+    * @param int    $productId  Id of product which data will be selected
+    *
+    * @author David Hein
+    * @return mysqli_result/NULL
+    */
+    public function selectProduct($productId) {
+        $sqlQuery = "SELECT * FROM T_Product WHERE id = ?";
+        return $this -> selectWhereId($sqlQuery, $productId);
+    }
+
+    /**
+    * Select pricing with given id
+    *
+    * @param int    $pricingId  Id of pricing which data will be selected
+    *
+    * @author David Hein
+    * @return mysqli_result/NULL
+    */
+    public function selectPricing($pricingId) {
+        $sqlQuery = "SELECT * FROM T_Pricing WHERE id = ?";
+        return $this -> selectWhereId($sqlQuery, $pricingId);
+    }
+    
+    /**
+    * Select plot with given id
+    *
+    * @param int    $plotId Id of plot which data will be selected
+    *
+    * @author David Hein
+    * @return mysqli_result/NULL
+    */
+    public function selectPlot($plotId) {
+        $sqlQuery = "SELECT * FROM T_Plot WHERE id = ?";
+        return $this -> selectWhereId($sqlQuery, $plotId);
+    }
+
+    /**
+    * Select invoice with given id
+    *
+    * @param int    $invoiceId  Id of invoice which data will be selected
+    *
+    * @author David Hein
+    * @return mysqli_result/NULL
+    */
+    public function selectInvoice($invoiceId) {
+        $sqlQuery = "SELECT * FROM T_Invoice WHERE id = ?";
+        return $this -> selectWhereId($sqlQuery, $invoiceId);
+    }
+    
+    /**
+    * Select delivery note with given id
+    *
+    * @param int    $deliveryNoteId Id of delivery note which data will be selected
+    *
+    * @author David Hein
+    * @return mysqli_result/NULL
+    */
+    public function selectDeliveryNote($deliveryNoteId) {
+        $sqlQuery = "SELECT * FROM T_DeliveryNote WHERE id = ?";
+        return $this -> selectWhereId($sqlQuery, $deliveryNoteId);
+    }
 }
 
 ?>
