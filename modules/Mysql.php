@@ -64,6 +64,16 @@ class Mysql extends Dbconfig {
     }
 
     /**
+    * Get database name
+    *
+    * @author David Hein
+    * @return string
+    */
+    public function getDatabaseName() {
+        return $this -> databaseName;
+    }
+    
+    /**
     * Execute query on database and returns data set
     *
     * @param string    $query  SQL query which will be executed
