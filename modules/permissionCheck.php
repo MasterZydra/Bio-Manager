@@ -9,9 +9,12 @@
 * 
 * Changelog:
 * ----------
+* 23.09.2019:
+*   - Use prepared statements for selecting the data
 */
 include_once 'modules/Mysql.php';
 include 'modules/Mysql_BioManager.php';
+include 'modules/Mysql_preparedStatement_BioManager.php';
 
 /*
 * Get permission for current user.
@@ -21,7 +24,9 @@ include 'modules/Mysql_BioManager.php';
 * @return Boolean if user has permission
 */
 function checkPermission($permission) {
-    return getUserPermission($_SESSION['userId'], $permission);
+    $prepStmt = new mysql_preparedStatement_BioManager();
+    return $prepStmt -> getUserPermission(intval($_SESSION['userId']), $permission);
+    $prepStmt -> destroy();
 }
 
 /*

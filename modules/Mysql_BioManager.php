@@ -15,33 +15,6 @@
 * ----------
 */
 
-/*
-* Get a permission for a given user id.
-*
-* @param int    $userId     User id of the user whose permission is requested
-* @param string $permission Permission name
-*
-* @author David Hein
-* @return false if not no data has been found.
-*/
-function getUserPermission($userId, $permission) {
-    // Get user permissions
-    $conn = new Mysql();
-    $conn -> dbConnect();
-    $conn -> select('T_UserPermission', $permission, 'userId =' . $userId);
-    $row = $conn -> getFirstRow();
-    $conn -> dbDisconnect();
-    $conn = NULL;
-    
-    if (is_null($row)) {
-        return false;
-    }
-    else {
-        return $row[$permission];
-    }
-    return false;
-}
-
 /**
 * Update a supplier
 *
