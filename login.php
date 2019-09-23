@@ -20,7 +20,7 @@
     if(isset($_GET['login'])) {        
         $login = $_POST['user_login'];
         $password = $_POST['user_password'];
-        // Get user login data        
+        // Get user login data
         $conn = new Mysql();
         $conn -> dbConnect();
         $result = $conn->select('T_UserLogin', '*', 'login = \'' . $login . '\'');
