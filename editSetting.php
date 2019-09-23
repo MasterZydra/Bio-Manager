@@ -20,6 +20,8 @@
     }
 
     include 'modules/header.php';
+
+    include 'modules/Mysql_preparedStatement_BioManager.php';
 ?>
 <h1>Einstellung bearbeiten</h1>
 
@@ -46,10 +48,14 @@
             echo '</div>';
         }
 
-        $conn -> select('T_Setting', '*', 'id = ' . $_GET['id']);
-        $row = $conn -> getFirstRow();
         $conn -> dbDisconnect();
         $conn = NULL;
+        
+        // Select data
+        $prepStmt = new mysql_preparedStatement_BioManager();
+        $dataSet = $prepStmt -> selectSetting(intval($_GET['id']));
+        $row = $prepStmt -> getFirstRow($dataSet);
+        $prepStmt -> destroy();
         
         // Check if id is valid 
         if ($row == NULL) {
