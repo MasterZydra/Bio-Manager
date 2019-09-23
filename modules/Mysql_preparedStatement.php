@@ -80,13 +80,14 @@ class mysql_preparedStatement {
     /**
     * Select mysqli_result from an given id
     *
-    * @param string $sqlQuery   SQL query which will be executed
+    * @param string $table  Table from where the data will be selected
     * @param int    $givenId    Id of data row which will be selected
     *
     * @author David Hein
     * @return mysqli_result/NULL
     */
-    public function selectWhereId($sqlQuery, $givenId) {
+    public function selectWhereId($table, $givenId) {
+        $sqlQuery = "SELECT * FROM ". $this -> conn -> getDatabaseName() . ".$table WHERE id = ?";
         $stmt = $this -> conn -> connectionString -> prepare($sqlQuery);
         $stmt -> bind_param('i', $id);
         // Query for developer

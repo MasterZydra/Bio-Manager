@@ -8,6 +8,8 @@
 * 
 * Changelog:
 * ----------
+* 23.09.2019:
+*   - Use prepared statements for selecting the data
 */
 
     include 'modules/header_user.php';
@@ -53,7 +55,7 @@
         
         // Select data
         $prepStmt = new mysql_preparedStatement_BioManager();
-        $row = $prepStmt -> selectSetting(intval($_GET['id']));
+        $row = $prepStmt -> selectWhereId("T_Setting", intval($_GET['id']));
         $prepStmt -> destroy();
         
         // Check if id is valid 
