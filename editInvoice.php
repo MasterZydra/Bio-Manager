@@ -24,7 +24,7 @@
 
     include 'modules/selectBox_BioManager.php';
 
-    include 'modules/Mysql_preparedStatement_BioManager.php';
+    include_once 'modules/Mysql_preparedStatement_BioManager.php';
 ?>
 
 <h1>Rechnung bearbeiten</h1>

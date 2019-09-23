@@ -22,7 +22,7 @@
 
     include 'modules/header.php';
 
-    include 'modules/Mysql_preparedStatement_BioManager.php';
+    include_once 'modules/Mysql_preparedStatement_BioManager.php';
 ?>
 
 <h1>Produkt bearbeiten</h1>
