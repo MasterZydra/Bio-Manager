@@ -96,18 +96,20 @@
         <input type="number" value="<?php echo $row['nr']; ?>" readonly>
     </label><br>
     
+    <label for="productId" class="required">Produkt:</label><br>
+    <?php echo productSelectBox(NULL, $row['productId']); ?><br>
+    
     <label for="note_date" class="required">Lieferdatum:</label><br>
     <input id="note_date" name="note_date" type="date" value="<?php echo $row['deliverDate']; ?>" autofocus><br>
     
     <label>Liefermenge (in <?php echo getSetting('volumeUnit'); ?>):<br>
         <input type="number" name="note_amount" value="<?php echo $row['amount']; ?>" placeholder="Menge eingeben">
     </label><br>
+    
     <label>Lieferant:<br>
         <?php echo supplierSelectBox(false, $row['supplierId'], false); ?>
     </label><br>
-    <label>Produkt:<br>
-        <?php echo productSelectBox(NULL, $row['productId']); ?>
-    </label><br>
+
     <button>Änderungen speichern</button>
 </form>
 <?php
