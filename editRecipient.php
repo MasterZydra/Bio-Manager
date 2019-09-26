@@ -64,7 +64,7 @@
         
         // Select data
         $prepStmt = new mysql_preparedStatement_BioManager();
-        $row = $prepStmt -> selectWhereId("T_Recipient", intval($_GET['id']));
+        $row = $prepStmt -> selectWhereId("T_Recipient", $_GET['id']);
         $prepStmt -> destroy();
         
         // Check if id is valid 

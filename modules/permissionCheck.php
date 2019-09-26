@@ -30,7 +30,7 @@ function checkPermission($permission) {
     }
     // Get permission from database
     $prepStmt = new mysql_preparedStatement_BioManager();
-    return $prepStmt -> getUserPermission(intval($_SESSION['userId']), $permission);
+    return $prepStmt -> getUserPermission($_SESSION['userId'], $permission);
     $prepStmt -> destroy();
 }
 

@@ -55,7 +55,7 @@
         
         // Select data
         $prepStmt = new mysql_preparedStatement_BioManager();
-        $row = $prepStmt -> selectWhereId("T_Setting", intval($_GET['id']));
+        $row = $prepStmt -> selectWhereId("T_Setting", $_GET['id']);
         $prepStmt -> destroy();
         
         // Check if id is valid 

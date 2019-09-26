@@ -62,7 +62,7 @@
         
         // Select data
         $prepStmt = new mysql_preparedStatement_BioManager();
-        $row = $prepStmt -> selectWhereId("T_Product", intval($_GET['id']));
+        $row = $prepStmt -> selectWhereId("T_Product", $_GET['id']);
         $prepStmt -> destroy();
         
         // Check if id is valid 
