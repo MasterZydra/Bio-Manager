@@ -70,7 +70,7 @@ class Mysql extends Dbconfig {
     * @return string
     */
     public function getDatabaseName() {
-        return $this -> databaseName;
+        return "`" . $this -> databaseName . "`";
     }
     
     /**
