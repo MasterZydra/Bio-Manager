@@ -47,8 +47,8 @@ class deleteForm extends form {
     
     /**
     * Table entries which will be deleted before main entry will be deleted.
-    * The array needs to contain arrays which contain the [0] table name and
-    * the [1] where condition.
+    * The array needs to contain arrays which contain the [0] table name,
+    * [1] where column and [2] id to check on.
     * @var array
     */
     public $deleteBeforeDelete;
@@ -98,10 +98,13 @@ class deleteForm extends form {
     *
     * author David Hein
     */
-    protected function deleteBeforeDelete($conn) {
+    protected function deleteBeforeDelete() {
         $i = 0;
         while(count($this -> deleteBeforeDelete) > $i && $this -> deleteBeforeDelete[$i] != NULL) {
-            $conn -> delete($this -> deleteBeforeDelete[$i][0], $this -> deleteBeforeDelete[$i][1]);
+            $this -> prepStmt -> deleteWhereCol(
+                $this -> deleteBeforeDelete[$i][0],
+                $this -> deleteBeforeDelete[$i][1],
+                $this -> deleteBeforeDelete[$i][2]);
             $i++;
         }
     }
@@ -163,7 +166,7 @@ class deleteForm extends form {
                 $conn -> dbConnect();
                 if(isset($_GET['delete'])) {
                     // Before delete actions
-                    $this -> deleteBeforeDelete($conn);
+                    $this -> deleteBeforeDelete();
                     $this -> updateBeforeDelete($conn);
                     // Delete main entry
                     $this -> prepStmt -> deleteWhereId($this -> table, $row['id']);
