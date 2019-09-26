@@ -15,7 +15,7 @@
 */
 
 include 'templates/form.php';
-include_once 'modules/Mysql_preparedStatement.php';
+include_once 'modules/Mysql_preparedStatement_BioManager.php';
 
 /**
 * The class form is generating an HTML template for a delete page.
@@ -77,6 +77,15 @@ class deleteForm extends form {
         
         $this -> deleteBeforeDelete = array();
         $this -> updateBeforeDelete = array();
+        
+        $this -> prepStmt = new mysql_preparedStatement_BioManager();
+    }
+    
+    /**
+    * Close all open connections used in class
+    */
+    function destroy() {
+        $this -> prepStmt -> destroy();
     }
     
     /**
@@ -187,6 +196,8 @@ class deleteForm extends form {
         $this -> head();
         $this -> deleteLogic();
         $this -> foot();
+        
+        $this -> destroy();
     }
 }
 ?>
