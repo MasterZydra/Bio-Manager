@@ -126,6 +126,33 @@ class mysql_preparedStatement {
         // Execute query
         return $stmt -> execute();
     }
+    
+    /**
+    * Select mysqli_result from an given column, table, where column and id
+    *
+    * @param string $table  Table from where the data will be selected
+    * @param int    $givenId    Id of data row which will be selected
+    *
+    * @author David Hein
+    * @return mysqli_result/NULL
+    */
+    public function selectWhereId($table, $givenId) {
+        return $this -> selectColWhereCol("*", $table, "id", $givenId);
+    }
+    
+    /**
+    * Select mysqli_result from an given column, table, where column and id
+    *
+    * @param string $col    Column which will be selected
+    * @param string $table  Table from where the data will be selected
+    * @param int    $givenId    Id of data row which will be selected
+    *
+    * @author David Hein
+    * @return mysqli_result/NULL
+    */
+    public function selectColWhereId($col, $table, $givenId) {
+        return $this -> selectColWhereCol($col, $table, "id", $givenId);
+    }
 }
 
 ?>
