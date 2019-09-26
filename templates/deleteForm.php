@@ -61,6 +61,9 @@ class deleteForm extends form {
     */
     public $updateBeforeDelete;
     
+    
+    protected $prepStmt;
+    
     /**
     * Construct a new deleteForm object and set default values for the properties
     *
@@ -163,9 +166,7 @@ class deleteForm extends form {
                     $this -> deleteBeforeDelete($conn);
                     $this -> updateBeforeDelete($conn);
                     // Delete main entry
-                    $prepStmt = new mysql_preparedStatement();
-                    $prepStmt -> deleteWhereId($this -> table, intval($row['id']));
-                    $prepStmt -> destroy();
+                    $this -> prepStmt -> deleteWhereId($this -> table, $row['id']);
                     
                     echo '<div class="infobox">';
                     echo 'Der Eintrag  wurde gelöscht.';
