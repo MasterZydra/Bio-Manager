@@ -24,6 +24,11 @@ include 'modules/Mysql_preparedStatement_BioManager.php';
 * @return Boolean if user has permission
 */
 function checkPermission($permission) {
+    // Return always false, if visitor is not logged in
+    if (!isset($_SESSION['userId'])) {
+        return false;
+    }
+    // Get permission from database
     $prepStmt = new mysql_preparedStatement_BioManager();
     return $prepStmt -> getUserPermission(intval($_SESSION['userId']), $permission);
     $prepStmt -> destroy();
