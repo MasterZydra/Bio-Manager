@@ -12,7 +12,6 @@
 * 23.09.2019:
 *   - Use prepared statements for selecting the data
 */
-include_once 'modules/Mysql.php';
 include 'modules/Mysql_BioManager.php';
 include_once 'modules/Mysql_preparedStatement_BioManager.php';
 
