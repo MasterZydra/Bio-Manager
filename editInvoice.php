@@ -82,24 +82,26 @@
     <label>Jahr:<br>
         <input type="number" name="invoiceYear" value="<?php echo $row['year']; ?>" readonly>
     </label><br>
+    
     <label>Nr:<br>
         <input type="number" name="invoiceNr" value="<?php echo $row['nr']; ?>" readonly>
     </label><br>
-    <label>Rechnungsdatum:<br>
-        <input type="date" name="invoiceDate" value="<?php echo $row['invoiceDate']; ?>" placeholder="Rechnungsdatum geben" 
-        <?php if($row['isPaid']){ echo ' readonly'; } else { echo ' required autofocus'; } ?>>
-    </label><br>
-    <label>Abnehmer:<br>
-        <?php
-            if($row['isPaid']){
-                echo recipientSelectBox(NULL, $row['recipientId'], true);
-            } elseif(isset($_POST['recipientId'])) {
-                echo recipientSelectBox(NULL, $_POST['recipientId']);
-            } else {
-                echo recipientSelectBox(NULL, $row['recipientId']);
-            }
-        ?>
-    </label><br>
+    
+    <label for="invoiceDate" class="required">Rechnungsdatum:</label><br>
+    <input id="invoiceDate" name="invoiceDate" type="date" value="<?php echo $row['invoiceDate']; ?>" placeholder="Rechnungsdatum geben" 
+    <?php if($row['isPaid']) { echo ' readonly'; } else { echo ' required autofocus'; } ?>><br>
+    
+    <label for="recipientId" class="required">Abnehmer:</label><br>
+    <?php
+        if($row['isPaid']){
+            echo recipientSelectBox(NULL, $row['recipientId'], true);
+        } elseif(isset($_POST['recipientId'])) {
+            echo recipientSelectBox(NULL, $_POST['recipientId']);
+        } else {
+            echo recipientSelectBox(NULL, $row['recipientId']);
+        }
+    ?><br>
+    
     <label>
         <input type="hidden" name="invoiceIsPaid" value="0">
         <input type="checkbox" name="invoiceIsPaid" value="1"
@@ -110,6 +112,7 @@
            ?>>
         Ist bezahlt
     </label><br>
+    
     <button <?php if($row['isPaid']){ echo ' disabled'; }?>>Änderungen speichern</button>
 </form>
 <?php
