@@ -12,7 +12,7 @@
 * ----------
 */
     include 'modules/header_everyone.php';
-    include 'modules/permissionCheck.php';
+    include_once 'modules/permissionCheck.php';
     include 'modules/header.php';
 
     if(!isLoggedIn()) {
