@@ -24,6 +24,20 @@ class mysql_preparedStatement_BioManager extends mysql_preparedStatement {
         parent::__construct();
     }
     
+    /**
+    * Select mysqli_result from an given column, table and userId
+    *
+    * @param string $col    Column which will be selected
+    * @param string $table  Table from where the data will be selected
+    * @param int    $givenId    Id of data row which will be selected
+    *
+    * @author David Hein
+    * @return mysqli_result/NULL
+    */
+    public function selectColWhereUserId($col, $table, $givenId) {
+        return $this -> selectColWhereCol($col, $table, "userId", $givenId);
+    }
+    
     /*
     * Get a permission for a given user id.
     *
