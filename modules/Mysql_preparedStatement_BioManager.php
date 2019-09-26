@@ -38,6 +38,19 @@ class mysql_preparedStatement_BioManager extends mysql_preparedStatement {
         return $this -> selectColWhereCol($col, $table, "userId", $givenId);
     }
     
+    /**
+    * Delete entry in table with an given table and userId
+    *
+    * @param string $table  Table from where the data will be deleted
+    * @param int    $givenId    Id of data row which will be deleted
+    *
+    * @author David Hein
+    * @return boolean
+    */
+    public function deleteWhereUserId($table, $givenId) {
+        return $this -> deleteWhereCol($table, "userId", $givenId);
+    }
+    
     /*
     * Get a permission for a given user id.
     *
