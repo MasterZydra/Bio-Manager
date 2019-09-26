@@ -95,7 +95,7 @@ class mysql_preparedStatement {
         // Query for developer
         $this -> showQuery($sqlQuery);
         // Assign values
-        $id = $givenId;
+        $id = intval($givenId);
         // Execute query
         if (!$stmt -> execute()) {
             $this -> showError($stmt -> error);
@@ -122,7 +122,7 @@ class mysql_preparedStatement {
         // Query for developer
         $this -> showQuery($sqlQuery);
         // Assign values
-        $id = $givenId;
+        $id = intval($givenId);
         // Execute query
         return $stmt -> execute();
     }
