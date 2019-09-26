@@ -60,29 +60,16 @@ class mysql_preparedStatement_BioManager extends mysql_preparedStatement {
     * @author David Hein
     * @return boolean/NULL - false if not no data has been found.
     */
-    function getUserPermission($givenUserId, $permission) {
-        $sqlQuery = "SELECT $permission FROM ". $this -> conn -> getDatabaseName() . ".T_UserPermission WHERE userId = ?";
-        $stmt = $this -> conn -> connectionString -> prepare($sqlQuery);
-        $stmt -> bind_param('i', $userId);
-        // Query for developer
-        $this -> showQuery($sqlQuery);
-        // Assign values
-        $userId = $givenUserId;
-        // Execute query
-        if (!$stmt -> execute()) {
-            $this -> showError($stmt -> error);
-            return NULL;
-        } else {
-            $row = $this -> getFirstRow($stmt -> get_result());
-            // Evalutate data
-            if (is_null($row)) {
-                return false;
-            }
-            else {
-                return $row[$permission];
-            }
+    public function getUserPermission($givenUserId, $permission) {
+        $row = $this -> selectColWhereUserId($permission, "T_UserPermission", $givenUserId);
+        // Evalutate data
+        if (is_null($row)) {
             return false;
         }
+        else {
+            return $row[$permission];
+        }
+        return false;
     }
 }
 
