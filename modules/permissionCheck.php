@@ -94,12 +94,9 @@ function isLoggedIn() {
 * @return Boolean if user is supplier
 */
 function isSupplier() {
-    $conn = new Mysql();
-    $conn -> dbConnect();
-    $conn -> select('T_User', 'supplierId', 'id =' . $_SESSION['userId']);
-    $row = $conn -> getFirstRow();
-    $conn -> dbDisconnect();
-    $conn = NULL;
+    $prepStmt = new mysql_preparedStatement();
+    $row = $prepStmt -> selectColWhereId("supplierId", "T_User", $_SESSION['userId']);
+    $prepStmt -> destroy();
     
     return checkPermission('isSupplier') && !is_null($row) && !is_null($row['supplierId']);
 }
@@ -111,12 +108,9 @@ function isSupplier() {
 * @return Supplier id or 0 if no id found
 */
 function getUserSupplierId() {
-    $conn = new Mysql();
-    $conn -> dbConnect();
-    $conn -> select('T_User', 'supplierId', 'id =' . $_SESSION['userId']);
-    $row = $conn -> getFirstRow();
-    $conn -> dbDisconnect();
-    $conn = NULL;
+    $prepStmt = new mysql_preparedStatement();
+    $row = $prepStmt -> selectColWhereId("supplierId", "T_User", $_SESSION['userId']);
+    $prepStmt -> destroy();
     
     if(is_null($row)){
         return 0;
