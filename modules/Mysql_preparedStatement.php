@@ -153,6 +153,19 @@ class mysql_preparedStatement {
     public function selectColWhereId($col, $table, $givenId) {
         return $this -> selectColWhereCol($col, $table, "id", $givenId);
     }
+    
+    /**
+    * Delete entry in table with an given table and id
+    *
+    * @param string $table  Table from where the data will be deleted
+    * @param int    $givenId    Id of data row which will be deleted
+    *
+    * @author David Hein
+    * @return boolean
+    */
+    public function deleteWhereId($table, $givenId) {
+        $this -> deleteWhereCol($table, "id", $givenId);
+    }
 }
 
 ?>
