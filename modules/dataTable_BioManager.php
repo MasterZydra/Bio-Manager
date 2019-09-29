@@ -23,6 +23,9 @@ include 'modules/dataTable.php';
 *
 * Changelog:
 * ----------
+* 29.09.2019:
+*   - showWithInvoiceDefaultActions - Change boolean for new tab to array of
+*.    boolean so only showing the invoice opens in a new tab
 */
 class dataTable_BioManager extends dataTable {
     /**
@@ -180,7 +183,7 @@ class dataTable_BioManager extends dataTable {
             array('Anzeigen', 'Bearbeiten', 'Löschen'),
             $headings,
             false,
-            true);
+            array(true, false, false));
     }
 }
 
