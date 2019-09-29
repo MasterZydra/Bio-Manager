@@ -20,7 +20,10 @@
 * Changelog:
 * ----------
 * 08.09.2019:
-* - Add ln2br to show line breaks in table
+*   - Add ln2br to show line breaks in table
+* 29.09.2019:
+*   - Add logic to give an array of booleans to $openInNewTab to open only specific
+*     actions in a new tab.
 */
 class dataTable {
     /**
@@ -33,7 +36,7 @@ class dataTable {
     * @param array of string    $actions    Name of the action which will be given in the GET param 'action'
     * @param array of string    $actionNames    Name which will be shown in the action dropdown
     * @param boolean    $useCompleteWidth   Show table over complete window width. Default is false
-    * @param boolean    $openInNewTab   Open link in new tab
+    * @param boolean/array of boolean   $openInNewTab   Open link in new tab. Array if only selected actions shall open in new tab
     *
     * @Author: David Hein
     */
@@ -73,7 +76,9 @@ class dataTable {
                     $i = 0;
                     foreach($actions as $action){
                         echo '      <a href="?action=' . $action . '&id=' . $row['id'] . '"';
-                        if($openInNewTab) {
+                        if ((gettype($openInNewTab) === "boolean" && $openInNewTab) ||
+                           (gettype($openInNewTab) === "array" && $openInNewTab[$i]))
+                        {
                             echo ' target="_blank"';
                         }
                         echo '>' . $actionNames[$i] . '</a>';
