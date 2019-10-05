@@ -76,27 +76,28 @@ class dataTable {
                 foreach($columns as $dataCol) {
                     echo '<td>' . nl2br($row[$dataCol]) . '</td>';
                 }
-                // Dropdown for actions
-                if(!is_null($actions) && !is_null($actionNames)) {
-                    echo '<td>';
-                    echo '  <div class="dropdown">';
-                    echo '    <button onclick="openDropdown(' . $row['id'] . ')" class="dropbtn">Aktionen</button>';
-                    echo '    <div class="dropdown-content" id="dropdown-' . $row['id'] . '">';
-                    $i = 0;
-                    foreach($actions as $action){
-                        echo '      <a href="?action=' . $action . '&id=' . $row['id'] . '"';
-                        if ((gettype($openInNewTab) === "boolean" && $openInNewTab) ||
-                           (gettype($openInNewTab) === "array" && $openInNewTab[$i]))
-                        {
-                            echo ' target="_blank"';
-                        }
-                        echo '>' . $actionNames[$i] . '</a>';
-                        $i++;
-                    }
-                    echo '    </div>';
-                    echo '  </div>';
-                    echo '</td>';
+                if(is_null($actions) || is_null($actionNames)) {
+                    continue;
                 }
+                // Dropdown for actions
+                echo '<td>';
+                echo '  <div class="dropdown">';
+                echo '    <button onclick="openDropdown(' . $row['id'] . ')" class="dropbtn">Aktionen</button>';
+                echo '    <div class="dropdown-content" id="dropdown-' . $row['id'] . '">';
+                $i = 0;
+                foreach($actions as $action){
+                    echo '      <a href="?action=' . $action . '&id=' . $row['id'] . '"';
+                    if ((gettype($openInNewTab) === "boolean" && $openInNewTab) ||
+                       (gettype($openInNewTab) === "array" && $openInNewTab[$i]))
+                    {
+                        echo ' target="_blank"';
+                    }
+                    echo '>' . $actionNames[$i] . '</a>';
+                    $i++;
+                }
+                echo '    </div>';
+                echo '  </div>';
+                echo '</td>';
             }
         }
         echo '</table>';

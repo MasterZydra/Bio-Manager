@@ -133,61 +133,57 @@ class deleteForm extends form {
     * @author David Hein
     */
     protected function deleteLogic() {
-        $showDialog = true;
-        
         // Check if id is given
         if(!isset($_GET['id'])) {
             echo '<div class="warning">';
             echo 'Es wurde kein Eintrag übergeben. Zurück zu ' . $this -> linkAllElements;
             echo '</div>';
-            $showDialog = false;
+            return;
         }
         
-        if($showDialog && isset($_GET['id'])){
-            // Get data from DB
+        // Get data from DB
+        $conn = new Mysql();
+        $conn -> dbConnect();
+        $conn -> select($this -> table, '*', 'id = ' . $_GET['id']);
+        $row = $conn -> getFirstRow();
+        $conn -> dbDisconnect();
+        $conn = NULL;
+
+        // Check if id is valid
+        if ($row == NULL) {
+            // Warning if no entry in DB was found
+            echo '<div class="warning">';
+            echo 'Der ausgewählte Eintrag wurde in der Datenbank nicht gefunden. '
+                . 'Zurück zu ' . $this -> linkAllElements;
+            echo '</div>';
+            return;
+        }
+        
+        // Delete entry
+        if(isset($_GET['delete'])) {
             $conn = new Mysql();
             $conn -> dbConnect();
-            $conn -> select($this -> table, '*', 'id = ' . $_GET['id']);
-            $row = $conn -> getFirstRow();
+            // Before delete actions
+            $this -> deleteBeforeDelete();
+            $this -> updateBeforeDelete($conn);
+            // Delete main entry
+            $this -> prepStmt -> deleteWhereId($this -> table, $row['id']);
+            // Close open connection
             $conn -> dbDisconnect();
             $conn = NULL;
             
-            // Check if id is valid
-            if ($row == NULL) {
-                // Warning if no entry in DB was found
-                echo '<div class="warning">';
-                echo 'Der ausgewählte Eintrag wurde in der Datenbank nicht gefunden. '
-                    . 'Zurück zu ' . $this -> linkAllElements;
-                echo '</div>';
-                $showDialog = false;
-            } else {
-                // Delete entry
-                $conn = new Mysql();
-                $conn -> dbConnect();
-                if(isset($_GET['delete'])) {
-                    // Before delete actions
-                    $this -> deleteBeforeDelete();
-                    $this -> updateBeforeDelete($conn);
-                    // Delete main entry
-                    $this -> prepStmt -> deleteWhereId($this -> table, $row['id']);
-                    
-                    echo '<div class="infobox">';
-                    echo 'Der Eintrag  wurde gelöscht.';
-                    echo '</div>';
-                    $showDialog = false;
-                }
-                $conn -> dbDisconnect();
-                $conn = NULL;
-            }
-            if($showDialog) {
-?>
-    <form action="?id=<?php echo $row['id']; ?>&delete=1" method="post">
-        Wollen Sie den Eintrag wirklich löschen?<br>
-        <button>Ja</button><button type="button" onclick="window.location.href='<?php echo $this -> overviewPage; ?>'">Abbrechen</button>
-    </form>
-<?php
-            }
+            echo '<div class="infobox">';
+            echo 'Der Eintrag  wurde gelöscht.';
+            echo '</div>';
+            return;
         }
+
+        ?>
+        <form action="?id=<?php echo $row['id']; ?>&delete=1" method="post">
+            Wollen Sie den Eintrag wirklich löschen?<br>
+            <button>Ja</button><button type="button" onclick="window.location.href='<?php echo $this -> overviewPage; ?>'">Abbrechen</button>
+        </form>
+        <?php
     }
     
     /**
