@@ -40,7 +40,16 @@ class dataTable {
     *
     * @Author: David Hein
     */
-    private static function generateTable($dataSet, $tableId, $columns, $headings = NULL, $actions = NULL, $actionNames = NULL, $useCompleteWidth = false, $openInNewTab = false) {
+    private static function generateTable(
+        $dataSet,
+        $tableId,
+        $columns,
+        $headings = NULL,
+        $actions = NULL,
+        $actionNames = NULL,
+        $useCompleteWidth = false,
+        $openInNewTab = false)
+    {
         // Add id to table
         if (!is_null($tableId)) {
             echo '<table id="' . $tableId . '"';
@@ -107,7 +116,16 @@ class dataTable {
     *
     * @Author: David Hein
     */
-    public static function showWithActions($dataSet, $tableId, $columns, $actions, $actionNames, $headings = NULL, $useCompleteWidth = false, $openInNewTab = false) {
+    public static function showWithActions(
+        $dataSet,
+        $tableId,
+        $columns,
+        $actions,
+        $actionNames,
+        $headings = NULL,
+        $useCompleteWidth = false,
+        $openInNewTab = false)
+    {
         dataTable::generateTable(
             $dataSet,
             $tableId,
@@ -131,7 +149,14 @@ class dataTable {
     *
     * @Author: David Hein
     */
-    public static function show($dataSet, $tableId, $columns, $headings = NULL, $useCompleteWidth = false, $openInNewTab = false) {
+    public static function show(
+        $dataSet,
+        $tableId,
+        $columns,
+        $headings = NULL,
+        $useCompleteWidth = false,
+        $openInNewTab = false)
+    {
         dataTable::generateTable(
             $dataSet,
             $tableId,

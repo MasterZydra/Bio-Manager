@@ -38,7 +38,12 @@ class dataTable_BioManager extends dataTable {
     *
     * @Author: David Hein
     */
-    public static function showWithDefaultActions($dataSet, $tableId, $columns, $headings = NULL) {
+    public static function showWithDefaultActions(
+        $dataSet,
+        $tableId,
+        $columns,
+        $headings = NULL)
+    {
         dataTable_BioManager::showWithActions(
             $dataSet,
             $tableId,
@@ -58,7 +63,12 @@ class dataTable_BioManager extends dataTable {
     *
     * @Author: David Hein
     */
-    public static function showWithUserActions($dataSet, $tableId, $columns, $headings = NULL) {
+    public static function showWithUserActions(
+        $dataSet,
+        $tableId,
+        $columns,
+        $headings = NULL)
+    {
         dataTable_BioManager::showWithActions(
             $dataSet,
             $tableId,
@@ -78,7 +88,12 @@ class dataTable_BioManager extends dataTable {
     *
     * @Author: David Hein
     */
-    public static function showWithDeliveryNoteDefaultActions($dataSet, $tableId, $columns, $headings = NULL) {
+    public static function showWithDeliveryNoteDefaultActions(
+        $dataSet,
+        $tableId,
+        $columns,
+        $headings = NULL)
+    {
         dataTable_BioManager::showWithActions(
             $dataSet,
             $tableId,
@@ -98,7 +113,12 @@ class dataTable_BioManager extends dataTable {
     *
     * @Author: David Hein
     */
-    public static function showWithDeliveryNoteActions($dataSet, $tableId, $columns, $headings = NULL) {
+    public static function showWithDeliveryNoteActions(
+        $dataSet,
+        $tableId,
+        $columns,
+        $headings = NULL)
+    {
         dataTable_BioManager::showWithActions(
             $dataSet,
             $tableId,
@@ -152,7 +172,12 @@ class dataTable_BioManager extends dataTable {
     *
     * @Author: David Hein
     */
-    public static function showWithInvoiceActions($dataSet, $tableId, $columns, $headings = NULL) {
+    public static function showWithInvoiceActions(
+        $dataSet,
+        $tableId,
+        $columns,
+        $headings = NULL)
+    {
         dataTable_BioManager::showWithActions(
             $dataSet,
             $tableId,
@@ -174,7 +199,12 @@ class dataTable_BioManager extends dataTable {
     *
     * @Author: David Hein
     */
-    public static function showWithInvoiceDefaultActions($dataSet, $tableId, $columns, $headings = NULL) {
+    public static function showWithInvoiceDefaultActions(
+        $dataSet,
+        $tableId,
+        $columns,
+        $headings = NULL)
+    {
         dataTable_BioManager::showWithActions(
             $dataSet,
             $tableId,

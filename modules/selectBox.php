@@ -33,7 +33,15 @@
 * @Author: David Hein
 * @return String with html code for select element
 */
-function selectBox($elementName, $isRequired, $defaultText, $nameValuePairs, $selectedValue = NULL, $disableDefault = true, $boxReadOnly = false) {
+function selectBox(
+    $elementName,
+    $isRequired,
+    $defaultText,
+    $nameValuePairs,
+    $selectedValue = NULL,
+    $disableDefault = true,
+    $boxReadOnly = false)
+{
     // Starting tag
     $selectBox = '<select id="' . $elementName . '" name="' . $elementName . '"';
     if($isRequired) {

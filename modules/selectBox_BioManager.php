@@ -30,7 +30,12 @@ include 'modules/selectBox.php';
 * @Author: David Hein
 * @return String with html code for select element
 */
-function supplierSelectBox($isRequired, $selectedValue = NULL, $disableDefault = true, $onlyActiveUser = false) {
+function supplierSelectBox(
+    $isRequired,
+    $selectedValue = NULL,
+    $disableDefault = true,
+    $onlyActiveUser = false)
+{
     $where = NULL;
     if($onlyActiveUser) {
         $where = 'inactive = 0';
@@ -126,6 +131,13 @@ function recipientSelectBox($name = NULL, $selectedValue = NULL, $boxReadOnly = 
         $name = 'recipientId';
     }
     
-    return selectBox($name, true, 'Bitte Abnehmer wählen', $result, $selectedValue, true , $boxReadOnly);
+    return selectBox(
+        $name,
+        true,
+        'Bitte Abnehmer wählen',
+        $result,
+        $selectedValue,
+        true,
+        $boxReadOnly);
 }
 ?>
