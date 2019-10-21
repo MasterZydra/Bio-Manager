@@ -412,3 +412,94 @@ h2 {
         width: 100%;
     }
 }
+
+/**************************
+* Dark mode
+**************************/
+
+@media (prefers-color-scheme: dark) {
+    /***************
+    * General settings
+    ***************/
+    
+    body {
+        color: white;
+        background-color: #555555; /* Grey */
+    }
+    
+    main a,
+    main a:visited {
+        color: #1fb81c;
+    }
+    
+    /***************
+    * Header section
+    ***************/
+    
+    header {
+        background-color: #397016; /* Dark green */
+    }
+    
+    /***************
+    * Footer
+    ***************/
+    
+    footer {
+        background-color: #383838; /* Black */
+    }
+    
+    /***************
+    * Table
+    ***************/
+    
+    table tr:nth-child(even) {
+        background-color: #7a7a7a; /* Light grey */
+    }
+
+    table tr:hover {
+        background-color: black;
+    }
+    
+    /***************
+    * Dropdown menu
+    ***************/
+    
+    .dropdown a:hover {
+        background-color: black;
+    }
+    
+    /***************
+    * Form
+    ***************/
+    
+    input[type=text],
+    input[type=password],
+    input[type=number],
+    input[type=date],
+    textarea,
+    select {
+        border: 3px solid #000000;
+        background-color: #383838;
+        color: white;
+    }
+    
+    input[type=text]:focus,
+    input[type=password]:focus,
+    input[type=number]:focus,
+    input[type=date]:focus,
+    textarea:focus,
+    select:focus {
+      border: 3px solid #ccc;
+    }
+    
+    button:hover {
+      background-color: #000000; /* Black */
+    }
+        
+    /***************
+    * Info boxes
+    ***************/
+    .log {
+        background-color: #1F2023; /* Grey */
+    }
+}
