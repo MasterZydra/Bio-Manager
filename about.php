@@ -31,6 +31,10 @@
     </tr>
 </table>
 
+<p>
+    Das System wurde von David Hein entwickelt.
+</p>
+
 <?php
     include 'modules/footer.php';
 ?>
