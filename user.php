@@ -75,7 +75,8 @@
         $result,
         'dataTable-tableUser',
         array('name', 'login', 'isAdmin', 'isDeveloper', 'isMaintainer', 'isInspector', 'isSupplier', 'supplierName'),
-        array('Name', 'Anmeldename', 'Administrator', 'Entwickler', 'Pfleger', 'Prüfer', 'Lieferant', 'Lieferanten-Nr', 'Aktionen'));
+        array('Name', 'Anmeldename', 'Administrator', 'Entwickler', 'Pfleger', 'Prüfer', 'Lieferant', 'Lieferanten-Nr', 'Aktionen'),
+        array('', '', 'bool', 'bool','bool','bool','bool', ''));
 
     include 'modules/footer.php';
 ?>

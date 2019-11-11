@@ -62,13 +62,19 @@
             $result,
             'dataTable-tableSupplier',
             array('name', 'inactive'),
-            array('Name', 'Inaktiv', 'Aktionen'));
+            array('Name', 'Inaktiv', 'Aktionen'),
+            false,
+            false,
+            array('', 'bool'));
     } else {
         dataTable_BioManager::show(
             $result,
             'dataTable-tableSupplier',
             array('name', 'inactive'),
-            array('Name', 'Inaktiv'));
+            array('Name', 'Inaktiv'),
+            false,
+            false,
+            array('', 'bool'));
     }
 
     include 'modules/footer.php';
