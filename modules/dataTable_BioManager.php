@@ -35,6 +35,9 @@ class dataTable_BioManager extends dataTable {
     * @param string     $tableId    Id for table. E.g. needed for filterData.js
     * @param array of string    $columns    All columns which will be shown as a column in the table
     * @param array of string    $headings   This headings will be shown as columns heading
+    * @param boolean    $useCompleteWidth   Show table over complete window width. Default is false
+    * @param boolean    $openInNewTab   Open link in new tab
+    * @param array of string    $dataTypes  Data types for the columns
     *
     * @Author: David Hein
     */
@@ -42,7 +45,10 @@ class dataTable_BioManager extends dataTable {
         $dataSet,
         $tableId,
         $columns,
-        $headings = NULL)
+        $headings = NULL,
+        $useCompleteWidth = false,
+        $openInNewTab = false,
+        $dataTypes = NULL)
     {
         dataTable_BioManager::showWithActions(
             $dataSet,
@@ -50,7 +56,10 @@ class dataTable_BioManager extends dataTable {
             $columns,
             array('edit', 'delete'),
             array('Bearbeiten', 'Löschen'),
-            $headings);
+            $headings,
+            $useCompleteWidth,
+            $openInNewTab,
+            $dataTypes);
     }
 
     /**
@@ -60,6 +69,7 @@ class dataTable_BioManager extends dataTable {
     * @param string     $tableId    Id for table. E.g. needed for filterData.js
     * @param array of string    $columns    All columns which will be shown as a column in the table
     * @param array of string    $headings   This headings will be shown as columns heading
+    * @param array of string    $dataTypes  Data types for the columns
     *
     * @Author: David Hein
     */
@@ -67,7 +77,8 @@ class dataTable_BioManager extends dataTable {
         $dataSet,
         $tableId,
         $columns,
-        $headings = NULL)
+        $headings = NULL,
+        $dataTypes = NULL)
     {
         dataTable_BioManager::showWithActions(
             $dataSet,
@@ -75,7 +86,10 @@ class dataTable_BioManager extends dataTable {
             $columns,
             array('edit', 'changePwd', 'delete'),
             array('Bearbeiten', 'Passwort ändern', 'Löschen'),
-            $headings);
+            $headings,
+            false,
+            false,
+            $dataTypes);
     }
     
     /**
@@ -186,7 +200,8 @@ class dataTable_BioManager extends dataTable {
             array('Anzeigen'),
             $headings,
             false,
-            true);
+            true,
+            array('', 'int', '', 'bool', ''));
     }
 
     /**
@@ -213,7 +228,8 @@ class dataTable_BioManager extends dataTable {
             array('Anzeigen', 'Bearbeiten', 'Löschen'),
             $headings,
             false,
-            array(true, false, false));
+            array(true, false, false),
+            array('', 'int', '', 'bool', ''));
     }
 }
 

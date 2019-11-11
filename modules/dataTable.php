@@ -37,6 +37,7 @@ class dataTable {
     * @param array of string    $actionNames    Name which will be shown in the action dropdown
     * @param boolean    $useCompleteWidth   Show table over complete window width. Default is false
     * @param boolean/array of boolean   $openInNewTab   Open link in new tab. Array if only selected actions shall open in new tab
+    * @param array of string    $dataTypes  Data types for the columns
     *
     * @Author: David Hein
     */
@@ -48,7 +49,8 @@ class dataTable {
         $actions = NULL,
         $actionNames = NULL,
         $useCompleteWidth = false,
-        $openInNewTab = false)
+        $openInNewTab = false,
+        $dataTypes = NULL)
     {
         // Add id to table
         if (!is_null($tableId)) {
@@ -73,8 +75,30 @@ class dataTable {
             // Add a row in table for each data line
             while($row = $dataSet->fetch_assoc()) {
                 echo '<tr>';
+                $colCount = 0;
                 foreach($columns as $dataCol) {
-                    echo '<td>' . nl2br($row[$dataCol]) . '</td>';
+                    echo '<td';
+                    if (!is_null($dataTypes)) {
+                        switch($dataTypes[$colCount]) {
+                            case 'bool':
+                                echo ' class="center">';
+                                if ($row[$dataCol] == "1") {
+                                    echo 'Ja';
+                                } else {
+                                    echo 'Nein';
+                                }
+                                break;
+                            case 'int':
+                                echo ' class="right">' . nl2br($row[$dataCol]);
+                                break;
+                            default:
+                                echo '>' . nl2br($row[$dataCol]);
+                        }
+                    } else {
+                        echo '>' . nl2br($row[$dataCol]);
+                    }
+                    echo '</td>';
+                    $colCount++;
                 }
                 if(is_null($actions) || is_null($actionNames)) {
                     continue;
@@ -114,6 +138,7 @@ class dataTable {
     * @param array of string    $headings   This headings will be shown as columns heading
     * @param boolean    $useCompleteWidth   Show table over complete window width. Default is false
     * @param boolean    $openInNewTab   Open link in new tab
+    * @param array of string    $dataTypes  Data types for the columns
     *
     * @Author: David Hein
     */
@@ -125,7 +150,8 @@ class dataTable {
         $actionNames,
         $headings = NULL,
         $useCompleteWidth = false,
-        $openInNewTab = false)
+        $openInNewTab = false,
+        $dataTypes = NULL)
     {
         dataTable::generateTable(
             $dataSet,
@@ -135,7 +161,8 @@ class dataTable {
             $actions,
             $actionNames,
             $useCompleteWidth,
-            $openInNewTab);
+            $openInNewTab,
+            $dataTypes);
     }
     
     /**
