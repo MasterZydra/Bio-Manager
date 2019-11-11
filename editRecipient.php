@@ -78,11 +78,7 @@
     <label for="recipient_name" class="required">Name:</label><br>
     <input id="recipient_name" name="recipient_name" type="text" placeholder="Name des Abnehmers" required autofocus value=
         <?php
-            if($alreadyExist) {
-                echo '"' . $_POST["recipient_name"] . '"';
-            } else {
-                echo '"' . $row['name'] . '"';
-            }
+            echo ($alreadyExist) ? '"' . $_POST["recipient_name"] . '"' : '"' . $row['name'] . '"';
         ?>><br>
     
     <label for="recipient_address" class="required">Anschrift:</label><br>

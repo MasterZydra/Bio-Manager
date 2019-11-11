@@ -89,7 +89,7 @@
     
     <label for="invoiceDate" class="required">Rechnungsdatum:</label><br>
     <input id="invoiceDate" name="invoiceDate" type="date" value="<?php echo $row['invoiceDate']; ?>" placeholder="Rechnungsdatum geben" 
-    <?php if($row['isPaid']) { echo ' readonly'; } else { echo ' required autofocus'; } ?>><br>
+    <?php echo ($row['isPaid']) ? ' readonly' : ' required autofocus'; ?>><br>
     
     <label for="recipientId" class="required">Abnehmer:</label><br>
     <?php
@@ -113,7 +113,7 @@
         Ist bezahlt
     </label><br>
     
-    <button <?php if($row['isPaid']){ echo ' disabled'; }?>>Änderungen speichern</button>
+    <button <?php echo ($row['isPaid']) ? ' disabled' : ''; ?>>Änderungen speichern</button>
 </form>
 <?php
         }

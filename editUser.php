@@ -98,21 +98,13 @@
     <label for="userName" class="required">Name:</label><br>
     <input id="userName" name="userName" type="text" placeholder="Name des Benutzers" required autofocus value=
         <?php
-            if($alreadyExist) {
-                echo '"' . $_POST["userName"] . '"';
-            } else {
-                echo '"' . $row['name'] . '"';
-            }
+            echo ($alreadyExist) ? '"' . $_POST["userName"] . '"' : '"' . $row['name'] . '"';
         ?>><br>
     
     <label for="userLogin" class="required">Anmeldename:</label><br>
     <input id="userLogin" name="userLogin" type="text" placeholder="Anmeldename des Benutzers" required value=
         <?php
-            if($alreadyExist) {
-                echo '"' . $_POST["userLogin"] . '"';
-            } else {
-                echo '"' . $row['login'] . '"';
-            }
+            echo ($alreadyExist) ? '"' . $_POST["userLogin"] . '"' : '"' . $row['login'] . '"';
         ?>><br>
     
     <label>

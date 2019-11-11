@@ -74,11 +74,7 @@
     <label for="supplierName" class="required">Name:</label><br>
     <input id="supplierName" name="supplierName" type="text" required autofocus value=
         <?php
-            if($alreadyExist) {
-                echo '"' . $_POST["supplierName"] . '"';
-            } else {
-                echo '"' . $row['name'] . '"';
-            }
+            echo ($alreadyExist) ? '"' . $_POST["supplierName"] . '"' : '"' . $row['name'] . '"';
         ?>><br>
     
     <label>

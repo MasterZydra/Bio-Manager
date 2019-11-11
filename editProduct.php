@@ -76,11 +76,7 @@
     <label for="product_name" class="required">Name:</label><br>
     <input id="product_name" name="product_name" type="text" <?php echo $row['name']; ?> required autofocus value=
         <?php
-            if($alreadyExist) {
-                echo '"' . $_POST["product_name"] . '"';
-            } else {
-                echo '"' . $row['name'] . '"';
-            }
+            echo ($alreadyExist) ? '"' . $_POST["product_name"] . '"' : '"' . $row['name'] . '"';
         ?>><br>
     
     <button>Änderungen speichern</button>

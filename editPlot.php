@@ -89,31 +89,19 @@
     <label for="plot_nr" class="required">Nummer:</label><br>
     <input id="plot_nr" name="plot_nr" type="text" required autofocus value=
        <?php
-            if($alreadyExist) {
-                echo '"' . $_POST["plot_nr"] . '"';
-            } else {
-                echo '"' . $row['nr'] . '"';
-            }
+            echo ($alreadyExist) ? '"' . $_POST["plot_nr"] . '"' : '"' . $row['nr'] . '"';
         ?>><br>
     
     <label for="plot_name" class="required">Name:</label><br>
     <input id="plot_name" name="plot_name" type="text" required value=
        <?php
-            if($alreadyExist) {
-                echo '"' . $_POST["plot_name"] . '"';
-            } else {
-                echo '"' . $row['name'] . '"';
-            }
+            echo ($alreadyExist) ? '"' . $_POST["plot_name"] . '"' : '"' . $row['name'] . '"';
         ?>><br>
     
     <label for="plot_subdistrict" class="required">Gemarkung:</label><br>
     <input id="plot_subdistrict" name="plot_subdistrict" type="text" required value=
        <?php
-            if($alreadyExist) {
-                echo '"' . $_POST["plot_subdistrict"] . '"';
-            } else {
-                echo '"' . $row['subdistrict'] . '"';
-            }
+            echo ($alreadyExist) ? '"' . $_POST["plot_subdistrict"] . '"' : '"' . $row['subdistrict'] . '"';
         ?>><br>
     
     <label for="supplierId">Lieferant:</label><br>
