@@ -32,7 +32,8 @@
 </table>
 
 <p>
-    Das System wurde von David Hein entwickelt.
+    Haben Sie einen Fehler gefunden oder haben eine Verbesserungsidee oder Änderungswunsch?<br>
+    Melden Sie sich unter <a href="mailto:david@techbasics.de">david@techbasics.de</a>.
 </p>
 
 <?php
