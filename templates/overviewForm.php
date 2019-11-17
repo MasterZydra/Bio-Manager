@@ -97,7 +97,6 @@ class overviewForm extends form {
         // Script imports
         echo '<script src="js/filterDataTable.js"></script>';
         echo '<script src="js/dropdown.js"></script>';
-        echo '<script src="js/formatTableCellRight.js"></script>';
                 
         // Input for search field
         echo '<p>';
@@ -132,15 +131,6 @@ class overviewForm extends form {
         } else {
             echo $this -> defaultTable;
         }
-        
-        // Generate script part for formatting the text alignement
-        $script = "";
-        $i = 0;
-        while(count($this -> alignRightColumns) > $i && $this -> alignRightColumns[$i] != NULL) {
-            $script .= 'formatTableCellRight("dataTable-data", ' . strval($this -> alignRightColumns[$i]) . ');';
-            $i++;
-        }
-        echo '<script>' . $script . '</script>';
     }
     
     /**
