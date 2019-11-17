@@ -177,6 +177,7 @@ class dataTable {
     * @param array of string    $headings   This headings will be shown as columns heading
     * @param boolean    $useCompleteWidth   Show table over complete window width. Default is false
     * @param boolean    $openInNewTab   Open link in new tab
+    * @param array of string    $dataTypes  Data types for the columns
     *
     * @Author: David Hein
     */
@@ -186,7 +187,8 @@ class dataTable {
         $columns,
         $headings = NULL,
         $useCompleteWidth = false,
-        $openInNewTab = false)
+        $openInNewTab = false,
+        $dataTypes = NULL)
     {
         dataTable::generateTable(
             $dataSet,
@@ -196,7 +198,8 @@ class dataTable {
             NULL,
             NULL,
             $useCompleteWidth,
-            $openInNewTab);
+            $openInNewTab,
+            $dataTypes);
     }    
 }
 
