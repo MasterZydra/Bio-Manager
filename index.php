@@ -18,7 +18,16 @@
     if(!isLoggedIn()) {
 ?>
 <h1>Willkommen beim Bio-Manager</h1>
-Der Bio-Manger ist zum Verwalten von Anlieferungen von Lieferanten. Durch die Eingebe der Lieferscheine, Flurstücke und Liefermenge können Rechnungen an die Kelterei und Auswertungen zu Liefermenge und der Verteilung auf Flurstücke erstellt werden.
+<h2>Was ist der Bio-Manager</h2>
+<p>
+Die Plattform ist eine Mischung aus ERP-System und CRM. Es können Flurstücke, Produkte und Preise angelegt werden. In Lieferscheinen können gelieferte Produkte und Menge vom Lieferanten an einen Abnehmer festgehalten werden.<br>
+Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt werden. Diese kann als PDF heruntergeladen werden.
+</p>
+
+<p>
+    Die Lieferanten können ebenfalls Anmeldungen für die Seite erhalten und dort ihre Lieferscheine einsehen.
+</p>
+
 <?php
     } else {
 ?>
