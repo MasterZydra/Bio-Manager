@@ -211,7 +211,7 @@ class dataTable_BioManager extends dataTable {
             $headings,
             false,
             true,
-            array('', 'int', '', 'bool', ''));
+            array('', 'int', 'date', 'bool', ''));
     }
 
     /**
@@ -239,7 +239,7 @@ class dataTable_BioManager extends dataTable {
             $headings,
             false,
             array(true, false, false),
-            array('', 'int', '', 'bool', ''));
+            array('', 'int', 'date', 'bool', ''));
     }
 }
 
