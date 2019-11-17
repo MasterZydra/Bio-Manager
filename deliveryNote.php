@@ -23,7 +23,6 @@
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
-<script src="js/formatTableCellRight.js"></script>
 
 <h1>Lieferschein</h1>
 
@@ -69,19 +68,18 @@
             $result,
             'dataTable-tableDeliveryNote',
             array('year', 'nr', 'deliverDate', 'amount', 'supplierName', 'productName'),
-            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Lieferant', 'Produkt', 'Aktionen'));
+            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Lieferant', 'Produkt', 'Aktionen'),
+            array('', 'int', 'date', 'int', '', '', ''));
     } else {
         dataTable_BioManager::show(
             $result,
             'dataTable-tableDeliveryNote',
             array('year', 'nr', 'deliverDate', 'amount', 'supplierName', 'productName'),
-            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Lieferant', 'Produkt'));
+            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Lieferant', 'Produkt'),
+            false,
+            false,
+            array('', 'int', 'date', 'int', '', '', ''));
     }
-?>
-<script>
-    formatTableCellRight("dataTable-tableDeliveryNote", 1);
-    formatTableCellRight("dataTable-tableDeliveryNote", 3);
-</script>
-<?php
+
     include 'modules/footer.php';
 ?>

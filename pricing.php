@@ -25,7 +25,6 @@
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
-<script src="js/formatTableCellRight.js"></script>
 
 <h1>Preis</h1>
 
@@ -66,19 +65,20 @@
             $result,
             'dataTable-tableDeliveryNote',
             array('productName', 'year', 'price', 'pricePayOut'),
-            array('Produkt', 'Jahr', 'Preis', 'Auszahlung', 'Aktionen'));
+            array('Produkt', 'Jahr', 'Preis', 'Auszahlung', 'Aktionen'),
+            false,
+            false,
+            array('', '', 'int', 'int'));
     } else {
         dataTable_BioManager::show(
             $result,
             'dataTable-tableDeliveryNote',
             array('productName', 'year', 'price', 'pricePayOut'),
-            array('Produkt', 'Jahr', 'Preis', 'Auszahlung'));
+            array('Produkt', 'Jahr', 'Preis', 'Auszahlung'),
+            false,
+            false,
+            array('', '', 'int', 'int'));
     }
-?>
-<script>    
-    formatTableCellRight("dataTable-tableDeliveryNote", 2);
-    formatTableCellRight("dataTable-tableDeliveryNote", 3);
-</script>
-<?php
+
     include 'modules/footer.php';
 ?>

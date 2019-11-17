@@ -26,7 +26,6 @@
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
-<script src="js/formatTableCellRight.js"></script>
 
 <h1>Auswertung - Lieferscheine mit offener Mengenverteilung</h1>
 
@@ -78,20 +77,9 @@ ORDER BY year DESC, nr DESC
             $result,
             'dataTable-tableDeliveryNote',
             array('year', 'nr', 'deliverDate', 'amount', 'calcAmount', 'supplierName'),
-            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Mengenverteilung', 'Lieferant', 'Aktionen'));
-    } else {
-        dataTable_BioManager::show(
-            $result,
-            'dataTable-tableDeliveryNote',
-            array('year', 'nr', 'deliverDate', 'amount', 'calcAmount', 'supplierName'),
-            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Mengenverteilung', 'Lieferant'));
+            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Mengenverteilung', 'Lieferant', 'Aktionen'),
+            array('', 'int', 'date', 'int', 'int', ''));
     }
-?>
-<script>    
-    formatTableCellRight("dataTable-tableDeliveryNote", 1);
-    formatTableCellRight("dataTable-tableDeliveryNote", 3);
-    formatTableCellRight("dataTable-tableDeliveryNote", 4);
-</script>
-<?php
+
     include 'modules/footer.php';
 ?>
