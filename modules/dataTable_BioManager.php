@@ -99,6 +99,7 @@ class dataTable_BioManager extends dataTable {
     * @param string     $tableId    Id for table. E.g. needed for filterData.js
     * @param array of string    $columns    All columns which will be shown as a column in the table
     * @param array of string    $headings   This headings will be shown as columns heading
+    * @param array of string    $dataTypes  Data types for the columns
     *
     * @Author: David Hein
     */
@@ -106,7 +107,8 @@ class dataTable_BioManager extends dataTable {
         $dataSet,
         $tableId,
         $columns,
-        $headings = NULL)
+        $headings = NULL,
+        $dataTypes = NULL)
     {
         dataTable_BioManager::showWithActions(
             $dataSet,
@@ -114,7 +116,10 @@ class dataTable_BioManager extends dataTable {
             $columns,
             array('edit', 'volDist', 'delete'),
             array('Bearbeiten', 'Mengenverteilung', 'Löschen'),
-            $headings);
+            $headings,
+            false,
+            false,
+            $dataTypes);
     }
     
     /**
