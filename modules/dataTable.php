@@ -88,9 +88,12 @@ class dataTable {
                                     echo 'Nein';
                                 }
                                 break;
-                            case 'int':
-                                echo ' class="right">' . nl2br($row[$dataCol]);
+                            case 'date':
+                                $date = DateTime::createFromFormat('Y-m-d', $row[$dataCol]);
+                                echo ' class="center">' . $date->format('d.m.Y');
                                 break;
+                            case 'int':
+                                echo ' class="right"';
                             default:
                                 echo '>' . nl2br($row[$dataCol]);
                         }
