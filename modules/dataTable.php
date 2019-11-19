@@ -1,4 +1,5 @@
 <?php
+    include 'modules/tableGenerator.php';
 /**
 * Generate a data table out of a data set
 *

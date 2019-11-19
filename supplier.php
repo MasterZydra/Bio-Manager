@@ -58,23 +58,19 @@
     $conn = NULL;
 
     if(isMaintainer()) {
-        dataTable_BioManager::showWithDefaultActions(
-            $result,
+        tableGenerator::show(
             'dataTable-tableSupplier',
-            array('name', 'inactive'),
+            $result,
+            array('name', ['inactive', 'bool']),
             array('Name', 'Inaktiv', 'Aktionen'),
-            false,
-            false,
-            array('', 'bool'));
+            array('edit', 'delete'),
+            array('Bearbeiten', 'Löschen'));
     } else {
-        dataTable_BioManager::show(
-            $result,
+        tableGenerator::show(
             'dataTable-tableSupplier',
-            array('name', 'inactive'),
-            array('Name', 'Inaktiv'),
-            false,
-            false,
-            array('', 'bool'));
+            $result,
+            array('name', ['inactive', 'bool']),
+            array('Name', 'Inaktiv'));
     }
 
     include 'modules/footer.php';

@@ -61,36 +61,6 @@ class dataTable_BioManager extends dataTable {
             $openInNewTab,
             $dataTypes);
     }
-
-    /**
-    * Generate a table with actions for user (edit, delete and change password)
-    *
-    * @param dataSet    $dataSet    Data which will be shown
-    * @param string     $tableId    Id for table. E.g. needed for filterData.js
-    * @param array of string    $columns    All columns which will be shown as a column in the table
-    * @param array of string    $headings   This headings will be shown as columns heading
-    * @param array of string    $dataTypes  Data types for the columns
-    *
-    * @Author: David Hein
-    */
-    public static function showWithUserActions(
-        $dataSet,
-        $tableId,
-        $columns,
-        $headings = NULL,
-        $dataTypes = NULL)
-    {
-        dataTable_BioManager::showWithActions(
-            $dataSet,
-            $tableId,
-            $columns,
-            array('edit', 'changePwd', 'delete'),
-            array('Bearbeiten', 'Passwort ändern', 'Löschen'),
-            $headings,
-            false,
-            false,
-            $dataTypes);
-    }
     
     /**
     * Generate a table with actions for delivery note (edit, delete and volume distribution)
@@ -104,22 +74,18 @@ class dataTable_BioManager extends dataTable {
     * @Author: David Hein
     */
     public static function showWithDeliveryNoteDefaultActions(
-        $dataSet,
         $tableId,
+        $dataSet,
         $columns,
-        $headings = NULL,
-        $dataTypes = NULL)
+        $headings = NULL)
     {
-        dataTable_BioManager::showWithActions(
-            $dataSet,
+        tableGenerator::show(
             $tableId,
+            $dataSet,
             $columns,
-            array('edit', 'volDist', 'delete'),
-            array('Bearbeiten', 'Mengenverteilung', 'Löschen'),
             $headings,
-            false,
-            false,
-            $dataTypes);
+            array('edit', 'volDist', 'delete'),
+            array('Bearbeiten', 'Mengenverteilung', 'Löschen'));
     }
     
     /**
@@ -134,22 +100,18 @@ class dataTable_BioManager extends dataTable {
     * @Author: David Hein
     */
     public static function showWithDeliveryNoteActions(
-        $dataSet,
         $tableId,
+        $dataSet,
         $columns,
-        $headings = NULL,
-        $dataTypes = NULL)
+        $headings = NULL)
     {
-        dataTable_BioManager::showWithActions(
-            $dataSet,
+        tableGenerator::show(
             $tableId,
+            $dataSet,
             $columns,
-            array('edit', 'volDist'),
-            array('Bearbeiten', 'Mengenverteilung'),
             $headings,
-            false,
-            false,
-            $dataTypes);
+            array('edit', 'volDist'),
+            array('Bearbeiten', 'Mengenverteilung'));
     }
     
     /**

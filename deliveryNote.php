@@ -64,21 +64,19 @@
     $conn -> dbDisconnect();
     $conn = NULL;
     if(isMaintainer()) {
-        dataTable_BioManager::showWithDeliveryNoteDefaultActions(
-            $result,
+        tableGenerator::show(
             'dataTable-tableDeliveryNote',
-            array('year', 'nr', 'deliverDate', 'amount', 'supplierName', 'productName'),
+            $result,
+            array('year', ['nr', 'int'], ['deliverDate', 'date'], ['amount', 'int'], 'supplierName', 'productName'),
             array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Lieferant', 'Produkt', 'Aktionen'),
-            array('', 'int', 'date', 'int', '', '', ''));
+            array('edit', 'volDist', 'delete'),
+            array('Bearbeiten', 'Mengenverteilung', 'Löschen'));
     } else {
-        dataTable_BioManager::show(
-            $result,
+        tableGenerator::show(
             'dataTable-tableDeliveryNote',
-            array('year', 'nr', 'deliverDate', 'amount', 'supplierName', 'productName'),
-            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Lieferant', 'Produkt'),
-            false,
-            false,
-            array('', 'int', 'date', 'int', '', '', ''));
+            $result,
+            array('year', ['nr', 'int'], ['deliverDate', 'date'], ['amount', 'int'], 'supplierName', 'productName'),
+            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Lieferant', 'Produkt'));
     }
 
     include 'modules/footer.php';

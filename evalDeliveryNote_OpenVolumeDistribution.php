@@ -74,11 +74,10 @@ ORDER BY year DESC, nr DESC
 
     if(isMaintainer()) {
         dataTable_BioManager::showWithDeliveryNoteActions(
-            $result,
             'dataTable-tableDeliveryNote',
-            array('year', 'nr', 'deliverDate', 'amount', 'calcAmount', 'supplierName'),
-            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Mengenverteilung', 'Lieferant', 'Aktionen'),
-            array('', 'int', 'date', 'int', 'int', ''));
+            $result,
+            array('year', ['nr', 'int'], ['deliverDate', 'date'], ['amount', 'int'], ['calcAmount', 'int'], 'supplierName'),
+            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Mengenverteilung', 'Lieferant', 'Aktionen'));
     }
 
     include 'modules/footer.php';

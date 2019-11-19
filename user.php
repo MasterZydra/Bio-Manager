@@ -71,12 +71,16 @@
     $conn -> dbDisconnect();
     $conn = NULL;
 
-    dataTable_BioManager::showWithUserActions(
-        $result,
+    tableGenerator::show(
         'dataTable-tableUser',
-        array('name', 'login', 'isAdmin', 'isDeveloper', 'isMaintainer', 'isInspector', 'isSupplier', 'supplierName'),
-        array('Name', 'Anmeldename', 'Administrator', 'Entwickler', 'Pfleger', 'Prüfer', 'Lieferant', 'Lieferanten-Nr', 'Aktionen'),
-        array('', '', 'bool', 'bool','bool','bool','bool', ''));
+        $result,
+        array('name', 'login', ['isAdmin', 'bool'], ['isDeveloper', 'bool'],
+              ['isMaintainer', 'bool'], ['isInspector', 'bool'],
+              ['isSupplier', 'bool'], 'supplierName'),
+        array('Name', 'Anmeldename', 'Administrator', 'Entwickler', 'Pfleger',
+              'Prüfer', 'Lieferant', 'Lieferanten-Nr', 'Aktionen'),
+        array('edit', 'changePwd', 'delete'),
+        array('Bearbeiten', 'Passwort ändern', 'Löschen'));
 
     include 'modules/footer.php';
 ?>

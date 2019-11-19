@@ -72,20 +72,16 @@
 
     if(isMaintainer()) {
         dataTable_BioManager::showWithDeliveryNoteDefaultActions(
-            $result,
             'dataTable-tableDeliveryNote',
-            array('year', 'nr', 'deliverDate', 'amount', 'productName'),
-            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Produkt', 'Aktionen'),
-            array('', 'int', 'date', 'int', ''));
+            $result,
+            array('year', ['nr', 'int'], ['deliverDate', 'date'], ['amount', 'int'], 'productName'),
+            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Produkt', 'Aktionen'));
     } else {
-        dataTable_BioManager::show(
-            $result,
+        tableGenerator::show(
             'dataTable-tableDeliveryNote',
-            array('year', 'nr', 'deliverDate', 'amount', 'productName'),
-            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Produkt'),
-            false,
-            false,
-            array('', 'int', 'date', 'int', ''));
+            $result,
+            array('year', ['nr', 'int'], ['deliverDate', 'date'], ['amount', 'int'], 'productName'),
+            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Produkt'));
     }
 
     include 'modules/footer.php';
