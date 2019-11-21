@@ -44,8 +44,9 @@ main a:hover {
     text-decoration: underline;
 }
 
+main a,
 main a:visited {
-    color: blue;
+    color: #4a8a16;
 }
 
 main div {
