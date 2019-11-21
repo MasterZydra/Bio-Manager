@@ -21,7 +21,7 @@
 
 include 'config/DbConfig.php';
 
-class Mysql extends Dbconfig {
+class Mysql extends DbConfig {
     // Public properties
     public $connectionString;
     public $dataSet;

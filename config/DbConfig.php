@@ -15,7 +15,7 @@
 * ----------
 */
 
-class Dbconfig {
+class DbConfig {
     protected $serverName;
     protected $userName;
     protected $passCode;
