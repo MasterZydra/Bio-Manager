@@ -282,10 +282,7 @@ button:hover {
 * Formulare - Input (Text)
 ****************/
 
-input[type=text],
-input[type=password],
-input[type=number],
-input[type=date],
+input,
 textarea,
 select {
     width: 50%;
@@ -298,10 +295,7 @@ select {
     outline: none;
 }
 
-input[type=text]:focus,
-input[type=password]:focus,
-input[type=number]:focus,
-input[type=date]:focus,
+input:focus,
 textarea:focus,
 select:focus {
   border: 3px solid #555;
@@ -309,10 +303,7 @@ select:focus {
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-    input[type=text],
-    input[type=password],
-    input[type=number],
-    input[type=date],
+    input,
     textarea,
     select {
         width: 100%;
@@ -320,10 +311,7 @@ select:focus {
 }
 
 /* Use complete width in table cell */
-table input[type=text],
-table input[type=password],
-table input[type=number],
-table input[type=date],
+table input,
 table select {
     margin: 0px;
     width: 100%;
@@ -344,8 +332,7 @@ table select {
 
 textarea,
 input.text,
-input[type="text"],
-input[type="password"],
+input,
 button,
 select,
 .input-checkbox {
@@ -472,10 +459,7 @@ h2 {
     * Form
     ***************/
     
-    input[type=text],
-    input[type=password],
-    input[type=number],
-    input[type=date],
+    input,
     textarea,
     select {
         border: 3px solid #000000;
@@ -483,10 +467,7 @@ h2 {
         color: white;
     }
     
-    input[type=text]:focus,
-    input[type=password]:focus,
-    input[type=number]:focus,
-    input[type=date]:focus,
+    input:focus,
     textarea:focus,
     select:focus {
       border: 3px solid #ccc;
