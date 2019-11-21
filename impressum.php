@@ -12,21 +12,25 @@
     include 'modules/header_everyone.php';
     include 'modules/permissionCheck.php';
     include 'modules/header.php';
+
+    include 'config/ImpressumConfig.php';
 ?>
 
 <h1>Impressum</h1>
 <p>
-    Max Mustermann<br>
-    Mustermanstraße<br>
-    12345 Musterstadt<br>
-    E-Mail:max@musterman.de
+    <?php echo $impressum['provider_name']; ?><br>
+    <?php echo $impressum['provider_street']; ?><br>
+    <?php echo $impressum['provider_postalCode'] . ' ' . $impressum['provider_city']; ?><br>
+    E-Mail: <a href="mailto:<?php echo $impressum['provider_email']; ?>">
+        <?php echo $impressum['provider_email']; ?></a>
 </p>
 <p>
     <strong>Verantwortlich für den Inhalt (gem. § 55 Abs. 2 RStV):</strong><br>
-    Max Mustermann<br>
-    Mustermanstraße<br>
-    12345 Musterstadt<br>
-    E-Mail:max@musterman.de
+    <?php echo $impressum['responsible_name']; ?><br>
+    <?php echo $impressum['responsible_street']; ?><br>
+    <?php echo $impressum['responsible_postalCode'] . ' ' . $impressum['responsible_city']; ?><br>
+    E-Mail: <a href="mailto:<?php echo $impressum['responsible_email']; ?>">
+        <?php echo $impressum['responsible_email']; ?></a>
 </p>
 <p>
     <strong>Disclaimer – rechtliche Hinweise</strong><br>
@@ -60,10 +64,11 @@
     Unser/e Verantwortliche/r (nachfolgend „Verantwortlicher“) i.S.d. Art. 4 Zif. 7 DS-GVO ist:
 </p>
 <p>
-    Max Mustermann<br>
-    Mustermanstraße<br>
-    12345 Musterstadt<br>
-    E-Mail:max@musterman.de
+    <?php echo $impressum['responsible_name']; ?><br>
+    <?php echo $impressum['responsible_street']; ?><br>
+    <?php echo $impressum['responsible_postalCode'] . ' ' . $impressum['responsible_city']; ?><br>
+    E-Mail: <a href="mailto:<?php echo $impressum['responsible_email']; ?>">
+        <?php echo $impressum['responsible_email']; ?></a>
 </p>
 <p>
     <strong>Datenarten, Zwecke der Verarbeitung und Kategorien betroffener Personen</strong><br>
@@ -187,10 +192,11 @@
             Soweit wir die Verarbeitung Ihrer personenbezogenen Daten auf die Interessenabwägung gemäß Art. 6 Abs. 1 S. 1 lit. f) DS-GVO stützen, können Sie Widerspruch gegen die Verarbeitung einlegen. Dies ist der Fall, wenn die Verarbeitung insbesondere nicht zur Erfüllung eines Vertrags mit Ihnen erforderlich ist, was von uns jeweils bei der nachfolgenden Beschreibung der Funktionen dargestellt wird. Bei Ausübung eines solchen Widerspruchs bitten wir um Darlegung der Gründe, weshalb wir Ihre personenbezogenen Daten nicht wie von uns durchgeführt verarbeiten sollten. Im Falle Ihres begründeten Widerspruchs prüfen wir die Sachlage und werden entweder die Datenverarbeitung einstellen bzw. anpassen oder Ihnen unsere zwingenden schutzwürdigen Gründe aufzeigen, aufgrund derer wir die Verarbeitung fortführen.<br><br>
             Sie können der Verarbeitung Ihrer personenbezogenen Daten für Zwecke der Werbung und Datenanalyse jederzeit widersprechen. Das Widerspruchsrecht können Sie kostenfrei ausüben. Über Ihren Werbewiderspruch können Sie uns unter folgenden Kontaktdaten informieren:
             <br><br>
-            Max Mustermann<br>
-            Mustermanstraße<br>
-            12345 Musterstadt<br>
-            E-Mail:max@musterman.de
+            <?php echo $impressum['responsible_name']; ?><br>
+            <?php echo $impressum['responsible_street']; ?><br>
+            <?php echo $impressum['responsible_postalCode'] . ' ' . $impressum['responsible_city']; ?><br>
+            E-Mail: <a href="mailto:<?php echo $impressum['responsible_email']; ?>">
+                <?php echo $impressum['responsible_email']; ?></a>
         </p>
     </li>
     <li>
