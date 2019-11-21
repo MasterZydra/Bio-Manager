@@ -123,6 +123,12 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt werden
     <a href="setting.php">Alle Einstellungen anzeigen</a>
     <?php if(isDeveloper()) {?><br><a href="addSetting.php">Einstellung hinzufügen</a><?php } ?>
 </div>
+
+<div class="box">
+    <strong>Systemeinstellungen</strong><br>
+    <a href="editImpressum.php">Impressum bearbeiten</a>
+</div>
+
 <?php
         }
         if(isDeveloper()) {
