@@ -13,24 +13,34 @@
     include 'modules/permissionCheck.php';
     include 'modules/header.php';
 
-    include 'config/ImpressumConfig.php';
+    // Check if file exists to prevent warnings
+    if (file_exists('config/ImpressumConfig.php'))
+        include 'config/ImpressumConfig.php';
 ?>
 
 <h1>Impressum</h1>
 <p>
-    <?php echo $impressum['provider_name']; ?><br>
-    <?php echo $impressum['provider_street']; ?><br>
-    <?php echo $impressum['provider_postalCode'] . ' ' . $impressum['provider_city']; ?><br>
-    E-Mail: <a href="mailto:<?php echo $impressum['provider_email']; ?>">
-        <?php echo $impressum['provider_email']; ?></a>
+    <?php echo isset($impressum['provider_name']) ? $impressum['provider_name'] : 'PLATZHALTER'; ?><br>
+    <?php echo isset($impressum['provider_street']) ? $impressum['provider_street'] : 'PLATZHALTER'; ?><br>
+    <?php
+        echo isset($impressum['provider_postalCode']) ? $impressum['provider_postalCode'] : 'PLATZHALTER';
+        echo ' ';
+        echo isset($impressum['provider_city']) ? $impressum['provider_city'] : 'PLATZHALTER';
+    ?><br>
+    E-Mail: <a href="mailto:<?php echo isset($impressum['provider_email']) ? $impressum['provider_email'] : 'PLATZHALTER'; ?>">
+        <?php echo isset($impressum['provider_email']) ? $impressum['provider_email'] : 'PLATZHALTER'; ?></a>
 </p>
 <p>
     <strong>Verantwortlich für den Inhalt (gem. § 55 Abs. 2 RStV):</strong><br>
-    <?php echo $impressum['responsible_name']; ?><br>
-    <?php echo $impressum['responsible_street']; ?><br>
-    <?php echo $impressum['responsible_postalCode'] . ' ' . $impressum['responsible_city']; ?><br>
-    E-Mail: <a href="mailto:<?php echo $impressum['responsible_email']; ?>">
-        <?php echo $impressum['responsible_email']; ?></a>
+    <?php echo isset($impressum['responsible_name']) ? $impressum['responsible_name'] : 'PLATZHALTER'; ?><br>
+    <?php echo isset($impressum['responsible_street']) ? $impressum['responsible_street'] : 'PLATZHALTER'; ?><br>
+    <?php
+        echo isset($impressum['responsible_postalCode']) ? $impressum['responsible_postalCode'] : 'PLATZHALTER';
+        echo ' ';
+        echo isset($impressum['responsible_city']) ? $impressum['responsible_city'] : 'PLATZHALTER';
+    ?><br>
+    E-Mail: <a href="mailto:<?php echo isset($impressum['responsible_email']) ? $impressum['responsible_email'] : 'PLATZHALTER'; ?>">
+        <?php echo isset($impressum['responsible_email']) ? $impressum['responsible_email'] : 'PLATZHALTER'; ?></a>
 </p>
 <p>
     <strong>Disclaimer – rechtliche Hinweise</strong><br>
