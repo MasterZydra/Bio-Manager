@@ -13,14 +13,14 @@
         <div>
             <a href="index.php">Startseite</a>
         </div>
-        <div>
-            <?php
+        <?php
                 if(!isset($_SESSION['userId'])) {
-            ?>
+        ?>
+        <div>
             <button onclick="window.location.href='login.php'">Anmelden</button>
-            <?php
-                }
-            ?>
         </div>
+        <?php
+            }
+        ?>
     </header>
     <main <?php if (basename($_SERVER['PHP_SELF']) === "index.php") { echo 'class="inlineblock"'; } ?>>
