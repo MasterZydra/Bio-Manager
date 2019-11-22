@@ -20,6 +20,8 @@
     }
 
     include 'modules/header.php';
+
+    include 'modules/formHelper.php';
 ?>
 
 <h1>Impressum bearbeiten</h1>
@@ -60,66 +62,22 @@
 ?>
 <form action="?edit=1" method="post" class="requiredLegend">
     <h2>Anbieter (Privatperson oder Unternehmen)</h2>
-    <label for="provider_name" class="required">Name:</label><br>
-    <input type="text"
-        id="provider_name" name="provider_name" placeholder="Vorname Nachname"
-        <?php echo isset($impressum['provider_name']) ? 'value="' . $impressum['provider_name'] . '"' : ''; ?>
-        required autofocus><br>
-
-    <label for="provider_street" class="required">Straße:</label><br>
-    <input type="text"
-        id="provider_street" name="provider_street" placeholder="Straße Hausnummer"
-        <?php echo isset($impressum['provider_street']) ? 'value="' . $impressum['provider_street'] . '"' : ''; ?>
-        required><br>
-    
-    <label for="provider_postalCode" class="required">Postleitzahl:</label><br>
-    <input type="number"
-        id="provider_postalCode" name="provider_postalCode" placeholder="Postleitzahl"
-        <?php echo isset($impressum['provider_postalCode']) ? 'value="' . $impressum['provider_postalCode'] . '"' : ''; ?>
-        required><br>
-
-    <label for="provider_city" class="required">Stadt:</label><br>
-    <input type="text"
-        id="provider_city" name="provider_city" placeholder="Stadt"
-        <?php echo isset($impressum['provider_city']) ? 'value="' . $impressum['provider_city'] . '"' : ''; ?>
-        required><br>
-    
-    <label for="provider_email" class="required">Email:</label><br>
-    <input type="email"
-        id="provider_email" name="provider_email" placeholder="Email"
-        <?php echo isset($impressum['provider_email']) ? 'value="' . $impressum['provider_email'] . '"' : ''; ?>
-        required><br>
+<?php
+    generateArrayField($impressum, "provider_name", "text", "Name", "Vorname Nachname", true);
+    generateArrayField($impressum, "provider_street", "text", "Straße", "Straße Hausnummer");
+    generateArrayField($impressum, "provider_postalCode", "number", "Postleitzahl", "Postleitzahl");
+    generateArrayField($impressum, "provider_city", "text", "Stadt", "Stadt");
+    generateArrayField($impressum, "provider_email", "email", "Email", "Email");
+?>
     
     <h2>Datenschutzbeauftragter</h2>
-    <label for="responsible_name" class="required">Name:</label><br>
-    <input type="text"
-        id="responsible_name" name="responsible_name" placeholder="Vorname Nachname"
-        <?php echo isset($impressum['responsible_name']) ? 'value="' . $impressum['responsible_name'] . '"' : ''; ?>
-        required autofocus><br>
-
-    <label for="responsible_street" class="required">Straße:</label><br>
-    <input type="text"
-        id="responsible_street" name="responsible_street" placeholder="Straße Hausnummer"
-        <?php echo isset($impressum['responsible_street']) ? 'value="' . $impressum['responsible_street'] . '"' : ''; ?>
-        required><br>
-    
-    <label for="responsible_postalCode" class="required">Postleitzahl:</label><br>
-    <input type="number"
-        id="responsible_postalCode" name="responsible_postalCode" placeholder="Postleitzahl"
-        <?php echo isset($impressum['responsible_postalCode']) ? 'value="' . $impressum['responsible_postalCode'] . '"' : ''; ?>
-        required><br>
-
-    <label for="responsible_city" class="required">Stadt:</label><br>
-    <input type="text"
-        id="responsible_city" name="responsible_city" placeholder="Stadt"
-        <?php echo isset($impressum['responsible_city']) ? 'value="' . $impressum['responsible_city'] . '"' : ''; ?>
-        required><br>
-    
-    <label for="responsible_email" class="required">Email:</label><br>
-    <input type="email"
-        id="responsible_email" name="responsible_email" placeholder="Email"
-        <?php echo isset($impressum['responsible_email']) ? 'value="' . $impressum['responsible_email'] . '"' : ''; ?>
-        required><br>
+<?php
+    generateArrayField($impressum, "responsible_name", "text", "Name", "Vorname Nachname");
+    generateArrayField($impressum, "responsible_street", "text", "Straße", "Straße Hausnummer");
+    generateArrayField($impressum, "responsible_postalCode", "number", "Postleitzahl", "Postleitzahl");
+    generateArrayField($impressum, "responsible_city", "text", "Stadt", "Stadt");
+    generateArrayField($impressum, "responsible_email", "email", "Email", "Email");
+?>
     
     <button>Änderungen speichern</button>
 </form>
