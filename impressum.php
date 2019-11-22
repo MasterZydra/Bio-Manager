@@ -74,11 +74,15 @@
     Unser/e Verantwortliche/r (nachfolgend „Verantwortlicher“) i.S.d. Art. 4 Zif. 7 DS-GVO ist:
 </p>
 <p>
-    <?php echo $impressum['responsible_name']; ?><br>
-    <?php echo $impressum['responsible_street']; ?><br>
-    <?php echo $impressum['responsible_postalCode'] . ' ' . $impressum['responsible_city']; ?><br>
-    E-Mail: <a href="mailto:<?php echo $impressum['responsible_email']; ?>">
-        <?php echo $impressum['responsible_email']; ?></a>
+    <?php echo isset($impressum['responsible_name']) ? $impressum['responsible_name'] : 'PLATZHALTER'; ?><br>
+    <?php echo isset($impressum['responsible_street']) ? $impressum['responsible_street'] : 'PLATZHALTER'; ?><br>
+    <?php
+        echo isset($impressum['responsible_postalCode']) ? $impressum['responsible_postalCode'] : 'PLATZHALTER';
+        echo ' ';
+        echo isset($impressum['responsible_city']) ? $impressum['responsible_city'] : 'PLATZHALTER';
+    ?><br>
+    E-Mail: <a href="mailto:<?php echo isset($impressum['responsible_email']) ? $impressum['responsible_email'] : 'PLATZHALTER'; ?>">
+        <?php echo isset($impressum['responsible_email']) ? $impressum['responsible_email'] : 'PLATZHALTER'; ?></a>
 </p>
 <p>
     <strong>Datenarten, Zwecke der Verarbeitung und Kategorien betroffener Personen</strong><br>
@@ -202,11 +206,15 @@
             Soweit wir die Verarbeitung Ihrer personenbezogenen Daten auf die Interessenabwägung gemäß Art. 6 Abs. 1 S. 1 lit. f) DS-GVO stützen, können Sie Widerspruch gegen die Verarbeitung einlegen. Dies ist der Fall, wenn die Verarbeitung insbesondere nicht zur Erfüllung eines Vertrags mit Ihnen erforderlich ist, was von uns jeweils bei der nachfolgenden Beschreibung der Funktionen dargestellt wird. Bei Ausübung eines solchen Widerspruchs bitten wir um Darlegung der Gründe, weshalb wir Ihre personenbezogenen Daten nicht wie von uns durchgeführt verarbeiten sollten. Im Falle Ihres begründeten Widerspruchs prüfen wir die Sachlage und werden entweder die Datenverarbeitung einstellen bzw. anpassen oder Ihnen unsere zwingenden schutzwürdigen Gründe aufzeigen, aufgrund derer wir die Verarbeitung fortführen.<br><br>
             Sie können der Verarbeitung Ihrer personenbezogenen Daten für Zwecke der Werbung und Datenanalyse jederzeit widersprechen. Das Widerspruchsrecht können Sie kostenfrei ausüben. Über Ihren Werbewiderspruch können Sie uns unter folgenden Kontaktdaten informieren:
             <br><br>
-            <?php echo $impressum['responsible_name']; ?><br>
-            <?php echo $impressum['responsible_street']; ?><br>
-            <?php echo $impressum['responsible_postalCode'] . ' ' . $impressum['responsible_city']; ?><br>
-            E-Mail: <a href="mailto:<?php echo $impressum['responsible_email']; ?>">
-                <?php echo $impressum['responsible_email']; ?></a>
+            <?php echo isset($impressum['responsible_name']) ? $impressum['responsible_name'] : 'PLATZHALTER'; ?><br>
+            <?php echo isset($impressum['responsible_street']) ? $impressum['responsible_street'] : 'PLATZHALTER'; ?><br>
+            <?php
+                echo isset($impressum['responsible_postalCode']) ? $impressum['responsible_postalCode'] : 'PLATZHALTER';
+                echo ' ';
+                echo isset($impressum['responsible_city']) ? $impressum['responsible_city'] : 'PLATZHALTER';
+            ?><br>
+            E-Mail: <a href="mailto:<?php echo isset($impressum['responsible_email']) ? $impressum['responsible_email'] : 'PLATZHALTER'; ?>">
+                <?php echo isset($impressum['responsible_email']) ? $impressum['responsible_email'] : 'PLATZHALTER'; ?></a>
         </p>
     </li>
     <li>
