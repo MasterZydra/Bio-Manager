@@ -21,7 +21,10 @@
     }
 
     include 'modules/invoice.php';
-    
+
+    // Check if file exists to prevent warnings
+    if (file_exists('config/InvoiceDataConfig.php'))
+        include 'config/InvoiceDataConfig.php';
 
     $conn = new Mysql();
     $conn -> dbConnect();
@@ -45,6 +48,19 @@
     $inv -> invoiceYear         = $row['year'];
     $inv -> invoiceNr           = $row['nr'];
     $inv -> invoiceDate         = date("d.m.Y", strtotime($row['invoiceDate']));
+
+    function formatIBAN($IBAN) {
+        $i = 0;
+        $ret = "";
+        $len = strlen($IBAN);
+        while($len - $i > 4) {
+            $ret .= substr($IBAN, $i, 4);
+            $ret .= " ";
+            $i += 4;
+        }
+        $ret .= substr($IBAN, $i);
+        return $ret;
+    }
 
 $comment = 'Bla bla';
 
@@ -77,7 +93,16 @@ if(!$deliveryNotes) {
 //Höhe eurer Umsatzsteuer. 0.19 für 19% Umsatzsteuer
 $umsatzsteuer = 0.0; 
 
-$pdfName = $inv -> getInvoiceName() . '.pdf';
+        // Invoice meta data
+        $invoiceYear = 2019;
+        $invoiceNr = 1;
+        $invoiceDate = date("d.m.Y");
+        
+        $pricePerUnit = '1';
+
+        $invoiceName = $invoice["name"] . '_' . (string)$invoiceYear . '_' . (string)$invoiceNr;
+
+$pdfName = $invoiceName . '.pdf';
  
  
 //////////////////////////// Inhalt des PDFs als HTML-Code \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -102,13 +127,13 @@ Rechnungsdatum:
      </tr>
      <tr>
         <td style="font-size:1.3em; font-weight: bold;">
-            <br><br>
-Rechnung
-            <br>
+            <br><br>' . $invoice["name"] . '<br>
         </td>
     </tr>
     <tr>
-        <td colspan="2">' . nl2br(trim($inv -> invoiceReceiver)) . '</td>
+        <td colspan="2">' . $invoice["sender_name"] . '<br>'
+        . $invoice["sender_address"] . '<br>'
+        . $invoice["sender_postalCode"] . ' ' . $invoice["sender_city"] . '</td>
     </tr>
 </table>
 <br><br><br>
@@ -177,30 +202,29 @@ if(isset($comment) {
 
 // Bankverbindung
 $html .= "<strong>Bankverbindung</strong>:"
-. "<br>" . $inv -> bankDetails_name
-. "<br>IBAN: " . $inv -> bankDetails_IBAN
-. "<br>BIC: " . $inv -> bankDetails_BIC;
+. "<br>" . $invoice["bank"]
+. "<br>IBAN: " . formatIBAN($invoice["IBAN"])
+. "<br>BIC: " . $invoice["BIC"];
  
- 
- 
-//////////////////////////// Erzeugung eures PDF Dokuments \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
- 
-// TCPDF Library laden
-require_once('ext/TCPDF/tcpdf.php');
- 
-// Erstellung des PDF Dokuments
-$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
- 
-// Dokumenteninformationen
-$pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor($inv -> pdfAuthor);
-$pdf->SetTitle($inv -> getInvoiceName());
-$pdf->SetSubject($inv -> getInvoiceName());
- 
- 
-// Header und Footer Informationen
-$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+
+
+    // PDF generation
+    // ---------------------------------------------------
+    require_once('ext/TCPDF/tcpdf.php');
+
+    $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+    // Document informations
+    $pdf->SetCreator(PDF_CREATOR);
+    $pdf->SetAuthor($invoice["author"]);
+    $pdf->SetTitle($invoiceName);
+    $pdf->SetSubject($invoiceName);
+
+    // Deactivate Header und Footer
+    $pdf->SetPrintHeader(false);
+    $pdf->SetPrintFooter(false);
+
  
 // Auswahl des Font
 $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
