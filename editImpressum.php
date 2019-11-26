@@ -59,6 +59,7 @@
         if (file_exists('config/ImpressumConfig.php'))
             include 'config/ImpressumConfig.php';    
     }
+    $impressum = $impressum ?? NULL;
 ?>
 <form action="?edit=1" method="post" class="requiredLegend">
     <h2>Anbieter (Privatperson oder Unternehmen)</h2>
