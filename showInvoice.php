@@ -114,45 +114,45 @@ $pdfName = $invoiceName . '.pdf';
  
 $html = '
 <table cellpadding="5" cellspacing="0" style="width: 100%; ">
-    <tr>
-        <td width="60%">' . nl2br(trim($inv -> invoiceSender)) . '</td>
-        <td width="25%">
-Rechnungsnummer:<br>
-Rechnungsdatum:
-         </td>
-        <td width="15%" style="text-align: right;">
-' . $inv -> invoiceNr . '<br>
-' . $inv -> invoiceDate . '
-         </td>
-     </tr>
-     <tr>
-        <td style="font-size:1.3em; font-weight: bold;">
-            <br><br>' . $invoice["name"] . '<br>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">' . $invoice["sender_name"] . '<br>'
+<tr>
+    <td width="60%">' . $invoice["sender_name"] . '<br>'
         . $invoice["sender_address"] . '<br>'
         . $invoice["sender_postalCode"] . ' ' . $invoice["sender_city"] . '</td>
-    </tr>
+    <td width="25%">
+Rechnungsnummer:<br>
+Rechnungsdatum:
+    </td>
+    <td width="15%" style="text-align: right;">'
+        . $inv -> invoiceNr . '<br>'
+        . $inv -> invoiceDate . '
+    </td>
+</tr>
+<tr>
+    <td style="font-size:1.3em; font-weight: bold;">
+        <br><br>' . $invoice["name"] . '<br>
+    </td>
+</tr>
+<tr>
+    <td colspan="2">' . nl2br(trim($inv -> invoiceReceiver)) . '</td>
+</tr>
 </table>
 <br><br><br>
  
 <table cellpadding="5" cellspacing="0" style="width: 100%;" border="0">
-    <tr style="background-color: #4a8a16; padding:5px; color:white;">
-        <td style="padding:5px;">
-            <b>Lieferschein-Nr</b>
-        </td>
-        <td style="text-align: center;">
-            <b>Lieferdatum</b>
-        </td>
-        <td style="text-align: center;">
-            <b>Menge</b>
-        </td>
-        <td style="text-align: center;">
-            <b>Preis</b>
-        </td>
-    </tr>';
+<tr style="background-color: #4a8a16; padding:5px; color:white;">
+    <td style="padding:5px;">
+        <b>Lieferschein-Nr</b>
+    </td>
+    <td style="text-align: center;">
+        <b>Lieferdatum</b>
+    </td>
+    <td style="text-align: center;">
+        <b>Menge</b>
+    </td>
+    <td style="text-align: center;">
+        <b>Preis</b>
+    </td>
+</tr>';
 
 // Add items
 $totalAmount = 0;
@@ -161,12 +161,12 @@ foreach($invoiceItems as $item) {
     $price = $item[3] * $item[2];
     $totalAmount += $price;
     $html .= '
-        <tr>
-            <td style="text-align: center;">' . $item[0].  '</td>
-            <td style="text-align: center;">' . $item[1] . '</td>
-            <td style="text-align: right;">' . $item[2] . ' ' . $inv -> volumeUnit . '</td>
-            <td style="text-align: center;">' . number_format($price, 2, ',', '') . ' Euro</td>
-        </tr>';
+<tr>
+    <td style="text-align: center;">' . $item[0].  '</td>
+    <td style="text-align: center;">' . $item[1] . '</td>
+    <td style="text-align: right;">' . $item[2] . ' ' . $inv -> volumeUnit . '</td>
+    <td style="text-align: center;">' . number_format($price, 2, ',', '') . ' Euro</td>
+</tr>';
 }
 $html .="</table>";
 
@@ -179,21 +179,21 @@ if($umsatzsteuer > 0) {
  
  $html .= '
  <tr>
- <td colspan="3">Zwischensumme (Netto)</td>
- <td style="text-align: center;">'.number_format($netto , 2, ',', '').' Euro</td>
+    <td colspan="3">Zwischensumme (Netto)</td>
+    <td style="text-align: center;">'.number_format($netto , 2, ',', '').' Euro</td>
  </tr>
  <tr>
- <td colspan="3">Umsatzsteuer ('.intval($umsatzsteuer*100).'%)</td>
- <td style="text-align: center;">'.number_format($umsatzsteuer_betrag, 2, ',', '').' Euro</td>
+    <td colspan="3">Umsatzsteuer ('.intval($umsatzsteuer*100).'%)</td>
+    <td style="text-align: center;">'.number_format($umsatzsteuer_betrag, 2, ',', '').' Euro</td>
  </tr>';
 }
  
 $html .='
-            <tr>
-                <td colspan="3"><b>Gesamtbetrag: </b></td>
-                <td style="text-align: center;"><b>'.number_format($totalAmount, 2, ',', '').' Euro</b></td>
-            </tr> 
-        </table>
+<tr>
+    <td colspan="3"><b>Gesamtbetrag: </b></td>
+    <td style="text-align: center;"><b>'.number_format($totalAmount, 2, ',', '').' Euro</b></td>
+</tr> 
+</table>
 <br><br><br>';
 /*
 if(isset($comment) {
@@ -225,14 +225,11 @@ $html .= "<strong>Bankverbindung</strong>:"
     $pdf->SetPrintHeader(false);
     $pdf->SetPrintFooter(false);
 
+    // Use monospaced font
+    $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
  
-// Auswahl des Font
-$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
- 
-// Auswahl der MArgins
-$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+    // Set Margins
+    $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
  
 // Automatisches Autobreak der Seiten
 $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
@@ -240,22 +237,16 @@ $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 // Image Scale 
 $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
  
-// Schriftart
-$pdf->SetFont('dejavusans', '', 10);
+    // Set font and font size
+    $pdf->SetFont('dejavusans', '', 10);
  
-// Neue Seite
-$pdf->AddPage();
+    // Add new page
+    $pdf->AddPage();
  
-// Fügt den HTML Code in das PDF Dokument ein
-$pdf->writeHTML($html, true, false, true, false, '');
+    // Add HTML code to page and generate PDF out of it
+    $pdf->writeHTML($html, true, false, true, false, '');
  
-//Ausgabe der PDF
- 
-//Variante 1: PDF direkt an den Benutzer senden:
-$pdf->Output($pdfName, 'I');
- 
-//Variante 2: PDF im Verzeichnis abspeichern:
-//$pdf->Output(dirname(__FILE__).'/'.$pdfName, 'F');
-//echo 'PDF herunterladen: <a href="'.$pdfName.'">'.$pdfName.'</a>';
- 
+    // Show PDF to user in browser window
+    $pdf->Output($pdfName, 'I');
+
 ?>
