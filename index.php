@@ -126,7 +126,8 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt werden
 
 <div class="box">
     <strong>Systemeinstellungen</strong><br>
-    <a href="editImpressum.php">Impressum bearbeiten</a>
+    <a href="editImpressum.php">Impressum bearbeiten</a><br>
+    <a href="editInvoiceData.php">Rechnungsdaten bearbeiten</a>
 </div>
 
 <?php
