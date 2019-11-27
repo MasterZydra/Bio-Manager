@@ -41,14 +41,14 @@
         $conn = new Mysql();
         $conn -> dbConnect();
         
-        $alreadyExist = isset($_POST["supplierName"]) && alreadyExistsSupplier($_POST["supplierName"], $_GET['id']);
+        $alreadyExist = isset($_POST["supplierName"]) && alreadyExistsSupplier(secPOST("supplierName"), $_GET['id']);
         if(isset($_GET['edit'])) {
             if($alreadyExist) {
                 echo '<div class="warning">';
-                echo 'Der Lieferant <strong>' . $_POST["supplierName"] . '</strong> existiert bereits';
+                echo 'Der Lieferant <strong>' . secPOST("supplierName") . '</strong> existiert bereits';
                 echo '</div>';
             } else {
-                updateSupplier($conn, $_GET['id'], $_POST['supplierName'], $_POST['supplierInactive']);
+                updateSupplier($conn, $_GET['id'], secPOST("supplierName"), $_POST['supplierInactive']);
                 echo '<div class="infobox">';
                 echo 'Die Änderungen wurden erfolgreich gespeichert';
                 echo '</div>';
@@ -74,7 +74,7 @@
     <label for="supplierName" class="required">Name:</label><br>
     <input id="supplierName" name="supplierName" type="text" required autofocus value=
         <?php
-            echo ($alreadyExist) ? '"' . $_POST["supplierName"] . '"' : '"' . $row['name'] . '"';
+            echo ($alreadyExist) ? '"' . secPOST("supplierName") . '"' : '"' . $row['name'] . '"';
         ?>><br>
     
     <label>

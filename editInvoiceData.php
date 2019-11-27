@@ -34,15 +34,15 @@
         $txt = '<?php
     // Configuration for data which will be shown in invoice
     // Important: Use web interface to change the data. This file will be written from there.
-    $invoice["sender_name"] = "' . $_POST['sender_name'] . '";
-    $invoice["sender_address"] = "' . $_POST['sender_address'] . '";
-    $invoice["sender_postalCode"] = "' . $_POST['sender_postalCode'] . '";
-    $invoice["sender_city"] = "' . $_POST['sender_city'] . '";
-    $invoice["bank"] = "' . $_POST['bank'] . '";
-    $invoice["BIC"] = "' . $_POST['BIC'] . '";
-    $invoice["IBAN"] = "' . str_replace(' ', '', $_POST['IBAN']) . '";
-    $invoice["author"] = "' . $_POST['author'] . '";
-    $invoice["name"] = "' . $_POST['name'] . '";
+    $invoice["sender_name"] = "' . secPOST('sender_name') . '";
+    $invoice["sender_address"] = "' . secPOST('sender_address') . '";
+    $invoice["sender_postalCode"] = "' . secPOST('sender_postalCode') . '";
+    $invoice["sender_city"] = "' . secPOST('sender_city') . '";
+    $invoice["bank"] = "' . secPOST('bank') . '";
+    $invoice["BIC"] = "' . secPOST('BIC') . '";
+    $invoice["IBAN"] = "' . str_replace(' ', '', secPOST('IBAN')) . '";
+    $invoice["author"] = "' . secPOST('author') . '";
+    $invoice["name"] = "' . secPOST('name') . '";
 ?>';
         fwrite($myfile, $txt);
         fclose($myfile);

@@ -30,11 +30,11 @@
     <a href="setting.php">Alle Einstellungen anzeigen</a>
 </p>
 <?php
-    $alreadyExist = isset($_POST["settingName"]) && alreadyExistsSetting($_POST["settingName"]);
+    $alreadyExist = isset($_POST["settingName"]) && alreadyExistsSetting(secPOST("settingName"));
     if(isset($_GET['add'])) {
         if($alreadyExist) {
             echo '<div class="warning">';
-            echo 'Die Einstellung <strong>' . $_POST["settingName"] . '</strong> existiert bereits';
+            echo 'Die Einstellung <strong>' . secPOST("settingName") . '</strong> existiert bereits';
             echo '</div>';
         } else {
             $conn = new Mysql();
@@ -47,17 +47,17 @@
 
             $setting_name = [
                 "type" => "char",
-                "val" => $_POST["settingName"]
+                "val" => secPOST("settingName")
             ];
 
             $setting_desc = [
                 "type" => "char",
-                "val" => $_POST["settingDesc"]
+                "val" => secPOST("settingDesc")
             ];
 
             $setting_value = [
                 "type" => "char",
-                "val" => $_POST["settingValue"]
+                "val" => secPOST("settingValue")
             ];
 
             // Add setting
@@ -68,7 +68,7 @@
             $conn -> dbDisconnect();
 
             echo '<div class="infobox">';
-            echo 'Die Einstellung <strong>' . $_POST["settingName"] . '</strong> wurde hinzugefügt';
+            echo 'Die Einstellung <strong>' . secPOST("settingName") . '</strong> wurde hinzugefügt';
             echo '</div>';
         }
     }
@@ -76,15 +76,15 @@
 <form action="?add=1" method="post" class="requiredLegend">
     <label for="settingName" class="required">Name:</label><br>
     <input id="settingName" name="settingName" type="text" placeholder="Name eingeben" required autofocus
-        <?php if($alreadyExist) { echo ' value="' . $_POST["settingName"] . '"'; } ?>><br>
+        <?php if($alreadyExist) { echo ' value="' . secPOST("settingName") . '"'; } ?>><br>
     
     <label for="settingDesc" class="required">Beschreibung:</label><br>
     <input id="settingDesc" name="settingDesc" type="text" placeholder="Beschreibung eingeben" required
-        <?php if($alreadyExist) { echo ' value="' . $_POST["settingDesc"] . '"'; } ?>><br>
+        <?php if($alreadyExist) { echo ' value="' . secPOST("settingDesc") . '"'; } ?>><br>
     
     <label for="settingValue" class="required">Wert:</label><br>
     <input id="settingValue" name="settingValue" type="text" placeholder="Wert eingeben" required
-        <?php if($alreadyExist) { echo ' value="' . $_POST["settingValue"] . '"'; } ?>><br>
+        <?php if($alreadyExist) { echo ' value="' . secPOST("settingValue") . '"'; } ?>><br>
     
     <button>Hinzufügen</button>
 </form>

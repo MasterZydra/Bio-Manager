@@ -18,8 +18,8 @@
     $noPermissionsSet = false;
 
     if(isset($_GET['login'])) {        
-        $login = $_POST['user_login'];
-        $password = $_POST['user_password'];
+        $login = secPOST('user_login');
+        $password = secPOST('user_password');
         // Get user login data
         $conn = new Mysql();
         $conn -> dbConnect();

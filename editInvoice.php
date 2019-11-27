@@ -42,15 +42,15 @@
         $conn = new Mysql();
         $conn -> dbConnect();
         
-        $conn -> select('T_Invoice', 'isPaid', 'id = ' . $_GET['id']);
+        $conn -> select('T_Invoice', 'isPaid', 'id = ' . secGET('id'));
         $row = $conn -> getFirstRow();
         
         if(!$row['isPaid'] && isset($_GET['edit'])) {
             $conn -> update(
                 'T_Invoice',
-                'invoiceDate = \'' . $_POST['invoiceDate'] . '\', '
-                . 'isPaid = ' . $_POST['invoiceIsPaid'] . ', '
-                . 'recipientId = ' . $_POST['recipientId'],
+                'invoiceDate = \'' . secPOST('invoiceDate') . '\', '
+                . 'isPaid = ' . secPOST('invoiceIsPaid') . ', '
+                . 'recipientId = ' . secPOST('recipientId'),
                 'id = ' . $_GET['id']);
             echo '<div class="infobox">';
             echo 'Die Änderungen wurden erfolgreich gespeichert';
@@ -62,7 +62,7 @@
         
         // Select data
         $prepStmt = new mysql_preparedStatement_BioManager();
-        $row = $prepStmt -> selectWhereId("T_Invoice", $_GET['id']);
+        $row = $prepStmt -> selectWhereId("T_Invoice", secGET('id'));
         $prepStmt -> destroy();
         
         // Check if id is valid 
@@ -96,7 +96,7 @@
         if($row['isPaid']){
             echo recipientSelectBox(NULL, $row['recipientId'], true);
         } elseif(isset($_POST['recipientId'])) {
-            echo recipientSelectBox(NULL, $_POST['recipientId']);
+            echo recipientSelectBox(NULL, secPOST('recipientId'));
         } else {
             echo recipientSelectBox(NULL, $row['recipientId']);
         }

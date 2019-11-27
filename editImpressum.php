@@ -34,17 +34,17 @@
         $txt = '<?php
     // Configuration for data which will be shown in impressum
     // Important: Use web interface to change the data. This file will be written from there.
-    $impressum["provider_name"] = "' . $_POST['provider_name'] . '";
-    $impressum["provider_street"] = "' . $_POST['provider_street'] . '";
-    $impressum["provider_postalCode"] = "' . $_POST['provider_postalCode'] . '";
-    $impressum["provider_city"] = "' . $_POST['provider_city'] . '";
-    $impressum["provider_email"] = "' . $_POST['provider_email'] . '";
+    $impressum["provider_name"] = "' . secPOST('provider_name') . '";
+    $impressum["provider_street"] = "' . secPOST('provider_street') . '";
+    $impressum["provider_postalCode"] = "' . secPOST('provider_postalCode') . '";
+    $impressum["provider_city"] = "' . secPOST('provider_city') . '";
+    $impressum["provider_email"] = "' . secPOST('provider_email') . '";
 
-    $impressum["responsible_name"] = "' . $_POST['responsible_name'] . '";
-    $impressum["responsible_street"] = "' . $_POST['responsible_street'] . '";
-    $impressum["responsible_postalCode"] = "' . $_POST['responsible_postalCode'] . '";
-    $impressum["responsible_city"] = "' . $_POST['responsible_city'] . '";
-    $impressum["responsible_email"] = "' . $_POST['responsible_email'] . '";
+    $impressum["responsible_name"] = "' . secPOST('responsible_name') . '";
+    $impressum["responsible_street"] = "' . secPOST('responsible_street') . '";
+    $impressum["responsible_postalCode"] = "' . secPOST('responsible_postalCode') . '";
+    $impressum["responsible_city"] = "' . secPOST('responsible_city') . '";
+    $impressum["responsible_email"] = "' . secPOST('responsible_email') . '";
 ?>';
         fwrite($myfile, $txt);
         fclose($myfile);
