@@ -85,9 +85,9 @@
     <input id="price_year" name="price_year" type="number" required autofocus value=
        <?php
             if($alreadyExist) {
-                echo '"' . $_POST["price_year"] . '"';
+                echo "'$_POST[price_year]'";
             } else {
-                echo '"' . $row['year'] . '"';
+                echo "'$row[year]'";
             }
         ?>><br>
     
@@ -104,9 +104,9 @@
     <input id="price" name="price" type="number" step="0.01" placeholder="Preis eingeben" required value=
        <?php
             if($alreadyExist) {
-                echo '"' . $_POST["price"] . '"';
+                echo "'$_POST[price]'";
             } else {
-                echo '"' . $row['price'] . '"';
+                echo "'$row[price]'";
             }
         ?>><br>
     
@@ -114,9 +114,9 @@
     <input id="price_payOut" name="price_payOut" type="number" step="0.01" placeholder="Preis eingeben" required value=
        <?php
             if($alreadyExist) {
-                echo '"' . $_POST["price_payOut"] . '"';
+                echo "'$_POST[price_payOut]'";
             } else {
-                echo '"' . $row['pricePayOut'] . '"';
+                echo "'$row[pricePayOut]'";
             }
         ?>><br>
     
