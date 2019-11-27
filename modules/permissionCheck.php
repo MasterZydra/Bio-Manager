@@ -15,6 +15,8 @@
 include 'modules/Mysql_BioManager.php';
 include_once 'modules/Mysql_preparedStatement_BioManager.php';
 
+include 'modules/stringSecurityHelper.php';
+
 /*
 * Get permission for current user.
 *
