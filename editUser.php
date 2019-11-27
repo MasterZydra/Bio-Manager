@@ -40,14 +40,14 @@
         $conn = new Mysql();
         $conn -> dbConnect();
         
-        $alreadyExist = isset($_POST["userLogin"]) && alreadyExistsUser($_POST["userLogin"], $_GET['id']);
+        $alreadyExist = isset($_POST["userLogin"]) && alreadyExistsUser(secPOST("userLogin"), $_GET['id']);
         if(isset($_GET['edit'])) {
             if($alreadyExist) {
                 echo '<div class="warning">';
-                echo 'Ein Benutzer mit dem Login <strong>' . $_POST["userLogin"] . '</strong> existiert bereits';
+                echo 'Ein Benutzer mit dem Login <strong>' . secPOST("userLogin") . '</strong> existiert bereits';
                 echo '</div>';
             } else {
-                $set = 'name = \'' . $_POST['userName'] .'\'';
+                $set = 'name = \'' . secPOST("userName") .'\'';
                 if(!isset($_POST["supplierId"]) || !$_POST["supplierId"]) {
                     $set .= ', supplierId = NULL';
                 } else {
@@ -59,7 +59,7 @@
                     'id = ' . $_GET['id']);
                 $conn -> update(
                     'T_UserLogin',
-                    'login = \'' . $_POST['userLogin'] . '\', '
+                    'login = \'' . secPOST("userLogin") . '\', '
                     . 'forcePwdChange = ' . $_POST['userForcePwdChange'],
                     'userId = ' . $_GET['id']);
                 $conn -> update(
@@ -98,13 +98,13 @@
     <label for="userName" class="required">Name:</label><br>
     <input id="userName" name="userName" type="text" placeholder="Name des Benutzers" required autofocus value=
         <?php
-            echo ($alreadyExist) ? '"' . $_POST["userName"] . '"' : '"' . $row['name'] . '"';
+            echo ($alreadyExist) ? '"' . secPOST("userName") . '"' : "'$row[name]'";
         ?>><br>
     
     <label for="userLogin" class="required">Anmeldename:</label><br>
     <input id="userLogin" name="userLogin" type="text" placeholder="Anmeldename des Benutzers" required value=
         <?php
-            echo ($alreadyExist) ? '"' . $_POST["userLogin"] . '"' : '"' . $row['login'] . '"';
+            echo ($alreadyExist) ? '"' . secPOST("userLogin") . '"' : "'$row[login]'";
         ?>><br>
     
     <label>

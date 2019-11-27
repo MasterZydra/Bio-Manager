@@ -30,11 +30,11 @@
     <a href="user.php">Alle Benutzer anzeigen</a>
 </p>
 <?php
-    $alreadyExist = isset($_POST["userLogin"]) && alreadyExistsUser($_POST["userLogin"]);
+    $alreadyExist = isset($_POST["userLogin"]) && alreadyExistsUser(secPOST("userLogin"));
     if(isset($_GET['add'])) {
         if($alreadyExist) {
             echo '<div class="warning">';
-            echo 'Ein Benutzer mit dem Login <strong>' . $_POST["userLogin"] . '</strong> existiert bereits';
+            echo 'Ein Benutzer mit dem Login <strong>' . secPOST("userLogin") . '</strong> existiert bereits';
             echo '</div>';
         } else {
             $conn = new Mysql();
@@ -47,7 +47,7 @@
 
             $user_name = [
                 "type" => "char",
-                "val" => $_POST["userName"]
+                "val" => secPOST("userName")
             ];
 
             // SupplierId
@@ -68,7 +68,7 @@
             $conn -> insertInto('T_User', $data);
             $data = NULL;
             // Get user id
-            $conn -> select('T_User', 'id', 'name = \'' . $_POST["userName"] . '\' ORDER BY id DESC');
+            $conn -> select('T_User', 'id', 'name = \'' . secPOST("userName") . '\' ORDER BY id DESC');
             $user = $conn -> getFirstRow();
             if($user == NULL) {
                 // Error do not continue
@@ -81,7 +81,7 @@
 
             $user_login = [
                 "type" => "char",
-                "val" => $_POST['userLogin']
+                "val" => secPOST("userLogin")
             ];
 
             $user_password = [
@@ -132,7 +132,7 @@
             $conn -> dbDisconnect();
 
             echo '<div class="infobox">';
-            echo 'Der Benutzer <strong>' . $_POST["userName"] . '</strong> wurde hinzugefügt';
+            echo 'Der Benutzer <strong>' . secPOST("userName") . '</strong> wurde hinzugefügt';
             echo '</div>';
         }
     }
@@ -140,11 +140,11 @@
 <form action="?add=1" method="post" class="requiredLegend">
     <label for="userName" class="required">Name:</label><br>
     <input id="userName" name="userName" type="text" placeholder="Benutzername eingeben" required autofocus
-        <?php if($alreadyExist) { echo ' value="' . $_POST["userName"] . '"'; } ?>><br>
+        <?php if($alreadyExist) { echo ' value="' . secPOST("userName") . '"'; } ?>><br>
     
     <label for="userLogin" class="required">Anmeldename:</label><br>
     <input id="userLogin" name="userLogin" type="text" placeholder="Anmeldename eingeben" required
-        <?php if($alreadyExist) { echo ' value="' . $_POST["userLogin"] . '"'; } ?>><br>
+        <?php if($alreadyExist) { echo ' value="' . secPOST("userLogin") . '"'; } ?>><br>
     
     <label for="userPassword" class="required">Passwort:</label><br>
     <input id="userPassword" name="userPassword" type="password" placeholder="Passwort eingeben" required

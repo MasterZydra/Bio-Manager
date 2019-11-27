@@ -27,11 +27,11 @@
     <a href="supplier.php">Alle Lieferanten anzeigen</a>
 </p>
 <?php
-    $alreadyExist = isset($_POST["supplier_name"]) && alreadyExistsSupplier($_POST["supplier_name"]);
+    $alreadyExist = isset($_POST["supplier_name"]) && alreadyExistsSupplier(secPOST("supplier_name"));
     if(isset($_GET['add'])) {
         if($alreadyExist) {
             echo '<div class="warning">';
-            echo 'Der Lieferant <strong>' . $_POST["supplier_name"] . '</strong> existiert bereits';
+            echo 'Der Lieferant <strong>' . secPOST("supplier_name") . '</strong> existiert bereits';
             echo '</div>';
         } else {
             $conn = new Mysql();
@@ -44,7 +44,7 @@
 
             $supplier_name = [
                 "type" => "char",
-                "val" => $_POST["supplier_name"]
+                "val" => secPOST("supplier_name")
             ];
 
             $supplier_inactive = [
@@ -58,7 +58,7 @@
             $conn -> dbDisconnect();
 
             echo '<div class="infobox">';
-            echo 'Der Lieferant <strong>' . $_POST["supplier_name"] . '</strong> wurde hinzugefügt';
+            echo 'Der Lieferant <strong>' . secPOST("supplier_name") . '</strong> wurde hinzugefügt';
             echo '</div>';
         }
     }
@@ -66,7 +66,7 @@
 <form action="?add=1" method="POST" class="requiredLegend">
     <label for="supplier_name" class="required">Name:</label><br>
     <input id="supplier_name" name="supplier_name" type="text" placeholder="Name des Lieferanten" required autofocus
-        <?php if($alreadyExist) { echo ' value="' . $_POST["supplier_name"] . '"'; } ?>><br>
+        <?php if($alreadyExist) { echo ' value="' . secPOST("supplier_name") . '"'; } ?>><br>
     
     <button>Hinzufügen</button>
 </form>

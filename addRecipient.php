@@ -27,11 +27,11 @@
     <a href="recipient.php">Alle Abnehmer anzeigen</a>
 </p>
 <?php
-    $alreadyExist = isset($_POST["recipient_name"]) && alreadyExistsRecipient($_POST["recipient_name"]);
+    $alreadyExist = isset($_POST["recipient_name"]) && alreadyExistsRecipient(secPOST("recipient_name"));
     if(isset($_GET['add'])) {
         if($alreadyExist) {
             echo '<div class="warning">';
-            echo 'Der Abnehmer <strong>' . $_POST["recipient_name"] . '</strong> existiert bereits';
+            echo 'Der Abnehmer <strong>' . secPOST("recipient_name") . '</strong> existiert bereits';
             echo '</div>';
         } else {
             $conn = new Mysql();
@@ -44,7 +44,7 @@
 
             $recipient_name = [
                 "type" => "char",
-                "val" => $_POST["recipient_name"]
+                "val" => secPOST("recipient_name")
             ];
 
             $recipient_address = [
@@ -58,7 +58,7 @@
             $conn -> dbDisconnect();
 
             echo '<div class="infobox">';
-            echo 'Der Abnehmer <strong>' . $_POST["recipient_name"] . '</strong> wurde hinzugefügt';
+            echo 'Der Abnehmer <strong>' . secPOST("recipient_name") . '</strong> wurde hinzugefügt';
             echo '</div>';
         }
     }
@@ -66,7 +66,7 @@
 <form action="?add=1" method="POST" class="requiredLegend">
     <label for="recipient_name" class="required">Name:</label><br>
     <input id="recipient_name" name="recipient_name" type="text" placeholder="Name des Abnehmers" required autofocus
-        <?php if($alreadyExist) { echo ' value="' . $_POST["recipient_name"] . '"'; } ?>><br>
+        <?php if($alreadyExist) { echo ' value="' . secPOST("recipient_name") . '"'; } ?>><br>
     
     <label for="recipient_address" class="required">Anschrift:</label><br>
     <textarea id="recipient_address" name="recipient_address" placeholder="Adresse des Abnehmers" required><?php if($alreadyExist) { echo $_POST["recipient_address"]; } ?></textarea><br>

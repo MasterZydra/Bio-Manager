@@ -27,11 +27,11 @@
     <a href="product.php">Alle Produkte anzeigen</a>
 </p>
 <?php
-    $alreadyExist = isset($_POST["product_name"]) && alreadyExistsProduct($_POST["product_name"]);
+    $alreadyExist = isset($_POST["product_name"]) && alreadyExistsProduct(secPOST("product_name"));
     if(isset($_GET['add'])) {
         if($alreadyExist) {
             echo '<div class="warning">';
-            echo 'Das Produkt <strong>' . $_POST["product_name"] . '</strong> existiert bereits';
+            echo 'Das Produkt <strong>' . secPOST("product_name") . '</strong> existiert bereits';
             echo '</div>';
         } else {
             $conn = new Mysql();
@@ -44,7 +44,7 @@
 
             $product_name = [
                 "type" => "char",
-                "val" => $_POST["product_name"]
+                "val" => secPOST("product_name")
             ];
 
             $data = array($NULL, $product_name);
@@ -53,7 +53,7 @@
             $conn -> dbDisconnect();
 
             echo '<div class="infobox">';
-            echo 'Das Produkt <strong>' . $_POST["product_name"] . '</strong> wurde hinzugefügt';
+            echo 'Das Produkt <strong>' . secPOST("product_name") . '</strong> wurde hinzugefügt';
             echo '</div>';
         }
     }
@@ -61,7 +61,7 @@
 <form action="?add=1" method="POST" class="requiredLegend">
     <label for="product_name" class="required">Name:</label><br>
     <input id="product_name" name="product_name"  type="text" placeholder="Name des Produktes" required autofocus
-        <?php if($alreadyExist) { echo ' value="' . $_POST["product_name"] . '"'; } ?>><br>
+        <?php if($alreadyExist) { echo ' value="' . secPOST("product_name") . '"'; } ?>><br>
     <button>Hinzufügen</button>
 </form>
 <?php
