@@ -39,14 +39,14 @@
         $conn = new Mysql();
         $conn -> dbConnect();
         
-        $alreadyExist = isset($_POST["supplierName"]) && alreadyExistsSupplier(secPOST("supplierName"), $_GET['id']);
+        $alreadyExist = isset($_POST["supplierName"]) && alreadyExistsSupplier(secPOST("supplierName"), secGET('id'));
         if(isset($_GET['edit'])) {
             if($alreadyExist) {
                 echo '<div class="warning">';
                 echo 'Der Lieferant <strong>' . secPOST("supplierName") . '</strong> existiert bereits';
                 echo '</div>';
             } else {
-                updateSupplier($conn, $_GET['id'], secPOST("supplierName"), $_POST['supplierInactive']);
+                updateSupplier($conn, secGET('id'), secPOST("supplierName"), secPOST('supplierInactive'));
                 echo '<div class="infobox">';
                 echo 'Die Änderungen wurden erfolgreich gespeichert';
                 echo '</div>';
@@ -58,7 +58,7 @@
 
         // Select data
         $prepStmt = new mysql_preparedStatement_BioManager();
-        $row = $prepStmt -> selectWhereId("T_Supplier", $_GET['id']);
+        $row = $prepStmt -> selectWhereId("T_Supplier", secGET('id'));
         $prepStmt -> destroy();
         
         // Check if id is valid 

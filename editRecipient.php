@@ -39,18 +39,18 @@
         $conn = new Mysql();
         $conn -> dbConnect();
         
-        $alreadyExist = isset($_POST["recipient_name"]) && alreadyExistsRecipient($_POST["recipient_name"], $_GET['id']);
+        $alreadyExist = isset($_POST["recipient_name"]) && alreadyExistsRecipient(secPOST("recipient_name"), secGET('id'));
         if(isset($_GET['edit'])) {
             if($alreadyExist) {
                 echo '<div class="warning">';
-                echo 'Der Abnehmer <strong>' . $_POST["recipient_name"] . '</strong> existiert bereits';
+                echo 'Der Abnehmer <strong>' . secPOST("recipient_name") . '</strong> existiert bereits';
                 echo '</div>';
             } else {
                 $conn -> update(
                     'T_Recipient',
-                    'name = \'' . $_POST['recipient_name'] . '\', '
-                    . 'address = \'' . $_POST['recipient_address'] . '\'',
-                    'id = ' . $_GET['id']);
+                    'name = \'' . secPOST('recipient_name') . '\', '
+                    . 'address = \'' . secPOST('recipient_address') . '\'',
+                    'id = ' . secGET('id'));
                 echo '<div class="infobox">';
                 echo 'Die Änderungen wurden erfolgreich gespeichert';
                 echo '</div>';
@@ -62,7 +62,7 @@
         
         // Select data
         $prepStmt = new mysql_preparedStatement_BioManager();
-        $row = $prepStmt -> selectWhereId("T_Recipient", $_GET['id']);
+        $row = $prepStmt -> selectWhereId("T_Recipient", secGET('id'));
         $prepStmt -> destroy();
         
         // Check if id is valid 
@@ -76,11 +76,13 @@
     <label for="recipient_name" class="required">Name:</label><br>
     <input id="recipient_name" name="recipient_name" type="text" placeholder="Name des Abnehmers" required autofocus value=
         <?php
-            echo ($alreadyExist) ? '"' . $_POST["recipient_name"] . '"' : '"' . $row['name'] . '"';
+            echo ($alreadyExist) ? '"' . secPOST("recipient_name") . '"' : '"' . $row['name'] . '"';
         ?>><br>
     
     <label for="recipient_address" class="required">Anschrift:</label><br>
-    <textarea id="recipient_address" name="recipient_address" placeholder="Adresse des Abnehmers" required><?php if($alreadyExist) { echo $_POST["recipient_address"]; } else { echo $row['address']; } ?></textarea><br>
+    <textarea id="recipient_address" name="recipient_address" placeholder="Adresse des Abnehmers" required>
+<?php if($alreadyExist) { echo secPOST("recipient_address"); } else { echo $row['address']; } ?>
+</textarea><br>
     
     <button>Änderungen speichern</button>
 </form>

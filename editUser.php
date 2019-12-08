@@ -40,7 +40,7 @@
         $conn = new Mysql();
         $conn -> dbConnect();
         
-        $alreadyExist = isset($_POST["userLogin"]) && alreadyExistsUser(secPOST("userLogin"), $_GET['id']);
+        $alreadyExist = isset($_POST["userLogin"]) && alreadyExistsUser(secPOST("userLogin"), secGET('id'));
         if(isset($_GET['edit'])) {
             if($alreadyExist) {
                 echo '<div class="warning">';
@@ -51,25 +51,25 @@
                 if(!isset($_POST["supplierId"]) || !$_POST["supplierId"]) {
                     $set .= ', supplierId = NULL';
                 } else {
-                    $set .= ', supplierId = ' . $_POST["supplierId"];
+                    $set .= ', supplierId = ' . secPOST("supplierId");
                 }
                 $conn -> update(
                     'T_User',
                     $set,
-                    'id = ' . $_GET['id']);
+                    'id = ' . secGET('id'));
                 $conn -> update(
                     'T_UserLogin',
                     'login = \'' . secPOST("userLogin") . '\', '
-                    . 'forcePwdChange = ' . $_POST['userForcePwdChange'],
-                    'userId = ' . $_GET['id']);
+                    . 'forcePwdChange = ' . secPOST('userForcePwdChange'),
+                    'userId = ' . secGET('id'));
                 $conn -> update(
                     'T_UserPermission',
-                    'isAdmin = ' . $_POST['userIsAdmin'] . ', '
-                    . 'isDeveloper = ' . $_POST['userIsDeveloper'] . ', '
-                    . 'isMaintainer = ' . $_POST['userIsMaintainer'] . ', '
-                    . 'isSupplier = ' . $_POST['userIsSupplier'] . ', '
-                    . 'isInspector = ' . $_POST['userIsInspector'],
-                    'userId = ' . $_GET['id']);
+                    'isAdmin = ' . secPOST('userIsAdmin') . ', '
+                    . 'isDeveloper = ' . secPOST('userIsDeveloper') . ', '
+                    . 'isMaintainer = ' . secPOST('userIsMaintainer') . ', '
+                    . 'isSupplier = ' . secPOST('userIsSupplier') . ', '
+                    . 'isInspector = ' . secPOST('userIsInspector'),
+                    'userId = ' . secGET('id'));
                 echo '<div class="infobox">';
                 echo 'Die Änderungen wurden erfolgreich gespeichert';
                 echo '</div>';
@@ -82,7 +82,7 @@
         . 'FROM `T_User` '
         . 'LEFT JOIN `T_UserPermission` ON `T_UserPermission`.`userId` = `T_User`.`id` '
         . 'LEFT JOIN `T_UserLogin` ON `T_UserLogin`.`userId` = `T_User`.`id`'
-        . 'WHERE T_User.id = ' . $_GET['id']);
+        . 'WHERE T_User.id = ' . secGET('id'));
         $row = $conn -> getFirstRow();
         $conn -> dbDisconnect();
         $conn = NULL;
@@ -111,7 +111,7 @@
         <input type="hidden" name="userForcePwdChange" value="0">
         <input type="checkbox" name="userForcePwdChange" value="1"
            <?php
-                if((!$alreadyExist && $row['forcePwdChange']) || ($alreadyExist && $_POST['userForcePwdChange'])) {
+                if((!$alreadyExist && $row['forcePwdChange']) || ($alreadyExist && secPOST('userForcePwdChange'))) {
                     echo ' checked';
                 }
            ?>>
@@ -122,7 +122,7 @@
         <input type="hidden" name="userIsAdmin" value="0">
         <input type="checkbox" name="userIsAdmin" value="1"
             <?php
-                if((!$alreadyExist && $row['isAdmin']) || ($alreadyExist && $_POST['userIsAdmin'])) {
+                if((!$alreadyExist && $row['isAdmin']) || ($alreadyExist && secPOST('userIsAdmin'))) {
                     echo ' checked';
                 }
            ?>>
@@ -132,7 +132,7 @@
         <input type="hidden" name="userIsDeveloper" value="0">
         <input type="checkbox" name="userIsDeveloper" value="1"
             <?php
-                if((!$alreadyExist && $row['isDeveloper']) || ($alreadyExist && $_POST['userIsDeveloper'])) {
+                if((!$alreadyExist && $row['isDeveloper']) || ($alreadyExist && secPOST('userIsDeveloper'))) {
                     echo ' checked';
                 }
            ?>>
@@ -142,7 +142,7 @@
         <input type="hidden" name="userIsMaintainer" value="0">
         <input type="checkbox" name="userIsMaintainer" value="1"
             <?php
-                if((!$alreadyExist && $row['isMaintainer']) || ($alreadyExist && $_POST['userIsMaintainer'])) {
+                if((!$alreadyExist && $row['isMaintainer']) || ($alreadyExist && secPOST('userIsMaintainer'))) {
                     echo ' checked';
                 }
            ?>>
@@ -152,7 +152,7 @@
         <input type="hidden" name="userIsInspector" value="0">
         <input type="checkbox" name="userIsInspector" value="1"
             <?php
-                if((!$alreadyExist && $row['isInspector']) || ($alreadyExist && $_POST['userIsInspector'])) {
+                if((!$alreadyExist && $row['isInspector']) || ($alreadyExist && secPOST('userIsInspector'))) {
                     echo ' checked';
                 }
            ?>>
@@ -162,7 +162,7 @@
         <input type="hidden" name="userIsSupplier" value="0">
         <input type="checkbox" name="userIsSupplier" value="1"
             <?php
-                if((!$alreadyExist && $row['isSupplier']) || ($alreadyExist && $_POST['userIsSupplier'])) {
+                if((!$alreadyExist && $row['isSupplier']) || ($alreadyExist && secPOST('userIsSupplier'))) {
                     echo ' checked';
                 }
            ?>>
@@ -170,8 +170,8 @@
     </label><br>
     <label>Lieferant:<br>
         <?php
-            if($alreadyExist && $_POST['supplierId']) {
-                echo supplierSelectBox(false, $_POST['supplierId'], false);
+            if($alreadyExist && secPOST('supplierId')) {
+                echo supplierSelectBox(false, secPOST('supplierId'), false);
             } else {
                 echo supplierSelectBox(false, $row['supplierId'], false);
             }

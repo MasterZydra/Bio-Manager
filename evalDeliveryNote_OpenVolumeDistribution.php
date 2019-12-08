@@ -38,11 +38,11 @@
         if($_GET['action'] == 'edit') {
             // Action - Edit a delivery note
             // Forwarding to edit page and add parameters
-            echo '<script>window.location.replace("editDeliveryNote.php?id=' . $_GET['id'] . '");</script>';
+            echo '<script>window.location.replace("editDeliveryNote.php?id=' . secGET('id') . '");</script>';
         } elseif($_GET['action'] == 'volDist') {
             // Action - Edit volume distribution of a delivery note
             // Forwarding to edit page and add parameters
-            echo '<script>window.location.replace("editCropVolumeDistribution.php?id=' . $_GET['id'] . '");</script>';
+            echo '<script>window.location.replace("editCropVolumeDistribution.php?id=' . secGET('id') . '");</script>';
         }
     }
 ?>

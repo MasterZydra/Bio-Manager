@@ -40,9 +40,9 @@
         if(isset($_GET['edit'])) {
             $conn -> update(
                 'T_Setting',
-                'description = \'' . $_POST['settingDesc'] . '\', '
-                . 'value = \'' . $_POST['settingValue'] . '\'',
-                'id = ' . $_GET['id']);
+                'description = \'' . secPOST('settingDesc') . '\', '
+                . 'value = \'' . secPOST('settingValue') . '\'',
+                'id = ' . secGET('id'));
             echo '<div class="infobox">';
             echo 'Die Änderungen wurden erfolgreich gespeichert';
             echo '</div>';
@@ -53,7 +53,7 @@
         
         // Select data
         $prepStmt = new mysql_preparedStatement_BioManager();
-        $row = $prepStmt -> selectWhereId("T_Setting", $_GET['id']);
+        $row = $prepStmt -> selectWhereId("T_Setting", secGET('id'));
         $prepStmt -> destroy();
         
         // Check if id is valid 

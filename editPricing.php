@@ -43,7 +43,7 @@
         $conn -> dbConnect();
         
         $alreadyExist = isset($_POST["productId"]) && isset($_POST["price_year"]) &&
-            alreadyExistsPricing($_POST["productId"], $_POST["price_year"], $_GET['id']);
+            alreadyExistsPricing(secPOST("productId"), secPOST("price_year"), secGET('id'));
         if(isset($_GET['edit'])) {
             if($alreadyExist) {
                 echo '<div class="warning">';
@@ -52,11 +52,11 @@
             } else {
                 $conn -> update(
                     'T_Pricing',
-                    'year = ' . $_POST['price_year'] . ', '
-                    . 'productId = ' . $_POST['productId'] . ' ,'
-                    . 'price = ' . $_POST['price'] . ', '
-                    . 'pricePayOut = ' . $_POST['price_payOut'],
-                    'id = ' . $_GET['id']);
+                    'year = ' . secPOST('price_year') . ', '
+                    . 'productId = ' . secPOST('productId') . ' ,'
+                    . 'price = ' . secPOST('price') . ', '
+                    . 'pricePayOut = ' . secPOST('price_payOut'),
+                    'id = ' . secGET('id'));
                 echo '<div class="infobox">';
                 echo 'Die Änderungen wurden erfolgreich gespeichert';
                 echo '</div>';
@@ -68,7 +68,7 @@
 
         // Select data
         $prepStmt = new mysql_preparedStatement_BioManager();
-        $row = $prepStmt -> selectWhereId("T_Pricing", $_GET['id']);
+        $row = $prepStmt -> selectWhereId("T_Pricing", secGET('id'));
         $prepStmt -> destroy();
         
         // Check if id is valid 
@@ -83,7 +83,7 @@
     <input id="price_year" name="price_year" type="number" required autofocus value=
        <?php
             if($alreadyExist) {
-                echo "'$_POST[price_year]'";
+                echo "'" . secPOST("price_year") . "'";
             } else {
                 echo "'$row[year]'";
             }
@@ -92,7 +92,7 @@
     <label for="productId" class="required">Produkt:</label><br>
     <?php
         if($alreadyExist && $_POST['productId']) {
-            echo productSelectBox(NULL, $_POST['productId']);
+            echo productSelectBox(NULL, secPOST('productId'));
         } else {
             echo productSelectBox(NULL, $row['productId']);
         }
@@ -102,7 +102,7 @@
     <input id="price" name="price" type="number" step="0.01" placeholder="Preis eingeben" required value=
        <?php
             if($alreadyExist) {
-                echo "'$_POST[price]'";
+                echo "'" . secPOST("price") . "'";
             } else {
                 echo "'$row[price]'";
             }
@@ -112,7 +112,7 @@
     <input id="price_payOut" name="price_payOut" type="number" step="0.01" placeholder="Preis eingeben" required value=
        <?php
             if($alreadyExist) {
-                echo "'$_POST[price_payOut]'";
+                echo "'" . secPOST("price_payOut") . "'";
             } else {
                 echo "'$row[pricePayOut]'";
             }

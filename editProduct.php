@@ -38,17 +38,17 @@
     } else {
         $conn = new Mysql();
         $conn -> dbConnect();
-        $alreadyExist = isset($_POST["product_name"]) && alreadyExistsProduct($_POST["product_name"]);
+        $alreadyExist = isset($_POST["product_name"]) && alreadyExistsProduct(secPOST("product_name"));
         if(isset($_GET['edit'])) {
             if($alreadyExist) {
                 echo '<div class="warning">';
-                echo 'Das Produkt <strong>' . $_POST["product_name"] . '</strong> existiert bereits';
+                echo 'Das Produkt <strong>' . secPOST("product_name") . '</strong> existiert bereits';
                 echo '</div>';
             } else {
                 $conn -> update(
                     'T_Product',
-                    'name = \'' . $_POST['product_name'] . '\'',
-                    'id = ' . $_GET['id']);
+                    'name = \'' . secPOST('product_name') . '\'',
+                    'id = ' . secGET('id'));
                 echo '<div class="infobox">';
                 echo 'Die Änderungen wurden erfolgreich gespeichert';
                 echo '</div>';
@@ -60,7 +60,7 @@
         
         // Select data
         $prepStmt = new mysql_preparedStatement_BioManager();
-        $row = $prepStmt -> selectWhereId("T_Product", $_GET['id']);
+        $row = $prepStmt -> selectWhereId("T_Product", secGET('id'));
         $prepStmt -> destroy();
         
         // Check if id is valid 
@@ -74,7 +74,7 @@
     <label for="product_name" class="required">Name:</label><br>
     <input id="product_name" name="product_name" type="text" <?php echo $row['name']; ?> required autofocus value=
         <?php
-            echo ($alreadyExist) ? '"' . $_POST["product_name"] . '"' : '"' . $row['name'] . '"';
+            echo ($alreadyExist) ? '"' . secPOST("product_name") . '"' : '"' . $row['name'] . '"';
         ?>><br>
     
     <button>Änderungen speichern</button>
