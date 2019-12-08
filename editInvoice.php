@@ -103,11 +103,7 @@
     <label>
         <input type="hidden" name="invoiceIsPaid" value="0">
         <input type="checkbox" name="invoiceIsPaid" value="1"
-           <?php
-                if($row['isPaid']) {
-                    echo 'checked onclick="return false;"';
-                }
-           ?>>
+           <?php echo ($row['isPaid']) ? 'checked onclick="return false;"' : ''; ?>>
         Ist bezahlt
     </label><br>
     
