@@ -38,13 +38,16 @@
 
 <?php
     if(isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
-        if($_GET['action'] == 'delete') {
-            // Action - Delete
-            echo '<script>window.location.replace("deleteRecipient.php?id=' . $_GET['id'] . '");</script>';
-        } elseif($_GET['action'] == 'edit') {
-            // Action - Edit
-            // Forwarding to edit page and add parameters
-            echo '<script>window.location.replace("editRecipient.php?id=' . $_GET['id'] . '");</script>';
+        switch (secGET('action')) {
+            case 'delete':
+                // Action - Delete
+                echo '<script>window.location.replace("deleteRecipient.php?id=' . secGET('id') . '");</script>';
+                break;
+            case 'edit':
+                // Action - Edit
+                // Forwarding to edit page and add parameters
+                echo '<script>window.location.replace("editRecipient.php?id=' . secGET('id') . '");</script>';
+                break;
         }
     }
 ?>

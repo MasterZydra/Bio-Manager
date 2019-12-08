@@ -35,17 +35,21 @@
 
 <?php
     if(isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
-        if($_GET['action'] == 'delete') {
-            // Action - Delete supplier
-            echo '<script>window.location.replace("deleteDeliveryNote.php?id=' . $_GET['id'] . '");</script>';
-        } elseif($_GET['action'] == 'edit') {
-            // Action - Edit a delivery note
-            // Forwarding to edit page and add parameters
-            echo '<script>window.location.replace("editDeliveryNote.php?id=' . $_GET['id'] . '");</script>';
-        } elseif($_GET['action'] == 'volDist') {
-            // Action - Edit volume distribution of a delivery note
-            // Forwarding to edit page and add parameters
-            echo '<script>window.location.replace("editCropVolumeDistribution.php?id=' . $_GET['id'] . '");</script>';
+        switch (secGET('action')) {
+            case 'delete':
+                // Action - Delete supplier
+                echo '<script>window.location.replace("deleteDeliveryNote.php?id=' . secGET('id') . '");</script>';
+                break;
+            case 'edit':
+                // Action - Edit a delivery note
+                // Forwarding to edit page and add parameters
+                echo '<script>window.location.replace("editDeliveryNote.php?id=' . secGET('id') . '");</script>';
+                break;
+            case 'volDist':
+                // Action - Edit volume distribution of a delivery note
+                // Forwarding to edit page and add parameters
+                echo '<script>window.location.replace("editCropVolumeDistribution.php?id=' . secGET('id') . '");</script>';
+                break;
         }
     }
 ?>

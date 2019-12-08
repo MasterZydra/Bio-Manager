@@ -40,18 +40,22 @@
 <?php
     if(isset($_GET['action']) && isset($_GET['id'])) {
         // Action - Delete user
-        if($_GET['action'] == 'delete') {
-            // Action - Delete user
-            // Forwording to edit page and add parameters
-            echo '<script>window.location.replace("deleteUser.php?id=' . $_GET['id'] . '");</script>';
-        } elseif($_GET['action'] == 'edit') {
-            // Action - Edit user
-            // Forwording to edit page and add parameters
-            echo '<script>window.location.replace("editUser.php?id=' . $_GET['id'] . '");</script>';
-        } elseif($_GET['action'] == 'changePwd') {
-            // Action - Change user password
-            // Forwarding to edit page and add parameters
-            echo '<script>window.location.replace("changeUserPwd.php?id=' . $_GET['id'] . '");</script>';
+        switch (secGET('action')) {
+            case 'delete':
+                // Action - Delete user
+                // Forwording to edit page and add parameters
+                echo '<script>window.location.replace("deleteUser.php?id=' . secGET('id') . '");</script>';
+                break;
+            case 'edit':
+                // Action - Edit user
+                // Forwording to edit page and add parameters
+                echo '<script>window.location.replace("editUser.php?id=' . secGET('id') . '");</script>';
+                break;
+            case 'changePwd':
+                // Action - Change user password
+                // Forwarding to edit page and add parameters
+                echo '<script>window.location.replace("changeUserPwd.php?id=' . secGET('id') . '");</script>';
+                break;
         }
     }
 ?>
