@@ -21,7 +21,7 @@ class tableGenerator {
         if (is_null($headings)) return;
         echo '<tr>';
         foreach($headings as $heading)
-            echo '<th class="center">' . htmlspecialchars($heading) . '</th>';
+            echo '<th class="center">' . getSecuredString($heading) . '</th>';
         echo '</tr>';
     }
     
@@ -59,7 +59,7 @@ class tableGenerator {
                 echo number_format($dataCol, 2, ',', '.');
                 break;
             default:
-                echo nl2br($data);
+                echo getSecuredString($data);
         }
         echo '</td>';
     }
@@ -76,7 +76,7 @@ class tableGenerator {
     {
         // Add attribute id
         if (!is_null($tableId)) {
-            echo '<table id="' . $tableId . '"';
+            echo '<table id="' . getSecuredString($tableId) . '"';
         } else {
             echo '<table';
         }
@@ -111,16 +111,16 @@ class tableGenerator {
                 // Dropdown for actions
                 echo '<td>';
                 echo '<div class="dropdown">';
-                echo '<button onclick="openDropdown(' . $row['id'] . ')" class="dropbtn">Aktionen</button>';
+                echo '<button onclick="openDropdown(' . getSecuredString($row['id']) . ')" class="dropbtn">Aktionen</button>';
                 echo '<div class="dropdown-content" id="dropdown-' . $row['id'] . '">';
                 for ($i = 0; $i < count($actions); $i++) {
-                    echo '<a href="?action=' . $actions[$i] . '&id=' . $row['id'] . '"';
+                    echo '<a href="?action=' . getSecuredString($actions[$i]) . '&id=' . getSecuredString($row['id']) . '"';
                     if ((gettype($openInNewTab) === "boolean" && $openInNewTab) ||
                        (gettype($openInNewTab) === "array" && $openInNewTab[$i]))
                     {
                         echo ' target="_blank"';
                     }
-                    echo '>' . $actionNames[$i] . '</a>';
+                    echo '>' . getSecuredString($actionNames[$i]) . '</a>';
                 }
                 echo '</div></div></td>';
             }

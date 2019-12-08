@@ -12,8 +12,9 @@
     * @Author: David Hein
     */
     function generateArrayField($array, $name, $type, $description, $placeholder, $autofocus = false) {
-        echo '<label for="' . $name . '" class="required">' . $description . ':</label><br>';
-        echo '<input type="' . $type . '" id="' . $name . '" name="' . $name . '" placeholder="' . $placeholder . '" ';
+        echo '<label for="' . getSecuredString($name) . '" class="required">' . getSecuredString($description) . ':</label><br>';
+        echo '<input type="' . getSecuredString($type) . '" id="' . getSecuredString($name) .
+            '" name="' . getSecuredString($name) . '" placeholder="' . getSecuredString($placeholder) . '" ';
         echo (isset($array) && isset($array[$name])) ? 'value="' . getSecuredString($array[$name]) . '"' : '';
         echo ' required';
         echo ($autofocus) ? ' autofocus' : '';
