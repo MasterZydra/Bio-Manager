@@ -6,9 +6,6 @@
 * have no or uncomplete volume distribution.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
 
     include 'modules/header_user.php';

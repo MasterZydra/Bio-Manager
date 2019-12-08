@@ -5,11 +5,6 @@
 * This form is used to edit a recipient.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
-* 23.09.2019:
-*   - Use prepared statements for selecting the data
 */
     include 'modules/header_user.php';
     include 'modules/permissionCheck.php';
