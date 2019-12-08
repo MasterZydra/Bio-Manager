@@ -12,6 +12,8 @@
 *   - Change logic. Does not use eval anymore.
 */
 
+include 'modules/permissionCheck.php';
+
 /**
 * The class form is generating an HTML template. The content
 * is set through properties. Indiviudal code can be added too.
@@ -94,7 +96,6 @@ class form {
     */
     protected function head() {
         include 'modules/header_user.php';
-        include 'modules/permissionCheck.php';
 
         // Execute access permission function
         if (is_string($this -> accessPermission)) {
