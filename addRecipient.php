@@ -69,7 +69,9 @@
         <?php if($alreadyExist) { echo ' value="' . secPOST("recipient_name") . '"'; } ?>><br>
     
     <label for="recipient_address" class="required">Anschrift:</label><br>
-    <textarea id="recipient_address" name="recipient_address" placeholder="Adresse des Abnehmers" required><?php if($alreadyExist) { echo $_POST["recipient_address"]; } ?></textarea><br>
+    <textarea id="recipient_address" name="recipient_address" placeholder="Adresse des Abnehmers" required>
+<?php if($alreadyExist) { echo secPOST("recipient_address"); } ?>
+</textarea><br>
     
     <button>Hinzufügen</button>
 </form>
