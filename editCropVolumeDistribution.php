@@ -6,9 +6,6 @@
 * to multiple plots.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
 
     include 'modules/header_user.php';
