@@ -17,9 +17,9 @@
 <h1>Passwort ändern</h1>
 <?php
     if(isset($_GET['change'])) {
-        $curPassword = $_POST['curPassword'];
-        $newPassword  = $_POST['newPassword'];
-        $newPassword2 = $_POST['newPassword2'];
+        $curPassword = secPOST('curPassword');
+        $newPassword  = secPOST('newPassword');
+        $newPassword2 = secPOST('newPassword2');
         
         // Check old password
         $conn = new Mysql();

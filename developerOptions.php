@@ -21,7 +21,7 @@
     include 'modules/header.php';
 
     if(isset($_GET['apply'])) {
-        if($_POST['showQuery']) {
+        if(secPOST('showQuery')) {
             $_SESSION['devOpt_ShowQuery'] = true;
         } else {
             if(isset($_SESSION['devOpt_ShowQuery'])) {

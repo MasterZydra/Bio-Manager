@@ -42,13 +42,13 @@
 
 <?php
     if(isset($_GET['action']) && isset($_GET['id'])) {
-        if($_GET['action'] == 'edit') {
+        if(secGET('action') == 'edit') {
             // Action - Edit setting
             // Forwording to edit page and add parameters
-            echo '<script>window.location.replace("editSetting.php?id=' . $_GET['id'] . '");</script>';
-        } elseif(isDeveloper() && $_GET['action'] == 'delete') {
+            echo '<script>window.location.replace("editSetting.php?id=' . secGET('id') . '");</script>';
+        } elseif(isDeveloper() && secGET('action') == 'delete') {
             // Action - Delete
-            echo '<script>window.location.replace("deleteSetting.php?id=' . $_GET['id'] . '");</script>';
+            echo '<script>window.location.replace("deleteSetting.php?id=' . secGET('id') . '");</script>';
         }
     }
 ?>

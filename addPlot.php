@@ -29,11 +29,11 @@
     <a href="plot.php">Alle Flurstücke anzeigen</a>
 </p>
 <?php
-    $alreadyExist = isset($_POST["plot_nr"]) && alreadyExistsPlot($_POST["plot_nr"]);
+    $alreadyExist = isset($_POST["plot_nr"]) && alreadyExistsPlot(secPOST("plot_nr"));
     if(isset($_GET['add'])) {
         if($alreadyExist) {
             echo '<div class="warning">';
-            echo 'Das Flurstück <strong>' . $_POST["plot_nr"] . '</strong> existiert bereits';
+            echo 'Das Flurstück <strong>' . secPOST("plot_nr") . '</strong> existiert bereits';
             echo '</div>';
         } else {
             $conn = new Mysql();
@@ -46,17 +46,17 @@
 
             $plot_nr = [
                 "type" => "char",
-                "val" => $_POST["plot_nr"]
+                "val" => secPOST("plot_nr")
             ];
 
             $plot_name = [
                 "type" => "char",
-                "val" => $_POST["plot_name"]
+                "val" => secPOST("plot_name")
             ];
 
             $plot_subdistrict = [
                 "type" => "char",
-                "val" => $_POST["plot_subdistrict"]
+                "val" => secPOST("plot_subdistrict")
             ];
 
             // SupplierId
@@ -68,7 +68,7 @@
             } else {
                 $supplierId = [
                     "type" => "int",
-                    "val" => $_POST["supplierId"]
+                    "val" => secPOST("supplierId")
                 ];
             }
 
@@ -78,7 +78,7 @@
             $conn -> dbDisconnect();
 
             echo '<div class="infobox">';
-            echo 'Das Flurstück <strong>' . $_POST["plot_nr"] . ' ' . $_POST["plot_name"] . '</strong> wurde hinzugefügt';
+            echo 'Das Flurstück <strong>' . secPOST("plot_nr") . ' ' . secPOST("plot_name") . '</strong> wurde hinzugefügt';
             echo '</div>';
         }
     }
@@ -86,20 +86,20 @@
 <form action="?add=1" method="POST" class="requiredLegend">
     <label for="plot_nr" class="required">Nummer:</label><br>
     <input id="plot_nr" name="plot_nr" type="text" placeholder="Nummer des Flurstücks" required autofocus
-        <?php if($alreadyExist) { echo ' value="' . $_POST["plot_nr"] . '"'; } ?>><br>
+        <?php if($alreadyExist) { echo ' value="' . secPOST("plot_nr") . '"'; } ?>><br>
     
     <label for="plot_name" class="required">Name:</label><br>
     <input id="plot_name" name="plot_name" type="text" placeholder="Name des Flurstücks" required
-        <?php if($alreadyExist) { echo ' value="' . $_POST["plot_name"] . '"'; } ?>><br>
+        <?php if($alreadyExist) { echo ' value="' . secPOST("plot_name") . '"'; } ?>><br>
     
     <label for="plot_subdistrict" class="required">Gemarkung:</label><br>
     <input id="plot_subdistrict" name="plot_subdistrict" type="text" placeholder="Gemarkung" required
-        <?php if($alreadyExist) { echo ' value="' . $_POST["plot_subdistrict"] . '"'; } ?>><br>
+        <?php if($alreadyExist) { echo ' value="' . secPOST("plot_subdistrict") . '"'; } ?>><br>
     
     <label for="supplierId">Lieferant:</label><br>
     <?php
         if($alreadyExist) {
-            echo supplierSelectBox(false, $_POST["supplierId"], false);
+            echo supplierSelectBox(false, secPOST("supplierId"), false);
         } else {
             echo supplierSelectBox(false, NULL, false);
         }

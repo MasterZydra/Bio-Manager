@@ -29,7 +29,7 @@
 
     // Free delivery notes from invoice
     $form -> updateBeforeDelete  = array(
-        array('T_DeliveryNote', 'invoiceId = NULL', 'invoiceId = ' . $_GET['id']));
+        array('T_DeliveryNote', 'invoiceId = NULL', 'invoiceId = ' . secGET('id')));
 
     $form -> show();
 ?>

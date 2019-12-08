@@ -30,7 +30,7 @@
 </p>
 <?php
     $alreadyExist = isset($_POST["productId"]) && isset($_POST["price_year"]) &&
-        alreadyExistsPricing($_POST["productId"], $_POST["price_year"]);
+        alreadyExistsPricing(secPOST("productId"), secPOST("price_year"));
     if(isset($_GET['add'])) {
         if($alreadyExist) {
             echo '<div class="warning">';
@@ -47,22 +47,22 @@
 
             $productId = [
                 "type" => "int",
-                "val" => $_POST["productId"]
+                "val" => secPOST("productId")
             ];
 
             $price_year = [
                 "type" => "int",
-                "val" => $_POST["price_year"]
+                "val" => secPOST("price_year")
             ];
 
             $price_price = [
                 "type" => "int",
-                "val" => $_POST["price"]
+                "val" => secPOST("price")
             ];
 
             $price_payOut = [
                 "type" => "int",
-                "val" => $_POST["price_outPay"]
+                "val" => secPOST("price_outPay")
             ];
 
             $data = array($NULL, $productId, $price_year, $price_price, $price_payOut);
@@ -79,12 +79,12 @@
 <form action="?add=1" method="POST" class="requiredLegend">
     <label for="price_year" class="required">Jahr:</label><br>
     <input id="price_year" name="price_year" type="number" value="<?php echo date("Y"); ?>" required autofocus
-        <?php if($alreadyExist) { echo ' value="' . $_POST["price_year"] . '"'; } ?>><br>
+        <?php if($alreadyExist) { echo ' value="' . secPOST("price_year") . '"'; } ?>><br>
     
     <label for="productId" class="required">Produkt:</label><br>
     <?php
         if($alreadyExist) {
-            echo productSelectBox(NULL, $_POST["productId"]);
+            echo productSelectBox(NULL, secPOST("productId"));
         } else {
             echo productSelectBox();
         }
@@ -92,11 +92,11 @@
     
     <label for="price" class="required">Preis (pro <?php echo getSetting('volumeUnit'); ?>):</label><br>
     <input id="price" name="price" type="number" step="0.01" placeholder="Preis eingeben" required
-           <?php if($alreadyExist) { echo ' value="' . $_POST["price"] . '"'; } ?>><br>
+           <?php if($alreadyExist) { echo ' value="' . secPOST("price") . '"'; } ?>><br>
     
     <label for="price_outPay" class="required">Auszahlung an Lieferanten (pro <?php echo getSetting('volumeUnit'); ?>):</label><br>
     <input id="price_outPay" name="price_outPay" type="number" step="0.01" placeholder="Preis eingeben" required
-           <?php if($alreadyExist) { echo ' value="' . $_POST["price_outPay"] . '"'; } ?>><br>
+           <?php if($alreadyExist) { echo ' value="' . secPOST("price_outPay") . '"'; } ?>><br>
     
     <button>Hinzufügen</button>
 </form>

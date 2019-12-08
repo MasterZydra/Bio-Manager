@@ -49,7 +49,7 @@
 
             $recipient_address = [
                 "type" => "char",
-                "val" => $_POST["recipient_address"]
+                "val" => secPOST("recipient_address")
             ];
 
             $data = array($NULL, $recipient_name, $recipient_address);

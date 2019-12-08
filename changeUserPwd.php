@@ -39,15 +39,15 @@
         if(isset($_GET['change'])) {
            $conn -> freeRun(
                 'UPDATE T_UserLogin '
-                . 'SET password = \'' . password_hash($_POST['userPassword'], PASSWORD_DEFAULT) . '\', '
-                . 'forcePwdChange = ' . $_POST['userForcePwdChange'] . ' '
-                . 'WHERE userId = ' . $_GET['id']);
+                . 'SET password = \'' . password_hash(secPOST('userPassword'), PASSWORD_DEFAULT) . '\', '
+                . 'forcePwdChange = ' . secPOST('userForcePwdChange') . ' '
+                . 'WHERE userId = ' . secGET('id'));
             echo '<div class="infobox">';
             echo 'Das Passwort wurden erfolgreich geändert';
             echo '</div>';
         }
 
-        $conn -> select('T_UserLogin', 'userId, login, forcePwdChange', 'userId = ' . $_GET['id']);
+        $conn -> select('T_UserLogin', 'userId, login, forcePwdChange', 'userId = ' . secGET('id'));
         $row = $conn -> getFirstRow();
         $conn -> dbDisconnect();
         $conn = NULL;

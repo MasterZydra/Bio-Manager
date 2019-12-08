@@ -31,7 +31,7 @@
 <?php
     if(isset($_GET['add'])) {
         
-        $deliveryNotes = getDeliveryNotes(true, $_POST["invoice_year"], NULL, false, true, true);
+        $deliveryNotes = getDeliveryNotes(true, secPOST("invoice_year"), NULL, false, true, true);
         if(!$deliveryNotes) {
             echo '<div class="warning">';
             echo 'Es gibt keine offenen Lieferscheine.';
@@ -47,10 +47,10 @@
 
             $invoice_year = [
                 "type" => "int",
-                "val" => $_POST["invoice_year"]
+                "val" => secPOST("invoice_year")
             ];
 
-            $invoice_number = getNextInvoiceNr($conn, $_POST["invoice_year"]);
+            $invoice_number = getNextInvoiceNr($conn, secPOST("invoice_year"));
             $invoice_nr = [
                 "type" => "char",
                 "val" => $invoice_number
@@ -68,7 +68,7 @@
             
             $recipientId = [
                 "type" => "int",
-                "val" => $_POST["recipientId"]
+                "val" => secPOST("recipientId")
             ];
 
             $data = array($NULL, $invoice_year, $invoice_nr, $invoice_Date, $invoice_Paid, $recipientId);
@@ -77,7 +77,7 @@
             $conn -> select(
                 'T_Invoice',
                 'id, year',
-                'year = ' . $_POST["invoice_year"] . ' '
+                'year = ' . secPOST("invoice_year") . ' '
                 . 'AND nr = ' . $invoice_number);
             $row = $conn -> getFirstRow();
             if(!is_null($row)) {
@@ -98,7 +98,7 @@
             $conn -> dbDisconnect();
 
             echo '<div class="infobox">';
-            echo 'Die Rechnung <strong>' . $_POST["invoice_year"] . ' ' . $invoice_number . '</strong> wurde hinzugefügt';
+            echo 'Die Rechnung <strong>' . secPOST("invoice_year") . ' ' . $invoice_number . '</strong> wurde hinzugefügt';
             echo '</div>';
         }
     }

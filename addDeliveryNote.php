@@ -40,10 +40,10 @@
         
         $note_year = [
             "type" => "int",
-            "val" => $_POST["note_year"]
+            "val" => secPOST("note_year")
         ];
         
-        $note_number = getNextDeliveryNoteNr($conn, $_POST["note_year"]);
+        $note_number = getNextDeliveryNoteNr($conn, secPOST("note_year"));
         $note_nr = [
             "type" => "int",
             "val" => $note_number
@@ -58,7 +58,7 @@
         } else {
             $note_date = [
                 "type" => "char",
-                "val" => $_POST["note_date"]
+                "val" => secPOST("note_date")
             ];
         }
         
@@ -71,18 +71,18 @@
         } else {
             $note_amount = [
                 "type" => "int",
-                "val" => $_POST["note_amount"]
+                "val" => secPOST("note_amount")
             ];
         }
         
         // ProductId
         $productId = [
             "type" => "int",
-            "val" => $_POST["productId"]
+            "val" => secPOST("productId")
         ];
         
         // SupplierId
-        if(!isset($_POST["supplierId"]) || !$_POST["supplierId"]) {
+        if(!isset($_POST["supplierId"]) || !secPOST("supplierId")) {
             $note_supplierId = [
                 "type" => "null",
                 "val" => "null"
@@ -90,7 +90,7 @@
         } else {
             $note_supplierId = [
                 "type" => "char",
-                "val" => $_POST["supplierId"]
+                "val" => secPOST("supplierId")
             ];
         }
         $data = array($NULL, $note_year, $note_nr, $note_date, $note_amount, $productId, $note_supplierId, $NULL);
@@ -99,7 +99,7 @@
         $conn -> dbDisconnect();
         
         echo '<div class="infobox">';
-        echo 'Der Lieferschein <strong>' . $_POST["note_year"] . ' ' . $note_number . '</strong> wurde hinzugefügt';
+        echo 'Der Lieferschein <strong>' . secPOST("note_year") . ' ' . $note_number . '</strong> wurde hinzugefügt';
         echo '</div>';
     }
 ?>

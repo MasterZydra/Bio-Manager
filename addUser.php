@@ -59,7 +59,7 @@
             } else {
                 $user_supplierId = [
                     "type" => "int",
-                    "val" => $_POST["supplierId"]
+                    "val" => secPOST("supplierId")
                 ];
             }
 
@@ -86,12 +86,12 @@
 
             $user_password = [
                 "type" => "char",
-                "val" => password_hash($_POST['userPassword'], PASSWORD_DEFAULT)
+                "val" => password_hash(secPOST('userPassword'), PASSWORD_DEFAULT)
             ];
 
             $user_forcePwdChange = [
                 "type" => "int",
-                "val" => strval($_POST['userForcePwdChange'])
+                "val" => strval(secPOST('userForcePwdChange'))
             ];
 
             // Add user login
@@ -101,27 +101,27 @@
 
             $user_isAmin = [
                 "type" => "int",
-                "val" => strval($_POST['userIsAdmin'])
+                "val" => strval(secPOST('userIsAdmin'))
             ];
 
             $user_isDeveloper = [
                 "type" => "int",
-                "val" => strval($_POST['userIsDeveloper'])
+                "val" => strval(secPOST('userIsDeveloper'))
             ];
 
             $user_isMaintainer = [
                 "type" => "int",
-                "val" => strval($_POST['userIsMaintainer'])
+                "val" => strval(secPOST('userIsMaintainer'))
             ];
 
             $user_isSupplier = [
                 "type" => "int",
-                "val" => strval($_POST['userIsSupplier'])
+                "val" => strval(secPOST('userIsSupplier'))
             ];
 
             $user_isInspector = [
                 "type" => "int",
-                "val" => strval($_POST['userIsInspector'])
+                "val" => strval(secPOST('userIsInspector'))
             ];
 
             $data = array($NULL, $user_id, $user_isAmin, $user_isDeveloper, $user_isMaintainer, $user_isSupplier, $user_isInspector);
@@ -148,12 +148,12 @@
     
     <label for="userPassword" class="required">Passwort:</label><br>
     <input id="userPassword" name="userPassword" type="password" placeholder="Passwort eingeben" required
-        <?php if($alreadyExist) { echo ' value="' . $_POST["userPassword"] . '"'; } ?>><br>
+        <?php if($alreadyExist) { echo ' value="' . secPOST("userPassword") . '"'; } ?>><br>
     
     <label>
         <input type="hidden" name="userForcePwdChange" value="0">
         <input type="checkbox" name="userForcePwdChange" value="1"
-            <?php if($alreadyExist && $_POST['userForcePwdChange']) { echo ' checked'; } ?>>
+            <?php if($alreadyExist && secPOST('userForcePwdChange')) { echo ' checked'; } ?>>
         Passwortänderung erzwingen
     </label><br>
     
@@ -161,37 +161,37 @@
     <label>
         <input type="hidden" name="userIsAdmin" value="0">
         <input type="checkbox" name="userIsAdmin" value="1"
-            <?php if($alreadyExist && $_POST['userIsAdmin']) { echo ' checked'; } ?>>
+            <?php if($alreadyExist && secPOST('userIsAdmin')) { echo ' checked'; } ?>>
         Administrator
     </label><br>
     <label>
         <input type="hidden" name="userIsDeveloper" value="0">
         <input type="checkbox" name="userIsDeveloper" value="1"
-            <?php if($alreadyExist && $_POST['userIsDeveloper']) { echo ' checked'; } ?>>
+            <?php if($alreadyExist && secPOST('userIsDeveloper')) { echo ' checked'; } ?>>
         Entwickler
     </label><br>
     <label>
         <input type="hidden" name="userIsMaintainer" value="0">
         <input type="checkbox" name="userIsMaintainer" value="1"
-            <?php if($alreadyExist && $_POST['userIsMaintainer']) { echo ' checked'; } ?>>
+            <?php if($alreadyExist && secPOST('userIsMaintainer')) { echo ' checked'; } ?>>
         Pfleger
     </label><br>
     <label>
         <input type="hidden" name="userIsInspector" value="0">
         <input type="checkbox" name="userIsInspector" value="1"
-            <?php if($alreadyExist && $_POST['userIsInspector']) { echo ' checked'; } ?>>
+            <?php if($alreadyExist && secPOST('userIsInspector')) { echo ' checked'; } ?>>
         Prüfer
     </label><br>
     <label>
         <input type="hidden" name="userIsSupplier" value="0">
         <input type="checkbox" name="userIsSupplier" value="1"
-            <?php if($alreadyExist && $_POST['userIsSupplier']) { echo ' checked'; } ?>>
+            <?php if($alreadyExist && secPOST('userIsSupplier')) { echo ' checked'; } ?>>
         Lieferant
     </label><br>
     <label>Lieferant:<br>
         <?php
             if($alreadyExist) {
-                echo supplierSelectBox(false, $_POST["supplierId"], false);
+                echo supplierSelectBox(false, secPOST("supplierId"), false);
             } else {
                 echo supplierSelectBox(false, NULL, false);
             }

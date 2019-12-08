@@ -29,8 +29,8 @@
 
     // Delete data from the tables which contain additional user data
     $form -> deleteBeforeDelete  = array(
-        array('T_UserLogin', 'userId', $_GET['id']),
-        array('T_UserPermission', 'userId', $_GET['id']));
+        array('T_UserLogin', 'userId', secGET('id')),
+        array('T_UserPermission', 'userId', secGET('id')));
 
     $form -> show();
 ?>

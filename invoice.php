@@ -33,18 +33,18 @@
 
 <?php
     if(isset($_GET['action']) && isset($_GET['id'])) {
-        if($_GET['action'] == 'show') {
+        if(secGET('action') == 'show') {
             // Action - show selected invoice
             // Forwarding to edit page and add parameters
-            echo '<script>window.location.replace("showInvoice.php?id=' . $_GET['id'] . '");</script>';
-        } elseif(isMaintainer() && $_GET['action'] == 'delete') {
+            echo '<script>window.location.replace("showInvoice.php?id=' . secGET('id') . '");</script>';
+        } elseif(isMaintainer() && secGET('action') == 'delete') {
             // Action - Delete invoice
             // Forwarding to edit page and add parameters
-            echo '<script>window.location.replace("deleteInvoice.php?id=' . $_GET['id'] . '");</script>';
-        } elseif(isMaintainer() && $_GET['action'] == 'edit') {
+            echo '<script>window.location.replace("deleteInvoice.php?id=' . secGET('id') . '");</script>';
+        } elseif(isMaintainer() && secGET('action') == 'edit') {
             // Action - Edit invoice
             // Forwarding to edit page and add parameters
-            echo '<script>window.location.replace("editInvoice.php?id=' . $_GET['id'] . '");</script>';
+            echo '<script>window.location.replace("editInvoice.php?id=' . secGET('id') . '");</script>';
         }  
     }
 ?>
