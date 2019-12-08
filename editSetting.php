@@ -11,7 +11,10 @@
     include 'modules/permissionCheck.php';
 
     // Check permission
-    if(!isAdmin()) {
+    if(!isAdmin() ||
+       // Check if id is numeric
+       (isset($_GET['id']) && !is_numeric($_GET['id'])))
+    {
         header("Location: index.php");
         exit();
     }

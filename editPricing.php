@@ -11,7 +11,10 @@
     include 'modules/permissionCheck.php';
     
     // Check permission
-    if(!isMaintainer()) {
+    if(!isMaintainer() ||
+       // Check if id is numeric
+       (isset($_GET['id']) && !is_numeric($_GET['id'])))
+    {
         header("Location: deliveryNote.php");
         exit();
     }
