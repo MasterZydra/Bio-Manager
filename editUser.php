@@ -112,7 +112,7 @@
         <input type="checkbox" name="userForcePwdChange" value="1"
            <?php
                 if((!$alreadyExist && $row['forcePwdChange']) || ($alreadyExist && $_POST['userForcePwdChange'])) {
-                    echo 'checked';
+                    echo ' checked';
                 }
            ?>>
         Passwortänderung erzwingen
@@ -123,7 +123,7 @@
         <input type="checkbox" name="userIsAdmin" value="1"
             <?php
                 if((!$alreadyExist && $row['isAdmin']) || ($alreadyExist && $_POST['userIsAdmin'])) {
-                    echo 'checked';
+                    echo ' checked';
                 }
            ?>>
         Administrator
@@ -133,7 +133,7 @@
         <input type="checkbox" name="userIsDeveloper" value="1"
             <?php
                 if((!$alreadyExist && $row['isDeveloper']) || ($alreadyExist && $_POST['userIsDeveloper'])) {
-                    echo 'checked';
+                    echo ' checked';
                 }
            ?>>
         Entwickler
@@ -143,7 +143,7 @@
         <input type="checkbox" name="userIsMaintainer" value="1"
             <?php
                 if((!$alreadyExist && $row['isMaintainer']) || ($alreadyExist && $_POST['userIsMaintainer'])) {
-                    echo 'checked';
+                    echo ' checked';
                 }
            ?>>
         Pfleger
@@ -153,7 +153,7 @@
         <input type="checkbox" name="userIsInspector" value="1"
             <?php
                 if((!$alreadyExist && $row['isInspector']) || ($alreadyExist && $_POST['userIsInspector'])) {
-                    echo 'checked';
+                    echo ' checked';
                 }
            ?>>
         Prüfer
@@ -163,7 +163,7 @@
         <input type="checkbox" name="userIsSupplier" value="1"
             <?php
                 if((!$alreadyExist && $row['isSupplier']) || ($alreadyExist && $_POST['userIsSupplier'])) {
-                    echo 'checked';
+                    echo ' checked';
                 }
            ?>>
         Lieferant
