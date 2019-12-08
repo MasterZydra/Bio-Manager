@@ -23,6 +23,15 @@
     include 'modules/header.php';
 
     include 'modules/selectBox_BioManager.php';
+
+    // Add "\" to every "<" and "/" to avoid HTML validator warnings
+    function formatSelectBox($code) {
+        $code = addslashes($code);
+        $code = str_replace("<", "\<", $code);
+        $code = str_replace("/", "\/", $code);
+        return $code;
+    }
+
 ?>
 <h1>Mengenverteilung</h1>
 
@@ -162,8 +171,8 @@
     
     // Add a new row with select and input element
     function addRow(tableID) {
-        var selectBox = "<td><?php echo addslashes(plotSelectBox()); ?></td>";
-        var numInput = "<td><input name=\"amount" + tableRef.rows.length.toString() + "\" class=\"right\" type=\"number\" onkeyup=\"sumDistribution()\" required></td>";
+        var selectBox = "\<td><?php echo formatSelectBox(plotSelectBox()); ?>\<\/td>";
+        var numInput = "\<td>\<input name=\"amount" + tableRef.rows.length.toString() + "\" class=\"right\" type=\"number\" onkeyup=\"sumDistribution()\" required>\<\/td>";
         // Replace element name
         var row = htmlToElement(selectBox);
         row.getElementsByTagName("select")[0].setAttribute("name", "plot" + tableRef.rows.length.toString());
