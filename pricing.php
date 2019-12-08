@@ -14,7 +14,10 @@
     include 'modules/permissionCheck.php';
 
     // Check permission
-    if(!isMaintainer() && !isInspector()) {
+    if(!isMaintainer() && !isInspector() ||
+       // Check if id is numeric
+       (isset($_GET['id']) && !is_numeric($_GET['id'])))
+    {
         header("Location: index.php");
         exit();
     }
