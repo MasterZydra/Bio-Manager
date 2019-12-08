@@ -45,29 +45,29 @@
         
         if(isset($_GET['edit'])) {
             // Build set part of query
-            $set = 'productId = ' . $_POST['productId'];
+            $set = 'productId = ' . secPOST('productId');
             // Deliver date
             if($_POST['note_date']) {
-                $set .= ', deliverDate = \'' . $_POST['note_date'] . '\'';
+                $set .= ', deliverDate = \'' . secPOST('note_date') . '\'';
             } else {
                 $set .= ', deliverDate = NULL';
             }
             // Deliver amount
             if($_POST['note_amount']) {
-                $set .= ', amount = ' . $_POST['note_amount'];
+                $set .= ', amount = ' . secPOST('note_amount');
             } else {
                 $set .= ', amount = NULL';
             }
             // Supplier
             if(isset($_POST["supplierId"]) && $_POST["supplierId"]) {
-                $set .= ', supplierId = ' . $_POST['supplierId'];
+                $set .= ', supplierId = ' . secPOST('supplierId');
             } else {
                 $set .= ', supplierId = NULL';
             }
             $conn -> update(
                 'T_DeliveryNote',
                 $set,
-                'id = ' . $_GET['id']);
+                'id = ' . secGET('id'));
             echo '<div class="infobox">';
             echo 'Die Änderungen wurden erfolgreich gespeichert';
             echo '</div>';
@@ -78,7 +78,7 @@
         
         // Select data
         $prepStmt = new mysql_preparedStatement_BioManager();
-        $row = $prepStmt -> selectWhereId("T_DeliveryNote", $_GET['id']);
+        $row = $prepStmt -> selectWhereId("T_DeliveryNote", secGET('id'));
         $prepStmt -> destroy();
         
         // Check if id is valid 

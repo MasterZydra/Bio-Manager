@@ -51,7 +51,7 @@
                 'invoiceDate = \'' . secPOST('invoiceDate') . '\', '
                 . 'isPaid = ' . secPOST('invoiceIsPaid') . ', '
                 . 'recipientId = ' . secPOST('recipientId'),
-                'id = ' . $_GET['id']);
+                'id = ' . secGET('id'));
             echo '<div class="infobox">';
             echo 'Die Änderungen wurden erfolgreich gespeichert';
             echo '</div>';

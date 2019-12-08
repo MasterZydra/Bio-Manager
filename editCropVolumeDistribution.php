@@ -43,7 +43,7 @@
             
             $i = 1;
             // Delete volume distribution for current delivery note
-            $conn -> freeRun('DELETE FROM T_CropVolumeDistribution WHERE deliveryNoteId = ' . $_GET['id']);
+            $conn -> freeRun('DELETE FROM T_CropVolumeDistribution WHERE deliveryNoteId = ' . secGET('id'));
             // Add volume distribution for current delivery note
             while (true) {
                 // Insert until POST variable is not set
@@ -58,17 +58,17 @@
                 
                 $deliveryNoteId = [
                     "type" => "int",
-                    "val" => $_GET['id']
+                    "val" => secGET('id')
                 ];
                 
                 $plotId = [
                     "type" => "int",
-                    "val" => $_POST['plot' . (string)$i]
+                    "val" => secPOST('plot' . (string)$i)
                 ];
                 
                 $amount = [
                     "type" => "int",
-                    "val" => $_POST['amount' . (string)$i]
+                    "val" => secPOST('amount' . (string)$i)
                 ];
                 
                 $data = array($NULL, $deliveryNoteId, $plotId, $amount);
@@ -82,10 +82,10 @@
         $conn = new Mysql();
         $conn -> dbConnect();
         // Select amount from delivery note
-        $conn -> select('T_DeliveryNote', 'year, nr, amount', 'id = ' . $_GET['id']);
+        $conn -> select('T_DeliveryNote', 'year, nr, amount', 'id = ' . secGET('id'));
         $delivery = $conn -> getFirstRow();
         // Distribution data
-        $distData = $conn -> select('T_CropVolumeDistribution', '*', 'deliveryNoteId = ' . $_GET['id']);
+        $distData = $conn -> select('T_CropVolumeDistribution', '*', 'deliveryNoteId = ' . secGET('id'));
 
         $conn -> dbDisconnect();
         $conn = NULL;
@@ -104,7 +104,7 @@
         }
 ?>
 
-<form action="?id=<?php echo $_GET['id']; ?>&update=1" method="post">
+<form action="?id=<?php echo secGET('id'); ?>&update=1" method="post">
     <table id="delivery" class="completeWidth">
         <tr>
             <th width="70%" class="center">Gesamte Liefermenge von Lieferschein <strong><?php echo $delivery['year'] . ' ' . $delivery['nr']; ?></strong></th>

@@ -45,25 +45,25 @@
         $conn -> dbConnect();
         
         
-        $alreadyExist = isset($_POST["plot_nr"]) && alreadyExistsPlot($_POST["plot_nr"], $_GET['id']);
+        $alreadyExist = isset($_POST["plot_nr"]) && alreadyExistsPlot(secPOST("plot_nr"), secGET('id'));
         if(isset($_GET['edit'])) {
             if($alreadyExist) {
                 echo '<div class="warning">';
-                echo 'Das Flurstück <strong>' . $_POST["plot_nr"] . '</strong> existiert bereits';
+                echo 'Das Flurstück <strong>' . secPOST("plot_nr") . '</strong> existiert bereits';
                 echo '</div>';
             } else {
-                $set = 'nr = \'' . $_POST['plot_nr'] . '\', '
-                    . 'name = \'' . $_POST['plot_name'] . '\', '
-                    . 'subdistrict = \'' . $_POST['plot_subdistrict'] . '\'';
+                $set = 'nr = \'' . secPOST("plot_nr") . '\', '
+                    . 'name = \'' . secPOST("plot_name") . '\', '
+                    . 'subdistrict = \'' . secPOST('plot_subdistrict') . '\'';
                 if(!isset($_POST["supplierId"]) || !$_POST["supplierId"]) {
                     $set .= ', supplierId = NULL';
                 } else {
-                    $set .= ', supplierId = ' . $_POST["supplierId"];
+                    $set .= ', supplierId = ' . secPOST("supplierId");
                 }
                 $conn -> update(
                     'T_Plot',
                     $set,
-                    'id = ' . $_GET['id']);
+                    'id = ' . secGET('id'));
                 echo '<div class="infobox">';
                 echo 'Die Änderungen wurden erfolgreich gespeichert';
                 echo '</div>';
@@ -75,7 +75,7 @@
         
         // Select data
         $prepStmt = new mysql_preparedStatement_BioManager();
-        $row = $prepStmt -> selectWhereId("T_Plot", $_GET['id']);
+        $row = $prepStmt -> selectWhereId("T_Plot", secGET('id'));
         $prepStmt -> destroy();
         
         // Check if id is valid 
@@ -89,25 +89,25 @@
     <label for="plot_nr" class="required">Nummer:</label><br>
     <input id="plot_nr" name="plot_nr" type="text" required autofocus value=
        <?php
-            echo ($alreadyExist) ? '"' . $_POST["plot_nr"] . '"' : '"' . $row['nr'] . '"';
+            echo ($alreadyExist) ? '"' . secPOST("plot_nr") . '"' : '"' . $row['nr'] . '"';
         ?>><br>
     
     <label for="plot_name" class="required">Name:</label><br>
     <input id="plot_name" name="plot_name" type="text" required value=
        <?php
-            echo ($alreadyExist) ? '"' . $_POST["plot_name"] . '"' : '"' . $row['name'] . '"';
+            echo ($alreadyExist) ? '"' . secPOST("plot_name") . '"' : '"' . $row['name'] . '"';
         ?>><br>
     
     <label for="plot_subdistrict" class="required">Gemarkung:</label><br>
     <input id="plot_subdistrict" name="plot_subdistrict" type="text" required value=
        <?php
-            echo ($alreadyExist) ? '"' . $_POST["plot_subdistrict"] . '"' : '"' . $row['subdistrict'] . '"';
+            echo ($alreadyExist) ? '"' . secPOST('plot_subdistrict') . '"' : '"' . $row['subdistrict'] . '"';
         ?>><br>
     
     <label for="supplierId">Lieferant:</label><br>
     <?php
         if($alreadyExist && $_POST['supplierId']) {
-            echo supplierSelectBox(false, $_POST['supplierId'], false);
+            echo supplierSelectBox(false, secPOST("supplierId"), false);
         } else {
             echo supplierSelectBox(false, $row['supplierId'], false);
         }
