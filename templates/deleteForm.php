@@ -137,7 +137,7 @@ class deleteForm extends form {
         // Get data from DB
         $conn = new Mysql();
         $conn -> dbConnect();
-        $conn -> select($this -> table, '*', 'id = ' . $_GET['id']);
+        $conn -> select($this -> table, '*', 'id = ' . secGET('id'));
         $row = $conn -> getFirstRow();
         $conn -> dbDisconnect();
         $conn = NULL;

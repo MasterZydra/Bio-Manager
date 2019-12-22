@@ -29,7 +29,7 @@
     $conn -> select(
         'T_Invoice LEFT JOIN T_Recipient ON T_Invoice.recipientId = T_Recipient.id',
         'invoiceDate, year, nr, name, address',
-        'T_Invoice.id = ' . $_GET['id']);
+        'T_Invoice.id = ' . secGET('id'));
     $row = $conn -> getFirstRow();
     $conn -> dbDisconnect();
     $conn = NULL;
@@ -64,7 +64,7 @@ $comment = 'Bla bla';
 
 //Auflistung eurer verschiedenen Posten im Format [Produktbezeichnung, Menge, Einzelpreis]
 $invoiceItems = array();
-$deliveryNotes = getDeliveryNotes(true, NULL, $_GET['id'], true, true);
+$deliveryNotes = getDeliveryNotes(true, NULL, secGET('id'), true, true);
 if(!$deliveryNotes) {
     // No delivery notes found
 } else {
