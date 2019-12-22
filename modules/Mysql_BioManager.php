@@ -10,9 +10,6 @@
 * place where the queries have to be changed.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
 
 /**

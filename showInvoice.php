@@ -7,10 +7,8 @@
 * @Link to original soure code: https://www.php-einfach.de/experte/php-codebeispiele/pdf-per-php-erstellen-pdf-rechnung
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
+
     include 'modules/header_user.php';
     include 'modules/permissionCheck.php';
 

@@ -5,13 +5,6 @@
 * Template for deleting an entry in the data base.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
-* 16.09.2019:
-*   - Change logic. Does not use eval anymore.
-* 23.09.2019:
-*   - Use prepared statements for deleting the data
 */
 
 include 'templates/form.php';

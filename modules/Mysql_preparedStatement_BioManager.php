@@ -7,10 +7,7 @@
 * This class has functions which execute the queries for the
 * Bio-Manager.
 *
-* @author David Hein
-*
-* Changelog:
-* ----------
+* @Author David Hein
 */
 include_once 'modules/Mysql_preparedStatement.php';
 

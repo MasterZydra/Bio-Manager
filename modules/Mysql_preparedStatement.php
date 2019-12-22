@@ -5,10 +5,7 @@
 * Class for using prepared statments for a more secure way to
 * execute sql queries and prevent sql injections.
 *
-* @author David Hein
-*
-* Changelog:
-* ----------
+* @Author David Hein
 */
 include_once 'modules/Mysql.php';
 

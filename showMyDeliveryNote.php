@@ -6,9 +6,6 @@
 * who is also an supplier.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
 
     include 'modules/header_user.php';

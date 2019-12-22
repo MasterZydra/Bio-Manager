@@ -17,15 +17,8 @@
 * <script src="js/dropdown.js"></script>
 *
 * @Author: David Hein
-*
-* Changelog:
-* ----------
-* 08.09.2019:
-*   - Add ln2br to show line breaks in table
-* 29.09.2019:
-*   - Add logic to give an array of booleans to $openInNewTab to open only specific
-*     actions in a new tab.
 */
+
 class dataTable {
     /**
     * Generate a table 

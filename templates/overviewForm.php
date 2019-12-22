@@ -5,9 +5,6 @@
 * Template for viewing all entries in a table.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
 
 include 'templates/form.php';

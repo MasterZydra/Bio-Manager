@@ -5,9 +5,6 @@
 * This page shows all invoices.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
 
     include 'modules/header_user.php';

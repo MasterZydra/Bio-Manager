@@ -7,9 +7,6 @@
 * the user can delete, edit and add a recipient.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
 
     include 'modules/header_user.php';

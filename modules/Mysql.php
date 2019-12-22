@@ -9,14 +9,6 @@
 * @Link to original soure code: https://stackoverflow.com/questions/3228694/php-database-connection-class
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
-* 12.08.2019:
-*   - Extending freeRun() with developer output and change
-*     implementation of other functions to use freeRun().
-* 14.08.2019:
-*   - Add an flexible select function and remove all other select functions.
 */
 
 include 'config/DbConfig.php';

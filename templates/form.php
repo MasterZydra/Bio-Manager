@@ -5,11 +5,6 @@
 * Template for a form.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
-* 16.09.2019:
-*   - Change logic. Does not use eval anymore.
 */
 
 include 'modules/permissionCheck.php';

@@ -6,9 +6,6 @@
 * Basis for the login system: https://www.php-einfach.de/experte/php-codebeispiele/loginscript/
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
     include 'modules/header_everyone.php';
     include 'modules/permissionCheck.php';
