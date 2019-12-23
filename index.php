@@ -30,6 +30,11 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt werden
 ?>
 <h1>Willkommen im Mitgliederbereich</h1>
 <?php
+        // Check configuration
+        if(isAdmin()) {
+            include 'modules/configChecker.php';
+        }
+        
         // Links for maintainers
         if(isMaintainer() || isInspector()) {
 ?>
