@@ -8,9 +8,6 @@
 * Only developer can add settings.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
 
     include 'modules/header_user.php';

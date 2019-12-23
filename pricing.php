@@ -5,9 +5,6 @@
 * This page shows all prices in a table.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
 
     include 'modules/header_user.php';
