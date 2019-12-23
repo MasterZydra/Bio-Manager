@@ -35,11 +35,11 @@
 
 <?php
     if(isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
-        if($_GET['action'] == 'edit') {
+        if(secGET('action') == 'edit') {
             // Action - Edit a delivery note
             // Forwarding to edit page and add parameters
             echo '<script>window.location.replace("editDeliveryNote.php?id=' . secGET('id') . '");</script>';
-        } elseif($_GET['action'] == 'volDist') {
+        } elseif(secGET('action') == 'volDist') {
             // Action - Edit volume distribution of a delivery note
             // Forwarding to edit page and add parameters
             echo '<script>window.location.replace("editCropVolumeDistribution.php?id=' . secGET('id') . '");</script>';
