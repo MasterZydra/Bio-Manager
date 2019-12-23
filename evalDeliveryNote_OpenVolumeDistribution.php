@@ -22,7 +22,7 @@
 
     include 'modules/header.php';
 
-    include 'modules/dataTable_BioManager.php';
+    include 'modules/tableGenerator.php';
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
@@ -73,11 +73,13 @@ ORDER BY year DESC, nr DESC
     $conn = NULL;
 
     if(isMaintainer()) {
-        dataTable_BioManager::showWithDeliveryNoteActions(
+        tableGenerator::show(
             'dataTable-tableDeliveryNote',
             $result,
             array('year', ['nr', 'int'], ['deliverDate', 'date'], ['amount', 'int'], ['calcAmount', 'int'], 'supplierName'),
-            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Mengenverteilung', 'Lieferant', 'Aktionen'));
+            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Mengenverteilung', 'Lieferant', 'Aktionen'),
+            array('edit', 'volDist', 'delete'),
+            array('Bearbeiten', 'Mengenverteilung', 'Löschen'));
     }
 
     include 'modules/footer.php';

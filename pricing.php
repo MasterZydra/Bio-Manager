@@ -24,7 +24,7 @@
 
     include 'modules/header.php';
 
-    include 'modules/dataTable_BioManager.php';
+    include 'modules/tableGenerator.php';
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
@@ -67,23 +67,19 @@
     $conn = NULL;
 
     if(isMaintainer()) {
-        dataTable_BioManager::showWithDefaultActions(
+        tableGenerator::show(
+            'dataTable-tableProduct',
             $result,
-            'dataTable-tableDeliveryNote',
-            array('productName', 'year', 'price', 'pricePayOut'),
+            array('productName', 'year', ['price', 'int'], ['pricePayOut', 'int']),
             array('Produkt', 'Jahr', 'Preis', 'Auszahlung', 'Aktionen'),
-            false,
-            false,
-            array('', '', 'int', 'int'));
+            array('edit', 'delete'),
+            array('Bearbeiten', 'Löschen'));
     } else {
-        dataTable_BioManager::show(
-            $result,
+        tableGenerator::show(
             'dataTable-tableDeliveryNote',
-            array('productName', 'year', 'price', 'pricePayOut'),
-            array('Produkt', 'Jahr', 'Preis', 'Auszahlung'),
-            false,
-            false,
-            array('', '', 'int', 'int'));
+            $result,
+            array('productName', 'year', ['price', 'int'], ['pricePayOut', 'int']),
+            array('Produkt', 'Jahr', 'Preis', 'Auszahlung'));
     }
 
     include 'modules/footer.php';

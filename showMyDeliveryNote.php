@@ -19,7 +19,7 @@
 
     include 'modules/header.php';
 
-    include 'modules/dataTable_BioManager.php';
+    include 'modules/tableGenerator.php';
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
@@ -68,11 +68,13 @@
     $conn = NULL;
 
     if(isMaintainer()) {
-        dataTable_BioManager::showWithDeliveryNoteDefaultActions(
+        tableGenerator::show(
             'dataTable-tableDeliveryNote',
             $result,
             array('year', ['nr', 'int'], ['deliverDate', 'date'], ['amount', 'int'], 'productName'),
-            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Produkt', 'Aktionen'));
+            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Produkt', 'Aktionen'),
+            array('edit', 'volDist'),
+            array('Bearbeiten', 'Mengenverteilung'));
     } else {
         tableGenerator::show(
             'dataTable-tableDeliveryNote',

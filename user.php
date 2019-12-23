@@ -27,7 +27,7 @@
 
     include 'modules/header.php';
 
-    include 'modules/dataTable_BioManager.php';
+    include 'modules/tableGenerator.php';
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>

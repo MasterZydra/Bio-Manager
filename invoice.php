@@ -21,7 +21,7 @@
 
     include 'modules/header.php';
 
-    include 'modules/dataTable_BioManager.php';
+    include 'modules/tableGenerator.php';
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
@@ -65,17 +65,23 @@
     $conn = NULL;
 
     if(isMaintainer()) {
-        dataTable_BioManager::showWithInvoiceDefaultActions(
-            $result,
+        tableGenerator::show(
             'dataTable-tableInvoice',
-            array('year', 'nr', 'invoiceDate', 'isPaid', 'name'),
-            array('Jahr', 'Nr', 'Datum', 'Bezahlt', 'Abnehmer', 'Aktionen'));
+            $result,
+            array(['year', 'int'], ['nr', 'int'], ['invoiceDate', 'date'], ['isPaid', 'bool'], 'name'),
+            array('Jahr', 'Nr', 'Datum', 'Bezahlt', 'Abnehmer', 'Aktionen'),
+            array('show', 'edit', 'delete'),
+            array('Anzeigen', 'Bearbeiten', 'Löschen'),
+            array(true, false, false));
     } else {
-        dataTable_BioManager::showWithInvoiceActions(
-            $result,
+        tableGenerator::show(
             'dataTable-tableInvoice',
-            array('year', 'nr', 'invoiceDate', 'isPaid', 'name'),
-            array('Jahr', 'Nr', 'Datum', 'Bezahlt', 'Abnehmer', 'Aktionen'));
+            $result,
+            array(['year', 'int'], ['nr', 'int'], ['invoiceDate', 'date'], ['isPaid', 'bool'], 'name'),
+            array('Jahr', 'Nr', 'Datum', 'Bezahlt', 'Abnehmer', 'Aktionen'),
+            array('show'),
+            array('Anzeigen'),
+            [true]);
     }
 
     include 'modules/footer.php';

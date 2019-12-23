@@ -23,7 +23,7 @@
 
     include 'modules/header.php';
     
-    include 'modules/dataTable_BioManager.php';
+    include 'modules/tableGenerator.php';
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
@@ -61,15 +61,17 @@
     $conn = NULL;
 
     if(isMaintainer()) {
-        dataTable_BioManager::showWithDefaultActions(
-            $result,
+        tableGenerator::show(
             'dataTable-tableRecipient',
+            $result,
             array('name', 'address'),
-            array('Name', 'Adresse', 'Aktionen'));
+            array('Name', 'Adresse', 'Aktionen'),
+            array('edit', 'delete'),
+            array('Bearbeiten', 'Löschen'));
     } else {
-        dataTable_BioManager::show(
-            $result,
+        tableGenerator::show(
             'dataTable-tableRecipient',
+            $result,
             array('name', 'address'),
             array('Name', 'Adresse'));
     }

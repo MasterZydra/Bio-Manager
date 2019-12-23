@@ -26,7 +26,7 @@
 
     include 'modules/header.php';
 
-    include 'modules/dataTable_BioManager.php';
+    include 'modules/tableGenerator.php';
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
@@ -69,15 +69,17 @@
     $conn = NULL;
 
     if(isMaintainer()) {
-        dataTable_BioManager::showWithDefaultActions(
-            $result,
+        tableGenerator::show(
             'dataTable-tableProduct',
+            $result,
             array('name'),
-            array('Name', 'Aktionen'));
+            array('Name', 'Aktionen'),
+            array('edit', 'delete'),
+            array('Bearbeiten', 'Löschen'));
     } else {
-        dataTable_BioManager::show(
-            $result,
+        tableGenerator::show(
             'dataTable-tableProduct',
+            $result,
             array('name'),
             array('Name'));
     }
