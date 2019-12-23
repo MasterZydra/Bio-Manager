@@ -6,15 +6,6 @@
 * options from a select result.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
-* 19.08.2019:
-*   - Add parameter $selectedValue
-* 08.09.2019:
-*   - Add parameter $boxReadOnly
-* 14.09.2019:
-*   - Add id attribute for select element
 */
 
 /**

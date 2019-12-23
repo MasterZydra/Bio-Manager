@@ -8,9 +8,6 @@
 * Basis for the caching system: https://pixeltuner.de/php-cache-erstellen/
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
 
 // Starting caching

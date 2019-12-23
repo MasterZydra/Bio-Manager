@@ -5,9 +5,6 @@
 * This form is used from the user to change his password.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
 
     include 'modules/header_user.php';

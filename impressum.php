@@ -5,9 +5,6 @@
 * Impressum and DSGVO
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
     include 'modules/header_everyone.php';
     include 'modules/permissionCheck.php';

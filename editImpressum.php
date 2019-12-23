@@ -5,9 +5,6 @@
 * This form is used to edit the contents in the impressum.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
 
     include 'modules/header_user.php';

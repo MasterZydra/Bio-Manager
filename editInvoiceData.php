@@ -5,9 +5,6 @@
 * This form is used to edit the data for invoice data.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
 
     include 'modules/header_user.php';

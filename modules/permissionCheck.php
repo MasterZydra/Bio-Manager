@@ -6,11 +6,6 @@
 * It also enables showing PHP messages if user has developer permissions.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
-* 23.09.2019:
-*   - Use prepared statements for selecting the data
 */
 include 'modules/Mysql_BioManager.php';
 include_once 'modules/Mysql_preparedStatement_BioManager.php';

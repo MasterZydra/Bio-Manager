@@ -6,9 +6,6 @@
 * If the visitor is not logged in, the browser forwards to index.php
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
     session_start();
 

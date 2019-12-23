@@ -10,9 +10,6 @@
 * @Link to original soure code: https://stackoverflow.com/questions/3228694/php-database-connection-class
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
 
 class DbConfig {

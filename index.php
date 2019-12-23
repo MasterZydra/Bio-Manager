@@ -7,9 +7,6 @@
 * with links for viewing, adding and editing data depending on his permissions.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
     include 'modules/header_everyone.php';
     include_once 'modules/permissionCheck.php';

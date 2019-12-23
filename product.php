@@ -7,9 +7,6 @@
 * the user can delete and edit a product.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
 
     include 'modules/header_user.php';

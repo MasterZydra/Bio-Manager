@@ -5,9 +5,6 @@
 * Important: The dataSet has to contain a column with the name 'id'.
 *
 * @Author: David Hein
-*
-* Changelog:
-* ----------
 */
 class tableGenerator {
     /**

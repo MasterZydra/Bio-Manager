@@ -5,9 +5,6 @@
 * This form is used to add a new invoice.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
 
     include 'modules/header_user.php';

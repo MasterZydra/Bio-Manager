@@ -5,11 +5,6 @@
 * This form is used to delete a pricing.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
-* 16.09.2019:
-*   - Change parameters for changed delete template.
 */
     include 'templates/deleteForm.php';
 

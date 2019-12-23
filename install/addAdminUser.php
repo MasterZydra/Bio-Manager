@@ -5,9 +5,6 @@
 * Page to add the admin user 'wurzel'.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
 
     include 'modules/Mysql.php';

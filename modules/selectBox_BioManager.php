@@ -7,13 +7,6 @@
 * which are preconfigured for the use in the Bio-Manager project.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
-* 19.08.2019:
-*   - Add parameter $selectedValue
-* 23.08.2019:
-*   - Add parameter $onlyActiveUser
 */
 
 include 'modules/selectBox.php';

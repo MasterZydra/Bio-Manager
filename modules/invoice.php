@@ -7,11 +7,6 @@
 * in an invoice.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
-* 28.08.2019:
-*   - Remove default values and get values from setting table
 */
 
 class invoice {

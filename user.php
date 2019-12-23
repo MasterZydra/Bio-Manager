@@ -8,9 +8,6 @@
 * Users can be added, deleted and edited.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
 
     include 'modules/header_user.php';

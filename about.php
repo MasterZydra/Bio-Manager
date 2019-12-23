@@ -5,9 +5,6 @@
 * This page contains information about this CRM system.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
     include 'modules/header_user.php';
     include 'modules/permissionCheck.php';

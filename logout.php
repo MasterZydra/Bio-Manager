@@ -6,9 +6,6 @@
 * The session gets destroyed.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
     session_start();
     session_destroy();

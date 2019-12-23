@@ -7,9 +7,6 @@
 * the user can delete and edit a delivery note.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
     include 'modules/header_user.php';
     include 'modules/permissionCheck.php';

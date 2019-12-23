@@ -5,9 +5,6 @@
 * This form is used to add a new plot.
 *
 * @Author: David Hein
-* 
-* Changelog:
-* ----------
 */
 
     include 'modules/header_user.php';
