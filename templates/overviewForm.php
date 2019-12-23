@@ -8,7 +8,7 @@
 */
 
 include 'templates/form.php';
-include 'modules/dataTable_BioManager.php';
+include 'modules/tableGenerator.php';
 
 /**
 * The class form is generating an HTML template for an overview
@@ -113,18 +113,7 @@ class overviewForm extends form {
         
         // Show table
         if($this -> tablePermission) {
-            echo $this -> restrictedTable;/*
-            if(method_exists(dataTable_BioManager, "showWithDeliveryNoteDefaultActions"))
-            {
-                dataTable_BioManager::"showWithDeliveryNoteDefaultActions"(arg1, arg2);
-            }*/
-            $var1 = "dataTable_BioManager::showWithDeliveryNoteDefaultActions";
-            $var1(
-            /*dataTable_BioManager::{"showWithDeliveryNoteDefaultActions"}(*/
-            $result,
-            'dataTable-data',
-            array('year', 'nr', 'deliverDate', 'amount', 'supplierName', 'productName'),
-            array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Lieferant', 'Produkt', 'Aktionen'));
+            echo $this -> restrictedTable;
         } else {
             echo $this -> defaultTable;
         }
