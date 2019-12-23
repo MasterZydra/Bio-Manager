@@ -60,12 +60,12 @@
     <h2>Allgemeines</h2>
 <?php
     generateArrayField($invoice, "author", "text", "Autor", "Vorname Nachname", true);
-    generateArrayField($invoice, "name", "text", "Dokumentname", "Rechnung", true);
+    generateArrayField($invoice, "name", "text", "Dokumentname", "Rechnung");
 ?>
     
     <h2>Absender</h2>
 <?php
-    generateArrayField($invoice, "sender_name", "text", "Name", "Vorname Nachname", true);
+    generateArrayField($invoice, "sender_name", "text", "Name", "Vorname Nachname");
     generateArrayField($invoice, "sender_address", "text", "Straße", "Straße Hausnummer");
     generateArrayField($invoice, "sender_postalCode", "number", "Postleitzahl", "Postleitzahl");
     generateArrayField($invoice, "sender_city", "text", "Stadt", "Stadt");
