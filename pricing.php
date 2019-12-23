@@ -49,7 +49,7 @@
 ?>
 
 <p>
-    <input type="text" id="filterInput-tableData" onkeyup="filterData(&quot;tableData&quot;)" placeholder="Suchtext eingeben..." title="Suchtext"> 
+    <input type="text" id="filterInput-tablePricing" onkeyup="filterData(&quot;tablePricing&quot;)" placeholder="Suchtext eingeben..." title="Suchtext"> 
 </p>
 
 <?php
@@ -65,7 +65,7 @@
 
     if(isMaintainer()) {
         tableGenerator::show(
-            'dataTable-tableProduct',
+            'dataTable-tablePricing',
             $result,
             array('productName', 'year', ['price', 'currency'], ['pricePayOut', 'currency']),
             array('Produkt', 'Jahr', 'Preis', 'Auszahlung', 'Aktionen'),
@@ -73,7 +73,7 @@
             array('Bearbeiten', 'Löschen'));
     } else {
         tableGenerator::show(
-            'dataTable-tableDeliveryNote',
+            'dataTable-tablePricing',
             $result,
             array('productName', 'year', ['price', 'currency'], ['pricePayOut', 'currency']),
             array('Produkt', 'Jahr', 'Preis', 'Auszahlung'));
