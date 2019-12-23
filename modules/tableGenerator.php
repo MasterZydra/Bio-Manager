@@ -43,6 +43,7 @@ class tableGenerator {
                 break;
             case 'float':
             case 'int':
+            case 'currency':
                 echo ' class="right"';
                 break;
         }
@@ -56,7 +57,10 @@ class tableGenerator {
                 echo DateTime::createFromFormat('Y-m-d', $data)->format('d.m.Y');
                 break;
             case 'float':
-                echo number_format($dataCol, 2, ',', '.');
+                echo number_format($data, 2, ',', '.');
+                break;
+            case 'currency':
+                echo number_format($data, 2, ',', '.') . ' €';
                 break;
             default:
                 echo getSecuredString($data);

@@ -70,7 +70,7 @@
         tableGenerator::show(
             'dataTable-tableProduct',
             $result,
-            array('productName', 'year', ['price', 'int'], ['pricePayOut', 'int']),
+            array('productName', 'year', ['price', 'currency'], ['pricePayOut', 'currency']),
             array('Produkt', 'Jahr', 'Preis', 'Auszahlung', 'Aktionen'),
             array('edit', 'delete'),
             array('Bearbeiten', 'Löschen'));
@@ -78,7 +78,7 @@
         tableGenerator::show(
             'dataTable-tableDeliveryNote',
             $result,
-            array('productName', 'year', ['price', 'int'], ['pricePayOut', 'int']),
+            array('productName', 'year', ['price', 'currency'], ['pricePayOut', 'currency']),
             array('Produkt', 'Jahr', 'Preis', 'Auszahlung'));
     }
 
