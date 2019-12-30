@@ -16,15 +16,15 @@
 <table>
     <tr>
         <td>Bio-Manager Version</td>
-        <td style="text-align: right">1.3.8</td>
+        <td class="right">1.3.8</td>
     </tr>
     <tr>
         <td>Entwickler</td>
-        <td style="text-align: right">David Hein</td>
+        <td class="right">David Hein</td>
     </tr>
     <tr>
         <td>PHP Version</td>
-        <td style="text-align: right"><?php echo phpversion(); ?></td>
+        <td class="right"><?php echo phpversion(); ?></td>
     </tr>
 </table>
 
