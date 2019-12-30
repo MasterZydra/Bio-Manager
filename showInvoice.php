@@ -37,9 +37,9 @@
     $conn -> dbDisconnect();
     $conn = NULL;
 
-    // Got to invoice overview if no invoice was found
+    // Go to invoice overview if no invoice was found
     if (is_null($row)) {
-        header("Location: invoice.php");
+        echo "<script>window.close();</script>";
         exit();
     }
 
