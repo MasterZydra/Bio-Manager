@@ -196,10 +196,11 @@ $html .='
 </tr> 
 </table>
 <br><br><br>';
-/*
-if(isset($comment) {
- $html .= $comment;
-}*/
+
+    if(isset($comment)) {
+        $html .= $comment;
+        $html .= '<br><br><br>';
+    }
 
 // Bankverbindung
 $html .= "<strong>Bankverbindung</strong>:"
