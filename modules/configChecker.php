@@ -7,7 +7,7 @@
 * @Author: David Hein
 */
 
-    // ---------  DatabaseConfig.php  ---------
+    // ---------  DatabaseConfig  ---------
     if (file_exists('config/DatabaseConfig.php'))
         include_once 'config/DatabaseConfig.php';
 
