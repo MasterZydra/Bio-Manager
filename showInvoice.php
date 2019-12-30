@@ -209,45 +209,9 @@ $html .= "<strong>Bankverbindung</strong>:"
  
 
 
+    include 'modules/pdfGenerator.php';
 
-    // PDF generation
-    // ---------------------------------------------------
-    require_once('ext/TCPDF/tcpdf.php');
-
-    $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-
-    // Document informations
-    $pdf->SetCreator(PDF_CREATOR);
-    $pdf->SetAuthor($invoice["author"]);
-    $pdf->SetTitle($invoiceName);
-    $pdf->SetSubject($invoiceName);
-
-    // Deactivate Header und Footer
-    $pdf->SetPrintHeader(false);
-    $pdf->SetPrintFooter(false);
-
-    // Use monospaced font
-    $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
- 
-    // Set Margins
-    $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
- 
-// Automatisches Autobreak der Seiten
-$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
- 
-// Image Scale 
-$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
- 
-    // Set font and font size
-    $pdf->SetFont('dejavusans', '', 10);
- 
-    // Add new page
-    $pdf->AddPage();
- 
-    // Add HTML code to page and generate PDF out of it
-    $pdf->writeHTML($html, true, false, true, false, '');
- 
-    // Show PDF to user in browser window
-    $pdf->Output($pdfName, 'I');
-
+    $pdfGen = new pdfGenerator();
+    $pdfGen -> createPDF($invoice["author"], $invoiceName, $invoiceName, $html);
+    $pdfGen -> showInBrowser($pdfName);
 ?>
