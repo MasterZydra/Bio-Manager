@@ -5,7 +5,24 @@
 * Check if all necessary configurations exist and are set.
 *
 * @Author: David Hein
-*/ 
+*/
+
+    // ---------  DatabaseConfig.php  ---------
+    if (file_exists('config/DatabaseConfig.php'))
+        include_once 'config/DatabaseConfig.php';
+
+    // Check if file exists and all settings are set
+    if (!file_exists('config/DatabaseConfig.php') ||
+        !isset($database["server_name"]) ||
+        !isset($database["database_name"]) ||
+        !isset($database["database_username"]) ||
+        !isset($database["database_password"]))
+    {
+        echo '<div class="warning">';
+        echo 'Die Einstellungen für die <strong>Datenbankverbindung</strong> fehlen oder sind nicht vollständig! ';
+        echo '<a href="editDBConnection.php">Bitte konfigurieren</a>';
+        echo '</div>';
+    }
 
     // ---------  ImpressumConfig  ---------
     if (file_exists('config/ImpressumConfig.php'))

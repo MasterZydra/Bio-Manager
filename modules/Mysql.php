@@ -11,9 +11,11 @@
 * @Author: David Hein
 */
 
-include 'config/DbConfig.php';
+// Check if file exists to prevent warnings
+if (file_exists('config/DatabaseConfig.php'))
+    include_once 'config/DatabaseConfig.php';
 
-class Mysql extends DbConfig {
+class Mysql {
     // Public properties
     public $connectionString;
     public $dataSet;
@@ -29,17 +31,16 @@ class Mysql extends DbConfig {
         $this -> connectionString = NULL;
         $this -> sqlQuery = NULL;
         $this -> dataSet = NULL;
-
-        $dbPara = new Dbconfig();
-        $this -> databaseName = $dbPara -> dbName;
-        $this -> hostName = $dbPara -> serverName;
-        $this -> userName = $dbPara -> userName;
-        $this -> passCode = $dbPara ->passCode;
-        $dbPara = NULL;
+        
+        global $database;
+        $this -> databaseName = $database["database_name"];
+        $this -> hostName = $database["server_name"];
+        $this -> userName = $database["database_username"];
+        $this -> passCode = $database["database_password"];
     }
 
     function dbConnect() {
-        $this -> connectionString = new mysqli($this -> serverName,$this -> userName,$this -> passCode);
+        $this -> connectionString = new mysqli($this -> hostName, $this -> userName, $this -> passCode);
         mysqli_select_db($this -> connectionString, $this -> databaseName);
         return $this -> connectionString;
     }

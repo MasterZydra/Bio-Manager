@@ -132,6 +132,11 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt werden
     <a href="editInvoiceData.php">Rechnungsdaten bearbeiten</a>
 </div>
 
+<div class="box">
+    <strong>Grundeinstellungen</strong><br>
+    <a href="editDBConnection.php">Datenbankverbindung bearbeiten</a>
+</div>
+
 <?php
         }
         if(isDeveloper()) {
