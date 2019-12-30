@@ -2,9 +2,7 @@
 /*
 * showInvoice.php
 * ----------------
-* This page shows an invoice.
-*
-* @Link to original soure code: https://www.php-einfach.de/experte/php-codebeispiele/pdf-per-php-erstellen-pdf-rechnung
+* This page generates and shows an invoice.
 *
 * @Author: David Hein
 */
