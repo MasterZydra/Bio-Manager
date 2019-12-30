@@ -101,7 +101,7 @@ $umsatzsteuer = 0.0;
         
         $pricePerUnit = '1';
 
-        $invoiceName = $invoice["name"] . '_' . (string)$invoiceYear . '_' . (string)$invoiceNr;
+        $invoiceName = $invoice["name"] . '_' . (string)$inv -> invoiceYear . '_' . (string)$inv -> invoiceNr;
 
 $pdfName = $invoiceName . '.pdf';
  
