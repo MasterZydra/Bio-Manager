@@ -208,7 +208,8 @@ $html .= "<strong>Bankverbindung</strong>:"
 . "<br>BIC: " . $invoice["BIC"];
  
 
-
+    // Generate and show PDF document
+    // ------------------------------
     include 'modules/pdfGenerator.php';
 
     $pdfGen = new pdfGenerator();
