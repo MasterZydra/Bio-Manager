@@ -93,11 +93,6 @@ if(!$deliveryNotes) {
 
 //Höhe eurer Umsatzsteuer. 0.19 für 19% Umsatzsteuer
 $umsatzsteuer = 0.0; 
-
-        // Invoice meta data
-        $invoiceYear = 2019;
-        $invoiceNr = 1;
-        $invoiceDate = date("d.m.Y");
         
         $pricePerUnit = '1';
 
