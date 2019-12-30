@@ -98,8 +98,7 @@ $umsatzsteuer = 0.0;
 
         $invoiceName = $invoice["name"] . '_' . (string)$inv -> invoiceYear . '_' . (string)$inv -> invoiceNr;
 
-$pdfName = $invoiceName . '.pdf';
- 
+$pdfName = $invoiceName;
  
 //////////////////////////// Inhalt des PDFs als HTML-Code \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
  
