@@ -199,6 +199,7 @@ table th {
 .infobox a:visited,
 .warning a:visited,
 .log a:visited {
+    text-decoration: underline;
     color: white;
 }
 
