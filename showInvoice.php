@@ -12,10 +12,12 @@
 
     // Check permission
     if(!isMaintainer() && !isInspector() ||
+       // Check if id is set
+       !isset($_GET['id']) ||
        // Check if id is numeric
        (isset($_GET['id']) && !is_numeric($_GET['id'])))
     {
-        header("Location: index.php");
+        echo "<script>window.close();</script>";
         exit();
     }
 
