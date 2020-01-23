@@ -11,19 +11,19 @@
 
 class invoice {
     // PDF Data
-    public $pdfAuthor;
-    public $pdfName;
+    public string $pdfAuthor;
+    public string $pdfName;
     // Invoice meta data
-    public $invoiceYear;
-    public $invoiceNr;
+    public int $invoiceYear;
+    public int $invoiceNr;
     public $invoiceDate;
     // Sender and receiver
     public $invoiceSender;
     public $invoiceReceiver;
     // Banking data
-    public $bankDetails_name;
-    public $bankDetails_IBAN;
-    public $bankDetails_BIC;
+    public string $bankDetails_name;
+    public string $bankDetails_IBAN;
+    public string $bankDetails_BIC;
     // Product meta data
     public $volumeUnit;
     public $pricePerUnit;
