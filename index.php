@@ -144,9 +144,9 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt werden
 <h2>
     Entwickler
 </h2>
-<div class="warning">
-    <strong>Verwendung auf eigene Gefahr!</strong>
-</div>
+<?php
+    showWarning('<strong>Verwendung auf eigene Gefahr!</strong>');
+?>
 <div class="box">
     <a href="developerOptions.php">Entwicklereinstellungen</a>
 </div>
