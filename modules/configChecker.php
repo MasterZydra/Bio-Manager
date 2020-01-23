@@ -7,6 +7,7 @@
 * @Author: David Hein
 */
 
+if (isAdmin()) {
     // ---------  DatabaseConfig  ---------
     if (file_exists('config/DatabaseConfig.php'))
         include_once 'config/DatabaseConfig.php';
@@ -68,5 +69,19 @@
             'editInvoiceData.php',
             'Bitte konfigurieren');
     }
-
+// First initialisation
+} else {
+    if (file_exists('config/DatabaseConfig.php'))
+        include_once 'config/DatabaseConfig.php';
+    
+    // Check if file exists and array exists
+    if (!file_exists('config/DatabaseConfig.php') ||
+        (file_exists('config/DatabaseConfig.php') && !isset($database)))
+    {
+        showWarningWithUrl(
+            'Die Einstellungen für die <strong>Datenbankverbindung</strong> fehlen!',
+            'initDBConnection.php',
+            'Bitte konfigurieren');
+    }
+}
 ?>
