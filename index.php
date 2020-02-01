@@ -84,6 +84,15 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt werden
     <?php if(isMaintainer()) {?><br><a href="addRecipient.php">Abnehmer hinzufügen</a><?php } ?>
 </div>
 
+<h2>
+    Auswertungen
+</h2>
+
+<div class="box">
+    <strong>Lieferant</strong><br>
+    <a href="showActiveSupplier.php" target="_blank">Aktive Lieferanten anzeigen</a>
+</div>
+
 <?php
         }
 ?>
