@@ -8,7 +8,7 @@
 */
 
 function showBox(string $type, string $message) {
-    echo 'div class="' . $type . '">' . $message . '</div>';
+    echo '<div class="' . $type . '">' . $message . '</div>';
 }
 
 function showInfobox(string $warning) {
