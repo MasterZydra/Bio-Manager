@@ -134,6 +134,7 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt werden
 
 <div class="box">
     <strong>Grundeinstellungen</strong><br>
+    <a href="editCommonConfig.php">Allgemeine Einstellungen</a><br>
     <a href="editDBConnection.php">Datenbankverbindung bearbeiten</a>
 </div>
 

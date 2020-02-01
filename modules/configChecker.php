@@ -69,6 +69,20 @@ if (isAdmin()) {
             'editInvoiceData.php',
             'Bitte konfigurieren');
     }
+    
+    // ---------  CommonConfig  ---------
+    if (file_exists('config/CommonConfig.php'))
+        include_once 'config/CommonConfig.php';
+
+    // Check if file exists and all settings are set
+    if (!file_exists('config/DatabaseConfig.php') ||
+        !isset($common['organisation']))
+    {
+        showWarningWithUrl(
+            'Die allgemeinen Einstellungen fehlen oder sind nicht vollständig!',
+            'editCommonConfig.php',
+            'Bitte konfigurieren');
+    }
 // First initialisation
 } else {
     if (file_exists('config/DatabaseConfig.php'))
