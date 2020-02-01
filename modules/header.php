@@ -9,7 +9,16 @@
     </head>
     <body>
     <header>
-        <h1>Bio-Manager des OGV Eichelsbach e.V.</h1>
+        <?php
+            // Build string for organisation in header
+            $organisation = "";
+            // Check if file exists to prevent warnings
+            if (file_exists('config/CommonConfig.php')) {
+                include_once 'config/CommonConfig.php';
+                $organisation .= " - " . $common['organisation'];
+            }
+        ?>
+        <h1>Bio-Manager <?php echo $organisation; ?></h1>
         <div>
             <a href="index.php">Startseite</a>
         </div>

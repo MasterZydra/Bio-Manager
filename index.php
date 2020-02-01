@@ -13,6 +13,8 @@
     include 'modules/header.php';
 
     if(!isLoggedIn()) {
+        // Check configuration
+        include 'modules/configChecker.php';
 ?>
 <h1>Willkommen beim Bio-Manager</h1>
 <h2>Was ist der Bio-Manager</h2>
@@ -31,9 +33,7 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt werden
 <h1>Willkommen im Mitgliederbereich</h1>
 <?php
         // Check configuration
-        if(isAdmin()) {
-            include 'modules/configChecker.php';
-        }
+        include 'modules/configChecker.php';
         
         // Links for maintainers
         if(isMaintainer() || isInspector()) {
@@ -82,6 +82,15 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt werden
     <strong>Abnehmer</strong><br>
     <a href="recipient.php">Alle Abnehmer anzeigen</a>
     <?php if(isMaintainer()) {?><br><a href="addRecipient.php">Abnehmer hinzufügen</a><?php } ?>
+</div>
+
+<h2>
+    Auswertungen
+</h2>
+
+<div class="box">
+    <strong>Lieferant</strong><br>
+    <a href="showActiveSupplier.php" target="_blank">Aktive Lieferanten anzeigen</a>
 </div>
 
 <?php
@@ -134,6 +143,7 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt werden
 
 <div class="box">
     <strong>Grundeinstellungen</strong><br>
+    <a href="editCommonConfig.php">Allgemeine Einstellungen</a><br>
     <a href="editDBConnection.php">Datenbankverbindung bearbeiten</a>
 </div>
 
@@ -144,9 +154,9 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt werden
 <h2>
     Entwickler
 </h2>
-<div class="warning">
-    <strong>Verwendung auf eigene Gefahr!</strong>
-</div>
+<?php
+    showWarning('<strong>Verwendung auf eigene Gefahr!</strong>');
+?>
 <div class="box">
     <a href="developerOptions.php">Entwicklereinstellungen</a>
 </div>

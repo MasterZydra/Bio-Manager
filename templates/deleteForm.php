@@ -128,9 +128,7 @@ class deleteForm extends form {
     protected function deleteLogic() {
         // Check if id is given
         if(!isset($_GET['id'])) {
-            echo '<div class="warning">';
-            echo 'Es wurde kein Eintrag übergeben. Zurück zu ' . $this -> linkAllElements;
-            echo '</div>';
+            showWarning('Es wurde kein Eintrag übergeben. Zurück zu ' . $this -> linkAllElements);
             return;
         }
         
@@ -145,10 +143,8 @@ class deleteForm extends form {
         // Check if id is valid
         if ($row == NULL) {
             // Warning if no entry in DB was found
-            echo '<div class="warning">';
-            echo 'Der ausgewählte Eintrag wurde in der Datenbank nicht gefunden. '
-                . 'Zurück zu ' . $this -> linkAllElements;
-            echo '</div>';
+            showWarning('Der ausgewählte Eintrag wurde in der Datenbank nicht gefunden. '
+                . 'Zurück zu ' . $this -> linkAllElements);
             return;
         }
         
@@ -165,9 +161,7 @@ class deleteForm extends form {
             $conn -> dbDisconnect();
             $conn = NULL;
             
-            echo '<div class="infobox">';
-            echo 'Der Eintrag  wurde gelöscht.';
-            echo '</div>';
+            showInfobox('Der Eintrag  wurde gelöscht.');
             return;
         }
 

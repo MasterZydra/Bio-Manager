@@ -7,6 +7,7 @@
 * @Author: David Hein
 */
 
+if (isAdmin()) {
     // ---------  DatabaseConfig  ---------
     if (file_exists('config/DatabaseConfig.php'))
         include_once 'config/DatabaseConfig.php';
@@ -18,10 +19,10 @@
         !isset($database["database_username"]) ||
         !isset($database["database_password"]))
     {
-        echo '<div class="warning">';
-        echo 'Die Einstellungen für die <strong>Datenbankverbindung</strong> fehlen oder sind nicht vollständig! ';
-        echo '<a href="editDBConnection.php">Bitte konfigurieren</a>';
-        echo '</div>';
+        showWarningWithUrl(
+            'Die Einstellungen für die <strong>Datenbankverbindung</strong> fehlen oder sind nicht vollständig!',
+            'editDBConnection.php',
+            'Bitte konfigurieren');
     }
 
     // ---------  ImpressumConfig  ---------
@@ -41,10 +42,10 @@
         !isset($impressum["responsible_city"]) ||
         !isset($impressum["responsible_email"]))
     {
-        echo '<div class="warning">';
-        echo 'Die Einstellungen für das <strong>Impressum</strong> fehlen oder sind nicht vollständig! ';
-        echo '<a href="editImpressum.php">Bitte konfigurieren</a>';
-        echo '</div>';
+        showWarningWithUrl(
+            'Die Einstellungen für das <strong>Impressum</strong> fehlen oder sind nicht vollständig!',
+            'editImpressum.php',
+            'Bitte konfigurieren');
     }
 
     // ---------  InvoiceDataConfig  ---------
@@ -63,10 +64,38 @@
         !isset($invoice["author"]) ||
         !isset($invoice["name"]))
     {
-        echo '<div class="warning">';
-        echo 'Die Einstellungen für die <strong>Rechnung</strong> fehlen oder sind nicht vollständig! ';
-        echo '<a href="editInvoiceData.php">Bitte konfigurieren</a>';
-        echo '</div>';
+        showWarningWithUrl(
+            'Die Einstellungen für die <strong>Rechnung</strong> fehlen oder sind nicht vollständig!',
+            'editInvoiceData.php',
+            'Bitte konfigurieren');
     }
+    
+    // ---------  CommonConfig  ---------
+    if (file_exists('config/CommonConfig.php'))
+        include_once 'config/CommonConfig.php';
 
+    // Check if file exists and all settings are set
+    if (!file_exists('config/DatabaseConfig.php') ||
+        !isset($common['organisation']))
+    {
+        showWarningWithUrl(
+            'Die allgemeinen Einstellungen fehlen oder sind nicht vollständig!',
+            'editCommonConfig.php',
+            'Bitte konfigurieren');
+    }
+// First initialisation
+} else {
+    if (file_exists('config/DatabaseConfig.php'))
+        include_once 'config/DatabaseConfig.php';
+    
+    // Check if file exists and array exists
+    if (!file_exists('config/DatabaseConfig.php') ||
+        (file_exists('config/DatabaseConfig.php') && !isset($database)))
+    {
+        showWarningWithUrl(
+            'Die Einstellungen für die <strong>Datenbankverbindung</strong> fehlen!',
+            'initDBConnection.php',
+            'Bitte konfigurieren');
+    }
+}
 ?>
