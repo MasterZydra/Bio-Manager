@@ -160,7 +160,7 @@ foreach($invoiceItems as $item) {
     <td style="text-align: center;">' . $item[0].  '</td>
     <td style="text-align: center;">' . $item[1] . '</td>
     <td style="text-align: right;">' . $item[2] . ' ' . $inv -> volumeUnit . '</td>
-    <td style="text-align: center;">' . number_format($price, 2, ',', '') . ' Euro</td>
+    <td style="text-align: center;">' . number_format($price, 2, ',', '.') . ' Euro</td>
 </tr>';
 }
 $html .="</table>";
@@ -179,7 +179,7 @@ if($umsatzsteuer > 0) {
  </tr>
  <tr>
     <td colspan="3">Umsatzsteuer ('.intval($umsatzsteuer*100).'%)</td>
-    <td style="text-align: center;">'.number_format($umsatzsteuer_betrag, 2, ',', '').' Euro</td>
+    <td style="text-align: center;">'.number_format($umsatzsteuer_betrag, 2, ',', '.').' Euro</td>
  </tr>';
 }
  
