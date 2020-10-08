@@ -1,2 +1,8 @@
+# MacOs
 .DS_Store
+
+# Test files
 test_*
+
+# Configuration
+config/*.php
