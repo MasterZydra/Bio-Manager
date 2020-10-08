@@ -90,7 +90,8 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt werden
 
 <div class="box">
     <strong>Lieferant</strong><br>
-    <a href="showActiveSupplier.php" target="_blank">Aktive Lieferanten anzeigen</a>
+    <a href="showActiveSupplier.php" target="_blank">Aktive Lieferanten anzeigen</a><br>
+    <a href="showSupplierPayments.php">Auszahlungen anzeigen</a>
 </div>
 
 <?php
