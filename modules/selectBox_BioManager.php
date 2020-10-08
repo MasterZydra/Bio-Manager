@@ -133,4 +133,40 @@ function recipientSelectBox($name = NULL, $selectedValue = NULL, $boxReadOnly = 
         true,
         $boxReadOnly);
 }
+
+/**
+* Generate a select element for the invoice years.
+* The default name and id of the select element is 'invoiceYear'.
+*
+* @param string $name   Name of the select element
+* @param int    $selectedValue  The option with this value will be selected. The default value is NULL
+* @param boolean    $boxReadOnly    Set box to readonly
+*
+* @Author: David Hein
+* @return String with html code for select element
+*/
+function invoiceYearsSelectBox($name = NULL, $selectedValue = NULL, $boxReadOnly = false) {
+    $conn = new Mysql();
+    $conn -> dbConnect();
+    $result = $conn -> select(
+        'T_Invoice',
+        'DISTINCT year AS value, year AS name',
+        NULL,
+        'year DESC');
+    $conn -> dbDisconnect();
+    $conn = null;
+    
+    if(is_null($name)) {
+        $name = 'invoiceYear';
+    }
+    
+    return selectBox(
+        $name,
+        true,
+        'Bitte Jahr auswählen',
+        $result,
+        $selectedValue,
+        true,
+        $boxReadOnly);
+}
 ?>
