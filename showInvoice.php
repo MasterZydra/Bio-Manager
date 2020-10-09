@@ -186,7 +186,7 @@ if($umsatzsteuer > 0) {
 $html .='
 <tr>
     <td colspan="3"><b>Gesamtbetrag: </b></td>
-    <td style="text-align: center;"><b>'.number_format($totalAmount, 2, ',', '').' Euro</b></td>
+    <td style="text-align: center;"><b>'.number_format($totalAmount, 2, ',', '.').' Euro</b></td>
 </tr> 
 </table>
 <br><br><br>';
