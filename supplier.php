@@ -56,7 +56,7 @@
 <?php
     $conn = new Mysql();
     $conn -> dbConnect();
-    $result = $conn -> select('T_Supplier', '*');
+    $result = $conn -> select('T_Supplier', '*', NULL, 'inactive, name');
     $conn -> dbDisconnect();
     $conn = NULL;
 
