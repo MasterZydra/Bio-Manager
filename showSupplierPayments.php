@@ -24,6 +24,12 @@
         if (file_exists('config/InvoiceDataConfig.php'))
             include 'config/InvoiceDataConfig.php';
         
+        $where = 'T_Pricing.year = ' . secPOST('invoiceYear') . ' AND T_DeliveryNote.year = ' . secPOST('invoiceYear');
+        
+        if(isset($_POST['onlyInInvoice']) && secPost('onlyInInvoice') == True) {
+            $where .= ' AND T_DeliveryNote.invoiceId IS NOT NULL';
+        }
+        
         // Collect data
         $conn = new Mysql();
         $conn -> dbConnect();
@@ -32,7 +38,7 @@
             'LEFT JOIN T_Product ON T_DeliveryNote.productId = T_Product.id ' .
             'LEFT JOIN T_Pricing ON T_Product.id = T_Pricing.productId',
             'nr, deliverDate, amount, pricePayOut, T_Supplier.id, T_Supplier.name',
-            'T_Pricing.year = ' . secPOST('invoiceYear') . ' AND T_DeliveryNote.year = ' . secPOST('invoiceYear'));
+            $where);
         $conn -> dbDisconnect();
         $conn = NULL;
                 
@@ -125,6 +131,10 @@
 <form action="?show=1" method="POST" class="requiredLegend">    
     <label for="invoiceYear" class="required">Rechnungsjahr:</label><br>
     <?php echo invoiceYearsSelectBox(NULL, strval(date("Y"))); ?><br>
+    
+    <label>
+        <input type="checkbox" name="onlyInInvoice" value="1">Nur in Rechnungen gelistet
+    </label><br>
     
     <button>Anzeigen</button>
 </form>
