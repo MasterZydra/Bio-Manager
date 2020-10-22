@@ -75,7 +75,7 @@ if (isAdmin()) {
         include_once 'config/CommonConfig.php';
 
     // Check if file exists and all settings are set
-    if (!file_exists('config/DatabaseConfig.php') ||
+    if (!file_exists('config/CommonConfig.php') ||
         !isset($common['organisation']))
     {
         showWarningWithUrl(

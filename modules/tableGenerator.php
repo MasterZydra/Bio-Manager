@@ -24,6 +24,7 @@ class tableGenerator {
     
     /**
     * Print a formatted table cell
+    * Supported data types: bool, date, float, int, currency
     *
     * @param string $dataType   Data type of the $data
     * @param string $data       Data which will be formatted and printed

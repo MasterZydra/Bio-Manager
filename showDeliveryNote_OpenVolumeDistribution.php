@@ -1,7 +1,7 @@
 <?php
 /*
-* evalDeliveryNote.php
-* --------------------
+* showDeliveryNote_OpenVolumeDistribution.php
+* -------------------------------------------
 * This page shows an evaluation which delivery notes
 * have no or uncomplete volume distribution.
 *
