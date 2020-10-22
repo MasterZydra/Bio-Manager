@@ -91,7 +91,13 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt werden
 <div class="box">
     <strong>Lieferant</strong><br>
     <a href="showActiveSupplier.php" target="_blank">Aktive Lieferanten anzeigen</a><br>
-    <a href="showSupplierPayments.php">Auszahlungen anzeigen</a>
+    <a href="showSupplierPayments.php">Auszahlungen anzeigen</a><br>
+</div>
+
+<div class="box">
+    <strong>Lieferschein</strong><br>
+    <a href="showDeliveryNote_OpenVolumeDistribution.php">Offene Mengenverteilungen</a><br>
+    <a href="showCropVolumeDistribution.php">Mengenverteilung anzeigen</a>
 </div>
 
 <?php
@@ -164,7 +170,7 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt werden
 
 <div class="box">
     <strong>Seiten in Entwicklung</strong><br>
-    <a href="evalDeliveryNote_OpenVolumeDistribution.php">Statistik - Offene Verteilungen</a>
+    <a href="deliveryNote_new.php">Neues Template</a>
 </div>
 
 <?php
