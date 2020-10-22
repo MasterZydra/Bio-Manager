@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity`
 
 ## [Unreleased]
+### Added
+- Added sorting of suppliers by state and name
+- Added documentation of supported types in table generator
+- Added thousand separator to invoices
+- Added statistic to get the distribution of volume per plot
+
+### Changed
+- Unified file names of statistics files
+- Move all statistics to statistic area
+
+### Fixed
+- Fixed filename in ConfigChecker
+- Fixed documentation in source files
 
 
 ## 1.3.9 - 08.10.2020 - Adding new statistics. Changes in background logic
