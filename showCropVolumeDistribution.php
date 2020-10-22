@@ -1,8 +1,8 @@
 <?php
 /*
 * showCropVolumeDistribution.php
-* ----------------------
-* Show supplier payments for a given year.
+* ------------------------------
+* Show crop volume distribution per plot.
 *
 * @Author: David Hein
 */
