@@ -24,10 +24,15 @@
         if (file_exists('config/InvoiceDataConfig.php'))
             include 'config/InvoiceDataConfig.php';
         
+        // Build WHERE clause
         $where = 'T_Pricing.year = ' . secPOST('invoiceYear') . ' AND T_DeliveryNote.year = ' . secPOST('invoiceYear');
-        
-        if(isset($_POST['onlyInInvoice']) && secPost('onlyInInvoice') == True) {
+        // Check if delivery note is assigned to an invoice
+        if(isset($_POST['onlyInInvoice']) && secPOST('onlyInInvoice') == True) {
             $where .= ' AND T_DeliveryNote.invoiceId IS NOT NULL';
+        }
+        // Show only delivery notes of selected invoice
+        if(!empty($_POST['invoiceId'])) {
+            $where .= ' AND T_DeliveryNote.invoiceId = ' . secPOST('invoiceId');
         }
         
         // Collect data
@@ -131,6 +136,9 @@
 <form action="?show=1" method="POST" class="requiredLegend">    
     <label for="invoiceYear" class="required">Rechnungsjahr:</label><br>
     <?php echo invoiceYearsSelectBox(NULL, strval(date("Y"))); ?><br>
+    
+    <label for="invoiceId">Rechnung: (optional)</label><br>
+    <?php echo invoiceSelectBox(); ?><br>
     
     <label>
         <input type="checkbox" name="onlyInInvoice" value="1">Nur in Rechnungen gelistet
