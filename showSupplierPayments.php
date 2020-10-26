@@ -24,6 +24,19 @@
         if (file_exists('config/InvoiceDataConfig.php'))
             include 'config/InvoiceDataConfig.php';
         
+        // Collect invoice data if invoice id is given
+        if(!empty($_POST['invoiceId'])) {
+            $conn = new Mysql();
+            $conn -> dbConnect();
+            $result = $conn -> select(
+                'T_Invoice',
+                'year, nr',
+                'id = ' . secPOST('invoiceId'));
+            $invoiceData = $conn -> getFirstRow();
+            $conn -> dbDisconnect();
+            $conn = NULL;
+        }
+        
         // Build WHERE clause
         $where = 'T_Pricing.year = ' . secPOST('invoiceYear') . ' AND T_DeliveryNote.year = ' . secPOST('invoiceYear');
         // Check if delivery note is assigned to an invoice
@@ -82,6 +95,13 @@
                     <tr><td width="100%">
                         <h1 style="text-align: center;">' . $docName . '</h1><br>';
         
+        if(!empty($_POST['invoiceId'])) {
+            // Add invoice number to document name
+            $docName .= ' ' . $invoiceData['nr'];
+            // Add invoice %year% %nr% to title
+            $html .= '<h2 style="text-align: center;">Rechnung ' . $invoiceData['year'] . ' ' . $invoiceData['nr'] . '</h2><br>';
+        }
+        
         $keys = array_keys($pdata);
         foreach($keys as $key) {
             // Heading
@@ -127,7 +147,7 @@
 
         $pdfGen = new pdfGenerator();
         $pdfGen -> createPDF($invoice["author"], $docName, $docName, $html);
-        $pdfGen -> showInBrowser($docName . '_' . date('Y_m_d'));
+        $pdfGen -> showInBrowser($docName);
     } else {
         include 'modules/header.php';
 ?>
