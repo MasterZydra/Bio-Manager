@@ -23,6 +23,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 ### Fixed
 - Fixed filename in ConfigChecker
 - Fixed documentation in source files
+- Fixed crop volume distribution calculation
 
 ### Removed
 - Remove time stamp from supplier payments document name
