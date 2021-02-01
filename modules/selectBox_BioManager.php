@@ -169,4 +169,48 @@ function invoiceYearsSelectBox($name = NULL, $selectedValue = NULL, $boxReadOnly
         true,
         $boxReadOnly);
 }
+
+/**
+* Generate a select element for the invoices.
+* The default name and id of the select element is 'invoiceId'.
+*
+* @param string     $name           Name of the select element
+* @param int        $selectedValue  The option with this value will be selected. The default value is NULL
+* @param boolean    $boxReadOnly    Set box to readonly
+* @param boolean    $isRequired     Flag if the field in the form is required. The default is false
+* @param boolean    $disableDefault Disable the default text for selection. The default is false
+*
+* @Author: David Hein
+* @return String with html code for select element
+*/
+function invoiceSelectBox(
+    $name = NULL,
+    $selectedValue = NULL,
+    $boxReadOnly = false,
+    $isRequired = false,
+    $disableDefault = false)
+{
+    $conn = new Mysql();
+    $conn -> dbConnect();
+    $result = $conn -> select(
+        'T_Invoice',
+        'DISTINCT CONCAT(CAST(year AS VARCHAR(255)), " ", CAST(nr AS VARCHAR(255))) AS name, id AS value',
+        NULL,
+        'year DESC, nr DESC');
+    $conn -> dbDisconnect();
+    $conn = null;
+    
+    if(is_null($name)) {
+        $name = 'invoiceId';
+    }
+    
+    return selectBox(
+        $name,
+        $isRequired,
+        'Bitte Jahr auswählen',
+        $result,
+        $selectedValue,
+        $disableDefault,
+        $boxReadOnly);
+}
 ?>

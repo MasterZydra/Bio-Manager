@@ -24,6 +24,30 @@
         if (file_exists('config/InvoiceDataConfig.php'))
             include 'config/InvoiceDataConfig.php';
         
+        // Collect invoice data if invoice id is given
+        if(!empty($_POST['invoiceId'])) {
+            $conn = new Mysql();
+            $conn -> dbConnect();
+            $result = $conn -> select(
+                'T_Invoice',
+                'year, nr',
+                'id = ' . secPOST('invoiceId'));
+            $invoiceData = $conn -> getFirstRow();
+            $conn -> dbDisconnect();
+            $conn = NULL;
+        }
+        
+        // Build WHERE clause
+        $where = 'T_Pricing.year = ' . secPOST('invoiceYear') . ' AND T_DeliveryNote.year = ' . secPOST('invoiceYear');
+        // Check if delivery note is assigned to an invoice
+        if(isset($_POST['onlyInInvoice']) && secPOST('onlyInInvoice') == True) {
+            $where .= ' AND T_DeliveryNote.invoiceId IS NOT NULL';
+        }
+        // Show only delivery notes of selected invoice
+        if(!empty($_POST['invoiceId'])) {
+            $where .= ' AND T_DeliveryNote.invoiceId = ' . secPOST('invoiceId');
+        }
+        
         // Collect data
         $conn = new Mysql();
         $conn -> dbConnect();
@@ -32,7 +56,7 @@
             'LEFT JOIN T_Product ON T_DeliveryNote.productId = T_Product.id ' .
             'LEFT JOIN T_Pricing ON T_Product.id = T_Pricing.productId',
             'nr, deliverDate, amount, pricePayOut, T_Supplier.id, T_Supplier.name',
-            'T_Pricing.year = ' . secPOST('invoiceYear') . ' AND T_DeliveryNote.year = ' . secPOST('invoiceYear'));
+            $where);
         $conn -> dbDisconnect();
         $conn = NULL;
                 
@@ -70,6 +94,13 @@
         $html = '<table cellpadding="5" cellspacing="0" style="width: 100%; ">
                     <tr><td width="100%">
                         <h1 style="text-align: center;">' . $docName . '</h1><br>';
+        
+        if(!empty($_POST['invoiceId'])) {
+            // Add invoice number to document name
+            $docName .= ' ' . $invoiceData['nr'];
+            // Add invoice %year% %nr% to title
+            $html .= '<h2 style="text-align: center;">Rechnung ' . $invoiceData['year'] . ' ' . $invoiceData['nr'] . '</h2><br>';
+        }
         
         $keys = array_keys($pdata);
         foreach($keys as $key) {
@@ -116,7 +147,7 @@
 
         $pdfGen = new pdfGenerator();
         $pdfGen -> createPDF($invoice["author"], $docName, $docName, $html);
-        $pdfGen -> showInBrowser($docName . '_' . date('Y_m_d'));
+        $pdfGen -> showInBrowser($docName);
     } else {
         include 'modules/header.php';
 ?>
@@ -125,6 +156,13 @@
 <form action="?show=1" method="POST" class="requiredLegend">    
     <label for="invoiceYear" class="required">Rechnungsjahr:</label><br>
     <?php echo invoiceYearsSelectBox(NULL, strval(date("Y"))); ?><br>
+    
+    <label for="invoiceId">Rechnung: (optional)</label><br>
+    <?php echo invoiceSelectBox(); ?><br>
+    
+    <label>
+        <input type="checkbox" name="onlyInInvoice" value="1">Nur in Rechnungen gelistet
+    </label><br>
     
     <button>Anzeigen</button>
 </form>

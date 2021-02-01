@@ -12,14 +12,20 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Added documentation of supported types in table generator
 - Added thousand separator to invoices
 - Added statistic to get the distribution of volume per plot
+- Add select box for invoice selection
+- Add invoice year and number to title and document name for supplier payments
 
 ### Changed
 - Unified file names of statistics files
 - Move all statistics to statistic area
+- More opions for supplier payments. Only assigned to invoice and only for one specific invoice.
 
 ### Fixed
 - Fixed filename in ConfigChecker
 - Fixed documentation in source files
+
+### Removed
+- Remove time stamp from supplier payments document name
 
 
 ## 1.3.9 - 08.10.2020 - Adding new statistics. Changes in background logic
