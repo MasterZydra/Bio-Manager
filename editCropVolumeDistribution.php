@@ -147,8 +147,15 @@
     function sumDistribution() {
         var sumtbl = 0;
         // Sum all rows
-        for(var i = 1; i < tableRef.rows.length; i++)
-            sumtbl += parseInt(tableRef.rows[i].cells[1].getElementsByTagName("input")[0].value);
+        for(var i = 1; i < tableRef.rows.length; i++) {
+            strVal = tableRef.rows[i].cells[1].getElementsByTagName("input")[0].value
+            // Prevent NaN
+            if(strVal == "") {
+                strVal = "0"
+            }
+            sumtbl += parseInt(strVal);
+        }
+        
         // Write sum into cell
         sumRef.innerHTML = sumtbl;
         // Color cell red if sum is greater then delivery amount
