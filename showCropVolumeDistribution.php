@@ -58,13 +58,15 @@
                                     <b>Name</b>
                                 </td>
                                 <td>
-                                    <b>Menge</b>
+                                    <b>Menge in '.getSetting('volumeUnit').'</b>
                                 </td>
                             </tr>';
 
         // Add items
+        $totalAmount = 0;
         $keys = array_keys($pdata);
         foreach($keys as $key) {
+            $totalAmount += $pdata[$key]["amount"];
             $html .= '
                 <tr>
                     <td style="text-align: left;">' . $key . '</td>
@@ -74,6 +76,15 @@
         }
         $html .= '</table>
                 </td></tr></table>';
+
+        $html .= '
+        <hr>
+        <table cellpadding="5" cellspacing="0" style="width: 100%;" border="0">
+            <tr>
+                <td colspan="3"><b>Gesamtmenge in '.getSetting('volumeUnit').': </b></td>
+                <td style="text-align: right;"><b>'.number_format($totalAmount, 2, ',', '.').'</b></td>
+            </tr> 
+        </table>';
         
         // Generate and show PDF document
         // ------------------------------

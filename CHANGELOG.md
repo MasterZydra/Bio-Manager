@@ -19,10 +19,12 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Unified file names of statistics files
 - Move all statistics to statistic area
 - More opions for supplier payments. Only assigned to invoice and only for one specific invoice.
+- Add total volume to crop volume distribution
 
 ### Fixed
 - Fixed filename in ConfigChecker
 - Fixed documentation in source files
+- Fixed crop volume distribution calculation
 
 ### Removed
 - Remove time stamp from supplier payments document name
