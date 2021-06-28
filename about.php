@@ -16,7 +16,7 @@
 <table>
     <tr>
         <td>Bio-Manager Version</td>
-        <td class="right">1.3.8</td>
+        <td class="right">1.3.10</td>
     </tr>
     <tr>
         <td>Entwickler</td>
