@@ -7,19 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity`
 
 ## [Unreleased]
+
+## 1.3.10 - 28.06.2021 - Graphical improvements and small changes background logic
 ### Added
 - Added sorting of suppliers by state and name
 - Added documentation of supported types in table generator
 - Added thousand separator to invoices
 - Added statistic to get the distribution of volume per plot
-- Add select box for invoice selection
-- Add invoice year and number to title and document name for supplier payments
+- Added select box for invoice selection
+- Added invoice year and number to title and document name for supplier payments
+- Add total volume to crop volume distribution
 
 ### Changed
 - Unified file names of statistics files
 - Move all statistics to statistic area
 - More opions for supplier payments. Only assigned to invoice and only for one specific invoice.
-- Add total volume to crop volume distribution
 
 ### Fixed
 - Fixed filename in ConfigChecker
