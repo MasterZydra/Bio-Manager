@@ -4,7 +4,9 @@ Die Lieferscheine, Lieferanten und Flurstücke werden eingetragen. Die Mengen de
 
 Aus den Daten werden die Rechnungen und Auszahlungen generiert. Übersichten für die Kasse des Vereins und für die Bio-Zertifizierungstelle können erstellt werden.
 
-**Quellenangaben**
+[Link zur Dokumentation](doc/README.md)
+
+## Quellenangaben
 
 | URL | Beschreibung |
 |---|---|
@@ -16,5 +18,5 @@ Aus den Daten werden die Rechnungen und Auszahlungen generiert. Übersichten fü
 | https://stackoverflow.com/questions/1005857/how-to-call-a-function-from-a-string-stored-in-a-variable | String zu Funktionsname konvertieren |
 | https://kushellig.de/prepared-statements-php-mysqli/<br>https://www.php.net/manual/de/class.mysqli-stmt.php | PHP Prepared Statements |
 
-**Externe Biblioteken**  
+## Externe Biblioteken
 Erstellen von PDF aus HTML mit **TCPDF** https://github.com/tecnickcom/TCPDF
