@@ -24,9 +24,13 @@
     include 'modules/header.php';
     
     include 'modules/tableGenerator.php';
+    include_once 'system/modules/dataObjects/supplierCollection.php';
+
 ?>
+
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
+<script src="js/sortDataTable.js"></script>
 
 <h1>Lieferant</h1>
 <p>
@@ -54,16 +58,12 @@
 </p>
 
 <?php
-    $conn = new Mysql();
-    $conn -> dbConnect();
-    $result = $conn -> select('T_Supplier', '*', NULL, 'inactive, name');
-    $conn -> dbDisconnect();
-    $conn = NULL;
+    $supplierColl = new SupplierCollection();
 
     if(isMaintainer()) {
         tableGenerator::show(
             'dataTable-tableSupplier',
-            $result,
+            $supplierColl->findAll(),
             array('name', ['inactive', 'bool']),
             array('Name', 'Inaktiv', 'Aktionen'),
             array('edit', 'delete'),
@@ -71,10 +71,19 @@
     } else {
         tableGenerator::show(
             'dataTable-tableSupplier',
-            $result,
+            $supplierColl->findAll(),
             array('name', ['inactive', 'bool']),
             array('Name', 'Inaktiv'));
     }
+?>
 
+<script>
+    // Order by name
+    sortTable("dataTable-tableSupplier", 0);
+    // Order by inactive desc
+    sortTable("dataTable-tableSupplier", 1, true);
+</script>
+
+<?php
     include 'modules/footer.php';
 ?>
