@@ -81,11 +81,12 @@ class MySQL_prepStatement {
     * @param string $table  Table from where the data will be selected
     * @param string $whereCol   Column which will be used in where condition
     * @param int    $givenId    Id of data row which will be selected
+    * @param string $colTyp     Data type of the column
     *
     * @author David Hein
     * @return mysqli_result/NULL
     */
-    public function selectColWhereCol($col, $table, $whereCol, $givenId) {
+    public function selectColWhereCol(string $col, string $table, $whereCol, $givenId, $colTyp = "i") {
         $sqlQuery = "SELECT $col FROM ". $this -> conn -> getDatabaseName() . ".$table ";
         // Select with parameter
         if (!is_null($whereCol)) {
@@ -94,17 +95,19 @@ class MySQL_prepStatement {
             // Query for developer
             $this -> showQuery($sqlQuery);
 
+            if ($colTyp == "i") {
+                $givenId = intval($givenId);
+            }
+
             $stmt = $this -> conn -> connectionString -> prepare($sqlQuery);
-            $stmt -> bind_param('i', $id);
-            // Assign values
-            $id = intval($givenId);
+            $stmt -> bind_param($colTyp, $givenId);
 
             // Execute query
             if (!$stmt -> execute()) {
                 $this -> showError($stmt -> error);
                 return NULL;
             } else {
-                return $this -> getFirstRow($stmt -> get_result());
+                return $stmt -> get_result();
             }
         }
         // Select without parameter
