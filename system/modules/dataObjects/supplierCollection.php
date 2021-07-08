@@ -20,7 +20,8 @@ class SupplierCollection implements iDataCollection
     private $prepStatement;
 
     // Create MySQL_prepStatement instance when creating the object
-    public function __construct() {
+    public function __construct()
+    {
         $this->prepStatement = new MySQL_prepStatement();
     }
 
@@ -35,7 +36,8 @@ class SupplierCollection implements iDataCollection
     }
 
     // Find all entries in the table
-    public function findAll() : array {
+    public function findAll() : array
+    {
         $dataSet = $this->prepStatement->selectColWhereCol("*", "T_Supplier", NULL, NULL);
         if (is_null($dataSet) || $dataSet -> num_rows == 0) {
             return NULL;
