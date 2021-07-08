@@ -28,17 +28,34 @@ class SupplierCollection implements iDataCollection
     // Find entry with the given id
     public function find(int $id) : iObject
     {
-        $row = $this->prepStatement->selectWhereId("T_Supplier", $id);
-        if (is_null($row)) {
-            return NULL;
+        $dataSet = $this->prepStatement->selectWhereId("T_Supplier", $id);
+        $rows = $this->dataSetToArrayOfSuppliers($dataSet);
+        if (!is_null($rows)) {
+            return $rows[0];
         }
-        return $this->newSupplier($row);
+        return $rows;
     }
 
     // Find all entries in the table
     public function findAll() : array
     {
         $dataSet = $this->prepStatement->selectColWhereCol("*", "T_Supplier", NULL, NULL);
+        return $this->dataSetToArrayOfSuppliers($dataSet);
+    }
+
+    public function findByName(string $name)
+    {
+        $dataSet = $this->prepStatement->selectColWhereCol("*", "T_Supplier", "name", $name, "s");
+        return $this->dataSetToArrayOfSuppliers($dataSet);
+    }
+
+    public function delete(int $id)
+    {
+
+    }
+
+    private function dataSetToArrayOfSuppliers($dataSet)
+    {
         if (is_null($dataSet) || $dataSet -> num_rows == 0) {
             return NULL;
         }
@@ -50,12 +67,8 @@ class SupplierCollection implements iDataCollection
         return $result;
     }
 
-    public function delete(int $id)
+    private function newSupplier($row) : Supplier
     {
-
-    }
-
-    private function newSupplier($row) : Supplier {
         return new Supplier(intval($row["id"]), $row["name"], $row["inactive"]);
     }
 }
