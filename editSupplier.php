@@ -20,7 +20,7 @@
 
     include 'modules/header.php';
 
-    include_once 'modules/Mysql_preparedStatement_BioManager.php';
+    include_once 'system/modules/dataObjects/supplierCollection.php';
 ?>
 
 <h1>Lieferant bearbeiten</h1>
@@ -57,9 +57,8 @@
         $conn = NULL;
 
         // Select data
-        $prepStmt = new mysql_preparedStatement_BioManager();
-        $row = $prepStmt -> selectWhereId("T_Supplier", secGET('id'));
-        $prepStmt -> destroy();
+        $supplierColl = new SupplierCollection();
+        $row = $supplierColl->find(intval(secGET('id')));
         
         // Check if id is valid 
         if ($row == NULL) {
@@ -68,18 +67,18 @@
             echo '</div>';
         } else {
 ?>
-<form action="?id=<?php echo $row['id']; ?>&edit=1" method="post" class="requiredLegend">
+<form action="?id=<?php echo $row->id(); ?>&edit=1" method="post" class="requiredLegend">
     <label for="supplierName" class="required">Name:</label><br>
     <input id="supplierName" name="supplierName" type="text" required autofocus value=
         <?php
-            echo ($alreadyExist) ? '"' . secPOST("supplierName") . '"' : '"' . $row['name'] . '"';
+            echo ($alreadyExist) ? '"' . secPOST("supplierName") . '"' : '"' . $row->name() . '"';
         ?>><br>
     
     <label>
         <input type="hidden" name="supplierInactive" value="0">
         <input type="checkbox" name="supplierInactive" value="1"
            <?php
-                if((!$alreadyExist && $row['inactive']) || ($alreadyExist && $_POST['supplierInactive'])) {
+                if((!$alreadyExist && $row->inactive()) || ($alreadyExist && $_POST['supplierInactive'])) {
                     echo 'checked';
                 }
            ?>>
