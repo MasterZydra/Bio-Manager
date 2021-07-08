@@ -20,6 +20,7 @@
 
     include 'modules/header.php';
 
+    include_once 'system/modules/database/mySQL/mySQL_helpers.php';
     include_once 'system/modules/dataObjects/supplierCollection.php';
 ?>
 
@@ -39,7 +40,7 @@
         $conn = new Mysql();
         $conn -> dbConnect();
         
-        $alreadyExist = isset($_POST["supplierName"]) && alreadyExistsSupplier(secPOST("supplierName"), secGET('id'));
+        $alreadyExist = isset($_POST["supplierName"]) && MySQL_helpers::supplierAlreadyExists(secPOST("supplierName"), secGET('id'));
         if(isset($_GET['edit'])) {
             if($alreadyExist) {
                 echo '<div class="warning">';
