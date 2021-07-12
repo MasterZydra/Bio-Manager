@@ -139,6 +139,48 @@ class MySQL_prepStatement {
     }
     
     /**
+    * Update entry in table with an given table and id
+    *
+    * @param string $table      Table from where the data will be deleted
+    * @param string $whereCol   Column which will be used in where condition
+    * @param string $whereColTyp    Type of the where column e.g. "i", "s", "b"
+    * @param int    $givenId        Id of data row which will be updated
+    * @param array  $cols       Array of strings of all columns that shall be updated
+    * @param string $colTyp     The types of all columns that shall be updated e.g. "sb"
+    * @param        $values     All columns that shall be updated
+    *
+    * @author David Hein
+    * @return boolean
+    */
+    public function updateColsWhereCol(string $table, $whereCol, string $whereColTyp, $givenId, array $cols, string $colTyp, ...$values) : bool
+    {
+        $sqlQuery = "UPDATE ". $this -> conn -> getDatabaseName() . ".$table SET ";
+        $sqlQuerySet = "";
+        foreach ($cols as $col) {
+            if ($sqlQuerySet != "") {
+                $sqlQuerySet .= ", ";
+            }
+            $sqlQuerySet .= "$col=?";
+        }
+        $sqlQuery .= "$sqlQuerySet WHERE $whereCol=?";
+
+        // Query for developer
+        $this -> showQuery($sqlQuery);
+
+        $values[] = $givenId;
+
+        $stmt = $this -> conn -> connectionString -> prepare($sqlQuery);
+        $stmt -> bind_param($colTyp . $whereColTyp, ...$values);
+
+        // Execute query
+        if (!$stmt -> execute()) {
+            $this -> showError($stmt -> error);
+            return false;
+        }
+        return true;
+    }
+
+    /**
     * Select mysqli_result from an given column, table, where column and id
     *
     * @param string $table  Table from where the data will be selected
@@ -176,6 +218,24 @@ class MySQL_prepStatement {
     */
     public function deleteWhereId($table, $givenId) {
         $this -> deleteWhereCol($table, "id", $givenId);
+    }
+
+        /**
+    * Update entry in table with an given table and id
+    *
+    * @param string $table      Table from where the data will be deleted
+    * @param string $whereCol   Column which will be used in where condition
+    * @param int    $givenId        Id of data row which will be updated
+    * @param array  $cols       Array of strings of all columns that shall be updated
+    * @param string $colTyp     The types of all columns that shall be updated e.g. "sb"
+    * @param        $values     All columns that shall be updated
+    *
+    * @author David Hein
+    * @return boolean
+    */
+    public function updateColsWhereId(string $table, array $cols, string $colType, int $givenId, ...$values) : bool
+    {
+        return $this->updateColsWhereCol($table, "id", "i", $givenId, $cols, $colType, ...$values);
     }
 }
 
