@@ -20,7 +20,6 @@
 
     include 'modules/header.php';
 
-    include_once 'system/modules/database/mySQL/mySQL_helpers.php';
     include_once 'system/modules/dataObjects/supplierCollection.php';
 ?>
 
@@ -37,9 +36,10 @@
         echo 'Es wurde kein Lieferant übergeben. Zurück zu <a href="supplier.php">Alle Lieferanten anzeigen</a>';
         echo '</div>';
     } else {
-        $conn = new Mysql();
-        $conn -> dbConnect();
-        
+        $supplierColl = new SupplierCollection();
+        // Select data
+        $row = $supplierColl->find(intval(secGET('id')));
+
         $alreadyExist = isset($_POST["supplierName"]) && MySQL_helpers::supplierAlreadyExists(secPOST("supplierName"), secGET('id'));
         if(isset($_GET['edit'])) {
             if($alreadyExist) {
@@ -47,19 +47,19 @@
                 echo 'Der Lieferant <strong>' . secPOST("supplierName") . '</strong> existiert bereits';
                 echo '</div>';
             } else {
-                updateSupplier($conn, secGET('id'), secPOST("supplierName"), secPOST('supplierInactive'));
-                echo '<div class="infobox">';
-                echo 'Die Änderungen wurden erfolgreich gespeichert';
-                echo '</div>';
+                $row->setName(secPOST("supplierName"));
+                $row->setInactive((bool) secPOST('supplierInactive'));
+                
+                if ($supplierColl->update($row)) {
+                    echo '<div class="infobox">';
+                    echo 'Die Änderungen wurden erfolgreich gespeichert';
+                    echo '</div>';
+                }
+
+                // Select data again after update
+                $row = $supplierColl->find(intval(secGET('id')));
             }
         }
-        
-        $conn -> dbDisconnect();
-        $conn = NULL;
-
-        // Select data
-        $supplierColl = new SupplierCollection();
-        $row = $supplierColl->find(intval(secGET('id')));
         
         // Check if id is valid 
         if ($row == NULL) {
