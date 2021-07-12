@@ -9,6 +9,7 @@
 * @Author: David Hein
 */
 include_once 'system/modules/database/mySQL/mySQL_prepStatement.php';
+include_once 'system/modules/database/mySQL/mySQL_helpers.php';
 
 include_once 'system/modules/dataObjects/iDataCollection.php';
 include_once 'system/modules/dataObjects/iObject.php';
@@ -47,6 +48,18 @@ class SupplierCollection implements iDataCollection
     {
         $dataSet = $this->prepStatement->selectColWhereCol("*", "T_Supplier", "name", $name, "s");
         return $this->dataSetToArrayOfSuppliers($dataSet);
+    }
+
+    public function update(iObject $object) : bool
+    {
+        if (MySQL_helpers::supplierAlreadyExists($object->name(), $object->id()))
+        {
+            return false;
+        }
+        
+        return $this->prepStatement->updateColsWhereId(
+            "T_Supplier", array("name", "inactive"), "sb",
+            $object->id(), $object->name(), $object->inactive());
     }
 
     public function delete(int $id)
