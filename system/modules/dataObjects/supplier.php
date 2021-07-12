@@ -37,6 +37,14 @@ class Supplier implements iObject
         return $this->inactive;
     }
 
+    function setName(string $name) {
+        $this->name = $name;
+    }
+
+    function setInactive(string $inactive) {
+        $this->inactive = $inactive;
+    }
+
     function toArray(): array
     {
         return array(
