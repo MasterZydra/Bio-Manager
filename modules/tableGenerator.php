@@ -6,6 +6,8 @@
 *
 * @Author: David Hein
 */
+include_once 'system/modules/dataObjects/iObject.php';
+
 class tableGenerator {
     /**
     * Print all headings in given array.
@@ -89,9 +91,27 @@ class tableGenerator {
         // Add headings
         tableGenerator::printHeading($headings);
         
-        if($dataSet -> num_rows > 0) {
+        if(is_array($dataSet) || $dataSet -> num_rows > 0) {
+            $dataSetNotEmpty = true;
+            $loopCount = 0;
             // Add a row in table for each data line
-            while($row = $dataSet->fetch_assoc()) {
+            while($dataSetNotEmpty) {
+                $row = NULL;
+
+                // Get next row
+                if (gettype($dataSet) === "object") {
+                    $row = $dataSet->fetch_assoc();
+                }
+                if (is_array($dataSet) && $loopCount < count($dataSet)) {
+                    $row = $dataSet[$loopCount]->toArray();
+                }
+                
+                // Break loop if all items are processed
+                $dataSetNotEmpty = !is_null($row);
+                if (!$dataSetNotEmpty) {
+                    continue;
+                }
+
                 echo '<tr>';
                 foreach($columns as $dataCol) {
                     // If data type is given, format output
@@ -125,6 +145,7 @@ class tableGenerator {
                     echo '>' . getSecuredString($actionNames[$i]) . '</a>';
                 }
                 echo '</div></div></td>';
+                $loopCount += 1;
             }
         }
         echo '</table>';
