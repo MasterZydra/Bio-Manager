@@ -62,6 +62,17 @@ class SupplierCollection implements iDataCollection
             $object->id(), $object->name(), $object->inactive());
     }
 
+    public function add(iObject $object) : bool
+    {
+        if (MySQL_helpers::supplierAlreadyExists($object->name(), $object->id()))
+        {
+            return false;
+        }
+
+        return $this->prepStatement->insertCols(
+            "T_Supplier", array("name", "inactive"), "sb", $object->name(), $object->inactive());
+    }
+
     public function delete(int $id)
     {
 
