@@ -20,7 +20,7 @@
 
     include 'modules/header.php';
 
-    include_once 'modules/Mysql_preparedStatement_BioManager.php';
+    include_once 'system/modules/dataObjects/productCollection.php';
 ?>
 
 <h1>Produkt bearbeiten</h1>
@@ -36,33 +36,30 @@
         echo 'Es wurde kein Produkt übergeben. Zurück zu <a href="product.php">Alle Produkte anzeigen</a>';
         echo '</div>';
     } else {
-        $conn = new Mysql();
-        $conn -> dbConnect();
-        $alreadyExist = isset($_POST["product_name"]) && alreadyExistsProduct(secPOST("product_name"));
+        $productColl = new ProductCollection();
+        // Select data
+        $row = $productColl->find(intval(secGET('id')));
+
+        $alreadyExist = isset($_POST["product_name"]) && MySQL_helpers::objectAlreadyExists($productColl, secPOST("product_name"), secGET('id'));
         if(isset($_GET['edit'])) {
             if($alreadyExist) {
                 echo '<div class="warning">';
                 echo 'Das Produkt <strong>' . secPOST("product_name") . '</strong> existiert bereits';
                 echo '</div>';
             } else {
-                $conn -> update(
-                    'T_Product',
-                    'name = \'' . secPOST('product_name') . '\'',
-                    'id = ' . secGET('id'));
-                echo '<div class="infobox">';
-                echo 'Die Änderungen wurden erfolgreich gespeichert';
-                echo '</div>';
+                $row->setName(secPOST('product_name'));
+                
+                if ($productColl->update($row)) {
+                    echo '<div class="infobox">';
+                    echo 'Die Änderungen wurden erfolgreich gespeichert';
+                    echo '</div>';
+                }
+
+                // Select data again after update
+                $row = $productColl->find(intval(secGET('id')));
             }
         }
-
-        $conn -> dbDisconnect();
-        $conn = NULL;
-        
-        // Select data
-        $prepStmt = new mysql_preparedStatement_BioManager();
-        $row = $prepStmt -> selectWhereId("T_Product", secGET('id'));
-        $prepStmt -> destroy();
-        
+               
         // Check if id is valid 
         if ($row == NULL) {
             echo '<div class="warning">';
@@ -70,11 +67,11 @@
             echo '</div>';
         } else {
 ?>
-<form action="?id=<?php echo $row['id']; ?>&edit=1" method="post" class="requiredLegend">
+<form action="?id=<?php echo $row->id(); ?>&edit=1" method="post" class="requiredLegend">
     <label for="product_name" class="required">Name:</label><br>
-    <input id="product_name" name="product_name" type="text" <?php echo $row['name']; ?> required autofocus value=
+    <input id="product_name" name="product_name" type="text" <?php echo $row->name(); ?> required autofocus value=
         <?php
-            echo ($alreadyExist) ? '"' . secPOST("product_name") . '"' : '"' . $row['name'] . '"';
+            echo ($alreadyExist) ? '"' . secPOST("product_name") . '"' : '"' . $row->name() . '"';
         ?>><br>
     
     <button>Änderungen speichern</button>
