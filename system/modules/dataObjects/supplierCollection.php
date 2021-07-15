@@ -52,7 +52,7 @@ class SupplierCollection implements iDataCollection
 
     public function update(iObject $object) : bool
     {
-        if (MySQL_helpers::supplierAlreadyExists($object->name(), $object->id()))
+        if (MySQL_helpers::objectAlreadyExists($this, $object->name(), $object->id()))
         {
             return false;
         }
@@ -64,7 +64,7 @@ class SupplierCollection implements iDataCollection
 
     public function add(iObject $object) : bool
     {
-        if (MySQL_helpers::supplierAlreadyExists($object->name(), $object->id()))
+        if (MySQL_helpers::objectAlreadyExists($this, $object->name(), $object->id()))
         {
             return false;
         }

@@ -9,19 +9,18 @@
 *
 * @Author: David Hein
 */
-include_once 'system/modules/dataObjects/supplierCollection.php';
+include_once 'system/modules/dataObjects/iDataCollection.php'; 
 
 class MySQL_helpers {
-    public static function supplierAlreadyExists(string $name, int $id) : bool
+    public static function objectAlreadyExists(iDataCollection $collection, string $name, int $id) : bool
     {
-        $supplierColl = new SupplierCollection();
-        $suppliers = $supplierColl->findByName($name);
-        if (is_null($suppliers)) {
+        $objects = $collection->findByName($name);
+        if (is_null($objects)) {
             return false;
         }
 
-        foreach ($suppliers as $supplier) {
-            if ($supplier->id() != $id) {
+        foreach ($objects as $object) {
+            if ($object->id() != $id) {
                 return true;
             }
         }

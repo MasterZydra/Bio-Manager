@@ -40,7 +40,7 @@
         // Select data
         $row = $supplierColl->find(intval(secGET('id')));
 
-        $alreadyExist = isset($_POST["supplierName"]) && MySQL_helpers::supplierAlreadyExists(secPOST("supplierName"), secGET('id'));
+        $alreadyExist = isset($_POST["supplierName"]) && MySQL_helpers::objectAlreadyExists($supplierColl, secPOST("supplierName"), secGET('id'));
         if(isset($_GET['edit'])) {
             if($alreadyExist) {
                 echo '<div class="warning">';
