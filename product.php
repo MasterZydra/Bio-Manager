@@ -24,9 +24,11 @@
     include 'modules/header.php';
 
     include 'modules/tableGenerator.php';
+    include_once 'system/modules/dataObjects/productCollection.php';
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
+<script src="js/sortDataTable.js"></script>
 
 <h1>Produkt</h1>
 
@@ -55,20 +57,12 @@
 </p>
 
 <?php
-    $conn = new Mysql();
-    $conn -> dbConnect();
-    $result = $conn -> select(
-        'T_Product',
-        '*',
-        NULL,
-        'name ASC');
-    $conn -> dbDisconnect();
-    $conn = NULL;
+    $productColl = new ProductCollection();
 
     if(isMaintainer()) {
         tableGenerator::show(
             'dataTable-tableProduct',
-            $result,
+            $productColl->findAll(),
             array('name'),
             array('Name', 'Aktionen'),
             array('edit', 'delete'),
@@ -76,10 +70,17 @@
     } else {
         tableGenerator::show(
             'dataTable-tableProduct',
-            $result,
+            $productColl->findAll(),
             array('name'),
             array('Name'));
     }
+?>
 
+<script>
+    // Order by name
+    sortTable("dataTable-tableProduct", 0);
+</script>
+
+<?php
     include 'modules/footer.php';
 ?>
