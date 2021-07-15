@@ -17,6 +17,8 @@
     }
 
     include 'modules/header.php';
+
+    include_once 'system/modules/dataObjects/supplierCollection.php';
 ?>
 <h1>Lieferanten hinzufügen</h1>
 
@@ -31,32 +33,13 @@
             echo 'Der Lieferant <strong>' . secPOST("supplier_name") . '</strong> existiert bereits';
             echo '</div>';
         } else {
-            $conn = new Mysql();
-            $conn -> dbConnect();
-
-            $NULL = [
-                "type" => "null",
-                "val" => "null"
-            ];
-
-            $supplier_name = [
-                "type" => "char",
-                "val" => secPOST("supplier_name")
-            ];
-
-            $supplier_inactive = [
-                "type" => "char",
-                "val" => "0"
-            ];
-
-            $data = array($NULL, $supplier_name, $supplier_inactive);
-
-            $conn -> insertInto('T_Supplier', $data);
-            $conn -> dbDisconnect();
-
-            echo '<div class="infobox">';
-            echo 'Der Lieferant <strong>' . secPOST("supplier_name") . '</strong> wurde hinzugefügt';
-            echo '</div>';
+            $supplierColl = new SupplierCollection();
+            $newSupplier = new Supplier(0, secPOST("supplier_name"), false);
+            if($supplierColl->add($newSupplier)) {
+                echo '<div class="infobox">';
+                echo 'Der Lieferant <strong>' . secPOST("supplier_name") . '</strong> wurde hinzugefügt';
+                echo '</div>';
+            }        
         }
     }
 ?>
