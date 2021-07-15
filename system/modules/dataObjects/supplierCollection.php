@@ -73,11 +73,6 @@ class SupplierCollection implements iDataCollection
             "T_Supplier", array("name", "inactive"), "sb", $object->name(), $object->inactive());
     }
 
-    public function delete(int $id)
-    {
-
-    }
-
     private function dataSetToArrayOfSuppliers($dataSet)
     {
         if (is_null($dataSet) || $dataSet -> num_rows == 0) {
