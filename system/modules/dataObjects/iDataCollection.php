@@ -15,6 +15,7 @@ interface iDataCollection
     public function find(int $id) : iObject;
     public function findAll();
     public function delete(int $id);
+    public function add(iObject $object) : bool;
     public function update(iObject $object) : bool;
 }
 
