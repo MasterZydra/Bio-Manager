@@ -181,6 +181,49 @@ class MySQL_prepStatement {
     }
 
     /**
+    * Insert a new entry in table with an given table
+    *
+    * @param string $table      Table from where the data will be deleted
+    * @param array  $cols       Array of strings of all columns that shall be updated
+    * @param string $colTyp     The types of all columns that shall be updated e.g. "sb"
+    * @param        $values     All columns that shall be updated
+    *
+    * @author David Hein
+    * @return boolean
+    */
+    public function insertCols(string $table, array $cols, string $colTyp, ...$values) : bool
+    {
+        $sqlQuery = "INSERT INTO ". $this -> conn -> getDatabaseName() . ".$table ";
+        $sqlQueryCols = "";
+        $sqlQueryValues = "";
+        foreach ($cols as $col) {
+            if ($sqlQueryCols != "") {
+                $sqlQueryCols .= ", ";
+            }
+            $sqlQueryCols .= $col;
+
+            if ($sqlQueryValues != "") {
+                $sqlQueryValues .= ", ";
+            }
+            $sqlQueryValues .= "?";
+        }
+        $sqlQuery .= "($sqlQueryCols) VALUES ($sqlQueryValues)";
+
+        // Query for developer
+        $this -> showQuery($sqlQuery);
+
+        $stmt = $this -> conn -> connectionString -> prepare($sqlQuery);
+        $stmt -> bind_param($colTyp, ...$values);
+
+        // Execute query
+        if (!$stmt -> execute()) {
+            $this -> showError($stmt -> error);
+            return false;
+        }
+        return true;
+    }
+
+    /**
     * Select mysqli_result from an given column, table, where column and id
     *
     * @param string $table  Table from where the data will be selected
