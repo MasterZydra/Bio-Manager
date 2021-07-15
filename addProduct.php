@@ -17,6 +17,8 @@
     }
 
     include 'modules/header.php';
+
+    include_once 'system/modules/dataObjects/productCollection.php';
 ?>
 <h1>Produkt hinzufügen</h1>
 
@@ -24,34 +26,20 @@
     <a href="product.php">Alle Produkte anzeigen</a>
 </p>
 <?php
-    $alreadyExist = isset($_POST["product_name"]) && alreadyExistsProduct(secPOST("product_name"));
+    $productColl = new ProductCollection();
+    $alreadyExist = isset($_POST["product_name"]) && MySQL_helpers::objectAlreadyExists($productColl, secPOST("product_name"), 0);
     if(isset($_GET['add'])) {
         if($alreadyExist) {
             echo '<div class="warning">';
             echo 'Das Produkt <strong>' . secPOST("product_name") . '</strong> existiert bereits';
             echo '</div>';
         } else {
-            $conn = new Mysql();
-            $conn -> dbConnect();
-
-            $NULL = [
-                "type" => "null",
-                "val" => "null"
-            ];
-
-            $product_name = [
-                "type" => "char",
-                "val" => secPOST("product_name")
-            ];
-
-            $data = array($NULL, $product_name);
-
-            $conn -> insertInto('T_Product', $data);
-            $conn -> dbDisconnect();
-
-            echo '<div class="infobox">';
-            echo 'Das Produkt <strong>' . secPOST("product_name") . '</strong> wurde hinzugefügt';
-            echo '</div>';
+            $newProduct = new Product(0, secPOST("product_name"), false);
+            if($productColl->add($newProduct)) {
+                echo '<div class="infobox">';
+                echo 'Das Produkt <strong>' . secPOST("product_name") . '</strong> wurde hinzugefügt';
+                echo '</div>';
+            }            
         }
     }
 ?>
