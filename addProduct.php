@@ -34,7 +34,7 @@
             echo 'Das Produkt <strong>' . secPOST("product_name") . '</strong> existiert bereits';
             echo '</div>';
         } else {
-            $newProduct = new Product(0, secPOST("product_name"), false);
+            $newProduct = new Product(0, secPOST("product_name"));
             if($productColl->add($newProduct)) {
                 echo '<div class="infobox">';
                 echo 'Das Produkt <strong>' . secPOST("product_name") . '</strong> wurde hinzugefügt';
