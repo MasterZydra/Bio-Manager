@@ -26,6 +26,11 @@ class ProductCollection implements iDataCollection
         $this->prepStatement = new MySQL_prepStatement();
     }
 
+    // Close all open connections used in class
+    function destroy() {
+        $this->prepStatement->destroy();
+    }
+
     // Find entry with the given id
     public function find(int $id) : iObject
     {
