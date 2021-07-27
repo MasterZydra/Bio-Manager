@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity`
 
 ## [Unreleased]
+### Changed
+- Use prepared statements and data objects for adding, editing or showing elements (e.g. plot, supplier, product ...)
 
 ## 1.3.10 - 28.06.2021 - Graphical improvements and small changes background logic
 ### Added
