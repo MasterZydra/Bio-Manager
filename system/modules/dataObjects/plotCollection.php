@@ -1,9 +1,9 @@
 <?php
 /*
-* productCollection.php
-* ---------------------
-* This file contains the class 'productCollection'.
-* The class is a data gateway for the product and
+* plotCollection.php
+* ------------------
+* This file contains the class 'plotCollection'.
+* The class is a data gateway for the plot and
 * implements the iDataCollection interface.
 *
 * @Author: David Hein
@@ -13,11 +13,11 @@ include_once 'system/modules/database/mySQL/mySQL_helpers.php';
 
 include_once 'system/modules/dataObjects/iDataCollection.php';
 include_once 'system/modules/dataObjects/iObject.php';
-include_once 'system/modules/dataObjects/product.php';
+include_once 'system/modules/dataObjects/plot.php';
 
-class ProductCollection implements iDataCollection
+class PlotCollection implements iDataCollection
 {
-    // MySQL_prepStatement;
+    // MySQL_prepStatement
     private $prepStatement;
 
     // Create MySQL_prepStatement instance when creating the object
@@ -34,8 +34,8 @@ class ProductCollection implements iDataCollection
     // Find entry with the given id
     public function find(int $id) : iObject
     {
-        $dataSet = $this->prepStatement->selectWhereId("T_Product", $id);
-        $rows = $this->dataSetToArrayOfProduct($dataSet);
+        $dataSet = $this->prepStatement->selectWhereId("T_Plot", $id);
+        $rows = $this->dataSetToArrayOfPlots($dataSet);
         if (!is_null($rows)) {
             return $rows[0];
         }
@@ -45,14 +45,14 @@ class ProductCollection implements iDataCollection
     // Find all entries in the table
     public function findAll() : array
     {
-        $dataSet = $this->prepStatement->selectColWhereCol("*", "T_Product", NULL, NULL);
-        return $this->dataSetToArrayOfProduct($dataSet);
+        $dataSet = $this->prepStatement->selectColWhereCol("*", "T_Plot", NULL, NULL);
+        return $this->dataSetToArrayOfPlots($dataSet);
     }
 
     public function findByName(string $name)
     {
-        $dataSet = $this->prepStatement->selectColWhereCol("*", "T_Product", "name", $name, "s");
-        return $this->dataSetToArrayOfProduct($dataSet);
+        $dataSet = $this->prepStatement->selectColWhereCol("*", "T_Plot", "name", $name, "s");
+        return $this->dataSetToArrayOfPlots($dataSet);
     }
 
     public function update(iObject $object) : bool
@@ -63,8 +63,8 @@ class ProductCollection implements iDataCollection
         }
         
         return $this->prepStatement->updateColsWhereId(
-            "T_Product", array("name"), "s",
-            $object->id(), $object->name());
+            "T_Plot", array("nr", "name", "subdistrict", "supplierId"), "sssi",
+            $object->id(), $object->nr(), $object->name(), $object->subdistrict(), intval($object->supplierId()));
     }
 
     public function add(iObject $object) : bool
@@ -75,26 +75,26 @@ class ProductCollection implements iDataCollection
         }
 
         return $this->prepStatement->insertCols(
-            "T_Product", array("name"), "s",
-            $object->name());
+            "T_Plot", array("nr", "name", "subdistrict", "supplierId"), "sssi",
+            $object->nr(), $object->name(), $object->subdistrict(), intval($object->supplierId()));
     }
 
-    private function dataSetToArrayOfProduct($dataSet)
+    private function dataSetToArrayOfPlots($dataSet)
     {
         if (is_null($dataSet) || $dataSet -> num_rows == 0) {
             return NULL;
         }
-        // Create Product objects for all entries and push them into the array
+        // Create Plot objects for all entries and push them into the array
         $result = array();
         while($row = $dataSet->fetch_assoc()) {
-            array_push($result, $this->newProduct($row));
+            array_push($result, $this->newPlot($row));
         }
         return $result;
     }
 
-    private function newProduct($row) : Product
+    private function newPlot($row) : Plot
     {
-        return new Product(intval($row["id"]), $row["name"]);
+        return new Plot(intval($row["id"]), $row["nr"], $row["name"], $row["subdistrict"], intval($row["supplierId"]));
     }
 }
 

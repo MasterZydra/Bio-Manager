@@ -8,7 +8,7 @@
 */
 
 include 'templates/form.php';
-include_once 'modules/Mysql_preparedStatement_BioManager.php';
+include_once 'system/modules/database/mySQL/mySQL_prepStatement.php';
 
 /**
 * The class form is generating an HTML template for a delete page.
@@ -54,8 +54,7 @@ class deleteForm extends form {
     */
     public $updateBeforeDelete;
     
-    
-    protected $prepStmt;
+    protected $prepStatement;
     
     /**
     * Construct a new deleteForm object and set default values for the properties
@@ -74,27 +73,25 @@ class deleteForm extends form {
         $this -> deleteBeforeDelete = array();
         $this -> updateBeforeDelete = array();
         
-        $this -> prepStmt = new mysql_preparedStatement_BioManager();
+        $this->prepStatement = new MySQL_prepStatement();
     }
     
     /**
     * Close all open connections used in class
     */
     function destroy() {
-        $this -> prepStmt -> destroy();
+        $this->prepStatement->destroy();
     }
     
     /**
     * Delete actions before deleting main entry.
-    *
-    * @param Connection $conn   Database connection
     *
     * author David Hein
     */
     protected function deleteBeforeDelete() {
         $i = 0;
         while(count($this -> deleteBeforeDelete) > $i && $this -> deleteBeforeDelete[$i] != NULL) {
-            $this -> prepStmt -> deleteWhereCol(
+            $this->prepStatement->deleteWhereCol(
                 $this -> deleteBeforeDelete[$i][0],
                 $this -> deleteBeforeDelete[$i][1],
                 $this -> deleteBeforeDelete[$i][2]);
@@ -133,12 +130,8 @@ class deleteForm extends form {
         }
         
         // Get data from DB
-        $conn = new Mysql();
-        $conn -> dbConnect();
-        $conn -> select($this -> table, '*', 'id = ' . secGET('id'));
-        $row = $conn -> getFirstRow();
-        $conn -> dbDisconnect();
-        $conn = NULL;
+        $dataSet = $this->prepStatement->selectWhereId($this->table, intval(secGET('id')));
+        $row = MySQL_prepStatement::getFirstRow($dataSet);
 
         // Check if id is valid
         if ($row == NULL) {
@@ -156,7 +149,7 @@ class deleteForm extends form {
             $this -> deleteBeforeDelete();
             $this -> updateBeforeDelete($conn);
             // Delete main entry
-            $this -> prepStmt -> deleteWhereId($this -> table, $row['id']);
+            $this->prepStatement->deleteWhereId($this -> table, intval($row['id']));
             // Close open connection
             $conn -> dbDisconnect();
             $conn = NULL;

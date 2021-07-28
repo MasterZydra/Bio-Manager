@@ -24,9 +24,11 @@
     include 'modules/header.php';
 
     include 'modules/tableGenerator.php';
+    include_once 'system/modules/dataObjects/plotCollection.php';
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
+<script src="js/sortDataTable.js"></script>
 
 <h1>Flurstück</h1>
 
@@ -55,20 +57,12 @@
 </p>
 
 <?php
-    $conn = new Mysql();
-    $conn -> dbConnect();
-    $result = $conn -> select(
-        'T_Plot LEFT JOIN T_Supplier ON T_Supplier.id = supplierId',
-        'T_Plot.id, nr, T_Plot.name, subdistrict, T_Supplier.name AS supplierName',
-        NULL,
-        'T_Plot.nr ASC');
-    $conn -> dbDisconnect();
-    $conn = NULL;
+    $plotColl = new PlotCollection();
 
     if(isMaintainer()) {
         tableGenerator::show(
             'dataTable-tablePlot',
-            $result,
+            $plotColl->findAll(),
             array('nr', 'name', 'subdistrict', 'supplierName'),
             array('Nummer', 'Name', 'Gemarkung', 'Lieferant', 'Aktionen'),
             array('edit', 'delete'),
@@ -76,10 +70,17 @@
     } else {
         tableGenerator::show(
             'dataTable-tablePlot',
-            $result,
+            $plotColl->findAll(),
             array('nr', 'name', 'subdistrict', 'supplierName'),
             array('Nummer', 'Name', 'Gemarkung', 'Lieferant'));
     }
+?>
 
+<script>
+    // Order by plot nr
+    sortTable("dataTable-tablePlot", 0);
+</script>
+
+<?php
     include 'modules/footer.php';
 ?>
