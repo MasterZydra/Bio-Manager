@@ -10,7 +10,7 @@
 * @Author: David Hein
 */
 include_once 'system/modules/database/mySQL/mySQL_prepStatement.php';
-include_once 'system/modules/database/mySQL/mySQL_helpers.php';
+include_once 'system/modules/database/mySQL/MySqlHelpers.php';
 
 include_once 'system/modules/dataObjects/iDataCollection.php';
 include_once 'system/modules/dataObjects/iObject.php';
@@ -59,7 +59,7 @@ class PlotCollection implements iDataCollection
 
     public function update(iObject $object): bool
     {
-        if (MySQL_helpers::objectAlreadyExists($this, $object->name(), $object->id())) {
+        if (MySqlHelpers::objectAlreadyExists($this, $object->name(), $object->id())) {
             return false;
         }
 
@@ -77,7 +77,7 @@ class PlotCollection implements iDataCollection
 
     public function add(iObject $object): bool
     {
-        if (MySQL_helpers::objectAlreadyExists($this, $object->name(), $object->id())) {
+        if (MySqlHelpers::objectAlreadyExists($this, $object->name(), $object->id())) {
             return false;
         }
 

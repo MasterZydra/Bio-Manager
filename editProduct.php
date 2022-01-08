@@ -42,7 +42,7 @@ if (!isset($_GET['id'])) {
     $row = $productColl->find(intval(secGET('id')));
 
     $alreadyExist = isset($_POST["product_name"]) &&
-        MySQL_helpers::objectAlreadyExists($productColl, secPOST("product_name"), secGET('id'));
+        MySqlHelpers::objectAlreadyExists($productColl, secPOST("product_name"), secGET('id'));
     if (isset($_GET['edit'])) {
         if ($alreadyExist) {
             echo '<div class="warning">';

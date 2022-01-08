@@ -28,7 +28,7 @@ include_once 'system/modules/dataObjects/productCollection.php';
 <?php
     $productColl = new ProductCollection();
     $alreadyExist = isset($_POST["product_name"]) &&
-        MySQL_helpers::objectAlreadyExists($productColl, secPOST("product_name"), 0);
+        MySqlHelpers::objectAlreadyExists($productColl, secPOST("product_name"), 0);
 if (isset($_GET['add'])) {
     if ($alreadyExist) {
         echo '<div class="warning">';
