@@ -100,7 +100,7 @@ function isLoggedIn()
 */
 function isSupplier()
 {
-    $prepStmt = new mysql_preparedStatement();
+    $prepStmt = new MySqlPreparedStatement();
     $row = $prepStmt -> selectColWhereId("supplierId", "T_User", $_SESSION['userId']);
     $prepStmt -> destroy();
 
@@ -115,7 +115,7 @@ function isSupplier()
 */
 function getUserSupplierId()
 {
-    $prepStmt = new mysql_preparedStatement();
+    $prepStmt = new MySqlPreparedStatement();
     $row = $prepStmt -> selectColWhereId("supplierId", "T_User", $_SESSION['userId']);
     $prepStmt -> destroy();
 

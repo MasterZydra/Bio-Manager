@@ -10,12 +10,12 @@
 *
 * @Author David Hein
 */
-include_once 'modules/Mysql_preparedStatement.php';
+include_once 'modules/MySqlPreparedStatement.php';
 
-class mysql_preparedStatement_BioManager extends mysql_preparedStatement
+class mysql_preparedStatement_BioManager extends MySqlPreparedStatement
 {
     /**
-    * Create a new mysql_preparedStatement object.
+    * Create a new MySqlPreparedStatement object.
     * Connect to database.
     */
     public function __construct()

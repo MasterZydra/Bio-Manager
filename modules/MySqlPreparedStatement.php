@@ -1,7 +1,7 @@
 <?php
 
 /*
-* Mysql_preparedStatement.php
+* MySqlPreparedStatement.php
 * ---------------------------
 * Class for using prepared statments for a more secure way to
 * execute sql queries and prevent sql injections.
@@ -10,7 +10,7 @@
 */
 include_once 'modules/Mysql.php';
 
-class mysql_preparedStatement
+class MySqlPreparedStatement
 {
     /**
     * Mysqli object for connection to database
@@ -19,7 +19,7 @@ class mysql_preparedStatement
     protected $conn;
 
     /**
-    * Create a new mysql_preparedStatement object.
+    * Create a new MySqlPreparedStatement object.
     * Connect to database.
     */
     public function __construct()
