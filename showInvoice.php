@@ -23,7 +23,7 @@ if (
     exit();
 }
 
-include 'modules/invoice.php';
+include 'modules/Invoice.php';
 
 // Check if file exists to prevent warnings
 if (file_exists('config/InvoiceDataConfig.php')) {
@@ -47,7 +47,7 @@ if (file_exists('config/InvoiceDataConfig.php')) {
         exit();
     }
 
-    $inv = new invoice();
+    $inv = new Invoice();
 
     $inv -> invoiceReceiver     = $row['name'] . '<br>' . $row['address'];
     $inv -> invoiceYear         = $row['year'];
@@ -210,8 +210,8 @@ Rechnungsdatum:
 
     // Generate and show PDF document
     // ------------------------------
-    include 'modules/pdfGenerator.php';
+    include 'modules/PdfGenerator.php';
 
-    $pdfGen = new pdfGenerator();
+    $pdfGen = new PdfGenerator();
     $pdfGen -> createPDF($invoice["author"], $invoiceName, $invoiceName, $html);
     $pdfGen -> showInBrowser($pdfName);

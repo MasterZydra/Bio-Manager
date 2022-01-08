@@ -1,7 +1,7 @@
 <?php
 
 /*
-* invoice.php
+* Invoice.php
 * -----------
 * This file contains the class 'invoice'. It gets the invoice data e.g. from the
 * setting table. This class can be used to get the data from the tables and use them
@@ -10,7 +10,7 @@
 * @Author: David Hein
 */
 
-class invoice
+class Invoice
 {
     // PDF Data
     public string $pdfAuthor;
@@ -48,7 +48,7 @@ class invoice
     * Build invoice name.
     *
     * @author David Hein
-    * @return invoice name
+    * @return string Invoice name
     */
     public function getInvoiceName()
     {
