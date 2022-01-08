@@ -18,7 +18,7 @@ class mysql_preparedStatement_BioManager extends mysql_preparedStatement
     * Create a new mysql_preparedStatement object.
     * Connect to database.
     */
-    function __construct()
+    public function __construct()
     {
         // Create parent
         parent::__construct();

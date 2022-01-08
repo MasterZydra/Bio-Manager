@@ -14,7 +14,7 @@ include_once 'ext/TCPDF/tcpdf.php';
 
 class pdfGenerator
 {
-    function __construct()
+    public function __construct()
     {
         $this -> pdf = null;
     }

@@ -22,7 +22,7 @@ class mysql_preparedStatement
     * Create a new mysql_preparedStatement object.
     * Connect to database.
     */
-    function __construct()
+    public function __construct()
     {
         $this -> conn = new Mysql();
         $this -> conn -> dbConnect();

@@ -30,7 +30,7 @@ class Mysql
     protected $userName;
     protected $passCode;
 
-    function __construct()
+    public function __construct()
     {
         $this -> connectionString = null;
         $this -> sqlQuery = null;

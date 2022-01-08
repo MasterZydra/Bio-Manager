@@ -36,7 +36,7 @@ class invoice
     *
     * @author David Hein
     */
-    function __construct()
+    public function __construct()
     {
         // PDF Data
         $this -> pdfName            = getSetting('invoiceName');

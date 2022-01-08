@@ -72,7 +72,7 @@ class form
     *
     * @author David Hein
     */
-    function __construct()
+    public function __construct()
     {
         $this -> accessPermission   = false;
         $this -> returnPage         = "index.php";

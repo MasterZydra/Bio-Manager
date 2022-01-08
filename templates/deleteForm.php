@@ -63,7 +63,7 @@ class deleteForm extends form
     *
     * @author David Hein
     */
-    function __construct()
+    public function __construct()
     {
         // Create parent
         parent::__construct();
