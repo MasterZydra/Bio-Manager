@@ -8,7 +8,7 @@
 * @Author: David Hein
 */
 
-include 'templates/form.php';
+include 'templates/Form.php';
 include 'modules/tableGenerator.php';
 
 /**
@@ -20,7 +20,7 @@ include 'modules/tableGenerator.php';
 *
 * @author David Hein
 */
-class OverviewForm extends form
+class OverviewForm extends Form
 {
     /**
     * Permission that is necessary to see one table. If false the default table will be shown.

@@ -1,7 +1,7 @@
 <?php
 
 /*
-* form.php
+* Form.php
 * --------
 * Template for a form.
 *
@@ -18,7 +18,7 @@ include 'modules/permissionCheck.php';
 *
 * @author David Hein
 */
-class form
+class Form
 {
     /**
     * Permission that is necessary to access this page.

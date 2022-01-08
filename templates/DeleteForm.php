@@ -8,7 +8,7 @@
 * @Author: David Hein
 */
 
-include 'templates/form.php';
+include 'templates/Form.php';
 include_once 'system/modules/database/mySQL/mySQL_prepStatement.php';
 
 /**
@@ -19,7 +19,7 @@ include_once 'system/modules/database/mySQL/mySQL_prepStatement.php';
 *
 * @author David Hein
 */
-class DeleteForm extends form
+class DeleteForm extends Form
 {
     /**
     * HTML code which will be shown in message box as link to all elements.
