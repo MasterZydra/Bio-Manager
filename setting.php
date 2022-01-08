@@ -25,7 +25,7 @@ if (
 
 include 'modules/header.php';
 
-include 'modules/tableGenerator.php';
+include 'modules/TableGenerator.php';
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
@@ -67,7 +67,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
     $conn = null;
 
 if (isDeveloper()) {
-    tableGenerator::show(
+    TableGenerator::show(
         'dataTable-tableSetting',
         $result,
         array('name', 'description', 'value'),
@@ -76,7 +76,7 @@ if (isDeveloper()) {
         array('Bearbeiten', 'Löschen')
     );
 } else {
-    tableGenerator::show(
+    TableGenerator::show(
         'dataTable-tableSetting',
         $result,
         array('name', 'description', 'value'),

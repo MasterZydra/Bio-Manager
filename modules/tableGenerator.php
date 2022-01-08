@@ -10,7 +10,7 @@
 
 include_once 'system/modules/dataObjects/iObject.php';
 
-class tableGenerator
+class TableGenerator
 {
     /**
     * Print all headings in given array.
@@ -99,7 +99,7 @@ class tableGenerator
         // Close table tag
         echo '>';
         // Add headings
-        tableGenerator::printHeading($headings);
+        TableGenerator::printHeading($headings);
 
         if (is_array($dataSet) || $dataSet -> num_rows > 0) {
             $dataSetNotEmpty = true;
@@ -135,7 +135,7 @@ class tableGenerator
                         $dataType = '';
                     }
                     // Print cells with data
-                    tableGenerator::printFormattedCell($dataType, $data);
+                    TableGenerator::printFormattedCell($dataType, $data);
                 }
                 if (is_null($actions) || is_null($actionNames)) {
                     continue;
@@ -191,7 +191,7 @@ class tableGenerator
         $openInNewTab = false,
         $useCompleteWidth = false
     ) {
-        tableGenerator::generateTable(
+        TableGenerator::generateTable(
             $tableId,
             $dataSet,
             $columns,

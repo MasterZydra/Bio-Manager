@@ -22,7 +22,7 @@ if (
 
 include 'modules/header.php';
 
-include 'modules/tableGenerator.php';
+include 'modules/TableGenerator.php';
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
@@ -70,7 +70,7 @@ if (isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
     $conn = null;
 
     if (isMaintainer()) {
-        tableGenerator::show(
+        TableGenerator::show(
             'dataTable-tablePricing',
             $result,
             array('productName', 'year', ['price', 'currency'], ['pricePayOut', 'currency']),
@@ -79,7 +79,7 @@ if (isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
             array('Bearbeiten', 'Löschen')
         );
     } else {
-        tableGenerator::show(
+        TableGenerator::show(
             'dataTable-tablePricing',
             $result,
             array('productName', 'year', ['price', 'currency'], ['pricePayOut', 'currency']),

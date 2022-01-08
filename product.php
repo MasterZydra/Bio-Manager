@@ -24,7 +24,7 @@ if (
 
 include 'modules/header.php';
 
-include 'modules/tableGenerator.php';
+include 'modules/TableGenerator.php';
 include_once 'system/modules/dataObjects/productCollection.php';
 ?>
 <script src="js/filterDataTable.js"></script>
@@ -64,7 +64,7 @@ if (isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
     $productColl = new ProductCollection();
 
 if (isMaintainer()) {
-    tableGenerator::show(
+    TableGenerator::show(
         'dataTable-tableProduct',
         $productColl->findAll(),
         array('name'),
@@ -73,7 +73,7 @@ if (isMaintainer()) {
         array('Bearbeiten', 'Löschen')
     );
 } else {
-    tableGenerator::show(
+    TableGenerator::show(
         'dataTable-tableProduct',
         $productColl->findAll(),
         array('name'),

@@ -24,7 +24,7 @@ if (
 
     include 'modules/header.php';
 
-    include 'modules/tableGenerator.php';
+    include 'modules/TableGenerator.php';
     include_once 'system/modules/dataObjects/supplierCollection.php';
 
 ?>
@@ -66,7 +66,7 @@ if (isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
     $supplierColl = new SupplierCollection();
 
 if (isMaintainer()) {
-    tableGenerator::show(
+    TableGenerator::show(
         'dataTable-tableSupplier',
         $supplierColl->findAll(),
         array('name', ['inactive', 'bool']),
@@ -75,7 +75,7 @@ if (isMaintainer()) {
         array('Bearbeiten', 'Löschen')
     );
 } else {
-    tableGenerator::show(
+    TableGenerator::show(
         'dataTable-tableSupplier',
         $supplierColl->findAll(),
         array('name', ['inactive', 'bool']),

@@ -25,7 +25,7 @@ if (
 
 include 'modules/header.php';
 
-include 'modules/tableGenerator.php';
+include 'modules/TableGenerator.php';
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
@@ -79,7 +79,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
     $conn -> dbDisconnect();
     $conn = null;
 
-    tableGenerator::show(
+    TableGenerator::show(
         'dataTable-tableUser',
         $result,
         array('name', 'login', ['isAdmin', 'bool'], ['isDeveloper', 'bool'],

@@ -24,7 +24,7 @@ if (
 
 include 'modules/header.php';
 
-include 'modules/tableGenerator.php';
+include 'modules/TableGenerator.php';
 include_once 'system/modules/dataObjects/plotCollection.php';
 ?>
 <script src="js/filterDataTable.js"></script>
@@ -64,7 +64,7 @@ if (isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
     $plotColl = new PlotCollection();
 
 if (isMaintainer()) {
-    tableGenerator::show(
+    TableGenerator::show(
         'dataTable-tablePlot',
         $plotColl->findAll(),
         array('nr', 'name', 'subdistrict', 'supplierName'),
@@ -73,7 +73,7 @@ if (isMaintainer()) {
         array('Bearbeiten', 'Löschen')
     );
 } else {
-    tableGenerator::show(
+    TableGenerator::show(
         'dataTable-tablePlot',
         $plotColl->findAll(),
         array('nr', 'name', 'subdistrict', 'supplierName'),

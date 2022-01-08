@@ -23,7 +23,7 @@ if (
 
 include 'modules/header.php';
 
-include 'modules/tableGenerator.php';
+include 'modules/TableGenerator.php';
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
@@ -82,7 +82,7 @@ ORDER BY year DESC, nr DESC
     $conn = null;
 
     if (isMaintainer()) {
-        tableGenerator::show(
+        TableGenerator::show(
             'dataTable-tableDeliveryNote',
             $result,
             array('year',

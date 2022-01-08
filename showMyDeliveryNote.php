@@ -19,7 +19,7 @@ if (!isSupplier()) {
 
 include 'modules/header.php';
 
-include 'modules/tableGenerator.php';
+include 'modules/TableGenerator.php';
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
@@ -70,7 +70,7 @@ if (isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
     $conn = null;
 
     if (isMaintainer()) {
-        tableGenerator::show(
+        TableGenerator::show(
             'dataTable-tableDeliveryNote',
             $result,
             array('year', ['nr', 'int'], ['deliverDate', 'date'], ['amount', 'int'], 'productName'),
@@ -79,7 +79,7 @@ if (isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
             array('Bearbeiten', 'Mengenverteilung')
         );
     } else {
-        tableGenerator::show(
+        TableGenerator::show(
             'dataTable-tableDeliveryNote',
             $result,
             array('year', ['nr', 'int'], ['deliverDate', 'date'], ['amount', 'int'], 'productName'),
