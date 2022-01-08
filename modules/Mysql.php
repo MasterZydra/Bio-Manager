@@ -43,14 +43,14 @@ class Mysql
         $this -> passCode = $database["database_password"];
     }
 
-    function dbConnect()
+    public function dbConnect()
     {
         $this -> connectionString = new mysqli($this -> hostName, $this -> userName, $this -> passCode);
         mysqli_select_db($this -> connectionString, $this -> databaseName);
         return $this -> connectionString;
     }
 
-    function dbDisconnect()
+    public function dbDisconnect()
     {
         mysqli_close($this -> connectionString);
         $this -> connectionString = null;
@@ -81,7 +81,7 @@ class Mysql
     * @author David Hein
     * @return data set
     */
-    function freeRun($query)
+    public function freeRun($query)
     {
         // Save query
         $this -> sqlQuery = $query;
@@ -110,7 +110,7 @@ class Mysql
     * @author David Hein
     * @return data row
     */
-    function getFirstRow()
+    public function getFirstRow()
     {
         $dataSet = $this -> dataSet;
         if ($dataSet -> num_rows == 0) {
@@ -131,7 +131,7 @@ class Mysql
     * @author David Hein
     * @return data set
     */
-    function select($tableName, $columns = '*', $whereCondition = null, $orderBy = null)
+    public function select($tableName, $columns = '*', $whereCondition = null, $orderBy = null)
     {
         $query =
             'SELECT ' . $columns
@@ -155,7 +155,7 @@ class Mysql
     * @author David Hein
     * @return data set
     */
-    function update($tableName, $set, $whereCondition)
+    public function update($tableName, $set, $whereCondition)
     {
         $query = 'UPDATE `' . $this -> databaseName . '`.' . $tableName . ' '
             . 'SET ' . $set . ' '
@@ -172,14 +172,14 @@ class Mysql
     * @author David Hein
     * @return data set
     */
-    function delete($tableName, $whereCondition)
+    public function delete($tableName, $whereCondition)
     {
         $query = 'DELETE FROM `' . $this -> databaseName . '`.' . $tableName . ' '
             . 'WHERE ' . $whereCondition;
         return $this -> freeRun($query);
     }
 
-    function insertInto($tableName, $values)
+    public function insertInto($tableName, $values)
     {
         $i = null;
 

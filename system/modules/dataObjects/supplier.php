@@ -23,32 +23,32 @@ class Supplier implements iObject
         $this->inactive = $inactive;
     }
 
-    function id(): int
+    public function id(): int
     {
         return $this->id;
     }
 
-    function name(): string
+    public function name(): string
     {
         return $this->name;
     }
 
-    function inactive(): bool
+    public function inactive(): bool
     {
         return $this->inactive;
     }
 
-    function setName(string $name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
 
-    function setInactive(string $inactive)
+    public function setInactive(string $inactive)
     {
         $this->inactive = $inactive;
     }
 
-    function toArray(): array
+    public function toArray(): array
     {
         return array(
             "id" => $this->id,

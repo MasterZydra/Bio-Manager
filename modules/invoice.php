@@ -50,7 +50,7 @@ class invoice
     * @author David Hein
     * @return invoice name
     */
-    function getInvoiceName()
+    public function getInvoiceName()
     {
         return $this -> pdfName . '_' . (string)$this -> invoiceYear . '_' . (string)$this -> invoiceNr;
     }

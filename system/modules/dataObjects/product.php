@@ -21,22 +21,22 @@ class Product implements iObject
         $this->name = $name;
     }
 
-    function id(): int
+    public function id(): int
     {
         return $this->id;
     }
 
-    function name(): string
+    public function name(): string
     {
         return $this->name;
     }
 
-    function setName(string $name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
 
-    function toArray(): array
+    public function toArray(): array
     {
         return array(
             "id" => $this->id,
