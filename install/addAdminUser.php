@@ -65,7 +65,14 @@
             "val" => "0"
         ];
 
-        $data = array($NULL, $user_id, $user_isAmin, $user_noPermission, $user_noPermission, $user_noPermission, $user_noPermission);
+        $data = array(
+            $NULL,
+            $user_id,
+            $user_isAmin,
+            $user_noPermission,
+            $user_noPermission,
+            $user_noPermission,
+            $user_noPermission);
         $conn -> insertInto('T_UserPermission', $data);
         $data = null;
 

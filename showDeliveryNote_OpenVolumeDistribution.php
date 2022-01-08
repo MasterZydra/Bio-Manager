@@ -51,7 +51,8 @@ if (isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
 ?>
 
 <p>
-    <input type="text" id="filterInput-tableDeliveryNote" onkeyup="filterData(&quot;tableDeliveryNote&quot;)" placeholder="Suchtext eingeben..." title="Suchtext"> 
+    <input type="text" id="filterInput-tableDeliveryNote" placeholder="Suchtext eingeben..." title="Suchtext"
+    onkeyup="filterData(&quot;tableDeliveryNote&quot;)" />
 </p>
 
 <?php
@@ -59,14 +60,18 @@ if (isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
     $conn -> dbConnect();
     $result = $conn -> select(
         'T_DeliveryNote LEFT JOIN T_Supplier ON T_Supplier.id = supplierId',
-        'T_DeliveryNote.id, year, nr, amount, deliverDate, T_Supplier.name AS supplierName, COALESCE((SELECT SUM(amount) FROM T_CropVolumeDistribution WHERE deliveryNoteId = T_DeliveryNote.id), \'0\') AS calcAmount',
+        'T_DeliveryNote.id, year, nr, amount, deliverDate, T_Supplier.name AS supplierName, '
+        . 'COALESCE((SELECT SUM(amount) FROM T_CropVolumeDistribution '
+        . 'WHERE deliveryNoteId = T_DeliveryNote.id), \'0\') AS calcAmount',
         'T_DeliveryNote.id NOT IN(SELECT DISTINCT deliveryNoteId FROM T_CropVolumeDistribution) '
         . 'OR amount <> (SELECT SUM(amount) FROM T_CropVolumeDistribution WHERE deliveryNoteId = T_DeliveryNote.id)',
         'year DESC, nr DESC'
     );
 /*
 SELECT
-    T_DeliveryNote.id, year, nr, amount, deliverDate, T_Supplier.name AS supplierName, COALESCE((SELECT SUM(amount) FROM T_CropVolumeDistribution WHERE deliveryNoteId = T_DeliveryNote.id), '0') AS calcAmount
+    T_DeliveryNote.id, year, nr, amount, deliverDate, T_Supplier.name AS supplierName,
+    COALESCE((SELECT SUM(amount) FROM T_CropVolumeDistribution WHERE deliveryNoteId = T_DeliveryNote.id), '0')
+    AS calcAmount
 FROM web234_db2.T_DeliveryNote
     LEFT JOIN T_Supplier ON T_Supplier.id = supplierId
 WHERE T_DeliveryNote.id NOT IN(SELECT DISTINCT deliveryNoteId FROM T_CropVolumeDistribution)
@@ -80,7 +85,12 @@ ORDER BY year DESC, nr DESC
         tableGenerator::show(
             'dataTable-tableDeliveryNote',
             $result,
-            array('year', ['nr', 'int'], ['deliverDate', 'date'], ['amount', 'int'], ['calcAmount', 'int'], 'supplierName'),
+            array('year',
+                ['nr', 'int'],
+                ['deliverDate', 'date'],
+                ['amount', 'int'],
+                ['calcAmount', 'int'],
+                'supplierName'),
             array('Jahr', 'Nr', 'Lieferdatum', 'Menge', 'Mengenverteilung', 'Lieferant', 'Aktionen'),
             array('edit', 'volDist', 'delete'),
             array('Bearbeiten', 'Mengenverteilung', 'Löschen')

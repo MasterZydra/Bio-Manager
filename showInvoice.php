@@ -82,7 +82,8 @@ if (file_exists('config/InvoiceDataConfig.php')) {
 
             while ($row = $deliveryNotes -> fetch_assoc()) {
                 // Select price for product
-                $conn -> select('T_Pricing', 'price', 'productId = ' . $row['productId'] . ' AND year = ' . $row['year']);
+                $conn -> select('T_Pricing', 'price', 'productId = ' . $row['productId']
+                    . ' AND year = ' . $row['year']);
                 $price = $conn -> getFirstRow();
 
                 $newDate = date("d.m.Y", strtotime($row['deliverDate']));

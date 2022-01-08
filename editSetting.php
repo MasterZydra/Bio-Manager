@@ -61,7 +61,8 @@ if (!isset($_GET['id'])) {
     // Check if id is valid
     if ($row == null) {
         echo '<div class="warning">';
-        echo 'Die ausgewählte Einstellung wurde in der Datenbank nicht gefunden. Zurück zu <a href="setting.php">Alle Einstellungen anzeigen</a>';
+        echo 'Die ausgewählte Einstellung wurde in der Datenbank nicht gefunden.';
+        echo 'Zurück zu <a href="setting.php">Alle Einstellungen anzeigen</a>';
         echo '</div>';
     } else {
         ?>
@@ -72,7 +73,8 @@ if (!isset($_GET['id'])) {
     </label><br>
     
     <label for="settingDesc" class="required">Beschreibung:</label><br>
-    <input id="settingDesc" name="settingDesc" type="text" value="<?php echo $row['description']; ?>" required autofocus><br>
+    <input id="settingDesc" name="settingDesc" type="text" required autofocus
+    value="<?php echo $row['description']; ?>" /><br>
     
     <label for="settingValue" class="required">Wert:</label><br>
     <input id="settingValue" name="settingValue" type="text" value="<?php echo $row['value']; ?>" required><br>

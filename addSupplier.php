@@ -27,7 +27,8 @@ include_once 'system/modules/dataObjects/supplierCollection.php';
 </p>
 <?php
     $supplierColl = new SupplierCollection();
-    $alreadyExist = isset($_POST["supplier_name"]) && MySQL_helpers::objectAlreadyExists($supplierColl, secPOST("supplier_name"), 0);
+    $alreadyExist = isset($_POST["supplier_name"]) &&
+        MySQL_helpers::objectAlreadyExists($supplierColl, secPOST("supplier_name"), 0);
 if (isset($_GET['add'])) {
     if ($alreadyExist) {
         echo '<div class="warning">';

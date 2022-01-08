@@ -165,7 +165,13 @@ class MySQL_prepStatement
     * @author David Hein
     * @return boolean
     */
-    public function updateColsWhereCol(string $table, $whereCol, string $whereColTyp, $givenId, array $cols, string $colTyp, ...$values): bool
+    public function updateColsWhereCol(
+        string $table,
+        $whereCol,
+        string $whereColTyp,
+        $givenId,
+        array $cols,
+        string $colTyp, ...$values): bool
     {
         $sqlQuery = "UPDATE " . $this -> conn -> getDatabaseName() . ".$table SET ";
         $sqlQuerySet = "";

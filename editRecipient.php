@@ -70,13 +70,15 @@ if (!isset($_GET['id'])) {
     // Check if id is valid
     if ($row == null) {
         echo '<div class="warning">';
-        echo 'Der ausgewählte Abnehmer wurde in der Datenbank nicht gefunden. Zurück zu <a href="recipient.php">Alle Abnehmer anzeigen</a>';
+        echo 'Der ausgewählte Abnehmer wurde in der Datenbank nicht gefunden.';
+        echo 'Zurück zu <a href="recipient.php">Alle Abnehmer anzeigen</a>';
         echo '</div>';
     } else {
         ?>
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post" class="requiredLegend">
     <label for="recipient_name" class="required">Name:</label><br>
-    <input id="recipient_name" name="recipient_name" type="text" placeholder="Name des Abnehmers" required autofocus value=
+    <input id="recipient_name" name="recipient_name" type="text" placeholder="Name des Abnehmers" required autofocus
+        value=
         <?php
             echo ($alreadyExist) ? '"' . secPOST("recipient_name") . '"' : '"' . $row['name'] . '"';
         ?>><br>

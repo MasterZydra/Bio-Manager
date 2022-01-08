@@ -170,7 +170,10 @@ class deleteForm extends form
         ?>
         <form action="?id=<?php echo $row['id']; ?>&delete=1" method="post">
             Wollen Sie den Eintrag wirklich löschen?<br>
-            <button>Ja</button><button type="button" onclick="window.location.href='<?php echo $this -> overviewPage; ?>'">Abbrechen</button>
+            <button>Ja</button>
+            <button type="button" onclick="window.location.href='<?php echo $this -> overviewPage; ?>'">
+                Abbrechen
+            </button>
         </form>
         <?php
     }

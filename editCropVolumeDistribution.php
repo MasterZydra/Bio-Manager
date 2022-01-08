@@ -107,7 +107,9 @@ if (!isset($_GET['id'])) {
         while ($row = $distData->fetch_assoc()) {
             $tableData .= '<tr>';
             $tableData .= '<td>' . plotSelectBox('plot' . (string)$i, $row['plotId']) . '</td>';
-            $tableData .= '<td><input name="amount' . (string)$i . '" class="right" type="number" onkeyup="sumDistribution()" value="' . $row['amount'] . '" required></td>';
+            $tableData .= '<td><input name="amount' . (string)$i
+                . '" class="right" type="number" onkeyup="sumDistribution()" value="'
+                . $row['amount'] . '" required></td>';
             $tableData .= '</tr>';
             $i++;
         }
@@ -117,7 +119,9 @@ if (!isset($_GET['id'])) {
 <form action="?id=<?php echo secGET('id'); ?>&update=1" method="post">
     <table id="delivery" class="completeWidth">
         <tr>
-            <th width="70%" class="center">Gesamte Liefermenge von Lieferschein <strong><?php echo $delivery['year'] . ' ' . $delivery['nr']; ?></strong></th>
+            <th width="70%" class="center">Gesamte Liefermenge von Lieferschein <strong>
+                <?php echo $delivery['year'] . ' ' . $delivery['nr']; ?>
+            </strong></th>
             <th width="30%" class="right"><?php echo $delivery['amount']; ?></th>
         </tr>
     </table>
@@ -182,7 +186,8 @@ if (!isset($_GET['id'])) {
     // Add a new row with select and input element
     function addRow(tableID) {
         var selectBox = "\<td><?php echo formatSelectBox(plotSelectBox()); ?>\<\/td>";
-        var numInput = "\<td>\<input name=\"amount" + tableRef.rows.length.toString() + "\" class=\"right\" type=\"number\" onkeyup=\"sumDistribution()\" required>\<\/td>";
+        var numInput = "\<td>\<input name=\"amount" + tableRef.rows.length.toString() +
+            "\" class=\"right\" type=\"number\" onkeyup=\"sumDistribution()\" required>\<\/td>";
         // Replace element name
         var row = htmlToElement(selectBox);
         row.getElementsByTagName("select")[0].setAttribute("name", "plot" + tableRef.rows.length.toString());

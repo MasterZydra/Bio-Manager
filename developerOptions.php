@@ -32,9 +32,10 @@ if (isset($_GET['apply'])) {
 <form action="?apply=1" method="post">
     <label>
         <input type="hidden" name="showQuery" value="0">
-        <input type="checkbox" name="showQuery" value="1" <?php if (isset($_SESSION['devOpt_ShowQuery']) && $_SESSION['devOpt_ShowQuery']) {
-            echo ' checked';
-                                                          } ?>>
+        <input type="checkbox" name="showQuery" value="1"
+            <?php echo (isset($_SESSION['devOpt_ShowQuery']) && $_SESSION['devOpt_ShowQuery']) ?
+            ' checked' : '';
+            ?>>
         SQL Queries anzeigen
     </label><br>
     <div class="warning">

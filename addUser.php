@@ -121,7 +121,14 @@ if (isset($_GET['add'])) {
             "val" => strval(secPOST('userIsInspector'))
         ];
 
-        $data = array($NULL, $user_id, $user_isAmin, $user_isDeveloper, $user_isMaintainer, $user_isSupplier, $user_isInspector);
+        $data = array(
+            $NULL,
+            $user_id,
+            $user_isAmin,
+            $user_isDeveloper,
+            $user_isMaintainer,
+            $user_isSupplier,
+            $user_isInspector);
         $conn -> insertInto('T_UserPermission', $data);
         $data = null;
 

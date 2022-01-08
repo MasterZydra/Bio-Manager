@@ -53,7 +53,8 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 ?>
 
 <p>
-    <input type="text" id="filterInput-tableInvoice" onkeyup="filterData(&quot;tableInvoice&quot;)" placeholder="Suchtext eingeben..." title="Suchtext"> 
+    <input type="text" id="filterInput-tableInvoice" placeholder="Suchtext eingeben..." title="Suchtext"
+    onkeyup="filterData(&quot;tableInvoice&quot;)" />
 </p>
 
 <?php

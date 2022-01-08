@@ -84,7 +84,8 @@ if (!isset($_GET['id'])) {
     // Check if id is valid
     if ($row == null) {
         echo '<div class="warning">';
-        echo 'Der ausgewählte Lieferschein wurde in der Datenbank nicht gefunden. Zurück zu <a href="deliveryNote.php">Alle Lieferscheine anzeigen</a>';
+        echo 'Der ausgewählte Lieferschein wurde in der Datenbank nicht gefunden.';
+        echo 'Zurück zu <a href="deliveryNote.php">Alle Lieferscheine anzeigen</a>';
         echo '</div>';
     } else {
         ?>

@@ -95,7 +95,9 @@ if (isset($_GET['add'])) {
                 echo ' value="' . secPOST("price") . '"';
            } ?>><br>
     
-    <label for="price_outPay" class="required">Auszahlung an Lieferanten (pro <?php echo getSetting('volumeUnit'); ?>):</label><br>
+    <label for="price_outPay" class="required">
+        Auszahlung an Lieferanten (pro <?php echo getSetting('volumeUnit'); ?>):
+    </label><br>
     <input id="price_outPay" name="price_outPay" type="number" step="0.01" placeholder="Preis eingeben" required
            <?php if ($alreadyExist) {
                 echo ' value="' . secPOST("price_outPay") . '"';

@@ -104,7 +104,8 @@ if (isset($_GET['show'])) {
         // Add invoice number to document name
         $docName .= ' ' . $invoiceData['nr'];
         // Add invoice %year% %nr% to title
-        $html .= '<h2 style="text-align: center;">Rechnung ' . $invoiceData['year'] . ' ' . $invoiceData['nr'] . '</h2><br>';
+        $html .= '<h2 style="text-align: center;">Rechnung ' . $invoiceData['year'] . ' ' . $invoiceData['nr']
+            . '</h2><br>';
     }
 
     $keys = array_keys($pdata);

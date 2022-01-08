@@ -28,8 +28,9 @@ if (isset($_GET['show'])) {
     $conn = new Mysql();
     $conn -> dbConnect();
     $result = $conn -> select(
-        'T_DeliveryNote RIGHT JOIN T_CropVolumeDistribution ON T_DeliveryNote.id = T_CropVolumeDistribution.deliveryNoteId ' .
-        'LEFT JOIN T_Plot ON T_CropVolumeDistribution.plotId = T_Plot.id',
+        'T_DeliveryNote '
+        . 'RIGHT JOIN T_CropVolumeDistribution ON T_DeliveryNote.id = T_CropVolumeDistribution.deliveryNoteId '
+        . 'LEFT JOIN T_Plot ON T_CropVolumeDistribution.plotId = T_Plot.id',
         'T_Plot.nr, T_Plot.name, SUM(T_CropVolumeDistribution.amount) as amount',
         'T_DeliveryNote.year = ' . secPOST('invoiceYear') . ' GROUP BY T_Plot.nr'
     );

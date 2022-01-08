@@ -52,7 +52,8 @@ if (isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
 ?>
 
 <p>
-    <input type="text" id="filterInput-tablePricing" onkeyup="filterData(&quot;tablePricing&quot;)" placeholder="Suchtext eingeben..." title="Suchtext"> 
+    <input type="text" id="filterInput-tablePricing" placeholder="Suchtext eingeben..." title="Suchtext"
+    onkeyup="filterData(&quot;tablePricing&quot;)" /> 
 </p>
 
 <?php
@@ -60,7 +61,8 @@ if (isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
     $conn -> dbConnect();
     $result = $conn -> select(
         'T_Pricing LEFT JOIN T_Product ON T_Product.id = productId',
-        'T_Pricing.id, year, FORMAT(price, 2) AS price, FORMAT(pricePayOut, 2) AS pricePayOut, T_Product.name AS productName',
+        'T_Pricing.id, year, FORMAT(price, 2) AS price, FORMAT(pricePayOut, 2) AS pricePayOut, '
+        . 'T_Product.name AS productName',
         null,
         'T_Product.name ASC, year DESC'
     );

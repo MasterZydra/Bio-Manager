@@ -52,7 +52,8 @@ if (isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
 ?>
 
 <p>
-    <input type="text" id="filterInput-tableDeliveryNote" onkeyup="filterData(&quot;tableDeliveryNote&quot;)" placeholder="Suchtext eingeben..." title="Suchtext"> 
+    <input type="text" id="filterInput-tableDeliveryNote" placeholder="Suchtext eingeben..." title="Suchtext"
+    onkeyup="filterData(&quot;tableDeliveryNote&quot;)" />
 </p>
 
 <?php

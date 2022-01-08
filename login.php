@@ -36,12 +36,14 @@ if (isset($_GET['login'])) {
 
             if ($row['forcePwdChange']) {
                 echo '<div class="warning">';
-                echo 'Sie müssen Ihr Passwort ändern. Automatische Weiterleitung zu <a href="changePwd.php">Passwort ändern</a> erfolgt.';
+                echo 'Sie müssen Ihr Passwort ändern.';
+                echo 'Automatische Weiterleitung zu <a href="changePwd.php">Passwort ändern</a> erfolgt.';
                 echo '</div>';
                 echo '<script>window.location.replace("changePwd.php");</script>';
             } else {
                 echo '<div class="infobox">';
-                echo 'Anmeldung erfolgreich. Automatische Weiterleitung zur <a href="index.php">Startseite</a> erfolgt.';
+                echo 'Anmeldung erfolgreich.';
+                echo 'Automatische Weiterleitung zur <a href="index.php">Startseite</a> erfolgt.';
                 echo '</div>';
                 echo '<script>window.location.replace("index.php");</script>';
             }

@@ -76,7 +76,8 @@ if (!isset($_GET['id'])) {
     // Check if id is valid
     if ($row == null) {
         echo '<div class="warning">';
-        echo 'Der ausgewählte Lieferschein wurde in der Datenbank nicht gefunden. Zurück zu <a href="pricing.php">Alle Preise anzeigen</a>';
+        echo 'Der ausgewählte Lieferschein wurde in der Datenbank nicht gefunden.';
+        echo 'Zurück zu <a href="pricing.php">Alle Preise anzeigen</a>';
         echo '</div>';
     } else {
         ?>
@@ -110,7 +111,9 @@ if (!isset($_GET['id'])) {
         }
         ?>><br>
     
-    <label for="price_payOut" class="required">Auszahlung an Lieferanten (pro <?php echo getSetting('volumeUnit'); ?>):</label><br>
+    <label for="price_payOut" class="required">
+        Auszahlung an Lieferanten (pro <?php echo getSetting('volumeUnit'); ?>):
+    </label><br>
     <input id="price_payOut" name="price_payOut" type="number" step="0.01" placeholder="Preis eingeben" required value=
         <?php
         if ($alreadyExist) {

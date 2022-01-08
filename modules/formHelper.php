@@ -14,7 +14,8 @@
 */
 function generateArrayField($array, $name, $type, $description, $placeholder, $autofocus = false)
 {
-    echo '<label for="' . getSecuredString($name) . '" class="required">' . getSecuredString($description) . ':</label><br>';
+    echo '<label for="' . getSecuredString($name) . '" class="required">' .
+        getSecuredString($description) . ':</label><br>';
     echo '<input type="' . getSecuredString($type) . '" id="' . getSecuredString($name) .
         '" name="' . getSecuredString($name) . '" placeholder="' . getSecuredString($placeholder) . '" ';
     echo (isset($array) && isset($array[$name])) ? 'value="' . getSecuredString($array[$name]) . '"' : '';

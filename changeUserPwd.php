@@ -57,7 +57,8 @@ if (!isset($_GET['id'])) {
     // Check if id is valid
     if ($row == null) {
         echo '<div class="warning">';
-        echo 'Der ausgewählte Benutzer wurde in der Datenbank nicht gefunden. Zurück zu <a href="user.php">Alle Benutzer anzeigen</a>';
+        echo 'Der ausgewählte Benutzer wurde in der Datenbank nicht gefunden.';
+        echo 'Zurück zu <a href="user.php">Alle Benutzer anzeigen</a>';
         echo '</div>';
     }
     ?>

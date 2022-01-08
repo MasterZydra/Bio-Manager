@@ -110,8 +110,14 @@ function getSetting($setting)
 * @author David Hein
 * @return data set of delivery notes
 */
-function getDeliveryNotes($isComplete = true, $year = null, $invoiceId = null, $joinSupplier = true, $invertSort = false, $isUnused = false)
-{
+function getDeliveryNotes(
+    $isComplete = true,
+    $year = null,
+    $invoiceId = null,
+    $joinSupplier = true,
+    $invertSort = false,
+    $isUnused = false
+) {
     if ($isComplete) {
         $whereCondition =
             '(deliverDate IS NOT NULL '

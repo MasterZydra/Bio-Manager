@@ -143,10 +143,12 @@ class tableGenerator
                 // Dropdown for actions
                 echo '<td>';
                 echo '<div class="dropdown">';
-                echo '<button onclick="openDropdown(' . getSecuredString($row['id']) . ')" class="dropbtn">Aktionen</button>';
+                echo '<button onclick="openDropdown(' . getSecuredString($row['id']) . ')" class="dropbtn">'
+                    . 'Aktionen</button>';
                 echo '<div class="dropdown-content" id="dropdown-' . $row['id'] . '">';
                 for ($i = 0; $i < count($actions); $i++) {
-                    echo '<a href="?action=' . getSecuredString($actions[$i]) . '&id=' . getSecuredString($row['id']) . '"';
+                    echo '<a href="?action=' . getSecuredString($actions[$i]) . '&id=' . getSecuredString($row['id'])
+                        . '"';
                     if (
                         (gettype($openInNewTab) === "boolean" && $openInNewTab) ||
                         (gettype($openInNewTab) === "array" && $openInNewTab[$i])
@@ -171,9 +173,10 @@ class tableGenerator
     *                                           can be put into an array and have the data type as second value.
     *                                           E.g. ['col1', ['col2', 'dataType']]
     * @param array of string    $headings       Headings for the columns. (Optional)
-    * @param array of string    $actions        Name of the action which will be given in the GET param 'action' (Optional)
+    * @param array of string    $actions     Name of the action which will be given in the GET param 'action' (Optional)
     * @param array of string    $actionNames    Name which will be shown in the action dropdown (Optional)
-    * @param boolean/array of boolean   $openInNewTab   Open link in new tab. Array if only selected actions shall open in new tab (Optional)
+    * @param boolean/array of boolean   $openInNewTab   Open link in new tab. Array if only selected actions shall open 
+    *                                   in new tab (Optional)
     * @param boolean    $useCompleteWidth   Show table over complete window width. Default value is false
     *
     * @Author: David Hein

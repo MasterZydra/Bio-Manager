@@ -82,7 +82,8 @@ if (!isset($_GET['id'])) {
 
     $conn->freeRun(
         'SELECT '
-        . 'T_User.id, T_User.id AS userId, name, isAdmin, isDeveloper, isMaintainer, isSupplier, isInspector, forcePwdChange, login, supplierId '
+        . 'T_User.id, T_User.id AS userId, name, isAdmin, isDeveloper, isMaintainer, '
+        . 'isSupplier, isInspector, forcePwdChange, login, supplierId '
         . 'FROM `T_User` '
         . 'LEFT JOIN `T_UserPermission` ON `T_UserPermission`.`userId` = `T_User`.`id` '
         . 'LEFT JOIN `T_UserLogin` ON `T_UserLogin`.`userId` = `T_User`.`id`'
@@ -95,7 +96,8 @@ if (!isset($_GET['id'])) {
     // Check if id is valid
     if ($row == null) {
         echo '<div class="warning">';
-        echo 'Der ausgewählte Benutzer wurde in der Datenbank nicht gefunden. Zurück zu <a href="user.php">Alle Benutzer anzeigen</a>';
+        echo 'Der ausgewählte Benutzer wurde in der Datenbank nicht gefunden.';
+        echo 'Zurück zu <a href="user.php">Alle Benutzer anzeigen</a>';
         echo '</div>';
     } else {
         ?>

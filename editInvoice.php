@@ -68,7 +68,8 @@ if (!isset($_GET['id'])) {
     // Check if id is valid
     if ($row == null) {
         echo '<div class="warning">';
-        echo 'Die ausgewählte Rechnung wurde in der Datenbank nicht gefunden. Zurück zu <a href="invoice.php">Alle Rechnungen anzeigen</a>';
+        echo 'Die ausgewählte Rechnung wurde in der Datenbank nicht gefunden.';
+        echo 'Zurück zu <a href="invoice.php">Alle Rechnungen anzeigen</a>';
         echo '</div>';
     } else {
         // Show message if invoice is paid
@@ -88,7 +89,8 @@ if (!isset($_GET['id'])) {
     </label><br>
     
     <label for="invoiceDate" class="required">Rechnungsdatum:</label><br>
-    <input id="invoiceDate" name="invoiceDate" type="date" value="<?php echo $row['invoiceDate']; ?>" placeholder="Rechnungsdatum geben" 
+    <input id="invoiceDate" name="invoiceDate" type="date" placeholder="Rechnungsdatum geben"
+        value="<?php echo $row['invoiceDate']; ?>"
         <?php echo ($row['isPaid']) ? ' readonly' : ' required autofocus'; ?>><br>
     
     <label for="recipientId" class="required">Abnehmer:</label><br>

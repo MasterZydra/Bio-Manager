@@ -41,7 +41,8 @@ if (!isset($_GET['id'])) {
     // Select data
     $row = $productColl->find(intval(secGET('id')));
 
-    $alreadyExist = isset($_POST["product_name"]) && MySQL_helpers::objectAlreadyExists($productColl, secPOST("product_name"), secGET('id'));
+    $alreadyExist = isset($_POST["product_name"]) &&
+        MySQL_helpers::objectAlreadyExists($productColl, secPOST("product_name"), secGET('id'));
     if (isset($_GET['edit'])) {
         if ($alreadyExist) {
             echo '<div class="warning">';
@@ -64,7 +65,8 @@ if (!isset($_GET['id'])) {
     // Check if id is valid
     if ($row == null) {
         echo '<div class="warning">';
-        echo 'Das ausgewählte Produkt wurde in der Datenbank nicht gefunden. Zurück zu <a href="product.php">Alle Produkte anzeigen</a>';
+        echo 'Das ausgewählte Produkt wurde in der Datenbank nicht gefunden.';
+        echo 'Zurück zu <a href="product.php">Alle Produkte anzeigen</a>';
         echo '</div>';
     } else {
         ?>

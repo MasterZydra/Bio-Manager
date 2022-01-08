@@ -59,7 +59,8 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 ?>
 
 <p>
-    <input type="text" id="filterInput-tableUser" onkeyup="filterData(&quot;tableUser&quot;)" placeholder="Suchtext eingeben..." title="Suchtext"> 
+    <input type="text" id="filterInput-tableUser" placeholder="Suchtext eingeben..." title="Suchtext"
+    onkeyup="filterData(&quot;tableUser&quot;)" /> 
 </p>
 
 <?php
@@ -67,7 +68,8 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
     $conn -> dbConnect();
     $result = $conn->freeRun(
         'SELECT '
-        . 'T_User.id, T_User.id AS userId, T_User.name, isAdmin, isDeveloper, isMaintainer, isSupplier, isInspector, login, `T_Supplier`.name AS supplierName '
+        . 'T_User.id, T_User.id AS userId, T_User.name, isAdmin, isDeveloper, isMaintainer, '
+        . 'isSupplier, isInspector, login, `T_Supplier`.name AS supplierName '
         . 'FROM `T_User` '
         . 'LEFT JOIN `T_UserPermission` ON `T_UserPermission`.`userId` = `T_User`.`id` '
         . 'LEFT JOIN `T_UserLogin` ON `T_UserLogin`.`userId` = `T_User`.`id` '

@@ -101,7 +101,8 @@ class overviewForm extends form
 
         // Input for search field
         echo '<p>';
-        echo '<input type="text" id="filterInput-data" onkeyup="filterData(&quot;data&quot;)" placeholder="Suchtext eingeben..." title="Suchtext">';
+        echo '<input type="text" id="filterInput-data" onkeyup="filterData(&quot;data&quot;)" '
+            . 'placeholder="Suchtext eingeben..." title="Suchtext">';
         echo '</p>';
 
         // Get data from DB
