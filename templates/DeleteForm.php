@@ -9,7 +9,7 @@
 */
 
 include 'templates/Form.php';
-include_once 'system/modules/database/mySQL/mySQL_prepStatement.php';
+include_once 'system/modules/database/mySQL/MySQLPrepStatement.php';
 
 /**
 * The class form is generating an HTML template for a delete page.
@@ -76,7 +76,7 @@ class DeleteForm extends Form
         $this -> deleteBeforeDelete = array();
         $this -> updateBeforeDelete = array();
 
-        $this->prepStatement = new MySQL_prepStatement();
+        $this->prepStatement = new MySQLPrepStatement();
     }
 
     /**
@@ -140,7 +140,7 @@ class DeleteForm extends Form
 
         // Get data from DB
         $dataSet = $this->prepStatement->selectWhereId($this->table, intval(secGET('id')));
-        $row = MySQL_prepStatement::getFirstRow($dataSet);
+        $row = MySQLPrepStatement::getFirstRow($dataSet);
 
         // Check if id is valid
         if ($row == null) {

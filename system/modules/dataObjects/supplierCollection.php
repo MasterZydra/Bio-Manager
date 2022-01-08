@@ -9,7 +9,7 @@
 *
 * @Author: David Hein
 */
-include_once 'system/modules/database/mySQL/mySQL_prepStatement.php';
+include_once 'system/modules/database/mySQL/MySQLPrepStatement.php';
 include_once 'system/modules/database/mySQL/MySqlHelpers.php';
 
 include_once 'system/modules/dataObjects/iDataCollection.php';
@@ -24,7 +24,7 @@ class SupplierCollection implements iDataCollection
     // Create MySQL_prepStatement instance when creating the object
     public function __construct()
     {
-        $this->prepStatement = new MySQL_prepStatement();
+        $this->prepStatement = new MySQLPrepStatement();
     }
 
     // Close all open connections used in class
