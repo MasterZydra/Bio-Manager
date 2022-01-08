@@ -82,7 +82,7 @@ class deleteForm extends form
     /**
     * Close all open connections used in class
     */
-    function destroy()
+    public function destroy()
     {
         $this->prepStatement->destroy();
     }

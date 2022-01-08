@@ -28,7 +28,7 @@ class SupplierCollection implements iDataCollection
     }
 
     // Close all open connections used in class
-    function destroy()
+    public function destroy()
     {
         $this->prepStatement->destroy();
     }
