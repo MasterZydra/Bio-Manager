@@ -1,7 +1,7 @@
 <?php
 
 /*
-* pdfGenerator.php
+* PdfGenerator.php
 * ----------------
 * This file contains the class 'pdfGenerator'.
 * The class generates an PDF document out of given HTML code.
@@ -12,7 +12,7 @@
 
 include_once 'ext/TCPDF/tcpdf.php';
 
-class pdfGenerator
+class PdfGenerator
 {
     public function __construct()
     {

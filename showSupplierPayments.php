@@ -149,9 +149,9 @@ if (isset($_GET['show'])) {
 
     // Generate and show PDF document
     // ------------------------------
-    include 'modules/pdfGenerator.php';
+    include 'modules/PdfGenerator.php';
 
-    $pdfGen = new pdfGenerator();
+    $pdfGen = new PdfGenerator();
     $pdfGen -> createPDF($invoice["author"], $docName, $docName, $html);
     $pdfGen -> showInBrowser($docName);
 } else {
