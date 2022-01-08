@@ -171,8 +171,9 @@ class MySQL_prepStatement
         string $whereColTyp,
         $givenId,
         array $cols,
-        string $colTyp, ...$values): bool
-    {
+        string $colTyp,
+        ...$values
+    ): bool {
         $sqlQuery = "UPDATE " . $this -> conn -> getDatabaseName() . ".$table SET ";
         $sqlQuerySet = "";
         foreach ($cols as $col) {

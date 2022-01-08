@@ -175,7 +175,7 @@ class tableGenerator
     * @param array of string    $headings       Headings for the columns. (Optional)
     * @param array of string    $actions     Name of the action which will be given in the GET param 'action' (Optional)
     * @param array of string    $actionNames    Name which will be shown in the action dropdown (Optional)
-    * @param boolean/array of boolean   $openInNewTab   Open link in new tab. Array if only selected actions shall open 
+    * @param boolean/array of boolean   $openInNewTab   Open link in new tab. Array if only selected actions shall open
     *                                   in new tab (Optional)
     * @param boolean    $useCompleteWidth   Show table over complete window width. Default value is false
     *
