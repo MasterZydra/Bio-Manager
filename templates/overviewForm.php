@@ -1,7 +1,7 @@
 <?php
 
 /*
-* overviewForm.php
+* OverviewForm.php
 * ----------------
 * Template for viewing all entries in a table.
 *
@@ -20,7 +20,7 @@ include 'modules/tableGenerator.php';
 *
 * @author David Hein
 */
-class overviewForm extends form
+class OverviewForm extends form
 {
     /**
     * Permission that is necessary to see one table. If false the default table will be shown.
