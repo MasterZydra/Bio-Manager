@@ -1,4 +1,5 @@
 <?php
+
 /*
 * mySQL_helpers.php
 * -----------------
@@ -9,10 +10,11 @@
 *
 * @Author: David Hein
 */
-include_once 'system/modules/dataObjects/iDataCollection.php'; 
+include_once 'system/modules/dataObjects/iDataCollection.php';
 
-class MySQL_helpers {
-    public static function objectAlreadyExists(iDataCollection $collection, string $name, int $id) : bool
+class MySQL_helpers
+{
+    public static function objectAlreadyExists(iDataCollection $collection, string $name, int $id): bool
     {
         $objects = $collection->findByName($name);
         if (is_null($objects)) {
@@ -27,5 +29,3 @@ class MySQL_helpers {
         return false;
     }
 }
-
-?>

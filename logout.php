@@ -1,4 +1,5 @@
 <?php
+
 /*
 * logout.php
 * ---------------
@@ -7,8 +8,7 @@
 *
 * @Author: David Hein
 */
-    session_start();
-    session_destroy();
-    header("Location: index.php");
-    exit();
-?>
+session_start();
+session_destroy();
+header("Location: index.php");
+exit();

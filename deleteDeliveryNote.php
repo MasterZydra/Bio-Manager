@@ -1,4 +1,5 @@
 <?php
+
 /*
 * deleteDeliveryNote.php
 * ----------------------
@@ -24,4 +25,3 @@
     $form -> overviewPage       = 'deliveryNote.php';
 
     $form -> show();
-?>

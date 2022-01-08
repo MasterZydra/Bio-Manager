@@ -1,4 +1,5 @@
 <?php
+
 /*
 * deleteRecipient.php
 * -------------------
@@ -23,4 +24,3 @@
     $form -> overviewPage       = 'recipient.php';
 
     $form -> show();
-?>

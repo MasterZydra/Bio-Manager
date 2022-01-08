@@ -8,14 +8,14 @@
 *
 * @Author: David Hein
 */
-    include 'modules/header_everyone.php';
-    include_once 'modules/permissionCheck.php';
-    include 'modules/header.php';
+include 'modules/header_everyone.php';
+include_once 'modules/permissionCheck.php';
+include 'modules/header.php';
 
-    if(!isLoggedIn()) {
-        // Check configuration
-        include 'modules/configChecker.php';
-?>
+if (!isLoggedIn()) {
+    // Check configuration
+    include 'modules/configChecker.php';
+    ?>
 <h1>Willkommen beim Bio-Manager</h1>
 <h2>Was ist der Bio-Manager</h2>
 <p>
@@ -27,17 +27,17 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt und al
     Die Lieferanten können ebenfalls Anmeldungen für die Seite erhalten und dort ihre Lieferscheine einsehen.
 </p>
 
-<?php
-    } else {
-?>
+    <?php
+} else {
+    ?>
 <h1>Willkommen im Mitgliederbereich</h1>
-<?php
-        // Check configuration
-        include 'modules/configChecker.php';
-        
-        // Links for maintainers
-        if(isMaintainer() || isInspector()) {
-?>
+    <?php
+    // Check configuration
+    include 'modules/configChecker.php';
+
+    // Links for maintainers
+    if (isMaintainer() || isInspector()) {
+        ?>
 <h2>
     Datenverwaltung
 </h2>
@@ -45,43 +45,57 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt und al
 <div class="box">
     <strong>Lieferschein</strong><br>
     <a href="deliveryNote.php">Alle Lieferscheine anzeigen</a>
-    <?php if(isMaintainer()) {?><br><a href="addDeliveryNote.php">Lieferschein hinzufügen</a><?php } ?>
+        <?php if (isMaintainer()) {
+            ?><br><a href="addDeliveryNote.php">Lieferschein hinzufügen</a><?php
+        } ?>
 </div>
 
 <div class="box">
     <strong>Flurstück</strong><br>
     <a href="plot.php">Alle Flurstücke anzeigen</a>
-    <?php if(isMaintainer()) {?><br><a href="addPlot.php">Flurstück hinzufügen</a><?php } ?>
+        <?php if (isMaintainer()) {
+            ?><br><a href="addPlot.php">Flurstück hinzufügen</a><?php
+        } ?>
 </div>
 
 <div class="box">
     <strong>Rechnung</strong><br>
     <a href="invoice.php">Alle Rechnungen anzeigen</a>
-    <?php if(isMaintainer()) {?><br><a href="addInvoice.php">Rechnung hinzufügen</a><?php } ?>
+        <?php if (isMaintainer()) {
+            ?><br><a href="addInvoice.php">Rechnung hinzufügen</a><?php
+        } ?>
 </div>
 
 <div class="box">
     <strong>Produkt</strong><br>
     <a href="product.php">Alle Produkte anzeigen</a>
-    <?php if(isMaintainer()) {?><br><a href="addProduct.php">Produkt hinzufügen</a><?php } ?>
+        <?php if (isMaintainer()) {
+            ?><br><a href="addProduct.php">Produkt hinzufügen</a><?php
+        } ?>
 </div>
 
 <div class="box">
     <strong>Preis</strong><br>
     <a href="pricing.php">Alle Preise anzeigen</a>
-    <?php if(isMaintainer()) {?><br><a href="addPricing.php">Preis hinzufügen</a><?php } ?>
+        <?php if (isMaintainer()) {
+            ?><br><a href="addPricing.php">Preis hinzufügen</a><?php
+        } ?>
 </div>
 
 <div class="box">
     <strong>Lieferant</strong><br>
     <a href="supplier.php">Alle Lieferanten anzeigen</a>
-    <?php if(isMaintainer()) {?><br><a href="addSupplier.php">Lieferant hinzufügen</a><?php } ?>
+        <?php if (isMaintainer()) {
+            ?><br><a href="addSupplier.php">Lieferant hinzufügen</a><?php
+        } ?>
 </div>
 
 <div class="box">
     <strong>Abnehmer</strong><br>
     <a href="recipient.php">Alle Abnehmer anzeigen</a>
-    <?php if(isMaintainer()) {?><br><a href="addRecipient.php">Abnehmer hinzufügen</a><?php } ?>
+        <?php if (isMaintainer()) {
+            ?><br><a href="addRecipient.php">Abnehmer hinzufügen</a><?php
+        } ?>
 </div>
 
 <h2>
@@ -100,9 +114,9 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt und al
     <a href="showCropVolumeDistribution.php">Mengenverteilung anzeigen</a>
 </div>
 
-<?php
-        }
-?>
+        <?php
+    }
+    ?>
 <h2>
     Mein Bereich
 </h2>
@@ -113,19 +127,19 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt und al
     <a href="logout.php">Abmelden</a>
 </div>
 
-<?php
-        // Links for suppliers
-        if(isSupplier()){
-?>
+    <?php
+    // Links for suppliers
+    if (isSupplier()) {
+        ?>
 <div class="box">
     <strong>Meine Daten</strong><br>
     <a href="showMyDeliveryNote.php">Meine Lieferscheine</a>
 </div>
-<?php
-        }
-        // Links for administration
-        if(isAdmin()){
-?>
+        <?php
+    }
+    // Links for administration
+    if (isAdmin()) {
+        ?>
 <h2>
     Administration
 </h2>
@@ -139,7 +153,9 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt und al
 <div class="box">
     <strong>Einstellungen</strong><br>
     <a href="setting.php">Alle Einstellungen anzeigen</a>
-    <?php if(isDeveloper()) {?><br><a href="addSetting.php">Einstellung hinzufügen</a><?php } ?>
+        <?php if (isDeveloper()) {
+            ?><br><a href="addSetting.php">Einstellung hinzufügen</a><?php
+        } ?>
 </div>
 
 <div class="box">
@@ -154,16 +170,16 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt und al
     <a href="editDBConnection.php">Datenbankverbindung bearbeiten</a>
 </div>
 
-<?php
-        }
-        if(isDeveloper()) {
-?>
+        <?php
+    }
+    if (isDeveloper()) {
+        ?>
 <h2>
     Entwickler
 </h2>
-<?php
-    showWarning('<strong>Verwendung auf eigene Gefahr!</strong>');
-?>
+        <?php
+        showWarning('<strong>Verwendung auf eigene Gefahr!</strong>');
+        ?>
 <div class="box">
     <a href="developerOptions.php">Entwicklereinstellungen</a>
 </div>
@@ -173,9 +189,9 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt und al
     <a href="deliveryNote_new.php">Neues Template</a>
 </div>
 
-<?php
-        }
+        <?php
     }
+}
 ?>
 <script>
     function colorBoxes() {

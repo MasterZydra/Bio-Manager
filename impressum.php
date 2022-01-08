@@ -6,13 +6,14 @@
 *
 * @Author: David Hein
 */
-    include 'modules/header_everyone.php';
-    include 'modules/permissionCheck.php';
-    include 'modules/header.php';
+include 'modules/header_everyone.php';
+include 'modules/permissionCheck.php';
+include 'modules/header.php';
 
-    // Check if file exists to prevent warnings
-    if (file_exists('config/ImpressumConfig.php'))
-        include 'config/ImpressumConfig.php';
+// Check if file exists to prevent warnings
+if (file_exists('config/ImpressumConfig.php')) {
+    include 'config/ImpressumConfig.php';
+}
 ?>
 
 <h1>Impressum</h1>

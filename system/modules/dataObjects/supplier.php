@@ -1,4 +1,5 @@
 <?php
+
 /*
 * supplier.php
 * ----------------
@@ -22,26 +23,28 @@ class Supplier implements iObject
         $this->inactive = $inactive;
     }
 
-    function id() : int
+    function id(): int
     {
         return $this->id;
     }
 
-    function name() : string
+    function name(): string
     {
         return $this->name;
     }
 
-    function inactive() : bool
+    function inactive(): bool
     {
         return $this->inactive;
     }
 
-    function setName(string $name) {
+    function setName(string $name)
+    {
         $this->name = $name;
     }
 
-    function setInactive(string $inactive) {
+    function setInactive(string $inactive)
+    {
         $this->inactive = $inactive;
     }
 
@@ -54,5 +57,3 @@ class Supplier implements iObject
         );
     }
 }
-
-?>

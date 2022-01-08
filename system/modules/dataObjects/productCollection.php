@@ -1,4 +1,5 @@
 <?php
+
 /*
 * productCollection.php
 * ---------------------
@@ -27,12 +28,13 @@ class ProductCollection implements iDataCollection
     }
 
     // Close all open connections used in class
-    function destroy() {
+    function destroy()
+    {
         $this->prepStatement->destroy();
     }
 
     // Find entry with the given id
-    public function find(int $id) : iObject
+    public function find(int $id): iObject
     {
         $dataSet = $this->prepStatement->selectWhereId("T_Product", $id);
         $rows = $this->dataSetToArrayOfProduct($dataSet);
@@ -43,9 +45,9 @@ class ProductCollection implements iDataCollection
     }
 
     // Find all entries in the table
-    public function findAll() : array
+    public function findAll(): array
     {
-        $dataSet = $this->prepStatement->selectColWhereCol("*", "T_Product", NULL, NULL);
+        $dataSet = $this->prepStatement->selectColWhereCol("*", "T_Product", null, null);
         return $this->dataSetToArrayOfProduct($dataSet);
     }
 
@@ -55,47 +57,50 @@ class ProductCollection implements iDataCollection
         return $this->dataSetToArrayOfProduct($dataSet);
     }
 
-    public function update(iObject $object) : bool
+    public function update(iObject $object): bool
     {
-        if (MySQL_helpers::objectAlreadyExists($this, $object->name(), $object->id()))
-        {
+        if (MySQL_helpers::objectAlreadyExists($this, $object->name(), $object->id())) {
             return false;
         }
-        
+
         return $this->prepStatement->updateColsWhereId(
-            "T_Product", array("name"), "s",
-            $object->id(), $object->name());
+            "T_Product",
+            array("name"),
+            "s",
+            $object->id(),
+            $object->name()
+        );
     }
 
-    public function add(iObject $object) : bool
+    public function add(iObject $object): bool
     {
-        if (MySQL_helpers::objectAlreadyExists($this, $object->name(), $object->id()))
-        {
+        if (MySQL_helpers::objectAlreadyExists($this, $object->name(), $object->id())) {
             return false;
         }
 
         return $this->prepStatement->insertCols(
-            "T_Product", array("name"), "s",
-            $object->name());
+            "T_Product",
+            array("name"),
+            "s",
+            $object->name()
+        );
     }
 
     private function dataSetToArrayOfProduct($dataSet)
     {
         if (is_null($dataSet) || $dataSet -> num_rows == 0) {
-            return NULL;
+            return null;
         }
         // Create Product objects for all entries and push them into the array
         $result = array();
-        while($row = $dataSet->fetch_assoc()) {
+        while ($row = $dataSet->fetch_assoc()) {
             array_push($result, $this->newProduct($row));
         }
         return $result;
     }
 
-    private function newProduct($row) : Product
+    private function newProduct($row): Product
     {
         return new Product(intval($row["id"]), $row["name"]);
     }
 }
-
-?>

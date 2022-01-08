@@ -8,29 +8,31 @@
 * @Author: David Hein
 */
 
-    include 'modules/header_user.php';
-    include 'modules/permissionCheck.php';
-    
-    // Check permission
-    if(!isMaintainer() ||
-       // Check if id is numeric
-       (isset($_GET['id']) && !is_numeric($_GET['id'])))
-    {
-        header("Location: cropVolumeDistribution.php");
-        exit();
-    }
+include 'modules/header_user.php';
+include 'modules/permissionCheck.php';
 
-    include 'modules/header.php';
+// Check permission
+if (
+    !isMaintainer() ||
+        // Check if id is numeric
+        (isset($_GET['id']) && !is_numeric($_GET['id']))
+) {
+    header("Location: cropVolumeDistribution.php");
+    exit();
+}
 
-    include 'modules/selectBox_BioManager.php';
+include 'modules/header.php';
 
-    // Add "\" to every "<" and "/" to avoid HTML validator warnings
-    function formatSelectBox($code) {
-        $code = addslashes($code);
-        $code = str_replace("<", "\<", $code);
-        $code = str_replace("/", "\/", $code);
-        return $code;
-    }
+include 'modules/selectBox_BioManager.php';
+
+// Add "\" to every "<" and "/" to avoid HTML validator warnings
+function formatSelectBox($code)
+{
+    $code = addslashes($code);
+    $code = str_replace("<", "\<", $code);
+    $code = str_replace("/", "\/", $code);
+    return $code;
+}
 
 ?>
 <h1>Mengenverteilung</h1>
@@ -40,78 +42,77 @@
 </p>
 
 <?php
-    if(!isset($_GET['id'])) {
-        echo '<div class="warning">';
-        echo 'Es wurde kein Lieferschein übergeben. Zurück zu <a href="deliveryNote.php">Alle Lieferscheine anzeigen</a>';
-        echo '</div>';
-    } else {
-        // Update the volume distribution
-        if(isset($_GET['update'])) {
-            $conn = new Mysql();
-            $conn -> dbConnect();
-            
-            $i = 1;
-            // Delete volume distribution for current delivery note
-            $conn -> freeRun('DELETE FROM T_CropVolumeDistribution WHERE deliveryNoteId = ' . secGET('id'));
-            // Add volume distribution for current delivery note
-            while (true) {
-                // Insert until POST variable is not set
-                if(!isset($_POST['plot' . (string)$i])) {
-                    break;
-                }
-
-                $NULL = [
-                    "type" => "null",
-                    "val" => "null"
-                ];
-                
-                $deliveryNoteId = [
-                    "type" => "int",
-                    "val" => secGET('id')
-                ];
-                
-                $plotId = [
-                    "type" => "int",
-                    "val" => secPOST('plot' . (string)$i)
-                ];
-                
-                $amount = [
-                    "type" => "int",
-                    "val" => secPOST('amount' . (string)$i)
-                ];
-                
-                $data = array($NULL, $deliveryNoteId, $plotId, $amount);
-                $conn -> insertInto('T_CropVolumeDistribution', $data);
-                $i++;
-            }
-            $conn -> dbDisconnect();
-            $conn = NULL;
-        }
-
+if (!isset($_GET['id'])) {
+    echo '<div class="warning">';
+    echo 'Es wurde kein Lieferschein übergeben. Zurück zu <a href="deliveryNote.php">Alle Lieferscheine anzeigen</a>';
+    echo '</div>';
+} else {
+    // Update the volume distribution
+    if (isset($_GET['update'])) {
         $conn = new Mysql();
         $conn -> dbConnect();
-        // Select amount from delivery note
-        $conn -> select('T_DeliveryNote', 'year, nr, amount', 'id = ' . secGET('id'));
-        $delivery = $conn -> getFirstRow();
-        // Distribution data
-        $distData = $conn -> select('T_CropVolumeDistribution', '*', 'deliveryNoteId = ' . secGET('id'));
 
-        $conn -> dbDisconnect();
-        $conn = NULL;
-
-        if($distData -> num_rows > 0) {
-            $i = 1;
-            $tableData = '';
-            while($row = $distData->fetch_assoc()) {
-                $tableData .= '<tr>';
-                $tableData .= '<td>' . plotSelectBox('plot' . (string)$i, $row['plotId']) . '</td>';
-                $tableData .= '<td><input name="amount' . (string)$i . '" class="right" type="number" onkeyup="sumDistribution()" value="' . $row['amount'] . '" required></td>';
-                $tableData .= '</tr>';
-                $i++;
+        $i = 1;
+        // Delete volume distribution for current delivery note
+        $conn -> freeRun('DELETE FROM T_CropVolumeDistribution WHERE deliveryNoteId = ' . secGET('id'));
+        // Add volume distribution for current delivery note
+        while (true) {
+            // Insert until POST variable is not set
+            if (!isset($_POST['plot' . (string)$i])) {
+                break;
             }
 
+            $NULL = [
+                "type" => "null",
+                "val" => "null"
+            ];
+
+            $deliveryNoteId = [
+                "type" => "int",
+                "val" => secGET('id')
+            ];
+
+            $plotId = [
+                "type" => "int",
+                "val" => secPOST('plot' . (string)$i)
+            ];
+
+            $amount = [
+                "type" => "int",
+                "val" => secPOST('amount' . (string)$i)
+            ];
+
+            $data = array($NULL, $deliveryNoteId, $plotId, $amount);
+            $conn -> insertInto('T_CropVolumeDistribution', $data);
+            $i++;
         }
-?>
+        $conn -> dbDisconnect();
+        $conn = null;
+    }
+
+    $conn = new Mysql();
+    $conn -> dbConnect();
+    // Select amount from delivery note
+    $conn -> select('T_DeliveryNote', 'year, nr, amount', 'id = ' . secGET('id'));
+    $delivery = $conn -> getFirstRow();
+    // Distribution data
+    $distData = $conn -> select('T_CropVolumeDistribution', '*', 'deliveryNoteId = ' . secGET('id'));
+
+    $conn -> dbDisconnect();
+    $conn = null;
+
+    if ($distData -> num_rows > 0) {
+        $i = 1;
+        $tableData = '';
+        while ($row = $distData->fetch_assoc()) {
+            $tableData .= '<tr>';
+            $tableData .= '<td>' . plotSelectBox('plot' . (string)$i, $row['plotId']) . '</td>';
+            $tableData .= '<td><input name="amount' . (string)$i . '" class="right" type="number" onkeyup="sumDistribution()" value="' . $row['amount'] . '" required></td>';
+            $tableData .= '</tr>';
+            $i++;
+        }
+    }
+    ?>
 
 <form action="?id=<?php echo secGET('id'); ?>&update=1" method="post">
     <table id="delivery" class="completeWidth">
@@ -125,7 +126,9 @@
             <th width="70%" class="center">Flurstück</th>
             <th width="30%" class="center">Menge</th>
         </tr>
-        <?php if(isset($tableData)) echo $tableData; ?>
+    <?php if (isset($tableData)) {
+        echo $tableData;
+    } ?>
     </table>
     <table class="completeWidth">
         <tr>
@@ -199,7 +202,7 @@
     // Calc sum
     sumDistribution();
 </script>
-<?php
-    }
+    <?php
+}
     include 'modules/footer.php';
 ?>

@@ -1,4 +1,5 @@
 <?php
+
 /*
 * Mysql.php
 * ---------
@@ -12,10 +13,12 @@
 */
 
 // Check if file exists to prevent warnings
-if (file_exists('config/DatabaseConfig.php'))
+if (file_exists('config/DatabaseConfig.php')) {
     include_once 'config/DatabaseConfig.php';
+}
 
-class Mysql {
+class Mysql
+{
     // Public properties
     public $connectionString;
     public $dataSet;
@@ -27,11 +30,12 @@ class Mysql {
     protected $userName;
     protected $passCode;
 
-    function __construct() {
-        $this -> connectionString = NULL;
-        $this -> sqlQuery = NULL;
-        $this -> dataSet = NULL;
-        
+    function __construct()
+    {
+        $this -> connectionString = null;
+        $this -> sqlQuery = null;
+        $this -> dataSet = null;
+
         global $database;
         $this -> databaseName = $database["database_name"];
         $this -> hostName = $database["server_name"];
@@ -39,21 +43,23 @@ class Mysql {
         $this -> passCode = $database["database_password"];
     }
 
-    function dbConnect() {
+    function dbConnect()
+    {
         $this -> connectionString = new mysqli($this -> hostName, $this -> userName, $this -> passCode);
         mysqli_select_db($this -> connectionString, $this -> databaseName);
         return $this -> connectionString;
     }
 
-    function dbDisconnect() {
+    function dbDisconnect()
+    {
         mysqli_close($this -> connectionString);
-        $this -> connectionString = NULL;
-        $this -> sqlQuery = NULL;
-        $this -> dataSet = NULL;
-        $this -> databaseName = NULL;
-        $this -> hostName = NULL;
-        $this -> userName = NULL;
-        $this -> passCode = NULL;
+        $this -> connectionString = null;
+        $this -> sqlQuery = null;
+        $this -> dataSet = null;
+        $this -> databaseName = null;
+        $this -> hostName = null;
+        $this -> userName = null;
+        $this -> passCode = null;
     }
 
     /**
@@ -62,10 +68,11 @@ class Mysql {
     * @author David Hein
     * @return string
     */
-    public function getDatabaseName() {
+    public function getDatabaseName()
+    {
         return "`" . $this -> databaseName . "`";
     }
-    
+
     /**
     * Execute query on database and returns data set
     *
@@ -74,19 +81,20 @@ class Mysql {
     * @author David Hein
     * @return data set
     */
-    function freeRun($query) {
+    function freeRun($query)
+    {
         // Save query
         $this -> sqlQuery = $query;
         // Execute query
         $this -> dataSet = $this -> connectionString -> query($this -> sqlQuery);
         // Developer output
-        if(isset($_SESSION['devOpt_ShowQuery']) && $_SESSION['devOpt_ShowQuery']) {
+        if (isset($_SESSION['devOpt_ShowQuery']) && $_SESSION['devOpt_ShowQuery']) {
             // Print sql query
             echo '<div class="log">';
             echo '<strong>SQL Query</strong>: ' . $this -> sqlQuery;
             echo '</div>';
             // Show error if something went wrong
-            if(!($this -> dataSet)) {
+            if (!($this -> dataSet)) {
                 echo '<div class="warning">';
                 echo '<strong>SQL Query failed</strong>: ' . $this -> connectionString -> error;
                 echo '</div>';
@@ -102,10 +110,11 @@ class Mysql {
     * @author David Hein
     * @return data row
     */
-    function getFirstRow() {
+    function getFirstRow()
+    {
         $dataSet = $this -> dataSet;
         if ($dataSet -> num_rows == 0) {
-            return NULL;
+            return null;
         } else {
             return $dataSet -> fetch_assoc();
         }
@@ -122,19 +131,20 @@ class Mysql {
     * @author David Hein
     * @return data set
     */
-    function select($tableName, $columns = '*', $whereCondition = NULL, $orderBy = NULL) {
+    function select($tableName, $columns = '*', $whereCondition = null, $orderBy = null)
+    {
         $query =
             'SELECT ' . $columns
             . ' FROM `' . $this -> databaseName . '`.' . $tableName;
-        if($whereCondition !== NULL) {
+        if ($whereCondition !== null) {
             $query .= ' WHERE ' . $whereCondition;
         }
-        if($orderBy !== NUll) {
+        if ($orderBy !== null) {
             $query .= ' ORDER BY ' . $orderBy;
         }
         return $this -> freeRun($query);
     }
-    
+
     /**
     * Execute a INSERT statement on connected data base
     *
@@ -145,13 +155,14 @@ class Mysql {
     * @author David Hein
     * @return data set
     */
-    function update($tableName, $set, $whereCondition) {
+    function update($tableName, $set, $whereCondition)
+    {
         $query = 'UPDATE `' . $this -> databaseName . '`.' . $tableName . ' '
             . 'SET ' . $set . ' '
             . 'WHERE ' . $whereCondition;
         return $this -> freeRun($query);
     }
-    
+
     /**
     * Execute a DELETE statement on connected data base
     *
@@ -161,31 +172,31 @@ class Mysql {
     * @author David Hein
     * @return data set
     */
-    function delete($tableName, $whereCondition) {
+    function delete($tableName, $whereCondition)
+    {
         $query = 'DELETE FROM `' . $this -> databaseName . '`.' . $tableName . ' '
             . 'WHERE ' . $whereCondition;
         return $this -> freeRun($query);
     }
-    
-    function insertInto($tableName,$values) {
-        $i = NULL;
 
-        $query = 'INSERT INTO '.$tableName.' VALUES (';
+    function insertInto($tableName, $values)
+    {
+        $i = null;
+
+        $query = 'INSERT INTO ' . $tableName . ' VALUES (';
         $i = 0;
-        while(count($values) > $i && $values[$i]["val"] != NULL && $values[$i]["type"] != NULL) {
-            if($values[$i]["type"] == "char")   {
+        while (count($values) > $i && $values[$i]["val"] != null && $values[$i]["type"] != null) {
+            if ($values[$i]["type"] == "char") {
                 $query .= "'";
                 $query .= $values[$i]["val"];
                 $query .= "'";
-            }
-            else if($values[$i]["type"] == 'int')   {
+            } elseif ($values[$i]["type"] == 'int') {
                 $query .= $values[$i]["val"];
-            }
-            else if($values[$i]["type"] == 'null')   {
+            } elseif ($values[$i]["type"] == 'null') {
                 $query .= 'NULL';
             }
             $i++;
-            if(count($values) > $i && $values[$i]["val"] != NULL)  {
+            if (count($values) > $i && $values[$i]["val"] != null) {
                 $query .= ',';
             }
         }
@@ -193,4 +204,3 @@ class Mysql {
         return $this -> freeRun($query);
     }
 }
-?>

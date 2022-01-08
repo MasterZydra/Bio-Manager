@@ -1,4 +1,5 @@
 <?php
+
 /*
 * product.php
 * -----------
@@ -20,17 +21,18 @@ class Product implements iObject
         $this->name = $name;
     }
 
-    function id() : int
+    function id(): int
     {
         return $this->id;
     }
 
-    function name() : string
+    function name(): string
     {
         return $this->name;
     }
 
-    function setName(string $name) {
+    function setName(string $name)
+    {
         $this->name = $name;
     }
 

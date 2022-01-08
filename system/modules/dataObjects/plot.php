@@ -1,4 +1,5 @@
 <?php
+
 /*
 * plot.php
 * --------
@@ -27,44 +28,48 @@ class Plot implements iObject
         $this->supplierId = $supplierId;
     }
 
-    function id() : int
+    function id(): int
     {
         return $this->id;
     }
 
-    function nr() : string
+    function nr(): string
     {
         return $this->nr;
     }
 
-    function name() : string
+    function name(): string
     {
         return $this->name;
     }
 
-    function subdistrict() : string
+    function subdistrict(): string
     {
         return $this->subdistrict;
     }
 
-    function supplierId() : int
+    function supplierId(): int
     {
         return $this->supplierId;
     }
 
-    function setNr(string $nr) {
+    function setNr(string $nr)
+    {
         $this->nr = $nr;
     }
 
-    function setName(string $name) {
+    function setName(string $name)
+    {
         $this->name = $name;
     }
 
-    function setSubdistrict(string $subdistrict) {
+    function setSubdistrict(string $subdistrict)
+    {
         $this->subdistrict = $subdistrict;
     }
 
-    function setSupplierId(int $supplierId) {
+    function setSupplierId(int $supplierId)
+    {
         $this->supplierId = $supplierId;
     }
 

@@ -1,4 +1,5 @@
 <?php
+
 /*
 * deletePricing.php
 * ------------------
@@ -23,4 +24,3 @@
     $form -> overviewPage       = 'pricing.php';
 
     $form -> show();
-?>

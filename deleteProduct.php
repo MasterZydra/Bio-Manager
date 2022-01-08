@@ -1,4 +1,5 @@
 <?php
+
 /*
 * deleteProdcut.php
 * -----------------
@@ -23,4 +24,3 @@
     $form -> overviewPage       = 'product.php';
 
     $form -> show();
-?>

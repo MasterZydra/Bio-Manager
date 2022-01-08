@@ -1,4 +1,5 @@
 <?php
+
 /*
 * supplierCollection.php
 * ----------------
@@ -27,12 +28,13 @@ class SupplierCollection implements iDataCollection
     }
 
     // Close all open connections used in class
-    function destroy() {
+    function destroy()
+    {
         $this->prepStatement->destroy();
     }
 
     // Find entry with the given id
-    public function find(int $id) : iObject
+    public function find(int $id): iObject
     {
         $dataSet = $this->prepStatement->selectWhereId("T_Supplier", $id);
         $rows = $this->dataSetToArrayOfSuppliers($dataSet);
@@ -43,9 +45,9 @@ class SupplierCollection implements iDataCollection
     }
 
     // Find all entries in the table
-    public function findAll() : array
+    public function findAll(): array
     {
-        $dataSet = $this->prepStatement->selectColWhereCol("*", "T_Supplier", NULL, NULL);
+        $dataSet = $this->prepStatement->selectColWhereCol("*", "T_Supplier", null, null);
         return $this->dataSetToArrayOfSuppliers($dataSet);
     }
 
@@ -55,46 +57,52 @@ class SupplierCollection implements iDataCollection
         return $this->dataSetToArrayOfSuppliers($dataSet);
     }
 
-    public function update(iObject $object) : bool
+    public function update(iObject $object): bool
     {
-        if (MySQL_helpers::objectAlreadyExists($this, $object->name(), $object->id()))
-        {
+        if (MySQL_helpers::objectAlreadyExists($this, $object->name(), $object->id())) {
             return false;
         }
-        
+
         return $this->prepStatement->updateColsWhereId(
-            "T_Supplier", array("name", "inactive"), "sb",
-            $object->id(), $object->name(), $object->inactive());
+            "T_Supplier",
+            array("name", "inactive"),
+            "sb",
+            $object->id(),
+            $object->name(),
+            $object->inactive()
+        );
     }
 
-    public function add(iObject $object) : bool
+    public function add(iObject $object): bool
     {
-        if (MySQL_helpers::objectAlreadyExists($this, $object->name(), $object->id()))
-        {
+        if (MySQL_helpers::objectAlreadyExists($this, $object->name(), $object->id())) {
             return false;
         }
 
         return $this->prepStatement->insertCols(
-            "T_Supplier", array("name", "inactive"), "sb", $object->name(), $object->inactive());
+            "T_Supplier",
+            array("name", "inactive"),
+            "sb",
+            $object->name(),
+            $object->inactive()
+        );
     }
 
     private function dataSetToArrayOfSuppliers($dataSet)
     {
         if (is_null($dataSet) || $dataSet -> num_rows == 0) {
-            return NULL;
+            return null;
         }
         // Create Supplier objects for all entries and push them into the array
         $result = array();
-        while($row = $dataSet->fetch_assoc()) {
+        while ($row = $dataSet->fetch_assoc()) {
             array_push($result, $this->newSupplier($row));
         }
         return $result;
     }
 
-    private function newSupplier($row) : Supplier
+    private function newSupplier($row): Supplier
     {
         return new Supplier(intval($row["id"]), $row["name"], $row["inactive"]);
     }
 }
-
-?>

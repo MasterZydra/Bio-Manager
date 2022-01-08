@@ -1,4 +1,5 @@
 <?php
+
 /*
 * header_everyone.php
 * ---------------
@@ -7,4 +8,3 @@
 * @Author: David Hein
 */
     session_start();
-?>

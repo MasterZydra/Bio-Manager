@@ -1,4 +1,5 @@
 <?php
+
 /*
 * iObject.php
 * ----------------
@@ -8,9 +9,8 @@
 *
 * @Author: David Hein
 */
-interface iObject {
-    public function id() : int;
-    public function toArray() : array;
+interface iObject
+{
+    public function id(): int;
+    public function toArray(): array;
 }
-
-?>

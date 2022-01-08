@@ -1,4 +1,5 @@
 <?php
+
 /*
 * overviewForm.php
 * ----------------
@@ -19,7 +20,8 @@ include 'modules/tableGenerator.php';
 *
 * @author David Hein
 */
-class overviewForm extends form {
+class overviewForm extends form
+{
     /**
     * Permission that is necessary to see one table. If false the default table will be shown.
     * The string is inserted as if condition. E.g. "isMaintainer()"
@@ -59,47 +61,49 @@ class overviewForm extends form {
     * @var string
     */
     public $resultQuery_orderBy;
-    
+
     /**
     * Array of column indexes where the text shall be aligned right
     * @var array
     */
     public $alignRightColumns;
-    
+
     public $forwardingLogic;
-    
+
     /**
     * Construct a new overviewForm object and set default values for the properties
     *
     * @author David Hein
     */
-    function __construct() {
+    function __construct()
+    {
         // Create parent
         parent::__construct();
         $this -> tablePermission    = false;
         $this -> restrictedTable    = "";
         $this -> defaultTable       = "";
-        
+
         $this -> resultQuery_table  = "T_Table";
         $this -> resultQuery_cols   = "*";
-        $this -> resultQuery_where  = NULL;
-        $this -> resultQuery_orderBy = NULL;
-        
+        $this -> resultQuery_where  = null;
+        $this -> resultQuery_orderBy = null;
+
         $this -> alignRightColumns  = array();
-        
+
         $this -> forwardingLogic    = "";
     }
-    
-    protected function showOverview() {
+
+    protected function showOverview()
+    {
         // Script imports
         echo '<script src="js/filterDataTable.js"></script>';
         echo '<script src="js/dropdown.js"></script>';
-                
+
         // Input for search field
         echo '<p>';
         echo '<input type="text" id="filterInput-data" onkeyup="filterData(&quot;data&quot;)" placeholder="Suchtext eingeben..." title="Suchtext">';
         echo '</p>';
-        
+
         // Get data from DB
         $conn = new Mysql();
         $conn -> dbConnect();
@@ -107,18 +111,19 @@ class overviewForm extends form {
             $this -> resultQuery_table,
             $this -> resultQuery_cols,
             $this -> resultQuery_where,
-            $this -> resultQuery_orderBy);
+            $this -> resultQuery_orderBy
+        );
         $conn -> dbDisconnect();
-        $conn = NULL;
-        
+        $conn = null;
+
         // Show table
-        if($this -> tablePermission) {
+        if ($this -> tablePermission) {
             echo $this -> restrictedTable;
         } else {
             echo $this -> defaultTable;
         }
     }
-    
+
     /**
     * Show the page content
     *
@@ -126,7 +131,8 @@ class overviewForm extends form {
     *
     * @author David Hein
     */
-    public function show() {
+    public function show()
+    {
         $this -> head();
         $this -> showOverview();
         $this -> foot();/*
@@ -140,4 +146,3 @@ class overviewForm extends form {
 */
     }
 }
-?>

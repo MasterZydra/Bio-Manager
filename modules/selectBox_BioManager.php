@@ -1,4 +1,5 @@
 <?php
+
 /*
 * selectBox_BioManager.php
 * --------------------
@@ -25,20 +26,20 @@ include 'modules/selectBox.php';
 */
 function supplierSelectBox(
     $isRequired,
-    $selectedValue = NULL,
+    $selectedValue = null,
     $disableDefault = true,
-    $onlyActiveUser = false)
-{
-    $where = NULL;
-    if($onlyActiveUser) {
+    $onlyActiveUser = false
+) {
+    $where = null;
+    if ($onlyActiveUser) {
         $where = 'inactive = 0';
     }
     $conn = new Mysql();
     $conn -> dbConnect();
     $result = $conn -> select('T_Supplier', 'id AS value, name', $where, 'name ASC');
     $conn -> dbDisconnect();
-    $conn = NULL;
-    
+    $conn = null;
+
     return selectBox('supplierId', $isRequired, 'Bitte Lieferant wählen', $result, $selectedValue, $disableDefault);
 }
 
@@ -52,21 +53,23 @@ function supplierSelectBox(
 * @Author: David Hein
 * @return String with html code for select element
 */
-function plotSelectBox($name = NULL, $selectedValue = NULL) {
+function plotSelectBox($name = null, $selectedValue = null)
+{
     $conn = new Mysql();
     $conn -> dbConnect();
     $result = $conn -> select(
         'T_Plot',
         'id AS value, CONCAT(nr, " ", name) as name',
-        NULL,
-        'nr ASC, name ASC');
+        null,
+        'nr ASC, name ASC'
+    );
     $conn -> dbDisconnect();
-    $conn = NULL;
-    
-    if(is_null($name)) {
+    $conn = null;
+
+    if (is_null($name)) {
         $name = 'plotId';
     }
-    
+
     return selectBox($name, true, 'Bitte Flurstück wählen', $result, $selectedValue);
 }
 
@@ -80,21 +83,23 @@ function plotSelectBox($name = NULL, $selectedValue = NULL) {
 * @Author: David Hein
 * @return String with html code for select element
 */
-function productSelectBox($name = NULL, $selectedValue = NULL) {
+function productSelectBox($name = null, $selectedValue = null)
+{
     $conn = new Mysql();
     $conn -> dbConnect();
     $result = $conn -> select(
         'T_Product',
         'id AS value, name',
-        NULL,
-        'name ASC');
+        null,
+        'name ASC'
+    );
     $conn -> dbDisconnect();
-    $conn = NULL;
-    
-    if(is_null($name)) {
+    $conn = null;
+
+    if (is_null($name)) {
         $name = 'productId';
     }
-    
+
     return selectBox($name, true, 'Bitte Produkt wählen', $result, $selectedValue);
 }
 
@@ -109,21 +114,23 @@ function productSelectBox($name = NULL, $selectedValue = NULL) {
 * @Author: David Hein
 * @return String with html code for select element
 */
-function recipientSelectBox($name = NULL, $selectedValue = NULL, $boxReadOnly = false) {
+function recipientSelectBox($name = null, $selectedValue = null, $boxReadOnly = false)
+{
     $conn = new Mysql();
     $conn -> dbConnect();
     $result = $conn -> select(
         'T_Recipient',
         'id AS value, name',
-        NULL,
-        'name ASC');
+        null,
+        'name ASC'
+    );
     $conn -> dbDisconnect();
-    $conn = NULL;
-    
-    if(is_null($name)) {
+    $conn = null;
+
+    if (is_null($name)) {
         $name = 'recipientId';
     }
-    
+
     return selectBox(
         $name,
         true,
@@ -131,7 +138,8 @@ function recipientSelectBox($name = NULL, $selectedValue = NULL, $boxReadOnly = 
         $result,
         $selectedValue,
         true,
-        $boxReadOnly);
+        $boxReadOnly
+    );
 }
 
 /**
@@ -145,21 +153,23 @@ function recipientSelectBox($name = NULL, $selectedValue = NULL, $boxReadOnly = 
 * @Author: David Hein
 * @return String with html code for select element
 */
-function invoiceYearsSelectBox($name = NULL, $selectedValue = NULL, $boxReadOnly = false) {
+function invoiceYearsSelectBox($name = null, $selectedValue = null, $boxReadOnly = false)
+{
     $conn = new Mysql();
     $conn -> dbConnect();
     $result = $conn -> select(
         'T_Invoice',
         'DISTINCT year AS value, year AS name',
-        NULL,
-        'year DESC');
+        null,
+        'year DESC'
+    );
     $conn -> dbDisconnect();
     $conn = null;
-    
-    if(is_null($name)) {
+
+    if (is_null($name)) {
         $name = 'invoiceYear';
     }
-    
+
     return selectBox(
         $name,
         true,
@@ -167,7 +177,8 @@ function invoiceYearsSelectBox($name = NULL, $selectedValue = NULL, $boxReadOnly
         $result,
         $selectedValue,
         true,
-        $boxReadOnly);
+        $boxReadOnly
+    );
 }
 
 /**
@@ -184,26 +195,27 @@ function invoiceYearsSelectBox($name = NULL, $selectedValue = NULL, $boxReadOnly
 * @return String with html code for select element
 */
 function invoiceSelectBox(
-    $name = NULL,
-    $selectedValue = NULL,
+    $name = null,
+    $selectedValue = null,
     $boxReadOnly = false,
     $isRequired = false,
-    $disableDefault = false)
-{
+    $disableDefault = false
+) {
     $conn = new Mysql();
     $conn -> dbConnect();
     $result = $conn -> select(
         'T_Invoice',
         'DISTINCT CONCAT(CAST(year AS VARCHAR(255)), " ", CAST(nr AS VARCHAR(255))) AS name, id AS value',
-        NULL,
-        'year DESC, nr DESC');
+        null,
+        'year DESC, nr DESC'
+    );
     $conn -> dbDisconnect();
     $conn = null;
-    
-    if(is_null($name)) {
+
+    if (is_null($name)) {
         $name = 'invoiceId';
     }
-    
+
     return selectBox(
         $name,
         $isRequired,
@@ -211,6 +223,6 @@ function invoiceSelectBox(
         $result,
         $selectedValue,
         $disableDefault,
-        $boxReadOnly);
+        $boxReadOnly
+    );
 }
-?>

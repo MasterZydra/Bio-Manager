@@ -1,4 +1,5 @@
 <?php
+
 /*
 * deleteInvoice.php
 * -----------------
@@ -27,4 +28,3 @@
         array('T_DeliveryNote', 'invoiceId = NULL', 'invoiceId = ' . secGET('id')));
 
     $form -> show();
-?>

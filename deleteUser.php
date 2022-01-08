@@ -1,4 +1,5 @@
 <?php
+
 /*
 * deleteUser.php
 * --------------
@@ -28,4 +29,3 @@
         array('T_UserPermission', 'userId', secGET('id')));
 
     $form -> show();
-?>

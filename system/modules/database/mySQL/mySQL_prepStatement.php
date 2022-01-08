@@ -1,4 +1,5 @@
 <?php
+
 /*
 * mySQL_prepStatement.php
 * ---------------------------
@@ -9,55 +10,64 @@
 */
 include_once 'modules/Mysql.php';
 
-class MySQL_prepStatement {
+class MySQL_prepStatement
+{
     /**
     * Mysqli object for connection to database
     * @var mysqli
     */
     protected $conn;
-    
+
     /**
     * Create a new MySQL_prepStatement object.
     * Connect to database.
     */
-    function __construct() {
+    function __construct()
+    {
         $this -> conn = new Mysql();
         $this -> conn -> dbConnect();
     }
-    
+
     /**
     * Close connection to database
     */
-    public function destroy() {
+    public function destroy()
+    {
         $this -> conn -> dbDisconnect();
     }
-    
+
     /**
     * Show sql query if option is activated
     */
-    protected function showQuery($sqlQuery) {
-        if(isset($_SESSION['devOpt_ShowQuery'])
-           && $_SESSION['devOpt_ShowQuery']) {
+    protected function showQuery($sqlQuery)
+    {
+        if (
+            isset($_SESSION['devOpt_ShowQuery'])
+            && $_SESSION['devOpt_ShowQuery']
+        ) {
             // Print sql query
             echo '<div class="log">';
             echo '<strong>SQL Query</strong>: ' . $sqlQuery;
             echo '</div>';
         }
     }
-    
+
     /**
     * Show error message if user has developer permission
     */
-    protected function showError($error) {
-        if(isset($_SESSION['devOpt_ShowQuery'])
-           && $_SESSION['devOpt_ShowQuery']) {
+    protected function showError($error)
+    {
+        if (
+            isset($_SESSION['devOpt_ShowQuery'])
+            && $_SESSION['devOpt_ShowQuery']
+        ) {
             // Print sql query
             echo '<div class="warning">';
             echo '<strong>SQL Error</strong>: ' . $error;
             echo '</div>';
         }
     }
-    
+
     /**
     * Get first row from data set of given query
     *
@@ -66,14 +76,15 @@ class MySQL_prepStatement {
     * @author David Hein
     * @return data row
     */
-    public static function getFirstRow($dataSet) {
+    public static function getFirstRow($dataSet)
+    {
         if ($dataSet -> num_rows == 0) {
-            return NULL;
+            return null;
         } else {
             return $dataSet -> fetch_assoc();
         }
     }
-    
+
     /**
     * Select mysqli_result from an given column, table, where column and id
     *
@@ -86,12 +97,13 @@ class MySQL_prepStatement {
     * @author David Hein
     * @return mysqli_result/NULL
     */
-    public function selectColWhereCol(string $col, string $table, $whereCol, $givenId, $colTyp = "i") {
-        $sqlQuery = "SELECT $col FROM ". $this -> conn -> getDatabaseName() . ".$table ";
+    public function selectColWhereCol(string $col, string $table, $whereCol, $givenId, $colTyp = "i")
+    {
+        $sqlQuery = "SELECT $col FROM " . $this -> conn -> getDatabaseName() . ".$table ";
         // Select with parameter
         if (!is_null($whereCol)) {
             $sqlQuery .= "WHERE $whereCol = ?";
-    
+
             // Query for developer
             $this -> showQuery($sqlQuery);
 
@@ -105,7 +117,7 @@ class MySQL_prepStatement {
             // Execute query
             if (!$stmt -> execute()) {
                 $this -> showError($stmt -> error);
-                return NULL;
+                return null;
             } else {
                 return $stmt -> get_result();
             }
@@ -115,7 +127,7 @@ class MySQL_prepStatement {
             return $this -> conn -> select($table, $col);
         }
     }
-    
+
     /**
     * Delete entry in table with an given table and id
     *
@@ -126,8 +138,9 @@ class MySQL_prepStatement {
     * @author David Hein
     * @return boolean
     */
-    public function deleteWhereCol($table, $whereCol, $givenId) {
-        $sqlQuery = "DELETE FROM ". $this -> conn -> getDatabaseName() . ".$table WHERE $whereCol = ?";
+    public function deleteWhereCol($table, $whereCol, $givenId)
+    {
+        $sqlQuery = "DELETE FROM " . $this -> conn -> getDatabaseName() . ".$table WHERE $whereCol = ?";
         $stmt = $this -> conn -> connectionString -> prepare($sqlQuery);
         $stmt -> bind_param('i', $id);
         // Query for developer
@@ -137,7 +150,7 @@ class MySQL_prepStatement {
         // Execute query
         return $stmt -> execute();
     }
-    
+
     /**
     * Update entry in table with an given table and id
     *
@@ -152,9 +165,9 @@ class MySQL_prepStatement {
     * @author David Hein
     * @return boolean
     */
-    public function updateColsWhereCol(string $table, $whereCol, string $whereColTyp, $givenId, array $cols, string $colTyp, ...$values) : bool
+    public function updateColsWhereCol(string $table, $whereCol, string $whereColTyp, $givenId, array $cols, string $colTyp, ...$values): bool
     {
-        $sqlQuery = "UPDATE ". $this -> conn -> getDatabaseName() . ".$table SET ";
+        $sqlQuery = "UPDATE " . $this -> conn -> getDatabaseName() . ".$table SET ";
         $sqlQuerySet = "";
         foreach ($cols as $col) {
             if ($sqlQuerySet != "") {
@@ -191,9 +204,9 @@ class MySQL_prepStatement {
     * @author David Hein
     * @return boolean
     */
-    public function insertCols(string $table, array $cols, string $colTyp, ...$values) : bool
+    public function insertCols(string $table, array $cols, string $colTyp, ...$values): bool
     {
-        $sqlQuery = "INSERT INTO ". $this -> conn -> getDatabaseName() . ".$table ";
+        $sqlQuery = "INSERT INTO " . $this -> conn -> getDatabaseName() . ".$table ";
         $sqlQueryCols = "";
         $sqlQueryValues = "";
         foreach ($cols as $col) {
@@ -232,10 +245,11 @@ class MySQL_prepStatement {
     * @author David Hein
     * @return mysqli_result/NULL
     */
-    public function selectWhereId($table, $givenId) {
+    public function selectWhereId($table, $givenId)
+    {
         return $this -> selectColWhereCol("*", $table, "id", $givenId);
     }
-    
+
     /**
     * Select mysqli_result from an given column, table, where column and id
     *
@@ -246,10 +260,11 @@ class MySQL_prepStatement {
     * @author David Hein
     * @return mysqli_result/NULL
     */
-    public function selectColWhereId($col, $table, $givenId) {
+    public function selectColWhereId($col, $table, $givenId)
+    {
         return $this -> selectColWhereCol($col, $table, "id", $givenId);
     }
-    
+
     /**
     * Delete entry in table with an given table and id
     *
@@ -259,7 +274,8 @@ class MySQL_prepStatement {
     * @author David Hein
     * @return boolean
     */
-    public function deleteWhereId($table, $givenId) {
+    public function deleteWhereId($table, $givenId)
+    {
         $this -> deleteWhereCol($table, "id", $givenId);
     }
 
@@ -276,10 +292,8 @@ class MySQL_prepStatement {
     * @author David Hein
     * @return boolean
     */
-    public function updateColsWhereId(string $table, array $cols, string $colType, int $givenId, ...$values) : bool
+    public function updateColsWhereId(string $table, array $cols, string $colType, int $givenId, ...$values): bool
     {
         return $this->updateColsWhereCol($table, "id", "i", $givenId, $cols, $colType, ...$values);
     }
 }
-
-?>

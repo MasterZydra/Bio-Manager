@@ -7,21 +7,22 @@
 * @Author: David Hein
 */
 
-    include 'modules/header_user.php';
-    include 'modules/permissionCheck.php';
+include 'modules/header_user.php';
+include 'modules/permissionCheck.php';
 
-    // Check permission
-    if(!isAdmin() ||
-       // Check if id is numeric
-       (isset($_GET['id']) && !is_numeric($_GET['id'])))
-    {
-        header("Location: index.php");
-        exit();
-    }
+// Check permission
+if (
+    !isAdmin() ||
+        // Check if id is numeric
+        (isset($_GET['id']) && !is_numeric($_GET['id']))
+) {
+    header("Location: index.php");
+    exit();
+}
 
-    include 'modules/header.php';
+include 'modules/header.php';
 
-    include_once 'modules/Mysql_preparedStatement_BioManager.php';
+include_once 'modules/Mysql_preparedStatement_BioManager.php';
 ?>
 <h1>Einstellung bearbeiten</h1>
 
@@ -30,39 +31,40 @@
 </p>
 
 <?php
-    if(!isset($_GET['id'])) {
+if (!isset($_GET['id'])) {
+    echo '<div class="warning">';
+    echo 'Es wurde kein Einstellung übergeben. Zurück zu <a href="setting.php">Alle Einstellungen anzeigen</a>';
+    echo '</div>';
+} else {
+    $conn = new Mysql();
+    $conn -> dbConnect();
+    if (isset($_GET['edit'])) {
+        $conn -> update(
+            'T_Setting',
+            'description = \'' . secPOST('settingDesc') . '\', '
+            . 'value = \'' . secPOST('settingValue') . '\'',
+            'id = ' . secGET('id')
+        );
+        echo '<div class="infobox">';
+        echo 'Die Änderungen wurden erfolgreich gespeichert';
+        echo '</div>';
+    }
+
+    $conn -> dbDisconnect();
+    $conn = null;
+
+    // Select data
+    $prepStmt = new mysql_preparedStatement_BioManager();
+    $row = $prepStmt -> selectWhereId("T_Setting", secGET('id'));
+    $prepStmt -> destroy();
+
+    // Check if id is valid
+    if ($row == null) {
         echo '<div class="warning">';
-        echo 'Es wurde kein Einstellung übergeben. Zurück zu <a href="setting.php">Alle Einstellungen anzeigen</a>';
+        echo 'Die ausgewählte Einstellung wurde in der Datenbank nicht gefunden. Zurück zu <a href="setting.php">Alle Einstellungen anzeigen</a>';
         echo '</div>';
     } else {
-        $conn = new Mysql();
-        $conn -> dbConnect();
-        if(isset($_GET['edit'])) {
-            $conn -> update(
-                'T_Setting',
-                'description = \'' . secPOST('settingDesc') . '\', '
-                . 'value = \'' . secPOST('settingValue') . '\'',
-                'id = ' . secGET('id'));
-            echo '<div class="infobox">';
-            echo 'Die Änderungen wurden erfolgreich gespeichert';
-            echo '</div>';
-        }
-
-        $conn -> dbDisconnect();
-        $conn = NULL;
-        
-        // Select data
-        $prepStmt = new mysql_preparedStatement_BioManager();
-        $row = $prepStmt -> selectWhereId("T_Setting", secGET('id'));
-        $prepStmt -> destroy();
-        
-        // Check if id is valid 
-        if ($row == NULL) {
-            echo '<div class="warning">';
-            echo 'Die ausgewählte Einstellung wurde in der Datenbank nicht gefunden. Zurück zu <a href="setting.php">Alle Einstellungen anzeigen</a>';
-            echo '</div>';
-        } else {
-?>
+        ?>
 
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post" class="requiredLegend">
     <label>Einstellung:<br>
@@ -78,8 +80,8 @@
     <button>Änderungen speichern</button>
 </form>
 
-<?php
-        }
+        <?php
     }
-    include 'modules/footer.php';
+}
+include 'modules/footer.php';
 ?>

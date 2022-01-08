@@ -1,4 +1,5 @@
 <?php
+
 /*
 * form.php
 * --------
@@ -17,7 +18,8 @@ include 'modules/permissionCheck.php';
 *
 * @author David Hein
 */
-class form {
+class form
+{
     /**
     * Permission that is necessary to access this page.
     * If it is a string e.g. "isMaintainer", the function will be executed.
@@ -31,7 +33,7 @@ class form {
     * @var string
     */
     public $returnPage;
-    
+
     /**
     * Permission that is necessary to view the elements in $linkElement.
     * If it is a string e.g. "isMaintainer", the function will be executed.
@@ -45,42 +47,43 @@ class form {
     * @var string
     */
     public $linkElement;
-    
+
     /**
     * H1 heading which is shown on the page content.
     * @var string
     */
     public $heading;
-    
+
     /**
     * Flag if caching shall be activated for the page.
     * The default value is "false". To activate caching set the value to "true".
     * @var boolean
     */
     public $caching;
-    
+
     /**
     * Config for other contents. It is e.g. used for transfer the cache file name.
     * @var array
     */
     protected $config;
-    
+
     /**
     * Construct a new form object and set default values for the properties
     *
     * @author David Hein
     */
-    function __construct() {
+    function __construct()
+    {
         $this -> accessPermission   = false;
         $this -> returnPage         = "index.php";
-        
+
         $this -> linkPermission     = false;
         $this -> linkElement        = '<a href="index.php">Startseite</a>';
-        
+
         $this -> heading            = "Überschrift";
-        
+
         $this -> caching            = false;
-        
+
         $this -> config["cacheFile"] = "";
     }
 
@@ -89,7 +92,8 @@ class form {
     *
     * @author David Hein
     */
-    protected function head() {
+    protected function head()
+    {
         include 'modules/header_user.php';
 
         // Execute access permission function
@@ -97,31 +101,31 @@ class form {
             $permissionFunc = $this -> accessPermission;
             $this -> accessPermission = $permissionFunc();
         }
-        
+
         // Execute link permission function
         if (is_string($this -> caching)) {
             $permissionFunc = $this -> caching;
             $this -> caching = $permissionFunc();
         }
-        
+
         // Check permission
-        if(!$this -> accessPermission) {
+        if (!$this -> accessPermission) {
             header("Location: " . $this -> returnPage);
             exit();
         }
 
-        // Caching        
-        if($this -> caching) {
+        // Caching
+        if ($this -> caching) {
             include 'modules/cache.php';
             $this -> config["cacheFile"] = $config["cacheFile"];
         }
-        
+
         include 'modules/header.php';
-        
+
         // Heading and link
         echo "<h1>" . $this -> heading . "</h1>";
         echo "<p>";
-        if($this -> linkPermission) {
+        if ($this -> linkPermission) {
             echo $this -> linkElement;
         }
         echo "</p>";
@@ -133,25 +137,25 @@ class form {
     *
     * @author David Hein
     */
-    protected function foot() {
+    protected function foot()
+    {
         include 'modules/footer.php';
-        
+
         // Caching
-        if($this -> caching) {
+        if ($this -> caching) {
             writeCacheFile($this -> config["cacheFile"]);
         }
     }
-    
+
     /**
     * Main function which calls all parts that will be executed.
     * It creates the page which will be shown.
     *
     * @author David Hein
     */
-    public function show() {
+    public function show()
+    {
         $this -> head();
         $this -> foot();
     }
 }
-
-?>

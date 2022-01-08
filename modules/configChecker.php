@@ -1,4 +1,5 @@
 <?php
+
 /*
 * configChecker.php
 * -----------------
@@ -9,28 +10,33 @@
 
 if (isAdmin()) {
     // ---------  DatabaseConfig  ---------
-    if (file_exists('config/DatabaseConfig.php'))
+    if (file_exists('config/DatabaseConfig.php')) {
         include_once 'config/DatabaseConfig.php';
+    }
 
     // Check if file exists and all settings are set
-    if (!file_exists('config/DatabaseConfig.php') ||
+    if (
+        !file_exists('config/DatabaseConfig.php') ||
         !isset($database["server_name"]) ||
         !isset($database["database_name"]) ||
         !isset($database["database_username"]) ||
-        !isset($database["database_password"]))
-    {
+        !isset($database["database_password"])
+    ) {
         showWarningWithUrl(
             'Die Einstellungen für die <strong>Datenbankverbindung</strong> fehlen oder sind nicht vollständig!',
             'editDBConnection.php',
-            'Bitte konfigurieren');
+            'Bitte konfigurieren'
+        );
     }
 
     // ---------  ImpressumConfig  ---------
-    if (file_exists('config/ImpressumConfig.php'))
+    if (file_exists('config/ImpressumConfig.php')) {
         include 'config/ImpressumConfig.php';
+    }
 
     // Check if file exists and all settings are set
-    if (!file_exists('config/ImpressumConfig.php') ||
+    if (
+        !file_exists('config/ImpressumConfig.php') ||
         !isset($impressum["provider_name"]) ||
         !isset($impressum["provider_street"]) ||
         !isset($impressum["provider_postalCode"]) ||
@@ -40,20 +46,23 @@ if (isAdmin()) {
         !isset($impressum["responsible_street"]) ||
         !isset($impressum["responsible_postalCode"]) ||
         !isset($impressum["responsible_city"]) ||
-        !isset($impressum["responsible_email"]))
-    {
+        !isset($impressum["responsible_email"])
+    ) {
         showWarningWithUrl(
             'Die Einstellungen für das <strong>Impressum</strong> fehlen oder sind nicht vollständig!',
             'editImpressum.php',
-            'Bitte konfigurieren');
+            'Bitte konfigurieren'
+        );
     }
 
     // ---------  InvoiceDataConfig  ---------
-    if (file_exists('config/InvoiceDataConfig.php'))
+    if (file_exists('config/InvoiceDataConfig.php')) {
         include 'config/InvoiceDataConfig.php';
+    }
 
     // Check if file exists and all settings are set
-    if (!file_exists('config/InvoiceDataConfig.php') ||
+    if (
+        !file_exists('config/InvoiceDataConfig.php') ||
         !isset($invoice["sender_name"]) ||
         !isset($invoice["sender_address"]) ||
         !isset($invoice["sender_postalCode"]) ||
@@ -62,40 +71,46 @@ if (isAdmin()) {
         !isset($invoice["BIC"]) ||
         !isset($invoice["IBAN"]) ||
         !isset($invoice["author"]) ||
-        !isset($invoice["name"]))
-    {
+        !isset($invoice["name"])
+    ) {
         showWarningWithUrl(
             'Die Einstellungen für die <strong>Rechnung</strong> fehlen oder sind nicht vollständig!',
             'editInvoiceData.php',
-            'Bitte konfigurieren');
+            'Bitte konfigurieren'
+        );
     }
-    
+
     // ---------  CommonConfig  ---------
-    if (file_exists('config/CommonConfig.php'))
+    if (file_exists('config/CommonConfig.php')) {
         include_once 'config/CommonConfig.php';
+    }
 
     // Check if file exists and all settings are set
-    if (!file_exists('config/CommonConfig.php') ||
-        !isset($common['organisation']))
-    {
+    if (
+        !file_exists('config/CommonConfig.php') ||
+        !isset($common['organisation'])
+    ) {
         showWarningWithUrl(
             'Die allgemeinen Einstellungen fehlen oder sind nicht vollständig!',
             'editCommonConfig.php',
-            'Bitte konfigurieren');
+            'Bitte konfigurieren'
+        );
     }
 // First initialisation
 } else {
-    if (file_exists('config/DatabaseConfig.php'))
+    if (file_exists('config/DatabaseConfig.php')) {
         include_once 'config/DatabaseConfig.php';
-    
+    }
+
     // Check if file exists and array exists
-    if (!file_exists('config/DatabaseConfig.php') ||
-        (file_exists('config/DatabaseConfig.php') && !isset($database)))
-    {
+    if (
+        !file_exists('config/DatabaseConfig.php') ||
+        (file_exists('config/DatabaseConfig.php') && !isset($database))
+    ) {
         showWarningWithUrl(
             'Die Einstellungen für die <strong>Datenbankverbindung</strong> fehlen!',
             'initDBConnection.php',
-            'Bitte konfigurieren');
+            'Bitte konfigurieren'
+        );
     }
 }
-?>

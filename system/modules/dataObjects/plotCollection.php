@@ -1,4 +1,5 @@
 <?php
+
 /*
 * plotCollection.php
 * ------------------
@@ -27,12 +28,13 @@ class PlotCollection implements iDataCollection
     }
 
     // Close all open connections used in class
-    function destroy() {
+    function destroy()
+    {
         $this->prepStatement->destroy();
     }
 
     // Find entry with the given id
-    public function find(int $id) : iObject
+    public function find(int $id): iObject
     {
         $dataSet = $this->prepStatement->selectWhereId("T_Plot", $id);
         $rows = $this->dataSetToArrayOfPlots($dataSet);
@@ -43,9 +45,9 @@ class PlotCollection implements iDataCollection
     }
 
     // Find all entries in the table
-    public function findAll() : array
+    public function findAll(): array
     {
-        $dataSet = $this->prepStatement->selectColWhereCol("*", "T_Plot", NULL, NULL);
+        $dataSet = $this->prepStatement->selectColWhereCol("*", "T_Plot", null, null);
         return $this->dataSetToArrayOfPlots($dataSet);
     }
 
@@ -55,47 +57,56 @@ class PlotCollection implements iDataCollection
         return $this->dataSetToArrayOfPlots($dataSet);
     }
 
-    public function update(iObject $object) : bool
+    public function update(iObject $object): bool
     {
-        if (MySQL_helpers::objectAlreadyExists($this, $object->name(), $object->id()))
-        {
+        if (MySQL_helpers::objectAlreadyExists($this, $object->name(), $object->id())) {
             return false;
         }
-        
+
         return $this->prepStatement->updateColsWhereId(
-            "T_Plot", array("nr", "name", "subdistrict", "supplierId"), "sssi",
-            $object->id(), $object->nr(), $object->name(), $object->subdistrict(), intval($object->supplierId()));
+            "T_Plot",
+            array("nr", "name", "subdistrict", "supplierId"),
+            "sssi",
+            $object->id(),
+            $object->nr(),
+            $object->name(),
+            $object->subdistrict(),
+            intval($object->supplierId())
+        );
     }
 
-    public function add(iObject $object) : bool
+    public function add(iObject $object): bool
     {
-        if (MySQL_helpers::objectAlreadyExists($this, $object->name(), $object->id()))
-        {
+        if (MySQL_helpers::objectAlreadyExists($this, $object->name(), $object->id())) {
             return false;
         }
 
         return $this->prepStatement->insertCols(
-            "T_Plot", array("nr", "name", "subdistrict", "supplierId"), "sssi",
-            $object->nr(), $object->name(), $object->subdistrict(), intval($object->supplierId()));
+            "T_Plot",
+            array("nr", "name", "subdistrict", "supplierId"),
+            "sssi",
+            $object->nr(),
+            $object->name(),
+            $object->subdistrict(),
+            intval($object->supplierId())
+        );
     }
 
     private function dataSetToArrayOfPlots($dataSet)
     {
         if (is_null($dataSet) || $dataSet -> num_rows == 0) {
-            return NULL;
+            return null;
         }
         // Create Plot objects for all entries and push them into the array
         $result = array();
-        while($row = $dataSet->fetch_assoc()) {
+        while ($row = $dataSet->fetch_assoc()) {
             array_push($result, $this->newPlot($row));
         }
         return $result;
     }
 
-    private function newPlot($row) : Plot
+    private function newPlot($row): Plot
     {
         return new Plot(intval($row["id"]), $row["nr"], $row["name"], $row["subdistrict"], intval($row["supplierId"]));
     }
 }
-
-?>

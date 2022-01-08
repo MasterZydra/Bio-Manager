@@ -7,18 +7,18 @@
 * @Author: David Hein
 */
 
-    include 'modules/header_user.php';
-    include 'modules/permissionCheck.php';
-    
-    // Check permission
-    if(!(isAdmin() && isDeveloper())) {
-        header("Location: setting.php");
-        exit();
-    }
+include 'modules/header_user.php';
+include 'modules/permissionCheck.php';
 
-    include 'modules/header.php';
+// Check permission
+if (!(isAdmin() && isDeveloper())) {
+    header("Location: setting.php");
+    exit();
+}
 
-    include 'modules/selectBox_BioManager.php';
+include 'modules/header.php';
+
+include 'modules/selectBox_BioManager.php';
 ?>
 
 <h1>Einstellung hinzufügen</h1>
@@ -28,60 +28,66 @@
 </p>
 <?php
     $alreadyExist = isset($_POST["settingName"]) && alreadyExistsSetting(secPOST("settingName"));
-    if(isset($_GET['add'])) {
-        if($alreadyExist) {
-            echo '<div class="warning">';
-            echo 'Die Einstellung <strong>' . secPOST("settingName") . '</strong> existiert bereits';
-            echo '</div>';
-        } else {
-            $conn = new Mysql();
-            $conn -> dbConnect();
+if (isset($_GET['add'])) {
+    if ($alreadyExist) {
+        echo '<div class="warning">';
+        echo 'Die Einstellung <strong>' . secPOST("settingName") . '</strong> existiert bereits';
+        echo '</div>';
+    } else {
+        $conn = new Mysql();
+        $conn -> dbConnect();
 
-            $NULL = [
-                "type" => "null",
-                "val" => "null"
-            ];
+        $NULL = [
+            "type" => "null",
+            "val" => "null"
+        ];
 
-            $setting_name = [
-                "type" => "char",
-                "val" => secPOST("settingName")
-            ];
+        $setting_name = [
+            "type" => "char",
+            "val" => secPOST("settingName")
+        ];
 
-            $setting_desc = [
-                "type" => "char",
-                "val" => secPOST("settingDesc")
-            ];
+        $setting_desc = [
+            "type" => "char",
+            "val" => secPOST("settingDesc")
+        ];
 
-            $setting_value = [
-                "type" => "char",
-                "val" => secPOST("settingValue")
-            ];
+        $setting_value = [
+            "type" => "char",
+            "val" => secPOST("settingValue")
+        ];
 
-            // Add setting
-            $data = array($NULL, $setting_name, $setting_desc, $setting_value);
-            $conn -> insertInto('T_Setting', $data);
-            $data = NULL;
+        // Add setting
+        $data = array($NULL, $setting_name, $setting_desc, $setting_value);
+        $conn -> insertInto('T_Setting', $data);
+        $data = null;
 
-            $conn -> dbDisconnect();
+        $conn -> dbDisconnect();
 
-            echo '<div class="infobox">';
-            echo 'Die Einstellung <strong>' . secPOST("settingName") . '</strong> wurde hinzugefügt';
-            echo '</div>';
-        }
+        echo '<div class="infobox">';
+        echo 'Die Einstellung <strong>' . secPOST("settingName") . '</strong> wurde hinzugefügt';
+        echo '</div>';
     }
+}
 ?>
 <form action="?add=1" method="post" class="requiredLegend">
     <label for="settingName" class="required">Name:</label><br>
     <input id="settingName" name="settingName" type="text" placeholder="Name eingeben" required autofocus
-        <?php if($alreadyExist) { echo ' value="' . secPOST("settingName") . '"'; } ?>><br>
+        <?php if ($alreadyExist) {
+            echo ' value="' . secPOST("settingName") . '"';
+        } ?>><br>
     
     <label for="settingDesc" class="required">Beschreibung:</label><br>
     <input id="settingDesc" name="settingDesc" type="text" placeholder="Beschreibung eingeben" required
-        <?php if($alreadyExist) { echo ' value="' . secPOST("settingDesc") . '"'; } ?>><br>
+        <?php if ($alreadyExist) {
+            echo ' value="' . secPOST("settingDesc") . '"';
+        } ?>><br>
     
     <label for="settingValue" class="required">Wert:</label><br>
     <input id="settingValue" name="settingValue" type="text" placeholder="Wert eingeben" required
-        <?php if($alreadyExist) { echo ' value="' . secPOST("settingValue") . '"'; } ?>><br>
+        <?php if ($alreadyExist) {
+            echo ' value="' . secPOST("settingValue") . '"';
+        } ?>><br>
     
     <button>Hinzufügen</button>
 </form>

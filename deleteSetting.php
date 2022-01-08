@@ -1,4 +1,5 @@
 <?php
+
 /*
 * deleteSetting.php
 * --------------
@@ -23,4 +24,3 @@
     $form -> overviewPage       = 'setting.php';
 
     $form -> show();
-?>

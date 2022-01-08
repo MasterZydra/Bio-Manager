@@ -7,28 +7,28 @@
 * @Author: David Hein
 */
 
-    include 'modules/header_user.php';
-    include 'modules/permissionCheck.php';
-    
-    // Check permission
-    if(!isAdmin()) {
-        header("Location: index.php");
-        exit();
-    }
+include 'modules/header_user.php';
+include 'modules/permissionCheck.php';
 
-    include 'modules/header.php';
+// Check permission
+if (!isAdmin()) {
+    header("Location: index.php");
+    exit();
+}
 
-    include 'modules/formHelper.php';
+include 'modules/header.php';
+
+include 'modules/formHelper.php';
 ?>
 
 <h1>Rechnungsdaten bearbeiten</h1>
 
 <?php
-    if(isset($_GET['edit'])) {
-        // --- Write new imprint data in config file ---
-        $myfile = fopen("./config/InvoiceDataConfig.php", "w");
-        // Create file content
-        $txt = '<?php
+if (isset($_GET['edit'])) {
+    // --- Write new imprint data in config file ---
+    $myfile = fopen("./config/InvoiceDataConfig.php", "w");
+    // Create file content
+    $txt = '<?php
     // Configuration for data which will be shown in invoice
     // Important: Use web interface to change the data. This file will be written from there.
     $invoice["sender_name"] = "' . secPOST('sender_name') . '";
@@ -41,20 +41,21 @@
     $invoice["author"] = "' . secPOST('author') . '";
     $invoice["name"] = "' . secPOST('name') . '";
 ?>';
-        fwrite($myfile, $txt);
-        fclose($myfile);
+    fwrite($myfile, $txt);
+    fclose($myfile);
 
-        echo '<div class="infobox">';
-        echo 'Die Änderungen wurden erfolgreich gespeichert';
-        echo '</div>';
-        // Include after writing so the new content will be shown in form        
+    echo '<div class="infobox">';
+    echo 'Die Änderungen wurden erfolgreich gespeichert';
+    echo '</div>';
+    // Include after writing so the new content will be shown in form
+    include 'config/InvoiceDataConfig.php';
+} else {
+    // Check if file exists to prevent warnings
+    if (file_exists('config/InvoiceDataConfig.php')) {
         include 'config/InvoiceDataConfig.php';
-    } else {
-        // Check if file exists to prevent warnings
-        if (file_exists('config/InvoiceDataConfig.php'))
-            include 'config/InvoiceDataConfig.php';    
     }
-    $invoice = $invoice ?? NULL;
+}
+    $invoice = $invoice ?? null;
 ?>
 <form action="?edit=1" method="post" class="requiredLegend">
     <h2>Allgemeines</h2>

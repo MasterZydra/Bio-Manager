@@ -1,4 +1,5 @@
 <?php
+
 /*
 * deleteSupplier.php
 * ------------------
@@ -23,4 +24,3 @@
     $form -> overviewPage       = 'supplier.php';
 
     $form -> show();
-?>

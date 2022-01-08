@@ -1,4 +1,5 @@
 <?php
+
 /*
 * permissionCheck.php
 * ---------------
@@ -20,7 +21,8 @@ include 'modules/messageHelper.php';
 *
 * @return Boolean if user has permission
 */
-function checkPermission($permission) {
+function checkPermission($permission)
+{
     // Return always false, if visitor is not logged in
     if (!isset($_SESSION['userId'])) {
         return false;
@@ -36,7 +38,8 @@ function checkPermission($permission) {
 *
 * @return Boolean if user has permission
 */
-function isDeveloper() {
+function isDeveloper()
+{
     return checkPermission('isDeveloper');
 }
 
@@ -45,7 +48,8 @@ function isDeveloper() {
 *
 * @return Boolean if user has permission
 */
-function isAdmin() {
+function isAdmin()
+{
     return checkPermission('isAdmin');
 }
 
@@ -54,7 +58,8 @@ function isAdmin() {
 *
 * @return Boolean if user has permission
 */
-function isMaintainer() {
+function isMaintainer()
+{
     return checkPermission('isMaintainer');
 }
 
@@ -63,7 +68,8 @@ function isMaintainer() {
 *
 * @return Boolean if user has permission
 */
-function isInspector() {
+function isInspector()
+{
     return checkPermission('isInspector');
 }
 
@@ -72,7 +78,8 @@ function isInspector() {
 *
 * @return Boolean if user has permission
 */
-function isVendor() {
+function isVendor()
+{
     return checkPermission('isVendor');
 }
 
@@ -81,7 +88,8 @@ function isVendor() {
 *
 * @return Boolean if user has permission
 */
-function isLoggedIn() {
+function isLoggedIn()
+{
     return isset($_SESSION['userId']);
 }
 
@@ -90,11 +98,12 @@ function isLoggedIn() {
 *
 * @return Boolean if user is supplier
 */
-function isSupplier() {
+function isSupplier()
+{
     $prepStmt = new mysql_preparedStatement();
     $row = $prepStmt -> selectColWhereId("supplierId", "T_User", $_SESSION['userId']);
     $prepStmt -> destroy();
-    
+
     return checkPermission('isSupplier') && !is_null($row) && !is_null($row['supplierId']);
 }
 
@@ -104,12 +113,13 @@ function isSupplier() {
 * @author David Hein
 * @return Supplier id or 0 if no id found
 */
-function getUserSupplierId() {
+function getUserSupplierId()
+{
     $prepStmt = new mysql_preparedStatement();
     $row = $prepStmt -> selectColWhereId("supplierId", "T_User", $_SESSION['userId']);
     $prepStmt -> destroy();
-    
-    if(is_null($row)){
+
+    if (is_null($row)) {
         return 0;
     } else {
         return $row['supplierId'];
@@ -117,9 +127,7 @@ function getUserSupplierId() {
 }
 
 // Show PHP messages and warnings if user is developer
-if(isDeveloper()) {
+if (isDeveloper()) {
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 }
-
-?>

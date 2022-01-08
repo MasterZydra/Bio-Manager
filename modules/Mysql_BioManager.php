@@ -1,4 +1,5 @@
 <?php
+
 /*
 * Mysql_BioManager.php
 * --------------------
@@ -22,12 +23,14 @@
 *
 * @author David Hein
 */
-function updateSupplier($conn, $id, $name, $inactive) {
+function updateSupplier($conn, $id, $name, $inactive)
+{
     $conn -> update(
         'T_Supplier',
-        'name = \'' . $name .'\', '
+        'name = \'' . $name . '\', '
         . 'inactive = ' . $inactive,
-        'id = ' . $id);
+        'id = ' . $id
+    );
 }
 
 /**
@@ -39,10 +42,11 @@ function updateSupplier($conn, $id, $name, $inactive) {
 * @author David Hein
 * @return If no delivery exists, it return 1. Else the next number is returned.
 */
-function getNextDeliveryNoteNr($conn, $year) {
+function getNextDeliveryNoteNr($conn, $year)
+{
     $conn -> select('T_DeliveryNote', '(MAX(nr) + 1) AS nextId', 'year = ' . $year);
     $row = $conn -> getFirstRow();
-    if(is_null($row) || is_null($row['nextId'])) {
+    if (is_null($row) || is_null($row['nextId'])) {
         return 1;
     }
     return $row['nextId'];
@@ -57,10 +61,11 @@ function getNextDeliveryNoteNr($conn, $year) {
 * @author David Hein
 * @return If no invoice exists, it return 1. Else the next number is returned.
 */
-function getNextInvoiceNr($conn, $year) {
+function getNextInvoiceNr($conn, $year)
+{
     $conn -> select('T_Invoice', '(MAX(nr) + 1) AS nextId', 'year = ' . $year);
     $row = $conn -> getFirstRow();
-    if(is_null($row) || is_null($row['nextId'])) {
+    if (is_null($row) || is_null($row['nextId'])) {
         return 1;
     }
     return $row['nextId'];
@@ -74,19 +79,19 @@ function getNextInvoiceNr($conn, $year) {
 * @author David Hein
 * @return false if not no data has been found.
 */
-function getSetting($setting) {
+function getSetting($setting)
+{
     // Get setting
     $conn = new Mysql();
     $conn -> dbConnect();
     $conn -> select('T_Setting', 'value', 'name =\'' . $setting . '\'');
     $row = $conn -> getFirstRow();
     $conn -> dbDisconnect();
-    $conn = NULL;
-    
+    $conn = null;
+
     if (is_null($row)) {
         return false;
-    }
-    else {
+    } else {
         return $row['value'];
     }
     return false;
@@ -105,8 +110,9 @@ function getSetting($setting) {
 * @author David Hein
 * @return data set of delivery notes
 */
-function getDeliveryNotes($isComplete = true, $year = NULL, $invoiceId = NULL, $joinSupplier = true, $invertSort = false, $isUnused = false) {
-    if($isComplete) {
+function getDeliveryNotes($isComplete = true, $year = null, $invoiceId = null, $joinSupplier = true, $invertSort = false, $isUnused = false)
+{
+    if ($isComplete) {
         $whereCondition =
             '(deliverDate IS NOT NULL '
             . 'AND amount IS NOT NULL '
@@ -118,46 +124,46 @@ function getDeliveryNotes($isComplete = true, $year = NULL, $invoiceId = NULL, $
             . 'OR supplierId IS NULL)'
             . ' AND invoiceId IS NULL';
     }
-    
-    if(!is_null($year)) {
+
+    if (!is_null($year)) {
         $whereCondition .= ' AND year = ' . $year;
     }
-    
-    if(!is_null($invoiceId)) {
+
+    if (!is_null($invoiceId)) {
         $whereCondition .= ' AND invoiceId = ' . $invoiceId;
     }
-    
-    if($isUnused) {
+
+    if ($isUnused) {
         $whereCondition .= ' AND invoiceId IS NULL';
     }
-    
+
     $from = 'T_DeliveryNote';
     $select = 'T_DeliveryNote.id, year, nr, amount, deliverDate, productId';
-    if($joinSupplier) {
+    if ($joinSupplier) {
         $from .= ' LEFT JOIN T_Supplier ON T_Supplier.id = supplierId';
         $select .= ', T_Supplier.name AS supplierName';
     }
-    
-    if($invertSort) {
+
+    if ($invertSort) {
         $orderBy = 'year DESC, nr ASC';
     } else {
         $orderBy = 'year DESC, nr DESC';
     }
-    
+
     $conn = new Mysql();
     $conn -> dbConnect();
     $result = $conn -> select(
         $from,
         $select,
         $whereCondition,
-        $orderBy);
+        $orderBy
+    );
     $conn -> dbDisconnect();
-    $conn = NULL;
-    
+    $conn = null;
+
     if ($result -> num_rows == 0) {
         return false;
-    }
-    else {
+    } else {
         return $result;
     }
     return false;
@@ -172,18 +178,19 @@ function getDeliveryNotes($isComplete = true, $year = NULL, $invoiceId = NULL, $
 * @author David Hein
 * @return true if supplier already exists
 */
-function alreadyExistsSupplier($supplier, $ownId = NULL) {
+function alreadyExistsSupplier($supplier, $ownId = null)
+{
     $conn = new Mysql();
     $conn -> dbConnect();
     $where = 'name =\'' . $supplier . '\'';
-    if(!is_null($ownId)) {
+    if (!is_null($ownId)) {
         $where .= ' AND id <> ' . $ownId;
     }
     $conn -> select('T_Supplier', 'id', $where);
     $row = $conn -> getFirstRow();
     $conn -> dbDisconnect();
-    $conn = NULL;
-    
+    $conn = null;
+
     return !is_null($row);
 }
 
@@ -196,18 +203,19 @@ function alreadyExistsSupplier($supplier, $ownId = NULL) {
 * @author David Hein
 * @return true if product already exists
 */
-function alreadyExistsProduct($product, $ownId = NULL) {
+function alreadyExistsProduct($product, $ownId = null)
+{
     $conn = new Mysql();
     $conn -> dbConnect();
     $where = 'name =\'' . $product . '\'';
-    if(!is_null($ownId)) {
+    if (!is_null($ownId)) {
         $where .= ' AND id <> ' . $ownId;
     }
     $conn -> select('T_Product', 'id', $where);
     $row = $conn -> getFirstRow();
     $conn -> dbDisconnect();
-    $conn = NULL;
-    
+    $conn = null;
+
     return !is_null($row);
 }
 
@@ -219,14 +227,15 @@ function alreadyExistsProduct($product, $ownId = NULL) {
 * @author David Hein
 * @return true if setting already exists
 */
-function alreadyExistsSetting($setting) {
+function alreadyExistsSetting($setting)
+{
     $conn = new Mysql();
     $conn -> dbConnect();
     $conn -> select('T_Setting', 'id', 'name =\'' . $setting . '\'');
     $row = $conn -> getFirstRow();
     $conn -> dbDisconnect();
-    $conn = NULL;
-    
+    $conn = null;
+
     return !is_null($row);
 }
 
@@ -239,18 +248,19 @@ function alreadyExistsSetting($setting) {
 * @author David Hein
 * @return true if plot already exists
 */
-function alreadyExistsPlot($plot, $ownId = NULL) {
+function alreadyExistsPlot($plot, $ownId = null)
+{
     $conn = new Mysql();
     $conn -> dbConnect();
     $where = 'nr =\'' . $plot . '\'';
-    if(!is_null($ownId)) {
+    if (!is_null($ownId)) {
         $where .= ' AND id <> ' . $ownId;
     }
     $conn -> select('T_Plot', 'id', $where);
     $row = $conn -> getFirstRow();
     $conn -> dbDisconnect();
-    $conn = NULL;
-    
+    $conn = null;
+
     return !is_null($row);
 }
 
@@ -263,18 +273,19 @@ function alreadyExistsPlot($plot, $ownId = NULL) {
 * @author David Hein
 * @return true if user already exists
 */
-function alreadyExistsUser($user, $ownId = NULL) {
+function alreadyExistsUser($user, $ownId = null)
+{
     $conn = new Mysql();
     $conn -> dbConnect();
     $where = 'login =\'' . $user . '\'';
-    if(!is_null($ownId)) {
+    if (!is_null($ownId)) {
         $where .= ' AND userId <> ' . $ownId;
     }
     $conn -> select('T_UserLogin', 'id', $where);
     $row = $conn -> getFirstRow();
     $conn -> dbDisconnect();
-    $conn = NULL;
-    
+    $conn = null;
+
     return !is_null($row);
 }
 
@@ -288,18 +299,19 @@ function alreadyExistsUser($user, $ownId = NULL) {
 * @author David Hein
 * @return true if pricing already exists
 */
-function alreadyExistsPricing($productId, $year, $ownId = NULL) {
+function alreadyExistsPricing($productId, $year, $ownId = null)
+{
     $conn = new Mysql();
     $conn -> dbConnect();
     $where = 'productId = ' . $productId . ' and year = ' . $year;
-    if(!is_null($ownId)) {
+    if (!is_null($ownId)) {
         $where .= ' AND id <> ' . $ownId;
     }
     $conn -> select('T_Pricing', 'id', $where);
     $row = $conn -> getFirstRow();
     $conn -> dbDisconnect();
-    $conn = NULL;
-    
+    $conn = null;
+
     return !is_null($row);
 }
 
@@ -312,19 +324,18 @@ function alreadyExistsPricing($productId, $year, $ownId = NULL) {
 * @author David Hein
 * @return true if supplier already exists
 */
-function alreadyExistsRecipient($recipient, $ownId = NULL) {
+function alreadyExistsRecipient($recipient, $ownId = null)
+{
     $conn = new Mysql();
     $conn -> dbConnect();
     $where = 'name =\'' . $recipient . '\'';
-    if(!is_null($ownId)) {
+    if (!is_null($ownId)) {
         $where .= ' AND id <> ' . $ownId;
     }
     $conn -> select('T_Recipient', 'id', $where);
     $row = $conn -> getFirstRow();
     $conn -> dbDisconnect();
-    $conn = NULL;
-    
+    $conn = null;
+
     return !is_null($row);
 }
-
-?>

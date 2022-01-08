@@ -1,4 +1,5 @@
 <?php
+
 /*
 * iDataCollection.php
 * ----------------
@@ -8,14 +9,12 @@
 *
 * @Author: David Hein
 */
-include_once 'system/modules/dataObjects/iObject.php'; 
+include_once 'system/modules/dataObjects/iObject.php';
 
 interface iDataCollection
 {
-    public function find(int $id) : iObject;
+    public function find(int $id): iObject;
     public function findAll();
-    public function add(iObject $object) : bool;
-    public function update(iObject $object) : bool;
+    public function add(iObject $object): bool;
+    public function update(iObject $object): bool;
 }
-
-?>

@@ -1,4 +1,5 @@
 <?php
+
 /*
 * cache.php
 * ---------
@@ -14,12 +15,12 @@
 $url = $_SERVER["SCRIPT_NAME"];
 $break = Explode('/', $url);
 $file = $break[count($break) - 1];
-$config["cacheFile"] = 'cache/'.substr_replace($file ,"",-4).'.html';
+$config["cacheFile"] = 'cache/' . substr_replace($file, "", -4) . '.html';
 $cachetime = 18000;
- 
+
 // Serve from the cache if it is younger than $cachetime
 if (file_exists($config["cacheFile"]) && time() - $cachetime < filemtime($config["cacheFile"])) {
-    echo "<!-- Cached copy, generated ".date('H:i', filemtime($config["cacheFile"]))." -->\n";
+    echo "<!-- Cached copy, generated " . date('H:i', filemtime($config["cacheFile"])) . " -->\n";
     include($config["cacheFile"]);
     exit;
 }
@@ -33,11 +34,10 @@ ob_start();
 *
 * @Author: David Hein
 */
-function writeCacheFile($cacheFile) {
+function writeCacheFile($cacheFile)
+{
     $cached = fopen($cacheFile, 'w');
     fwrite($cached, ob_get_contents());
     fclose($cached);
     ob_end_flush(); // Send the output to the browser
 }
-
-?>

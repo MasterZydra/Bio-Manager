@@ -1,4 +1,5 @@
 <?php
+
 /*
 * deletePlot.php
 * --------------
@@ -23,4 +24,3 @@
     $form -> overviewPage       = 'plot.php';
 
     $form -> show();
-?>

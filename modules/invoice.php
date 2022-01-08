@@ -1,4 +1,5 @@
 <?php
+
 /*
 * invoice.php
 * -----------
@@ -9,7 +10,8 @@
 * @Author: David Hein
 */
 
-class invoice {
+class invoice
+{
     // PDF Data
     public string $pdfAuthor;
     public string $pdfName;
@@ -27,30 +29,29 @@ class invoice {
     // Product meta data
     public $volumeUnit;
     public $pricePerUnit;
-    
+
     /**
     * Construct invoice object.
     * Get values from data base.
     *
     * @author David Hein
     */
-    function __construct() {
+    function __construct()
+    {
         // PDF Data
         $this -> pdfName            = getSetting('invoiceName');
         // Product meta data
         $this -> volumeUnit         = getSetting('volumeUnit');
-        
-
     }
-    
+
     /**
     * Build invoice name.
     *
     * @author David Hein
     * @return invoice name
     */
-    function getInvoiceName() {
+    function getInvoiceName()
+    {
         return $this -> pdfName . '_' . (string)$this -> invoiceYear . '_' . (string)$this -> invoiceNr;
     }
 }
-?>

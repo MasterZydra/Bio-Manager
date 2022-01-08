@@ -9,22 +9,23 @@
 * @Author: David Hein
 */
 
-    include 'modules/header_user.php';
-    include 'modules/permissionCheck.php';
+include 'modules/header_user.php';
+include 'modules/permissionCheck.php';
 
-    // Check permission
-    if(!isMaintainer() && !isInspector() ||
-       // Check if id is numeric
-       (isset($_GET['id']) && !is_numeric($_GET['id'])))
-    {
-        header("Location: index.php");
-        exit();
-    }
+// Check permission
+if (
+    !isMaintainer() && !isInspector() ||
+        // Check if id is numeric
+        (isset($_GET['id']) && !is_numeric($_GET['id']))
+) {
+    header("Location: index.php");
+    exit();
+}
 
-    include 'modules/header.php';
+include 'modules/header.php';
 
-    include 'modules/tableGenerator.php';
-    include_once 'system/modules/dataObjects/plotCollection.php';
+include 'modules/tableGenerator.php';
+include_once 'system/modules/dataObjects/plotCollection.php';
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
@@ -33,23 +34,25 @@
 <h1>Flurstück</h1>
 
 <p>
-    <?php if(isMaintainer()) {?><a href="addPlot.php">Flurstück hinzufügen</a><?php } ?>
+    <?php if (isMaintainer()) {
+        ?><a href="addPlot.php">Flurstück hinzufügen</a><?php
+    } ?>
 </p>
 
 <?php
-    if(isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
-        switch (secGET('action')) {
-            case 'delete':
-                // Action - Delete
-                echo '<script>window.location.replace("deletePlot.php?id=' . secGET('id') . '");</script>';
-                break;
-            case 'edit':
-                // Action - Edit plot
-                // Forwarding to edit page and add parameters
-                echo '<script>window.location.replace("editPlot.php?id=' . secGET('id') . '");</script>';
-                break;
-        }
+if (isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
+    switch (secGET('action')) {
+        case 'delete':
+            // Action - Delete
+            echo '<script>window.location.replace("deletePlot.php?id=' . secGET('id') . '");</script>';
+            break;
+        case 'edit':
+            // Action - Edit plot
+            // Forwarding to edit page and add parameters
+            echo '<script>window.location.replace("editPlot.php?id=' . secGET('id') . '");</script>';
+            break;
     }
+}
 ?>
 
 <p>
@@ -59,21 +62,23 @@
 <?php
     $plotColl = new PlotCollection();
 
-    if(isMaintainer()) {
-        tableGenerator::show(
-            'dataTable-tablePlot',
-            $plotColl->findAll(),
-            array('nr', 'name', 'subdistrict', 'supplierName'),
-            array('Nummer', 'Name', 'Gemarkung', 'Lieferant', 'Aktionen'),
-            array('edit', 'delete'),
-            array('Bearbeiten', 'Löschen'));
-    } else {
-        tableGenerator::show(
-            'dataTable-tablePlot',
-            $plotColl->findAll(),
-            array('nr', 'name', 'subdistrict', 'supplierName'),
-            array('Nummer', 'Name', 'Gemarkung', 'Lieferant'));
-    }
+if (isMaintainer()) {
+    tableGenerator::show(
+        'dataTable-tablePlot',
+        $plotColl->findAll(),
+        array('nr', 'name', 'subdistrict', 'supplierName'),
+        array('Nummer', 'Name', 'Gemarkung', 'Lieferant', 'Aktionen'),
+        array('edit', 'delete'),
+        array('Bearbeiten', 'Löschen')
+    );
+} else {
+    tableGenerator::show(
+        'dataTable-tablePlot',
+        $plotColl->findAll(),
+        array('nr', 'name', 'subdistrict', 'supplierName'),
+        array('Nummer', 'Name', 'Gemarkung', 'Lieferant')
+    );
+}
 ?>
 
 <script>
