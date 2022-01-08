@@ -7,9 +7,9 @@
 *
 * @Author: David Hein
 */
-    include 'templates/deleteForm.php';
+    include 'templates/DeleteForm.php';
 
-    $form = new deleteForm();
+    $form = new DeleteForm();
     $form -> heading            = "Lieferant löschen";
 
     $form -> accessPermission   = "isMaintainer";

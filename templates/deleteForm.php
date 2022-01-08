@@ -1,7 +1,7 @@
 <?php
 
 /*
-* deleteForm.php
+* DeleteForm.php
 * --------------
 * Template for deleting an entry in the data base.
 *
@@ -19,7 +19,7 @@ include_once 'system/modules/database/mySQL/mySQL_prepStatement.php';
 *
 * @author David Hein
 */
-class deleteForm extends form
+class DeleteForm extends form
 {
     /**
     * HTML code which will be shown in message box as link to all elements.
