@@ -13,8 +13,8 @@ include_once 'system/modules/dataObjects/iObject.php';
 
 interface iDataCollection
 {
-    public function find(int $id): iObject;
+    public function find(int $id): IObject;
     public function findAll();
-    public function add(iObject $object): bool;
-    public function update(iObject $object): bool;
+    public function add(IObject $object): bool;
+    public function update(IObject $object): bool;
 }

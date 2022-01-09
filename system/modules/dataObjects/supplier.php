@@ -10,7 +10,7 @@
 */
 include_once 'system/modules/dataObjects/iObject.php';
 
-class Supplier implements iObject
+class Supplier implements IObject
 {
     private int $id;
     private string $name;

@@ -8,9 +8,9 @@
 *
 * @Author: David Hein
 */
-include_once 'system/modules/dataObjects/iObject.php';
+include_once 'system/modules/dataObjects/IObject.php';
 
-class Product implements iObject
+class Product implements IObject
 {
     private int $id;
     private string $name;

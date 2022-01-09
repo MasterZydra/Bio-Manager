@@ -11,7 +11,7 @@
 include_once 'system/modules/dataObjects/iObject.php';
 include_once 'system/modules/dataObjects/supplierCollection.php';
 
-class Plot implements iObject
+class Plot implements IObject
 {
     private int $id;
     private string $nr;

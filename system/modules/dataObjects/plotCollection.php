@@ -13,7 +13,7 @@ include_once 'system/modules/database/mySQL/MySQLPrepStatement.php';
 include_once 'system/modules/database/mySQL/MySqlHelpers.php';
 
 include_once 'system/modules/dataObjects/iDataCollection.php';
-include_once 'system/modules/dataObjects/iObject.php';
+include_once 'system/modules/dataObjects/IObject.php';
 include_once 'system/modules/dataObjects/plot.php';
 
 class PlotCollection implements iDataCollection
@@ -34,7 +34,7 @@ class PlotCollection implements iDataCollection
     }
 
     // Find entry with the given id
-    public function find(int $id): iObject
+    public function find(int $id): IObject
     {
         $dataSet = $this->prepStatement->selectWhereId("T_Plot", $id);
         $rows = $this->dataSetToArrayOfPlots($dataSet);
@@ -57,7 +57,7 @@ class PlotCollection implements iDataCollection
         return $this->dataSetToArrayOfPlots($dataSet);
     }
 
-    public function update(iObject $object): bool
+    public function update(IObject $object): bool
     {
         if (MySqlHelpers::objectAlreadyExists($this, $object->name(), $object->id())) {
             return false;
@@ -75,7 +75,7 @@ class PlotCollection implements iDataCollection
         );
     }
 
-    public function add(iObject $object): bool
+    public function add(IObject $object): bool
     {
         if (MySqlHelpers::objectAlreadyExists($this, $object->name(), $object->id())) {
             return false;
