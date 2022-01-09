@@ -1,7 +1,7 @@
 <?php
 
 /*
-* product.php
+* Product.php
 * -----------
 * This file contains the class 'Product'.
 * The class contains all informations of a product.
