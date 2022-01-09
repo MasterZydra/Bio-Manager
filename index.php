@@ -9,7 +9,7 @@
 * @Author: David Hein
 */
 include 'modules/header_everyone.php';
-include_once 'modules/permissionCheck.php';
+include_once 'modules/PermissionCheck.php';
 include 'modules/header.php';
 
 if (!isLoggedIn()) {

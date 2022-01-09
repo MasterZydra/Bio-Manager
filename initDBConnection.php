@@ -6,7 +6,7 @@
 *
 * @Author: David Hein
 */
-include 'modules/permissionCheck.php';
+include 'modules/PermissionCheck.php';
 
 // Check if file exists to prevent warnings
 if (file_exists('config/DatabaseConfig.php')) {

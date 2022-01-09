@@ -8,7 +8,7 @@
 * @Author: David Hein
 */
 include 'modules/header_everyone.php';
-include 'modules/permissionCheck.php';
+include 'modules/PermissionCheck.php';
 include 'modules/header.php';
 
 $invalidLogin = false;

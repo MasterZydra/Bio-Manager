@@ -8,7 +8,7 @@
 * @Author: David Hein
 */
 
-include 'modules/permissionCheck.php';
+include 'modules/PermissionCheck.php';
 
 /**
 * The class form is generating an HTML template. The content

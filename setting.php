@@ -11,7 +11,7 @@
 */
 
 include 'modules/header_user.php';
-include 'modules/permissionCheck.php';
+include 'modules/PermissionCheck.php';
 
 // Check permission
 if (
