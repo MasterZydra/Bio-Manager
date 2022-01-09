@@ -1,7 +1,7 @@
 <?php
 
 /*
-* supplier.php
+* Supplier.php
 * ----------------
 * This file contains the class 'Supplier'.
 * The class contains all informations of a supplier.
