@@ -1,9 +1,9 @@
 <?php
 
 /*
-* productCollection.php
+* ProductCollection.php
 * ---------------------
-* This file contains the class 'productCollection'.
+* This file contains the class 'ProductCollection'.
 * The class is a data gateway for the product and
 * implements the IDataCollection interface.
 *
