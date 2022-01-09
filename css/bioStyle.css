@@ -410,37 +410,37 @@ h2 {
     /***************
     * General settings
     ***************/
-    
+
     body {
         color: white;
         background-color: #555555; /* Grey */
     }
-    
+
     main a,
     main a:visited {
         color: #1fb81c;
     }
-    
+
     /***************
     * Header section
     ***************/
-    
+
     header {
         background-color: #397016; /* Dark green */
     }
-    
+
     /***************
     * Footer
     ***************/
-    
+
     footer {
         background-color: #383838; /* Black */
     }
-    
+
     /***************
     * Table
     ***************/
-    
+
     table tr:nth-child(even) {
         background-color: #7a7a7a; /* Light grey */
     }
@@ -448,19 +448,19 @@ h2 {
     table tr:hover {
         background-color: black;
     }
-    
+
     /***************
     * Dropdown menu
     ***************/
-    
+
     .dropdown a:hover {
         background-color: black;
     }
-    
+
     /***************
     * Form
     ***************/
-    
+
     input:not([type="checkbox"]),
     textarea,
     select {
@@ -468,17 +468,17 @@ h2 {
         background-color: #383838;
         color: white;
     }
-    
+
     input:not([type="checkbox"]):focus,
     textarea:focus,
     select:focus {
       border: 3px solid #ccc;
     }
-    
+
     button:hover {
       background-color: #000000; /* Black */
     }
-        
+
     /***************
     * Info boxes
     ***************/

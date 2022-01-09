@@ -3,7 +3,8 @@
 *
 * @Author: David Hein
 */
-function filterData(id) {
+function filterData(id)
+{
     "use strict";
     var input, filter, table, tr, td, i, j, maxFilter, innerHTML;
     input = document.getElementById("filterInput-" + id);
@@ -16,7 +17,9 @@ function filterData(id) {
             td = tr[i].getElementsByTagName("td")[j];
             if (td) {
                 innerHTML = td.innerHTML.toUpperCase();
-                if (innerHTML.trim().startsWith('<DIV CLASS="DROPDOWN"')) { continue; }
+                if (innerHTML.trim().startsWith('<DIV CLASS="DROPDOWN"')) {
+                    continue;
+                }
                 //maxFilter = Math.max(maxFilter, innerHTML.indexOf(filter));
                 if (innerHTML.indexOf(filter) > -1) {
                     tr[i].style.display = "";

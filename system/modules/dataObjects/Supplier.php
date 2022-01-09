@@ -1,6 +1,7 @@
 <?php
+
 /*
-* supplier.php
+* Supplier.php
 * ----------------
 * This file contains the class 'Supplier'.
 * The class contains all informations of a supplier.
@@ -9,7 +10,7 @@
 */
 include_once 'system/modules/dataObjects/iObject.php';
 
-class Supplier implements iObject
+class Supplier implements IObject
 {
     private int $id;
     private string $name;
@@ -22,30 +23,32 @@ class Supplier implements iObject
         $this->inactive = $inactive;
     }
 
-    function id() : int
+    public function id(): int
     {
         return $this->id;
     }
 
-    function name() : string
+    public function name(): string
     {
         return $this->name;
     }
 
-    function inactive() : bool
+    public function inactive(): bool
     {
         return $this->inactive;
     }
 
-    function setName(string $name) {
+    public function setName(string $name)
+    {
         $this->name = $name;
     }
 
-    function setInactive(string $inactive) {
+    public function setInactive(string $inactive)
+    {
         $this->inactive = $inactive;
     }
 
-    function toArray(): array
+    public function toArray(): array
     {
         return array(
             "id" => $this->id,
@@ -54,5 +57,3 @@ class Supplier implements iObject
         );
     }
 }
-
-?>

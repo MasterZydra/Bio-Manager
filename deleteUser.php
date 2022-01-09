@@ -1,4 +1,5 @@
 <?php
+
 /*
 * deleteUser.php
 * --------------
@@ -6,9 +7,9 @@
 *
 * @Author: David Hein
 */
-    include 'templates/deleteForm.php';
+    include 'templates/DeleteForm.php';
 
-    $form = new deleteForm();
+    $form = new DeleteForm();
     $form -> heading            = "Benutzer löschen";
 
     $form -> accessPermission   = "isAdmin";
@@ -28,4 +29,3 @@
         array('T_UserPermission', 'userId', secGET('id')));
 
     $form -> show();
-?>

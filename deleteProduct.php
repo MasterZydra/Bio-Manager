@@ -1,4 +1,5 @@
 <?php
+
 /*
 * deleteProdcut.php
 * -----------------
@@ -6,9 +7,9 @@
 *
 * @Author: David Hein
 */
-    include 'templates/deleteForm.php';
+    include 'templates/DeleteForm.php';
 
-    $form = new deleteForm();
+    $form = new DeleteForm();
     $form -> heading            = "Produkt löschen";
 
     $form -> accessPermission   = "isMaintainer";
@@ -23,4 +24,3 @@
     $form -> overviewPage       = 'product.php';
 
     $form -> show();
-?>

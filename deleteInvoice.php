@@ -1,4 +1,5 @@
 <?php
+
 /*
 * deleteInvoice.php
 * -----------------
@@ -6,9 +7,9 @@
 *
 * @Author: David Hein
 */
-    include 'templates/deleteForm.php';
+    include 'templates/DeleteForm.php';
 
-    $form = new deleteForm();
+    $form = new DeleteForm();
     $form -> heading            = "Rechnung löschen";
 
     $form -> accessPermission   = "isMaintainer";
@@ -27,4 +28,3 @@
         array('T_DeliveryNote', 'invoiceId = NULL', 'invoiceId = ' . secGET('id')));
 
     $form -> show();
-?>

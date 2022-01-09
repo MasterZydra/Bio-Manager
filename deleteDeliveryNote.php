@@ -1,4 +1,5 @@
 <?php
+
 /*
 * deleteDeliveryNote.php
 * ----------------------
@@ -7,9 +8,9 @@
 * @Author: David Hein
 */
 
-    include 'templates/deleteForm.php';
+    include 'templates/DeleteForm.php';
 
-    $form = new deleteForm();
+    $form = new DeleteForm();
     $form -> heading            = "Lieferschein löschen";
 
     $form -> accessPermission   = "isMaintainer";
@@ -24,4 +25,3 @@
     $form -> overviewPage       = 'deliveryNote.php';
 
     $form -> show();
-?>

@@ -10,26 +10,28 @@
     <body>
     <header>
         <?php
-            // Build string for organisation in header
-            $organisation = "";
-            // Check if file exists to prevent warnings
-            if (file_exists('config/CommonConfig.php')) {
-                include_once 'config/CommonConfig.php';
-                $organisation .= " - " . $common['organisation'];
-            }
+        // Build string for organisation in header
+        $organisation = "";
+        // Check if file exists to prevent warnings
+        if (file_exists('config/CommonConfig.php')) {
+            include_once 'config/CommonConfig.php';
+            $organisation .= " - " . $common['organisation'];
+        }
         ?>
         <h1>Bio-Manager <?php echo $organisation; ?></h1>
         <div>
             <a href="index.php">Startseite</a>
         </div>
         <?php
-                if(!isset($_SESSION['userId'])) {
-        ?>
+        if (!isset($_SESSION['userId'])) {
+            ?>
         <div>
             <button onclick="window.location.href='login.php'">Anmelden</button>
         </div>
-        <?php
-            }
+            <?php
+        }
         ?>
     </header>
-    <main <?php if (basename($_SERVER['PHP_SELF']) === "index.php") { echo 'class="inlineblock"'; } ?>>
+    <main <?php if (basename($_SERVER['PHP_SELF']) === "index.php") {
+        echo 'class="inlineblock"';
+          } ?>>

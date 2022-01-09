@@ -6,7 +6,8 @@
 
 /* When the user clicks on the button,
  toggle between hiding and showing the dropdown content */
-function openDropdown(id) {
+function openDropdown(id)
+{
     "use strict";
     document.getElementById("dropdown-" + id).classList.toggle("show");
 }

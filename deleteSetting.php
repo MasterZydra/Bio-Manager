@@ -1,4 +1,5 @@
 <?php
+
 /*
 * deleteSetting.php
 * --------------
@@ -6,9 +7,9 @@
 *
 * @Author: David Hein
 */
-    include 'templates/deleteForm.php';
+    include 'templates/DeleteForm.php';
 
-    $form = new deleteForm();
+    $form = new DeleteForm();
     $form -> heading            = "Einstellung löschen";
 
     $form -> accessPermission   = "isDeveloper";
@@ -23,4 +24,3 @@
     $form -> overviewPage       = 'setting.php';
 
     $form -> show();
-?>

@@ -1,18 +1,20 @@
 <?php
+
 /*
-* mySQL_helpers.php
+* MySqlHelpers.php
 * -----------------
-* This file contains the class 'MySQL_helpers'.
+* This file contains the class 'MySqlHelpers'.
 * The class contains static functions that encapsulate logic
 * e.g. to check if a supplier already exists by using the existing
 * prepared statements.
 *
 * @Author: David Hein
 */
-include_once 'system/modules/dataObjects/iDataCollection.php'; 
+include_once 'system/modules/dataObjects/IDataCollection.php';
 
-class MySQL_helpers {
-    public static function objectAlreadyExists(iDataCollection $collection, string $name, int $id) : bool
+class MySqlHelpers
+{
+    public static function objectAlreadyExists(IDataCollection $collection, string $name, int $id): bool
     {
         $objects = $collection->findByName($name);
         if (is_null($objects)) {
@@ -27,5 +29,3 @@ class MySQL_helpers {
         return false;
     }
 }
-
-?>

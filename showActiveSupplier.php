@@ -1,4 +1,5 @@
 <?php
+
 /*
 * showActiveSupplier.php
 * ----------------------
@@ -7,19 +8,19 @@
 * @Author: David Hein
 */
 
-    include 'modules/header_user.php';
-    include 'modules/permissionCheck.php';
+include 'modules/header_user.php';
+include 'modules/permissionCheck.php';
 
-    // Check permission
-    if(!isMaintainer() && !isInspector())
-    {
-        header("Location: deliveryNote.php");
-        exit();
-    }
+// Check permission
+if (!isMaintainer() && !isInspector()) {
+    header("Location: deliveryNote.php");
+    exit();
+}
 
-    // Check if file exists to prevent warnings
-    if (file_exists('config/InvoiceDataConfig.php'))
-        include 'config/InvoiceDataConfig.php';
+// Check if file exists to prevent warnings
+if (file_exists('config/InvoiceDataConfig.php')) {
+    include 'config/InvoiceDataConfig.php';
+}
 
     $docName = "Aktive Lieferanten";
     $activeSuppliers = '';
@@ -28,13 +29,13 @@
     $conn -> dbConnect();
     $result = $conn -> select('T_Supplier', 'name', 'inactive = 0');
     $conn -> dbDisconnect();
-    $conn = NULL;
+    $conn = null;
 
-    if($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            $activeSuppliers .= '<li>' . $row["name"] . '</li>';
-        }
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $activeSuppliers .= '<li>' . $row["name"] . '</li>';
     }
+}
 
 $html = '
 <table cellpadding="5" cellspacing="0" style="width: 100%; ">
@@ -51,10 +52,8 @@ $html = '
 
     // Generate and show PDF document
     // ------------------------------
-    include 'modules/pdfGenerator.php';
+    include 'modules/PdfGenerator.php';
 
-    $pdfGen = new pdfGenerator();
+    $pdfGen = new PdfGenerator();
     $pdfGen -> createPDF($invoice["author"], $docName, $docName, $html);
     $pdfGen -> showInBrowser($docName . '_' . date('Y_m_d'));
-
-?>

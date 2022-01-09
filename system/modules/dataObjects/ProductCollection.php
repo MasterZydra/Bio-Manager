@@ -1,21 +1,22 @@
 <?php
+
 /*
-* productCollection.php
+* ProductCollection.php
 * ---------------------
-* This file contains the class 'productCollection'.
+* This file contains the class 'ProductCollection'.
 * The class is a data gateway for the product and
-* implements the iDataCollection interface.
+* implements the IDataCollection interface.
 *
 * @Author: David Hein
 */
-include_once 'system/modules/database/mySQL/mySQL_prepStatement.php';
-include_once 'system/modules/database/mySQL/mySQL_helpers.php';
+include_once 'system/modules/database/mySQL/MySQLPrepStatement.php';
+include_once 'system/modules/database/mySQL/MySqlHelpers.php';
 
-include_once 'system/modules/dataObjects/iDataCollection.php';
-include_once 'system/modules/dataObjects/iObject.php';
-include_once 'system/modules/dataObjects/product.php';
+include_once 'system/modules/dataObjects/IDataCollection.php';
+include_once 'system/modules/dataObjects/IObject.php';
+include_once 'system/modules/dataObjects/Product.php';
 
-class ProductCollection implements iDataCollection
+class ProductCollection implements IDataCollection
 {
     // MySQL_prepStatement;
     private $prepStatement;
@@ -23,16 +24,17 @@ class ProductCollection implements iDataCollection
     // Create MySQL_prepStatement instance when creating the object
     public function __construct()
     {
-        $this->prepStatement = new MySQL_prepStatement();
+        $this->prepStatement = new MySQLPrepStatement();
     }
 
     // Close all open connections used in class
-    function destroy() {
+    public function destroy()
+    {
         $this->prepStatement->destroy();
     }
 
     // Find entry with the given id
-    public function find(int $id) : iObject
+    public function find(int $id): IObject
     {
         $dataSet = $this->prepStatement->selectWhereId("T_Product", $id);
         $rows = $this->dataSetToArrayOfProduct($dataSet);
@@ -43,9 +45,9 @@ class ProductCollection implements iDataCollection
     }
 
     // Find all entries in the table
-    public function findAll() : array
+    public function findAll(): array
     {
-        $dataSet = $this->prepStatement->selectColWhereCol("*", "T_Product", NULL, NULL);
+        $dataSet = $this->prepStatement->selectColWhereCol("*", "T_Product", null, null);
         return $this->dataSetToArrayOfProduct($dataSet);
     }
 
@@ -55,47 +57,50 @@ class ProductCollection implements iDataCollection
         return $this->dataSetToArrayOfProduct($dataSet);
     }
 
-    public function update(iObject $object) : bool
+    public function update(IObject $object): bool
     {
-        if (MySQL_helpers::objectAlreadyExists($this, $object->name(), $object->id()))
-        {
+        if (MySqlHelpers::objectAlreadyExists($this, $object->name(), $object->id())) {
             return false;
         }
-        
+
         return $this->prepStatement->updateColsWhereId(
-            "T_Product", array("name"), "s",
-            $object->id(), $object->name());
+            "T_Product",
+            array("name"),
+            "s",
+            $object->id(),
+            $object->name()
+        );
     }
 
-    public function add(iObject $object) : bool
+    public function add(IObject $object): bool
     {
-        if (MySQL_helpers::objectAlreadyExists($this, $object->name(), $object->id()))
-        {
+        if (MySqlHelpers::objectAlreadyExists($this, $object->name(), $object->id())) {
             return false;
         }
 
         return $this->prepStatement->insertCols(
-            "T_Product", array("name"), "s",
-            $object->name());
+            "T_Product",
+            array("name"),
+            "s",
+            $object->name()
+        );
     }
 
     private function dataSetToArrayOfProduct($dataSet)
     {
         if (is_null($dataSet) || $dataSet -> num_rows == 0) {
-            return NULL;
+            return null;
         }
         // Create Product objects for all entries and push them into the array
         $result = array();
-        while($row = $dataSet->fetch_assoc()) {
+        while ($row = $dataSet->fetch_assoc()) {
             array_push($result, $this->newProduct($row));
         }
         return $result;
     }
 
-    private function newProduct($row) : Product
+    private function newProduct($row): Product
     {
         return new Product(intval($row["id"]), $row["name"]);
     }
 }
-
-?>

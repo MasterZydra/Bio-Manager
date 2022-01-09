@@ -1,4 +1,5 @@
 <?php
+
 /*
 * deleteRecipient.php
 * -------------------
@@ -6,9 +7,9 @@
 *
 * @Author: David Hein
 */
-    include 'templates/deleteForm.php';
+    include 'templates/DeleteForm.php';
 
-    $form = new deleteForm();
+    $form = new DeleteForm();
     $form -> heading            = "Abnehmer löschen";
 
     $form -> accessPermission   = "isMaintainer";
@@ -23,4 +24,3 @@
     $form -> overviewPage       = 'recipient.php';
 
     $form -> show();
-?>

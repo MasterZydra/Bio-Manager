@@ -1,15 +1,16 @@
 <?php
+
 /*
-* product.php
+* Product.php
 * -----------
 * This file contains the class 'Product'.
 * The class contains all informations of a product.
 *
 * @Author: David Hein
 */
-include_once 'system/modules/dataObjects/iObject.php';
+include_once 'system/modules/dataObjects/IObject.php';
 
-class Product implements iObject
+class Product implements IObject
 {
     private int $id;
     private string $name;
@@ -20,21 +21,22 @@ class Product implements iObject
         $this->name = $name;
     }
 
-    function id() : int
+    public function id(): int
     {
         return $this->id;
     }
 
-    function name() : string
+    public function name(): string
     {
         return $this->name;
     }
 
-    function setName(string $name) {
+    public function setName(string $name)
+    {
         $this->name = $name;
     }
 
-    function toArray(): array
+    public function toArray(): array
     {
         return array(
             "id" => $this->id,

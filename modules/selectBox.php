@@ -1,4 +1,5 @@
 <?php
+
 /*
 * selectBox.php
 * --------------------
@@ -29,28 +30,38 @@ function selectBox(
     $isRequired,
     $defaultText,
     $nameValuePairs,
-    $selectedValue = NULL,
+    $selectedValue = null,
     $disableDefault = true,
-    $boxReadOnly = false)
-{
+    $boxReadOnly = false
+) {
     // Starting tag
     $selectBox = '<select id="' . getSecuredString($elementName) . '" name="' . getSecuredString($elementName) . '"';
-    if($isRequired)     $selectBox .= ' required';
-    if($boxReadOnly)    $selectBox .= ' disabled';
+    if ($isRequired) {
+        $selectBox .= ' required';
+    }
+    if ($boxReadOnly) {
+        $selectBox .= ' disabled';
+    }
     $selectBox .= '>';
-    
+
     // Default value "select option"
     $selectBox .= '<option value=""';
-    if($disableDefault)         $selectBox .= ' disabled';
-    if(is_null($selectedValue)) $selectBox .= ' selected';
+    if ($disableDefault) {
+        $selectBox .= ' disabled';
+    }
+    if (is_null($selectedValue)) {
+        $selectBox .= ' selected';
+    }
     $selectBox .= '>' . getSecuredString($defaultText) . '</option>';
-    
+
     // Entries from name-value-pairs
-    if($nameValuePairs -> num_rows > 0) {
+    if ($nameValuePairs -> num_rows > 0) {
         // Add a option for each row
-        while($row = $nameValuePairs -> fetch_assoc()) {
+        while ($row = $nameValuePairs -> fetch_assoc()) {
             $selectBox .= "<option value='" . getSecuredString($row['value']) . "'";
-            if($row['value'] == $selectedValue) $selectBox .= ' selected';
+            if ($row['value'] == $selectedValue) {
+                $selectBox .= ' selected';
+            }
             $selectBox .= ">" . getSecuredString($row['name']) . "</option>";
         }
     }
@@ -59,4 +70,3 @@ function selectBox(
     // Return select element
     return $selectBox;
 }
-?>

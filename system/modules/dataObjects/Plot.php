@@ -1,4 +1,5 @@
 <?php
+
 /*
 * plot.php
 * --------
@@ -8,9 +9,9 @@
 * @Author: David Hein
 */
 include_once 'system/modules/dataObjects/iObject.php';
-include_once 'system/modules/dataObjects/supplierCollection.php';
+include_once 'system/modules/dataObjects/SupplierCollection.php';
 
-class Plot implements iObject
+class Plot implements IObject
 {
     private int $id;
     private string $nr;
@@ -27,48 +28,52 @@ class Plot implements iObject
         $this->supplierId = $supplierId;
     }
 
-    function id() : int
+    public function id(): int
     {
         return $this->id;
     }
 
-    function nr() : string
+    public function nr(): string
     {
         return $this->nr;
     }
 
-    function name() : string
+    public function name(): string
     {
         return $this->name;
     }
 
-    function subdistrict() : string
+    public function subdistrict(): string
     {
         return $this->subdistrict;
     }
 
-    function supplierId() : int
+    public function supplierId(): int
     {
         return $this->supplierId;
     }
 
-    function setNr(string $nr) {
+    public function setNr(string $nr)
+    {
         $this->nr = $nr;
     }
 
-    function setName(string $name) {
+    public function setName(string $name)
+    {
         $this->name = $name;
     }
 
-    function setSubdistrict(string $subdistrict) {
+    public function setSubdistrict(string $subdistrict)
+    {
         $this->subdistrict = $subdistrict;
     }
 
-    function setSupplierId(int $supplierId) {
+    public function setSupplierId(int $supplierId)
+    {
         $this->supplierId = $supplierId;
     }
 
-    function toArray(): array
+    public function toArray(): array
     {
         $supplierColl = new SupplierCollection();
         return array(

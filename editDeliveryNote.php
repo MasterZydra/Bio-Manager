@@ -7,23 +7,24 @@
 * @Author: David Hein
 */
 
-    include 'modules/header_user.php';
-    include 'modules/permissionCheck.php';
-    
-    // Check permission
-    if(!isMaintainer() ||
-       // Check if id is numeric
-       (isset($_GET['id']) && !is_numeric($_GET['id'])))
-    {
-        header("Location: deliveryNote.php");
-        exit();
-    }
+include 'modules/header_user.php';
+include 'modules/permissionCheck.php';
 
-    include 'modules/header.php';
+// Check permission
+if (
+    !isMaintainer() ||
+        // Check if id is numeric
+        (isset($_GET['id']) && !is_numeric($_GET['id']))
+) {
+    header("Location: deliveryNote.php");
+    exit();
+}
 
-    include 'modules/selectBox_BioManager.php';
+include 'modules/header.php';
 
-    include_once 'modules/Mysql_preparedStatement_BioManager.php';
+include 'modules/selectBox_BioManager.php';
+
+include_once 'modules/MySqlPreparedStatementBioManager.php';
 ?>
 
 <h1>Lieferschein bearbeiten</h1>
@@ -33,59 +34,61 @@
 </p>
 
 <?php
-    if(!isset($_GET['id'])) {
+if (!isset($_GET['id'])) {
+    echo '<div class="warning">';
+    echo 'Es wurde kein Lieferschein übergeben. Zurück zu <a href="deliveryNote.php">Alle Lieferscheine anzeigen</a>';
+    echo '</div>';
+} else {
+    $conn = new Mysql();
+    $conn -> dbConnect();
+
+    if (isset($_GET['edit'])) {
+        // Build set part of query
+        $set = 'productId = ' . secPOST('productId');
+        // Deliver date
+        if ($_POST['note_date']) {
+            $set .= ', deliverDate = \'' . secPOST('note_date') . '\'';
+        } else {
+            $set .= ', deliverDate = NULL';
+        }
+        // Deliver amount
+        if ($_POST['note_amount']) {
+            $set .= ', amount = ' . secPOST('note_amount');
+        } else {
+            $set .= ', amount = NULL';
+        }
+        // Supplier
+        if (isset($_POST["supplierId"]) && $_POST["supplierId"]) {
+            $set .= ', supplierId = ' . secPOST('supplierId');
+        } else {
+            $set .= ', supplierId = NULL';
+        }
+        $conn -> update(
+            'T_DeliveryNote',
+            $set,
+            'id = ' . secGET('id')
+        );
+        echo '<div class="infobox">';
+        echo 'Die Änderungen wurden erfolgreich gespeichert';
+        echo '</div>';
+    }
+
+    $conn -> dbDisconnect();
+    $conn = null;
+
+    // Select data
+    $prepStmt = new MySqlPreparedStatementBioManager();
+    $row = $prepStmt -> selectWhereId("T_DeliveryNote", secGET('id'));
+    $prepStmt -> destroy();
+
+    // Check if id is valid
+    if ($row == null) {
         echo '<div class="warning">';
-        echo 'Es wurde kein Lieferschein übergeben. Zurück zu <a href="deliveryNote.php">Alle Lieferscheine anzeigen</a>';
+        echo 'Der ausgewählte Lieferschein wurde in der Datenbank nicht gefunden.';
+        echo 'Zurück zu <a href="deliveryNote.php">Alle Lieferscheine anzeigen</a>';
         echo '</div>';
     } else {
-        $conn = new Mysql();
-        $conn -> dbConnect();
-        
-        if(isset($_GET['edit'])) {
-            // Build set part of query
-            $set = 'productId = ' . secPOST('productId');
-            // Deliver date
-            if($_POST['note_date']) {
-                $set .= ', deliverDate = \'' . secPOST('note_date') . '\'';
-            } else {
-                $set .= ', deliverDate = NULL';
-            }
-            // Deliver amount
-            if($_POST['note_amount']) {
-                $set .= ', amount = ' . secPOST('note_amount');
-            } else {
-                $set .= ', amount = NULL';
-            }
-            // Supplier
-            if(isset($_POST["supplierId"]) && $_POST["supplierId"]) {
-                $set .= ', supplierId = ' . secPOST('supplierId');
-            } else {
-                $set .= ', supplierId = NULL';
-            }
-            $conn -> update(
-                'T_DeliveryNote',
-                $set,
-                'id = ' . secGET('id'));
-            echo '<div class="infobox">';
-            echo 'Die Änderungen wurden erfolgreich gespeichert';
-            echo '</div>';
-        }
-
-        $conn -> dbDisconnect();
-        $conn = NULL;
-        
-        // Select data
-        $prepStmt = new mysql_preparedStatement_BioManager();
-        $row = $prepStmt -> selectWhereId("T_DeliveryNote", secGET('id'));
-        $prepStmt -> destroy();
-        
-        // Check if id is valid 
-        if ($row == NULL) {
-            echo '<div class="warning">';
-            echo 'Der ausgewählte Lieferschein wurde in der Datenbank nicht gefunden. Zurück zu <a href="deliveryNote.php">Alle Lieferscheine anzeigen</a>';
-            echo '</div>';
-        } else {
-?>
+        ?>
 <form action="?id=<?php echo $row['id']; ?>&edit=1" method="post" class="requiredLegend">
     <label>Jahr:<br>
         <input type="number" value="<?php echo $row['year']; ?>" readonly>
@@ -95,7 +98,7 @@
     </label><br>
     
     <label for="productId" class="required">Produkt:</label><br>
-    <?php echo productSelectBox(NULL, $row['productId']); ?><br>
+        <?php echo productSelectBox(null, $row['productId']); ?><br>
     
     <label for="note_date" class="required">Lieferdatum:</label><br>
     <input id="note_date" name="note_date" type="date" value="<?php echo $row['deliverDate']; ?>" autofocus><br>
@@ -110,8 +113,8 @@
 
     <button>Änderungen speichern</button>
 </form>
-<?php
-        }
+        <?php
     }
+}
     include 'modules/footer.php';
 ?>

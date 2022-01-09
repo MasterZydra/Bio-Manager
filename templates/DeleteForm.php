@@ -1,14 +1,15 @@
 <?php
+
 /*
-* deleteForm.php
+* DeleteForm.php
 * --------------
 * Template for deleting an entry in the data base.
 *
 * @Author: David Hein
 */
 
-include 'templates/form.php';
-include_once 'system/modules/database/mySQL/mySQL_prepStatement.php';
+include 'templates/Form.php';
+include_once 'system/modules/database/mySQL/MySQLPrepStatement.php';
 
 /**
 * The class form is generating an HTML template for a delete page.
@@ -18,7 +19,8 @@ include_once 'system/modules/database/mySQL/mySQL_prepStatement.php';
 *
 * @author David Hein
 */
-class deleteForm extends form {
+class DeleteForm extends Form
+{
     /**
     * HTML code which will be shown in message box as link to all elements.
     * E.g. '<a href="pricing.php">Alle Preise anzeigen</a>'
@@ -31,13 +33,13 @@ class deleteForm extends form {
     * @var string
     */
     public $table;
-    
+
     /**
     * Page which will be forwarded to after deleting. E.g. 'user.php'
     * @var string
     */
     public $overviewPage;
-    
+
     /**
     * Table entries which will be deleted before main entry will be deleted.
     * The array needs to contain arrays which contain the [0] table name,
@@ -45,7 +47,7 @@ class deleteForm extends form {
     * @var array
     */
     public $deleteBeforeDelete;
-    
+
     /**
     * Table entries which will be updated before main entry will be deleted.
     * The array needs to contain arrays which contain the [0] table name,
@@ -53,52 +55,56 @@ class deleteForm extends form {
     * @var array
     */
     public $updateBeforeDelete;
-    
+
     protected $prepStatement;
-    
+
     /**
     * Construct a new deleteForm object and set default values for the properties
     *
     * @author David Hein
     */
-    function __construct() {
+    public function __construct()
+    {
         // Create parent
         parent::__construct();
         $this -> linkAllElements    = '<a href="index.php">Startseite</a>';
-        
+
         $this -> table              = 'T_Table';
-        
+
         $this -> overviewPage       = 'index.php';
-        
+
         $this -> deleteBeforeDelete = array();
         $this -> updateBeforeDelete = array();
-        
-        $this->prepStatement = new MySQL_prepStatement();
+
+        $this->prepStatement = new MySQLPrepStatement();
     }
-    
+
     /**
     * Close all open connections used in class
     */
-    function destroy() {
+    public function destroy()
+    {
         $this->prepStatement->destroy();
     }
-    
+
     /**
     * Delete actions before deleting main entry.
     *
     * author David Hein
     */
-    protected function deleteBeforeDelete() {
+    protected function deleteBeforeDelete()
+    {
         $i = 0;
-        while(count($this -> deleteBeforeDelete) > $i && $this -> deleteBeforeDelete[$i] != NULL) {
+        while (count($this -> deleteBeforeDelete) > $i && $this -> deleteBeforeDelete[$i] != null) {
             $this->prepStatement->deleteWhereCol(
                 $this -> deleteBeforeDelete[$i][0],
                 $this -> deleteBeforeDelete[$i][1],
-                $this -> deleteBeforeDelete[$i][2]);
+                $this -> deleteBeforeDelete[$i][2]
+            );
             $i++;
         }
     }
-    
+
     /**
     * Update actions before deleting main entry.
     *
@@ -106,43 +112,46 @@ class deleteForm extends form {
     *
     * author David Hein
     */
-    protected function updateBeforeDelete($conn) {
+    protected function updateBeforeDelete($conn)
+    {
         $i = 0;
-        while(count($this -> updateBeforeDelete) > $i && $this -> updateBeforeDelete[$i] != NULL) {
+        while (count($this -> updateBeforeDelete) > $i && $this -> updateBeforeDelete[$i] != null) {
             $conn -> update(
                 $this -> updateBeforeDelete[$i][0],
                 $this -> updateBeforeDelete[$i][1],
-                $this -> updateBeforeDelete[$i][2]);
+                $this -> updateBeforeDelete[$i][2]
+            );
             $i++;
         }
     }
-    
+
     /**
     * Contains logic for showing the deleting form and delete the entry.
     *
     * @author David Hein
     */
-    protected function deleteLogic() {
+    protected function deleteLogic()
+    {
         // Check if id is given
-        if(!isset($_GET['id'])) {
+        if (!isset($_GET['id'])) {
             showWarning('Es wurde kein Eintrag übergeben. Zurück zu ' . $this -> linkAllElements);
             return;
         }
-        
+
         // Get data from DB
         $dataSet = $this->prepStatement->selectWhereId($this->table, intval(secGET('id')));
-        $row = MySQL_prepStatement::getFirstRow($dataSet);
+        $row = MySQLPrepStatement::getFirstRow($dataSet);
 
         // Check if id is valid
-        if ($row == NULL) {
+        if ($row == null) {
             // Warning if no entry in DB was found
             showWarning('Der ausgewählte Eintrag wurde in der Datenbank nicht gefunden. '
                 . 'Zurück zu ' . $this -> linkAllElements);
             return;
         }
-        
+
         // Delete entry
-        if(isset($_GET['delete'])) {
+        if (isset($_GET['delete'])) {
             $conn = new Mysql();
             $conn -> dbConnect();
             // Before delete actions
@@ -152,8 +161,8 @@ class deleteForm extends form {
             $this->prepStatement->deleteWhereId($this -> table, intval($row['id']));
             // Close open connection
             $conn -> dbDisconnect();
-            $conn = NULL;
-            
+            $conn = null;
+
             showInfobox('Der Eintrag  wurde gelöscht.');
             return;
         }
@@ -161,22 +170,26 @@ class deleteForm extends form {
         ?>
         <form action="?id=<?php echo $row['id']; ?>&delete=1" method="post">
             Wollen Sie den Eintrag wirklich löschen?<br>
-            <button>Ja</button><button type="button" onclick="window.location.href='<?php echo $this -> overviewPage; ?>'">Abbrechen</button>
+            <button>Ja</button>
+            <button type="button" onclick="window.location.href='<?php echo $this -> overviewPage; ?>'">
+                Abbrechen
+            </button>
         </form>
         <?php
     }
-    
+
     /**
     * Main function which calls all parts that will be executed.
     * It creates the page which will be shown.
     *
     * @author David Hein
     */
-    public function show() {
+    public function show()
+    {
         $this -> head();
         $this -> deleteLogic();
         $this -> foot();
-        
+
         $this -> destroy();
     }
 }

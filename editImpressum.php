@@ -7,28 +7,28 @@
 * @Author: David Hein
 */
 
-    include 'modules/header_user.php';
-    include 'modules/permissionCheck.php';
-    
-    // Check permission
-    if(!isAdmin()) {
-        header("Location: index.php");
-        exit();
-    }
+include 'modules/header_user.php';
+include 'modules/permissionCheck.php';
 
-    include 'modules/header.php';
+// Check permission
+if (!isAdmin()) {
+    header("Location: index.php");
+    exit();
+}
 
-    include 'modules/formHelper.php';
+include 'modules/header.php';
+
+include 'modules/formHelper.php';
 ?>
 
 <h1>Impressum bearbeiten</h1>
 
 <?php
-    if(isset($_GET['edit'])) {
-        // --- Write new imprint data in config file ---
-        $myfile = fopen("./config/ImpressumConfig.php", "w");
-        // Create file content
-        $txt = '<?php
+if (isset($_GET['edit'])) {
+    // --- Write new imprint data in config file ---
+    $myfile = fopen("./config/ImpressumConfig.php", "w");
+    // Create file content
+    $txt = '<?php
     // Configuration for data which will be shown in impressum
     // Important: Use web interface to change the data. This file will be written from there.
     $impressum["provider_name"] = "' . secPOST('provider_name') . '";
@@ -43,20 +43,21 @@
     $impressum["responsible_city"] = "' . secPOST('responsible_city') . '";
     $impressum["responsible_email"] = "' . secPOST('responsible_email') . '";
 ?>';
-        fwrite($myfile, $txt);
-        fclose($myfile);
+    fwrite($myfile, $txt);
+    fclose($myfile);
 
-        echo '<div class="infobox">';
-        echo 'Die Änderungen wurden erfolgreich gespeichert';
-        echo '</div>';
-        // Include after writing so the new content will be shown in form        
+    echo '<div class="infobox">';
+    echo 'Die Änderungen wurden erfolgreich gespeichert';
+    echo '</div>';
+    // Include after writing so the new content will be shown in form
+    include 'config/ImpressumConfig.php';
+} else {
+    // Check if file exists to prevent warnings
+    if (file_exists('config/ImpressumConfig.php')) {
         include 'config/ImpressumConfig.php';
-    } else {
-        // Check if file exists to prevent warnings
-        if (file_exists('config/ImpressumConfig.php'))
-            include 'config/ImpressumConfig.php';    
     }
-    $impressum = $impressum ?? NULL;
+}
+    $impressum = $impressum ?? null;
 ?>
 <form action="?edit=1" method="post" class="requiredLegend">
     <h2>Anbieter (Privatperson oder Unternehmen)</h2>

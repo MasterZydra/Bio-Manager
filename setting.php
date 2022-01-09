@@ -10,77 +10,81 @@
 * @Author: David Hein
 */
 
-    include 'modules/header_user.php';
-    include 'modules/permissionCheck.php';
+include 'modules/header_user.php';
+include 'modules/permissionCheck.php';
 
-    // Check permission
-    if(!isAdmin() ||
-       // Check if id is numeric
-       (isset($_GET['id']) && !is_numeric($_GET['id'])))
-    {
-        header("Location: index.php");
-        exit();
-    }
+// Check permission
+if (
+    !isAdmin() ||
+        // Check if id is numeric
+        (isset($_GET['id']) && !is_numeric($_GET['id']))
+) {
+    header("Location: index.php");
+    exit();
+}
 
-    include 'modules/header.php';
+include 'modules/header.php';
 
-    include 'modules/tableGenerator.php';
+include 'modules/TableGenerator.php';
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
 
 <h1>Einstellung</h1>
 <?php
-    if(isDeveloper()) {
-?>
+if (isDeveloper()) {
+    ?>
 <p>
     <a href="addSetting.php">Einstellung hinzufügen</a>    
 </p>
-<?php
-    }
+    <?php
+}
 ?>
 
 <?php
-    if(isset($_GET['action']) && isset($_GET['id'])) {
-        if(secGET('action') == 'edit') {
-            // Action - Edit setting
-            // Forwording to edit page and add parameters
-            echo '<script>window.location.replace("editSetting.php?id=' . secGET('id') . '");</script>';
-        } elseif(isDeveloper() && secGET('action') == 'delete') {
-            // Action - Delete
-            echo '<script>window.location.replace("deleteSetting.php?id=' . secGET('id') . '");</script>';
-        }
+if (isset($_GET['action']) && isset($_GET['id'])) {
+    if (secGET('action') == 'edit') {
+        // Action - Edit setting
+        // Forwording to edit page and add parameters
+        echo '<script>window.location.replace("editSetting.php?id=' . secGET('id') . '");</script>';
+    } elseif (isDeveloper() && secGET('action') == 'delete') {
+        // Action - Delete
+        echo '<script>window.location.replace("deleteSetting.php?id=' . secGET('id') . '");</script>';
     }
+}
 ?>
 
 <p>
-    <input type="text" id="filterInput-tableSetting" onkeyup="filterData(&quot;tableSetting&quot;)" placeholder="Suchtext eingeben..." title="Suchtext"> 
+    <input type="text" id="filterInput-tableSetting" placeholder="Suchtext eingeben..." title="Suchtext"
+    onkeyup="filterData(&quot;tableSetting&quot;)" />
 </p>
 
 <?php
     $conn = new Mysql();
     $conn -> dbConnect();
-    $result = $conn -> select('T_Setting', '*', NULL, 'description ASC');
+    $result = $conn -> select('T_Setting', '*', null, 'description ASC');
     $conn -> dbDisconnect();
-    $conn = NULL;
+    $conn = null;
 
-    if(isDeveloper()) {
-        tableGenerator::show(
-            'dataTable-tableSetting',
-            $result,
-            array('name', 'description', 'value'),
-            array('Einstellung', 'Beschreibung', 'Wert', 'Aktionen'),
-            array('edit', 'delete'),
-            array('Bearbeiten', 'Löschen'));
-    } else {
-        tableGenerator::show(
-            'dataTable-tableSetting',
-            $result,
-            array('name', 'description', 'value'),
-            array('Einstellung', 'Beschreibung', 'Wert', 'Aktionen'),
-            array('edit'),
-            array('Bearbeiten'));
-    }
+if (isDeveloper()) {
+    TableGenerator::show(
+        'dataTable-tableSetting',
+        $result,
+        array('name', 'description', 'value'),
+        array('Einstellung', 'Beschreibung', 'Wert', 'Aktionen'),
+        array('edit', 'delete'),
+        array('Bearbeiten', 'Löschen')
+    );
+} else {
+    TableGenerator::show(
+        'dataTable-tableSetting',
+        $result,
+        array('name', 'description', 'value'),
+        array('Einstellung', 'Beschreibung', 'Wert', 'Aktionen'),
+        array('edit'),
+        array('Bearbeiten')
+    );
+}
 
-    include 'modules/footer.php';
+include 'modules/footer.php';
 ?>

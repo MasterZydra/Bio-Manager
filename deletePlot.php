@@ -1,4 +1,5 @@
 <?php
+
 /*
 * deletePlot.php
 * --------------
@@ -6,9 +7,9 @@
 *
 * @Author: David Hein
 */
-    include 'templates/deleteForm.php';
+    include 'templates/DeleteForm.php';
 
-    $form = new deleteForm();
+    $form = new DeleteForm();
     $form -> heading            = "Flurstück löschen";
 
     $form -> accessPermission   = "isMaintainer";
@@ -23,4 +24,3 @@
     $form -> overviewPage       = 'plot.php';
 
     $form -> show();
-?>

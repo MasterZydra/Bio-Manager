@@ -1,21 +1,22 @@
 <?php
+
 /*
-* supplierCollection.php
+* SupplierCollection.php
 * ----------------
-* This file contains the class 'supplierCollection'.
+* This file contains the class 'SupplierCollection'.
 * The class is a data gateway for the suppliers and
-* implements the iDataCollection interface.
+* implements the IDataCollection interface.
 *
 * @Author: David Hein
 */
-include_once 'system/modules/database/mySQL/mySQL_prepStatement.php';
-include_once 'system/modules/database/mySQL/mySQL_helpers.php';
+include_once 'system/modules/database/mySQL/MySQLPrepStatement.php';
+include_once 'system/modules/database/mySQL/MySqlHelpers.php';
 
-include_once 'system/modules/dataObjects/iDataCollection.php';
-include_once 'system/modules/dataObjects/iObject.php';
-include_once 'system/modules/dataObjects/supplier.php';
+include_once 'system/modules/dataObjects/IDataCollection.php';
+include_once 'system/modules/dataObjects/IObject.php';
+include_once 'system/modules/dataObjects/Supplier.php';
 
-class SupplierCollection implements iDataCollection
+class SupplierCollection implements IDataCollection
 {
     // MySQL_prepStatement
     private $prepStatement;
@@ -23,16 +24,17 @@ class SupplierCollection implements iDataCollection
     // Create MySQL_prepStatement instance when creating the object
     public function __construct()
     {
-        $this->prepStatement = new MySQL_prepStatement();
+        $this->prepStatement = new MySQLPrepStatement();
     }
 
     // Close all open connections used in class
-    function destroy() {
+    public function destroy()
+    {
         $this->prepStatement->destroy();
     }
 
     // Find entry with the given id
-    public function find(int $id) : iObject
+    public function find(int $id): IObject
     {
         $dataSet = $this->prepStatement->selectWhereId("T_Supplier", $id);
         $rows = $this->dataSetToArrayOfSuppliers($dataSet);
@@ -43,9 +45,9 @@ class SupplierCollection implements iDataCollection
     }
 
     // Find all entries in the table
-    public function findAll() : array
+    public function findAll(): array
     {
-        $dataSet = $this->prepStatement->selectColWhereCol("*", "T_Supplier", NULL, NULL);
+        $dataSet = $this->prepStatement->selectColWhereCol("*", "T_Supplier", null, null);
         return $this->dataSetToArrayOfSuppliers($dataSet);
     }
 
@@ -55,46 +57,52 @@ class SupplierCollection implements iDataCollection
         return $this->dataSetToArrayOfSuppliers($dataSet);
     }
 
-    public function update(iObject $object) : bool
+    public function update(IObject $object): bool
     {
-        if (MySQL_helpers::objectAlreadyExists($this, $object->name(), $object->id()))
-        {
+        if (MySqlHelpers::objectAlreadyExists($this, $object->name(), $object->id())) {
             return false;
         }
-        
+
         return $this->prepStatement->updateColsWhereId(
-            "T_Supplier", array("name", "inactive"), "sb",
-            $object->id(), $object->name(), $object->inactive());
+            "T_Supplier",
+            array("name", "inactive"),
+            "sb",
+            $object->id(),
+            $object->name(),
+            $object->inactive()
+        );
     }
 
-    public function add(iObject $object) : bool
+    public function add(IObject $object): bool
     {
-        if (MySQL_helpers::objectAlreadyExists($this, $object->name(), $object->id()))
-        {
+        if (MySqlHelpers::objectAlreadyExists($this, $object->name(), $object->id())) {
             return false;
         }
 
         return $this->prepStatement->insertCols(
-            "T_Supplier", array("name", "inactive"), "sb", $object->name(), $object->inactive());
+            "T_Supplier",
+            array("name", "inactive"),
+            "sb",
+            $object->name(),
+            $object->inactive()
+        );
     }
 
     private function dataSetToArrayOfSuppliers($dataSet)
     {
         if (is_null($dataSet) || $dataSet -> num_rows == 0) {
-            return NULL;
+            return null;
         }
         // Create Supplier objects for all entries and push them into the array
         $result = array();
-        while($row = $dataSet->fetch_assoc()) {
+        while ($row = $dataSet->fetch_assoc()) {
             array_push($result, $this->newSupplier($row));
         }
         return $result;
     }
 
-    private function newSupplier($row) : Supplier
+    private function newSupplier($row): Supplier
     {
         return new Supplier(intval($row["id"]), $row["name"], $row["inactive"]);
     }
 }
-
-?>

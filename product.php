@@ -9,22 +9,23 @@
 * @Author: David Hein
 */
 
-    include 'modules/header_user.php';
-    include 'modules/permissionCheck.php';
+include 'modules/header_user.php';
+include 'modules/permissionCheck.php';
 
-    // Check permission
-    if(!isMaintainer() && !isInspector() ||
-       // Check if id is numeric
-       (isset($_GET['id']) && !is_numeric($_GET['id'])))
-    {
-        header("Location: index.php");
-        exit();
-    }
+// Check permission
+if (
+    !isMaintainer() && !isInspector() ||
+        // Check if id is numeric
+        (isset($_GET['id']) && !is_numeric($_GET['id']))
+) {
+    header("Location: index.php");
+    exit();
+}
 
-    include 'modules/header.php';
+include 'modules/header.php';
 
-    include 'modules/tableGenerator.php';
-    include_once 'system/modules/dataObjects/productCollection.php';
+include 'modules/TableGenerator.php';
+include_once 'system/modules/dataObjects/ProductCollection.php';
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
@@ -33,47 +34,52 @@
 <h1>Produkt</h1>
 
 <p>
-    <?php if(isMaintainer()) {?><a href="addProduct.php">Produkt hinzufügen</a><?php } ?>
+    <?php if (isMaintainer()) {
+        ?><a href="addProduct.php">Produkt hinzufügen</a><?php
+    } ?>
 </p>
 
 <?php
-    if(isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
-        switch (secGET('action')) {
-            case 'delete':
-                // Action - Delete
-                echo '<script>window.location.replace("deleteProduct.php?id=' . secGET('id') . '");</script>';
-                break;
-            case 'edit':
-                // Action - Edit a product
-                // Forwarding to edit page and add parameters
-                echo '<script>window.location.replace("editProduct.php?id=' . secGET('id') . '");</script>';
-                break;
-        }
+if (isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
+    switch (secGET('action')) {
+        case 'delete':
+            // Action - Delete
+            echo '<script>window.location.replace("deleteProduct.php?id=' . secGET('id') . '");</script>';
+            break;
+        case 'edit':
+            // Action - Edit a product
+            // Forwarding to edit page and add parameters
+            echo '<script>window.location.replace("editProduct.php?id=' . secGET('id') . '");</script>';
+            break;
     }
+}
 ?>
 
 <p>
-    <input type="text" id="filterInput-tableProduct" onkeyup="filterData(&quot;tableProduct&quot;)" placeholder="Suchtext eingeben..." title="Suchtext"> 
+    <input type="text" id="filterInput-tableProduct" placeholder="Suchtext eingeben..." title="Suchtext"
+    onkeyup="filterData(&quot;tableProduct&quot;)" />
 </p>
 
 <?php
     $productColl = new ProductCollection();
 
-    if(isMaintainer()) {
-        tableGenerator::show(
-            'dataTable-tableProduct',
-            $productColl->findAll(),
-            array('name'),
-            array('Name', 'Aktionen'),
-            array('edit', 'delete'),
-            array('Bearbeiten', 'Löschen'));
-    } else {
-        tableGenerator::show(
-            'dataTable-tableProduct',
-            $productColl->findAll(),
-            array('name'),
-            array('Name'));
-    }
+if (isMaintainer()) {
+    TableGenerator::show(
+        'dataTable-tableProduct',
+        $productColl->findAll(),
+        array('name'),
+        array('Name', 'Aktionen'),
+        array('edit', 'delete'),
+        array('Bearbeiten', 'Löschen')
+    );
+} else {
+    TableGenerator::show(
+        'dataTable-tableProduct',
+        $productColl->findAll(),
+        array('name'),
+        array('Name')
+    );
+}
 ?>
 
 <script>
