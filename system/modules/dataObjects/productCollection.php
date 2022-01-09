@@ -14,7 +14,7 @@ include_once 'system/modules/database/mySQL/MySqlHelpers.php';
 
 include_once 'system/modules/dataObjects/IDataCollection.php';
 include_once 'system/modules/dataObjects/IObject.php';
-include_once 'system/modules/dataObjects/product.php';
+include_once 'system/modules/dataObjects/Product.php';
 
 class ProductCollection implements IDataCollection
 {
