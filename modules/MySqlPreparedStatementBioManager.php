@@ -1,7 +1,7 @@
 <?php
 
 /*
-* Mysql_preparedStatement_BioManger.php
+* MySqlPreparedStatementBioManager.php
 * -------------------------------------
 * Class for using prepared statments for a more secure way to
 * execute sql queries and prevent sql injections.
@@ -12,7 +12,7 @@
 */
 include_once 'modules/MySqlPreparedStatement.php';
 
-class mysql_preparedStatement_BioManager extends MySqlPreparedStatement
+class MySqlPreparedStatementBioManager extends MySqlPreparedStatement
 {
     /**
     * Create a new MySqlPreparedStatement object.

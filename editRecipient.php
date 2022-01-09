@@ -21,7 +21,7 @@ if (
 
 include 'modules/header.php';
 
-include_once 'modules/Mysql_preparedStatement_BioManager.php';
+include_once 'modules/MySqlPreparedStatementBioManager.php';
 ?>
 
 <h1>Abnehmer bearbeiten</h1>
@@ -63,7 +63,7 @@ if (!isset($_GET['id'])) {
     $conn = null;
 
     // Select data
-    $prepStmt = new mysql_preparedStatement_BioManager();
+    $prepStmt = new MySqlPreparedStatementBioManager();
     $row = $prepStmt -> selectWhereId("T_Recipient", secGET('id'));
     $prepStmt -> destroy();
 

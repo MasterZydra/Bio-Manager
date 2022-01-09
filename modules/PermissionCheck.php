@@ -9,7 +9,7 @@
 * @Author: David Hein
 */
 include 'modules/Mysql_BioManager.php';
-include_once 'modules/Mysql_preparedStatement_BioManager.php';
+include_once 'modules/MySqlPreparedStatementBioManager.php';
 
 include 'modules/stringSecurityHelper.php';
 include 'modules/messageHelper.php';
@@ -28,7 +28,7 @@ function checkPermission($permission)
         return false;
     }
     // Get permission from database
-    $prepStmt = new mysql_preparedStatement_BioManager();
+    $prepStmt = new MySqlPreparedStatementBioManager();
     return $prepStmt -> getUserPermission($_SESSION['userId'], $permission);
     $prepStmt -> destroy();
 }
