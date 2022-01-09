@@ -25,7 +25,7 @@ if (
 include 'modules/header.php';
 
 include 'modules/TableGenerator.php';
-include_once 'system/modules/dataObjects/productCollection.php';
+include_once 'system/modules/dataObjects/ProductCollection.php';
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
