@@ -9,7 +9,7 @@
 * @Author: David Hein
 */
 include_once 'system/modules/dataObjects/iObject.php';
-include_once 'system/modules/dataObjects/supplierCollection.php';
+include_once 'system/modules/dataObjects/SupplierCollection.php';
 
 class Plot implements IObject
 {

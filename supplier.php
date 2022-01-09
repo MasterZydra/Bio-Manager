@@ -25,7 +25,7 @@ if (
     include 'modules/header.php';
 
     include 'modules/TableGenerator.php';
-    include_once 'system/modules/dataObjects/supplierCollection.php';
+    include_once 'system/modules/dataObjects/SupplierCollection.php';
 
 ?>
 
