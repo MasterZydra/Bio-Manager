@@ -1,9 +1,9 @@
 <?php
 
 /*
-* supplierCollection.php
+* SupplierCollection.php
 * ----------------
-* This file contains the class 'supplierCollection'.
+* This file contains the class 'SupplierCollection'.
 * The class is a data gateway for the suppliers and
 * implements the IDataCollection interface.
 *
