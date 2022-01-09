@@ -1,7 +1,7 @@
 <?php
 
 /*
-* plotCollection.php
+* PlotCollection.php
 * ------------------
 * This file contains the class 'plotCollection'.
 * The class is a data gateway for the plot and
