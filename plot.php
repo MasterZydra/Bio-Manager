@@ -1,6 +1,6 @@
 <?php
 /*
-* plot.php
+* Plot.php
 * ----------------
 * This page shows all plots in a table. A filter can
 * be used to find the wanted rows. With maintainer permission
