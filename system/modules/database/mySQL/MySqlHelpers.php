@@ -10,11 +10,11 @@
 *
 * @Author: David Hein
 */
-include_once 'system/modules/dataObjects/iDataCollection.php';
+include_once 'system/modules/dataObjects/IDataCollection.php';
 
 class MySqlHelpers
 {
-    public static function objectAlreadyExists(iDataCollection $collection, string $name, int $id): bool
+    public static function objectAlreadyExists(IDataCollection $collection, string $name, int $id): bool
     {
         $objects = $collection->findByName($name);
         if (is_null($objects)) {

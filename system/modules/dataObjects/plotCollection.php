@@ -5,18 +5,18 @@
 * ------------------
 * This file contains the class 'plotCollection'.
 * The class is a data gateway for the plot and
-* implements the iDataCollection interface.
+* implements the IDataCollection interface.
 *
 * @Author: David Hein
 */
 include_once 'system/modules/database/mySQL/MySQLPrepStatement.php';
 include_once 'system/modules/database/mySQL/MySqlHelpers.php';
 
-include_once 'system/modules/dataObjects/iDataCollection.php';
+include_once 'system/modules/dataObjects/IDataCollection.php';
 include_once 'system/modules/dataObjects/IObject.php';
 include_once 'system/modules/dataObjects/plot.php';
 
-class PlotCollection implements iDataCollection
+class PlotCollection implements IDataCollection
 {
     // MySQL_prepStatement
     private $prepStatement;

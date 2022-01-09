@@ -5,18 +5,18 @@
 * ---------------------
 * This file contains the class 'productCollection'.
 * The class is a data gateway for the product and
-* implements the iDataCollection interface.
+* implements the IDataCollection interface.
 *
 * @Author: David Hein
 */
 include_once 'system/modules/database/mySQL/MySQLPrepStatement.php';
 include_once 'system/modules/database/mySQL/MySqlHelpers.php';
 
-include_once 'system/modules/dataObjects/iDataCollection.php';
+include_once 'system/modules/dataObjects/IDataCollection.php';
 include_once 'system/modules/dataObjects/IObject.php';
 include_once 'system/modules/dataObjects/product.php';
 
-class ProductCollection implements iDataCollection
+class ProductCollection implements IDataCollection
 {
     // MySQL_prepStatement;
     private $prepStatement;
