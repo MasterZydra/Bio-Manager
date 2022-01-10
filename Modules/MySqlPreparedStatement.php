@@ -8,7 +8,7 @@
 *
 * @Author David Hein
 */
-include_once 'modules/Mysql.php';
+include_once 'Modules/Mysql.php';
 
 class MySqlPreparedStatement
 {

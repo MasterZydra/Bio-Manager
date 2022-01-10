@@ -10,7 +10,7 @@
 * @Author: David Hein
 */
 
-include 'modules/selectBox.php';
+include 'Modules/selectBox.php';
 
 /**
 * Generate a select element for the suppliers.

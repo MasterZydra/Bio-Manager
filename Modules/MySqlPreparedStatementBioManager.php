@@ -10,7 +10,7 @@
 *
 * @Author David Hein
 */
-include_once 'modules/MySqlPreparedStatement.php';
+include_once 'Modules/MySqlPreparedStatement.php';
 
 class MySqlPreparedStatementBioManager extends MySqlPreparedStatement
 {
