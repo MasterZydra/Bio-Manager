@@ -1,5 +1,7 @@
 <?php
 
+namespace System\Modules\Database\MySQL;
+
 /*
 * MySQLPrepStatement.php
 * ---------------------------
@@ -8,7 +10,9 @@
 *
 * @Author David Hein
 */
-include_once 'modules/Mysql.php';
+include_once 'Modules/Mysql.php';
+
+use Modules\Mysql;
 
 class MySQLPrepStatement
 {
@@ -24,7 +28,7 @@ class MySQLPrepStatement
     */
     public function __construct()
     {
-        $this -> conn = new Mysql();
+        $this -> conn = new \Mysql();
         $this -> conn -> dbConnect();
     }
 

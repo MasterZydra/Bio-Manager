@@ -1,5 +1,7 @@
 <?php
 
+namespace System\Modules\DataObjects;
+
 /*
 * ProductCollection.php
 * ---------------------
@@ -9,12 +11,8 @@
 *
 * @Author: David Hein
 */
-include_once 'System/Modules/Database/MySQL/MySQLPrepStatement.php';
-include_once 'System/Modules/Database/MySQL/MySqlHelpers.php';
 
-include_once 'System/Modules/DataObjects/IDataCollection.php';
-include_once 'System/Modules/DataObjects/IObject.php';
-include_once 'System/Modules/DataObjects/Product.php';
+use System\Modules\Database\MySQL\MySqlHelpers;
 
 class ProductCollection implements IDataCollection
 {
@@ -24,7 +22,7 @@ class ProductCollection implements IDataCollection
     // Create MySQL_prepStatement instance when creating the object
     public function __construct()
     {
-        $this->prepStatement = new MySQLPrepStatement();
+        $this->prepStatement = new \System\Modules\Database\MySQL\MySQLPrepStatement();
     }
 
     // Close all open connections used in class

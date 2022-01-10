@@ -1,5 +1,7 @@
 <?php
 
+namespace System\Modules\DataObjects;
+
 /*
 * IObject.php
 * ----------------

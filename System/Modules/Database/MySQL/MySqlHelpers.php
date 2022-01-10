@@ -1,5 +1,7 @@
 <?php
 
+namespace System\Modules\Database\MySQL;
+
 /*
 * MySqlHelpers.php
 * -----------------
@@ -10,11 +12,13 @@
 *
 * @Author: David Hein
 */
-include_once 'System/Modules/DataObjects/IDataCollection.php';
 
 class MySqlHelpers
 {
-    public static function objectAlreadyExists(IDataCollection $collection, string $name, int $id): bool
+    public static function objectAlreadyExists(
+        \System\Modules\DataObjects\IDataCollection $collection,
+        string $name,
+        int $id): bool
     {
         $objects = $collection->findByName($name);
         if (is_null($objects)) {
