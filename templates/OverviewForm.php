@@ -9,7 +9,7 @@
 */
 
 include 'templates/Form.php';
-include 'modules/TableGenerator.php';
+include 'Modules/TableGenerator.php';
 
 /**
 * The class form is generating an HTML template for an overview
