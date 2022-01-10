@@ -8,8 +8,8 @@
 *
 * @Author: David Hein
 */
-include_once 'system/modules/dataObjects/IObject.php';
-include_once 'system/modules/dataObjects/SupplierCollection.php';
+include_once 'System/Modules/DataObjects/IObject.php';
+include_once 'System/Modules/DataObjects/SupplierCollection.php';
 
 class Plot implements IObject
 {

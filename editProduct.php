@@ -21,7 +21,7 @@ if (
 
 include 'modules/header.php';
 
-include_once 'system/modules/dataObjects/ProductCollection.php';
+include_once 'System/Modules/DataObjects/ProductCollection.php';
 ?>
 
 <h1>Produkt bearbeiten</h1>

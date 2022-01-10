@@ -9,12 +9,12 @@
 *
 * @Author: David Hein
 */
-include_once 'system/modules/database/mySQL/MySQLPrepStatement.php';
-include_once 'system/modules/database/mySQL/MySqlHelpers.php';
+include_once 'System/Modules/Database/MySQL/MySQLPrepStatement.php';
+include_once 'System/Modules/Database/MySQL/MySqlHelpers.php';
 
-include_once 'system/modules/dataObjects/IDataCollection.php';
-include_once 'system/modules/dataObjects/IObject.php';
-include_once 'system/modules/dataObjects/Supplier.php';
+include_once 'System/Modules/DataObjects/IDataCollection.php';
+include_once 'System/Modules/DataObjects/IObject.php';
+include_once 'System/Modules/DataObjects/Supplier.php';
 
 class SupplierCollection implements IDataCollection
 {

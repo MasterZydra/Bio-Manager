@@ -9,7 +9,7 @@
 *
 * @Author: David Hein
 */
-include_once 'system/modules/dataObjects/IObject.php';
+include_once 'System/Modules/DataObjects/IObject.php';
 
 interface IDataCollection
 {

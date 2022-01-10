@@ -18,7 +18,7 @@ if (!isMaintainer()) {
 
 include 'modules/header.php';
 
-include_once 'system/modules/dataObjects/SupplierCollection.php';
+include_once 'System/Modules/DataObjects/SupplierCollection.php';
 ?>
 <h1>Lieferanten hinzufügen</h1>
 

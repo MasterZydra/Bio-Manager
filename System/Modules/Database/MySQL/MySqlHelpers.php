@@ -10,7 +10,7 @@
 *
 * @Author: David Hein
 */
-include_once 'system/modules/dataObjects/IDataCollection.php';
+include_once 'System/Modules/DataObjects/IDataCollection.php';
 
 class MySqlHelpers
 {
