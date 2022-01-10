@@ -9,7 +9,6 @@
 */
 
 include 'templates/Form.php';
-include_once 'System/Modules/Database/MySQL/MySQLPrepStatement.php';
 
 /**
 * The class form is generating an HTML template for a delete page.
@@ -76,7 +75,7 @@ class DeleteForm extends Form
         $this -> deleteBeforeDelete = array();
         $this -> updateBeforeDelete = array();
 
-        $this->prepStatement = new MySQLPrepStatement();
+        $this->prepStatement = new \System\Modules\Database\MySQL\MySQLPrepStatement();
     }
 
     /**

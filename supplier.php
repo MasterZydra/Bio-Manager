@@ -9,8 +9,10 @@
 * @Author: David Hein
 */
 
-    include 'Modules/header_user.php';
-    include 'Modules/PermissionCheck.php';
+include 'System/Autoloader.php';
+
+include 'Modules/header_user.php';
+include 'Modules/PermissionCheck.php';
 
 // Check permission
 if (
@@ -22,11 +24,9 @@ if (
     exit();
 }
 
-    include 'Modules/header.php';
+include 'Modules/header.php';
 
-    include 'Modules/TableGenerator.php';
-    include_once 'System/Modules/DataObjects/SupplierCollection.php';
-
+include 'Modules/TableGenerator.php';
 ?>
 
 <script src="js/filterDataTable.js"></script>
@@ -63,7 +63,7 @@ if (isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
 </p>
 
 <?php
-    $supplierColl = new SupplierCollection();
+    $supplierColl = new \System\Modules\DataObjects\SupplierCollection();
 
 if (isMaintainer()) {
     TableGenerator::show(

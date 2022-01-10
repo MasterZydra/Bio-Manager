@@ -9,6 +9,8 @@
 * @Author: David Hein
 */
 
+include 'System/Autoloader.php';
+
 include 'Modules/header_user.php';
 include 'Modules/PermissionCheck.php';
 
@@ -25,7 +27,7 @@ if (
 include 'Modules/header.php';
 
 include 'Modules/TableGenerator.php';
-include_once 'System/Modules/DataObjects/PlotCollection.php';
+
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
@@ -61,7 +63,7 @@ if (isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
 </p>
 
 <?php
-    $plotColl = new PlotCollection();
+    $plotColl = new System\Modules\DataObjects\PlotCollection();
 
 if (isMaintainer()) {
     TableGenerator::show(

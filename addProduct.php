@@ -7,6 +7,8 @@
 * @Author: David Hein
 */
 
+include 'System/Autoloader.php';
+
 include 'Modules/header_user.php';
 include 'Modules/PermissionCheck.php';
 
@@ -18,7 +20,7 @@ if (!isMaintainer()) {
 
 include 'Modules/header.php';
 
-include_once 'System/Modules/DataObjects/ProductCollection.php';
+use System\Modules\Database\MySQL\MySqlHelpers;
 ?>
 <h1>Produkt hinzufügen</h1>
 
@@ -26,7 +28,7 @@ include_once 'System/Modules/DataObjects/ProductCollection.php';
     <a href="product.php">Alle Produkte anzeigen</a>
 </p>
 <?php
-    $productColl = new ProductCollection();
+    $productColl = new \System\Modules\DataObjects\ProductCollection();
     $alreadyExist = isset($_POST["product_name"]) &&
         MySqlHelpers::objectAlreadyExists($productColl, secPOST("product_name"), 0);
 if (isset($_GET['add'])) {
@@ -35,7 +37,7 @@ if (isset($_GET['add'])) {
         echo 'Das Produkt <strong>' . secPOST("product_name") . '</strong> existiert bereits';
         echo '</div>';
     } else {
-        $newProduct = new Product(0, secPOST("product_name"));
+        $newProduct = new \System\Modules\DataObjects\Product(0, secPOST("product_name"));
         if ($productColl->add($newProduct)) {
             echo '<div class="infobox">';
             echo 'Das Produkt <strong>' . secPOST("product_name") . '</strong> wurde hinzugefügt';

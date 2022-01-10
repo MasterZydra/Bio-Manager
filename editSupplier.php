@@ -6,6 +6,8 @@
 *
 * @Author: David Hein
 */
+include 'System/Autoloader.php';
+
 include 'Modules/header_user.php';
 include 'Modules/PermissionCheck.php';
 
@@ -20,8 +22,6 @@ if (
 }
 
 include 'Modules/header.php';
-
-include_once 'System/Modules/DataObjects/SupplierCollection.php';
 ?>
 
 <h1>Lieferant bearbeiten</h1>
@@ -37,7 +37,7 @@ if (!isset($_GET['id'])) {
     echo 'Es wurde kein Lieferant übergeben. Zurück zu <a href="supplier.php">Alle Lieferanten anzeigen</a>';
     echo '</div>';
 } else {
-    $supplierColl = new SupplierCollection();
+    $supplierColl = new \System\Modules\DataObjects\SupplierCollection();
     // Select data
     $row = $supplierColl->find(intval(secGET('id')));
 

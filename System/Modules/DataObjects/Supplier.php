@@ -1,5 +1,7 @@
 <?php
 
+namespace System\Modules\DataObjects;
+
 /*
 * Supplier.php
 * ----------------
@@ -8,7 +10,6 @@
 *
 * @Author: David Hein
 */
-include_once 'System/Modules/DataObjects/IObject.php';
 
 class Supplier implements IObject
 {

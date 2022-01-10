@@ -6,6 +6,7 @@
 *
 * @Author: David Hein
 */
+include 'System/Autoloader.php';
 
 include 'Modules/header_user.php';
 include 'Modules/PermissionCheck.php';
@@ -17,8 +18,6 @@ if (!isMaintainer()) {
 }
 
 include 'Modules/header.php';
-
-include_once 'System/Modules/DataObjects/SupplierCollection.php';
 ?>
 <h1>Lieferanten hinzufügen</h1>
 
@@ -26,7 +25,7 @@ include_once 'System/Modules/DataObjects/SupplierCollection.php';
     <a href="supplier.php">Alle Lieferanten anzeigen</a>
 </p>
 <?php
-    $supplierColl = new SupplierCollection();
+    $supplierColl = new \System\Modules\DataObjects\SupplierCollection();
     $alreadyExist = isset($_POST["supplier_name"]) &&
     MySqlHelpers::objectAlreadyExists($supplierColl, secPOST("supplier_name"), 0);
 if (isset($_GET['add'])) {

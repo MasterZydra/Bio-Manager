@@ -8,8 +8,6 @@
 * @Author: David Hein
 */
 
-include_once 'System/Modules/DataObjects/IObject.php';
-
 class TableGenerator
 {
     /**

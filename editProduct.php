@@ -6,6 +6,9 @@
 *
 * @Author: David Hein
 */
+
+include 'System/Autoloader.php';
+
 include 'Modules/header_user.php';
 include 'Modules/PermissionCheck.php';
 
@@ -21,7 +24,7 @@ if (
 
 include 'Modules/header.php';
 
-include_once 'System/Modules/DataObjects/ProductCollection.php';
+use System\Modules\Database\MySQL\MySqlHelpers;
 ?>
 
 <h1>Produkt bearbeiten</h1>
@@ -37,7 +40,7 @@ if (!isset($_GET['id'])) {
     echo 'Es wurde kein Produkt übergeben. Zurück zu <a href="product.php">Alle Produkte anzeigen</a>';
     echo '</div>';
 } else {
-    $productColl = new ProductCollection();
+    $productColl = new \System\Modules\DataObjects\ProductCollection();
     // Select data
     $row = $productColl->find(intval(secGET('id')));
 

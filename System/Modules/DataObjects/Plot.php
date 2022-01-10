@@ -1,5 +1,7 @@
 <?php
 
+namespace System\Modules\DataObjects;
+
 /*
 * plot.php
 * --------
@@ -8,8 +10,6 @@
 *
 * @Author: David Hein
 */
-include_once 'System/Modules/DataObjects/IObject.php';
-include_once 'System/Modules/DataObjects/SupplierCollection.php';
 
 class Plot implements IObject
 {
