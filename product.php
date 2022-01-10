@@ -9,6 +9,8 @@
 * @Author: David Hein
 */
 
+include 'System/Autoloader.php';
+
 include 'Modules/header_user.php';
 include 'Modules/PermissionCheck.php';
 
@@ -61,7 +63,7 @@ if (isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
 </p>
 
 <?php
-    $productColl = new ProductCollection();
+    $productColl = new System\Modules\DataObjects\ProductCollection();
 
 if (isMaintainer()) {
     TableGenerator::show(
