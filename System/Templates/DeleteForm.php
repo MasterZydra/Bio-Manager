@@ -1,5 +1,7 @@
 <?php
 
+namespace System\Templates;
+
 /*
 * DeleteForm.php
 * --------------
@@ -7,8 +9,6 @@
 *
 * @Author: David Hein
 */
-
-include 'templates/Form.php';
 
 /**
 * The class form is generating an HTML template for a delete page.
@@ -139,7 +139,7 @@ class DeleteForm extends Form
 
         // Get data from DB
         $dataSet = $this->prepStatement->selectWhereId($this->table, intval(secGET('id')));
-        $row = MySQLPrepStatement::getFirstRow($dataSet);
+        $row = \System\Modules\Database\MySQL\MySQLPrepStatement::getFirstRow($dataSet);
 
         // Check if id is valid
         if ($row == null) {
@@ -151,7 +151,8 @@ class DeleteForm extends Form
 
         // Delete entry
         if (isset($_GET['delete'])) {
-            $conn = new Mysql();
+            include_once 'Modules/Mysql.php';
+            $conn = new \Mysql();
             $conn -> dbConnect();
             // Before delete actions
             $this -> deleteBeforeDelete();

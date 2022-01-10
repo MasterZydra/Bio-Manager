@@ -1,5 +1,7 @@
 <?php
 
+namespace System\Templates;
+
 /*
 * Form.php
 * --------

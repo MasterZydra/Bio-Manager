@@ -1,5 +1,7 @@
 <?php
 
+namespace System\Templates;
+
 /*
 * OverviewForm.php
 * ----------------
@@ -7,9 +9,6 @@
 *
 * @Author: David Hein
 */
-
-include 'templates/Form.php';
-include 'Modules/TableGenerator.php';
 
 /**
 * The class form is generating an HTML template for an overview
