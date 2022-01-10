@@ -8,7 +8,7 @@
 * @Author: David Hein
 */
 
-    include 'modules/Mysql.php';
+    include 'Modules/Mysql.php';
 
     $conn = new Mysql();
     $conn -> dbConnect();

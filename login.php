@@ -7,9 +7,9 @@
 *
 * @Author: David Hein
 */
-include 'modules/header_everyone.php';
-include 'modules/PermissionCheck.php';
-include 'modules/header.php';
+include 'Modules/header_everyone.php';
+include 'Modules/PermissionCheck.php';
+include 'Modules/header.php';
 
 $invalidLogin = false;
 $noPermissionsSet = false;
@@ -74,6 +74,6 @@ if ($noPermissionsSet) {
         <button>Anmelden</button>
     </form>
 <?php
-    include 'modules/footer.php';
+    include 'Modules/footer.php';
 ?>
 

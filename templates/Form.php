@@ -8,7 +8,7 @@
 * @Author: David Hein
 */
 
-include 'modules/PermissionCheck.php';
+include 'Modules/PermissionCheck.php';
 
 /**
 * The class form is generating an HTML template. The content
@@ -94,7 +94,7 @@ class Form
     */
     protected function head()
     {
-        include 'modules/header_user.php';
+        include 'Modules/header_user.php';
 
         // Execute access permission function
         if (is_string($this -> accessPermission)) {
@@ -116,11 +116,11 @@ class Form
 
         // Caching
         if ($this -> caching) {
-            include 'modules/cache.php';
+            include 'Modules/cache.php';
             $this -> config["cacheFile"] = $config["cacheFile"];
         }
 
-        include 'modules/header.php';
+        include 'Modules/header.php';
 
         // Heading and link
         echo "<h1>" . $this -> heading . "</h1>";
@@ -139,7 +139,7 @@ class Form
     */
     protected function foot()
     {
-        include 'modules/footer.php';
+        include 'Modules/footer.php';
 
         // Caching
         if ($this -> caching) {

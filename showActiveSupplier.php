@@ -8,8 +8,8 @@
 * @Author: David Hein
 */
 
-include 'modules/header_user.php';
-include 'modules/PermissionCheck.php';
+include 'Modules/header_user.php';
+include 'Modules/PermissionCheck.php';
 
 // Check permission
 if (!isMaintainer() && !isInspector()) {
@@ -52,7 +52,7 @@ $html = '
 
     // Generate and show PDF document
     // ------------------------------
-    include 'modules/PdfGenerator.php';
+    include 'Modules/PdfGenerator.php';
 
     $pdfGen = new PdfGenerator();
     $pdfGen -> createPDF($invoice["author"], $docName, $docName, $html);

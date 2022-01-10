@@ -8,8 +8,8 @@
 * @Author: David Hein
 */
 
-include 'modules/header_user.php';
-include 'modules/PermissionCheck.php';
+include 'Modules/header_user.php';
+include 'Modules/PermissionCheck.php';
 
 // Check permission
 if (
@@ -23,7 +23,7 @@ if (
     exit();
 }
 
-include 'modules/Invoice.php';
+include 'Modules/Invoice.php';
 
 // Check if file exists to prevent warnings
 if (file_exists('config/InvoiceDataConfig.php')) {
@@ -210,7 +210,7 @@ Rechnungsdatum:
 
     // Generate and show PDF document
     // ------------------------------
-    include 'modules/PdfGenerator.php';
+    include 'Modules/PdfGenerator.php';
 
     $pdfGen = new PdfGenerator();
     $pdfGen -> createPDF($invoice["author"], $invoiceName, $invoiceName, $html);

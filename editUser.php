@@ -7,8 +7,8 @@
 * @Author: David Hein
 */
 
-include 'modules/header_user.php';
-include 'modules/PermissionCheck.php';
+include 'Modules/header_user.php';
+include 'Modules/PermissionCheck.php';
 
 // Check permission
 if (
@@ -20,9 +20,9 @@ if (
     exit();
 }
 
-include 'modules/header.php';
+include 'Modules/header.php';
 
-include 'modules/selectBox_BioManager.php';
+include 'Modules/selectBox_BioManager.php';
 ?>
 
 <h1>Benutzer bearbeiten</h1>
@@ -189,5 +189,5 @@ if (!isset($_GET['id'])) {
         <?php
     }
 }
-include 'modules/footer.php';
+include 'Modules/footer.php';
 ?>

@@ -7,8 +7,8 @@
 * @Author: David Hein
 */
 
-include 'modules/header_user.php';
-include 'modules/PermissionCheck.php';
+include 'Modules/header_user.php';
+include 'Modules/PermissionCheck.php';
 
 // Check permission
 if (!isMaintainer() && !isInspector()) {
@@ -16,7 +16,7 @@ if (!isMaintainer() && !isInspector()) {
     exit();
 }
 
-include 'modules/selectBox_BioManager.php';
+include 'Modules/selectBox_BioManager.php';
 
 if (isset($_GET['show'])) {
     // Check if file exists to prevent warnings
@@ -90,13 +90,13 @@ if (isset($_GET['show'])) {
 
     // Generate and show PDF document
     // ------------------------------
-    include 'modules/PdfGenerator.php';
+    include 'Modules/PdfGenerator.php';
 
     $pdfGen = new PdfGenerator();
     $pdfGen -> createPDF($invoice["author"], $docName, $docName, $html);
     $pdfGen -> showInBrowser($docName . '_' . date('Y_m_d'));
 } else {
-    include 'modules/header.php';
+    include 'Modules/header.php';
     ?>
 <h1>Mengenverteilung anzeigen</h1>
 
@@ -107,6 +107,6 @@ if (isset($_GET['show'])) {
     <button>Anzeigen</button>
 </form>
     <?php
-    include 'modules/footer.php';
+    include 'Modules/footer.php';
 }
 ?>

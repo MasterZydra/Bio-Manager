@@ -6,8 +6,8 @@
 *
 * @Author: David Hein
 */
-include 'modules/header_user.php';
-include 'modules/PermissionCheck.php';
+include 'Modules/header_user.php';
+include 'Modules/PermissionCheck.php';
 
 // Check permission
 if (
@@ -19,7 +19,7 @@ if (
     exit();
 }
 
-include 'modules/header.php';
+include 'Modules/header.php';
 
 include_once 'System/Modules/DataObjects/SupplierCollection.php';
 ?>
@@ -93,5 +93,5 @@ if (!isset($_GET['id'])) {
         <?php
     }
 }
-include 'modules/footer.php';
+include 'Modules/footer.php';
 ?>

@@ -7,8 +7,8 @@
 * @Author: David Hein
 */
 
-include 'modules/header_user.php';
-include 'modules/PermissionCheck.php';
+include 'Modules/header_user.php';
+include 'Modules/PermissionCheck.php';
 
 // Check permission
 if (
@@ -20,9 +20,9 @@ if (
     exit();
 }
 
-include 'modules/header.php';
+include 'Modules/header.php';
 
-include 'modules/TableGenerator.php';
+include 'Modules/TableGenerator.php';
 ?>
 <script src="js/filterDataTable.js"></script>
 <script src="js/dropdown.js"></script>
@@ -91,5 +91,5 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
         );
     }
 
-    include 'modules/footer.php';
+    include 'Modules/footer.php';
     ?>

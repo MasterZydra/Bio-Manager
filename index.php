@@ -8,13 +8,13 @@
 *
 * @Author: David Hein
 */
-include 'modules/header_everyone.php';
-include_once 'modules/PermissionCheck.php';
-include 'modules/header.php';
+include 'Modules/header_everyone.php';
+include_once 'Modules/PermissionCheck.php';
+include 'Modules/header.php';
 
 if (!isLoggedIn()) {
     // Check configuration
-    include 'modules/configChecker.php';
+    include 'Modules/configChecker.php';
     ?>
 <h1>Willkommen beim Bio-Manager</h1>
 <h2>Was ist der Bio-Manager</h2>
@@ -34,7 +34,7 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt und al
 <h1>Willkommen im Mitgliederbereich</h1>
     <?php
     // Check configuration
-    include 'modules/configChecker.php';
+    include 'Modules/configChecker.php';
 
     // Links for maintainers
     if (isMaintainer() || isInspector()) {
@@ -205,5 +205,5 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt und al
     colorBoxes();
 </script>
 <?php
-    include 'modules/footer.php';
+    include 'Modules/footer.php';
 ?>

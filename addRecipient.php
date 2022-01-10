@@ -7,8 +7,8 @@
 * @Author: David Hein
 */
 
-include 'modules/header_user.php';
-include 'modules/PermissionCheck.php';
+include 'Modules/header_user.php';
+include 'Modules/PermissionCheck.php';
 
 // Check permission
 if (!isMaintainer()) {
@@ -16,7 +16,7 @@ if (!isMaintainer()) {
     exit();
 }
 
-include 'modules/header.php';
+include 'Modules/header.php';
 ?>
 <h1>Abnehmer hinzufügen</h1>
 
@@ -77,6 +77,6 @@ if (isset($_GET['add'])) {
     <button>Hinzufügen</button>
 </form>
 <?php
-    include 'modules/footer.php';
+    include 'Modules/footer.php';
 ?>
 

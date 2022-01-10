@@ -6,7 +6,7 @@
 *
 * @Author: David Hein
 */
-include 'modules/PermissionCheck.php';
+include 'Modules/PermissionCheck.php';
 
 // Check if file exists to prevent warnings
 if (file_exists('config/DatabaseConfig.php')) {
@@ -22,9 +22,9 @@ if (
     exit();
 }
 
-include 'modules/header.php';
+include 'Modules/header.php';
 
-include 'modules/formHelper.php';
+include 'Modules/formHelper.php';
 ?>
 
 <h1>Datenbankverbindung einrichten</h1>
@@ -62,5 +62,5 @@ if (isset($_GET['edit'])) {
     <button>Änderungen speichern</button>
 </form>
 <?php
-    include 'modules/footer.php';
+    include 'Modules/footer.php';
 ?>

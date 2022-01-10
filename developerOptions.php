@@ -6,8 +6,8 @@
 *
 * @Author: David Hein
 */
-include 'modules/header_user.php';
-include 'modules/PermissionCheck.php';
+include 'Modules/header_user.php';
+include 'Modules/PermissionCheck.php';
 
 // Check permission
 if (!isDeveloper()) {
@@ -15,7 +15,7 @@ if (!isDeveloper()) {
     exit();
 }
 
-include 'modules/header.php';
+include 'Modules/header.php';
 
 if (isset($_GET['apply'])) {
     if (secPOST('showQuery')) {
@@ -45,5 +45,5 @@ if (isset($_GET['apply'])) {
 </form>
 
 <?php
-    include 'modules/footer.php';
+    include 'Modules/footer.php';
 ?>

@@ -6,9 +6,9 @@
 *
 * @Author: David Hein
 */
-include 'modules/header_everyone.php';
-include 'modules/PermissionCheck.php';
-include 'modules/header.php';
+include 'Modules/header_everyone.php';
+include 'Modules/PermissionCheck.php';
+include 'Modules/header.php';
 
 // Check if file exists to prevent warnings
 if (file_exists('config/ImpressumConfig.php')) {
@@ -397,5 +397,5 @@ if (file_exists('config/ImpressumConfig.php')) {
 </p>
   
 <?php
-    include 'modules/footer.php';
+    include 'Modules/footer.php';
 ?>

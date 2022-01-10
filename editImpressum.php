@@ -7,8 +7,8 @@
 * @Author: David Hein
 */
 
-include 'modules/header_user.php';
-include 'modules/PermissionCheck.php';
+include 'Modules/header_user.php';
+include 'Modules/PermissionCheck.php';
 
 // Check permission
 if (!isAdmin()) {
@@ -16,9 +16,9 @@ if (!isAdmin()) {
     exit();
 }
 
-include 'modules/header.php';
+include 'Modules/header.php';
 
-include 'modules/formHelper.php';
+include 'Modules/formHelper.php';
 ?>
 
 <h1>Impressum bearbeiten</h1>
@@ -81,5 +81,5 @@ if (isset($_GET['edit'])) {
     <button>Änderungen speichern</button>
 </form>
 <?php
-    include 'modules/footer.php';
+    include 'Modules/footer.php';
 ?>

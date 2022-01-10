@@ -6,9 +6,9 @@
 *
 * @Author: David Hein
 */
-    include 'modules/header_user.php';
-    include 'modules/PermissionCheck.php';
-    include 'modules/header.php';
+    include 'Modules/header_user.php';
+    include 'Modules/PermissionCheck.php';
+    include 'Modules/header.php';
 ?>
 
 <h1>Systeminformationen</h1>
@@ -34,5 +34,5 @@
 </p>
 
 <?php
-    include 'modules/footer.php';
+    include 'Modules/footer.php';
 ?>
