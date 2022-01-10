@@ -11,9 +11,7 @@ spl_autoload_register(
         }
         $fileName = str_replace($PREFIX, '' , $class);
         $fileName = __DIR__.DIRECTORY_SEPARATOR.str_replace('\\', DIRECTORY_SEPARATOR, $fileName).'.php';
-        echo "<br/>Filename: ";
-        echo $fileName;
-        echo "<br/>";
+
         if (file_exists($fileName)) {
             require_once $fileName;
         }
