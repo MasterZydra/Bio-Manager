@@ -10,7 +10,7 @@
 
     include 'Modules/Mysql.php';
 
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
 
     $NULL = [

@@ -27,7 +27,7 @@ include 'Modules/selectBox_BioManager.php';
 </p>
 <?php
 if (isset($_GET['add'])) {
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
 
     $NULL = [

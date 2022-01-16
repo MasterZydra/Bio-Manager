@@ -34,7 +34,7 @@ if (isset($_GET['add'])) {
         echo 'Die Einstellung <strong>' . secPOST("settingName") . '</strong> existiert bereits';
         echo '</div>';
     } else {
-        $conn = new Mysql();
+        $conn = new \System\Modules\Database\MySQL\MySql();
         $conn -> dbConnect();
 
         $NULL = [

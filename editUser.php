@@ -38,7 +38,7 @@ if (!isset($_GET['id'])) {
     echo 'Es wurde kein Benutzer übergeben. Zurück zu <a href="user.php">Alle Benutzer anzeigen</a>';
     echo '</div>';
 } else {
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
 
     $alreadyExist = isset($_POST["userLogin"]) && alreadyExistsUser(secPOST("userLogin"), secGET('id'));

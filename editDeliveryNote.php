@@ -39,7 +39,7 @@ if (!isset($_GET['id'])) {
     echo 'Es wurde kein Lieferschein übergeben. Zurück zu <a href="deliveryNote.php">Alle Lieferscheine anzeigen</a>';
     echo '</div>';
 } else {
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
 
     if (isset($_GET['edit'])) {

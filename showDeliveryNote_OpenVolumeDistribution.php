@@ -56,7 +56,7 @@ if (isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
 </p>
 
 <?php
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $result = $conn -> select(
         'T_DeliveryNote LEFT JOIN T_Supplier ON T_Supplier.id = supplierId',

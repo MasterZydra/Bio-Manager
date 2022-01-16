@@ -30,7 +30,7 @@ if (file_exists('config/InvoiceDataConfig.php')) {
     include 'config/InvoiceDataConfig.php';
 }
 
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $conn -> select(
         'T_Invoice LEFT JOIN T_Recipient ON T_Invoice.recipientId = T_Recipient.id',
@@ -77,7 +77,7 @@ if (file_exists('config/InvoiceDataConfig.php')) {
         // No delivery notes found
     } else {
         if ($deliveryNotes -> num_rows > 0) {
-            $conn = new Mysql();
+            $conn = new \System\Modules\Database\MySQL\MySql();
             $conn -> dbConnect();
 
             while ($row = $deliveryNotes -> fetch_assoc()) {

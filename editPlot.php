@@ -40,7 +40,7 @@ if (!isset($_GET['id'])) {
     echo 'Es wurde kein Flurstück übergeben. Zurück zu <a href="plot.php">Alle Flurstücke anzeigen</a>';
     echo '</div>';
 } else {
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
 
 

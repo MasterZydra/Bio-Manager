@@ -36,7 +36,7 @@ if (!isset($_GET['id'])) {
     echo 'Es wurde kein Einstellung übergeben. Zurück zu <a href="setting.php">Alle Einstellungen anzeigen</a>';
     echo '</div>';
 } else {
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     if (isset($_GET['edit'])) {
         $conn -> update(

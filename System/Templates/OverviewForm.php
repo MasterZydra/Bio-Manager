@@ -105,7 +105,7 @@ class OverviewForm extends Form
         echo '</p>';
 
         // Get data from DB
-        $conn = new Mysql();
+        $conn = new \System\Modules\Database\MySQL\MySql();
         $conn -> dbConnect();
         $result = $conn -> select(
             $this -> resultQuery_table,

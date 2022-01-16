@@ -37,7 +37,7 @@ if (!isset($_GET['id'])) {
     echo 'Es wurde kein Abnehmer übergeben. Zurück zu <a href="recipient.php">Alle Abnehmer anzeigen</a>';
     echo '</div>';
 } else {
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
 
     $alreadyExist = isset($_POST["recipient_name"]) && alreadyExistsRecipient(secPOST("recipient_name"), secGET('id'));

@@ -25,7 +25,7 @@ if (isset($_GET['show'])) {
     }
 
     // Collect data
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $result = $conn -> select(
         'T_DeliveryNote '

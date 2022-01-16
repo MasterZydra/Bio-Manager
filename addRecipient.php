@@ -31,7 +31,7 @@ if (isset($_GET['add'])) {
         echo 'Der Abnehmer <strong>' . secPOST("recipient_name") . '</strong> existiert bereits';
         echo '</div>';
     } else {
-        $conn = new Mysql();
+        $conn = new \System\Modules\Database\MySQL\MySql();
         $conn -> dbConnect();
 
         $NULL = [

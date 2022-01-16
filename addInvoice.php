@@ -33,7 +33,7 @@ if (isset($_GET['add'])) {
         echo 'Es gibt keine offenen Lieferscheine.';
         echo '</div>';
     } else {
-        $conn = new Mysql();
+        $conn = new \System\Modules\Database\MySQL\MySql();
         $conn -> dbConnect();
 
         $NULL = [

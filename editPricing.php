@@ -40,7 +40,7 @@ if (!isset($_GET['id'])) {
     echo 'Es wurde kein Preis übergeben. Zurück zu <a href="pricing.php">Alle Preise anzeigen</a>';
     echo '</div>';
 } else {
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
 
     $alreadyExist = isset($_POST["productId"]) && isset($_POST["price_year"]) &&

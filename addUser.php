@@ -34,7 +34,7 @@ if (isset($_GET['add'])) {
         echo 'Ein Benutzer mit dem Login <strong>' . secPOST("userLogin") . '</strong> existiert bereits';
         echo '</div>';
     } else {
-        $conn = new Mysql();
+        $conn = new \System\Modules\Database\MySQL\MySql();
         $conn -> dbConnect();
 
         $NULL = [

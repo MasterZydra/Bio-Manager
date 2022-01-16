@@ -25,7 +25,7 @@ if (file_exists('config/InvoiceDataConfig.php')) {
     $docName = "Aktive Lieferanten";
     $activeSuppliers = '';
 
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $result = $conn -> select('T_Supplier', 'name', 'inactive = 0');
     $conn -> dbDisconnect();

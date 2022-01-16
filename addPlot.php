@@ -33,7 +33,7 @@ if (isset($_GET['add'])) {
         echo 'Das Flurstück <strong>' . secPOST("plot_nr") . '</strong> existiert bereits';
         echo '</div>';
     } else {
-        $conn = new Mysql();
+        $conn = new \System\Modules\Database\MySQL\MySql();
         $conn -> dbConnect();
 
         $NULL = [

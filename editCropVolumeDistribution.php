@@ -49,7 +49,7 @@ if (!isset($_GET['id'])) {
 } else {
     // Update the volume distribution
     if (isset($_GET['update'])) {
-        $conn = new Mysql();
+        $conn = new \System\Modules\Database\MySQL\MySql();
         $conn -> dbConnect();
 
         $i = 1;
@@ -90,7 +90,7 @@ if (!isset($_GET['id'])) {
         $conn = null;
     }
 
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     // Select amount from delivery note
     $conn -> select('T_DeliveryNote', 'year, nr, amount', 'id = ' . secGET('id'));

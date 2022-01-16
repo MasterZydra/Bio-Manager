@@ -26,7 +26,7 @@ if (isset($_GET['show'])) {
 
     // Collect invoice data if invoice id is given
     if (!empty($_POST['invoiceId'])) {
-        $conn = new Mysql();
+        $conn = new \System\Modules\Database\MySQL\MySql();
         $conn -> dbConnect();
         $result = $conn -> select(
             'T_Invoice',
@@ -50,7 +50,7 @@ if (isset($_GET['show'])) {
     }
 
     // Collect data
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $result = $conn -> select(
         'T_DeliveryNote LEFT JOIN T_Supplier ON T_DeliveryNote.supplierId = T_Supplier.id ' .

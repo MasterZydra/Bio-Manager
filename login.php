@@ -18,7 +18,7 @@ if (isset($_GET['login'])) {
     $login = secPOST('user_login');
     $password = secPOST('user_password');
     // Get user login data
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $result = $conn->select('T_UserLogin', '*', "login = '$login'");
     $conn -> dbDisconnect();

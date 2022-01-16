@@ -19,7 +19,7 @@ if (isset($_GET['change'])) {
     $newPassword2 = secPOST('newPassword2');
 
     // Check old password
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $conn -> select('T_UserLogin', 'password', 'userId = ' . $_SESSION['userId']);
     $row = $conn -> getFirstRow();
@@ -47,7 +47,7 @@ if (isset($_GET['change'])) {
         echo 'Das alte und neue Passwort sind identisch';
         echo '</div>';
     } else {
-        $conn = new Mysql();
+        $conn = new \System\Modules\Database\MySQL\MySql();
         $conn -> dbConnect();
         $conn -> freeRun(
             'UPDATE T_UserLogin '

@@ -38,7 +38,7 @@ if (!isset($_GET['id'])) {
     echo 'Es wurde keine Rechnung übergeben. Zurück zu <a href="invoice.php">Alle Rechnungen anzeigen</a>';
     echo '</div>';
 } else {
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
 
     $conn -> select('T_Invoice', 'isPaid', 'id = ' . secGET('id'));
