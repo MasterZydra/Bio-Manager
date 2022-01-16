@@ -1,5 +1,7 @@
 <?php
 
+include 'System/Autoloader.php';
+
 /*
 * deleteSupplier.php
 * ------------------
@@ -7,20 +9,19 @@
 *
 * @Author: David Hein
 */
-    include 'templates/DeleteForm.php';
 
-    $form = new DeleteForm();
-    $form -> heading            = "Lieferant löschen";
+$form = new \System\Templates\DeleteForm();
+$form -> heading            = "Lieferant löschen";
 
-    $form -> accessPermission   = "isMaintainer";
-    $form -> returnPage         = "supplier.php";
+$form -> accessPermission   = "isMaintainer";
+$form -> returnPage         = "supplier.php";
 
-    $form -> linkPermission     = true;
-    $form -> linkElement        = '<a href="supplier.php">Alle Lieferanten anzeigen</a>';
-    $form -> linkAllElements    = '<a href="supplier.php">Alle Lieferanten anzeigen</a>';
+$form -> linkPermission     = true;
+$form -> linkElement        = '<a href="supplier.php">Alle Lieferanten anzeigen</a>';
+$form -> linkAllElements    = '<a href="supplier.php">Alle Lieferanten anzeigen</a>';
 
-    $form -> table              = 'T_Supplier';
+$form -> table              = 'T_Supplier';
 
-    $form -> overviewPage       = 'supplier.php';
+$form -> overviewPage       = 'supplier.php';
 
-    $form -> show();
+$form -> show();

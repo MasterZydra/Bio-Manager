@@ -1,5 +1,7 @@
 <?php
 
+include 'System/Autoloader.php';
+
 /*
 * deleteSetting.php
 * --------------
@@ -7,20 +9,19 @@
 *
 * @Author: David Hein
 */
-    include 'templates/DeleteForm.php';
 
-    $form = new DeleteForm();
-    $form -> heading            = "Einstellung löschen";
+$form = new \System\Templates\DeleteForm();
+$form -> heading            = "Einstellung löschen";
 
-    $form -> accessPermission   = "isDeveloper";
-    $form -> returnPage         = "setting.php";
+$form -> accessPermission   = "isDeveloper";
+$form -> returnPage         = "setting.php";
 
-    $form -> linkPermission     = true;
-    $form -> linkElement        = '<a href="setting.php">Alle Einstellungen anzeigen</a>';
-    $form -> linkAllElements    = '<a href="setting.php">Alle Einstellungen anzeigen</a>';
+$form -> linkPermission     = true;
+$form -> linkElement        = '<a href="setting.php">Alle Einstellungen anzeigen</a>';
+$form -> linkAllElements    = '<a href="setting.php">Alle Einstellungen anzeigen</a>';
 
-    $form -> table              = 'T_Setting';
+$form -> table              = 'T_Setting';
 
-    $form -> overviewPage       = 'setting.php';
+$form -> overviewPage       = 'setting.php';
 
-    $form -> show();
+$form -> show();

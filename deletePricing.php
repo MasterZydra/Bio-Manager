@@ -1,5 +1,7 @@
 <?php
 
+include 'System/Autoloader.php';
+
 /*
 * deletePricing.php
 * ------------------
@@ -7,20 +9,19 @@
 *
 * @Author: David Hein
 */
-    include 'templates/DeleteForm.php';
 
-    $form = new DeleteForm();
-    $form -> heading            = "Preis löschen";
+$form = new \System\Templates\DeleteForm();
+$form -> heading            = "Preis löschen";
 
-    $form -> accessPermission   = "isMaintainer";
-    $form -> returnPage         = "product.php";
+$form -> accessPermission   = "isMaintainer";
+$form -> returnPage         = "product.php";
 
-    $form -> linkPermission     = true;
-    $form -> linkElement        = '<a href="pricing.php">Alle Preise anzeigen</a>';
-    $form -> linkAllElements    = '<a href="pricing.php">Alle Preise anzeigen</a>';
+$form -> linkPermission     = true;
+$form -> linkElement        = '<a href="pricing.php">Alle Preise anzeigen</a>';
+$form -> linkAllElements    = '<a href="pricing.php">Alle Preise anzeigen</a>';
 
-    $form -> table              = 'T_Pricing';
+$form -> table              = 'T_Pricing';
 
-    $form -> overviewPage       = 'pricing.php';
+$form -> overviewPage       = 'pricing.php';
 
-    $form -> show();
+$form -> show();

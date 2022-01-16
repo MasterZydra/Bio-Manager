@@ -1,5 +1,7 @@
 <?php
 
+include 'System/Autoloader.php';
+
 /*
 * deleteUser.php
 * --------------
@@ -7,25 +9,24 @@
 *
 * @Author: David Hein
 */
-    include 'templates/DeleteForm.php';
 
-    $form = new DeleteForm();
-    $form -> heading            = "Benutzer löschen";
+$form = new \System\Templates\DeleteForm();
+$form -> heading            = "Benutzer löschen";
 
-    $form -> accessPermission   = "isAdmin";
-    $form -> returnPage         = "user.php";
+$form -> accessPermission   = "isAdmin";
+$form -> returnPage         = "user.php";
 
-    $form -> linkPermission     = true;
-    $form -> linkElement        = '<a href="user.php">Alle Benutzer anzeigen</a>';
-    $form -> linkAllElements    = '<a href="user.php">Alle Benutzer anzeigen</a>';
+$form -> linkPermission     = true;
+$form -> linkElement        = '<a href="user.php">Alle Benutzer anzeigen</a>';
+$form -> linkAllElements    = '<a href="user.php">Alle Benutzer anzeigen</a>';
 
-    $form -> table              = 'T_User';
+$form -> table              = 'T_User';
 
-    $form -> overviewPage       = 'user.php';
+$form -> overviewPage       = 'user.php';
 
-    // Delete data from the tables which contain additional user data
-    $form -> deleteBeforeDelete  = array(
-        array('T_UserLogin', 'userId', secGET('id')),
-        array('T_UserPermission', 'userId', secGET('id')));
+// Delete data from the tables which contain additional user data
+$form -> deleteBeforeDelete  = array(
+    array('T_UserLogin', 'userId', secGET('id')),
+    array('T_UserPermission', 'userId', secGET('id')));
 
-    $form -> show();
+$form -> show();

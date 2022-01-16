@@ -1,5 +1,7 @@
 <?php
 
+include 'System/Autoloader.php';
+
 /*
 * deletePlot.php
 * --------------
@@ -7,20 +9,19 @@
 *
 * @Author: David Hein
 */
-    include 'templates/DeleteForm.php';
 
-    $form = new DeleteForm();
-    $form -> heading            = "Flurstück löschen";
+$form = new \System\Templates\DeleteForm();
+$form -> heading            = "Flurstück löschen";
 
-    $form -> accessPermission   = "isMaintainer";
-    $form -> returnPage         = "plot.php";
+$form -> accessPermission   = "isMaintainer";
+$form -> returnPage         = "plot.php";
 
-    $form -> linkPermission     = true;
-    $form -> linkElement        = '<a href="plot.php">Alle Flurstücke anzeigen</a>';
-    $form -> linkAllElements    = '<a href="plot.php">Alle Flurstücke anzeigen</a>';
+$form -> linkPermission     = true;
+$form -> linkElement        = '<a href="plot.php">Alle Flurstücke anzeigen</a>';
+$form -> linkAllElements    = '<a href="plot.php">Alle Flurstücke anzeigen</a>';
 
-    $form -> table              = 'T_Plot';
+$form -> table              = 'T_Plot';
 
-    $form -> overviewPage       = 'plot.php';
+$form -> overviewPage       = 'plot.php';
 
-    $form -> show();
+$form -> show();

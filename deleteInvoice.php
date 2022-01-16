@@ -1,5 +1,7 @@
 <?php
 
+include 'System/Autoloader.php';
+
 /*
 * deleteInvoice.php
 * -----------------
@@ -7,24 +9,23 @@
 *
 * @Author: David Hein
 */
-    include 'templates/DeleteForm.php';
 
-    $form = new DeleteForm();
-    $form -> heading            = "Rechnung löschen";
+$form = new \System\Templates\DeleteForm();
+$form -> heading            = "Rechnung löschen";
 
-    $form -> accessPermission   = "isMaintainer";
-    $form -> returnPage         = "invoice.php";
+$form -> accessPermission   = "isMaintainer";
+$form -> returnPage         = "invoice.php";
 
-    $form -> linkPermission     = true;
-    $form -> linkElement        = '<a href="invoice.php">Alle Rechnungen anzeigen</a>';
-    $form -> linkAllElements    = '<a href="invoice.php">Alle Rechnungen anzeigen</a>';
+$form -> linkPermission     = true;
+$form -> linkElement        = '<a href="invoice.php">Alle Rechnungen anzeigen</a>';
+$form -> linkAllElements    = '<a href="invoice.php">Alle Rechnungen anzeigen</a>';
 
-    $form -> table              = 'T_Invoice';
+$form -> table              = 'T_Invoice';
 
-    $form -> overviewPage       = 'invoice.php';
+$form -> overviewPage       = 'invoice.php';
 
-    // Free delivery notes from invoice
-    $form -> updateBeforeDelete  = array(
-        array('T_DeliveryNote', 'invoiceId = NULL', 'invoiceId = ' . secGET('id')));
+// Free delivery notes from invoice
+$form -> updateBeforeDelete  = array(
+    array('T_DeliveryNote', 'invoiceId = NULL', 'invoiceId = ' . secGET('id')));
 
-    $form -> show();
+$form -> show();

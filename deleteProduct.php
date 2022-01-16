@@ -9,6 +9,7 @@ include 'System/Autoloader.php';
 *
 * @Author: David Hein
 */
+
 $form = new \System\Templates\DeleteForm();
 $form -> heading            = "Produkt löschen";
 

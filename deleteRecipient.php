@@ -1,5 +1,7 @@
 <?php
 
+include 'System/Autoloader.php';
+
 /*
 * deleteRecipient.php
 * -------------------
@@ -7,20 +9,19 @@
 *
 * @Author: David Hein
 */
-    include 'templates/DeleteForm.php';
 
-    $form = new DeleteForm();
-    $form -> heading            = "Abnehmer löschen";
+$form = new \System\Templates\DeleteForm();
+$form -> heading            = "Abnehmer löschen";
 
-    $form -> accessPermission   = "isMaintainer";
-    $form -> returnPage         = "recipient.php";
+$form -> accessPermission   = "isMaintainer";
+$form -> returnPage         = "recipient.php";
 
-    $form -> linkPermission     = true;
-    $form -> linkElement        = '<a href="recipient.php">Alle Abnehmer anzeigen</a>';
-    $form -> linkAllElements    = '<a href="recipient.php">Alle Abnehmer anzeigen</a>';
+$form -> linkPermission     = true;
+$form -> linkElement        = '<a href="recipient.php">Alle Abnehmer anzeigen</a>';
+$form -> linkAllElements    = '<a href="recipient.php">Alle Abnehmer anzeigen</a>';
 
-    $form -> table              = 'T_Recipient';
+$form -> table              = 'T_Recipient';
 
-    $form -> overviewPage       = 'recipient.php';
+$form -> overviewPage       = 'recipient.php';
 
-    $form -> show();
+$form -> show();
