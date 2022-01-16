@@ -18,8 +18,8 @@ class MySqlHelpers
     public static function objectAlreadyExists(
         \System\Modules\DataObjects\IDataCollection $collection,
         string $name,
-        int $id): bool
-    {
+        int $id
+    ): bool {
         $objects = $collection->findByName($name);
         if (is_null($objects)) {
             return false;

@@ -19,7 +19,7 @@ if (!isMaintainer()) {
 
 include 'Modules/header.php';
 
-use \System\Modules\Database\MySQL\MySqlHelpers;
+use System\Modules\Database\MySQL\MySqlHelpers;
 ?>
 <h1>Lieferanten hinzufügen</h1>
 

@@ -23,7 +23,7 @@ if (
 
 include 'Modules/header.php';
 
-use \System\Modules\Database\MySQL\MySqlHelpers;
+use System\Modules\Database\MySQL\MySqlHelpers;
 ?>
 
 <h1>Lieferant bearbeiten</h1>
