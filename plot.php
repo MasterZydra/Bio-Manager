@@ -63,7 +63,7 @@ if (isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
 </p>
 
 <?php
-    $plotColl = new System\Modules\DataObjects\PlotCollection();
+    $plotColl = new \System\Modules\DataObjects\PlotCollection();
 
 if (isMaintainer()) {
     TableGenerator::show(

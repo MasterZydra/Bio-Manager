@@ -63,7 +63,7 @@ if (isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
 </p>
 
 <?php
-    $productColl = new System\Modules\DataObjects\ProductCollection();
+    $productColl = new \System\Modules\DataObjects\ProductCollection();
 
 if (isMaintainer()) {
     TableGenerator::show(
