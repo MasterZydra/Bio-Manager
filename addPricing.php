@@ -6,6 +6,7 @@
 *
 * @Author: David Hein
 */
+include 'System/Autoloader.php';
 
 include 'Modules/header_user.php';
 include 'Modules/PermissionCheck.php';
@@ -34,7 +35,7 @@ if (isset($_GET['add'])) {
         echo 'Der Preis existiert bereits';
         echo '</div>';
     } else {
-        $conn = new Mysql();
+        $conn = new \System\Modules\Database\MySQL\MySql();
         $conn -> dbConnect();
 
         $NULL = [

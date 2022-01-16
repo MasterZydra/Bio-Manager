@@ -8,6 +8,9 @@
 *
 * @Author: David Hein
 */
+
+include 'System/Autoloader.php';
+
 include 'Modules/header_user.php';
 include 'Modules/PermissionCheck.php';
 // Check permission
@@ -61,7 +64,7 @@ if (isMaintainer() && isset($_GET['action']) && isset($_GET['id'])) {
 </p>
 
 <?php
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $result = $conn -> select(
         'T_DeliveryNote '
