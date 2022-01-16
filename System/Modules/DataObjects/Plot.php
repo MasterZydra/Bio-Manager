@@ -82,7 +82,7 @@ class Plot implements IObject
             "name" => $this->name,
             "subdistrict" => $this->subdistrict,
             "supplierId" => $this->supplierId,
-            "supplierName" => $supplierColl->find($this->supplierId)->name()
+            "supplierName" => $supplierColl->find($this->supplierId)?->name()
         );
     }
 }
