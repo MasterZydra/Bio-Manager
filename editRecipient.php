@@ -86,13 +86,13 @@ if (!isset($_GET['id'])) {
         ?>><br>
     
     <label for="recipient_address" class="required">Anschrift:</label><br>
-    <textarea id="recipient_address" name="recipient_address" placeholder="Adresse des Abnehmers" required>
-        <?php if ($alreadyExist) {
+    <textarea id="recipient_address" name="recipient_address" placeholder="Adresse des Abnehmers" required><?php
+        if ($alreadyExist) {
             echo secPOST("recipient_address");
         } else {
             echo $row['address'];
-        } ?>
-</textarea><br>
+        }
+    ?></textarea><br>
     
     <button>Änderungen speichern</button>
 </form>
