@@ -18,6 +18,8 @@ if (!isMaintainer()) {
 }
 
 include 'Modules/header.php';
+
+use \System\Modules\Database\MySQL\MySqlHelpers;
 ?>
 <h1>Lieferanten hinzufügen</h1>
 
@@ -34,7 +36,7 @@ if (isset($_GET['add'])) {
         echo 'Der Lieferant <strong>' . secPOST("supplier_name") . '</strong> existiert bereits';
         echo '</div>';
     } else {
-        $newSupplier = new Supplier(0, secPOST("supplier_name"), false);
+        $newSupplier = new \System\Modules\DataObjects\Supplier(0, secPOST("supplier_name"), false);
         if ($supplierColl->add($newSupplier)) {
             echo '<div class="infobox">';
             echo 'Der Lieferant <strong>' . secPOST("supplier_name") . '</strong> wurde hinzugefügt';
