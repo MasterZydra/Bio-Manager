@@ -1,6 +1,6 @@
 <?php
 
-function getSecuredString($string)
+function getSecuredString(string $string)
 {
     return htmlspecialchars(trim($string));
 }

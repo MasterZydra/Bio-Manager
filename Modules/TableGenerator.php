@@ -69,7 +69,8 @@ class TableGenerator
                 echo number_format($data, 2, ',', '.') . ' €';
                 break;
             default:
-                echo getSecuredString($data);
+                $dataStr = $data ?: '';
+                echo getSecuredString($dataStr);
         }
         echo '</td>';
     }
