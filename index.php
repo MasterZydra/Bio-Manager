@@ -8,6 +8,9 @@
 *
 * @Author: David Hein
 */
+
+include 'System/Autoloader.php';
+
 include 'Modules/header_everyone.php';
 include_once 'Modules/PermissionCheck.php';
 include 'Modules/header.php';
