@@ -64,10 +64,10 @@ class SupplierCollection implements IDataCollection
         return $this->prepStatement->updateColsWhereId(
             "T_Supplier",
             array("name", "inactive"),
-            "sb",
+            "si",
             $object->id(),
             $object->name(),
-            $object->inactive()
+            (int)$object->inactive()
         );
     }
 
@@ -80,9 +80,9 @@ class SupplierCollection implements IDataCollection
         return $this->prepStatement->insertCols(
             "T_Supplier",
             array("name", "inactive"),
-            "sb",
+            "si",
             $object->name(),
-            $object->inactive()
+            (int)$object->inactive()
         );
     }
 
