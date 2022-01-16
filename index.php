@@ -190,7 +190,7 @@ Nach dem Erfassen der Daten kann eine Rechnung für den Abnehmer erstellt und al
 
 <div class="box">
     <strong>Seiten in Entwicklung</strong><br>
-    <a href="deliveryNote_new.php">Neues Template</a>
+    Keine Seiten in Entwicklung...
 </div>
 
         <?php
