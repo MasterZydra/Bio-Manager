@@ -14,7 +14,7 @@ namespace System\Modules\DataObjects;
 
 interface IDataCollection
 {
-    public function find(int $id): IObject;
+    public function find(int $id): IObject|null;
     public function findAll();
     public function add(IObject $object): bool;
     public function update(IObject $object): bool;

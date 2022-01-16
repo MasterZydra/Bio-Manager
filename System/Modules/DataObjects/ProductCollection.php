@@ -32,7 +32,7 @@ class ProductCollection implements IDataCollection
     }
 
     // Find entry with the given id
-    public function find(int $id): IObject
+    public function find(int $id): IObject|null
     {
         $dataSet = $this->prepStatement->selectWhereId("T_Product", $id);
         $rows = $this->dataSetToArrayOfProduct($dataSet);

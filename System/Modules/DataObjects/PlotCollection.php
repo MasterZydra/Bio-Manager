@@ -32,7 +32,7 @@ class PlotCollection implements IDataCollection
     }
 
     // Find entry with the given id
-    public function find(int $id): IObject
+    public function find(int $id): IObject|null
     {
         $dataSet = $this->prepStatement->selectWhereId("T_Plot", $id);
         $rows = $this->dataSetToArrayOfPlots($dataSet);
