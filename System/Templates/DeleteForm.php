@@ -152,7 +152,7 @@ class DeleteForm extends Form
         // Delete entry
         if (isset($_GET['delete'])) {
             include_once 'Modules/Mysql.php';
-            $conn = new \Mysql();
+            $conn = new \System\Modules\Database\MySQL\MySql();
             $conn -> dbConnect();
             // Before delete actions
             $this -> deleteBeforeDelete();

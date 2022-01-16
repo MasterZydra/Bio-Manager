@@ -82,7 +82,7 @@ function getNextInvoiceNr($conn, $year)
 function getSetting($setting)
 {
     // Get setting
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $conn -> select('T_Setting', 'value', 'name =\'' . $setting . '\'');
     $row = $conn -> getFirstRow();
@@ -156,7 +156,7 @@ function getDeliveryNotes(
         $orderBy = 'year DESC, nr DESC';
     }
 
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $result = $conn -> select(
         $from,
@@ -186,7 +186,7 @@ function getDeliveryNotes(
 */
 function alreadyExistsSupplier($supplier, $ownId = null)
 {
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $where = 'name =\'' . $supplier . '\'';
     if (!is_null($ownId)) {
@@ -211,7 +211,7 @@ function alreadyExistsSupplier($supplier, $ownId = null)
 */
 function alreadyExistsProduct($product, $ownId = null)
 {
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $where = 'name =\'' . $product . '\'';
     if (!is_null($ownId)) {
@@ -235,7 +235,7 @@ function alreadyExistsProduct($product, $ownId = null)
 */
 function alreadyExistsSetting($setting)
 {
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $conn -> select('T_Setting', 'id', 'name =\'' . $setting . '\'');
     $row = $conn -> getFirstRow();
@@ -256,7 +256,7 @@ function alreadyExistsSetting($setting)
 */
 function alreadyExistsPlot($plot, $ownId = null)
 {
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $where = 'nr =\'' . $plot . '\'';
     if (!is_null($ownId)) {
@@ -281,7 +281,7 @@ function alreadyExistsPlot($plot, $ownId = null)
 */
 function alreadyExistsUser($user, $ownId = null)
 {
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $where = 'login =\'' . $user . '\'';
     if (!is_null($ownId)) {
@@ -307,7 +307,7 @@ function alreadyExistsUser($user, $ownId = null)
 */
 function alreadyExistsPricing($productId, $year, $ownId = null)
 {
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $where = 'productId = ' . $productId . ' and year = ' . $year;
     if (!is_null($ownId)) {
@@ -332,7 +332,7 @@ function alreadyExistsPricing($productId, $year, $ownId = null)
 */
 function alreadyExistsRecipient($recipient, $ownId = null)
 {
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $where = 'name =\'' . $recipient . '\'';
     if (!is_null($ownId)) {

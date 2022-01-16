@@ -8,7 +8,6 @@
 *
 * @Author David Hein
 */
-include_once 'Modules/Mysql.php';
 
 class MySqlPreparedStatement
 {
@@ -24,7 +23,7 @@ class MySqlPreparedStatement
     */
     public function __construct()
     {
-        $this -> conn = new Mysql();
+        $this -> conn = new \System\Modules\Database\MySQL\MySql();
         $this -> conn -> dbConnect();
     }
 

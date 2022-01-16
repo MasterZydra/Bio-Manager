@@ -10,9 +10,6 @@ namespace System\Modules\Database\MySQL;
 *
 * @Author David Hein
 */
-include_once 'Modules/Mysql.php';
-
-use Modules\Mysql;
 
 class MySQLPrepStatement
 {
@@ -28,7 +25,7 @@ class MySQLPrepStatement
     */
     public function __construct()
     {
-        $this -> conn = new \Mysql();
+        $this -> conn = new \System\Modules\Database\MySQL\MySql();
         $this -> conn -> dbConnect();
     }
 

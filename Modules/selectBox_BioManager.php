@@ -34,7 +34,7 @@ function supplierSelectBox(
     if ($onlyActiveUser) {
         $where = 'inactive = 0';
     }
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $result = $conn -> select('T_Supplier', 'id AS value, name', $where, 'name ASC');
     $conn -> dbDisconnect();
@@ -55,7 +55,7 @@ function supplierSelectBox(
 */
 function plotSelectBox($name = null, $selectedValue = null)
 {
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $result = $conn -> select(
         'T_Plot',
@@ -85,7 +85,7 @@ function plotSelectBox($name = null, $selectedValue = null)
 */
 function productSelectBox($name = null, $selectedValue = null)
 {
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $result = $conn -> select(
         'T_Product',
@@ -116,7 +116,7 @@ function productSelectBox($name = null, $selectedValue = null)
 */
 function recipientSelectBox($name = null, $selectedValue = null, $boxReadOnly = false)
 {
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $result = $conn -> select(
         'T_Recipient',
@@ -155,7 +155,7 @@ function recipientSelectBox($name = null, $selectedValue = null, $boxReadOnly = 
 */
 function invoiceYearsSelectBox($name = null, $selectedValue = null, $boxReadOnly = false)
 {
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $result = $conn -> select(
         'T_Invoice',
@@ -201,7 +201,7 @@ function invoiceSelectBox(
     $isRequired = false,
     $disableDefault = false
 ) {
-    $conn = new Mysql();
+    $conn = new \System\Modules\Database\MySQL\MySql();
     $conn -> dbConnect();
     $result = $conn -> select(
         'T_Invoice',
