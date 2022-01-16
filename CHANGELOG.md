@@ -7,8 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity`
 
 ## [Unreleased]
+### Added
+- Added namespaces and autoloader so that the includes can be removed
+
 ### Changed
 - Use prepared statements and data objects for adding, editing or showing elements (e.g. plot, supplier, product ...)
+
+### Fixed
+- Fixed errors and warnings to be more compatible with the PSR12 coding standard
 
 ## 1.3.10 - 28.06.2021 - Graphical improvements and small changes background logic
 ### Added
