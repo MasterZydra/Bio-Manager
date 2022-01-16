@@ -1,9 +1,13 @@
 <?php
 
+namespace System\Modules\Database\MySQL;
+
+use ErrorException;
+
 /*
-* Mysql.php
+* MySql.php
 * ---------
-* This file contains the class 'Mysql'. It simplifies the connection
+* This file contains the class 'MySql'. It simplifies the connection
 * to the SQL server and executing queries. The connection settings
 * are stored in 'config/DbConfig.php'.
 *
@@ -14,10 +18,13 @@
 
 // Check if file exists to prevent warnings
 if (file_exists('config/DatabaseConfig.php')) {
-    include_once 'config/DatabaseConfig.php';
+    global $database;
+    require_once 'config/DatabaseConfig.php';
+} else {
+    throw new ErrorException("database config not found");
 }
 
-class Mysql
+class MySql
 {
     // Public properties
     public $connectionString;
@@ -45,7 +52,7 @@ class Mysql
 
     public function dbConnect()
     {
-        $this -> connectionString = new mysqli($this -> hostName, $this -> userName, $this -> passCode);
+        $this -> connectionString = new \mysqli($this -> hostName, $this -> userName, $this -> passCode);
         mysqli_select_db($this -> connectionString, $this -> databaseName);
         return $this -> connectionString;
     }
