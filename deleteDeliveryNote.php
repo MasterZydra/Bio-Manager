@@ -1,5 +1,7 @@
 <?php
 
+include 'System/Autoloader.php';
+
 /*
 * deleteDeliveryNote.php
 * ----------------------
@@ -8,20 +10,18 @@
 * @Author: David Hein
 */
 
-    include 'templates/DeleteForm.php';
+$form = new \System\Templates\DeleteForm();
+$form -> heading            = "Lieferschein löschen";
 
-    $form = new DeleteForm();
-    $form -> heading            = "Lieferschein löschen";
+$form -> accessPermission   = "isMaintainer";
+$form -> returnPage         = "deliveryNote.php";
 
-    $form -> accessPermission   = "isMaintainer";
-    $form -> returnPage         = "deliveryNote.php";
+$form -> linkPermission     = true;
+$form -> linkElement        = '<a href="deliveryNote.php">Alle Lieferscheine anzeigen</a>';
+$form -> linkAllElements    = '<a href="deliveryNote.php">Alle Lieferscheine anzeigen</a>';
 
-    $form -> linkPermission     = true;
-    $form -> linkElement        = '<a href="deliveryNote.php">Alle Lieferscheine anzeigen</a>';
-    $form -> linkAllElements    = '<a href="deliveryNote.php">Alle Lieferscheine anzeigen</a>';
+$form -> table              = 'T_DeliveryNote';
 
-    $form -> table              = 'T_DeliveryNote';
+$form -> overviewPage       = 'deliveryNote.php';
 
-    $form -> overviewPage       = 'deliveryNote.php';
-
-    $form -> show();
+$form -> show();
