@@ -10,8 +10,10 @@
 * @Author: David Hein
 */
 
-    include 'Modules/header_user.php';
-    include 'Modules/PermissionCheck.php';
+include 'System/Autoloader.php';
+
+include 'Modules/header_user.php';
+include 'Modules/PermissionCheck.php';
 
 // Check permission
 if (

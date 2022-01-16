@@ -6,9 +6,11 @@
 *
 * @Author: David Hein
 */
-    include 'Modules/header_user.php';
-    include 'Modules/PermissionCheck.php';
-    include 'Modules/header.php';
+include 'System/Autoloader.php';
+
+include 'Modules/header_user.php';
+include 'Modules/PermissionCheck.php';
+include 'Modules/header.php';
 ?>
 
 <h1>Systeminformationen</h1>
