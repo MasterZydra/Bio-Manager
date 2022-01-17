@@ -13,20 +13,13 @@ namespace System\Modules\DataObjects;
 
 class Plot implements IObject
 {
-    private int $id;
-    private string $nr;
-    private string $name;
-    private string $subdistrict;
-    private int $supplierId;
-
-    public function __construct(int $id, string $nr, string $name, string $subdistrict, int $supplierId)
-    {
-        $this->id = $id;
-        $this->nr = $nr;
-        $this->name = $name;
-        $this->subdistrict = $subdistrict;
-        $this->supplierId = $supplierId;
-    }
+    public function __construct(
+        private int $id,
+        private string $nr,
+        private string $name,
+        private string $subdistrict,
+        private int $supplierId
+    ) {}
 
     public function id(): int
     {
