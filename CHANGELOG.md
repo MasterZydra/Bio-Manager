@@ -9,12 +9,17 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 ## [Unreleased]
 ### Added
 - Added namespaces and autoloader so that the includes can be removed
+- Added gateway design pattern to encapsulate database queries
+- Added prepared statements for updating an entry
+- Added prepared implementation for insert
 
 ### Changed
 - Use prepared statements and data objects for adding, editing or showing elements (e.g. plot, supplier, product ...)
+- Move documentation from wiki into markdown files
+- Plot, product, supplier work with gateway design pattern now instead of SQL in the files directly
 
 ### Fixed
-- Fixed errors and warnings to be more compatible with the PSR12 coding standard
+- Fixed errors and warnings to be more compatible with the PSR12 coding standard.
 
 ## 1.3.10 - 28.06.2021 - Graphical improvements and small changes background logic
 ### Added
