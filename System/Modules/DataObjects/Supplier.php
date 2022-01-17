@@ -13,16 +13,11 @@ namespace System\Modules\DataObjects;
 
 class Supplier implements IObject
 {
-    private int $id;
-    private string $name;
-    private bool $inactive;
-
-    public function __construct(int $id, string $name, bool $inactive)
-    {
-        $this->id = $id;
-        $this->name = $name;
-        $this->inactive = $inactive;
-    }
+    public function __construct(
+        private int $id,
+        private string $name,
+        private bool $inactive
+    ) {}
 
     public function id(): int
     {
