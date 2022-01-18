@@ -25,6 +25,9 @@ The following programs are required:
 - **Apache2** or another http server
 - **MariaDB** / **MySQL**
 - **PHP 8**
+- PHP modules:
+    - **mysqli**
+    - **mysqlnd**
 
 The following programs are recommended:
 - **MySQL-Client** like **HeidiSQL**
