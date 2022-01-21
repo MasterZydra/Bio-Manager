@@ -59,6 +59,10 @@ if (!isset($_GET['id'])) {
         // Add volume distribution for current delivery note
         while (true) {
             $isValid = true;
+            // Input validation
+            $isValid &= is_numeric(secGET('id'));
+            $isValid &= is_numeric(secPOST('plot' . (string)$i));
+            $isValid &= is_numeric(secPOST('amount' . (string)$i));
 
             // Insert until POST variable is not set
             if (!isset($_POST['plot' . (string)$i])) {
@@ -79,9 +83,6 @@ if (!isset($_GET['id'])) {
                 "type" => "int",
                 "val" => secPOST('plot' . (string)$i)
             ];
-
-            // Input validation
-            $isValid &= is_numeric(secPOST('amount' . (string)$i));
 
             $amount = [
                 "type" => "int",
