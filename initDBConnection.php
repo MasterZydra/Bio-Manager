@@ -48,7 +48,7 @@ if (isset($_GET['edit'])) {
     echo '<div class="infobox">';
     echo 'Die Änderungen wurden erfolgreich gespeichert';
     echo '</div>';
-}
+} else {
     $database ??= null;
 ?>
 <form action="?edit=1" method="post" class="requiredLegend">
@@ -62,5 +62,6 @@ if (isset($_GET['edit'])) {
     <button>Änderungen speichern</button>
 </form>
 <?php
-    include 'Modules/footer.php';
+}
+include 'Modules/footer.php';
 ?>
