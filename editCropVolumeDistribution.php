@@ -18,7 +18,7 @@ if (
         // Check if id is numeric
         (isset($_GET['id']) && !is_numeric($_GET['id']))
 ) {
-    header("Location: cropVolumeDistribution.php");
+    header("Location: deliveryNote.php");
     exit();
 }
 
