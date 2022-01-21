@@ -6,6 +6,8 @@ Aus den Daten werden die Rechnungen und Auszahlungen generiert. Übersichten fü
 
 [Link zur Dokumentation](doc/README.md)
 
+![Home](/doc/screenshots/Home.png)
+
 ## Quellenangaben
 
 | URL | Beschreibung |
