@@ -58,6 +58,8 @@ if (!isset($_GET['id'])) {
         $conn -> freeRun('DELETE FROM T_CropVolumeDistribution WHERE deliveryNoteId = ' . secGET('id'));
         // Add volume distribution for current delivery note
         while (true) {
+            $isValid = true;
+
             // Insert until POST variable is not set
             if (!isset($_POST['plot' . (string)$i])) {
                 break;
@@ -78,14 +80,22 @@ if (!isset($_GET['id'])) {
                 "val" => secPOST('plot' . (string)$i)
             ];
 
+            // Input validation
+            $isValid &= is_numeric(secPOST('amount' . (string)$i));
+
             $amount = [
                 "type" => "int",
                 "val" => secPOST('amount' . (string)$i)
             ];
 
+            $i++;
+
+            if (!$isValid) {
+                continue;
+            }
+
             $data = array($NULL, $deliveryNoteId, $plotId, $amount);
             $conn -> insertInto('T_CropVolumeDistribution', $data);
-            $i++;
         }
         $conn -> dbDisconnect();
         $conn = null;
