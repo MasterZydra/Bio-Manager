@@ -118,7 +118,8 @@ if (file_exists('config/InvoiceDataConfig.php')) {
 <tr>
     <td width="60%">' . $invoice["sender_name"] . '<br>'
         . $invoice["sender_address"] . '<br>'
-        . $invoice["sender_postalCode"] . ' ' . $invoice["sender_city"] . '</td>
+        . $invoice["sender_postalCode"] . ' ' . $invoice["sender_city"] . '<br>' .
+        getSetting('oekopNr') . '</td>
     <td width="25%">
 Rechnungsnummer:<br>
 Rechnungsdatum:
