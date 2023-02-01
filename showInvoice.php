@@ -69,11 +69,11 @@ if (file_exists('config/InvoiceDataConfig.php')) {
         return $ret;
     }
 
-    $comment = 'Bla bla';
+    $comment = '';//'Bla bla';
 
 //Auflistung eurer verschiedenen Posten im Format [Produktbezeichnung, Menge, Einzelpreis]
     $invoiceItems = array();
-    $deliveryNotes = getDeliveryNotes(true, null, secGET('id'), true, true);
+    $deliveryNotes = getDeliveryNotes(true, null, secGET('id'), true, true, false, true);
     if (!$deliveryNotes) {
         // No delivery notes found
     } else {
@@ -88,7 +88,7 @@ if (file_exists('config/InvoiceDataConfig.php')) {
                 $price = $conn -> getFirstRow();
 
                 $newDate = date("d.m.Y", strtotime($row['deliverDate']));
-                $item = array($row['nr'], $newDate, $row['amount'], $price['price']);
+                $item = array($row['nr'], $newDate, $row['amount'], $price['price'], $row['productName']);
                 array_push($invoiceItems, $item);
             }
 
@@ -141,18 +141,11 @@ Rechnungsdatum:
  
 <table cellpadding="5" cellspacing="0" style="width: 100%;" border="0">
 <tr style="background-color: #4a8a16; padding:5px; color:white;">
-    <td style="padding:5px;">
-        <b>Lieferschein-Nr</b>
-    </td>
-    <td style="text-align: center;">
-        <b>Lieferdatum</b>
-    </td>
-    <td style="text-align: center;">
-        <b>Menge</b>
-    </td>
-    <td style="text-align: center;">
-        <b>Preis</b>
-    </td>
+    <td style="text-align: center;vertical-align: middle;"><b>Lieferschein-Nr</b></td>
+    <td style="text-align: center;vertical-align: middle;"><b>Lieferdatum</b></td>
+    <td style="text-align: center;vertical-align: middle;"><b>Produkt</b></td>
+    <td style="text-align: center;vertical-align: middle;"><b>Menge</b></td>
+    <td style="text-align: center;vertical-align: middle;"><b>Preis</b></td>
 </tr>';
 
 // Add items
@@ -165,6 +158,7 @@ Rechnungsdatum:
 <tr>
     <td style="text-align: center;">' . $item[0] .  '</td>
     <td style="text-align: center;">' . $item[1] . '</td>
+    <td style="text-align: center;">' . $item[4] . '</td>
     <td style="text-align: right;">' . $item[2] . ' ' . $inv -> volumeUnit . '</td>
     <td style="text-align: center;">' . number_format($price, 2, ',', '.') . ' Euro</td>
 </tr>';
