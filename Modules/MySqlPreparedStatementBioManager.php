@@ -53,23 +53,15 @@ class MySqlPreparedStatementBioManager extends MySqlPreparedStatement
         return $this -> deleteWhereCol($table, "userId", $givenId);
     }
 
-    /*
-    * Get a permission for a given user id.
-    *
-    * @param int    $givenUserId    User id of the user whose permission is requested
-    * @param string $permission Permission name
-    *
-    * @author David Hein
-    * @return boolean/NULL - false if not no data has been found.
-    */
-    public function getUserPermission($givenUserId, $permission)
+    /* Get a permission for a given user id */
+    public function getUserPermission(int $givenUserId, string $permission): bool
     {
         $row = $this -> selectColWhereUserId($permission, "T_UserPermission", $givenUserId);
         // Evalutate data
-        if (is_null($row)) {
+        if ($row === null) {
             return false;
         } else {
-            return $row[$permission];
+            return (bool)$row[$permission];
         }
         return false;
     }

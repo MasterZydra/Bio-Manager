@@ -14,14 +14,8 @@ include_once 'Modules/MySqlPreparedStatementBioManager.php';
 include 'Modules/stringSecurityHelper.php';
 include 'Modules/messageHelper.php';
 
-/*
-* Get permission for current user.
-*
-* @param string $permission Name of the permission/column in the data base
-*
-* @return Boolean if user has permission
-*/
-function checkPermission($permission)
+/* Get permission for current user */
+function checkPermission(string $permission): bool
 {
     // Return always false, if visitor is not logged in
     if (!isset($_SESSION['userId'])) {
@@ -33,72 +27,44 @@ function checkPermission($permission)
     $prepStmt -> destroy();
 }
 
-/*
-* Check if user has developer permissions
-*
-* @return Boolean if user has permission
-*/
-function isDeveloper()
+/* Check if user has developer permissions */
+function isDeveloper(): bool
 {
     return checkPermission('isDeveloper');
 }
 
-/*
-* Check if user has adminstrator permissions
-*
-* @return Boolean if user has permission
-*/
-function isAdmin()
+/* Check if user has adminstrator permissions */
+function isAdmin(): bool
 {
     return checkPermission('isAdmin');
 }
 
-/*
-* Check if user has maintainer permissions
-*
-* @return Boolean if user has permission
-*/
-function isMaintainer()
+/* Check if user has maintainer permissions */
+function isMaintainer(): bool
 {
     return checkPermission('isMaintainer');
 }
 
-/*
-* Check if user has inspector permissions
-*
-* @return Boolean if user has permission
-*/
-function isInspector()
+/* Check if user has inspector permissions */
+function isInspector(): bool
 {
     return checkPermission('isInspector');
 }
 
-/*
-* Check if user has vendor permissions
-*
-* @return Boolean if user has permission
-*/
-function isVendor()
+/* Check if user has vendor permissions */
+function isVendor(): bool
 {
     return checkPermission('isVendor');
 }
 
-/*
-* Check if user is logged in
-*
-* @return Boolean if user has permission
-*/
-function isLoggedIn()
+/* Check if user is logged in */
+function isLoggedIn(): bool
 {
     return isset($_SESSION['userId']);
 }
 
-/*
-* Check if user is a supplier
-*
-* @return Boolean if user is supplier
-*/
-function isSupplier()
+/* Check if user is a supplier */
+function isSupplier(): bool
 {
     $prepStmt = new MySqlPreparedStatement();
     $row = $prepStmt -> selectColWhereId("supplierId", "T_User", $_SESSION['userId']);
