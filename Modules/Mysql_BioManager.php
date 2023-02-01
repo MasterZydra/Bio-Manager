@@ -116,7 +116,8 @@ function getDeliveryNotes(
     $invoiceId = null,
     $joinSupplier = true,
     $invertSort = false,
-    $isUnused = false
+    $isUnused = false,
+    $joinProduct = false
 ) {
     if ($isComplete) {
         $whereCondition =
@@ -148,6 +149,10 @@ function getDeliveryNotes(
     if ($joinSupplier) {
         $from .= ' LEFT JOIN T_Supplier ON T_Supplier.id = supplierId';
         $select .= ', T_Supplier.name AS supplierName';
+    }
+    if ($joinProduct) {
+        $from .= ' LEFT JOIN T_Product ON T_Product.id = productId';
+        $select .= ', T_Product.name AS productName';
     }
 
     if ($invertSort) {
