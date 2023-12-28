@@ -13,6 +13,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Added files to register global functions
 - Added unit test framework with cli command to run them
 - Added i18n framework
+- Added routing with file to register own routes
 
 ### Changed
 - Improved the autoloader to work for the new folder structure of version 2
