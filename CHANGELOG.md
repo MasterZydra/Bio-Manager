@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity`
 
 ## [Unreleased]
+
+### Added
+- Added bioman CLI that can be extended with commands
+
+### Changed
+- Improved the autoloader to work for the new folder structure of version 2
+
+## 1.3.11 - Unreleased 
+
 ### Added
 - Added namespaces and autoloader so that the includes can be removed
 - Added gateway design pattern to encapsulate database queries
