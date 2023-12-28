@@ -11,6 +11,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 ### Added
 - Added bioman CLI that can be extended with commands
 - Added files to register global functions
+- Added unit test framework with cli command to run them
 
 ### Changed
 - Improved the autoloader to work for the new folder structure of version 2
