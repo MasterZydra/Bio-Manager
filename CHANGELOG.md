@@ -15,6 +15,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Added i18n framework
 - Added routing with file to register own routes
 - Added bootstrapping for app
+- Added ConfigReader
 
 ### Changed
 - Improved the autoloader to work for the new folder structure of version 2
