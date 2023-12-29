@@ -14,4 +14,6 @@ use \Framework\Routing\Router;
 Translator::readLabelFiles();
 
 // Route to requested controller or view
-Router::run();
+if (php_sapi_name() !== 'cli') {
+    Router::run();
+}
