@@ -29,6 +29,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Added facade URL with function for joining URLs
 - Added support for prepared SQL statements
 - Added base model for models that are stored in the database
+- Added command to create a new unit test case
 
 ### Changed
 - Improved the autoloader to work for the new folder structure of version 2
