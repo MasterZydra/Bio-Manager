@@ -24,6 +24,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ### Changed
 - Improved the autoloader to work for the new folder structure of version 2
+- Improved the MigrationRunner to apply all migrations in the framework folder
 
 ### Removed
 - Removed PHP extension from bioman CLI

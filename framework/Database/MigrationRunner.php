@@ -9,26 +9,24 @@ class MigrationRunner
     /** Apply all migrations */
     public function run(): void
     {
-        // Create migration table if it not exists
-        $this->runMigration(__DIR__ . '/Migrations/2023_12_29_085321_create_migrations_table.php');
-
-        $this->runAllMigrations();
+        $this->runAllMigrations(__DIR__ . '/Migrations');
+        $this->runAllMigrations($this->migrationsPath);
     }
 
     /** Run all the migration */
-    private function runAllMigrations(): void
+    private function runAllMigrations(string $migrationsPath): void
     {
-        $migrationFiles = $this->getMigrationFiles();
+        $migrationFiles = $this->getMigrationFiles($migrationsPath);
         sort($migrationFiles);
         foreach ($migrationFiles as $migrationFile) {
-            $this->runMigration(rtrim($this->migrationsPath, '/') . '/' . $migrationFile);
+            $this->runMigration(rtrim($migrationsPath, '/') . '/' . $migrationFile);
         }
     }
 
     /** Get all migration files from the migrations directory */
-    private function getMigrationFiles(): array
+    private function getMigrationFiles(string $migrationsPath): array
     {
-        $allFiles = scandir($this->migrationsPath);
+        $allFiles = scandir($migrationsPath);
         if ($allFiles === false) {
             return [];
         }
