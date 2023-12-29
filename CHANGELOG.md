@@ -21,6 +21,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Added all CRUD actions for product with ProductController
 - Added created and updated timestamps to migrations and users table
 - Added Config class to make access to env settings easier
+- Added index.php that load the autoloader and the bootstrapping
 
 ### Changed
 - Improved the autoloader to work for the new folder structure of version 2
