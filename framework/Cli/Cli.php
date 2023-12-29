@@ -49,12 +49,12 @@ class Cli
         $commandNames = array_keys(self::$commands);
         sort($commandNames);
 
-        echo 'Available commands' . PHP_EOL;
+        printLn('Available commands');
         /** @var string $commandName */
         foreach ($commandNames as $commandName) {
             /** @var CommandInterface $command */
             $command = self::$commands[$commandName];
-            echo str_pad($command->getName(), 20) . ' ' . $command->getDescription() . PHP_EOL;
+            printLn(str_pad($command->getName(), 20) . ' ' . $command->getDescription());
         }
     }
 }

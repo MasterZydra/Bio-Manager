@@ -34,7 +34,7 @@ class MakeMigrationCommand extends BaseCommand implements CommandInterface
             '};' . PHP_EOL
         );
 
-        $this->printLn('Created migration "' . $filename . '"');
+        printLn('Created migration "' . $filename . '"');
 
         return 0;
     }

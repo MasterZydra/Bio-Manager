@@ -12,14 +12,4 @@ abstract class BaseCommand
     {
         return readline($prompt . ' ');
     }
-
-    public function printLn(string $output): void
-    {
-        echo $output . PHP_EOL;
-    }
-
-    public function print(string $output): void
-    {
-        echo $output;
-    }
 }

@@ -88,7 +88,7 @@ class MakeControllerCommand extends BaseCommand implements CommandInterface
             '}' . PHP_EOL
         );
 
-        $this->printLn('Created controller "' . $filename . '"');
+        printLn('Created controller "' . $filename . '"');
 
         return 0;
     }

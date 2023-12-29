@@ -74,7 +74,7 @@ class MigrationRunner
 
         $this->addEntryToMigrationTable($filepath);
 
-        echo 'Applied ' . $this->extractMigrationName($filepath) . PHP_EOL;
+        printLn('Applied ' . $this->extractMigrationName($filepath));
     }
 
     /** Checks if the given migration is already applied to the database */

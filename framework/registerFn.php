@@ -1,6 +1,13 @@
 <?php
 
+use Framework\Facades\Path;
 use Framework\i18n\Translator;
+
+/** Print the given string with line break */
+function printLn(string $output): void
+{
+    echo $output . PHP_EOL;
+}
 
 /** Render the given view */
 function view(string $name, array $data = []): void
