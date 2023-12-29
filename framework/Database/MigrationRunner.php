@@ -2,6 +2,9 @@
 
 namespace Framework\Database;
 
+use Framework\Facades\File;
+use Framework\Facades\Path;
+
 class MigrationRunner
 {
     private string $migrationsPath = '';
@@ -31,10 +34,7 @@ class MigrationRunner
     /** Get all migration files from the migrations directory */
     private function getMigrationFiles(string $migrationsPath): array
     {
-        $allFiles = scandir($migrationsPath);
-        if ($allFiles === false) {
-            return [];
-        }
+        $allFiles = File::findFilesInDir($migrationsPath, onlyFiles: true);
 
         $migrationFiles = [];
         /** @var string $file */

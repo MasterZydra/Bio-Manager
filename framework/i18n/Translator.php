@@ -2,9 +2,12 @@
 
 namespace Framework\i18n;
 
+use Framework\Facades\File;
+use Framework\Facades\Path;
+
 class Translator
 {
-    private static string $languageDir = __DIR__ . '/../../resources/lang';
+    private static string $languageDir = '';
     private static array $labels = [];
 
     /** Read all label files and store the labels inside this class */
@@ -13,11 +16,13 @@ class Translator
         // Store new language directory
         if ($languageDir !== null) {
             self::$languageDir = $languageDir;
+        } else {
+            self::$languageDir = Path::join(__DIR__, '..', '..', 'resources', 'lang');
         }
 
         // Get all files in the language directory
-        $languageFiles = scandir(self::$languageDir);
-        if ($languageFiles === false) {
+        $languageFiles = File::findFilesInDir(self::$languageDir, onlyFiles: true);
+        if (count($languageFiles)) {
             self::$labels = [];
             return;
         }
@@ -28,7 +33,7 @@ class Translator
                 continue;
             }
 
-            $lang = require rtrim(self::$languageDir, '/') . DIRECTORY_SEPARATOR . $languageFile;
+            $lang = require Path::join(self::$languageDir, $languageFile);
 
             self::$labels[self::getLanguage($languageFile)] = $lang;
         }
