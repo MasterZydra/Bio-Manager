@@ -4,12 +4,17 @@ namespace Framework\Database;
 
 class MigrationRunner
 {
-    private string $migrationsPath = __DIR__ . '/../../resources/database/migrations';
+    private string $migrationsPath = '';
+
+    public function __construct()
+    {
+        $this->migrationsPath = Path::join(__DIR__, '..', '..', 'resources', 'database', 'migrations');
+    }
 
     /** Apply all migrations */
     public function run(): void
     {
-        $this->runAllMigrations(__DIR__ . '/Migrations');
+        $this->runAllMigrations(Path::join(__DIR__, 'Migrations'));
         $this->runAllMigrations($this->migrationsPath);
     }
 
@@ -19,7 +24,7 @@ class MigrationRunner
         $migrationFiles = $this->getMigrationFiles($migrationsPath);
         sort($migrationFiles);
         foreach ($migrationFiles as $migrationFile) {
-            $this->runMigration(rtrim($migrationsPath, '/') . '/' . $migrationFile);
+            $this->runMigration(Path::join($migrationsPath, $migrationFile));
         }
     }
 

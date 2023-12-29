@@ -2,6 +2,8 @@
 
 namespace Framework\Config;
 
+use Framework\Facades\Path;
+
 class Config
 {
     private static ?array $env = null;
@@ -23,6 +25,6 @@ class Config
         if (self::$env !== null) {
             return;
         }
-        self::$env = ConfigReader::readFile(__DIR__ . '/../../.env');
+        self::$env = ConfigReader::readFile(Path::join(__DIR__, '..', '..', '.env'));
     }
 }

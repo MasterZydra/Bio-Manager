@@ -4,16 +4,22 @@ namespace Framework\Routing\Cli;
 
 use Framework\Cli\BaseCommand;
 use Framework\Cli\CommandInterface;
+use Framework\Facades\Path;
 
 class MakeControllerCommand extends BaseCommand implements CommandInterface
 {
-    private string $controllersPath = __DIR__ . '/../../../app/Http/Controllers';
+    private string $controllersPath = '';
+
+    public function __construct()
+    {
+        $this->controllersPath = Path::join(__DIR__, '..', '..', '..', 'app', 'Http', 'Controllers');
+    }
 
     public function execute(array $args): int
     {
         $controllerName = $this->input('Migration name (e.g. Product):');
         $filename = $controllerName . 'Controller.php';
-        $path = rtrim($this->controllersPath, '/') . '/' . $filename;
+        $path = Path::join($this->controllersPath, $filename);
 
         file_put_contents(
             $path,

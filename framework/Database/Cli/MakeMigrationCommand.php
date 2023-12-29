@@ -4,16 +4,21 @@ namespace Framework\Database\Cli;
 
 use Framework\Cli\BaseCommand;
 use Framework\Cli\CommandInterface;
+use Framework\Facades\Path;
 
 class MakeMigrationCommand extends BaseCommand implements CommandInterface
 {
-    private string $migrationsPath = __DIR__ . '/../../../resources/database/migrations';
+    private string $migrationsPath = '';
+
+    public function __construct() {
+        $this->migrationsPath = Path::join(__DIR__, '..', '..', '..', 'resources', 'database', 'migrations');
+    }
 
     public function execute(array $args): int
     {
         $migrationName = $this->input('Migration name (e.g. create_products_table):');
         $filename = date('Y_m_d_his') . '_' . $migrationName . '.php';
-        $path = rtrim($this->migrationsPath, '/') . '/' . $filename;
+        $path = Path::join($this->migrationsPath, $filename);
 
         file_put_contents(
             $path,
