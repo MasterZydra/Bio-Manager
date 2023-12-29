@@ -19,6 +19,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Added support for database connections and migrations
 - Added command to create a new controller
 - Added all CRUD actions for product with ProductController
+- Added created and updated timestamps to migrations and users table
 
 ### Changed
 - Improved the autoloader to work for the new folder structure of version 2
