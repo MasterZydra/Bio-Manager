@@ -2,52 +2,62 @@
 
 namespace Framework\Test;
 
+use Framework\Facades\File;
+use Framework\Facades\Path;
+
 /** The TestRunner runs all test cases in the given test file path */
 class TestRunner
 {
-    private string $testFilePath = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'tests';
+    private string $testFilePath = '';
 
     public function __construct(string $testFilePath = null) {
         if ($testFilePath !== null) {
             $this->testFilePath = $testFilePath;
+        } else {
+            $this->testFilePath = Path::join(__DIR__, '..', '..', 'tests');
         }
     }
 
     /** Run all tests in the given test file path */
     public function run(): bool
     {
-        return $this->runUnitTests();
+        return $this->runUnitTests(Path::join(__DIR__, '..', 'tests'))
+            && $this->runUnitTests($this->testFilePath);
     }
 
     /** Run all unit tests */
-    private function runUnitTests(): bool
+    private function runUnitTests(string $testFilePath): bool
     {
-        $testFiles = $this->getUnitTestFiles();
+        $testFiles = $this->getUnitTestFiles($testFilePath);
         if (count($testFiles) === 0) {
-            echo 'No unit test files found' . PHP_EOL;
+            printLn('No unit test files found');
             return true;
         }
 
+        printLn('Running unit tests...');
         $success = true;
         foreach ($testFiles as $testFile) {
-            if (!$this->runUnitTestFile($testFile)) {
+            printLn('- ' . $testFile);
+            if (!$this->runUnitTestFile($testFilePath, $testFile)) {
                 $success = false;
             }
         }
 
         if ($success) {
-            echo 'All tests were successful!' . PHP_EOL;
+            printLn('All tests were successful!');
         } else {
-            echo 'One or more test case failed!' . PHP_EOL;
+            printLn('One or more test case failed!');
         }
+        printLn('');
 
         return $success;
     }
 
     /** Run all test methods in the given unit test file */
-    private function runUnitTestFile(string $filename): bool
+    private function runUnitTestFile(string $testFilePath, string $filepath): bool
     {
-        require $this->testFilePath . DIRECTORY_SEPARATOR . 'Unit' . DIRECTORY_SEPARATOR . $filename;
+        $filename = basename($filepath);
+        require Path::join($testFilePath, 'Unit', $filepath);
         $testCaseName = str_replace('.php', '', $filename);
         $testCase = new $testCaseName();
         $methods = get_class_methods($testCase);
@@ -61,8 +71,8 @@ class TestRunner
             try {
                 $testCase->$method();
             } catch (AssertionFailedException $ex) {
-                echo $ex->getTestCase() . ' failed:' . PHP_EOL;
-                echo $ex->__toString() . PHP_EOL;
+                printLn($ex->getTestCase() . ' failed:');
+                printLn($ex->__toString());
                 $success = false;
             } catch (\Throwable $th) {
                 $success = false;
@@ -74,17 +84,14 @@ class TestRunner
     }
 
     /** Get array with all unit test files in the test file directory */
-    private function getUnitTestFiles(): array
+    private function getUnitTestFiles(string $testFilePath): array
     {
-        $allFiles = scandir($this->testFilePath . DIRECTORY_SEPARATOR . 'Unit');
-        if ($allFiles === false) {
-            return [];
-        }
+        $allFiles = File::findFilesInDir(Path::join($testFilePath, 'Unit'), recursive: true,  onlyFiles: true);
 
         $testFiles = [];
         /** @var string $file */
         foreach ($allFiles as $file) {
-            if (!$this->isTestFile($file)) {
+            if (!$this->isTestFile(basename($file))) {
                 continue;
             }
             array_push($testFiles, $file);

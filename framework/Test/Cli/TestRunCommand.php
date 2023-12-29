@@ -10,7 +10,6 @@ class TestRunCommand extends BaseCommand implements CommandInterface
 {
     public function execute(array $args): int
     {
-        $this->printLn('Running tests...');
         $testRunner = new TestRunner();
         $testRunner->run();
         return 0;

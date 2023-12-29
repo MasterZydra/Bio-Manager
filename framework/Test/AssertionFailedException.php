@@ -9,7 +9,7 @@ class AssertionFailedException extends Exception
 {
     public function __construct(
         private string $expected,
-        private string $got,
+        private string $actual,
     ) {
         parent::__construct();
     }
@@ -17,7 +17,7 @@ class AssertionFailedException extends Exception
     public function __toString()
     {
         return 'Expected: "' . $this->expected . '"' . PHP_EOL .
-            'Got: "' . $this->got . '"' . PHP_EOL;
+            'Actual: "' . $this->actual . '"' . PHP_EOL;
     }
 
     public function getTestCase(): string
