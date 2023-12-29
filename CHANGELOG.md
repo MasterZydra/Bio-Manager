@@ -20,6 +20,9 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 ### Changed
 - Improved the autoloader to work for the new folder structure of version 2
 
+### Removed
+- Removed PHP extension from bioman CLI
+
 ## 1.3.11 - Unreleased 
 
 ### Added
