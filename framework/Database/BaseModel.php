@@ -223,7 +223,7 @@ abstract class BaseModel
         return $this;
     }
 
-    private static function getTableName(): string
+    protected static function getTableName(): string
     {
         $classNameParts = explode('\\', get_called_class());
         $className = $classNameParts[count($classNameParts) - 1];

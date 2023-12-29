@@ -17,7 +17,7 @@ class MakeControllerCommand extends BaseCommand implements CommandInterface
 
     public function execute(array $args): int
     {
-        $controllerName = $this->input('Migration name (e.g. Product):');
+        $controllerName = $this->input('Controller name (e.g. Product):');
         $filename = $controllerName . 'Controller.php';
         $path = Path::join($this->controllersPath, $filename);
 
@@ -27,7 +27,7 @@ class MakeControllerCommand extends BaseCommand implements CommandInterface
             'namespace App\Http\Controllers;' . PHP_EOL . PHP_EOL .
             'use Framework\Routing\BaseController;' . PHP_EOL .
             'use Framework\Routing\ModelControllerInterface;' . PHP_EOL . PHP_EOL .
-            'class ' . $controllerName . 'ControllerController extends BaseController implements ModelControllerInterface' . PHP_EOL .
+            'class ' . $controllerName . 'Controller extends BaseController implements ModelControllerInterface' . PHP_EOL .
             '{' . PHP_EOL .
             '    /**' . PHP_EOL .
             '     * Show list of all models' . PHP_EOL .
