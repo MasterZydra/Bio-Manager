@@ -17,6 +17,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Added bootstrapping for app
 - Added ConfigReader
 - Added support for database connections and migrations
+- Added command to create a new controller
 
 ### Changed
 - Improved the autoloader to work for the new folder structure of version 2
