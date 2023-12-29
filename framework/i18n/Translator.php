@@ -22,7 +22,7 @@ class Translator
 
         // Get all files in the language directory
         $languageFiles = File::findFilesInDir(self::$languageDir, onlyFiles: true);
-        if (count($languageFiles)) {
+        if (count($languageFiles) === 0) {
             self::$labels = [];
             return;
         }
@@ -49,7 +49,7 @@ class Translator
             $lang = 'en';
         }
 
-        if (!(array_key_exists($label, self::$labels[$lang]))) {
+        if (!array_key_exists($lang, self::$labels) || !(array_key_exists($label, self::$labels[$lang]))) {
             // TODO How to handle untranslated labels
             // Maybe if in dev mode -> error / warning 
             // In prod mode return label?
