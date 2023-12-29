@@ -11,7 +11,7 @@ class MakeMigrationCommand extends BaseCommand implements CommandInterface
 
     public function execute(array $args): int
     {
-        $migrationName = $this->input('Migration name:');
+        $migrationName = $this->input('Migration name (e.g. create_products_table):');
         $filename = date('Y_m_d_his') . '_' . $migrationName . '.php';
         $path = rtrim($this->migrationsPath, '/') . '/' . $filename;
 
