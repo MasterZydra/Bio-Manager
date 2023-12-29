@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Framework\Database\Database;
 use Framework\Database\BaseModel;
+use Framework\Facades\Convert;
 
 class Product extends BaseModel
 {
@@ -22,14 +23,14 @@ class Product extends BaseModel
                 'INSERT INTO products (`name`, isDiscontinued) VALUES (?, ?)',
                 'si',
                 $this->getName(),
-                ($this->getIsDiscontinued() ? 1 : 0)
+                Convert::boolToInt($this->getIsDiscontinued())
             );
         } else {
             Database::prepared(
                 'UPDATE products SET `name`= ?, isDiscontinued=? WHERE id=?',
                 'sii',
                 $this->getName(),
-                ($this->getIsDiscontinued() ? 1 : 0),
+                Convert::boolToInt($this->getIsDiscontinued()),
                 $this->getId()
             );
         }

@@ -1,7 +1,7 @@
 <?php
 
 use Framework\Facades\Path;
-use \Framework\Test\TestCase;
+use Framework\Test\TestCase;
 
 class TestPath extends TestCase
 {

@@ -1,7 +1,7 @@
 <?php
 
 use Framework\Facades\URL;
-use \Framework\Test\TestCase;
+use Framework\Test\TestCase;
 
 class TestURL extends TestCase
 {

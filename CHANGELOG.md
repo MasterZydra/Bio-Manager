@@ -30,6 +30,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Added support for prepared SQL statements
 - Added base model for models that are stored in the database
 - Added command to create a new unit test case
+- Added facade Convert with function for converting a boolean into an integer
 
 ### Changed
 - Improved the autoloader to work for the new folder structure of version 2
