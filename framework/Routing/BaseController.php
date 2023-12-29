@@ -4,6 +4,7 @@ namespace Framework\Routing;
 
 use Exception;
 use Framework\Config\Config;
+use Framework\Facades\URL;
 
 /** The `BaseController` can be used as base class for commands to get access to helper functions. */
 abstract class BaseController
@@ -12,7 +13,7 @@ abstract class BaseController
     public function redirect(string $route, bool $temporary = true): void
     {
         header(
-            'Location: ' . rtrim(Config::env('APP_URL'), '/') . '/' . ltrim($route, '/'),
+            'Location: ' . URL::join(Config::env('APP_URL'), $route),
             true,
             $temporary ? 302 : 301
         );

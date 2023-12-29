@@ -26,6 +26,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Added facade Path with function for joining paths
 - Added global function `printLn`
 - Added facade File with function to find files in folders with option for recursive search, only files and only directories
+- Added facade URL with function for joining URLs
 
 ### Changed
 - Improved the autoloader to work for the new folder structure of version 2
