@@ -92,7 +92,8 @@ class TestRunner
         return $testFiles;
     }
 
-    private function isTestMethod(string $methodName): bool {
+    private function isTestMethod(string $methodName): bool
+    {
         // All test method must start with 'test'
         if (!str_starts_with($methodName, 'test')) {
             return false;
@@ -100,7 +101,8 @@ class TestRunner
         return true;
     }
 
-    private function isTestFile(string $filename): bool {
+    private function isTestFile(string $filename): bool
+    {
         // All test files must start with 'Test'
         if (!str_starts_with($filename, 'Test')) {
             return false;
