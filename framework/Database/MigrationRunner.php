@@ -84,7 +84,11 @@ class MigrationRunner
             return false;
         }
 
-        $result = Database::query('SELECT * FROM migrations WHERE `name` = \'' . $migrationName . '\'');
+        $result = Database::prepared(
+            'SELECT * FROM migrations WHERE `name` = ?',
+            's',
+            $migrationName
+        );
 
         if ($result === false) {
             return false;
@@ -104,15 +108,21 @@ class MigrationRunner
     /** Insert the given migration file into the migration table */
     private function addEntryToMigrationTable(string $migrationFile): void
     {
-        Database::query('INSERT INTO migrations (`name`) VALUES ("' . $this->extractMigrationName($migrationFile) . '")');
+        Database::prepared(
+            'INSERT INTO migrations (`name`) VALUES (?)',
+            's',
+            $this->extractMigrationName($migrationFile)
+        );
     }
 
     /** Checks if the table `migrations` is already created */
     private function doesMigrationsTableExists(): bool
     {
-        $result = Database::query(
+        $result = Database::prepared(
             'SELECT TABLE_NAME FROM information_schema.TABLES ' .
-            'WHERE TABLE_SCHEMA LIKE \'' . Database::database() . '\' AND TABLE_TYPE LIKE \'BASE TABLE\' AND TABLE_NAME = \'migrations\''
+            'WHERE TABLE_SCHEMA LIKE ? AND TABLE_TYPE LIKE \'BASE TABLE\' AND TABLE_NAME = \'migrations\'',
+            's',
+            Database::database()
         );
 
         if ($result === false) {

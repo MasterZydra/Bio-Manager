@@ -51,4 +51,20 @@ class MariaDB
 
         return $this->mysqli->query($query);
     }
+
+    /** Execute the given prepared statement */
+    public function prepared(string $query, string $colTypes, ...$values): mysqli_result|bool
+    {
+        $stmt = $this->mysqli->prepare($query);
+        if ($stmt === false) {
+            return false;
+        }
+
+        $stmt->bind_param($colTypes, ...$values);
+        if (!$stmt->execute()) {
+            return false;
+        }
+
+        return $stmt->get_result();
+    }
 }

@@ -44,14 +44,19 @@ class Product extends Model
     public function save(): Product
     {
         if ($this->getId() === null) {
-            Database::query(
-                'INSERT INTO products (`name`, isDiscontinued) ' .
-                'VALUES (\'' . $this->getName() . '\', ' . ($this->getIsDiscontinued() ? 1 : 0) . ')'
+            Database::prepared(
+                'INSERT INTO products (`name`, isDiscontinued) VALUES (?, ?)',
+                'si',
+                $this->getName(),
+                ($this->getIsDiscontinued() ? 1 : 0)
             );
         } else {
-            Database::query(
-                'UPDATE products SET `name`=\'' . $this->getName() . '\', isDiscontinued=' . ($this->getIsDiscontinued() ? 1 : 0) . ' ' .
-                'WHERE id=' . $this->getId()
+            Database::prepared(
+                'UPDATE products SET `name`= ?, isDiscontinued=? WHERE id=?',
+                'sii',
+                $this->getName(),
+                ($this->getIsDiscontinued() ? 1 : 0),
+                $this->getId()
             );
         }
 
@@ -60,13 +65,13 @@ class Product extends Model
 
     public function delete(): Product
     {
-        Database::query('DELETE FROM products WHERE id=' . $this->getId());
+        Database::prepared('DELETE FROM products WHERE id=?', 'i', $this->getId());
         return $this;
     }
 
     public static function loadById(int $id): ?Product
     {
-        $dataSet = Database::query('SELECT * FROM products WHERE id = ' . $id);
+        $dataSet = Database::prepared('SELECT * FROM products WHERE id = ?', 'i', $id);
         if ($dataSet === false) {
             return [];
         }
