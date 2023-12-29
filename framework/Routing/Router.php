@@ -16,9 +16,9 @@ class Router
     private static ?Closure $methodNotAllowed = null;
 
     /** Register new routes for showing, creating, editing, etc. models */
-    public static function addResource(string $expression, ResourceControllerInterface $controller): void
+    public static function addModel(string $expression, ModelControllerInterface $controller): void
     {
-        foreach (['index', 'create', 'store', 'show', 'edit', 'update', 'destory'] as $route) {
+        foreach (['index', 'create', 'store', 'show', 'edit', 'update', 'destroy'] as $route) {
             if (!method_exists($controller, $route)) {
                 continue;
             }

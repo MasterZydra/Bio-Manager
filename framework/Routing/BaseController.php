@@ -3,10 +3,22 @@
 namespace Framework\Routing;
 
 use Exception;
+use Framework\Config\Config;
 
 /** The `BaseController` can be used as base class for commands to get access to helper functions. */
 abstract class BaseController
 {
+    /** Redirect the user the the given route */
+    public function redirect(string $route, bool $temporary = true): void
+    {
+        header(
+            'Location: ' . rtrim(Config::env('APP_URL'), '/') . '/' . ltrim($route, '/'),
+            true,
+            $temporary ? 302 : 301
+        );
+        exit();
+    }
+
     /** Returns the request method (`GET`, `POST`, etc.) */
     public function getRequestMethod(): string
     {

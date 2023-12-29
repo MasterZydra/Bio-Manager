@@ -2,6 +2,6 @@
 
 namespace Framework\Routing;
 
-interface ResourceControllerInterface
+interface ModelControllerInterface
 {
 }
