@@ -16,6 +16,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Added routing with file to register own routes
 - Added bootstrapping for app
 - Added ConfigReader
+- Added support for database connections and migrations
 
 ### Changed
 - Improved the autoloader to work for the new folder structure of version 2
