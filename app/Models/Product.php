@@ -3,45 +3,19 @@
 namespace App\Models;
 
 use Framework\Database\Database;
-use Framework\Database\Model;
+use Framework\Database\BaseModel;
 
-class Product extends Model
+class Product extends BaseModel
 {
-    public function __construct(
-        private ?int $id,
-        private string $name,
-        private bool $isDiscontinued,
-    ) {
-    }
+    private const NAME = 'name';
+    private const IS_DISCONTINUED = 'isDiscontinued';
 
-    public function getId(): ?int
+    protected static function new(array $data = []): self
     {
-        return $this->id;
+        return new self($data);
     }
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): Product
-    {
-        $this->name = $name;
-        return $this;
-    }
-
-    public function getIsDiscontinued(): bool
-    {
-        return $this->isDiscontinued;
-    }
-
-    public function setIsDiscontinued(bool $isDiscontinued): Product
-    {
-        $this->isDiscontinued = $isDiscontinued;
-        return $this;
-    }
-
-    public function save(): Product
+    public function save(): self
     {
         if ($this->getId() === null) {
             Database::prepared(
@@ -63,43 +37,25 @@ class Product extends Model
         return $this;
     }
 
-    public function delete(): Product
+    /* Getter & Setter */
+
+    public function getName(): string
     {
-        Database::prepared('DELETE FROM products WHERE id=?', 'i', $this->getId());
-        return $this;
+        return $this->getDataString(self::NAME);
     }
 
-    public static function loadById(int $id): ?Product
+    public function setName(string $value): self
     {
-        $dataSet = Database::prepared('SELECT * FROM products WHERE id = ?', 'i', $id);
-        if ($dataSet === false) {
-            return [];
-        }
-
-        /** @var \mysqli_result $result */
-        if ($dataSet->num_rows !== 1) {
-            return null;
-        }
-
-        return Product::newProduct($dataSet->fetch_assoc());
+        return $this->setDataString(self::NAME, $value);
     }
 
-    public static function all(): array
+    public function getIsDiscontinued(): bool
     {
-        $dataSet = Database::query('SELECT * FROM products');
-        if ($dataSet === false) {
-            return [];
-        }
-
-        $all = [];
-        while ($row = $dataSet->fetch_assoc()) {
-            array_push($all, self::newProduct($row));
-        }
-        return $all;
+        return $this->getDataBool(self::IS_DISCONTINUED);
     }
 
-    private static function newProduct(array $row): Product
+    public function setIsDiscontinued(bool $value): self
     {
-        return new Product($row['id'], $row['name'], $row['isDiscontinued'] === '0' ? false : true);
+        return $this->setDataBool(self::IS_DISCONTINUED, $value);
     }
 }

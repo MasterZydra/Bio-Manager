@@ -23,7 +23,7 @@ class ProductController extends BaseController implements ModelControllerInterfa
      */
     public function show(): void
     {
-        view('entities.product.show', ['product' => Product::loadById($this->getParam('id'))]);
+        view('entities.product.show', ['product' => Product::find($this->getParam('id'))]);
     }
 
     /**
@@ -41,8 +41,10 @@ class ProductController extends BaseController implements ModelControllerInterfa
      */
     public function store(): void
     {
-        $product = new Product(null, $this->getParam('name'), false);
-        $product->save();
+        (new Product())
+            ->setName($this->getParam('name'))
+            ->setIsDiscontinued(false)
+            ->save();
 
         $this->redirect('product');
     }
@@ -53,7 +55,7 @@ class ProductController extends BaseController implements ModelControllerInterfa
      */
     public function edit(): void
     {
-        view('entities.product.edit', ['product' => Product::loadById($this->getParam('id'))]);
+        view('entities.product.edit', ['product' => Product::find($this->getParam('id'))]);
     }
 
     /**
@@ -62,7 +64,7 @@ class ProductController extends BaseController implements ModelControllerInterfa
      */
     public function update(): void
     {
-        Product::loadById($this->getParam('id'))
+        Product::find($this->getParam('id'))
             ->setName($this->getParam('name'))
             ->setIsDiscontinued($this->getParam('isDiscontinued'))
             ->save();
@@ -76,7 +78,7 @@ class ProductController extends BaseController implements ModelControllerInterfa
      */
     public function destroy(): void
     {
-        Product::loadById($this->getParam('id'))->delete();
+        Product::delete($this->getParam('id'));
 
         $this->redirect('product');
     }

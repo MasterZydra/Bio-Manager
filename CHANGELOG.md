@@ -28,6 +28,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Added facade File with function to find files in folders with option for recursive search, only files and only directories
 - Added facade URL with function for joining URLs
 - Added support for prepared SQL statements
+- Added base model for models that are stored in the database
 
 ### Changed
 - Improved the autoloader to work for the new folder structure of version 2
