@@ -27,7 +27,7 @@ class Product extends BaseModel
             );
         } else {
             Database::prepared(
-                'UPDATE ' . $this->getTableName() . ' SET `name`= ?, isDiscontinued=? WHERE id=?',
+                'UPDATE ' . $this->getTableName() . ' SET `name`=?, isDiscontinued=? WHERE id=?',
                 'sii',
                 $this->getName(),
                 Convert::boolToInt($this->getIsDiscontinued()),

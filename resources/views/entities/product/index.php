@@ -7,6 +7,7 @@ foreach ($products as $product): ?>
     <?= $product->getId() ?> - <?= $product->getName() ?> - <?= $product->getIsDiscontinued() ? 'true' : 'false' ?>
     <a href="product/show?id=<?= $product->getId() ?>">Details</a>
     <a href="product/edit?id=<?= $product->getId() ?>">Edit</a>
+    <?= $product->getCreatedAt() ?> - <?= $product->getUpdatedAt() ?>
     <br>
 <?php endforeach ?>
 

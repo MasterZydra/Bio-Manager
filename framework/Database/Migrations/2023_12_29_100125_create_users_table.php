@@ -14,7 +14,8 @@ return new class extends Migration
             'lastname VARCHAR(30) NOT NULL,' .
             'username VARCHAR(30) NOT NULL,' .
             'password VARCHAR(255) NULL,' .
-            'isPwdChangeForced tinyint(1) NOT NULL,' .
+            'isLocked tinyint(1) NOT NULL DEFAULT 0,' .
+            'isPwdChangeForced tinyint(1) NOT NULL DEFAULT 0,' .
             'createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,' .
             'updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,' .
             'PRIMARY KEY (id)' .
