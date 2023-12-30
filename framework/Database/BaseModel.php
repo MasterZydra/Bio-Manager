@@ -76,6 +76,23 @@ abstract class BaseModel
 
     public function __call(string $name, array $arguments): mixed
     {
+        // e.g. get('lastname')
+        if ($name === 'get') {
+            if (count($arguments) !== 1) {
+                throw new Exception('Getter function expects only one argument');
+            }
+            return $this->getData($arguments[0]);
+        }
+
+        // e.g. set('username', 'myusername')
+        if ($name === 'set') {
+            if (count($arguments) !== 2) {
+                throw new Exception('Getter function expects two arguments');
+            }
+            return $this->setData($arguments[0], $arguments[1]);
+        }
+
+        // e.g. getLastname() or setUsername('myusername')
         if (!str_starts_with($name, 'get') && !str_starts_with($name, 'set')) {
             return null;
         }
@@ -89,7 +106,7 @@ abstract class BaseModel
 
         if ($prefix === 'set') {
             if (count($arguments) !== 1) {
-                throw new Exception('Setter functions can only take on argument');
+                throw new Exception('Setter functions expects only one argument');
             }
             return $this->setData($property, $arguments[0]);
         }
