@@ -37,6 +37,29 @@ class Cli
         exit($command->execute(array_slice($_SERVER['argv'], 2)));
     }
 
+    /** Do all checks and possibly execute the called command for the web CLI */
+    public function runWebCli(string $command): void {
+        $command = trim($command);
+        $commandParts = explode(' ', $command);
+
+        // Not command were given, so show the list of a available commands
+        if (count($commandParts) === 0 || $commandParts[0] === '') {
+            self::listAllCommands();
+            return;
+        }
+
+        // The given command does not exist, so show the list of available commands
+        if (!array_key_exists($commandParts[0], self::$commands)) {
+            self::listAllCommands();
+            return;
+        }
+        
+        // Call the command execute function
+        /** @var CommandInterface $command */
+        $command = self::$commands[$commandParts[0]];
+        exit($command->execute(array_slice($commandParts, 1)));
+    }
+
     /** Register a command to make it available in the bioman CLI */
     public static function registerCommand(CommandInterface $command): void
     {

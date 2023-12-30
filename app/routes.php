@@ -11,6 +11,7 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use Framework\Cli\Controllers\WebCliController;
 use Framework\Routing\Router;
 
 Router::addFn('', fn() => view('home'));
@@ -19,6 +20,10 @@ Router::addFn('imprint', fn() => view('imprint'));
 
 Router::addFn('login', fn() => view('login'));
 Router::addController('login', new LoginController(), 'POST');
+
+Router::addController('cli', new WebCliController());
+Router::addController('cli', new WebCliController(), 'POST');
+
 
 // TODO only if logged in
 // TODO only if is admin

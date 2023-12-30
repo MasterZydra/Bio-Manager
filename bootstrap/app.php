@@ -4,6 +4,10 @@
 require __DIR__ . '/../framework/registerFn.php';
 require __DIR__ . '/../app/registerFn.php';
 
+// Register the available CLI commands
+require __DIR__ . '/../app/registerCli.php';
+require __DIR__ . '/../framework/registerCli.php';
+
 // Register all available routes
 require __DIR__ . '/../app/routes.php';
 
