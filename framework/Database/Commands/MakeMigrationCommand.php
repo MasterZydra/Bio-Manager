@@ -46,6 +46,6 @@ class MakeMigrationCommand extends BaseCommand implements CommandInterface
 
     public function getDescription(): string
     {
-        return 'Create a new empty migration file';
+        return 'Create a new migration';
     }
 }

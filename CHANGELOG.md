@@ -35,6 +35,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Added web cli
 - Added all CRUD actions for user with UserController
 - Added get() and set() function to base model
+- Added command to create a new command
 
 ### Changed
 - Improved the autoloader to work for the new folder structure of version 2
