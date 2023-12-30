@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Database\Cli;
+namespace Framework\Database\Commands;
 
 use Framework\Cli\BaseCommand;
 use Framework\Cli\CommandInterface;

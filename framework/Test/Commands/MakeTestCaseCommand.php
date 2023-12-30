@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Test\Cli;
+namespace Framework\Test\Commands;
 
 use Framework\Cli\BaseCommand;
 use Framework\Cli\CommandInterface;

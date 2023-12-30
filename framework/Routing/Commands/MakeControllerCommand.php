@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Routing\Cli;
+namespace Framework\Routing\Commands;
 
 use Framework\Cli\BaseCommand;
 use Framework\Cli\CommandInterface;

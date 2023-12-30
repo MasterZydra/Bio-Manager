@@ -1,12 +1,12 @@
 <?php
 
 use Framework\Cli\Cli;
-use Framework\Database\Cli\MakeMigrationCommand;
-use Framework\Database\Cli\MakeModelCommand;
-use Framework\Database\Cli\MigrateCommand;
-use Framework\Routing\Cli\MakeControllerCommand;
-use Framework\Test\Cli\MakeTestCaseCommand;
-use Framework\Test\Cli\TestRunCommand;
+use Framework\Database\Commands\MakeMigrationCommand;
+use Framework\Database\Commands\MakeModelCommand;
+use Framework\Database\Commands\MigrateCommand;
+use Framework\Routing\Commands\MakeControllerCommand;
+use Framework\Test\Commands\MakeTestCaseCommand;
+use Framework\Test\Commands\TestRunCommand;
 
 Cli::registerCommand(new MakeControllerCommand());
 Cli::registerCommand(new MakeMigrationCommand());
