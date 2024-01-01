@@ -1,3 +1,15 @@
+<?php
+
+use Framework\Authentication\Auth;
+use Framework\Facades\Http;
+
+// Redirect to home if user is already logged in
+if (Auth::isLoggedIn()) {
+    Http::redirect('/');
+}
+
+?>
+
 <?= component('layout.header') ?>
 
 <form action="login" method="post">

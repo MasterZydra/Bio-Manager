@@ -1,13 +1,16 @@
+<?php use Framework\Authentication\Auth; ?>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/css/bioStyle.css">
-        <link rel="icon" href="/img/apple.png">
-        <title>Bio-Manager</title>
-    </head>
-    <body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bioStyle.css">
+    <link rel="icon" href="/img/apple.png">
+    <title>Bio-Manager</title>
+</head>
+
+<body>
     <header>
         <!-- <php
         // Build string for organisation in header
@@ -23,18 +26,13 @@
         <div>
             <a href="/"><?= __('Home') ?></a>
         </div>
-        <?php
-        if (!isset($_SESSION['userId'])) {
-            ?>
         <div>
-            <button style="cursor: pointer" onclick="window.location.href='login'"><?= __('Login') ?></button>
+            <?php if (!Auth::isLoggedIn()) { ?>
+                <button style="cursor: pointer" onclick="window.location.href='login'"><?= __('Login') ?></button>
+            <?php }  else { ?>
+                <button style="cursor: pointer" onclick="window.location.href='logout'"><?= __('Logout') ?></button>
+            <?php } ?>
         </div>
-            <?php
-        }
-        ?>
     </header>
-    <main
-    >
-    <!-- <php if (basename($_SERVER['PHP_SELF']) === "index.php") {
-    echo 'class="inlineblock"';
-    } ?> -->
+
+    <main>

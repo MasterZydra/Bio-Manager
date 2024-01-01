@@ -13,6 +13,7 @@ return [
     'IsPasswordChangeForced' => 'Is password change forced',
     'Lastname' => 'Lastname',
     'Login' => 'Login',
+    'Logout' => 'Logout',
     'Password' => 'Password',
     'Product' => 'Product',
     'ProductName' => 'Product name',

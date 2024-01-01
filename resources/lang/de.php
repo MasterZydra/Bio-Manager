@@ -13,6 +13,7 @@ return [
     'IsPasswordChangeForced' => 'Ist Passwortänderung erzwungen',
     'Lastname' => 'Nachname',
     'Login' => 'Anmelden',
+    'Logout' => 'Abmelden',
     'Password' => 'Passwort',
     'Product' => 'Produkt',
     'ProductName' => 'Produktname',
