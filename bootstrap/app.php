@@ -1,5 +1,8 @@
 <?php
 
+// Start the PHP session
+session_start();
+
 // Register the global available functions
 require __DIR__ . '/../framework/registerFn.php';
 require __DIR__ . '/../app/registerFn.php';
