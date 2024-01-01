@@ -1,23 +1,31 @@
 # Bio-Manager
-Diese Website ist eine Plattform für die vereinfachte Dokumentation von (Obst)Lieferungen. Es sind Funktionen enthalten um Unterlagen für die Kontrolle der Bio-Zertifizierung zu erzeugen und damit manuellen Aufwand zu reduzieren.
-Die Lieferscheine, Lieferanten und Flurstücke werden eingetragen. Die Mengen der Lieferscheine werden auf die Flurstücke aufgeteilt.
 
-Aus den Daten werden die Rechnungen und Auszahlungen generiert. Übersichten für die Kasse des Vereins und für die Bio-Zertifizierungstelle können erstellt werden.
+This web application is a kind of ERP system specially adapted to the requirements for the management of certified organic plots of land. It should be easy to use and simplify administrative work.
 
-[Link zur Dokumentation](doc/README.md)
+The purpose of the project is also to get a better understanding of the concepts and systems working in the background e.g. in the Laravel framework. That is why everything is self written and very similar to Laravel. The concepts, naming conventions and schemes etc. are copied from Laravel while the implementation of the underlying code is written by myself. 
 
-![Home](/doc/screenshots/Home.png)
+This project works with a self written framework.  
+It contains:
+- an autoloader
+- a router
+- a testing framework
+- internationalization support
+- rendering views and components
+- extendable CLI e.g. for running tests, creating controllers, models, etc.
+- a database migration system
+- a database model with magic getter and setter functions
 
-## Quellenangaben
+## Development
+The development can be done with just Visual Studio Code and Docker.
 
-| URL | Beschreibung |
-|---|---|
-| https://stackoverflow.com/questions/3228694/php-database-connection-class | Vorlage für die MySQL Klasse  (Anpassung an neue PHP Version notwendig) |
-| https://www.php-einfach.de/experte/php-codebeispiele/pdf-per-php-erstellen-pdf-rechnung | Vorlage für Rechnungserstellung |
-| https://pixeltuner.de/php-cache-erstellen | Vorlage für Caching |
-| https://stackoverflow.com/questions/797380/how-to-include-variable-inside-class-in-php | Variablen zwischen Klasse und included Datei transferieren |
-| https://stackoverflow.com/questions/1005857/how-to-call-a-function-from-a-string-stored-in-a-variable | String zu Funktionsname konvertieren |
-| https://kushellig.de/prepared-statements-php-mysqli/<br>https://www.php.net/manual/de/class.mysqli-stmt.php | PHP Prepared Statements |
+Start the MariaDB database:  
+`> docker run -d --network host --env MARIADB_USER=user --env MARIADB_PASSWORD=secret --env MARIADB_DATABASE=bioman --env MARIADB_ROOT_PASSWORD=secret --name mariadb mariadb:latest`
 
-## Externe Biblioteken
-Erstellen von PDF aus HTML mit **TCPDF** https://github.com/tecnickcom/TCPDF
+Restart the MariaDB container e.g. after system restart:  
+`> docker restart mariadb`
+
+Run the application:  
+`> docker run --rm -d --network host -e PUID=$UID -e PGID=$UID -e SSL_MODE=off --name bioman -v $(pwd):/var/www/html:z serversideup/php:8.2-fpm-apache`
+
+Execute the bioman CLI:  
+`> docker exec -it bioman php bioman` 
