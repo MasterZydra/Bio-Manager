@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Framework\Facades\Http;
 use Framework\Routing\BaseController;
 use Framework\Routing\ModelControllerInterface;
 
@@ -50,7 +51,7 @@ class UserController extends BaseController implements ModelControllerInterface
             ->setIsPwdChangeForced($this->getParam('isPwdChangeForced'))
             ->save();
 
-        $this->redirect('user');
+        Http::redirect('user');
     }
 
     /**
@@ -77,7 +78,7 @@ class UserController extends BaseController implements ModelControllerInterface
             ->setIsPwdChangeForced($this->getParam('isPwdChangeForced'))
             ->save();
         
-        $this->redirect('user');
+        Http::redirect('user');
     }
 
     /**
@@ -88,6 +89,6 @@ class UserController extends BaseController implements ModelControllerInterface
     {
         User::delete($this->getParam('id'));
 
-        $this->redirect('user');
+        Http::redirect('user');
     }
 }

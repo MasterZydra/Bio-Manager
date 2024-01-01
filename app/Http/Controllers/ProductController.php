@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Framework\Facades\Http;
 use Framework\Routing\BaseController;
 use Framework\Routing\ModelControllerInterface;
 
@@ -46,7 +47,7 @@ class ProductController extends BaseController implements ModelControllerInterfa
             ->setIsDiscontinued(false)
             ->save();
 
-        $this->redirect('product');
+        Http::redirect('product');
     }
 
     /**
@@ -69,7 +70,7 @@ class ProductController extends BaseController implements ModelControllerInterfa
             ->setIsDiscontinued($this->getParam('isDiscontinued'))
             ->save();
 
-        $this->redirect('product');
+        Http::redirect('product');
     }
 
     /**
@@ -80,6 +81,6 @@ class ProductController extends BaseController implements ModelControllerInterfa
     {
         Product::delete($this->getParam('id'));
 
-        $this->redirect('product');
+        Http::redirect('product');
     }
 }

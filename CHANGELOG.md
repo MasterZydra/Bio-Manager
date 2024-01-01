@@ -43,6 +43,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Improved the MigrationRunner to apply all migrations in the framework folder
 - Improved the Test framework to also run the framework tests and run tests in subfolders
 - Renamed folder for commands from `cli` to `commands`
+- Moved `redirect` function into Http facade to make it also accessible e.g. in views
 
 ### Removed
 - Removed PHP extension from bioman CLI
