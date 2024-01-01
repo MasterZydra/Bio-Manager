@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Framework\Authentication\Auth;
 use Framework\Database\BaseModel;
 use Framework\Database\Database;
 use Framework\Facades\Convert;
@@ -11,6 +12,7 @@ class User extends BaseModel
     private const FIRSTNAME = 'firstname';
     private const LASTNAME = 'lastname';
     private const USERNAME = 'username';
+    private const PASSWORD = 'password';
 
     protected static function new(array $data = []): self
     {
@@ -47,6 +49,16 @@ class User extends BaseModel
         return $this;
     }
 
+    public static function findByUsername(string $username): self
+    {
+        $dataSet = Database::prepared('SELECT * FROM users WHERE username = ?', 's', $username);
+        if ($dataSet === false || $dataSet->num_rows !== 1) {
+            return new self();
+        }
+
+        return new self($dataSet->fetch_assoc());
+    }
+
     /* Getter & Setter */
 
     public function getFirstname(): string
@@ -79,9 +91,18 @@ class User extends BaseModel
         return $this->setDataString(self::USERNAME, $value);
     }
 
+    public function getPassword(): ?string
+    {
+        return $this->getDataStringOrNull(self::PASSWORD);
+    }
+
+    public function setPassword(?string $value): self
+    {
+        return $this->setDataStringOrNull(self::PASSWORD, Auth::hashPassword($value));
+    }
+
     // TODO create missing getter and setter
     /* 
-            'password VARCHAR(255) NULL,' .
             'isLocked tinyint(1) NOT NULL DEFAULT 0,' .
             'IsPwdChangeForced
          */

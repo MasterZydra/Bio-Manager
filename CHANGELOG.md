@@ -38,6 +38,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Added command to create a new command
 - Added functions to check if the user is logged in
 - Added routes for login and logout
+- Added command to create a new user
 
 ### Changed
 - Improved the autoloader to work for the new folder structure of version 2

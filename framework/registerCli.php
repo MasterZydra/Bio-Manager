@@ -1,5 +1,6 @@
 <?php
 
+use Framework\Authentication\Commands\MakeUserCommand;
 use Framework\Cli\Cli;
 use Framework\Cli\Commands\MakeCommandCommand;
 use Framework\Database\Commands\MakeMigrationCommand;
@@ -14,5 +15,6 @@ Cli::registerCommand(new MakeControllerCommand());
 Cli::registerCommand(new MakeMigrationCommand());
 Cli::registerCommand(new MakeModelCommand());
 Cli::registerCommand(new MakeTestCaseCommand());
+Cli::registerCommand(new MakeUserCommand());
 Cli::registerCommand(new MigrateCommand());
 Cli::registerCommand(new TestRunCommand());
