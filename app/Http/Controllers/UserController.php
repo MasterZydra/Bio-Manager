@@ -69,15 +69,18 @@ class UserController extends BaseController implements ModelControllerInterface
      */
     public function update(): void
     {
-        User::find($this->getParam('id'))
+        $user = User::find($this->getParam('id'))
             ->setFirstname($this->getParam('firstname'))
             ->setLastname($this->getParam('lastname'))
             ->setUsername($this->getParam('username'))
-            ->setPassword($this->getParam('password'))
             ->setIsLocked($this->getParam('isLocked'))
-            ->setIsPwdChangeForced($this->getParam('isPwdChangeForced'))
-            ->save();
-        
+            ->setIsPwdChangeForced($this->getParam('isPwdChangeForced'));
+
+        if ($this->getParam('password', '') !== '') {
+            $user->setPassword($this->getParam('password'));
+        }
+        $user->save();
+
         Http::redirect('user');
     }
 

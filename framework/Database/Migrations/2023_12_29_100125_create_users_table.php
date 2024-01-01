@@ -18,7 +18,8 @@ return new class extends Migration
             'isPwdChangeForced tinyint(1) NOT NULL DEFAULT 0,' .
             'createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,' .
             'updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,' .
-            'PRIMARY KEY (id)' .
+            'PRIMARY KEY (id),' .
+            'UNIQUE KEY `ukUsersUsername` (username)' .
             ') ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;'
         );
     }

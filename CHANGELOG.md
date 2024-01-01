@@ -47,6 +47,9 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Renamed folder for commands from `cli` to `commands`
 - Moved `redirect` function into Http facade to make it also accessible e.g. in views
 
+### Fixed
+- Fixed login with username and password
+
 ### Removed
 - Removed PHP extension from bioman CLI
 

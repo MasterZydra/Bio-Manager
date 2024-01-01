@@ -14,8 +14,8 @@
     <label for="username" class="required"><?= __('Username') ?>:</label><br>
     <input id="username" name="username" type="text" maxlength="30" value="<?= $user->getUsername() ?>" required><br>
 
-    <label for="password" class="required"><?= __('Password') ?>:</label><br>
-    <input id="password" name="password" type="password" value="<?= $user->getPassword() ?>"><br>
+    <label for="password"><?= __('Password') ?>:</label><br>
+    <input id="password" name="password" type="password" value=""><br>
 
     <label>
         <input type="hidden" name="isLocked" value="0">
