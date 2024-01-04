@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Framework\Authentication\Auth;
+use Framework\Authentication\Session;
 use Framework\Facades\Http;
+use Framework\Message\Message;
+use Framework\Message\Type;
 use Framework\Routing\BaseController;
 use Framework\Routing\ControllerInterface;
 
@@ -18,11 +21,11 @@ class LoginController extends BaseController implements ControllerInterface
         }
 
         if (!Auth::isPasswordValid($this->getParam('username'), $this->getParam('password'))) {
-            // TODO Message that username or password is invalid
-            Http::redirect('/');
+            Message::setMessage(__('UsernameOrPasswordIsIncorrect'), Type::Error);
+            Http::redirect('login');
         }
 
-        $_SESSION['userId'] = User::findByUsername($this->getParam('username'))->getId();
+        Session::setValue('userId', User::findByUsername($this->getParam('username'))->getId());
         Http::redirect('/');
     }
 }

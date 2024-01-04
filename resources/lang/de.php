@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'ChangePassword' => 'Passwort ändern',
     'Create' => 'Erstellen',
     'CreateNewProduct' => 'Neues Produkt erstellen',
     'CreateNewUser' => 'Neuen Benutzer erstellen',
@@ -8,16 +9,23 @@ return [
     'Developer' => 'Entwickler',
     'Firstname' => 'Vorname',
     'Home' => 'Startseite',
+    'Imprint' => 'Impressum',
     'IsDiscontinued' => 'Ist abgekündigt',
     'IsLocked' => 'Ist gesperrt',
     'IsPasswordChangeForced' => 'Ist Passwortänderung erzwungen',
     'Lastname' => 'Nachname',
     'Login' => 'Anmelden',
     'Logout' => 'Abmelden',
+    'MyAccount' => 'Mein Konto',
+    'MyData' => 'Meine Daten',
+    'MyDeliveryNotes' => 'Meine Lieferscheine',
+    'MySpace' => 'Mein Bereich',
     'Password' => 'Passwort',
     'Product' => 'Produkt',
     'ProductName' => 'Produktname',
     'Save' => 'Speichern',
     'User' => 'Benutzer',
     'Username' => 'Benutzername',
+    'UsernameOrPasswordIsIncorrect' => 'Benutzername oder Passwort ist falsch',
+    'WelcomeToMemberArea' => 'Willkommen im Mitgliederbereich',
 ];

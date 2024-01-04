@@ -41,6 +41,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Added command to create a new user
 - Added table for roles and user-role-assignment
 - Added message class to pass messages from controller to view
+- Added session class to set and get values in or from session
 
 ### Changed
 - Improved the autoloader to work for the new folder structure of version 2

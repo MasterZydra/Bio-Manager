@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'ChangePassword' => 'Change password',
     'Create' => 'Create',
     'CreateNewProduct' => 'Create new product',
     'CreateNewUser' => 'Create new user',
@@ -8,16 +9,23 @@ return [
     'Developer' => 'Developer',
     'Firstname' => 'Firstname',
     'Home' => 'Home',
+    'Imprint' => 'Imprint',
     'IsDiscontinued' => 'Is discontinued',
     'IsLocked' => 'Is locked',
     'IsPasswordChangeForced' => 'Is password change forced',
     'Lastname' => 'Lastname',
     'Login' => 'Login',
     'Logout' => 'Logout',
+    'MyAccount' => 'My account',
+    'MyData' => 'My data',
+    'MyDeliveryNotes' => 'My delivery notes',
+    'MySpace' => 'My space',
     'Password' => 'Password',
     'Product' => 'Product',
     'ProductName' => 'Product name',
     'Save' => 'Save',
     'User' => 'User',
     'Username' => 'Username',
+    'UsernameOrPasswordIsIncorrect' => 'Username or password is incorrect',
+    'WelcomeToMemberArea' => 'Welcome to member area',
 ];
