@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use Framework\Facades\Http;
 use Framework\Routing\BaseController;
