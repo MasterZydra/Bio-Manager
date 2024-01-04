@@ -5,7 +5,7 @@ use Framework\Test\TestCase;
 
 class TestURL extends TestCase
 {
-    public function testJoin()
+    public function testJoin(): void
     {
         $this->assertEquals(
             'http://localhost/product/edit',

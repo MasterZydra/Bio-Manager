@@ -17,7 +17,7 @@ class AssertionFailedException extends Exception
     public function __toString()
     {
         return 'Expected: "' . $this->expected . '"' . PHP_EOL .
-            'Actual: "' . $this->actual . '"' . PHP_EOL;
+            'Actual:   "' . $this->actual . '"' . PHP_EOL;
     }
 
     public function getTestCase(): string

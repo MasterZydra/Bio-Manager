@@ -5,7 +5,7 @@ use Framework\Test\TestCase;
 
 class TestPath extends TestCase
 {
-    public function testJoin()
+    public function testJoin(): void
     {
         $this->assertEquals(
             '/var/www/html/tests',

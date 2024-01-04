@@ -26,7 +26,7 @@ class MakeTestCaseCommand extends BaseCommand implements CommandInterface
             'use Framework\Test\TestCase;' . PHP_EOL . PHP_EOL .
             'class Test' . ucfirst($controllerName) . ' extends TestCase' . PHP_EOL .
             '{' . PHP_EOL .
-            '    public function testFunction()' . PHP_EOL .
+            '    public function testFunction(): void' . PHP_EOL .
             '    {' . PHP_EOL .
             '        $this->assertTrue(/* condition */);' . PHP_EOL .
             '        $this->assertEquals(\'expected\', /* code */);' . PHP_EOL .

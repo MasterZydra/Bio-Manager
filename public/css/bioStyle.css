@@ -34,6 +34,7 @@ main {
     margin-left: 3%;
     margin-right: 5%;
     margin-bottom: 75px;
+    overflow: hidden;
 }
 
 main a {
@@ -177,33 +178,48 @@ table th {
 * Infoboxes
 **************************/
 
-.infobox {
+.message.success {
     background-color: #4a8a16; /* Green */
     padding: 10px;
     margin: 10px 0 10px 0;
     color: white;
 }
 
-.warning {
+.message.error {
     background-color: #b01c1c; /* Red */
     padding: 10px;
     margin: 10px 0 10px 0;
     color: white;
 }
 
-.log {
+.message.warning {
+    background-color: #c4591b; /* Red */
+    padding: 10px;
+    margin: 10px 0 10px 0;
+    color: white;
+}
+
+.message.info {
     background-color: #555555; /* Grey */
     padding: 10px;
     margin: 10px 0 10px 0;
     color: white;
 }
 
-.infobox a,
-.warning a,
-.log a,
-.infobox a:visited,
-.warning a:visited,
-.log a:visited {
+@media (prefers-color-scheme: dark) {
+    .message.info {
+        background-color: #1F2023; /* Grey */
+    }
+}
+
+.message.success a,
+.message.success a:visited,
+.message.error a,
+.message.error a:visited,
+.message.warning a,
+.message.warning a:visited,
+.message.info a,
+.message.info a:visited {
     text-decoration: underline;
     color: white;
 }
@@ -482,12 +498,5 @@ h2 {
 
     button:hover {
       background-color: #000000; /* Black */
-    }
-
-    /***************
-    * Info boxes
-    ***************/
-    .log {
-        background-color: #1F2023; /* Grey */
     }
 }

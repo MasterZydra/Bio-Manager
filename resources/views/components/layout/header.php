@@ -1,4 +1,7 @@
-<?php use Framework\Authentication\Auth; ?>
+<?php use Framework\Authentication\Auth;
+use Framework\Message\Message;
+
+ ?>
 <!DOCTYPE html>
 <html>
 
@@ -29,10 +32,13 @@
         <div>
             <?php if (!Auth::isLoggedIn()) { ?>
                 <button style="cursor: pointer" onclick="window.location.href='login'"><?= __('Login') ?></button>
-            <?php }  else { ?>
-                <button style="cursor: pointer" onclick="window.location.href='logout'"><?= __('Logout') ?></button>
             <?php } ?>
         </div>
     </header>
 
     <main>
+        <?php
+            foreach (Message::getMessages() as $message) {
+                echo '<div class="message ' . lcfirst($message['type']->value) . '">' . $message['message'] . '</div>';
+            }
+        ?>
