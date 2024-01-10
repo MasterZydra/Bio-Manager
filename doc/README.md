@@ -20,7 +20,7 @@ There are multiple ways for configuration:
 
 ### As function
 ```PHP
-# Render the view 'about' (/resources/views/about.php)
+# Render the view 'about' (/resources/Views/about.php)
 Router::addFn('about', fn() => view('about'));
 ```
 
@@ -72,9 +72,9 @@ class AboutController extends BaseController
 -------------------------------------------------------------
 
 ## Views
-The views must be PHP files. The default directory is [`resources/views`](../resources/views/). The location for components is [`resources/views/components`](../resources/views/components/).  
+The views must be PHP files. The default directory is [`resources/Views`](../resources/Views/). The location for components is [`resources/Views/Components`](../resources/Views/Components/).  
 If a view is placed inside a subdirectory the dot is used as seprator.  
-For example: `resources/views/user/index.php` => `user.index`
+For example: `resources/Views/user/index.php` => `user.index`
 
 A view can be rendered with the global available function `view(string $name, ...)`. For components the global available function `component(string $name, ...)` can be used.
 
@@ -94,7 +94,7 @@ public static function all(): array;
 public static function find(int $id): self;
 
 # Delete the model with the given id
-public static functiondelete(int $id): void;
+public static function delete(int $id): void;
 ```
 
 ### Table name

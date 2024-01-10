@@ -2,11 +2,11 @@
 </main>
 
 <footer>
-    <a href="imprint">Impressum</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="imprint"><?= __('Imprint') ?></a>&nbsp;&nbsp;&nbsp;&nbsp;
     <?php if (Auth::isLoggedIn()) {
         ?><a href="about">Systeminformationen</a>&nbsp;&nbsp;&nbsp;&nbsp;<?php
     } ?>
-    &copy; David Hein
+    &copy; <?= date("Y") ?> David Hein
 </footer>
 
 </body>

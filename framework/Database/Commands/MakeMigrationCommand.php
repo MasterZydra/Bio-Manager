@@ -11,7 +11,7 @@ class MakeMigrationCommand extends BaseCommand implements CommandInterface
     private string $migrationsPath = '';
 
     public function __construct() {
-        $this->migrationsPath = Path::join(__DIR__, '..', '..', '..', 'resources', 'database', 'migrations');
+        $this->migrationsPath = Path::join(__DIR__, '..', '..', '..', 'resources', 'Database', 'Migrations');
     }
 
     public function execute(array $args): int

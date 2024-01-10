@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'AddProduct' => 'Produkt hinzufügen',
+    'AddUser' => 'Benutzer hinzufügen',
     'ChangePassword' => 'Passwort ändern',
     'Create' => 'Erstellen',
     'CreateNewProduct' => 'Neues Produkt erstellen',
@@ -30,7 +32,10 @@ return [
     'ProductName' => 'Produktname',
     'RepeatNewPassword' => 'Neues Passwort wiederholen',
     'Save' => 'Speichern',
+    'ShowAllProducts' => 'Alle Produkte anzeigen',
+    'ShowAllUsers' => 'Alle Benutzer anzeigen',
     'User' => 'Benutzer',
+    'UserManagement' => 'Benutzerverwaltung',
     'Username' => 'Benutzername',
     'UsernameOrPasswordIsIncorrect' => 'Benutzername oder Passwort ist falsch',
     'WelcomeToMemberArea' => 'Willkommen im Mitgliederbereich',

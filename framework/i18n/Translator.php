@@ -17,7 +17,7 @@ class Translator
         if ($languageDir !== null) {
             self::$languageDir = $languageDir;
         } else {
-            self::$languageDir = Path::join(__DIR__, '..', '..', 'resources', 'lang');
+            self::$languageDir = Path::join(__DIR__, '..', '..', 'resources', 'Lang');
         }
 
         // Get all files in the language directory
