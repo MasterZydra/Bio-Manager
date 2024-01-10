@@ -51,7 +51,7 @@ class User extends BaseModel
 
     public static function findByUsername(string $username): self
     {
-        $dataSet = Database::prepared('SELECT * FROM users WHERE username = ?', 's', $username);
+        $dataSet = Database::prepared('SELECT * FROM ' . self::getTableName() . ' WHERE username=?', 's', $username);
         if ($dataSet === false || $dataSet->num_rows !== 1) {
             return new self();
         }
