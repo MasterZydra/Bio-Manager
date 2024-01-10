@@ -50,6 +50,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Improved the Test framework to also run the framework tests and run tests in subfolders
 - Renamed folder for commands from `cli` to `commands`
 - Moved `redirect` function into Http facade to make it also accessible e.g. in views
+- Changed MigrationInterface by renaming the function from `up` to `run`
 
 ### Fixed
 - Fixed login with username and password

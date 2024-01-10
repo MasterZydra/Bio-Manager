@@ -5,5 +5,5 @@ namespace Framework\Database;
 interface MigrationInterface
 {
     /** This function is called to apply the migration */
-    public function up(): void;
+    public function run(): void;
 }

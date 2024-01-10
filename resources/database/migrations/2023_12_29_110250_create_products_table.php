@@ -5,7 +5,7 @@ use Framework\Database\Migration;
 
 return new class extends Migration
 {
-    public function up(): void
+    public function run(): void
     {
         Database::query(
             'CREATE TABLE products (' .
