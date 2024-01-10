@@ -2,7 +2,9 @@
 
 namespace Framework\Authentication;
 
+use App\Models\Role;
 use App\Models\User;
+use App\Models\UserRole;
 
 class Auth
 {
@@ -21,8 +23,21 @@ class Auth
     /** Check if the user has the requested role */
     public static function hasRole(string $role): bool
     {
-        // TODO Impelement
-        return false;
+        $role = Role::findByName($role);
+        if ($role->getId() === null) {
+            return false;
+        }
+
+        if (self::id() === null) {
+            return false;
+        }
+
+        $userRole = UserRole::findByUserAndRoleId(self::id(), $role->getId());
+        if ($userRole->getId() === null) {
+            return false;
+        }
+
+        return true;
     }
 
     /** Check if the given password for the given user */

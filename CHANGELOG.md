@@ -55,6 +55,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Moved `redirect` function into Http facade to make it also accessible e.g. in views
 - Changed MigrationInterface by renaming the function from `up` to `run`
 - Renamed the subdirectories in resources to upper case
+- Implemented function `Auth::hasRole()` with help of User and Role model
 
 ### Fixed
 - Fixed login with username and password
