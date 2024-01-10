@@ -1,0 +1,36 @@
+<?php
+
+namespace Framework\Database\Seeders;
+
+use App\Models\Role;
+use App\Models\User;
+use App\Models\UserRole;
+use Framework\Database\Database;
+use Framework\Database\Seeder;
+use Framework\Database\SeederInterface;
+
+class UserSeeder extends Seeder implements SeederInterface
+{
+    public function run(): void
+    {
+        Database::query('DELETE FROM userRoles WHERE 1=1;');
+        Database::query('DELETE FROM roles WHERE 1=1;');
+        Database::query('DELETE FROM users WHERE 1=1;');
+
+        (new Role())->setName('Developer')->save();
+        (new Role())->setName('Administrator')->save();
+        (new Role())->setName('Maintainer')->save();
+        (new Role())->setName('Supplier')->save();
+
+        (new User())
+            ->setFirstname('Admin')->setLastname('Admin')
+            ->setUsername('admin')->setPassword('mySecurePassword1!')
+            ->setIsLocked(false)->setIsPwdChangeForced(false)
+            ->save();
+
+        (new UserRole())
+            ->setUserId(User::findByUsername('admin')->getId())
+            ->setRoleId(Role::findByName('Administrator')->getId())
+            ->save();
+    }
+};

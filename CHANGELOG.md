@@ -45,6 +45,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Added form and controller to change the password
 - Added database seeding system with runner and command create a new seeder
 - Added models for Role and UserRole
+- Added migration to call seeder and create a default user
 
 ### Changed
 - Improved the autoloader to work for the new folder structure of version 2
