@@ -147,7 +147,17 @@ The migration system has the purpose to get rid of manual changes on the databas
 
 A migration is only executed once. To execute every newly added migration, run the `migrate` command in the bioman CLI.
 
-TODO Add example
+```PHP
+use Framework\Database\Database;
+use Framework\Database\Migration;
+
+return new class extends Migration
+{
+    public function run(): void
+    {
+        # code
+        ...
+```
 
 -------------------------------------------------------------
 

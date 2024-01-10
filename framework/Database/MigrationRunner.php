@@ -70,7 +70,7 @@ class MigrationRunner
 
         /** @var MigrationInterface $migration */
         $migration = require $filepath;
-        $migration->up();
+        $migration->run();
 
         $this->addEntryToMigrationTable($filepath);
 
