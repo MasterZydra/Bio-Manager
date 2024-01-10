@@ -15,6 +15,10 @@ It contains:
 - a database migration system
 - a database model with magic getter and setter functions
 
+## Links
+- [Documentation](doc/README.md)
+  - [Framework documentation](doc/Framework.md)
+
 ## Development
 The development can be done with just Visual Studio Code and Docker.
 
