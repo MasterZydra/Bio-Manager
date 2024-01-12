@@ -6,6 +6,7 @@
 - [Routes](#routes)
 - [Controllers](#controllers)
 - [Views](#views)
+- [Localization](#localization)
 - [Models](#models)
 - [Migrations](#migrations)
 - [CLI commands](#cli-commands)
@@ -77,6 +78,24 @@ If a view is placed inside a subdirectory the dot is used as seprator.
 For example: `resources/Views/user/index.php` => `user.index`
 
 A view can be rendered with the global available function `view(string $name, ...)`. For components the global available function `component(string $name, ...)` can be used.
+
+-------------------------------------------------------------
+
+## Localization
+
+The localization system provides the global available translation function `__(string $labelname)`.
+The labels are stored in PHP arrays (`<language code>.php` e.g. `de.php`) in [`resources/Lang`](../resources/Lang/).
+
+Example `en.php`:
+```PHP
+<?php
+
+return [
+    'AddProduct' => 'Produkt hinzufügen',
+    ...
+    'WelcomeToMemberArea' => 'Willkommen im Mitgliederbereich',
+];
+```
 
 -------------------------------------------------------------
 
