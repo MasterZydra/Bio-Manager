@@ -7,6 +7,7 @@ spl_autoload_register(
         $prefixes = [
             'Framework\\' => '',
             'App\\' => 'app\\',
+            'Resources\\' => 'resources\\',
         ];
 
         foreach ($prefixes as $prefix => $dir) {
