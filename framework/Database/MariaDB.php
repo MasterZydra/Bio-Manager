@@ -43,7 +43,7 @@ class MariaDB
     }
 
     /** Execute the given query */
-    public function query(string $query): mysqli_result|bool
+    public function unprepared(string $query): mysqli_result|bool
     {
         if ($this->mysqli === null) {
             return false;

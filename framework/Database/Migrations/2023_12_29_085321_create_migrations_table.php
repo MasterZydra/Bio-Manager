@@ -7,7 +7,7 @@ return new class extends Migration
 {
     public function run(): void
     {
-        Database::query(
+        Database::unprepared(
             'CREATE TABLE migrations (' .
             'id INT auto_increment,' .
             'name VARCHAR(255) NOT NULL,' .

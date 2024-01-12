@@ -46,6 +46,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Added database seeding system with runner and command create a new seeder
 - Added models for Role and UserRole
 - Added migration to call seeder and create a default user
+- Added namespace starting with `Resources` to autoloader
 
 ### Changed
 - Improved the autoloader to work for the new folder structure of version 2
@@ -56,6 +57,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Changed MigrationInterface by renaming the function from `up` to `run`
 - Renamed the subdirectories in resources to upper case
 - Implemented function `Auth::hasRole()` with help of User and Role model
+- Renamed database function `query` to `unprepared`
 
 ### Fixed
 - Fixed login with username and password

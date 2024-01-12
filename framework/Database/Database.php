@@ -10,12 +10,12 @@ class Database
 {
     private static ?MariaDB $mariaDB = null;
 
-    /** Execute the given query */
-    public static function query(string $query): mysqli_result|bool
+    /** Execute the given unprepared query. You should try to avoid unprepared statements if they contain user input! */
+    public static function unprepared(string $query): mysqli_result|bool
     {
         self::getMariaDb();
         self::$mariaDB->connect();
-        $result = self::$mariaDB->query($query);
+        $result = self::$mariaDB->unprepared($query);
         self::$mariaDB->disconnect();
         return $result;
     }

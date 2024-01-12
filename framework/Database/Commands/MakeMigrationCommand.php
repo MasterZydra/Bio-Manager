@@ -29,7 +29,7 @@ class MakeMigrationCommand extends BaseCommand implements CommandInterface
             '{' . PHP_EOL .
             '    public function run(): void' . PHP_EOL .
             '    {' . PHP_EOL .
-            '        Database::query(\'CREATE TABLE ...\');' . PHP_EOL .
+            '        Database::unprepared(\'CREATE TABLE ...\');' . PHP_EOL .
             '    }' . PHP_EOL .
             '};' . PHP_EOL
         );

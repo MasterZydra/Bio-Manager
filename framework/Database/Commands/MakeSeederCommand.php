@@ -31,7 +31,7 @@ class MakeSeederCommand extends BaseCommand implements CommandInterface
             '{' . PHP_EOL .
             '    public function run(): void' . PHP_EOL .
             '    {' . PHP_EOL .
-            '        Database::query(\'INSERT INTO ...\');' . PHP_EOL .
+            '        Database::unprepared(\'INSERT INTO ...\');' . PHP_EOL .
             '    }' . PHP_EOL .
             '};' . PHP_EOL
         );

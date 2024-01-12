@@ -29,7 +29,7 @@ abstract class BaseModel
 
     public static function all(): array
     {
-        $dataSet = Database::query('SELECT * FROM ' . self::getTableName());
+        $dataSet = Database::unprepared('SELECT * FROM ' . self::getTableName());
         if ($dataSet === false) {
             return [];
         }
