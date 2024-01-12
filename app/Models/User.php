@@ -13,6 +13,8 @@ class User extends BaseModel
     private const LASTNAME = 'lastname';
     private const USERNAME = 'username';
     private const PASSWORD = 'password';
+    private const IS_LOCKED = 'isLocked';
+    private const IS_PWD_CHANGE_FORCED = 'isPwdChangeForced';
 
     protected static function new(array $data = []): self
     {
@@ -101,9 +103,23 @@ class User extends BaseModel
         return $this->setDataStringOrNull(self::PASSWORD, Auth::hashPassword($value));
     }
 
-    // TODO create missing getter and setter
-    /* 
-            'isLocked tinyint(1) NOT NULL DEFAULT 0,' .
-            'IsPwdChangeForced
-         */
+    public function getIsLocked(): bool
+    {
+        return $this->getDataBool(self::IS_LOCKED);
+    }
+
+    public function setIsLocked(bool $value): self
+    {
+        return $this->setDataBool(self::IS_LOCKED, $value);
+    }
+
+    public function getIsPwdChangeForced(): bool
+    {
+        return $this->getDataBool(self::IS_PWD_CHANGE_FORCED);
+    }
+
+    public function setIsPwdChangeForced(bool $value): self
+    {
+        return $this->setDataBool(self::IS_PWD_CHANGE_FORCED, $value);
+    }
 }

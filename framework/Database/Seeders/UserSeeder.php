@@ -13,9 +13,9 @@ class UserSeeder extends Seeder implements SeederInterface
 {
     public function run(): void
     {
-        Database::query('DELETE FROM userRoles WHERE 1=1;');
-        Database::query('DELETE FROM roles WHERE 1=1;');
-        Database::query('DELETE FROM users WHERE 1=1;');
+        Database::unprepared('DELETE FROM userRoles WHERE 1=1;');
+        Database::unprepared('DELETE FROM roles WHERE 1=1;');
+        Database::unprepared('DELETE FROM users WHERE 1=1;');
 
         (new Role())->setName('Developer')->save();
         (new Role())->setName('Administrator')->save();

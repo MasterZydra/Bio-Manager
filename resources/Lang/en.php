@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'Actions' => 'Actions',
     'AddProduct' => 'Add product',
     'AddUser' => 'Add user',
     'ChangePassword' => 'Change password',
@@ -8,7 +9,9 @@ return [
     'CreateNewProduct' => 'Create new product',
     'CreateNewUser' => 'Create new user',
     'Delete' => 'Delete',
+    'Details' => 'Details',
     'Developer' => 'Developer',
+    'Edit' => 'Edit',
     'Firstname' => 'Firstname',
     'Home' => 'Home',
     'Imprint' => 'Imprint',
@@ -24,6 +27,7 @@ return [
     'MySpace' => 'My space',
     'NewPassword' => 'New password',
     'NewPasswordsAreUnequal' => 'The new passwords are unequal',
+    'No' => 'No',
     'OldPassword' => 'Old password',
     'Password' => 'Password',
     'PasswordChangedSuccessfully' => 'Password changed successfully',
@@ -39,4 +43,5 @@ return [
     'Username' => 'Username',
     'UsernameOrPasswordIsIncorrect' => 'Username or password is incorrect',
     'WelcomeToMemberArea' => 'Welcome to member area',
+    'Yes' => 'Yes',
 ];
