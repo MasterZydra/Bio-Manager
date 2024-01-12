@@ -9,6 +9,7 @@
 - [Localization](#localization)
 - [Models](#models)
 - [Migrations](#migrations)
+- [Seeders](#seeders)
 - [CLI commands](#cli-commands)
 
 # Application code
@@ -64,6 +65,7 @@ If the corresponding function exists in the controller class, the associated rou
 A custom controller must implement the [`ControllerInterface`](../framework/Routing/ControllerInterface.php) or the [`ModelControllerInterface`](../framework/Routing/ModelControllerInterface.php) depending on the kind of route registration used. The [`BaseController`](../framework/Routing/BaseController.php) can be used as base class to get access to helper functions.
 The default directory is [`app/Http/Controllers`](../app/Http/Controllers/).
 
+**Example**
 ```PHP
 use Framework\Routing\BaseController;
 
@@ -86,7 +88,7 @@ A view can be rendered with the global available function `view(string $name, ..
 The localization system provides the global available translation function `__(string $labelname)`.
 The labels are stored in PHP arrays (`<language code>.php` e.g. `de.php`) in [`resources/Lang`](../resources/Lang/).
 
-Example `en.php`:
+**Example `en.php`**
 ```PHP
 <?php
 
@@ -116,19 +118,20 @@ public static function find(int $id): self;
 public static function delete(int $id): void;
 ```
 
-### Table name
-A model class is a wrapper for a database table. The name of the table must be the plural of the class name so that the model can resolve the table name.
-
-Examples:  
-Model: `User` => Table: `users`  
-Model: `Product` => Table: `products`
-
+**Example model**
 ```PHP
 use Framework\Database\BaseModel;
 use Framework\Database\Database;
 
 class Role extends BaseModel
 ```
+
+### Table name
+A model class is a wrapper for a database table. The name of the table must be the plural of the class name so that the model can resolve the table name.
+
+Examples:  
+Model: `User` => Table: `users`  
+Model: `Product` => Table: `products`
 
 ### Table fields
 To access the fields of a model the magic get- and set-functions can be used: `<get/set><field name>`
@@ -139,8 +142,7 @@ Field: `isLocked` => Getter: `getIsLocked(): mixed`, Setter: `setIsLocked(mixed 
 
 > **Recommendation:** Add explicit functions for type safety. You can use the helper getter and setter like `getDataString`, `getDataIntOrNull`, `setDataFloat`, `setDataBoolOrNull`, etc.
 
-Example explicit getter and setter:
-
+**Example explicit getter and setter**
 ```PHP
 private const USERNAME = 'username';
 
@@ -166,11 +168,37 @@ The migration system has the purpose to get rid of manual changes on the databas
 
 A migration is only executed once. To execute every newly added migration, run the `migrate` command in the bioman CLI.
 
+**Example**
 ```PHP
 use Framework\Database\Database;
 use Framework\Database\Migration;
 
 return new class extends Migration
+{
+    public function run(): void
+    {
+        # code
+        ...
+```
+
+-------------------------------------------------------------
+
+## Seeders
+> **Hint:** You can use the bioman CLI to create a new empty seeder: `make:seeder`
+
+A seeder can be used to fill a table with random or fixed values.
+The seeder class can be called in [`DatabaseSeeder.php`](../resources/Database/Seeders/DatabaseSeeder.php).
+The default seeders in [`DatabaseSeeder.php`](../resources/Database/Seeders/DatabaseSeeder.php) are executed when executing the bioman CLI command `db:seed`.
+
+Another way to use a seeder is to call it inside a migration, for example after the user table creation to insert a default user.
+
+**Example**
+```PHP
+use Framework\Database\Database;
+use Framework\Database\Seeder;
+use Framework\Database\SeederInterface;
+
+class UserSeeder extends Seeder implements SeederInterface
 {
     public function run(): void
     {
@@ -190,6 +218,7 @@ For example: `Cli::registerCommand(new TestRun());`
 The command class must implement the [`CommandInterface`](../framework/Cli/CommandInterface.php).
 The [`BaseCommand`](../framework/Cli/BaseCommand.php) class can be used as base class to get access to helper functions.
 
+**Example**
 ```PHP
 use Framework\Cli\BaseCommand;
 use Framework\Cli\CommandInterface;
