@@ -19,15 +19,6 @@ class ProductController extends BaseController implements ModelControllerInterfa
     }
 
     /**
-     * Show the details of one model
-     * Route: <base route>/show
-     */
-    public function show(): void
-    {
-        view('entities.product.show', ['product' => Product::find($this->getParam('id'))]);
-    }
-
-    /**
      * Show form to create one model
      * Route: <base route>/create
      */

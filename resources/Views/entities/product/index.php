@@ -1,16 +1,33 @@
+<?php
+    use Framework\Authentication\Auth;
+    use Framework\Facades\Convert;
+?>
 <?= component('layout.header') ?>
 
 <h1><?= __('Product') ?></h1>
 
-<?php /** @var \App\Models\Product $product */
-foreach ($products as $product): ?>
-    <?= $product->getId() ?> - <?= $product->getName() ?> - <?= $product->getIsDiscontinued() ? 'true' : 'false' ?>
-    <a href="product/show?id=<?= $product->getId() ?>">Details</a>
-    <a href="product/edit?id=<?= $product->getId() ?>">Edit</a>
-    <?= $product->getCreatedAt() ?> - <?= $product->getUpdatedAt() ?>
-    <br>
-<?php endforeach ?>
+<p>
+    <?php if (Auth::hasRole('Maintainer')) {
+        ?><a href="product/create"><?= __('AddProduct') ?></a><?php
+    } ?>
+</p>
 
-<button style="cursor: pointer" onclick="window.location.href='product/create'"><?= __('CreateNewProduct') ?></button>
+<?= component('filterInput') ?>
+
+<table id="dataTable">
+    <tr>
+        <th class="center"><?= __('ProductName') ?></th>
+        <th class="center"><?= __('IsDiscontinued') ?></th>
+        <th class="center"><?= __('Actions') ?></th>
+    </tr>
+    <?php /** @var \App\Models\Product $product */
+    foreach ($products as $product): ?>
+    <tr>
+        <td><?= $product->getName() ?></td>
+        <td class="center"><?= Convert::boolToTString($product->getIsDiscontinued()) ?></td>
+        <td><a href="product/edit?id=<?= $product->getId() ?>"><?=__('Edit') ?></a></td>
+    </tr>
+    <?php endforeach ?>
+</table>
 
 <?= component('layout.footer') ?>

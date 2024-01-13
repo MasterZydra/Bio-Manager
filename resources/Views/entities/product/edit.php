@@ -1,6 +1,11 @@
+<?php /** @var \App\Models\Product $product */ ?>
 <?= component('layout.header') ?>
 
-<?php /** @var \App\Models\Product $product */ ?>
+<h1><?= __('EditProduct') ?></h1>
+
+<p>
+    <a href="/product"><?= __('ShowAllProducts') ?></a>    
+</p>
 
 <form action="update" method="post">
     <input name="id" type="hidden" value="<?= $product->getId() ?>">
