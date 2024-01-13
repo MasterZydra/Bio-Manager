@@ -3,6 +3,7 @@
 return [
     'Actions' => 'Actions',
     'AddProduct' => 'Add product',
+    'AddSupplier' => 'Add supplier',
     'AddUser' => 'Add user',
     'Administrator' => 'Administrator',
     'ChangePassword' => 'Change password',
@@ -28,6 +29,7 @@ return [
     'MyData' => 'My data',
     'MyDeliveryNotes' => 'My delivery notes',
     'MySpace' => 'My space',
+    'Name' => 'Name',
     'NewPassword' => 'New password',
     'NewPasswordsAreUnequal' => 'The new passwords are unequal',
     'No' => 'No',
@@ -37,7 +39,6 @@ return [
     'PasswordIsIncorrect' => 'Password is incorrect',
     'Permissions' => 'Permissions',
     'Product' => 'Product',
-    'ProductName' => 'Product name',
     'RepeatNewPassword' => 'Repeat new password',
     'Save' => 'Save',
     'ShowAllProducts' => 'Show all products',
