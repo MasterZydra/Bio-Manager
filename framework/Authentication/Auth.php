@@ -20,19 +20,25 @@ class Auth
         return self::id() !== null;
     }
 
-    /** Check if the user has the requested role */
+    /** Check if the current user has the requested role */
     public static function hasRole(string $role): bool
+    {
+        if (self::id() === null) {
+            return false;
+        }
+
+        return self::userHasRole(self::id(), $role);
+    }
+
+    /** Check if the given user has the requested role */
+    public static function userHasRole(int $userId, string $role): bool
     {
         $role = Role::findByName($role);
         if ($role->getId() === null) {
             return false;
         }
 
-        if (self::id() === null) {
-            return false;
-        }
-
-        $userRole = UserRole::findByUserAndRoleId(self::id(), $role->getId());
+        $userRole = UserRole::findByUserAndRoleId($userId, $role->getId());
         if ($userRole->getId() === null) {
             return false;
         }

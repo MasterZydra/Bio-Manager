@@ -1,9 +1,20 @@
-<?php use Framework\Facades\Convert; ?>
+<?php
+    use Framework\Authentication\Auth;
+    use Framework\Facades\Convert;
+?>
 <?= component('layout.header') ?>
 
 <h1><?= __('User') ?></h1>
 
-<table>
+<p>
+    <?php if (Auth::hasRole('Maintainer')) {
+        ?><a href="user/create"><?= __('AddUser') ?></a><?php
+    } ?>
+</p>
+
+<?= component('filterInput') ?>
+
+<table id="dataTable">
     <tr>
         <th class="center"><?= __('Firstname') ?></th>
         <th class="center"><?= __('Lastname') ?></th>
@@ -20,11 +31,9 @@
         <td><?= $user->getUsername() ?></td>
         <td class="center"><?= Convert::boolToTString($user->getIsLocked()) ?></td>
         <td class="center"><?= Convert::boolToTString($user->getIsPwdChangeForced()) ?></td>
-        <td><a href="user/show?id=<?= $user->getId() ?>"><?= __('Details') ?></a> <a href="user/edit?id=<?= $user->getId() ?>"><?=__('Edit') ?></a></td>
+        <td><a href="user/edit?id=<?= $user->getId() ?>"><?=__('Edit') ?></a></td>
     </tr>
     <?php endforeach ?>
 </table>
-
-<button style="cursor: pointer; margin-top: 10px;" onclick="window.location.href='user/create'"><?= __('CreateNewUser') ?></button>
 
 <?= component('layout.footer') ?>

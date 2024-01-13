@@ -1,6 +1,16 @@
+<?php
+    use \App\Models\Role;
+    use Framework\Authentication\Auth;
+
+    /** @var \App\Models\User $user */
+?>
 <?= component('layout.header') ?>
 
-<?php /** @var \App\Models\User $user */ ?>
+<h1><?= __('EditUser') ?></h1>
+
+<p>
+    <a href="/user"><?= __('ShowAllUsers') ?></a>    
+</p>
 
 <form action="update" method="post">
     <input name="id" type="hidden" value="<?= $user->getId() ?>">
@@ -37,7 +47,23 @@
             }
             ?>>
         <?= __('IsPasswordChangeForced') ?>
-    </label><br>
+    </label><br><br>
+
+    <strong><?= __('Permissions') ?></strong><br>
+
+    <?php /** @var \App\Models\Role $role */
+    foreach (Role::all() as $role) { ?>
+        <label>
+            <input type="hidden" name="<?= $role->getName() ?>" value="0">
+            <input type="checkbox" name="<?= $role->getName() ?>" value="1"
+                <?php
+                if (Auth::userHasRole($user->getId(), $role->getName())) {
+                    echo ' checked';
+                }
+                ?>>
+            <?= __($role->getName()) ?>
+        </label><br>
+    <?php } ?><br>
 
     <button><?= __('Save') ?></button>
 </form>

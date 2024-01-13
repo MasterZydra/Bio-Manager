@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
+use App\Models\UserRole;
 use Framework\Facades\Http;
 use Framework\Routing\BaseController;
 use Framework\Routing\ModelControllerInterface;
@@ -16,15 +18,6 @@ class UserController extends BaseController implements ModelControllerInterface
     public function index(): void
     {
         view('entities.user.index', ['users' => User::all()]);
-    }
-
-    /**
-     * Show the details of one model
-     * Route: <base route>/show
-     */
-    public function show(): void
-    {
-        view('entities.user.show', ['user' => User::find($this->getParam('id'))]);
     }
 
     /**
@@ -51,6 +44,25 @@ class UserController extends BaseController implements ModelControllerInterface
             ->setIsPwdChangeForced($this->getParam('isPwdChangeForced'))
             ->save();
 
+        $user = User::findByUsername($this->getParam('username'));
+        echo $user->getId();
+
+        /** @var \App\Models\Role $role */
+        foreach (Role::all() as $role) {
+            $permission = $this->getParam($role->getName(), '0');
+            $userRole = UserRole::findByUserAndRoleId($user->getId(), $role->getId());
+            if ($permission === '0') {
+                if ($userRole->getId() !== null) {
+                    UserRole::delete($userRole->getId());
+                }
+                continue;
+            }
+            $userRole
+                ->setUserId($user->getId())
+                ->setRoleId($role->getId())
+                ->save();
+        }
+
         Http::redirect('user');
     }
 
@@ -69,6 +81,7 @@ class UserController extends BaseController implements ModelControllerInterface
      */
     public function update(): void
     {
+        /** @var \App\Models\User */
         $user = User::find($this->getParam('id'))
             ->setFirstname($this->getParam('firstname'))
             ->setLastname($this->getParam('lastname'))
@@ -80,6 +93,23 @@ class UserController extends BaseController implements ModelControllerInterface
             $user->setPassword($this->getParam('password'));
         }
         $user->save();
+
+        /** @var \App\Models\Role $role */
+        foreach (Role::all() as $role) {
+            echo $this->getParam($role->getName(), '0');
+            $permission = $this->getParam($role->getName(), '0');
+            $userRole = UserRole::findByUserAndRoleId($user->getId(), $role->getId());
+            if ($permission === '0') {
+                if ($userRole->getId() !== null) {
+                    UserRole::delete($userRole->getId());
+                }
+                continue;
+            }
+            $userRole
+                ->setUserId($user->getId())
+                ->setRoleId($role->getId())
+                ->save();
+        }
 
         Http::redirect('user');
     }

@@ -54,6 +54,10 @@ main div {
     margin-bottom: 20px;
 }
 
+main > h1 {
+    margin-top: 0;
+}
+
 .inlineblock {
     display: inline-block;
 }

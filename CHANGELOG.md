@@ -47,6 +47,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Added models for Role and UserRole
 - Added migration to call seeder and create a default user
 - Added namespace starting with `Resources` to autoloader
+- Added checkboxes for each role to the user create and edit form and added logic to controller
 
 ### Changed
 - Improved the autoloader to work for the new folder structure of version 2

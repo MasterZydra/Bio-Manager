@@ -1,4 +1,13 @@
+<?php
+    use App\Models\Role;
+?>
 <?= component('layout.header') ?>
+
+<h1><?= __('AddUser') ?></h1>
+
+<p>
+    <a href="/user"><?= __('ShowAllUsers') ?></a>    
+</p>
 
 <form action="store" method="post">
     <label for="firstname" class="required"><?= __('Firstname') ?>:</label><br>
@@ -23,7 +32,18 @@
         <input type="hidden" name="isPwdChangeForced" value="0">
         <input type="checkbox" name="isPwdChangeForced" value="1">
         <?= __('IsPasswordChangeForced') ?>
-    </label><br>
+    </label><br><br>
+
+    <strong><?= __('Permissions') ?></strong><br>
+
+    <?php /** @var \App\Models\Role $role */
+    foreach (Role::all() as $role) { ?>
+        <label>
+            <input type="hidden" name="<?= $role->getName() ?>" value="0">
+            <input type="checkbox" name="<?= $role->getName() ?>" value="1">
+            <?= __($role->getName()) ?>
+        </label><br>
+    <?php } ?><br>
 
     <button><?= __('Create') ?></button>
 </form>
