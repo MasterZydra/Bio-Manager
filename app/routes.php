@@ -9,6 +9,7 @@
  */
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\User\ChangePasswordController;
 use App\Http\Controllers\User\LoginController;
 use App\Http\Controllers\User\LogoutController;
@@ -35,6 +36,7 @@ if (Auth::isLoggedIn()) {
     Router::addController('cli', new WebCliController(), 'POST');
 
     Router::addModel('product', new ProductController());
+    Router::addModel('supplier', new SupplierController());
     Router::addModel('user', new UserController());
 }
 

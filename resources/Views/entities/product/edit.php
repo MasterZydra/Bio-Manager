@@ -10,7 +10,7 @@
 <form action="update" method="post">
     <input name="id" type="hidden" value="<?= $product->getId() ?>">
 
-    <label for="name" class="required"><?= __('ProductName') ?>:</label><br>
+    <label for="name" class="required"><?= __('Name') ?>:</label><br>
     <input id="name" name="name" type="text" size="40" maxlength="50" value="<?= $product->getName() ?>" required autofocus><br>
     
     <label>
@@ -29,7 +29,7 @@
 
 <form action="destroy" method="post">
     <input name="id" type="hidden" value="<?= $product->getId() ?>">
-    <button><?= __('Delete') ?></button>
+    <button class="red"><?= __('Delete') ?></button>
 </form>
 
 <?= component('layout.footer') ?>

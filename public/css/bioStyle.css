@@ -301,8 +301,16 @@ button {
     font-size: 12px;
 }
 
+button.red {
+    background-color: #b01c1c; /* Red */
+}
+
 button:hover {
   background-color: #555555; /* Black */
+}
+
+button.red:hover {
+    background-color: #8e1515; /* Red */
 }
 
 /***************
@@ -502,5 +510,9 @@ h2 {
 
     button:hover {
       background-color: #000000; /* Black */
+    }
+
+    button.red:hover {
+        background-color: #8e1515; /* Red */
     }
 }

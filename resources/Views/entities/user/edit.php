@@ -70,7 +70,7 @@
 
 <form action="destroy" method="post">
     <input name="id" type="hidden" value="<?= $user->getId() ?>">
-    <button><?= __('Delete') ?></button>
+    <button class="red"><?= __('Delete') ?></button>
 </form>
 
 <?= component('layout.footer') ?>

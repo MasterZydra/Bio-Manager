@@ -16,7 +16,7 @@
 
 <table id="dataTable">
     <tr>
-        <th class="center"><?= __('ProductName') ?></th>
+        <th class="center"><?= __('Name') ?></th>
         <th class="center"><?= __('IsDiscontinued') ?></th>
         <th class="center"><?= __('Actions') ?></th>
     </tr>
