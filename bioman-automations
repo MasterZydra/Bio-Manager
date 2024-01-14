@@ -1,0 +1,30 @@
+#!/command/with-contenv bash
+
+# Exit on error
+set -e
+
+# Check to see if the bioman CLI exists and assume it means bioman is configured
+if [ -f $WEBUSER_HOME/bioman ] && [ ${AUTORUN_ENABLED:="true"} == "true" ]; then
+        echo "🏃‍♂️ Checking for automations..."
+
+        ############################################################################
+        # Automated file ownership fix
+        ############################################################################
+        if [ ${AUTORUN_BIOMAN_FILE_OWNERSHIP:="true"} == "true" ]; then
+            echo "🔐 Fixing file ownership..."
+            chown -R webuser:webgroup $WEBUSER_HOME
+        fi
+
+        ############################################################################
+        # Automated database upgrade
+        ############################################################################
+        if [ ${AUTORUN_BIOMAN_DATABASE_UPGRADE:="true"} == "true" ]; then
+            echo "🚀 Running database upgrade..."
+            s6-setuidgid webuser php $WEBUSER_HOME/bioman migrate
+        fi
+
+else
+    echo "👉 Skipping automations because we could not detect a bioman install or it was specifically disabled..."
+fi
+
+exit 0
