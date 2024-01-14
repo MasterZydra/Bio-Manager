@@ -45,7 +45,7 @@ Because the docker image `serversideup/php:8.X-fpm-apache` is used as base image
 The default values from [`.env.example`](.env.example) can be overwritten by setting the new value as environment variable.
 
 ```bash
-docker run --env SSL_MODE=off --env DB_USERNAME=root --env DB_PASSWORD=toor ghcr.io/masterzydra/bio-manager:latest
+docker run -p 8080:80 --env SSL_MODE=off --env DB_USERNAME=root --env DB_PASSWORD=toor ghcr.io/masterzydra/bio-manager:latest
 ```
 
 ### Default credentials
