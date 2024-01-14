@@ -10,6 +10,12 @@ class Config
 
     public static function env(string $name, mixed $default = null): mixed
     {
+        // Check if the requested value is set as system environment variable
+        $sysEnv = getenv($name);
+        if ($sysEnv !== false) {
+            return $sysEnv;
+        }
+
         self::readEnv();
 
         if (!array_key_exists($name, self::$env)) {

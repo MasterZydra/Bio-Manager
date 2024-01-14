@@ -15,7 +15,7 @@ require __DIR__ . '/../framework/registerCli.php';
 require __DIR__ . '/../app/routes.php';
 
 use Framework\i18n\Translator;
-use \Framework\Routing\Router;
+use Framework\Routing\Router;
 
 // Read all label files
 Translator::readLabelFiles();

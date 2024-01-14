@@ -23,7 +23,7 @@ class Auth
     /** Check if the current user has the requested role */
     public static function hasRole(string $role): bool
     {
-        if (self::id() === null) {
+        if (!self::isLoggedIn()) {
             return false;
         }
 
