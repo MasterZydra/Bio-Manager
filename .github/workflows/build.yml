@@ -92,3 +92,12 @@ jobs:
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
+
+      # Remove untagged images to keep container registry clean
+      - name: Prune untagged images
+        uses: vlaurin/action-ghcr-prune@v0.5.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          user: masterzydra
+          container: bio-manager
+          prune-untagged: true
