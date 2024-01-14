@@ -211,7 +211,7 @@ class UserSeeder extends Seeder implements SeederInterface
 ## CLI commands
 > **Hint:** You can use the bioman CLI to create a new empty command: `make:command`
 
-The `bioman` CLI can be extended with custom commands.
+The [`bioman`](../bioman) CLI can be extended with custom commands.
 The registration of a command must be done in [`app/registerCli.php`](../app/registerCli.php).  
 For example: `Cli::registerCommand(new TestRun());`
 
