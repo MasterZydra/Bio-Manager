@@ -23,7 +23,9 @@ It contains:
 One way to run the application is the usage of docker.
 
 ### Requirements
-The application uses a MariaDB to store the data. You must run a MariaDB server that the container can access.
+The application uses a MariaDB to store the data.
+You must run a MariaDB server that the container can access.
+On this server a database with the name `bioman` must exist (Can be changed in .env or via environment variable: `DB_DATABASE`).
 
 ### Download the docker image
 You can use the latest version: (This is not recommended as it might by unstable)
@@ -45,6 +47,11 @@ The default values from [`.env.example`](.env.example) can be overwritten by set
 ```bash
 docker run --env SSL_MODE=off --env DB_USERNAME=root --env DB_PASSWORD=toor ghcr.io/masterzydra/bio-manager:latest
 ```
+
+### Default credentials
+While the docker container is starting, it executes the `migrate` command.
+It creates a user account with the username `admin` and the password `mySecurePassword1!`.
+It is recommended to change the password or delete the user after a new one is created.
 
 ## Development
 The development can be done with just Visual Studio Code and Docker.
