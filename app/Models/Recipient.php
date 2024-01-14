@@ -6,11 +6,11 @@ use Framework\Database\BaseModel;
 use Framework\Database\Database;
 use Framework\Facades\Convert;
 
-class Supplier extends BaseModel
+class Recipient extends BaseModel
 {
     private const NAME = 'name';
+    private const ADDRESS = 'address';
     private const IS_LOCKED = 'isLocked';
-    private const HAS_FULL_PAYOUT = 'hasFullPayout';
 
     protected static function new(array $data = []): self
     {
@@ -21,19 +21,19 @@ class Supplier extends BaseModel
     {
         if ($this->getId() === null) {
             Database::prepared(
-                'INSERT INTO ' . $this->getTableName() . ' (name, isLocked, hasFullPayout) VALUES (?, ?, ?)',
-                'sii',
+                'INSERT INTO ' . $this->getTableName() . ' (name, address, isLocked) VALUES (?, ?, ?)',
+                'ssi',
                 $this->getName(),
-                Convert::boolToInt($this->getIsLocked()),
-                Convert::boolToInt($this->getHasFullPayout())
+                $this->getAddress(),
+                Convert::boolToInt($this->getIsLocked())
             );
         } else {
             Database::prepared(
-                'UPDATE ' . $this->getTableName() . ' SET `name`=?, isLocked=?, hasFullPayout=? WHERE id=?',
-                'siii',
+                'UPDATE ' . $this->getTableName() . ' SET `name`=?, address=?, isLocked=? WHERE id=?',
+                'ssii',
                 $this->getName(),
+                $this->getAddress(),
                 Convert::boolToInt($this->getIsLocked()),
-                Convert::boolToInt($this->getHasFullPayout()),
                 $this->getId()
             );
         }
@@ -53,6 +53,16 @@ class Supplier extends BaseModel
         return $this->setDataString(self::NAME, $value);
     }
 
+    public function getAddress(): string
+    {
+        return $this->getDataString(self::ADDRESS);
+    }
+
+    public function setAddress(string $value): self
+    {
+        return $this->setDataString(self::ADDRESS, $value);
+    }
+
     public function getIsLocked(): bool
     {
         return $this->getDataBool(self::IS_LOCKED);
@@ -61,15 +71,5 @@ class Supplier extends BaseModel
     public function setIsLocked(bool $value): self
     {
         return $this->setDataBool(self::IS_LOCKED, $value);
-    }
-
-    public function getHasFullPayout(): bool
-    {
-        return $this->getDataBool(self::HAS_FULL_PAYOUT);
-    }
-
-    public function setHasFullPayout(bool $value): self
-    {
-        return $this->setDataBool(self::HAS_FULL_PAYOUT, $value);
     }
 }

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Supplier;
+use App\Models\Recipient;
 use Framework\Facades\Http;
 use Framework\Routing\BaseController;
 use Framework\Routing\ModelControllerInterface;
 
-class SupplierController extends BaseController implements ModelControllerInterface
+class RecipientController extends BaseController implements ModelControllerInterface
 {
     /**
      * Show list of all models
@@ -15,7 +15,7 @@ class SupplierController extends BaseController implements ModelControllerInterf
      */
     public function index(): void
     {
-        view('entities.supplier.index', ['suppliers' => Supplier::all()]);
+        view('entities.recipient.index', ['recipients' => Recipient::all()]);
     }
 
     /**
@@ -24,7 +24,7 @@ class SupplierController extends BaseController implements ModelControllerInterf
      */
     public function create(): void
     {
-        view('entities.supplier.create');
+        view('entities.recipient.create');
     }
 
     /**
@@ -33,13 +33,13 @@ class SupplierController extends BaseController implements ModelControllerInterf
      */
     public function store(): void
     {
-        (new Supplier())
+        (new Recipient())
         ->setName($this->getParam('name'))
+        ->setAddress($this->getParam('address'))
         ->setIsLocked(false)
-        ->setHasFullPayout(false)
         ->save();
 
-        Http::redirect('supplier');
+        Http::redirect('recipient');
     }
 
     /**
@@ -48,7 +48,7 @@ class SupplierController extends BaseController implements ModelControllerInterf
      */
     public function edit(): void
     {
-        view('entities.supplier.edit', ['supplier' => Supplier::find($this->getParam('id'))]);
+        view('entities.recipient.edit', ['recipient' => Recipient::find($this->getParam('id'))]);
     }
 
     /**
@@ -57,13 +57,13 @@ class SupplierController extends BaseController implements ModelControllerInterf
      */
     public function update(): void
     {
-        Supplier::find($this->getParam('id'))
+        Recipient::find($this->getParam('id'))
         ->setName($this->getParam('name'))
+        ->setAddress($this->getParam('address'))
         ->setIsLocked($this->getParam('isLocked'))
-        ->setHasFullPayout($this->getParam('hasFullPayout'))
         ->save();
 
-        Http::redirect('supplier');
+        Http::redirect('recipient');
     }
 
     /**
@@ -72,8 +72,8 @@ class SupplierController extends BaseController implements ModelControllerInterf
      */
     public function destroy(): void
     {
-        Supplier::delete($this->getParam('id'));
+        Recipient::delete($this->getParam('id'));
 
-        Http::redirect('supplier');
+        Http::redirect('recipient');
     }
 }
