@@ -102,3 +102,4 @@ jobs:
           user: masterzydra
           container: bio-manager
           prune-untagged: true
+          prune-tags-regexes: ^sha256
