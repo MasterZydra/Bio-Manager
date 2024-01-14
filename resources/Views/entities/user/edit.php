@@ -46,7 +46,7 @@
                 echo ' checked';
             }
             ?>>
-        <?= __('IsPasswordChangeForced') ?>
+        <?= __('ForcePasswordChange') ?>
     </label><br><br>
 
     <strong><?= __('Permissions') ?></strong><br>

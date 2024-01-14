@@ -24,6 +24,17 @@
         <?= __('IsLocked') ?>
     </label><br>
 
+    <label>
+        <input type="hidden" name="hasFullPayout" value="0">
+        <input type="checkbox" name="hasFullPayout" value="1"
+            <?php
+            if ($supplier->getHasFullPayout()) {
+                echo ' checked';
+            }
+            ?>>
+        <?= __('FullPayout') ?>
+    </label><br>
+
     <button><?= __('Save') ?></button>
 </form>
 

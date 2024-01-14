@@ -31,7 +31,7 @@
     <label>
         <input type="hidden" name="isPwdChangeForced" value="0">
         <input type="checkbox" name="isPwdChangeForced" value="1">
-        <?= __('IsPasswordChangeForced') ?>
+        <?= __('ForcePasswordChange') ?>
     </label><br><br>
 
     <strong><?= __('Permissions') ?></strong><br>

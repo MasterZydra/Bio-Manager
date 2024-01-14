@@ -18,6 +18,7 @@
     <tr>
         <th class="center"><?= __('Name') ?></th>
         <th class="center"><?= __('IsLocked') ?></th>
+        <th class="center"><?= __('FullPayout') ?></th>
         <th class="center"><?= __('Actions') ?></th>
     </tr>
     <?php /** @var \App\Models\Supplier $supplier */
@@ -25,6 +26,7 @@
     <tr>
         <td><?= $supplier->getName() ?></td>
         <td class="center"><?= Convert::boolToTString($supplier->getIsLocked()) ?></td>
+        <td class="center"><?= Convert::boolToTString($supplier->getHasFullPayout()) ?></td>
         <td><a href="supplier/edit?id=<?= $supplier->getId() ?>"><?=__('Edit') ?></a></td>
     </tr>
     <?php endforeach ?>

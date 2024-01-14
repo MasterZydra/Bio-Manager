@@ -36,6 +36,7 @@ class SupplierController extends BaseController implements ModelControllerInterf
         (new Supplier())
         ->setName($this->getParam('name'))
         ->setIsLocked(false)
+        ->setHasFullPayout(false)
         ->save();
 
         Http::redirect('supplier');
@@ -59,6 +60,7 @@ class SupplierController extends BaseController implements ModelControllerInterf
         Supplier::find($this->getParam('id'))
         ->setName($this->getParam('name'))
         ->setIsLocked($this->getParam('isLocked'))
+        ->setHasFullPayout($this->getParam('hasFullPayout'))
         ->save();
 
     Http::redirect('supplier');

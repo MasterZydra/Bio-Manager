@@ -20,7 +20,7 @@
         <th class="center"><?= __('Lastname') ?></th>
         <th class="center"><?= __('Username') ?></th>
         <th class="center"><?= __('IsLocked') ?></th>
-        <th class="center"><?= __('IsPasswordChangeForced') ?></th>
+        <th class="center"><?= __('ForcePasswordChange') ?></th>
         <th class="center"><?= __('Actions') ?></th>
     </tr>
     <?php /** @var \App\Models\User $user */
