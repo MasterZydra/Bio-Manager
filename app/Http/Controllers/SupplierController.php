@@ -34,10 +34,10 @@ class SupplierController extends BaseController implements ModelControllerInterf
     public function store(): void
     {
         (new Supplier())
-        ->setName($this->getParam('name'))
-        ->setIsLocked(false)
-        ->setHasFullPayout(false)
-        ->save();
+            ->setName(Http::param('name'))
+            ->setIsLocked(false)
+            ->setHasFullPayout(false)
+            ->save();
 
         Http::redirect('supplier');
     }
@@ -48,7 +48,7 @@ class SupplierController extends BaseController implements ModelControllerInterf
      */
     public function edit(): void
     {
-        view('entities.supplier.edit', ['supplier' => Supplier::find($this->getParam('id'))]);
+        view('entities.supplier.edit', ['supplier' => Supplier::find(Http::param('id'))]);
     }
 
     /**
@@ -57,11 +57,11 @@ class SupplierController extends BaseController implements ModelControllerInterf
      */
     public function update(): void
     {
-        Supplier::find($this->getParam('id'))
-        ->setName($this->getParam('name'))
-        ->setIsLocked($this->getParam('isLocked'))
-        ->setHasFullPayout($this->getParam('hasFullPayout'))
-        ->save();
+        Supplier::find(Http::param('id'))
+            ->setName(Http::param('name'))
+            ->setIsLocked(Http::param('isLocked'))
+            ->setHasFullPayout(Http::param('hasFullPayout'))
+            ->save();
 
         Http::redirect('supplier');
     }
@@ -72,7 +72,7 @@ class SupplierController extends BaseController implements ModelControllerInterf
      */
     public function destroy(): void
     {
-        Supplier::delete($this->getParam('id'));
+        Supplier::delete(Http::param('id'));
 
         Http::redirect('supplier');
     }

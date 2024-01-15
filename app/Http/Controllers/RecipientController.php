@@ -34,10 +34,10 @@ class RecipientController extends BaseController implements ModelControllerInter
     public function store(): void
     {
         (new Recipient())
-        ->setName($this->getParam('name'))
-        ->setAddress($this->getParam('address'))
-        ->setIsLocked(false)
-        ->save();
+            ->setName(Http::param('name'))
+            ->setAddress(Http::param('address'))
+            ->setIsLocked(false)
+            ->save();
 
         Http::redirect('recipient');
     }
@@ -48,7 +48,7 @@ class RecipientController extends BaseController implements ModelControllerInter
      */
     public function edit(): void
     {
-        view('entities.recipient.edit', ['recipient' => Recipient::find($this->getParam('id'))]);
+        view('entities.recipient.edit', ['recipient' => Recipient::find(Http::param('id'))]);
     }
 
     /**
@@ -57,11 +57,11 @@ class RecipientController extends BaseController implements ModelControllerInter
      */
     public function update(): void
     {
-        Recipient::find($this->getParam('id'))
-        ->setName($this->getParam('name'))
-        ->setAddress($this->getParam('address'))
-        ->setIsLocked($this->getParam('isLocked'))
-        ->save();
+        Recipient::find(Http::param('id'))
+            ->setName(Http::param('name'))
+            ->setAddress(Http::param('address'))
+            ->setIsLocked(Http::param('isLocked'))
+            ->save();
 
         Http::redirect('recipient');
     }
@@ -72,7 +72,7 @@ class RecipientController extends BaseController implements ModelControllerInter
      */
     public function destroy(): void
     {
-        Recipient::delete($this->getParam('id'));
+        Recipient::delete(Http::param('id'));
 
         Http::redirect('recipient');
     }

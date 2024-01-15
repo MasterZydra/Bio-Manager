@@ -36,20 +36,20 @@ class UserController extends BaseController implements ModelControllerInterface
     public function store(): void
     {
         (new User())
-            ->setFirstname($this->getParam('firstname'))
-            ->setLastname($this->getParam('lastname'))
-            ->setUsername($this->getParam('username'))
-            ->setPassword($this->getParam('password'))
-            ->setIsLocked($this->getParam('isLocked'))
-            ->setIsPwdChangeForced($this->getParam('isPwdChangeForced'))
+            ->setFirstname(Http::param('firstname'))
+            ->setLastname(Http::param('lastname'))
+            ->setUsername(Http::param('username'))
+            ->setPassword(Http::param('password'))
+            ->setIsLocked(Http::param('isLocked'))
+            ->setIsPwdChangeForced(Http::param('isPwdChangeForced'))
             ->save();
 
-        $user = User::findByUsername($this->getParam('username'));
+        $user = User::findByUsername(Http::param('username'));
         echo $user->getId();
 
         /** @var \App\Models\Role $role */
         foreach (Role::all() as $role) {
-            $permission = $this->getParam($role->getName(), '0');
+            $permission = Http::param($role->getName(), '0');
             $userRole = UserRole::findByUserAndRoleId($user->getId(), $role->getId());
             if ($permission === '0') {
                 if ($userRole->getId() !== null) {
@@ -72,7 +72,7 @@ class UserController extends BaseController implements ModelControllerInterface
      */
     public function edit(): void
     {
-        view('entities.user.edit', ['user' => User::find($this->getParam('id'))]);
+        view('entities.user.edit', ['user' => User::find(Http::param('id'))]);
     }
 
     /**
@@ -82,22 +82,21 @@ class UserController extends BaseController implements ModelControllerInterface
     public function update(): void
     {
         /** @var \App\Models\User */
-        $user = User::find($this->getParam('id'))
-            ->setFirstname($this->getParam('firstname'))
-            ->setLastname($this->getParam('lastname'))
-            ->setUsername($this->getParam('username'))
-            ->setIsLocked($this->getParam('isLocked'))
-            ->setIsPwdChangeForced($this->getParam('isPwdChangeForced'));
+        $user = User::find(Http::param('id'))
+            ->setFirstname(Http::param('firstname'))
+            ->setLastname(Http::param('lastname'))
+            ->setUsername(Http::param('username'))
+            ->setIsLocked(Http::param('isLocked'))
+            ->setIsPwdChangeForced(Http::param('isPwdChangeForced'));
 
-        if ($this->getParam('password', '') !== '') {
-            $user->setPassword($this->getParam('password'));
+        if (Http::param('password', '') !== '') {
+            $user->setPassword(Http::param('password'));
         }
         $user->save();
 
         /** @var \App\Models\Role $role */
         foreach (Role::all() as $role) {
-            echo $this->getParam($role->getName(), '0');
-            $permission = $this->getParam($role->getName(), '0');
+            $permission = Http::param($role->getName(), '0');
             $userRole = UserRole::findByUserAndRoleId($user->getId(), $role->getId());
             if ($permission === '0') {
                 if ($userRole->getId() !== null) {
@@ -120,7 +119,7 @@ class UserController extends BaseController implements ModelControllerInterface
      */
     public function destroy(): void
     {
-        User::delete($this->getParam('id'));
+        User::delete(Http::param('id'));
 
         Http::redirect('user');
     }

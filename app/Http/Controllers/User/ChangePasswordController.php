@@ -14,8 +14,7 @@ class ChangePasswordController extends BaseController implements ControllerInter
 {
     public function execute(): void
     {
-        if ($this->getRequestMethod() !== 'POST') {
-            // TODO check if method is post -> else deny
+        if (Http::requestMethod() !== 'POST') {
             Http::redirect('/');
         }
 
@@ -23,18 +22,18 @@ class ChangePasswordController extends BaseController implements ControllerInter
         $user = User::find(Auth::id());
 
         // Check if the given old password is valid
-        if (!Auth::isPasswordValid($user->getUsername(), $this->getParam('oldPassword'))) {
+        if (!Auth::isPasswordValid($user->getUsername(), Http::param('oldPassword'))) {
             Message::setMessage(__('PasswordIsIncorrect'), Type::Error);
             Http::redirect('changePassword');
         }
 
         // Check if the new password and the password confirmation are equl
-        if ($this->getParam('newPassword') !== $this->getParam('confirmedPassword')) {
+        if (Http::param('newPassword') !== Http::param('confirmedPassword')) {
             Message::setMessage(__('NewPasswordsAreUnequal'), Type::Error);
             Http::redirect('changePassword');
         }
 
-        $user->setPassword($this->getParam('newPassword'))->save();
+        $user->setPassword(Http::param('newPassword'))->save();
 
         Message::setMessage(__('PasswordChangedSuccessfully'), Type::Success);
         Http::redirect('/');

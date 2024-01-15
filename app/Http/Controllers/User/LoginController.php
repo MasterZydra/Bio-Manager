@@ -15,17 +15,16 @@ class LoginController extends BaseController implements ControllerInterface
 {
     public function execute(): void
     {
-        if ($this->getRequestMethod() !== 'POST') {
-            // TODO check if method is post -> else deny
+        if (Http::requestMethod() !== 'POST') {
             Http::redirect('/');
         }
 
-        if (!Auth::isPasswordValid($this->getParam('username'), $this->getParam('password'))) {
+        if (!Auth::isPasswordValid(Http::param('username'), Http::param('password'))) {
             Message::setMessage(__('UsernameOrPasswordIsIncorrect'), Type::Error);
             Http::redirect('login');
         }
 
-        Session::setValue('userId', User::findByUsername($this->getParam('username'))->getId());
+        Session::setValue('userId', User::findByUsername(Http::param('username'))->getId());
         Http::redirect('/');
     }
 }

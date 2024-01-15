@@ -90,21 +90,21 @@ class Price extends BaseModel
 
     public function getProductId(): int
     {
-        return $this->getDataFloat(self::PRODUCT_ID);
+        return $this->getDataInt(self::PRODUCT_ID);
     }
 
     public function setProductId(int $value): self
     {
-        return $this->setDataFloat(self::PRODUCT_ID, $value);
+        return $this->setDataInt(self::PRODUCT_ID, $value);
     }
 
     public function getRecipientId(): int
     {
-        return $this->getDataFloat(self::RECIPIENT_ID);
+        return $this->getDataInt(self::RECIPIENT_ID);
     }
 
     public function setRecipientId(int $value): self
     {
-        return $this->setDataFloat(self::RECIPIENT_ID, $value);
+        return $this->setDataInt(self::RECIPIENT_ID, $value);
     }
 }
