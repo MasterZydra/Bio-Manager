@@ -38,7 +38,7 @@ class Cli
     }
 
     /** Do all checks and possibly execute the called command for the web CLI */
-    public function runWebCli(string $command): void {
+    public static function runWebCli(string $command, bool $withExit = true): void {
         $command = trim($command);
         $commandParts = explode(' ', $command);
 
@@ -57,7 +57,10 @@ class Cli
         // Call the command execute function
         /** @var CommandInterface $command */
         $command = self::$commands[$commandParts[0]];
-        exit($command->execute(array_slice($commandParts, 1)));
+        $statusCode = $command->execute(array_slice($commandParts, 1));
+        if ($withExit) {
+            exit($statusCode);
+        }
     }
 
     /** Register a command to make it available in the bioman CLI */

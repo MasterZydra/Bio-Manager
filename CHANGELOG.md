@@ -25,6 +25,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Added web cli
 - Added permission system based on roles
 - Added docker image and build pipeline. The docker image is published in the GitHub container registry
+- Added custom error and exception handler
 
 ## 1.3.11 - Unreleased 
 

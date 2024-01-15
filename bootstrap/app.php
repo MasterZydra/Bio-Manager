@@ -11,6 +11,9 @@ require __DIR__ . '/../app/registerFn.php';
 require __DIR__ . '/../app/registerCli.php';
 require __DIR__ . '/../framework/registerCli.php';
 
+// Use custom error handler
+require __DIR__ . '/../framework/Error/RegisterErrorHandler.php';
+
 // Register all available routes
 require __DIR__ . '/../app/routes.php';
 
