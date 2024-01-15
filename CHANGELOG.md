@@ -10,62 +10,21 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ### Added
 - Added bioman CLI that can be extended with commands
-- Added files to register global functions
-- Added unit test framework with cli command to run them
+- Added `registerFn` to simplify registering global available functions
+- Added unit test framework with bioman CLI command to run them
 - Added i18n framework
-- Added routing with file to register own routes
-- Added bootstrapping for app
-- Added ConfigReader
-- Added support for database connections and migrations
-- Added command to create a new controller
-- Added all CRUD actions for product with ProductController
-- Added created and updated timestamps to migrations and users table
-- Added Config class to make access to env settings easier
-- Added index.php that load the autoloader and the bootstrapping
-- Added bootstrapping to bioman CLI to get access to the global functions
+- Added routing with `routes` file to register routes
+- Added support for database migrations and seeders
+- Added database class that supports prepared and unprepared SQL statements
+- Added base model for models that are stored in the database
 - Added facade Path with function for joining paths
-- Added global function `printLn`
 - Added facade File with function to find files in folders with option for recursive search, only files and only directories
 - Added facade URL with function for joining URLs
-- Added support for prepared SQL statements
-- Added base model for models that are stored in the database
-- Added command to create a new unit test case
 - Added facade Convert with function for converting a boolean into an integer
-- Added command to create a new model
+- Added bioman CLI command to create a new commands, controllers, migrations, models, seeders, testcases and users
 - Added web cli
-- Added all CRUD actions for user with UserController
-- Added get() and set() function to base model
-- Added command to create a new command
-- Added functions to check if the user is logged in
-- Added routes for login and logout
-- Added command to create a new user
-- Added table for roles and user-role-assignment
-- Added message class to pass messages from controller to view
-- Added session class to set and get values in or from session
-- Added form and controller to change the password
-- Added database seeding system with runner and command create a new seeder
-- Added models for Role and UserRole
-- Added migration to call seeder and create a default user
-- Added namespace starting with `Resources` to autoloader
-- Added checkboxes for each role to the user create and edit form and added logic to controller
-- Added docker image and build pipeline
-
-### Changed
-- Improved the autoloader to work for the new folder structure of version 2
-- Improved the MigrationRunner to apply all migrations in the framework folder
-- Improved the Test framework to also run the framework tests and run tests in subfolders
-- Renamed folder for commands from `cli` to `commands`
-- Moved `redirect` function into Http facade to make it also accessible e.g. in views
-- Changed MigrationInterface by renaming the function from `up` to `run`
-- Renamed the subdirectories in resources to upper case
-- Implemented function `Auth::hasRole()` with help of User and Role model
-- Renamed database function `query` to `unprepared`
-
-### Fixed
-- Fixed login with username and password
-
-### Removed
-- Removed PHP extension from bioman CLI
+- Added permission system based on roles
+- Added docker image and build pipeline. The docker image is published in the GitHub container registry
 
 ## 1.3.11 - Unreleased 
 
