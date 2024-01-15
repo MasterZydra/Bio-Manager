@@ -72,6 +72,8 @@ docker run --rm -d --network host -e PUID=$UID -e PGID=$UID --env SSL_MODE=off -
 ```
 
 Execute the bioman CLI:
+> **Hint:** If you add the following to your `~/.bash_aliases`, you can call the bioman CLI with just `bioman`:  
+> `alias bioman="docker exec -it bioman /command/s6-setuidgid webuser php bioman"`
 ```bash
-docker exec -it bioman php bioman
+docker exec -it bioman /command/s6-setuidgid webuser php bioman
 ```
