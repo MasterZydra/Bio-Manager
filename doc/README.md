@@ -3,6 +3,7 @@
 [Deep dive into the framework](Framework.md)
 
 **Application code**  
+- [Configuration](#Configuration)
 - [Routes](#routes)
 - [Controllers](#controllers)
 - [Views](#views)
@@ -14,6 +15,24 @@
 
 # Application code
 The application specific code is located in the directories [`app`](../app), [`resources`](../resources/) and [`tests`](../tests/).
+
+## Configuration
+The configuration of the application is done in the file`.env`.
+You can use the file `.env.example` as template.
+
+```toml
+APP_URL="http://localhost" # URL the application is listening on
+APP_ENV=dev # 'dev' or 'prod'
+
+DB_CONNECTION="mariadb"
+DB_HOST="127.0.0.1"
+DB_PORT=3306
+DB_DATABASE="bioman"
+DB_USERNAME="user"
+DB_PASSWORD="secret"
+```
+
+-------------------------------------------------------------
 
 ## Routes
 The available routes are configured in the [`app/routes.php`](../app/routes.php) file.

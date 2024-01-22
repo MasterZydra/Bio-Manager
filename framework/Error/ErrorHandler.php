@@ -4,6 +4,7 @@ namespace Framework\Error;
 
 use Exception;
 use Framework\Cli\Cli;
+use Framework\Config\Config;
 use Framework\Facades\Http;
 use Throwable;
 
@@ -12,8 +13,31 @@ class ErrorHandler
     public static function handleError(
         int $errno, string $errstr, string $errfile = null, int $errline = null, array $errcontext = null
     ): bool {
+        if (strtolower(Config::env('APP_ENV')) === 'dev') {
+            self::handleDevError($errno, $errstr, $errfile, $errline, $errcontext);
+            exit();
+        } else {
+            self::handleProdError();
+            exit();
+        }
+    }
+
+    public static function handleException(Throwable $exception): void
+    {
+        if (strtolower(Config::env('APP_ENV')) === 'dev') {
+            self::handleDevException($exception);
+            exit();
+        } else {
+            self::handleProdException();
+            exit();
+        }
+    }
+
+    private static function handleDevError(
+        int $errno, string $errstr, string $errfile = null, int $errline = null, array $errcontext = null
+    ): void {
         view(
-            'framework.error.uncaughtError',
+            'framework.error.dev.uncaughtError',
             [
                 'errno' => $errno,
                 'errstr' => $errstr,
@@ -22,10 +46,9 @@ class ErrorHandler
                 'errcontext' => $errcontext,
             ]
         );
-        exit();
     }
 
-    public static function handleException(Throwable $exception)
+    private static function handleDevException(Throwable $exception): void
     {
         $commandWhiteList = ['migrate'];
 
@@ -38,12 +61,21 @@ class ErrorHandler
                 Cli::runWebCli($command, false);
                 Http::redirect(Http::requestUri());
             } catch (Exception $exception) {
-                view('framework.error.uncaughtException', ['exception' => $exception]);
+                view('framework.error.dev.uncaughtException', ['exception' => $exception]);
                 exit();
             }
         }
 
-        view('framework.error.uncaughtException', ['exception' => $exception]);
-        exit();
+        view('framework.error.dev.uncaughtException', ['exception' => $exception]);
+    }
+
+    private static function handleProdException(): void
+    {
+        view('framework.error.prod.uncaughtError');
+    }
+
+    private static function handleProdError(): void
+    {
+        view('framework.error.prod.uncaughtError');
     }
 }
