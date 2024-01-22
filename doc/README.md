@@ -22,7 +22,7 @@ You can use the file `.env.example` as template.
 
 ```toml
 APP_URL="http://localhost" # URL the application is listening on
-APP_ENV=dev # 'dev' or 'prod'
+APP_ENV="dev" # 'dev' or 'prod'
 
 DB_CONNECTION="mariadb"
 DB_HOST="127.0.0.1"
