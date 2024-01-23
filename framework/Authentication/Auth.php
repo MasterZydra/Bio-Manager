@@ -8,6 +8,9 @@ use App\Models\UserRole;
 
 class Auth
 {
+    /** Caches the user role assignments the duration of one request */
+    private static array $roleCache = [];
+
     /** Get the id of the logged in user */
     public static function id(): ?int
     {
@@ -33,16 +36,25 @@ class Auth
     /** Check if the given user has the requested role */
     public static function userHasRole(int $userId, string $role): bool
     {
+        // Check if the role and userId combination is already in the cache
+        $cacheKey = $role . '-' . strval($userId);
+        if (in_array($cacheKey, self::$roleCache, true)) {
+            return self::$roleCache[$cacheKey];
+        }
+
         $role = Role::findByName($role);
         if ($role->getId() === null) {
+            self::$roleCache[$cacheKey] = false;
             return false;
         }
 
         $userRole = UserRole::findByUserAndRoleId($userId, $role->getId());
         if ($userRole->getId() === null) {
+            self::$roleCache[$cacheKey] = false;
             return false;
         }
 
+        self::$roleCache[$cacheKey] = true;
         return true;
     }
 
