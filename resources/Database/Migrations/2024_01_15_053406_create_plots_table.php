@@ -16,7 +16,7 @@ return new class extends Migration
             'supplierId INT NOT NULL,' .
             'isLocked tinyint(1) NOT NULL DEFAULT 0,' .
             'createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,' .
-            'updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,' .
+            'updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,' .
             'PRIMARY KEY (id),' .
             'CONSTRAINT `fkPlotSupplier` FOREIGN KEY (supplierId) REFERENCES suppliers (id) ON DELETE CASCADE' .
             ') ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;'

@@ -13,7 +13,7 @@ return new class extends Migration
             'name VARCHAR(50) NOT NULL,' .
             'isDiscontinued tinyint(1) NOT NULL DEFAULT 0,' .
             'createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,' .
-            'updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,' .
+            'updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,' .
             'PRIMARY KEY (id),' .
             'UNIQUE KEY `ukProductName` (name)' .
             ') ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;'
