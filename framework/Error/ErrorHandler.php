@@ -13,6 +13,7 @@ class ErrorHandler
     public static function handleError(
         int $errno, string $errstr, string $errfile = null, int $errline = null, array $errcontext = null
     ): bool {
+        ob_end_clean();
         if (strtolower(Config::env('APP_ENV')) === 'dev') {
             self::handleDevError($errno, $errstr, $errfile, $errline, $errcontext);
             exit();
@@ -24,6 +25,7 @@ class ErrorHandler
 
     public static function handleException(Throwable $exception): void
     {
+        ob_end_clean();
         if (strtolower(Config::env('APP_ENV')) === 'dev') {
             self::handleDevException($exception);
             exit();
