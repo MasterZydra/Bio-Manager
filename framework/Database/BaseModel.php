@@ -27,9 +27,19 @@ abstract class BaseModel
 
     /* Static functions */
 
-    public static function all(): array
+    public static function all(QueryBuilder $query = null): array
     {
-        $dataSet = Database::unprepared('SELECT * FROM ' . self::getTableName());
+        $dataSet = false;
+        if ($query === null) {
+            $dataSet = Database::unprepared('SELECT * FROM ' . self::getTableName());
+        } else {
+            $dataSet = Database::prepared(
+                'SELECT * FROM ' . self::getTableName() . ' ' . $query->getWhere(),
+                $query->getTypes(),
+                ...$query->getValues()
+            );
+        }
+
         if ($dataSet === false) {
             return [];
         }
@@ -41,24 +51,23 @@ abstract class BaseModel
         return $all;
     }
 
-    public static function find(int $id): self
+    public static function find(QueryBuilder $query): self
     {
-        $dataSet = Database::prepared('SELECT * FROM ' . self::getTableName() . ' WHERE id = ?', 'i', $id);
-        if ($dataSet === false) {
-            return [];
-        }
-
-        /** @var \mysqli_result $result */
-        if ($dataSet->num_rows !== 1) {
+        $results = self::all($query);
+        if ($results === []) {
             return static::new();
         }
+        return $results[0];
+    }
 
-        return static::new($dataSet->fetch_assoc());
+    public static function findById(int $id): self
+    {
+        return self::find(QueryBuilder::new()->addFilter(ColumnType::Int, 'id', Condition::Equal, $id));
     }
 
     public static function delete(int $id): void
     {
-        if (self::find($id)->getId() === null) {
+        if (self::findById($id)->getId() === null) {
             return;
         }
 

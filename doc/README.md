@@ -128,10 +128,13 @@ It is recommended to use the BaseModel and name the identifier column `id`. This
 
 ```PHP
 # Get an array of models
-public static function all(): array;
+public static function all(QueryBuilder $query = null): array;
+
+# Get the first model that matches the given query
+public static function find(QueryBuilder $query): self
 
 # Get the model with the given id
-public static function find(int $id): self;
+public static function findById(int $id): self;
 
 # Delete the model with the given id
 public static function delete(int $id): void;

@@ -78,7 +78,7 @@ class PriceController extends BaseController implements ModelControllerInterface
      */
     public function edit(): void
     {
-        view('entities.price.edit', ['price' => Price::find(Http::param('id'))]);
+        view('entities.price.edit', ['price' => Price::findById(Http::param('id'))]);
     }
 
     /**
@@ -113,7 +113,7 @@ class PriceController extends BaseController implements ModelControllerInterface
                 Http::redirect('price/create?id=' . Http::param('id'));
             }
         
-            Price::find(Http::param('id'))
+            Price::findById(Http::param('id'))
                 ->setYear(intval(Http::param('year')))
                 ->setPrice(floatval(Http::param('price')))
                 ->setPricePayout(floatval(Http::param('pricePayout')))

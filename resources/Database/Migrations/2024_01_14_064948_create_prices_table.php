@@ -11,8 +11,8 @@ return new class extends Migration
             'CREATE TABLE prices (' .
             'id INT auto_increment,' .
             '`year` INT NOT NULL,' .
-            'price float NOT NULL,' .
-            'pricePayout float NOT NULL,' .
+            'price FLOAT NOT NULL,' .
+            'pricePayout FLOAT NOT NULL,' .
             'productId INT NOT NULL,' .
             'recipientId INT NOT NULL,' .
             'createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,' .

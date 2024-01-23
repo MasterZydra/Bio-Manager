@@ -50,7 +50,7 @@ class PlotController extends BaseController implements ModelControllerInterface
      */
     public function edit(): void
     {
-        view('entities.plot.edit', ['plot' => Plot::find(Http::param('id'))]);
+        view('entities.plot.edit', ['plot' => Plot::findById(Http::param('id'))]);
     }
 
     /**
@@ -59,7 +59,7 @@ class PlotController extends BaseController implements ModelControllerInterface
      */
     public function update(): void
     {
-        Plot::find(Http::param('id'))
+        Plot::findById(Http::param('id'))
             ->setNr(Http::param('nr'))
             ->setName(Http::param('name'))
             ->setSubdistrict(Http::param('subdistrict'))

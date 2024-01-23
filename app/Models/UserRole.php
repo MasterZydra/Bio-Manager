@@ -3,7 +3,10 @@
 namespace App\Models;
 
 use Framework\Database\BaseModel;
+use Framework\Database\ColumnType;
+use Framework\Database\Condition;
 use Framework\Database\Database;
+use Framework\Database\QueryBuilder;
 
 class UserRole extends BaseModel
 {
@@ -39,17 +42,10 @@ class UserRole extends BaseModel
 
     public static function findByUserAndRoleId(int $userId, int $roleId): self
     {
-        $dataSet = Database::prepared(
-            'SELECT * FROM ' . self::getTableName() . ' WHERE userId=? and roleId=?',
-            'ii',
-            $userId,
-            $roleId
+        return self::find(QueryBuilder::new()
+            ->addFilter(ColumnType::Int, 'userId', Condition::Equal, $userId)
+            ->addFilter(ColumnType::Int, 'roleId', Condition::Equal, $roleId)
         );
-        if ($dataSet === false || $dataSet->num_rows !== 1) {
-            return new self();
-        }
-
-        return new self($dataSet->fetch_assoc());
     }
 
     /* Getter & Setter */

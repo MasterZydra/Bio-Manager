@@ -3,7 +3,10 @@
 namespace App\Models;
 
 use Framework\Database\BaseModel;
+use Framework\Database\ColumnType;
+use Framework\Database\Condition;
 use Framework\Database\Database;
+use Framework\Database\QueryBuilder;
 
 class Role extends BaseModel
 {
@@ -36,12 +39,7 @@ class Role extends BaseModel
 
     public static function findByName(string $name): self
     {
-        $dataSet = Database::prepared('SELECT * FROM ' . self::getTableName() . ' WHERE name=?', 's', $name);
-        if ($dataSet === false || $dataSet->num_rows !== 1) {
-            return new self();
-        }
-
-        return new self($dataSet->fetch_assoc());
+        return self::find(QueryBuilder::new()->addFilter(ColumnType::Str, 'name', Condition::Equal, $name));
     }
 
     /* Getter & Setter */

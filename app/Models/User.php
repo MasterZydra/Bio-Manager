@@ -4,7 +4,10 @@ namespace App\Models;
 
 use Framework\Authentication\Auth;
 use Framework\Database\BaseModel;
+use Framework\Database\ColumnType;
+use Framework\Database\Condition;
 use Framework\Database\Database;
+use Framework\Database\QueryBuilder;
 use Framework\Facades\Convert;
 
 class User extends BaseModel
@@ -53,12 +56,7 @@ class User extends BaseModel
 
     public static function findByUsername(string $username): self
     {
-        $dataSet = Database::prepared('SELECT * FROM ' . self::getTableName() . ' WHERE username=?', 's', $username);
-        if ($dataSet === false || $dataSet->num_rows !== 1) {
-            return new self();
-        }
-
-        return new self($dataSet->fetch_assoc());
+        return self::find(QueryBuilder::new()->addFilter(ColumnType::Str, 'username', Condition::Equal, $username));
     }
 
     /* Getter & Setter */

@@ -48,7 +48,7 @@ class RecipientController extends BaseController implements ModelControllerInter
      */
     public function edit(): void
     {
-        view('entities.recipient.edit', ['recipient' => Recipient::find(Http::param('id'))]);
+        view('entities.recipient.edit', ['recipient' => Recipient::findById(Http::param('id'))]);
     }
 
     /**
@@ -57,7 +57,7 @@ class RecipientController extends BaseController implements ModelControllerInter
      */
     public function update(): void
     {
-        Recipient::find(Http::param('id'))
+        Recipient::findById(Http::param('id'))
             ->setName(Http::param('name'))
             ->setAddress(Http::param('address'))
             ->setIsLocked(Http::param('isLocked'))

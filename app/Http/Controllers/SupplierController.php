@@ -48,7 +48,7 @@ class SupplierController extends BaseController implements ModelControllerInterf
      */
     public function edit(): void
     {
-        view('entities.supplier.edit', ['supplier' => Supplier::find(Http::param('id'))]);
+        view('entities.supplier.edit', ['supplier' => Supplier::findById(Http::param('id'))]);
     }
 
     /**
@@ -57,7 +57,7 @@ class SupplierController extends BaseController implements ModelControllerInterf
      */
     public function update(): void
     {
-        Supplier::find(Http::param('id'))
+        Supplier::findById(Http::param('id'))
             ->setName(Http::param('name'))
             ->setIsLocked(Http::param('isLocked'))
             ->setHasFullPayout(Http::param('hasFullPayout'))

@@ -47,7 +47,7 @@ class ProductController extends BaseController implements ModelControllerInterfa
      */
     public function edit(): void
     {
-        view('entities.product.edit', ['product' => Product::find(Http::param('id'))]);
+        view('entities.product.edit', ['product' => Product::findById(Http::param('id'))]);
     }
 
     /**
@@ -56,7 +56,7 @@ class ProductController extends BaseController implements ModelControllerInterfa
      */
     public function update(): void
     {
-        Product::find(Http::param('id'))
+        Product::findById(Http::param('id'))
             ->setName(Http::param('name'))
             ->setIsDiscontinued(Http::param('isDiscontinued'))
             ->save();

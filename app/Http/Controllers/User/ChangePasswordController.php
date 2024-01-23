@@ -19,7 +19,7 @@ class ChangePasswordController extends BaseController implements ControllerInter
         }
 
         /** @var User $user */
-        $user = User::find(Auth::id());
+        $user = User::findById(Auth::id());
 
         // Check if the given old password is valid
         if (!Auth::isPasswordValid($user->getUsername(), Http::param('oldPassword'))) {

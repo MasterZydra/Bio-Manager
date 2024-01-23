@@ -49,7 +49,7 @@ class Plot extends BaseModel
 
     public function getSupplier(): Supplier
     {
-        return Supplier::find($this->getSupplierId());
+        return Supplier::findById($this->getSupplierId());
     }
 
     /* Getter & Setter */

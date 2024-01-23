@@ -48,12 +48,12 @@ class Price extends BaseModel
 
     public function getProduct(): Product
     {
-        return Product::find($this->getProductId());
+        return Product::findById($this->getProductId());
     }
 
     public function getRecipient(): Recipient
     {
-        return Recipient::find($this->getRecipientId());
+        return Recipient::findById($this->getRecipientId());
     }
 
     /* Getter & Setter */

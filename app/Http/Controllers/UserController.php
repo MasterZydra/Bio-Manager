@@ -72,7 +72,7 @@ class UserController extends BaseController implements ModelControllerInterface
      */
     public function edit(): void
     {
-        view('entities.user.edit', ['user' => User::find(Http::param('id'))]);
+        view('entities.user.edit', ['user' => User::findById(Http::param('id'))]);
     }
 
     /**
@@ -82,7 +82,7 @@ class UserController extends BaseController implements ModelControllerInterface
     public function update(): void
     {
         /** @var \App\Models\User */
-        $user = User::find(Http::param('id'))
+        $user = User::findById(Http::param('id'))
             ->setFirstname(Http::param('firstname'))
             ->setLastname(Http::param('lastname'))
             ->setUsername(Http::param('username'))
