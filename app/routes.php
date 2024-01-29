@@ -8,6 +8,7 @@
  *      Route::addController('mysecondroute', new MyController());
  */
 
+use App\Http\Controllers\DeliveryNoteController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PlotController;
 use App\Http\Controllers\PriceController;
@@ -39,6 +40,7 @@ if (Auth::isLoggedIn()) {
     Router::addController('cli', new WebCliController());
     Router::addController('cli', new WebCliController(), 'POST');
 
+    Router::addModel('deliveryNote', new DeliveryNoteController());
     Router::addModel('invoice', new InvoiceController());
     Router::addModel('plot', new PlotController());
     Router::addModel('price', new PriceController());
