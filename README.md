@@ -14,6 +14,7 @@ It contains:
 - extendable CLI e.g. for running tests, creating controllers, models, etc.
 - a database migration system
 - a database model with magic getter and setter functions
+- a query builder
 
 ## Links
 - [Documentation](doc/README.md)

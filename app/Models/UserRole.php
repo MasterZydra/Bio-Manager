@@ -3,10 +3,9 @@
 namespace App\Models;
 
 use Framework\Database\BaseModel;
-use Framework\Database\ColumnType;
-use Framework\Database\Condition;
 use Framework\Database\Database;
-use Framework\Database\QueryBuilder;
+use Framework\Database\Query\ColType;
+use Framework\Database\Query\Condition;
 
 class UserRole extends BaseModel
 {
@@ -42,9 +41,9 @@ class UserRole extends BaseModel
 
     public static function findByUserAndRoleId(int $userId, int $roleId): self
     {
-        return self::find(QueryBuilder::new()
-            ->addFilter(ColumnType::Int, 'userId', Condition::Equal, $userId)
-            ->addFilter(ColumnType::Int, 'roleId', Condition::Equal, $roleId)
+        return self::find(self::getQueryBuilder()
+            ->where(ColType::Int, 'userId', Condition::Equal, $userId)
+            ->where(ColType::Int, 'roleId', Condition::Equal, $roleId)
         );
     }
 

@@ -3,6 +3,8 @@
 namespace Framework\Database;
 
 use Exception;
+use Framework\Database\Query\ColType;
+use Framework\Database\Query\Condition;
 
 abstract class BaseModel
 {
@@ -27,18 +29,17 @@ abstract class BaseModel
 
     /* Static functions */
 
-    public static function all(QueryBuilder $query = null): array
+    public static function getQueryBuilder(): WhereQueryBuilder
     {
-        $dataSet = false;
+        return new WhereQueryBuilder(self::getTableName());
+    }
+
+    public static function all(WhereQueryBuilder $query = null): array
+    {
         if ($query === null) {
-            $dataSet = Database::unprepared('SELECT * FROM ' . self::getTableName());
-        } else {
-            $dataSet = Database::prepared(
-                'SELECT * FROM ' . self::getTableName() . ' ' . $query->getWhere(),
-                $query->getTypes(),
-                ...$query->getValues()
-            );
+            $query = self::getQueryBuilder();
         }
+        $dataSet = Database::executeBuilder($query);
 
         if ($dataSet === false) {
             return [];
@@ -51,7 +52,7 @@ abstract class BaseModel
         return $all;
     }
 
-    public static function find(QueryBuilder $query): self
+    public static function find(WhereQueryBuilder $query): self
     {
         $results = self::all($query);
         if ($results === []) {
@@ -62,7 +63,7 @@ abstract class BaseModel
 
     public static function findById(int $id): self
     {
-        return self::find(QueryBuilder::new()->addFilter(ColumnType::Int, 'id', Condition::Equal, $id));
+        return self::find(self::getQueryBuilder()->where(ColType::Int, 'id', Condition::Equal, $id));
     }
 
     public static function delete(int $id): void

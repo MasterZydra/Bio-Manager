@@ -1,8 +1,8 @@
 <?php
 
-namespace Framework\Database;
+namespace Framework\Database\Query;
 
-enum ColumnType: string
+enum ColType: string
 {
     case Float = 'd';
     case Int = 'i';

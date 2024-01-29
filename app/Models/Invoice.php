@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Framework\Database\BaseModel;
 use Framework\Database\Database;
+use Framework\Database\Query\ColType;
+use Framework\Database\Query\Condition;
+use Framework\Database\QueryBuilder;
 use Framework\Facades\Convert;
 
 class Invoice extends BaseModel
@@ -58,10 +61,10 @@ class Invoice extends BaseModel
             $year = intval(date("Y"));
         }
 
-        $dataSet = Database::prepared(
-            'SELECT MAX(nr) + 1 AS nextId FROM ' . self::getTableName() . ' WHERE `year` = ?',
-            'i',
-            $year
+        $dataSet = Database::executeBuilder(
+            QueryBuilder::new(self::getTableName())
+                ->select('MAX(nr) + 1 AS nextId')
+                ->where(ColType::Int, 'year', Condition::Equal, $year)
         );
         if ($dataSet === false || $dataSet->num_rows !== 1) {
             return 1;

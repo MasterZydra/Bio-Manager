@@ -9,6 +9,7 @@
 - [Views](#views)
 - [Localization](#localization)
 - [Models](#models)
+- [Query builder](#query-builder)
 - [Migrations](#migrations)
 - [Seeders](#seeders)
 - [CLI commands](#cli-commands)
@@ -127,11 +128,14 @@ return [
 It is recommended to use the BaseModel and name the identifier column `id`. This ways the following functions can be used for every model:
 
 ```PHP
+# Get an empty query builder
+public static function getQueryBuilder(): WhereQueryBuilder
+
 # Get an array of models
-public static function all(QueryBuilder $query = null): array;
+public static function all(WhereQueryBuilder $query = null): array;
 
 # Get the first model that matches the given query
-public static function find(QueryBuilder $query): self
+public static function find(WhereQueryBuilder $query): self;
 
 # Get the model with the given id
 public static function findById(int $id): self;
@@ -179,6 +183,46 @@ public function getPassword(): ?string
 {
     return $this->getDataStringOrNull(self::PASSWORD);
 }
+```
+
+-------------------------------------------------------------
+
+## Query builder
+The query builder can be used to create SQL select statements.
+By default all columns are selected (`*`).
+If you want to some specific columns, you can add them with the function `select`.
+
+**Available functions on query builder**
+```PHP
+/** Add a column to the select `SELECT` part */
+public function select(string $column): self;
+
+/** Add a condition to the `WHERE` part */
+public function where(ColType $type, string $column, Condition $condition, mixed $value): self;
+
+/** Add a column to the `ORDER BY` part */
+public function orderBy(string $column, SortOrder $sortOrder = SortOrder::Asc): self;
+```
+
+If you use the query builder for a model, you can use the return value from the function `getTableName` as constructor parameter.
+
+**Example**
+```bash
+$dataSet = Database::executeBuilder(
+    QueryBuilder::new(self::getTableName())
+        ->select('MAX(nr) + 1 AS nextId')
+        ->where(ColType::Int, 'year', Condition::Equal, $year)
+);
+```
+
+### WhereQueryBuilder
+The WhereQueryBuilder is used as (optional) parameter for the base model functions `all` and `find`. It only implements the functions `where` and `orderBy`.
+
+The creation of the WhereQueryBuilder is simplified with the function `getQueryBuilder` provided by the base model.
+
+**Example**
+```PHP
+self::find(self::getQueryBuilder()->where(ColType::Str, 'username', Condition::Equal, $username));
 ```
 
 -------------------------------------------------------------

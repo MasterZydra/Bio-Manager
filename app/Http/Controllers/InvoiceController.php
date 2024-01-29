@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invoice;
+use Framework\Database\Query\SortOrder;
 use Framework\Facades\Http;
 use Framework\Routing\BaseController;
 use Framework\Routing\ModelControllerInterface;
@@ -15,7 +16,14 @@ class InvoiceController extends BaseController implements ModelControllerInterfa
      */
     public function index(): void
     {
-        view('entities.invoice.index', ['invoices' => Invoice::all()]);
+        view(
+            'entities.invoice.index',
+            ['invoices' => Invoice::all(
+                Invoice::getQueryBuilder()
+                    ->orderBy('year', SortOrder::Desc)
+                    ->orderBy('nr', SortOrder::Desc)
+            )]
+        );
     }
 
     /**

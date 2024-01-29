@@ -5,6 +5,11 @@ namespace Framework\Test;
 /** Every unit test should base on this class. It provides the assertion functions. */
 class TestCase
 {
+    public function assertFalse(bool $assertion): void
+    {
+        $this->assertTrue(!$assertion);
+    }
+
     public function assertTrue(bool $assertion): void
     {
         if (!$assertion) {

@@ -3,10 +3,9 @@
 namespace App\Models;
 
 use Framework\Database\BaseModel;
-use Framework\Database\ColumnType;
-use Framework\Database\Condition;
 use Framework\Database\Database;
-use Framework\Database\QueryBuilder;
+use Framework\Database\Query\ColType;
+use Framework\Database\Query\Condition;
 
 class Role extends BaseModel
 {
@@ -39,7 +38,7 @@ class Role extends BaseModel
 
     public static function findByName(string $name): self
     {
-        return self::find(QueryBuilder::new()->addFilter(ColumnType::Str, 'name', Condition::Equal, $name));
+        return self::find(self::getQueryBuilder()->where(ColType::Str, 'name', Condition::Equal, $name));
     }
 
     /* Getter & Setter */

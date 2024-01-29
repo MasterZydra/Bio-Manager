@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DeliveryNote;
+use Framework\Database\Query\SortOrder;
 use Framework\Facades\Http;
 use Framework\Routing\BaseController;
 use Framework\Routing\ModelControllerInterface;
@@ -15,7 +16,14 @@ class DeliveryNoteController extends BaseController implements ModelControllerIn
      */
     public function index(): void
     {
-        view('entities.deliveryNote.index', ['deliveryNotes' => DeliveryNote::all()]);
+        view(
+            'entities.deliveryNote.index',
+            ['deliveryNotes' => DeliveryNote::all(
+                DeliveryNote::getQueryBuilder()
+                    ->orderBy('year', SortOrder::Desc)
+                    ->orderBy('nr', SortOrder::Desc)
+            )]
+        );
     }
 
     /**
