@@ -16,7 +16,7 @@
     <label for="nr"><?= __('No.') ?>:</label><br>
     <input id="nr" name="nr" type="number" value="<?= $invoice->getNr() ?>" readonly><br>
 
-    <label for="invoiceDate" class="required"><?= __('No.') ?>:</label><br>
+    <label for="invoiceDate" class="required"><?= __('Date') ?>:</label><br>
     <input id="invoiceDate" name="invoiceDate" type="date" value="<?= $invoice->getInvoiceDate() ?>" required autofocus><br>
     
     <?= component('recipientSelect', ['selected' => $invoice->getRecipientId()]) ?><br>
