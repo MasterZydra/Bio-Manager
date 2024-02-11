@@ -5,6 +5,7 @@ namespace Framework\Database;
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
 use Framework\Database\Query\SortOrder;
+use Framework\Database\Query\WhereCombine;
 
 class WhereQueryBuilder
 {
@@ -21,9 +22,9 @@ class WhereQueryBuilder
     }
 
     /** Add a condition to the `WHERE` part */
-    public function where(ColType $type, string $column, Condition $condition, mixed $value): self
+    public function where(ColType $type, string $column, Condition $condition, mixed $value, WhereCombine $combine = WhereCombine::And): self
     {
-        $this->queryBuilder->where($type, $column, $condition, $value);
+        $this->queryBuilder->where($type, $column, $condition, $value, $combine);
         return $this;
     }
 

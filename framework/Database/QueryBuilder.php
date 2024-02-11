@@ -5,6 +5,7 @@ namespace Framework\Database;
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
 use Framework\Database\Query\SortOrder;
+use Framework\Database\Query\WhereCombine;
 
 class QueryBuilder
 {
@@ -31,9 +32,9 @@ class QueryBuilder
     }
 
     /** Add a condition to the `WHERE` part */
-    public function where(ColType $type, string $column, Condition $condition, mixed $value): self
+    public function where(ColType $type, string $column, Condition $condition, mixed $value, WhereCombine $combine = WhereCombine::And): self
     {
-        $this->where[] = ['type' => $type->value, 'column' => $column, 'condition' => $condition->value, 'value' => $value];
+        $this->where[] = ['type' => $type->value, 'column' => $column, 'condition' => $condition->value, 'value' => $value, 'combine' => $combine->value];
         return $this;
     }
 
@@ -77,6 +78,9 @@ class QueryBuilder
         $values = [];
         /** @var array $column */
         foreach ($this->where as $column) {
+            if ($column['type'] === 'null') {
+                continue;
+            }
             $values[] = $column['value'];
         }
 
@@ -92,6 +96,9 @@ class QueryBuilder
         $types = '';
         /** @var array $column */
         foreach ($this->where as $column) {
+            if ($column['type'] === 'null') {
+                continue;
+            }
             $types .= $column['type'];
         }
 
@@ -104,16 +111,24 @@ class QueryBuilder
             return '';
         }
 
-        $conditions = [];
+        $isFirst = true;
+        $conditions = '';
         /** @var array $column */
         foreach ($this->where as $column) {
-            $conditions[] = sprintf('`%s` %s ?',
+            if (!$isFirst) {
+                $conditions .= ' ' . $column['combine'] . ' ';
+            } 
+            if ($isFirst) {
+                $isFirst = false;
+            }
+            $conditions .= sprintf('`%s` %s %s',
                 $column['column'],
-                $column['condition']
+                $column['condition'],
+                $column['type'] === 'null' ? 'NULL' : '?'
             );
         }
 
-        return 'WHERE ' . implode(' AND ', $conditions) . ' ';
+        return 'WHERE ' . $conditions . ' ';
     }
 
     private function getOrderByStr(): string

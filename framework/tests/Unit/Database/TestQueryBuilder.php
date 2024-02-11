@@ -3,6 +3,7 @@
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
 use Framework\Database\Query\SortOrder;
+use Framework\Database\Query\WhereCombine;
 use Framework\Database\QueryBuilder;
 use Framework\Test\TestCase;
 
@@ -44,6 +45,14 @@ class TestQueryBuilder extends TestCase
         $this->assertFalse($queryBuilder->isWhereEmpty());
         $this->assertEquals('is', $queryBuilder->getColTypes());
         $this->assertEquals([42, '%abc%'], $queryBuilder->getValues());
+
+        $queryBuilder = QueryBuilder::new('users')
+            ->where(ColType::Int, 'id', Condition::Equal, 42)
+            ->where(ColType::Null, 'username', Condition::Is, 'NULL', WhereCombine::Or);
+        $this->assertEquals('SELECT * FROM `users` WHERE `id` = ? OR `username` IS NULL', $queryBuilder->build());
+        $this->assertFalse($queryBuilder->isWhereEmpty());
+        $this->assertEquals('i', $queryBuilder->getColTypes());
+        $this->assertEquals([42], $queryBuilder->getValues());
     }
 
     public function testOrderBy(): void
