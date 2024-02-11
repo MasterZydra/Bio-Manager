@@ -1,4 +1,8 @@
-<?php /** @var \App\Models\DeliveryNote $deliveryNote */ ?>
+<?php
+    use \App\Models\Invoice;
+
+    /** @var \App\Models\DeliveryNote $deliveryNote */
+?>
 <?= component('layout.header') ?>
 
 <h1><?= __('EditDeliveryNote') ?></h1>
@@ -39,6 +43,15 @@
             ?>>
         <?= __('ReadyForInvoice') ?>
     </label><br>
+
+    <?php if ($deliveryNote->getInvoiceId() !== null) {
+        $invoice = Invoice::findById($deliveryNote->getInvoiceId());
+    ?>
+    <label><?= __('Invoice') ?>:</label>
+    <a href="/invoice/edit?id=<?= $deliveryNote->getInvoiceId() ?>">
+        <?= $invoice->getYear() ?> <?= $invoice->getNr() ?>
+    </a><br>
+    <?php } ?>
 
     <button><?= __('Save') ?></button>
 </form>
