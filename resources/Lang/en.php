@@ -20,6 +20,7 @@ return [
     'Date' => 'Date',
     'Delete' => 'Delete',
     'DeliveryNote' => 'Delivery note',
+    'DeliveryNotes' => 'Delivery notes',
     'Developer' => 'Developer',
     'Edit' => 'Edit',
     'EditDeliveryNote' => 'Edit delivery note',

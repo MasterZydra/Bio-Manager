@@ -1,4 +1,8 @@
-<?php /** @var \App\Models\Invoice $invoice */ ?>
+<?php
+use \App\Models\DeliveryNote;
+
+/** @var \App\Models\Invoice $invoice */
+?>
 <?= component('layout.header') ?>
 
 <h1><?= __('EditInvoice') ?></h1>
@@ -31,6 +35,11 @@
             ?>>
         <?= __('IsPaid') ?>
     </label><br>
+
+    <?= component('deliveryNoteList', [
+        'deliveryNotes' => DeliveryNote::allReadyForInvoice($invoice),
+        'invoiceId' => $invoice->getId(),
+    ]) ?><br>
 
     <button><?= __('Save') ?></button>
 </form>

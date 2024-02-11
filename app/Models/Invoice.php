@@ -50,6 +50,13 @@ class Invoice extends BaseModel
         return $this;
     }
 
+    public static function findByYearAndNr(int $year, int $nr): self
+    {
+        return self::find(self::getQueryBuilder()
+            ->where(ColType::Int, 'year', Condition::Equal, $year)
+            ->where(ColType::Int, 'nr', Condition::Equal, $nr));
+    }
+
     public function getRecipient(): Recipient
     {
         return Recipient::findById($this->getRecipientId());
@@ -58,7 +65,7 @@ class Invoice extends BaseModel
     public static function nextInvoiceNr(int $year = null): int
     {
         if ($year === null) {
-            $year = intval(date("Y"));
+            $year = intval(date('Y'));
         }
 
         $dataSet = Database::executeBuilder(

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DeliveryNote;
 use App\Models\Invoice;
 use Framework\Database\Query\SortOrder;
 use Framework\Facades\Http;
@@ -41,15 +42,20 @@ class InvoiceController extends BaseController implements ModelControllerInterfa
      */
     public function store(): void
     {
+        $year = Http::param('year');
+        $nr = Invoice::nextInvoiceNr(Http::param('year'));
+
         (new Invoice())
-            ->setYear(Http::param('year'))
-            ->setNr(Invoice::nextInvoiceNr(Http::param('year')))
+            ->setYear($year)
+            ->setNr($nr)
             ->setInvoiceDate(date('Y-m-d'))
             ->setRecipientId(Http::param('recipient'))
             ->setIsPaid(false)
             ->save();
+        
+        $invoice = Invoice::findByYearAndNr($year, $nr);
 
-        Http::redirect('invoice');
+        Http::redirect('invoice/edit?id=' . $invoice->getId());
     }
 
     /**
@@ -67,11 +73,18 @@ class InvoiceController extends BaseController implements ModelControllerInterfa
      */
     public function update(): void
     {
-        Invoice::findById(Http::param('id'))
+        $invoice = Invoice::findById(Http::param('id'))
             ->setInvoiceDate(Http::param('invoiceDate'))
             ->setRecipientId(Http::param('recipient'))
             ->setIsPaid(Http::param('isPaid'))
             ->save();
+
+        foreach (Http::param('deliveryNote') as $deliveryNoteId) {
+            $parts = explode('-', $deliveryNoteId);
+            DeliveryNote::findById($parts[0])
+                ->setInvoiceId($parts[1] === "1" ? $invoice->getId(): null)
+                ->save();
+        }
 
         Http::redirect('invoice');
     }

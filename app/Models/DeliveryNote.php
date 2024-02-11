@@ -6,6 +6,7 @@ use Framework\Database\BaseModel;
 use Framework\Database\Database;
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
+use Framework\Database\Query\WhereCombine;
 use Framework\Database\QueryBuilder;
 use Framework\Facades\Convert;
 
@@ -62,6 +63,19 @@ class DeliveryNote extends BaseModel
         return $this;
     }
 
+    public static function allReadyForInvoice(Invoice $invoice): array
+    {
+        return self::all(
+            self::getQueryBuilder()
+            ->where(ColType::Int, 'isInvoiceReady', Condition::Equal, 1)
+            ->where(ColType::Int, 'year', Condition::Equal, $invoice->getYear())
+            ->where(ColType::Int, 'recipientId', Condition::Equal, $invoice->getRecipientId())
+            ->where(ColType::Null, 'invoiceId', Condition::Is, null)
+            ->where(ColType::Int, 'invoiceId', Condition::Equal, $invoice->getId(), WhereCombine::Or)
+            ->orderBy('nr')
+        );
+    }
+
     public function getProduct(): Product
     {
         return Product::findById($this->getProductId());
@@ -80,7 +94,7 @@ class DeliveryNote extends BaseModel
     public static function nextDeliveryNoteNr(int $year = null): int
     {
         if ($year === null) {
-            $year = intval(date("Y"));
+            $year = intval(date('Y'));
         }
 
         $dataSet = Database::executeBuilder(

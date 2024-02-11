@@ -20,6 +20,7 @@ return [
     'Date' => 'Datum',
     'Delete' => 'Löschen',
     'DeliveryNote' => 'Lieferschein',
+    'DeliveryNotes' => 'Lieferscheine',
     'Developer' => 'Entwickler',
     'Edit' => 'Bearbeiten',
     'EditDeliveryNote' => 'Lieferschein bearbeiten',
