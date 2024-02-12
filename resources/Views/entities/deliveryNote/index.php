@@ -34,7 +34,10 @@
         <td><?= $deliveryNote->getSupplier()->getName() ?></td>
         <td><?= $deliveryNote->getProduct()->getName() ?></td>
         <td><?= $deliveryNote->getRecipient()->getName() ?></td>
-        <td><a href="deliveryNote/edit?id=<?= $deliveryNote->getId() ?>"><?=__('Edit') ?></a></td>
+        <td>
+            <a href="deliveryNote/edit?id=<?= $deliveryNote->getId() ?>"><?=__('Edit') ?></a>
+            <a href="volumeDistribution/edit?id=<?= $deliveryNote->getId() ?>"><?=__('VolumeDistribution') ?></a>
+        </td>
     </tr>
     <?php endforeach ?>
 </table>

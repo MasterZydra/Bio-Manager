@@ -9,6 +9,7 @@
  */
 
 use App\Http\Controllers\DeliveryNoteController;
+use App\Http\Controllers\EditVolumeDistributionController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PlotController;
 use App\Http\Controllers\PriceController;
@@ -48,6 +49,8 @@ if (Auth::isLoggedIn()) {
     Router::addModel('recipient', new RecipientController());
     Router::addModel('supplier', new SupplierController());
     Router::addModel('user', new UserController());
+    Router::addController('volumeDistribution/edit', new EditVolumeDistributionController());
+    Router::addController('volumeDistribution/edit', new EditVolumeDistributionController(), 'POST');
 }
 
 // TODO only if is admin
