@@ -2,6 +2,8 @@
 
 namespace Framework\Cli;
 
+use Framework\Facades\Env;
+
 /**
  * CLI is the main class for the bioman CLI.
  * The available commands are registered in the `registerCli.php`.
@@ -14,7 +16,7 @@ class Cli
     public static function run(): void
     {
         // Check that this class is only executed in the CLI context
-        if (php_sapi_name() !== 'cli') {
+        if (!Env::isCLI()) {
             echo "This is a CLI command and can only be run in the terminal context.\n";
             exit(1);
         }
