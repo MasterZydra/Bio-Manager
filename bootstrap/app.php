@@ -1,6 +1,9 @@
 <?php
 
 // Start the PHP session
+
+use Framework\Facades\Env;
+
 session_start();
 
 // Register the global available functions
@@ -12,7 +15,9 @@ require __DIR__ . '/../app/registerCli.php';
 require __DIR__ . '/../framework/registerCli.php';
 
 // Use custom error handler
-require __DIR__ . '/../framework/Error/RegisterErrorHandler.php';
+if (!Env::isCLI()) {
+    require __DIR__ . '/../framework/Error/RegisterErrorHandler.php';
+}
 
 // Register all available routes
 require __DIR__ . '/../app/routes.php';
@@ -24,6 +29,6 @@ use Framework\Routing\Router;
 Translator::readLabelFiles();
 
 // Route to requested controller or view
-if (php_sapi_name() !== 'cli') {
+if (!Env::isCLI()) {
     Router::run();
 }
