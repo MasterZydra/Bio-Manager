@@ -4,7 +4,7 @@ namespace Framework\Error;
 
 use Exception;
 use Framework\Cli\Cli;
-use Framework\Config\Config;
+use Framework\Facades\Env;
 use Framework\Facades\Http;
 use Throwable;
 
@@ -14,7 +14,7 @@ class ErrorHandler
         int $errno, string $errstr, string $errfile = null, int $errline = null, array $errcontext = null
     ): bool {
         ob_end_clean();
-        if (strtolower(Config::env('APP_ENV')) === 'dev') {
+        if (Env::isDev()) {
             self::handleDevError($errno, $errstr, $errfile, $errline, $errcontext);
             exit();
         } else {
@@ -26,7 +26,7 @@ class ErrorHandler
     public static function handleException(Throwable $exception): void
     {
         ob_end_clean();
-        if (strtolower(Config::env('APP_ENV')) === 'dev') {
+        if (Env::isDev()) {
             self::handleDevException($exception);
             exit();
         } else {
