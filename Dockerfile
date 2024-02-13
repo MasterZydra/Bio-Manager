@@ -1,4 +1,4 @@
-FROM serversideup/php:8.2-fpm-apache
+FROM serversideup/php:8.2-fpm-apache-v2.2.1
 
 WORKDIR /var/www/html
 

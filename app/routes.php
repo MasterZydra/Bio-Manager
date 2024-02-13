@@ -25,11 +25,7 @@ use Framework\Cli\Controllers\WebCliController;
 use Framework\Facades\Http;
 use Framework\Routing\Router;
 
-if (!Auth::isLoggedIn()) {
-    Router::addFn('', fn() => view('home'));
-} else {
-    Router::addFn('', fn() => view('auth.home'));
-}
+Router::addFn('', fn() => !Auth::isLoggedIn() ? view('home'): view('auth.home'));
 
 Router::addFn('imprint', fn() => view('imprint'));
 
@@ -53,11 +49,12 @@ if (Auth::isLoggedIn()) {
     Router::addModel('product', new ProductController());
     Router::addModel('recipient', new RecipientController());
     Router::addModel('supplier', new SupplierController());
-    Router::addModel('user', new UserController());
     Router::addController('volumeDistribution/edit', new EditVolumeDistributionController());
     Router::addController('volumeDistribution/edit', new EditVolumeDistributionController(), 'POST');
-}
 
-// TODO only if is admin
+    if (Auth::hasRole('Administrator')) {
+        Router::addModel('user', new UserController());
+    }
+}
 
 Router::pathNotFound(fn() => Http::redirect('/'));
