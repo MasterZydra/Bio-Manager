@@ -2,9 +2,10 @@
 
 // Start the PHP session
 
+use Framework\Authentication\Session;
 use Framework\Facades\Env;
 
-session_start();
+Session::start();
 
 // Register the global available functions
 require __DIR__ . '/../framework/registerFn.php';
