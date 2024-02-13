@@ -103,3 +103,15 @@ jobs:
           container: bio-manager
           prune-untagged: true
           prune-tags-regexes: ^sha256
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build and Run Container
+      run: |
+        docker stop bioman || true
+        docker rm bioman || true
+        docker run -d --name bioman -p 8083:80 --env SSL_MODE=off --env DB_HOST=${{ secrets.IP }} --env DB_USERNAME=root --env DB_PASSWORD='${{ secrets.DB_PASSWORD }}' --env APP_URL=http://${{ secrets.IP }}:8083 ghcr.io/masterzydra/bio-manager:latest
+        docker image prune -f
