@@ -2,8 +2,6 @@
 
 <h1>Systeminformationen</h1>
 
-<?= $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?>
-
 <table>
     <tr>
         <td>Bio-Manager Version</td>
