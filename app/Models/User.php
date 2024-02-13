@@ -58,6 +58,11 @@ class User extends BaseModel
         return self::find(self::getQueryBuilder()->where(ColType::Str, 'username', Condition::Equal, $username));
     }
 
+    public function canLogIn(): bool
+    {
+        return $this->getId() !== null && !$this->getIsLocked();
+    }
+
     /* Getter & Setter */
 
     public function getFirstname(): string

@@ -19,12 +19,16 @@ class LoginController extends BaseController implements ControllerInterface
             Http::redirect('/');
         }
 
-        if (!Auth::isPasswordValid(Http::param('username'), Http::param('password'))) {
+        $user = User::findByUsername(Http::param('username'));
+
+        if (!Auth::isPasswordValid(Http::param('username'), Http::param('password'))
+            || !$user->canLogIn()
+        ) {
             Message::setMessage(__('UsernameOrPasswordIsIncorrect'), Type::Error);
             Http::redirect('login');
         }
 
-        Session::setValue('userId', User::findByUsername(Http::param('username'))->getId());
+        Session::setValue('userId', $user->getId());
         Http::redirect('/');
     }
 }
