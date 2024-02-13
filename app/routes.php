@@ -25,7 +25,12 @@ use Framework\Cli\Controllers\WebCliController;
 use Framework\Facades\Http;
 use Framework\Routing\Router;
 
+if (!Auth::isLoggedIn()) {
     Router::addFn('', fn() => view('home'));
+} else {
+    Router::addFn('', fn() => view('auth.home'));
+}
+
 Router::addFn('imprint', fn() => view('imprint'));
 
 Router::addFn('login', fn() => view('login'));
