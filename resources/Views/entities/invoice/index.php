@@ -14,7 +14,7 @@
 
 <?= component('filterInput') ?>
 
-<table id="dataTable">
+<table id="dataTable" class="scrollable">
     <tr>
         <th class="center"><?= __('Year') ?></th>
         <th class="center"><?= __('No.') ?></th>
