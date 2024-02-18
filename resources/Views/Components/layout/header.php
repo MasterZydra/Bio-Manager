@@ -25,7 +25,7 @@ use Framework\Message\Message;
         }
         ?> -->
         <!-- <php echo $organisation; ?> -->
-        <h1 style="cursor: pointer"><a href="/"><?= __('Bio-Manager') ?></a></h1>
+        <h1 style="cursor: pointer"><a href="/">Bio-Manager</a></h1>
         <div>
             <a href="/"><?= __('Home') ?></a>
         </div>

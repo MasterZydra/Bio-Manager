@@ -3,6 +3,7 @@
 namespace Framework\i18n;
 
 use Framework\Config\Config;
+use Framework\Facades\Env;
 use Framework\Facades\File;
 use Framework\Facades\Path;
 
@@ -46,12 +47,13 @@ class Translator
         $lang = Language::getLanguage();
         if (!array_key_exists($lang, self::$labels)) {
             $lang = Config::env('APP_LANG');
+            // var_dump(self::$labels);die();
         }
 
         if (!array_key_exists($lang, self::$labels) || !(array_key_exists($label, self::$labels[$lang]))) {
-            // TODO How to handle untranslated labels
-            // Maybe if in dev mode -> error / warning 
-            // In prod mode return label?
+            if (Env::isDev()) {
+                throw new LabelNotFoundException($lang, $label);
+            }
             return $label;
         }
         return self::$labels[$lang][$label];
