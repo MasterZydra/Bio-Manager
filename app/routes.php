@@ -15,6 +15,7 @@ use App\Http\Controllers\PlotController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RecipientController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\User\ChangePasswordController;
 use App\Http\Controllers\User\LoginController;
@@ -25,7 +26,7 @@ use Framework\Cli\Controllers\WebCliController;
 use Framework\Facades\Http;
 use Framework\Routing\Router;
 
-Router::addFn('', fn() => !Auth::isLoggedIn() ? view('home'): view('auth.home'));
+Router::addFn('', fn() => !Auth::isLoggedIn() ? view('home') : view('auth.home'));
 
 Router::addFn('imprint', fn() => view('imprint'));
 
@@ -48,6 +49,7 @@ if (Auth::isLoggedIn()) {
     Router::addModel('price', new PriceController());
     Router::addModel('product', new ProductController());
     Router::addModel('recipient', new RecipientController());
+    Router::addModel('setting', new SettingController());
     Router::addModel('supplier', new SupplierController());
     Router::addController('volumeDistribution/edit', new EditVolumeDistributionController());
     Router::addController('volumeDistribution/edit', new EditVolumeDistributionController(), 'POST');

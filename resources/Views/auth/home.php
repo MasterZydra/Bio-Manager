@@ -21,69 +21,69 @@
 </div>
 <?php } ?>
 
-    <?php
-    // Check configuration
-    // TOOD include 'Modules/configChecker.php';
+<?php
+// Check configuration
+// TOOD include 'Modules/configChecker.php';
 
-    // Links for maintainers
-    if (Auth::hasRole('Maintainer')) {
-        ?>
+// Links for maintainers
+if (Auth::hasRole('Maintainer')) { ?>
+
 <h2><?= __('DataManagement') ?></h2>
 
 <div class="box">
     <strong><?= __('DeliveryNote') ?></strong><br>
     <a href="deliveryNote"><?= __('ShowAllDeliveryNotes') ?></a>
-        <?php if (Auth::hasRole('Maintainer')) {
-            ?><br><a href="deliveryNote/create"><?= __('AddDeliveryNote') ?></a><?php
-        } ?>
+    <?php if (Auth::hasRole('Maintainer')) { ?>
+        <br><a href="deliveryNote/create"><?= __('AddDeliveryNote') ?></a>
+    <?php } ?>
 </div>
 
 <div class="box">
     <strong><?= __('Plot') ?></strong><br>
     <a href="plot"><?= __('ShowAllPlots') ?></a>
-        <?php if (Auth::hasRole('Maintainer')) {
-            ?><br><a href="plot/create"><?= __('AddPlot') ?></a><?php
-        } ?>
+    <?php if (Auth::hasRole('Maintainer')) { ?>
+        <br><a href="plot/create"><?= __('AddPlot') ?></a>
+    <?php } ?>
 </div>
 
 <div class="box">
     <strong><?= __('Invoice') ?></strong><br>
     <a href="invoice"><?= __('ShowAllInvoices') ?></a>
-        <?php if (Auth::hasRole('Maintainer')) {
-            ?><br><a href="invoice/create"><?= __('AddInvoice') ?></a><?php
-        } ?>
+    <?php if (Auth::hasRole('Maintainer')) { ?>
+        <br><a href="invoice/create"><?= __('AddInvoice') ?></a>
+    <?php } ?>
 </div>
 
 <div class="box">
     <strong><?= __('Product') ?></strong><br>
     <a href="product"><?= __('ShowAllProducts') ?></a>
-        <?php if (Auth::hasRole('Maintainer')) {
-            ?><br><a href="product/create"><?= __('AddProduct') ?></a><?php
-        } ?>
+    <?php if (Auth::hasRole('Maintainer')) { ?>
+        <br><a href="product/create"><?= __('AddProduct') ?></a>
+    <?php } ?>
 </div>
 
 <div class="box">
     <strong><?= __('Price') ?></strong><br>
     <a href="price"><?= __('ShowAllPrices') ?></a>
-        <?php if (Auth::hasRole('Maintainer')) {
-            ?><br><a href="price/create"><?= __('AddPrice') ?></a><?php
-        } ?>
+    <?php if (Auth::hasRole('Maintainer')) { ?>
+        <br><a href="price/create"><?= __('AddPrice') ?></a>
+    <?php } ?>
 </div>
 
 <div class="box">
     <strong><?= __('Supplier') ?></strong><br>
     <a href="supplier"><?= __('ShowAllSuppliers') ?></a>
-        <?php if (Auth::hasRole('Maintainer')) {
-            ?><br><a href="supplier/create"><?= __('AddSupplier') ?></a><?php
-        } ?>
+    <?php if (Auth::hasRole('Maintainer')) { ?>
+        <br><a href="supplier/create"><?= __('AddSupplier') ?></a>
+    <?php } ?>
 </div>
 
 <div class="box">
     <strong><?= __('Recipient') ?></strong><br>
     <a href="recipient"><?= __('ShowAllRecipients') ?></a>
-        <?php if (Auth::hasRole('Maintainer')) {
-            ?><br><a href="recipient/create"><?= __('AddRecipient') ?></a><?php
-        } ?>
+    <?php if (Auth::hasRole('Maintainer')) { ?>
+        <br><a href="recipient/create"><?= __('AddRecipient') ?></a>
+    <?php } ?>
 </div>
 
 <h2>
@@ -102,17 +102,11 @@
     <a href="showCropVolumeDistribution.php">Mengenverteilung anzeigen</a>
 </div>
 
-        <?php
-    }
-    ?>
- 
-    <?php
-    // Links for administration
-    if (Auth::hasRole('Administrator')) {
-        ?>
-<h2>
-    Administration
-</h2>
+<?php }
+// Links for administration
+if (Auth::hasRole('Administrator')) { ?>
+
+<h2><?= __('Administration') ?></h2>
 
 <div class="box">
     <strong><?= __('UserManagement') ?></strong><br>
@@ -121,11 +115,11 @@
 </div>
 
 <div class="box">
-    <strong>Einstellungen</strong><br>
-    <a href="setting.php">Alle Einstellungen anzeigen</a>
-        <?php if (Auth::hasRole('Developer')) {
-            ?><br><a href="addSetting.php">Einstellung hinzufügen</a><?php
-        } ?>
+    <strong><?= __('Setting') ?></strong><br>
+    <a href="setting"><?= __('ShowAllSettings') ?></a>
+    <?php if (Auth::hasRole('Developer')) { ?>
+        <br><a href="setting/create"><?= __('AddSetting') ?></a>
+    <?php } ?>
 </div>
 
 <div class="box">

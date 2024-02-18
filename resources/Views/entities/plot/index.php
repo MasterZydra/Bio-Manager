@@ -7,9 +7,9 @@
 <h1><?= __('Plot') ?></h1>
 
 <p>
-    <?php if (Auth::hasRole('Maintainer')) {
-        ?><a href="plot/create"><?= __('AddPlot') ?></a><?php
-    } ?>
+    <?php if (Auth::hasRole('Maintainer')) { ?>
+        <a href="plot/create"><?= __('AddPlot') ?></a>
+    <?php } ?>
 </p>
 
 <?= component('filterInput') ?>

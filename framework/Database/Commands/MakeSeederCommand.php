@@ -33,7 +33,7 @@ class MakeSeederCommand extends BaseCommand implements CommandInterface
             '    {' . PHP_EOL .
             '        Database::unprepared(\'INSERT INTO ...\');' . PHP_EOL .
             '    }' . PHP_EOL .
-            '};' . PHP_EOL
+            '}' . PHP_EOL
         );
 
         printLn('Created seeder "' . $filename . '"');
