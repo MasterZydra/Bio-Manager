@@ -34,7 +34,7 @@
         <?= __('ForcePasswordChange') ?>
     </label><br><br>
 
-    <?= component('languageSelect') ?>
+    <?= component('languageSelect') ?><br>
 
     <strong><?= __('Permissions') ?></strong><br>
 

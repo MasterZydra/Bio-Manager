@@ -49,7 +49,7 @@
         <?= __('ForcePasswordChange') ?>
     </label><br><br>
 
-    <?= component('languageSelect', ['selected' => $user->getLanguageId()]) ?>
+    <?= component('languageSelect', ['selected' => $user->getLanguageId()]) ?><br>
 
     <strong><?= __('Permissions') ?></strong><br>
 
