@@ -60,6 +60,18 @@ The catch block of the [test runner](../framework/Test/TestRunner.php) than prin
 
 ## Localization
 The global available function `__(string $label)` is just a wrapper for the function `Translator::translate($label)`.
-The browser language is used if a associated language file exists, otherwise the fallback language `en` is used as translation.
+
+The language used to translate the label is detected the following way:
+1. Is the user logged in?
+    - Yes: Has the user a language configured?
+        - Yes: Use the configured language
+        - No: Use the browser language
+    - No: Use the browser language
+2. Does a language file exists for the requested language (from step 1)?
+    - Yes: Keep that language
+    - No: Change language to the default/fallback language from configuration
+3. Does the requested label exist?
+    - Yes: Return the resolved label
+    - No: Throw exception (only in dev mode)
 
 -------------------------------------------------------------

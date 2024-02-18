@@ -13,13 +13,16 @@
 - [Migrations](#migrations)
 - [Seeders](#seeders)
 - [CLI commands](#cli-commands)
+- [Tests](#tests)
 
 # Application code
 The application specific code is located in the directories [`app`](../app), [`resources`](../resources/) and [`tests`](../tests/).
 
 ## Configuration
 The configuration of the application is done in the file`.env`.
-You can use the file `.env.example` as template.
+You can use the file [`.env.example`](../.env.example) as template.
+
+If you run the application as a container, you can also set them as environment variables (e.g. `--env DB_PASSWORD=myPassword`).
 
 ```toml
 APP_URL="http://localhost" # URL the application is listening on
@@ -200,7 +203,7 @@ If you want to some specific columns, you can add them with the function `select
 public function select(string $column): self;
 
 /** Add a condition to the `WHERE` part */
-public function where(ColType $type, string $column, Condition $condition, mixed $value): self;
+public function where(ColType $type, string $column, Condition $condition, mixed $value, WhereCombine $combine = WhereCombine::And): self;
 
 /** Add a column to the `ORDER BY` part */
 public function orderBy(string $column, SortOrder $sortOrder = SortOrder::Asc): self;
@@ -293,6 +296,32 @@ use Framework\Cli\CommandInterface;
 use Framework\Test\TestRunner;
 
 class TestRun extends BaseCommand implements CommandInterface
+```
+
+-------------------------------------------------------------
+
+## Tests
+> **Hint:** You can use the bioman CLI to create a new test case: `make:testcase`
+
+You can create unit tests to ensure that the application behaves like expected, even after changing some functions behaviour.
+
+To execute the test suite run the `test:run` command in the bioman CLI.
+
+**Example**  
+This test case checks if the `boolToInt` convertion function always returns the value `1` for the input value `true`.
+
+```PHP
+use Framework\Facades\Convert;
+use Framework\Test\TestCase;
+
+class TestConvert extends TestCase
+{
+    public function testBoolToInt(): void
+    {
+        $this->assertEquals(1, Convert::boolToInt(true));
+        $this->assertEquals(0, Convert::boolToInt(false));
+    }
+}
 ```
 
 -------------------------------------------------------------
