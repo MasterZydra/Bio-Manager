@@ -16,10 +16,12 @@ return new class extends Migration
             'password VARCHAR(255) NULL,' .
             'isLocked tinyint(1) NOT NULL DEFAULT 0,' .
             'isPwdChangeForced tinyint(1) NOT NULL DEFAULT 0,' .
+            'languageId INT DEFAULT NULL,' .
             'createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,' .
             'updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,' .
             'PRIMARY KEY (id),' .
-            'UNIQUE KEY `ukUsersUsername` (username)' .
+            'UNIQUE KEY `ukUsersUsername` (username),' .
+            'CONSTRAINT `fkUserLanguageId` FOREIGN KEY (languageId) REFERENCES languages (id) ON DELETE CASCADE' .
             ') ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;'
         );
     }

@@ -10,13 +10,38 @@ class InvoiceSettingsSeeder extends Seeder implements SeederInterface
 {
     public function run(): void
     {
-        // Invoice
+        // Invoice sender
         (new Setting())
-            ->setName('invoiceSender')
-            ->setDescription('Invoice sender')
-            ->setValue('Invoice sender name')
+            ->setName('invoiceSenderName')
+            ->setDescription('Name of the invoice sender')
+            ->setValue('Sender Name')
             ->save();
         
+        (new Setting())
+            ->setName('invoiceSenderStreet')
+            ->setDescription('Street of the invoice sender')
+            ->setValue('Sender street')
+            ->save();
+
+        (new Setting())
+            ->setName('invoiceSenderPostalCode')
+            ->setDescription('Postal code of the invoice sender')
+            ->setValue('Sender postal code')
+            ->save();
+        
+        (new Setting())
+            ->setName('invoiceSenderCity')
+            ->setDescription('City of the invoice sender')
+            ->setValue('Sender city')
+            ->save();
+
+        (new Setting())
+            ->setName('invoiceSenderAddition')
+            ->setDescription('Address addition of the invoice sender')
+            ->setValue('Address addition')
+            ->save();
+
+        // Bank information
         (new Setting())
             ->setName('invoiceBankName')
             ->setDescription('Invoice bank name')
@@ -35,6 +60,7 @@ class InvoiceSettingsSeeder extends Seeder implements SeederInterface
             ->setValue('GEXXXX...')
             ->save();
 
+        // General information
         (new Setting())
             ->setName('invoiceAuthor')
             ->setDescription('Invoice author name')
