@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Setting;
 use Framework\Facades\Path;
 use Framework\i18n\Translator;
 
@@ -31,4 +32,10 @@ function component(string $name, array $data = []): void
 function __(string $label): string
 {
     return Translator::translate($label);
+}
+
+/** Get value for given settings name */
+function setting(string $name): string
+{
+    return Setting::findByName($name)->getValue();
 }
