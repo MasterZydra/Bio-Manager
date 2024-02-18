@@ -25,6 +25,8 @@ You can use the file `.env.example` as template.
 APP_URL="http://localhost" # URL the application is listening on
 APP_ENV="dev" # 'dev' or 'prod'
 
+APP_LANG="en" # Default/fallback language
+
 DB_CONNECTION="mariadb"
 DB_HOST="127.0.0.1"
 DB_PORT=3306

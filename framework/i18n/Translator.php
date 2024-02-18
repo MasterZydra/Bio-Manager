@@ -2,6 +2,7 @@
 
 namespace Framework\i18n;
 
+use Framework\Config\Config;
 use Framework\Facades\File;
 use Framework\Facades\Path;
 
@@ -44,8 +45,7 @@ class Translator
     {
         $lang = Language::getLanguage();
         if (!array_key_exists($lang, self::$labels)) {
-            // TODO Fallback language en -> later as setting?
-            $lang = 'en';
+            $lang = Config::env('APP_LANG');
         }
 
         if (!array_key_exists($lang, self::$labels) || !(array_key_exists($label, self::$labels[$lang]))) {
