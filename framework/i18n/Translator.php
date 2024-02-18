@@ -42,8 +42,7 @@ class Translator
     /** Translate the given label into user language */
     public static function translate(string $label): string
     {
-        // TODO get language from session ...
-        $lang = Language::getBrowserLanguage();
+        $lang = Language::getLanguage();
         if (!array_key_exists($lang, self::$labels)) {
             // TODO Fallback language en -> later as setting?
             $lang = 'en';

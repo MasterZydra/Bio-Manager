@@ -17,6 +17,7 @@ class User extends BaseModel
     private const PASSWORD = 'password';
     private const IS_LOCKED = 'isLocked';
     private const IS_PWD_CHANGE_FORCED = 'isPwdChangeForced';
+    private const LANGUAGE_ID = 'languageId';
 
     protected static function new(array $data = []): self
     {
@@ -27,18 +28,7 @@ class User extends BaseModel
     {
         if ($this->getId() === null) {
             Database::prepared(
-                'INSERT INTO ' . $this->getTableName() . ' (firstname, lastname, username, password, isLocked, isPwdChangeForced) VALUES (?, ?, ?, ?, ?, ?)',
-                'ssssii',
-                $this->getFirstname(),
-                $this->getLastname(),
-                $this->getUsername(),
-                $this->getPassword(),
-                Convert::boolToInt($this->getIsLocked()),
-                Convert::boolToInt($this->getIsPwdChangeForced())
-            );
-        } else {
-            Database::prepared(
-                'UPDATE ' . $this->getTableName() . ' SET firstname=?, lastname=?, username=?, password=?, isLocked=?, isPwdChangeForced=? WHERE id=?',
+                'INSERT INTO ' . $this->getTableName() . ' (firstname, lastname, username, password, isLocked, isPwdChangeForced, languageId) VALUES (?, ?, ?, ?, ?, ?, ?)',
                 'ssssiii',
                 $this->getFirstname(),
                 $this->getLastname(),
@@ -46,6 +36,19 @@ class User extends BaseModel
                 $this->getPassword(),
                 Convert::boolToInt($this->getIsLocked()),
                 Convert::boolToInt($this->getIsPwdChangeForced()),
+                $this->getLanguageId()
+            );
+        } else {
+            Database::prepared(
+                'UPDATE ' . $this->getTableName() . ' SET firstname=?, lastname=?, username=?, password=?, isLocked=?, isPwdChangeForced=?, languageId=? WHERE id=?',
+                'ssssiiii',
+                $this->getFirstname(),
+                $this->getLastname(),
+                $this->getUsername(),
+                $this->getPassword(),
+                Convert::boolToInt($this->getIsLocked()),
+                Convert::boolToInt($this->getIsPwdChangeForced()),
+                $this->getLanguageId(),
                 $this->getId()
             );
         }
@@ -61,6 +64,11 @@ class User extends BaseModel
     public function canLogIn(): bool
     {
         return $this->getId() !== null && !$this->getIsLocked();
+    }
+
+    public function getLanguage(): Language
+    {
+        return Language::findById($this->getLanguageId());
     }
 
     /* Getter & Setter */
@@ -123,5 +131,15 @@ class User extends BaseModel
     public function setIsPwdChangeForced(bool $value): self
     {
         return $this->setDataBool(self::IS_PWD_CHANGE_FORCED, $value);
+    }
+
+    public function getLanguageId(): ?int
+    {
+        return $this->getDataIntOrNull(self::LANGUAGE_ID);
+    }
+
+    public function setLanguageId(?int $value): self
+    {
+        return $this->setDataIntOrNull(self::LANGUAGE_ID, $value);
     }
 }

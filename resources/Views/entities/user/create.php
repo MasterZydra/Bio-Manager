@@ -34,6 +34,8 @@
         <?= __('ForcePasswordChange') ?>
     </label><br><br>
 
+    <?= component('languageSelect') ?>
+
     <strong><?= __('Permissions') ?></strong><br>
 
     <?php /** @var \App\Models\Role $role */

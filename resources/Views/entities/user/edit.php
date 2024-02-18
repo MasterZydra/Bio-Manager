@@ -49,6 +49,9 @@
         <?= __('ForcePasswordChange') ?>
     </label><br><br>
 
+    <?= 'lang' . $user->getLanguageId() ?>
+    <?= component('languageSelect', ['selected' => $user->getLanguageId()]) ?>
+
     <strong><?= __('Permissions') ?></strong><br>
 
     <?php /** @var \App\Models\Role $role */

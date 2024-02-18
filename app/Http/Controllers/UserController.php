@@ -42,6 +42,7 @@ class UserController extends BaseController implements ModelControllerInterface
             ->setPassword(Http::param('password'))
             ->setIsLocked(Http::param('isLocked'))
             ->setIsPwdChangeForced(Http::param('isPwdChangeForced'))
+            ->setLanguageId(Http::param('language') === '' ? null : Http::param('language'))
             ->save();
 
         $user = User::findByUsername(Http::param('username'));
@@ -87,7 +88,8 @@ class UserController extends BaseController implements ModelControllerInterface
             ->setLastname(Http::param('lastname'))
             ->setUsername(Http::param('username'))
             ->setIsLocked(Http::param('isLocked'))
-            ->setIsPwdChangeForced(Http::param('isPwdChangeForced'));
+            ->setIsPwdChangeForced(Http::param('isPwdChangeForced'))
+            ->setLanguageId(Http::param('language') === '' ? null : Http::param('language'));
 
         if (Http::param('password', '') !== '') {
             $user->setPassword(Http::param('password'));

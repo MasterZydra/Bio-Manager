@@ -3,7 +3,6 @@
 namespace Framework\Database\Seeders;
 
 use App\Models\Setting;
-use Framework\Database\Database;
 use Framework\Database\Seeder;
 use Framework\Database\SeederInterface;
 
