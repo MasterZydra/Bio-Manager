@@ -42,13 +42,10 @@ class DeliveryNoteController extends BaseController implements ModelControllerIn
     public function store(): void
     {
         (new DeliveryNote())
-            ->setYear(Http::param('year'))
+            ->setFromHttpParams(['year', 'productId', 'supplierId', 'recipientId'])
             ->setNr(DeliveryNote::nextDeliveryNoteNr(Http::param('year')))
             ->setDeliveryDate(date('Y-m-d'))
             ->setAmount(null)
-            ->setProductId(Http::param('product'))
-            ->setSupplierId(Http::param('supplier'))
-            ->setRecipientId(Http::param('recipient'))
             ->setInvoiceId(null)
             ->setIsInvoiceReady(false)
             ->save();
@@ -72,12 +69,7 @@ class DeliveryNoteController extends BaseController implements ModelControllerIn
     public function update(): void
     {
         DeliveryNote::findById(Http::param('id'))
-            ->setDeliveryDate(Http::param('deliveryDate'))
-            ->setAmount(Http::param('amount'))
-            ->setProductId(Http::param('product'))
-            ->setSupplierId(Http::param('supplier'))
-            ->setRecipientId(Http::param('recipient'))
-            ->setIsInvoiceReady(Http::param('isInvoiceReady'))
+            ->setFromHttpParams(['deliveryDate', 'amount', 'productId', 'supplierId', 'recipientId', 'isInvoiceReady'])
             ->save();
 
         Http::redirect('deliveryNote');

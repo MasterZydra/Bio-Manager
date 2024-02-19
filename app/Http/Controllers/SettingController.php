@@ -34,9 +34,7 @@ class SettingController extends BaseController implements ModelControllerInterfa
     public function store(): void
     {
         (new Setting())
-            ->setName(Http::param('name'))
-            ->setDescription(Http::param('description'))
-            ->setValue(Http::param('value'))
+            ->setFromHttpParams(['name', 'description', 'value'])
             ->save();
 
         Http::redirect('setting');
@@ -58,8 +56,7 @@ class SettingController extends BaseController implements ModelControllerInterfa
     public function update(): void
     {
         Setting::findById(Http::param('id'))
-            ->setDescription(Http::param('description'))
-            ->setValue(Http::param('value'))
+            ->setFromHttpParams(['description', 'value'])
             ->save();
 
         Http::redirect('setting');

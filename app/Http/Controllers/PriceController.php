@@ -49,11 +49,11 @@ class PriceController extends BaseController implements ModelControllerInterface
             Message::setMessage(sprintf(__('InvalidDataTypeForField'), __('Payout')), Type::Error);
             $isValid = false;
         }
-        if (!is_numeric(Http::param('product'))) {
+        if (!is_numeric(Http::param('productId'))) {
             Message::setMessage(sprintf(__('InvalidDataTypeForField'), __('Product')), Type::Error);
             $isValid = false;
         }
-        if (!is_numeric(Http::param('recipient'))) {
+        if (!is_numeric(Http::param('recipientId'))) {
             Message::setMessage(sprintf(__('InvalidDataTypeForField'), __('Recipient')), Type::Error);
             $isValid = false;
         }
@@ -65,8 +65,8 @@ class PriceController extends BaseController implements ModelControllerInterface
             ->setYear(intval(Http::param('year')))
             ->setPrice(floatval(Http::param('price')))
             ->setPricePayout(floatval(Http::param('pricePayout')))
-            ->setProductId(intval(Http::param('product')))
-            ->setRecipientId(intval(Http::param('recipient')))
+            ->setProductId(intval(Http::param('productId')))
+            ->setRecipientId(intval(Http::param('recipientId')))
             ->save();
 
         Http::redirect('price');
@@ -101,11 +101,11 @@ class PriceController extends BaseController implements ModelControllerInterface
                 Message::setMessage(sprintf(__('InvalidDataTypeForField'), __('Payout')), Type::Error);
                 $isValid = false;
             }
-            if (!is_numeric(Http::param('product'))) {
+            if (!is_numeric(Http::param('productId'))) {
                 Message::setMessage(sprintf(__('InvalidDataTypeForField'), __('Product')), Type::Error);
                 $isValid = false;
             }
-            if (!is_numeric(Http::param('recipient'))) {
+            if (!is_numeric(Http::param('recipientId'))) {
                 Message::setMessage(sprintf(__('InvalidDataTypeForField'), __('Recipient')), Type::Error);
                 $isValid = false;
             }
@@ -117,8 +117,8 @@ class PriceController extends BaseController implements ModelControllerInterface
                 ->setYear(intval(Http::param('year')))
                 ->setPrice(floatval(Http::param('price')))
                 ->setPricePayout(floatval(Http::param('pricePayout')))
-                ->setProductId(intval(Http::param('product')))
-                ->setRecipientId(intval(Http::param('recipient')))
+                ->setProductId(intval(Http::param('productId')))
+                ->setRecipientId(intval(Http::param('recipientId')))
                 ->save();
         
             Http::redirect('price');

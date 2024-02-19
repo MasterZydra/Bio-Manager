@@ -34,10 +34,7 @@ class RecipientController extends BaseController implements ModelControllerInter
     public function store(): void
     {
         (new Recipient())
-            ->setName(Http::param('name'))
-            ->setStreet(Http::param('street'))
-            ->setPostalCode(Http::param('postalCode'))
-            ->setCity(Http::param('city'))
+            ->setFromHttpParams(['name', 'street', 'postalCode', 'city'])
             ->setIsLocked(false)
             ->save();
 
@@ -60,11 +57,7 @@ class RecipientController extends BaseController implements ModelControllerInter
     public function update(): void
     {
         Recipient::findById(Http::param('id'))
-            ->setName(Http::param('name'))
-            ->setStreet(Http::param('street'))
-            ->setPostalCode(Http::param('postalCode'))
-            ->setCity(Http::param('city'))
-            ->setIsLocked(Http::param('isLocked'))
+            ->setFromHttpParams(['name', 'street', 'postalCode', 'city', 'isLocked'])
             ->save();
 
         Http::redirect('recipient');

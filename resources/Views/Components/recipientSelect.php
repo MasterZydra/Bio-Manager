@@ -3,8 +3,8 @@
     // Optional passed variables:
     //  $selected => Id that should be selected
 ?>
-<label for="recipient" class="required"><?= __('Recipient') ?>:</label><br>
-<select id="recipient" name="recipient">
+<label for="recipientId" class="required"><?= __('Recipient') ?>:</label><br>
+<select id="recipientId" name="recipientId">
     <?php /** @var \App\Models\Recipient $recipient */
     foreach (Recipient::all() as $recipient) { 
         if ($recipient->getIsLocked()) { continue; } ?>

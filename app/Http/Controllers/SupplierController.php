@@ -34,7 +34,7 @@ class SupplierController extends BaseController implements ModelControllerInterf
     public function store(): void
     {
         (new Supplier())
-            ->setName(Http::param('name'))
+            ->setFromHttpParam('name')
             ->setIsLocked(false)
             ->setHasFullPayout(false)
             ->save();
@@ -58,9 +58,7 @@ class SupplierController extends BaseController implements ModelControllerInterf
     public function update(): void
     {
         Supplier::findById(Http::param('id'))
-            ->setName(Http::param('name'))
-            ->setIsLocked(Http::param('isLocked'))
-            ->setHasFullPayout(Http::param('hasFullPayout'))
+            ->setFromHttpParams(['name', 'isLocked', 'hasFullPayout'])
             ->save();
 
         Http::redirect('supplier');

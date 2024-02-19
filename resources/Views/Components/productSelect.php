@@ -3,8 +3,8 @@
     // Optional passed variables:
     //  $selected => Id that should be selected
 ?>
-<label for="product" class="required"><?= __('Product') ?>:</label><br>
-<select id="product" name="product">
+<label for="productId" class="required"><?= __('Product') ?>:</label><br>
+<select id="productId" name="productId">
     <?php /** @var \App\Models\Product $product */
     foreach (Product::all() as $product) { 
         if ($product->getIsDiscontinued()) { continue; } ?>

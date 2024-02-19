@@ -62,7 +62,7 @@ class InvoiceController extends BaseController implements ModelControllerInterfa
             ->setYear($year)
             ->setNr($nr)
             ->setInvoiceDate(date('Y-m-d'))
-            ->setRecipientId(Http::param('recipient'))
+            ->setFromHttpParam('recipientId')
             ->setIsPaid(false)
             ->save();
         
@@ -87,9 +87,7 @@ class InvoiceController extends BaseController implements ModelControllerInterfa
     public function update(): void
     {
         $invoice = Invoice::findById(Http::param('id'))
-            ->setInvoiceDate(Http::param('invoiceDate'))
-            ->setRecipientId(Http::param('recipient'))
-            ->setIsPaid(Http::param('isPaid'))
+            ->setFromHttpParams(['invoiceDate', 'recipientId', 'isPaid'])
             ->save();
 
         foreach (Http::param('deliveryNote') as $deliveryNoteId) {

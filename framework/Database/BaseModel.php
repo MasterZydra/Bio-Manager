@@ -5,6 +5,7 @@ namespace Framework\Database;
 use Exception;
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
+use Framework\Facades\Http;
 
 abstract class BaseModel
 {
@@ -120,6 +121,24 @@ abstract class BaseModel
             }
             return $this->setData($property, $arguments[0]);
         }
+    }
+
+    public function setFromHttpParams(array $fields): self
+    {
+        foreach ($fields as $field) {
+            $this->setFromHttpParam($field);
+        }
+        return $this;
+    }
+
+    public function setFromHttpParam(string $field, string $param = null): self
+    {
+        if ($param === null) {
+            $param = $field;
+        }
+
+        $this->setData($field, Http::param($param));
+        return $this;
     }
 
     /* Getter & Setter - Bool */

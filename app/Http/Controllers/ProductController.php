@@ -34,7 +34,7 @@ class ProductController extends BaseController implements ModelControllerInterfa
     public function store(): void
     {
         (new Product())
-            ->setName(Http::param('name'))
+            ->setFromHttpParam('name')
             ->setIsDiscontinued(false)
             ->save();
 
@@ -57,8 +57,7 @@ class ProductController extends BaseController implements ModelControllerInterfa
     public function update(): void
     {
         Product::findById(Http::param('id'))
-            ->setName(Http::param('name'))
-            ->setIsDiscontinued(Http::param('isDiscontinued'))
+            ->setFromHttpParams(['name', 'isDiscontinued'])
             ->save();
 
         Http::redirect('product');

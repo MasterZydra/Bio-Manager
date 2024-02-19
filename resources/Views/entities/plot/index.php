@@ -16,7 +16,7 @@
 
 <table id="dataTable" class="scrollable">
     <tr>
-        <th class="center"><?= __('Nr') ?></th>
+        <th class="center"><?= __('No.') ?></th>
         <th class="center"><?= __('Name') ?></th>
         <th class="center"><?= __('Subdistrict') ?></th>
         <th class="center"><?= __('Supplier') ?></th>

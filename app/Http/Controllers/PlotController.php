@@ -34,10 +34,7 @@ class PlotController extends BaseController implements ModelControllerInterface
     public function store(): void
     {
         (new Plot())
-            ->setNr(Http::param('nr'))
-            ->setName(Http::param('name'))
-            ->setSubdistrict(Http::param('subdistrict'))
-            ->setSupplierId(Http::param('supplier'))
+            ->setFromHttpParams(['nr', 'name', 'subdistrict', 'supplierId'])
             ->setIsLocked(false)
             ->save();
 
@@ -60,11 +57,7 @@ class PlotController extends BaseController implements ModelControllerInterface
     public function update(): void
     {
         Plot::findById(Http::param('id'))
-            ->setNr(Http::param('nr'))
-            ->setName(Http::param('name'))
-            ->setSubdistrict(Http::param('subdistrict'))
-            ->setSupplierId(Http::param('supplier'))
-            ->setIsLocked(Http::param('isLocked'))
+            ->setFromHttpParams(['nr', 'name', 'subdistrict', 'supplierId', 'isLocked'])
             ->save();
         
         Http::redirect('plot');
