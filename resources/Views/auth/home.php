@@ -123,8 +123,8 @@ if (Auth::hasRole('Administrator')) { ?>
 </div>
 
 <div class="box">
-    <strong>Systemeinstellungen</strong><br>
-    <a href="editImpressum.php">Impressum bearbeiten</a><br>
+    <strong><?= __('SystemSettings') ?></strong><br>
+    <a href="editImprintSettings"><?= __('EditImprint') ?></a><br>
     <a href="editInvoiceData.php">Rechnungsdaten bearbeiten</a>
 </div>
 
