@@ -76,6 +76,20 @@ class DeliveryNote extends BaseModel
         );
     }
 
+    public function getPositionPrice(): float
+    {
+        return $this->getAmount() * $this->getPrice()->getPrice();
+    }
+
+    public function getPrice(): Price
+    {
+        return Price::find(Price::getQueryBuilder()
+            ->where(ColType::Int, 'year', Condition::Equal, $this->getYear())
+            ->where(ColType::Int, 'productId', Condition::Equal, $this->getProductId())
+            ->where(ColType::Int, 'recipientId', Condition::Equal, $this->getRecipientId())
+        );
+    }
+
     public function getProduct(): Product
     {
         return Product::findById($this->getProductId());

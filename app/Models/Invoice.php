@@ -83,6 +83,31 @@ class Invoice extends BaseModel
         return $row['nextId'];
     }
 
+    public function getDeliveryNotes(): array
+    {
+        return DeliveryNote::all(DeliveryNote::getQueryBuilder()
+            ->where(ColType::Int, 'invoiceId', Condition::Equal, $this->getId())
+            ->orderBy('nr')
+        );
+    }
+
+    public function getTotalPrice(): float
+    {
+        $total = 0.0;
+        /** @var \App\Models\DeliveryNote $deliveryNote */
+        foreach ($this->getDeliveryNotes() as $deliveryNote) {
+            $total += $deliveryNote->getPositionPrice();
+        }
+        return $total;
+    }
+
+    /* Helper for PDF */
+
+    public function PdfInvoiceName(): string
+    {
+        return implode('_', [setting('invoiceName'), $this->getYear(), $this->getNr()]);
+    }
+
     /* Getter & Setter */
 
     public function getYear(): int

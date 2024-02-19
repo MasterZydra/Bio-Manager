@@ -6,6 +6,7 @@ use App\Models\DeliveryNote;
 use App\Models\Invoice;
 use Framework\Database\Query\SortOrder;
 use Framework\Facades\Http;
+use Framework\PDF\PDF;
 use Framework\Routing\BaseController;
 use Framework\Routing\ModelControllerInterface;
 
@@ -25,6 +26,18 @@ class InvoiceController extends BaseController implements ModelControllerInterfa
                     ->orderBy('nr', SortOrder::Desc)
             )]
         );
+    }
+
+    /**
+     * Show the details of one model
+     * Route: <base route>/show
+     */
+    public function show(): void
+    {
+        $invoice = Invoice::findById(Http::param('id'));
+        (new PDF())
+            ->createPDF(setting('invoiceAuthor'), $invoice->PdfInvoiceName(), $invoice->PdfInvoiceName(), render('pdf.invoice', ['invoice' => $invoice]))
+            ->showInBrowser($invoice->PdfInvoiceName());
     }
 
     /**

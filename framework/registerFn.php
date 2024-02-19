@@ -10,6 +10,19 @@ function printLn(string $output): void
     echo $output . PHP_EOL;
 }
 
+/** Render the given view and return the HTML */
+function render(string $name, array $data = []): string
+{
+    ob_start();
+    if (count($data) > 0) {
+        extract($data);
+    }
+    require Path::join(__DIR__,  '..', 'resources', 'Views', str_replace('.', '/', $name) . '.php');
+    $html = ob_get_contents();
+    ob_end_clean();
+    return $html;
+}
+
 /** Render the given view */
 function view(string $name, array $data = []): void
 {
