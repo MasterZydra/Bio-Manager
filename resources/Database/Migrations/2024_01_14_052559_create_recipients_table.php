@@ -11,7 +11,9 @@ return new class extends Migration
             'CREATE TABLE recipients (' .
             'id INT auto_increment,' .
             'name VARCHAR(100) NOT NULL,' .
-            'address VARCHAR(255) NOT NULL,' .
+            'street VARCHAR(255) NOT NULL,' .
+            'postalCode VARCHAR(10) NOT NULL,' .
+            'city VARCHAR(255) NOT NULL,' .
             'isLocked tinyint(1) NOT NULL DEFAULT 0,' .
             'createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,' .
             'updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,' .

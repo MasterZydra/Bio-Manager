@@ -13,8 +13,14 @@
     <label for="name" class="required"><?= __('Name') ?>:</label><br>
     <input id="name" name="name" type="text" maxlength="100" value="<?= $recipient->getName() ?>" required autofocus><br>
 
-    <label for="address" class="required"><?= __('Address') ?>:</label><br>
-    <textarea id="address" name="address" required><?= $recipient->getAddress() ?></textarea><br>
+    <label for="street" class="required"><?= __('Street') ?>:</label><br>
+    <input id="street" name="street" type="text" value="<?= $recipient->getStreet() ?>" required><br>
+
+    <label for="postalCode" class="required"><?= __('PostalCode') ?>:</label><br>
+    <input id="postalCode" name="postalCode" type="text" value="<?= $recipient->getPostalCode() ?>" required><br>
+
+    <label for="city" class="required"><?= __('City') ?>:</label><br>
+    <input id="city" name="city" type="text" value="<?= $recipient->getCity() ?>" required><br>
 
     <label>
         <input type="hidden" name="isLocked" value="0">

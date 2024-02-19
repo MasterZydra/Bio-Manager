@@ -9,7 +9,9 @@ use Framework\Facades\Convert;
 class Recipient extends BaseModel
 {
     private const NAME = 'name';
-    private const ADDRESS = 'address';
+    private const STREET = 'street';
+    private const POSTAL_CODE = 'postalCode';
+    private const CITY = 'city';
     private const IS_LOCKED = 'isLocked';
 
     protected static function new(array $data = []): self
@@ -21,18 +23,22 @@ class Recipient extends BaseModel
     {
         if ($this->getId() === null) {
             Database::prepared(
-                'INSERT INTO ' . $this->getTableName() . ' (name, address, isLocked) VALUES (?, ?, ?)',
-                'ssi',
+                'INSERT INTO ' . $this->getTableName() . ' (name, street, postalCode, city, isLocked) VALUES (?, ?, ?, ?, ?)',
+                'ssssi',
                 $this->getName(),
-                $this->getAddress(),
+                $this->getStreet(),
+                $this->getPostalCode(),
+                $this->getCity(),
                 Convert::boolToInt($this->getIsLocked())
             );
         } else {
             Database::prepared(
-                'UPDATE ' . $this->getTableName() . ' SET `name`=?, address=?, isLocked=? WHERE id=?',
-                'ssii',
+                'UPDATE ' . $this->getTableName() . ' SET `name`=?, street=?, postalCode=?, city=?, isLocked=? WHERE id=?',
+                'ssssii',
                 $this->getName(),
-                $this->getAddress(),
+                $this->getStreet(),
+                $this->getPostalCode(),
+                $this->getCity(),
                 Convert::boolToInt($this->getIsLocked()),
                 $this->getId()
             );
@@ -53,14 +59,34 @@ class Recipient extends BaseModel
         return $this->setDataString(self::NAME, $value);
     }
 
-    public function getAddress(): string
+    public function getStreet(): string
     {
-        return $this->getDataString(self::ADDRESS);
+        return $this->getDataString(self::STREET);
     }
 
-    public function setAddress(string $value): self
+    public function setStreet(string $value): self
     {
-        return $this->setDataString(self::ADDRESS, $value);
+        return $this->setDataString(self::STREET, $value);
+    }
+
+    public function getPostalCode(): string
+    {
+        return $this->getDataString(self::POSTAL_CODE);
+    }
+
+    public function setPostalCode(string $value): self
+    {
+        return $this->setDataString(self::POSTAL_CODE, $value);
+    }
+
+    public function getCity(): string
+    {
+        return $this->getDataString(self::CITY);
+    }
+
+    public function setCity(string $value): self
+    {
+        return $this->setDataString(self::CITY, $value);
     }
 
     public function getIsLocked(): bool

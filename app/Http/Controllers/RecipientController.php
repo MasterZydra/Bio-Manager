@@ -35,7 +35,9 @@ class RecipientController extends BaseController implements ModelControllerInter
     {
         (new Recipient())
             ->setName(Http::param('name'))
-            ->setAddress(Http::param('address'))
+            ->setStreet(Http::param('street'))
+            ->setPostalCode(Http::param('postalCode'))
+            ->setCity(Http::param('city'))
             ->setIsLocked(false)
             ->save();
 
@@ -59,7 +61,9 @@ class RecipientController extends BaseController implements ModelControllerInter
     {
         Recipient::findById(Http::param('id'))
             ->setName(Http::param('name'))
-            ->setAddress(Http::param('address'))
+            ->setStreet(Http::param('street'))
+            ->setPostalCode(Http::param('postalCode'))
+            ->setCity(Http::param('city'))
             ->setIsLocked(Http::param('isLocked'))
             ->save();
 
