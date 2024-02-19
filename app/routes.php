@@ -8,6 +8,7 @@
  *      Route::addController('mysecondroute', new MyController());
  */
 
+use App\Http\Controllers\ActiveSuppliers;
 use App\Http\Controllers\DeliveryNoteController;
 use App\Http\Controllers\EditVolumeDistributionController;
 use App\Http\Controllers\InvoiceController;
@@ -53,6 +54,8 @@ if (Auth::isLoggedIn()) {
     Router::addModel('supplier', new SupplierController());
     Router::addController('volumeDistribution/edit', new EditVolumeDistributionController());
     Router::addController('volumeDistribution/edit', new EditVolumeDistributionController(), 'POST');
+
+    Router::addController('activeSuppiers', new ActiveSuppliers());
 
     if (Auth::hasRole('Administrator')) {
         Router::addModel('user', new UserController());

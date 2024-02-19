@@ -91,8 +91,8 @@ if (Auth::hasRole('Maintainer')) { ?>
 </h2>
 
 <div class="box">
-    <strong>Lieferant</strong><br>
-    <a href="showActiveSupplier.php" target="_blank">Aktive Lieferanten anzeigen</a><br>
+    <strong><?= __('Supplier') ?></strong><br>
+    <a href="activeSuppiers" target="_blank"><?= __('ShowActiveSuppliers') ?></a><br>
     <a href="showSupplierPayments.php">Auszahlungen anzeigen</a><br>
 </div>
 
