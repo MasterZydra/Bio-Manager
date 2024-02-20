@@ -11,8 +11,8 @@ class UnitsSeeder extends Seeder implements SeederInterface
     public function run(): void
     {
         (new Setting())
-            ->setName('volumeUnit')
-            ->setDescription('Volume unit')
+            ->setName('massUnit')
+            ->setDescription('Mass unit')
             ->setValue('kg')
             ->save();
     }

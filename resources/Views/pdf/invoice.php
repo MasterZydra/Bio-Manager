@@ -69,7 +69,7 @@ foreach ($invoice->getDeliveryNotes() as $deliveryNote) { ?>
 <td style="text-align: center;"><?= $deliveryNote->getNr() ?></td>
 <td style="text-align: center;"><?= date("d.m.Y", strtotime($deliveryNote->getDeliveryDate())) ?></td>
 <td style="text-align: center;"><?= $deliveryNote->getProduct()->getName() ?></td>
-<td style="text-align: right;"><?= $deliveryNote->getAmount() ?> <?= setting('volumeUnit') ?></td>
+<td style="text-align: right;"><?= $deliveryNote->getAmount() ?> <?= setting('massUnit') ?></td>
 <td style="text-align: center;"><?= Format::Euro($deliveryNote->getPositionPrice()) ?></td>
 </tr>
 
