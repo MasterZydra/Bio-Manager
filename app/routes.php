@@ -11,6 +11,7 @@
 use App\Http\Controllers\ActiveSuppliers;
 use App\Http\Controllers\DeliveryNoteController;
 use App\Http\Controllers\EditImprintSettings;
+use App\Http\Controllers\EditInvoiceSettings;
 use App\Http\Controllers\EditVolumeDistributionController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PlotController;
@@ -60,6 +61,8 @@ if (Auth::isLoggedIn()) {
 
     Router::addController('editImprintSettings', new EditImprintSettings());
     Router::addController('editImprintSettings', new EditImprintSettings(), 'POST');
+    Router::addController('editInvoiceSettings', new EditInvoiceSettings());
+    Router::addController('editInvoiceSettings', new EditInvoiceSettings(), 'POST');
 
     if (Auth::hasRole('Administrator')) {
         Router::addModel('user', new UserController());

@@ -125,7 +125,7 @@ if (Auth::hasRole('Administrator')) { ?>
 <div class="box">
     <strong><?= __('SystemSettings') ?></strong><br>
     <a href="editImprintSettings"><?= __('EditImprint') ?></a><br>
-    <a href="editInvoiceData.php">Rechnungsdaten bearbeiten</a>
+    <a href="editInvoiceSettings"><?= __('EditInvoiceData') ?></a>
 </div>
 
 <div class="box">
