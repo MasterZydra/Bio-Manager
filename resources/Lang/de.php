@@ -56,6 +56,7 @@ return [
     'InvalidVolumeDistributionData' => 'Ungültige Mengenverteilungsdaten',
     'Invoice' => 'Rechnung',
     'InvoiceName' => 'Rechnungsname',
+    'inX' => 'in %s',
     'IsDiscontinued' => 'Ist abgekündigt',
     'IsLocked' => 'Ist gesperrt',
     'IsPaid' => 'Ist bezahlt',

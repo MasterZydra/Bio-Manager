@@ -19,9 +19,9 @@ class Format
         return $ret;
     }
 
-    /** Format the given value to `X.XXX,XX EUR` */
-    public static function Euro(float $value): string
+    /** Format the given value to e.g. `X.XXX,XX EUR` */
+    public static function Currency(float $value): string
     {
-        return number_format($value, 2, ',', '.') . ' EUR';
+        return number_format($value, 2, ',', '.') . ' ' . setting('currencyUnit');
     }
 }

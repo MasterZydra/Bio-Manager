@@ -70,7 +70,7 @@ foreach ($invoice->getDeliveryNotes() as $deliveryNote) { ?>
 <td style="text-align: center;"><?= date("d.m.Y", strtotime($deliveryNote->getDeliveryDate())) ?></td>
 <td style="text-align: center;"><?= $deliveryNote->getProduct()->getName() ?></td>
 <td style="text-align: right;"><?= $deliveryNote->getAmount() ?> <?= setting('massUnit') ?></td>
-<td style="text-align: center;"><?= Format::Euro($deliveryNote->getPositionPrice()) ?></td>
+<td style="text-align: center;"><?= Format::Currency($deliveryNote->getPositionPrice()) ?></td>
 </tr>
 
 <?php } ?>
@@ -96,7 +96,7 @@ if ($umsatzsteuer > 0) { $netto = $totalAmount / (1 + $umsatzsteuer); $umsatzste
 
 <tr>
 <td colspan="3"><b>Gesamtbetrag: </b></td>
-<td style="text-align: center;"><b><?= Format::Euro($invoice->getTotalPrice()) ?></b></td>
+<td style="text-align: center;"><b><?= Format::Currency($invoice->getTotalPrice()) ?></b></td>
 </tr> 
 
 </table>

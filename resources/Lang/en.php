@@ -56,6 +56,7 @@ return [
     'InvalidVolumeDistributionData' => 'Invalid volume distribution data',
     'Invoice' => 'Invoice',
     'InvoiceName' => 'Invoice name',
+    'inX' => 'in %s',
     'IsDiscontinued' => 'Is discontinued',
     'IsLocked' => 'Is locked',
     'IsPaid' => 'Is paid',
