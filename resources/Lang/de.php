@@ -115,6 +115,7 @@ return [
     'Value' => 'Wert',
     'VolumeDistribution' => 'Mengenverteilung',
     'WelcomeToMemberArea' => 'Willkommen im Mitgliederbereich',
+    'XPerY' => '%s pro %s',
     'Year' => 'Jahr',
     'Yes' => 'Ja',
 ];

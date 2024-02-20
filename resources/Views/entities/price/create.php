@@ -14,12 +14,10 @@
 
     <?= component('recipientSelect') ?><br>
 
-    <!-- Preis (pro getSetting('volumeUnit');) -->
-    <label for="price" class="required"><?= __('Price') ?>:</label><br>
+    <label for="price" class="required"><?= __('Price') ?> (<?= sprintf(__('XPerY'), setting('currencyUnit'), setting('massUnit')) ?>):</label><br>
     <input id="price" name="price" type="number" step="0.01" required><br>
     
-    <!-- Preis (pro getSetting('volumeUnit');) -->
-    <label for="pricePayout" class="required"><?= __('Payout') ?>:</label><br>
+    <label for="pricePayout" class="required"><?= __('Payout') ?> (<?= sprintf(__('XPerY'), setting('currencyUnit'), setting('massUnit')) ?>):</label><br>
     <input id="pricePayout" name="pricePayout" type="number" step="0.01" required><br>
 
     <button><?= __('Create') ?></button>
