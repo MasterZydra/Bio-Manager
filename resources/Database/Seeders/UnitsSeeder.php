@@ -15,5 +15,11 @@ class UnitsSeeder extends Seeder implements SeederInterface
             ->setDescription('Mass unit')
             ->setValue('kg')
             ->save();
+        
+        (new Setting())
+            ->setName('currencyUnit')
+            ->setDescription('Currency unit')
+            ->setValue('EUR')
+            ->save();
     }
 }
