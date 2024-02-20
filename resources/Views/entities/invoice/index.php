@@ -31,7 +31,7 @@
         <td class="center"><?= $invoice->getInvoiceDate() ?></td>
         <td><?= $invoice->getRecipient()->getName() ?></td>
         <td class="center"><?= Convert::boolToTString($invoice->getIsPaid()) ?></td>
-        <td><a href="invoice/edit?id=<?= $invoice->getId() ?>"><?=__('Edit') ?></a></td>
+        <td><a href="invoice/edit?id=<?= $invoice->getId() ?>"><?=__('Edit') ?> <a href="invoice/show?id=<?= $invoice->getId() ?>" target="_blank">PDF</a></td>
     </tr>
     <?php endforeach ?>
 </table>
