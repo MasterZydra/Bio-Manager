@@ -1,8 +1,5 @@
 # MacOs
 .DS_Store
 
-# Ext
-/ext/TCPDF/examples
-
 # Env
 .env
