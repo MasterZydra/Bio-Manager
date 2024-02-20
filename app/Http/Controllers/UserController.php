@@ -36,13 +36,8 @@ class UserController extends BaseController implements ModelControllerInterface
     public function store(): void
     {
         (new User())
-            ->setFirstname(Http::param('firstname'))
-            ->setLastname(Http::param('lastname'))
-            ->setUsername(Http::param('username'))
-            ->setPassword(Http::param('password'))
-            ->setIsLocked(Http::param('isLocked'))
-            ->setIsPwdChangeForced(Http::param('isPwdChangeForced'))
-            ->setLanguageId(Http::param('language') === '' ? null : Http::param('language'))
+            ->setFromHttpParams(['firstname', 'lastname', 'username', 'password', 'isLocked', 'isPwdChangeForced'])
+            ->setLanguageId(Http::param('languageId') === '' ? null : Http::param('languageId'))
             ->save();
 
         $user = User::findByUsername(Http::param('username'));
@@ -84,12 +79,8 @@ class UserController extends BaseController implements ModelControllerInterface
     {
         /** @var \App\Models\User */
         $user = User::findById(Http::param('id'))
-            ->setFirstname(Http::param('firstname'))
-            ->setLastname(Http::param('lastname'))
-            ->setUsername(Http::param('username'))
-            ->setIsLocked(Http::param('isLocked'))
-            ->setIsPwdChangeForced(Http::param('isPwdChangeForced'))
-            ->setLanguageId(Http::param('language') === '' ? null : Http::param('language'));
+            ->setFromHttpParams(['firstname', 'lastname', 'username', 'isLocked', 'isPwdChangeForced'])
+            ->setLanguageId(Http::param('languageId') === '' ? null : Http::param('languageId'));
 
         if (Http::param('password', '') !== '') {
             $user->setPassword(Http::param('password'));

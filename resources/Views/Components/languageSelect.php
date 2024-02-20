@@ -3,8 +3,8 @@
     // Optional passed variables:
     //  $selected => Id that should be selected
 ?>
-<label for="language"><?= __('Language') ?>:</label><br>
-<select id="language" name="language">
+<label for="languageId"><?= __('Language') ?>:</label><br>
+<select id="languageId" name="languageId">
     <option value=""><?= __('PleaseSelect') ?></option>
     <?php /** @var \App\Models\Language $language */
     foreach (Language::all() as $language) { ?> 

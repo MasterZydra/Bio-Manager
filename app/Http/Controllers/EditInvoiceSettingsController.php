@@ -7,7 +7,7 @@ use Framework\Facades\Http;
 use Framework\Routing\BaseController;
 use Framework\Routing\ControllerInterface;
 
-class EditInvoiceSettings extends BaseController implements ControllerInterface
+class EditInvoiceSettingsController extends BaseController implements ControllerInterface
 {
     public function execute(): void
     {

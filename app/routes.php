@@ -8,10 +8,10 @@
  *      Route::addController('mysecondroute', new MyController());
  */
 
-use App\Http\Controllers\ActiveSuppliers;
+use App\Http\Controllers\ActiveSuppliersController;
 use App\Http\Controllers\DeliveryNoteController;
-use App\Http\Controllers\EditImprintSettings;
-use App\Http\Controllers\EditInvoiceSettings;
+use App\Http\Controllers\EditImprintSettingsController;
+use App\Http\Controllers\EditInvoiceSettingsController;
 use App\Http\Controllers\EditVolumeDistributionController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PlotController;
@@ -57,12 +57,12 @@ if (Auth::isLoggedIn()) {
     Router::addController('volumeDistribution/edit', new EditVolumeDistributionController());
     Router::addController('volumeDistribution/edit', new EditVolumeDistributionController(), 'POST');
 
-    Router::addController('activeSuppiers', new ActiveSuppliers());
+    Router::addController('activeSuppiers', new ActiveSuppliersController());
 
-    Router::addController('editImprintSettings', new EditImprintSettings());
-    Router::addController('editImprintSettings', new EditImprintSettings(), 'POST');
-    Router::addController('editInvoiceSettings', new EditInvoiceSettings());
-    Router::addController('editInvoiceSettings', new EditInvoiceSettings(), 'POST');
+    Router::addController('editImprintSettings', new EditImprintSettingsController());
+    Router::addController('editImprintSettings', new EditImprintSettingsController(), 'POST');
+    Router::addController('editInvoiceSettings', new EditInvoiceSettingsController());
+    Router::addController('editInvoiceSettings', new EditInvoiceSettingsController(), 'POST');
 
     if (Auth::hasRole('Administrator')) {
         Router::addModel('user', new UserController());

@@ -7,7 +7,7 @@ use Framework\PDF\PDF;
 use Framework\Routing\BaseController;
 use Framework\Routing\ControllerInterface;
 
-class ActiveSuppliers extends BaseController implements ControllerInterface
+class ActiveSuppliersController extends BaseController implements ControllerInterface
 {
     public function execute(): void
     {

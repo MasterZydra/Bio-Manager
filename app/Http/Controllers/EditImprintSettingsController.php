@@ -7,7 +7,7 @@ use Framework\Facades\Http;
 use Framework\Routing\BaseController;
 use Framework\Routing\ControllerInterface;
 
-class EditImprintSettings extends BaseController implements ControllerInterface
+class EditImprintSettingsController extends BaseController implements ControllerInterface
 {
     public function execute(): void
     {
