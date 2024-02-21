@@ -7,9 +7,7 @@
 <h1><?= __('Price') ?></h1>
 
 <p>
-    <?php if (Auth::hasRole('Maintainer')) {
-        ?><a href="price/create"><?= __('AddPrice') ?></a><?php
-    } ?>
+    <a href="price/create"><?= __('AddPrice') ?></a>
 </p>
 
 <?= component('filterInput') ?>

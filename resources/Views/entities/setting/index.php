@@ -4,9 +4,7 @@
 <h1><?= __('Setting') ?></h1>
 
 <p>
-    <?php if (Auth::hasRole('Developer')) { ?>
-        <a href="setting/create"><?= __('AddSetting') ?></a>
-    <?php } ?>
+    <a href="setting/create"><?= __('AddSetting') ?></a>
 </p>
 
 <?= component('filterInput') ?>

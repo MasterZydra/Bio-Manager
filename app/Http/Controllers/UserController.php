@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\UserRole;
+use Framework\Authentication\Auth;
 use Framework\Facades\Http;
 use Framework\Routing\BaseController;
 use Framework\Routing\ModelControllerInterface;
@@ -17,6 +18,8 @@ class UserController extends BaseController implements ModelControllerInterface
      */
     public function index(): void
     {
+        Auth::checkRole('Administrator');
+
         view('entities.user.index', ['users' => User::all()]);
     }
 
@@ -26,6 +29,8 @@ class UserController extends BaseController implements ModelControllerInterface
      */
     public function create(): void
     {
+        Auth::checkRole('Administrator');
+
         view('entities.user.create');
     }
 
@@ -35,6 +40,8 @@ class UserController extends BaseController implements ModelControllerInterface
      */
     public function store(): void
     {
+        Auth::checkRole('Administrator');
+
         (new User())
             ->setFromHttpParams(['firstname', 'lastname', 'username', 'password', 'isLocked', 'isPwdChangeForced'])
             ->setLanguageId(Http::param('languageId') === '' ? null : Http::param('languageId'))
@@ -68,6 +75,8 @@ class UserController extends BaseController implements ModelControllerInterface
      */
     public function edit(): void
     {
+        Auth::checkRole('Administrator');
+
         view('entities.user.edit', ['user' => User::findById(Http::param('id'))]);
     }
 
@@ -77,6 +86,8 @@ class UserController extends BaseController implements ModelControllerInterface
      */
     public function update(): void
     {
+        Auth::checkRole('Administrator');
+
         /** @var \App\Models\User */
         $user = User::findById(Http::param('id'))
             ->setFromHttpParams(['firstname', 'lastname', 'username', 'isLocked', 'isPwdChangeForced'])
@@ -112,6 +123,8 @@ class UserController extends BaseController implements ModelControllerInterface
      */
     public function destroy(): void
     {
+        Auth::checkRole('Administrator');
+
         User::delete(Http::param('id'));
 
         Http::redirect('user');

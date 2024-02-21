@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Setting;
+use Framework\Authentication\Auth;
 use Framework\Facades\Http;
 use Framework\Routing\BaseController;
 use Framework\Routing\ModelControllerInterface;
@@ -15,6 +16,8 @@ class SettingController extends BaseController implements ModelControllerInterfa
      */
     public function index(): void
     {
+        Auth::checkRole('Administrator');
+
         view('entities.setting.index', ['settings' => Setting::all()]);
     }
 
@@ -24,6 +27,8 @@ class SettingController extends BaseController implements ModelControllerInterfa
      */
     public function create(): void
     {
+        Auth::checkRole('Administrator');
+
         view('entities.setting.create');
     }
 
@@ -33,6 +38,8 @@ class SettingController extends BaseController implements ModelControllerInterfa
      */
     public function store(): void
     {
+        Auth::checkRole('Administrator');
+
         (new Setting())
             ->setFromHttpParams(['name', 'description', 'value'])
             ->save();
@@ -46,6 +53,8 @@ class SettingController extends BaseController implements ModelControllerInterfa
      */
     public function edit(): void
     {
+        Auth::checkRole('Administrator');
+
         view('entities.setting.edit', ['setting' => Setting::findById(Http::param('id'))]);
     }
 
@@ -55,6 +64,8 @@ class SettingController extends BaseController implements ModelControllerInterfa
      */
     public function update(): void
     {
+        Auth::checkRole('Administrator');
+
         Setting::findById(Http::param('id'))
             ->setFromHttpParams(['description', 'value'])
             ->save();
@@ -68,6 +79,8 @@ class SettingController extends BaseController implements ModelControllerInterfa
      */
     public function destroy(): void
     {
+        Auth::checkRole('Administrator');
+
         Setting::delete(Http::param('id'));
 
         Http::redirect('setting');

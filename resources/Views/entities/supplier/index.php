@@ -7,9 +7,7 @@
 <h1><?= __('Supplier') ?></h1>
 
 <p>
-    <?php if (Auth::hasRole('Maintainer')) {
-        ?><a href="supplier/create"><?= __('AddSupplier') ?></a><?php
-    } ?>
+    <a href="supplier/create"><?= __('AddSupplier') ?></a>
 </p>
 
 <?= component('filterInput') ?>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Recipient;
+use Framework\Authentication\Auth;
 use Framework\Facades\Http;
 use Framework\Routing\BaseController;
 use Framework\Routing\ModelControllerInterface;
@@ -15,6 +16,8 @@ class RecipientController extends BaseController implements ModelControllerInter
      */
     public function index(): void
     {
+        Auth::checkRole('Maintainer');
+
         view('entities.recipient.index', ['recipients' => Recipient::all()]);
     }
 
@@ -24,6 +27,8 @@ class RecipientController extends BaseController implements ModelControllerInter
      */
     public function create(): void
     {
+        Auth::checkRole('Maintainer');
+
         view('entities.recipient.create');
     }
 
@@ -33,6 +38,8 @@ class RecipientController extends BaseController implements ModelControllerInter
      */
     public function store(): void
     {
+        Auth::checkRole('Maintainer');
+
         (new Recipient())
             ->setFromHttpParams(['name', 'street', 'postalCode', 'city'])
             ->setIsLocked(false)
@@ -47,6 +54,8 @@ class RecipientController extends BaseController implements ModelControllerInter
      */
     public function edit(): void
     {
+        Auth::checkRole('Maintainer');
+
         view('entities.recipient.edit', ['recipient' => Recipient::findById(Http::param('id'))]);
     }
 
@@ -56,6 +65,8 @@ class RecipientController extends BaseController implements ModelControllerInter
      */
     public function update(): void
     {
+        Auth::checkRole('Maintainer');
+
         Recipient::findById(Http::param('id'))
             ->setFromHttpParams(['name', 'street', 'postalCode', 'city', 'isLocked'])
             ->save();
@@ -69,6 +80,8 @@ class RecipientController extends BaseController implements ModelControllerInter
      */
     public function destroy(): void
     {
+        Auth::checkRole('Maintainer');
+
         Recipient::delete(Http::param('id'));
 
         Http::redirect('recipient');

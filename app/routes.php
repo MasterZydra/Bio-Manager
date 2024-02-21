@@ -45,35 +45,40 @@ if (Auth::isLoggedIn()) {
     Router::addController('changePassword', new ChangePasswordController(), 'POST');
     Router::addController('logout', new LogoutController());
 
-    Router::addController('cli', new WebCliController());
-    Router::addController('cli', new WebCliController(), 'POST');
+    if (Auth::hasRole('Maintainer')) {
+        // Entities
+        Router::addController('volumeDistribution/edit', new EditVolumeDistributionController());
+        Router::addController('volumeDistribution/edit', new EditVolumeDistributionController(), 'POST');
+        Router::addModel('deliveryNote', new DeliveryNoteController());
+        Router::addModel('invoice', new InvoiceController());
+        Router::addModel('plot', new PlotController());
+        Router::addModel('price', new PriceController());
+        Router::addModel('product', new ProductController());
+        Router::addModel('recipient', new RecipientController());
+        Router::addModel('setting', new SettingController());
+        Router::addModel('supplier', new SupplierController());
 
-    Router::addModel('deliveryNote', new DeliveryNoteController());
-    Router::addModel('invoice', new InvoiceController());
-    Router::addModel('plot', new PlotController());
-    Router::addModel('price', new PriceController());
-    Router::addModel('product', new ProductController());
-    Router::addModel('recipient', new RecipientController());
-    Router::addModel('setting', new SettingController());
-    Router::addModel('supplier', new SupplierController());
-    Router::addController('volumeDistribution/edit', new EditVolumeDistributionController());
-    Router::addController('volumeDistribution/edit', new EditVolumeDistributionController(), 'POST');
-
-    Router::addController('activeSuppiers', new ActiveSuppliersController());
-
-    Router::addController('editImprintSettings', new EditImprintSettingsController());
-    Router::addController('editImprintSettings', new EditImprintSettingsController(), 'POST');
-    Router::addController('editInvoiceSettings', new EditInvoiceSettingsController());
-    Router::addController('editInvoiceSettings', new EditInvoiceSettingsController(), 'POST');
-
-    Router::addController('showSupplierPayouts', new SupplierPayoutsController());
-    Router::addController('showSupplierPayouts', new SupplierPayoutsController(), 'POST');
-
-    Router::addController('showVolumeDistribution', new VolumeDistributionPdfController());
-    Router::addController('showVolumeDistribution', new VolumeDistributionPdfController(), 'POST');
+        // Analyses
+        Router::addController('activeSuppiers', new ActiveSuppliersController());
+        Router::addController('showSupplierPayouts', new SupplierPayoutsController());
+        Router::addController('showSupplierPayouts', new SupplierPayoutsController(), 'POST');    
+        Router::addController('showVolumeDistribution', new VolumeDistributionPdfController());
+        Router::addController('showVolumeDistribution', new VolumeDistributionPdfController(), 'POST');
+    }
 
     if (Auth::hasRole('Administrator')) {
         Router::addModel('user', new UserController());
+
+        // Settings
+        Router::addController('editImprintSettings', new EditImprintSettingsController());
+        Router::addController('editImprintSettings', new EditImprintSettingsController(), 'POST');
+        Router::addController('editInvoiceSettings', new EditInvoiceSettingsController());
+        Router::addController('editInvoiceSettings', new EditInvoiceSettingsController(), 'POST');
+    }
+
+    if (Auth::hasRole('Developer')) {
+        Router::addController('cli', new WebCliController());
+        Router::addController('cli', new WebCliController(), 'POST');
     }
 }
 

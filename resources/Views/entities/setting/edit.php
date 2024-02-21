@@ -26,11 +26,9 @@ use Framework\Authentication\Auth;
     <button><?= __('Save') ?></button>
 </form>
 
-<?php if (Auth::hasRole('Developer')) { ?>
-    <form action="destroy" method="post">
-        <input name="id" type="hidden" value="<?= $setting->getId() ?>">
-        <button class="red"><?= __('Delete') ?></button>
-    </form>
-<?php } ?>
+<form action="destroy" method="post">
+    <input name="id" type="hidden" value="<?= $setting->getId() ?>">
+    <button class="red"><?= __('Delete') ?></button>
+</form>
 
 <?= component('layout.footer') ?>

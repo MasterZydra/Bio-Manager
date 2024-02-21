@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DeliveryNote;
 use App\Models\VolumeDistribution;
+use Framework\Authentication\Auth;
 use Framework\Facades\Http;
 use Framework\Message\Message;
 use Framework\Message\Type;
@@ -14,6 +15,8 @@ class EditVolumeDistributionController extends BaseController implements Control
 {
     public function execute(): void
     {
+        Auth::checkRole('Maintainer');
+
         if (Http::requestMethod() === 'GET') {
             view('entities.volumeDistribution.edit', [
                 'deliveryNote' => DeliveryNote::findById(Http::param('id')),

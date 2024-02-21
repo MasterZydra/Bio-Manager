@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DeliveryNote;
 use App\Models\Invoice;
+use Framework\Authentication\Auth;
 use Framework\Database\Query\SortOrder;
 use Framework\Facades\Http;
 use Framework\PDF\PDF;
@@ -18,6 +19,8 @@ class InvoiceController extends BaseController implements ModelControllerInterfa
      */
     public function index(): void
     {
+        Auth::checkRole('Maintainer');
+
         view(
             'entities.invoice.index',
             ['invoices' => Invoice::all(
@@ -34,6 +37,8 @@ class InvoiceController extends BaseController implements ModelControllerInterfa
      */
     public function show(): void
     {
+        Auth::checkRole('Maintainer');
+
         $invoice = Invoice::findById(Http::param('id'));
         (new PDF())
             ->createPDF(setting('invoiceAuthor'), $invoice->PdfInvoiceName(), $invoice->PdfInvoiceName(), render('pdf.invoice', ['invoice' => $invoice]))
@@ -46,6 +51,8 @@ class InvoiceController extends BaseController implements ModelControllerInterfa
      */
     public function create(): void
     {
+        Auth::checkRole('Maintainer');
+
         view('entities.invoice.create');
     }
 
@@ -55,6 +62,8 @@ class InvoiceController extends BaseController implements ModelControllerInterfa
      */
     public function store(): void
     {
+        Auth::checkRole('Maintainer');
+
         $year = Http::param('year');
         $nr = Invoice::nextInvoiceNr(Http::param('year'));
 
@@ -77,6 +86,8 @@ class InvoiceController extends BaseController implements ModelControllerInterfa
      */
     public function edit(): void
     {
+        Auth::checkRole('Maintainer');
+
         view('entities.invoice.edit', ['invoice' => Invoice::findById(Http::param('id'))]);
     }
 
@@ -86,6 +97,8 @@ class InvoiceController extends BaseController implements ModelControllerInterfa
      */
     public function update(): void
     {
+        Auth::checkRole('Maintainer');
+
         $invoice = Invoice::findById(Http::param('id'))
             ->setFromHttpParams(['invoiceDate', 'recipientId', 'isPaid'])
             ->save();
@@ -106,6 +119,8 @@ class InvoiceController extends BaseController implements ModelControllerInterfa
      */
     public function destroy(): void
     {
+        Auth::checkRole('Maintainer');
+
         Invoice::delete(Http::param('id'));
 
         Http::redirect('invoice');

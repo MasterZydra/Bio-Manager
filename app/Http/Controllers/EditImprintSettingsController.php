@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Setting;
+use Framework\Authentication\Auth;
 use Framework\Facades\Http;
 use Framework\Routing\BaseController;
 use Framework\Routing\ControllerInterface;
@@ -11,6 +12,8 @@ class EditImprintSettingsController extends BaseController implements Controller
 {
     public function execute(): void
     {
+        Auth::checkRole('Administrator');
+
         if (Http::requestMethod() === 'GET') {
             view('settings.editImprint');
             return;

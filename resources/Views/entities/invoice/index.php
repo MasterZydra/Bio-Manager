@@ -7,9 +7,7 @@
 <h1><?= __('Invoice') ?></h1>
 
 <p>
-    <?php if (Auth::hasRole('Maintainer')) {
-        ?><a href="invoice/create"><?= __('AddInvoice') ?></a><?php
-    } ?>
+    <a href="invoice/create"><?= __('AddInvoice') ?></a>
 </p>
 
 <?= component('filterInput') ?>

@@ -13,17 +13,13 @@
 
 <?php
     // Links for suppliers
-    if (Auth::hasRole('Supplier')) {
-?>
-<div class="box">
-    <strong><?= __('MyData') ?></strong><br>
-    <a href="showMyDeliveryNote.php"><?= __('MyDeliveryNotes') ?></a>
-</div>
-<?php } ?>
-
-<?php
-// Check configuration
-// TOOD include 'Modules/configChecker.php';
+    // if (Auth::hasRole('Supplier')) {
+ ?>
+<!-- <div class="box">
+    <strong><= __('MyData') ?></strong><br>
+    <a href="showMyDeliveryNote"><= __('MyDeliveryNotes') ?></a>
+</div> -->
+<?php // }
 
 // Links for maintainers
 if (Auth::hasRole('Maintainer')) { ?>
@@ -32,63 +28,47 @@ if (Auth::hasRole('Maintainer')) { ?>
 
 <div class="box">
     <strong><?= __('DeliveryNote') ?></strong><br>
-    <a href="deliveryNote"><?= __('ShowAllDeliveryNotes') ?></a>
-    <?php if (Auth::hasRole('Maintainer')) { ?>
-        <br><a href="deliveryNote/create"><?= __('AddDeliveryNote') ?></a>
-    <?php } ?>
+    <a href="deliveryNote"><?= __('ShowAllDeliveryNotes') ?></a><br>
+    <a href="deliveryNote/create"><?= __('AddDeliveryNote') ?></a>
 </div>
 
 <div class="box">
     <strong><?= __('Plot') ?></strong><br>
-    <a href="plot"><?= __('ShowAllPlots') ?></a>
-    <?php if (Auth::hasRole('Maintainer')) { ?>
-        <br><a href="plot/create"><?= __('AddPlot') ?></a>
-    <?php } ?>
+    <a href="plot"><?= __('ShowAllPlots') ?></a><br>
+    <a href="plot/create"><?= __('AddPlot') ?></a>
 </div>
 
 <div class="box">
     <strong><?= __('Invoice') ?></strong><br>
-    <a href="invoice"><?= __('ShowAllInvoices') ?></a>
-    <?php if (Auth::hasRole('Maintainer')) { ?>
-        <br><a href="invoice/create"><?= __('AddInvoice') ?></a>
-    <?php } ?>
+    <a href="invoice"><?= __('ShowAllInvoices') ?></a><br>
+    <a href="invoice/create"><?= __('AddInvoice') ?></a>
 </div>
 
 <div class="box">
     <strong><?= __('Product') ?></strong><br>
-    <a href="product"><?= __('ShowAllProducts') ?></a>
-    <?php if (Auth::hasRole('Maintainer')) { ?>
-        <br><a href="product/create"><?= __('AddProduct') ?></a>
-    <?php } ?>
+    <a href="product"><?= __('ShowAllProducts') ?></a><br>
+    <a href="product/create"><?= __('AddProduct') ?></a>
 </div>
 
 <div class="box">
     <strong><?= __('Price') ?></strong><br>
-    <a href="price"><?= __('ShowAllPrices') ?></a>
-    <?php if (Auth::hasRole('Maintainer')) { ?>
-        <br><a href="price/create"><?= __('AddPrice') ?></a>
-    <?php } ?>
+    <a href="price"><?= __('ShowAllPrices') ?></a><br>
+    <a href="price/create"><?= __('AddPrice') ?></a>
 </div>
 
 <div class="box">
     <strong><?= __('Supplier') ?></strong><br>
-    <a href="supplier"><?= __('ShowAllSuppliers') ?></a>
-    <?php if (Auth::hasRole('Maintainer')) { ?>
-        <br><a href="supplier/create"><?= __('AddSupplier') ?></a>
-    <?php } ?>
+    <a href="supplier"><?= __('ShowAllSuppliers') ?></a><br>
+    <a href="supplier/create"><?= __('AddSupplier') ?></a>
 </div>
 
 <div class="box">
     <strong><?= __('Recipient') ?></strong><br>
-    <a href="recipient"><?= __('ShowAllRecipients') ?></a>
-    <?php if (Auth::hasRole('Maintainer')) { ?>
-        <br><a href="recipient/create"><?= __('AddRecipient') ?></a>
-    <?php } ?>
+    <a href="recipient"><?= __('ShowAllRecipients') ?></a><br>
+    <a href="recipient/create"><?= __('AddRecipient') ?></a>
 </div>
 
-<h2>
-    Auswertungen
-</h2>
+<h2><?= __('Analyses') ?></h2>
 
 <div class="box">
     <strong><?= __('Supplier') ?></strong><br>
@@ -98,7 +78,7 @@ if (Auth::hasRole('Maintainer')) { ?>
 
 <div class="box">
     <strong><?= __('DeliveryNote') ?></strong><br>
-    <a href="showDeliveryNote_OpenVolumeDistribution.php">Offene Mengenverteilungen</a><br>
+    <!-- <a href="showDeliveryNote_OpenVolumeDistribution">Offene Mengenverteilungen</a><br> -->
     <a href="showVolumeDistribution"><?= __('ShowVolumeDistribution') ?></a>
 </div>
 
@@ -122,35 +102,22 @@ if (Auth::hasRole('Administrator')) { ?>
 
 <div class="box">
     <strong><?= __('Setting') ?></strong><br>
-    <a href="setting"><?= __('ShowAllSettings') ?></a>
-    <?php if (Auth::hasRole('Developer')) { ?>
-        <br><a href="setting/create"><?= __('AddSetting') ?></a>
-    <?php } ?>
+    <a href="setting"><?= __('ShowAllSettings') ?></a><br>
+    <a href="setting/create"><?= __('AddSetting') ?></a>
 </div>
 
+<?php }
+// Links for developers
+if (Auth::hasRole('Developer')) { ?>
 
-        <?php
-    }
-    if (Auth::hasRole('Developer')) {
-        ?>
-<h2>
-    Entwickler
-</h2>
-        <?php
-        // showWarning('<strong>Verwendung auf eigene Gefahr!</strong>');
-        ?>
-<div class="box">
-    <a href="developerOptions.php">Entwicklereinstellungen</a>
-</div>
+<h2><?= __('Developer') ?></h2>
 
 <div class="box">
-    <strong>Seiten in Entwicklung</strong><br>
-    Keine Seiten in Entwicklung...
+    <a href="cli">CLI</a>
 </div>
 
-        <?php
-    }
-?>
+<?php } ?>
+
 <script>
     function colorBoxes() {
         var colors = ['#0E161C', '#3F4045', '#153D6B', '#145C9E', '#11626D', '#2A4D14', '#4a8a16', '#E26D00'];

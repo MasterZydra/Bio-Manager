@@ -7,9 +7,7 @@
 <h1><?= __('Recipient') ?></h1>
 
 <p>
-    <?php if (Auth::hasRole('Maintainer')) {
-        ?><a href="recipient/create"><?= __('AddRecipient') ?></a><?php
-    } ?>
+    <a href="recipient/create"><?= __('AddRecipient') ?></a>
 </p>
 
 <?= component('filterInput') ?>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DeliveryNote;
+use Framework\Authentication\Auth;
 use Framework\Database\Query\SortOrder;
 use Framework\Facades\Http;
 use Framework\Routing\BaseController;
@@ -16,6 +17,8 @@ class DeliveryNoteController extends BaseController implements ModelControllerIn
      */
     public function index(): void
     {
+        Auth::checkRole('Maintainer');
+
         view(
             'entities.deliveryNote.index',
             ['deliveryNotes' => DeliveryNote::all(
@@ -32,6 +35,8 @@ class DeliveryNoteController extends BaseController implements ModelControllerIn
      */
     public function create(): void
     {
+        Auth::checkRole('Maintainer');
+
         view('entities.deliveryNote.create');
     }
 
@@ -41,6 +46,8 @@ class DeliveryNoteController extends BaseController implements ModelControllerIn
      */
     public function store(): void
     {
+        Auth::checkRole('Maintainer');
+
         (new DeliveryNote())
             ->setFromHttpParams(['year', 'productId', 'supplierId', 'recipientId'])
             ->setNr(DeliveryNote::nextDeliveryNoteNr(Http::param('year')))
@@ -59,6 +66,8 @@ class DeliveryNoteController extends BaseController implements ModelControllerIn
      */
     public function edit(): void
     {
+        Auth::checkRole('Maintainer');
+
         view('entities.deliveryNote.edit', ['deliveryNote' => DeliveryNote::findById(Http::param('id'))]);
     }
 
@@ -68,6 +77,8 @@ class DeliveryNoteController extends BaseController implements ModelControllerIn
      */
     public function update(): void
     {
+        Auth::checkRole('Maintainer');
+
         DeliveryNote::findById(Http::param('id'))
             ->setFromHttpParams(['deliveryDate', 'amount', 'productId', 'supplierId', 'recipientId', 'isInvoiceReady'])
             ->save();
@@ -81,6 +92,8 @@ class DeliveryNoteController extends BaseController implements ModelControllerIn
      */
     public function destroy(): void
     {
+        Auth::checkRole('Maintainer');
+
         DeliveryNote::delete(Http::param('id'));
 
         Http::redirect('deliveryNote');

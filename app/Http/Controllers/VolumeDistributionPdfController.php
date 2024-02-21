@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DeliveryNote;
-use App\Models\Invoice;
-use Framework\Database\Query\ColType;
-use Framework\Database\Query\Condition;
+use Framework\Authentication\Auth;
 use Framework\Facades\Http;
 use Framework\PDF\PDF;
 use Framework\Routing\BaseController;
@@ -15,6 +12,8 @@ class VolumeDistributionPdfController extends BaseController implements Controll
 {
     public function execute(): void
     {
+        Auth::checkRole('Maintainer');
+
         if (Http::requestMethod() === 'GET') {
             view('statistics.volumeDistribution');
             return;

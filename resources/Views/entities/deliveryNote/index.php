@@ -7,9 +7,7 @@
 <h1><?= __('DeliveryNote') ?></h1>
 
 <p>
-    <?php if (Auth::hasRole('Maintainer')) {
-        ?><a href="deliveryNote/create"><?= __('AddDeliveryNote') ?></a><?php
-    } ?>
+    <a href="deliveryNote/create"><?= __('AddDeliveryNote') ?></a>
 </p>
 
 <?= component('filterInput') ?>

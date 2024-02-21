@@ -2,6 +2,7 @@
 
 namespace Framework\Cli\Controllers;
 
+use Framework\Authentication\Auth;
 use Framework\Cli\Cli;
 use Framework\Facades\Http;
 use Framework\Routing\BaseController;
@@ -11,6 +12,8 @@ class WebCliController extends BaseController implements ControllerInterface
 {
     public function execute(): void
     {
+        Auth::checkRole('Developer');
+
         if (Http::requestMethod() === 'GET')
         {
             view('framework.cli.webcli');

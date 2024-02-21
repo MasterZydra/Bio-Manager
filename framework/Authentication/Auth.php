@@ -5,6 +5,7 @@ namespace Framework\Authentication;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\UserRole;
+use Framework\Facades\Http;
 
 class Auth
 {
@@ -21,6 +22,28 @@ class Auth
     public static function isLoggedIn(): bool
     {
         return self::id() !== null;
+    }
+
+    /** Check if the current user has one of the given roles otherwise redirect to home */
+    public static function checkRoles(array $roles): void
+    {
+        $match = false;
+
+        foreach ($roles as $role) {
+            $match = $match || self::hasRole($role);
+        }
+
+        if (!$match) {
+            Http::redirect('/');
+        }
+    }
+
+    /** Check if the current user has the given role otherwise redirect to home */
+    public static function checkRole(string $role): void
+    {
+        if (!self::hasRole($role)) {
+            Http::redirect('/');
+        }
     }
 
     /** Check if the current user has the requested role */

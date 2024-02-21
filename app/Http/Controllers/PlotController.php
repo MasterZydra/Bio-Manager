@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plot;
+use Framework\Authentication\Auth;
 use Framework\Facades\Http;
 use Framework\Routing\BaseController;
 use Framework\Routing\ModelControllerInterface;
@@ -15,6 +16,8 @@ class PlotController extends BaseController implements ModelControllerInterface
      */
     public function index(): void
     {
+        Auth::checkRole('Maintainer');
+
         view('entities.plot.index', ['plots' => Plot::all()]);
     }
 
@@ -24,6 +27,8 @@ class PlotController extends BaseController implements ModelControllerInterface
      */
     public function create(): void
     {
+        Auth::checkRole('Maintainer');
+
         view('entities.plot.create');
     }
 
@@ -33,6 +38,8 @@ class PlotController extends BaseController implements ModelControllerInterface
      */
     public function store(): void
     {
+        Auth::checkRole('Maintainer');
+
         (new Plot())
             ->setFromHttpParams(['nr', 'name', 'subdistrict', 'supplierId'])
             ->setIsLocked(false)
@@ -47,6 +54,8 @@ class PlotController extends BaseController implements ModelControllerInterface
      */
     public function edit(): void
     {
+        Auth::checkRole('Maintainer');
+
         view('entities.plot.edit', ['plot' => Plot::findById(Http::param('id'))]);
     }
 
@@ -56,6 +65,8 @@ class PlotController extends BaseController implements ModelControllerInterface
      */
     public function update(): void
     {
+        Auth::checkRole('Maintainer');
+
         Plot::findById(Http::param('id'))
             ->setFromHttpParams(['nr', 'name', 'subdistrict', 'supplierId', 'isLocked'])
             ->save();
@@ -69,6 +80,8 @@ class PlotController extends BaseController implements ModelControllerInterface
      */
     public function destroy(): void
     {
+        Auth::checkRole('Maintainer');
+
         Plot::delete(Http::param('id'));
 
         Http::redirect('plot');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Supplier;
+use Framework\Authentication\Auth;
 use Framework\Facades\Http;
 use Framework\Routing\BaseController;
 use Framework\Routing\ModelControllerInterface;
@@ -15,6 +16,8 @@ class SupplierController extends BaseController implements ModelControllerInterf
      */
     public function index(): void
     {
+        Auth::checkRole('Maintainer');
+
         view('entities.supplier.index', ['suppliers' => Supplier::all()]);
     }
 
@@ -24,6 +27,8 @@ class SupplierController extends BaseController implements ModelControllerInterf
      */
     public function create(): void
     {
+        Auth::checkRole('Maintainer');
+
         view('entities.supplier.create');
     }
 
@@ -33,6 +38,8 @@ class SupplierController extends BaseController implements ModelControllerInterf
      */
     public function store(): void
     {
+        Auth::checkRole('Maintainer');
+
         (new Supplier())
             ->setFromHttpParam('name')
             ->setIsLocked(false)
@@ -49,6 +56,8 @@ class SupplierController extends BaseController implements ModelControllerInterf
      */
     public function edit(): void
     {
+        Auth::checkRole('Maintainer');
+
         view('entities.supplier.edit', ['supplier' => Supplier::findById(Http::param('id'))]);
     }
 
@@ -58,6 +67,8 @@ class SupplierController extends BaseController implements ModelControllerInterf
      */
     public function update(): void
     {
+        Auth::checkRole('Maintainer');
+
         Supplier::findById(Http::param('id'))
             ->setFromHttpParams(['name', 'isLocked', 'hasFullPayout', 'hasNoPayout'])
             ->save();
@@ -71,6 +82,8 @@ class SupplierController extends BaseController implements ModelControllerInterf
      */
     public function destroy(): void
     {
+        Auth::checkRole('Maintainer');
+
         Supplier::delete(Http::param('id'));
 
         Http::redirect('supplier');

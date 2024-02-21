@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DeliveryNote;
 use App\Models\Invoice;
+use Framework\Authentication\Auth;
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
 use Framework\Facades\Http;
@@ -15,6 +16,8 @@ class SupplierPayoutsController extends BaseController implements ControllerInte
 {
     public function execute(): void
     {
+        Auth::checkRole('Maintainer');
+
         if (Http::requestMethod() === 'GET') {
             view('statistics.supplierPayouts');
             return;
@@ -47,6 +50,5 @@ class SupplierPayoutsController extends BaseController implements ControllerInte
         }
 
         Http::redirect('/');
-
     }
 }

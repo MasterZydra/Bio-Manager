@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Framework\Authentication\Auth;
 use Framework\Facades\Http;
 use Framework\PDF\PDF;
 use Framework\Routing\BaseController;
@@ -11,6 +12,8 @@ class ActiveSuppliersController extends BaseController implements ControllerInte
 {
     public function execute(): void
     {
+        Auth::checkRole('Maintainer');
+
         if (Http::requestMethod() !== 'GET') {
             Http::redirect('/');
             return;

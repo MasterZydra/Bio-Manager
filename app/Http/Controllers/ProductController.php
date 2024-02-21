@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Framework\Authentication\Auth;
 use Framework\Facades\Http;
 use Framework\Routing\BaseController;
 use Framework\Routing\ModelControllerInterface;
@@ -15,6 +16,8 @@ class ProductController extends BaseController implements ModelControllerInterfa
      */
     public function index(): void
     {
+        Auth::checkRole('Maintainer');
+
         view('entities.product.index', ['products' => Product::all()]);
     }
 
@@ -24,6 +27,8 @@ class ProductController extends BaseController implements ModelControllerInterfa
      */
     public function create(): void
     {
+        Auth::checkRole('Maintainer');
+
         view('entities.product.create');
     }
 
@@ -33,6 +38,8 @@ class ProductController extends BaseController implements ModelControllerInterfa
      */
     public function store(): void
     {
+        Auth::checkRole('Maintainer');
+
         (new Product())
             ->setFromHttpParam('name')
             ->setIsDiscontinued(false)
@@ -47,6 +54,8 @@ class ProductController extends BaseController implements ModelControllerInterfa
      */
     public function edit(): void
     {
+        Auth::checkRole('Maintainer');
+
         view('entities.product.edit', ['product' => Product::findById(Http::param('id'))]);
     }
 
@@ -56,6 +65,8 @@ class ProductController extends BaseController implements ModelControllerInterfa
      */
     public function update(): void
     {
+        Auth::checkRole('Maintainer');
+
         Product::findById(Http::param('id'))
             ->setFromHttpParams(['name', 'isDiscontinued'])
             ->save();
@@ -69,6 +80,8 @@ class ProductController extends BaseController implements ModelControllerInterfa
      */
     public function destroy(): void
     {
+        Auth::checkRole('Maintainer');
+
         Product::delete(Http::param('id'));
 
         Http::redirect('product');
