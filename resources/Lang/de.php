@@ -109,6 +109,7 @@ return [
     'ShowAllSuppliers' => 'Alle Lieferanten anzeigen',
     'ShowAllUsers' => 'Alle Benutzer anzeigen',
     'ShowPayouts' => 'Auszahlungen anzeigen',
+    'ShowVolumeDistribution' => 'Mengenverteilung anzeigen',
     'Street' => 'Straße',
     'Subdistrict' => 'Gemarkung',
     'Supplier' => 'Lieferant',

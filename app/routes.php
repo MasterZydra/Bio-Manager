@@ -25,6 +25,7 @@ use App\Http\Controllers\User\ChangePasswordController;
 use App\Http\Controllers\User\LoginController;
 use App\Http\Controllers\User\LogoutController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VolumeDistributionPdfController;
 use Framework\Authentication\Auth;
 use Framework\Cli\Controllers\WebCliController;
 use Framework\Facades\Http;
@@ -67,6 +68,9 @@ if (Auth::isLoggedIn()) {
 
     Router::addController('showSupplierPayouts', new SupplierPayoutsController());
     Router::addController('showSupplierPayouts', new SupplierPayoutsController(), 'POST');
+
+    Router::addController('showVolumeDistribution', new VolumeDistributionPdfController());
+    Router::addController('showVolumeDistribution', new VolumeDistributionPdfController(), 'POST');
 
     if (Auth::hasRole('Administrator')) {
         Router::addModel('user', new UserController());

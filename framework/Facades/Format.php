@@ -22,6 +22,12 @@ class Format
     /** Format the given value to e.g. `X.XXX,XX EUR` */
     public static function Currency(float $value): string
     {
-        return number_format($value, 2, ',', '.') . ' ' . setting('currencyUnit');
+        return self::Decimal($value) . ' ' . setting('currencyUnit');
+    }
+
+    /** Format the given value to e.g. `X.XXX,XX` */
+    public static function Decimal(float $value): string
+    {
+        return number_format($value, 2, ',', '.');
     }
 }

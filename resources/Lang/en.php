@@ -110,6 +110,7 @@ return [
     'ShowAllUsers' => 'Show all users',
     'ShowDeliveryNotes' => 'Show all delivery notes',
     'ShowPayouts' => 'Show payouts',
+    'ShowVolumeDistribution' => 'Show volume distribution',
     'Street' => 'Street',
     'Subdistrict' => 'Subdistrict',
     'Supplier' => 'Supplier',

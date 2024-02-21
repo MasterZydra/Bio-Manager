@@ -99,7 +99,7 @@ if (Auth::hasRole('Maintainer')) { ?>
 <div class="box">
     <strong><?= __('DeliveryNote') ?></strong><br>
     <a href="showDeliveryNote_OpenVolumeDistribution.php">Offene Mengenverteilungen</a><br>
-    <a href="showCropVolumeDistribution.php">Mengenverteilung anzeigen</a>
+    <a href="showVolumeDistribution"><?= __('ShowVolumeDistribution') ?></a>
 </div>
 
 <?php }
