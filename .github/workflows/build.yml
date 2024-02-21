@@ -108,7 +108,6 @@ jobs:
     needs: build
     runs-on: self-hosted
     steps:
-    - uses: actions/checkout@v1
     - name: Build and Run Container
       run: |
         docker pull ghcr.io/masterzydra/bio-manager:latest
