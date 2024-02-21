@@ -93,11 +93,11 @@ if (Auth::hasRole('Maintainer')) { ?>
 <div class="box">
     <strong><?= __('Supplier') ?></strong><br>
     <a href="activeSuppiers" target="_blank"><?= __('ShowActiveSuppliers') ?></a><br>
-    <a href="showSupplierPayments.php">Auszahlungen anzeigen</a><br>
+    <a href="showSupplierPayouts"><?= __('ShowPayouts') ?></a><br>
 </div>
 
 <div class="box">
-    <strong>Lieferschein</strong><br>
+    <strong><?= __('DeliveryNote') ?></strong><br>
     <a href="showDeliveryNote_OpenVolumeDistribution.php">Offene Mengenverteilungen</a><br>
     <a href="showCropVolumeDistribution.php">Mengenverteilung anzeigen</a>
 </div>
