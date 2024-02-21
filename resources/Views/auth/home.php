@@ -115,6 +115,12 @@ if (Auth::hasRole('Administrator')) { ?>
 </div>
 
 <div class="box">
+    <strong><?= __('SystemSettings') ?></strong><br>
+    <a href="editImprintSettings"><?= __('EditImprint') ?></a><br>
+    <a href="editInvoiceSettings"><?= __('EditInvoiceData') ?></a>
+</div>
+
+<div class="box">
     <strong><?= __('Setting') ?></strong><br>
     <a href="setting"><?= __('ShowAllSettings') ?></a>
     <?php if (Auth::hasRole('Developer')) { ?>
@@ -122,17 +128,6 @@ if (Auth::hasRole('Administrator')) { ?>
     <?php } ?>
 </div>
 
-<div class="box">
-    <strong><?= __('SystemSettings') ?></strong><br>
-    <a href="editImprintSettings"><?= __('EditImprint') ?></a><br>
-    <a href="editInvoiceSettings"><?= __('EditInvoiceData') ?></a>
-</div>
-
-<div class="box">
-    <strong>Grundeinstellungen</strong><br>
-    <a href="editCommonConfig.php">Allgemeine Einstellungen</a><br>
-    <a href="editDBConnection.php">Datenbankverbindung bearbeiten</a>
-</div>
 
         <?php
     }

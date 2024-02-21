@@ -1,7 +1,9 @@
-<?php use Framework\Authentication\Auth;
+<?php
+
+use Framework\Authentication\Auth;
 use Framework\Message\Message;
 
- ?>
+?>
 <!DOCTYPE html>
 <html>
 
@@ -15,20 +17,7 @@ use Framework\Message\Message;
 
 <body>
     <header>
-        <!-- <php
-        // Build string for organisation in header
-        $organisation = "";
-        // Check if file exists to prevent warnings
-        if (file_exists('config/CommonConfig.php')) {
-            include_once 'config/CommonConfig.php';
-            $organisation .= " - " . $common['organisation'];
-        }
-        ?> -->
-        <!-- <php echo $organisation; ?> -->
         <h1 style="cursor: pointer"><a href="/">Bio-Manager</a></h1>
-        <div>
-            <a href="/"><?= __('Home') ?></a>
-        </div>
         <div>
             <?php if (!Auth::isLoggedIn()) { ?>
                 <button style="cursor: pointer" onclick="window.location.href='login'"><?= __('Login') ?></button>
