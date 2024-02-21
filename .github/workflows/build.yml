@@ -108,10 +108,19 @@ jobs:
     needs: build
     runs-on: self-hosted
     steps:
-    - name: Build and Run Container
+    - name: Run Container (latest)
       run: |
         docker pull ghcr.io/masterzydra/bio-manager:latest
         docker stop bioman || true
         docker rm bioman || true
         docker run -d --name bioman -p 8083:80 --env SSL_MODE=off --env DB_HOST=${{ secrets.IP }} --env DB_USERNAME=root --env DB_PASSWORD='${{ secrets.DB_PASSWORD }}' --env APP_URL=http://${{ secrets.IP }}:8083 ghcr.io/masterzydra/bio-manager:latest
+        docker image prune -f
+    
+    - name: Run Container (production) 
+      if: ${{ github.ref_type == 'tag' }}
+      run: |
+        docker pull ghcr.io/masterzydra/bio-manager:${{ github.ref_name }}
+        docker stop bioman-prod || true
+        docker rm bioman-prod || true
+        docker run -d --name bioman-prod -p 8084:80 --env SSL_MODE=off --env DB_HOST=${{ secrets.IP }} --env DB_DATABASE=bioman-prod --env DB_USERNAME=root --env DB_PASSWORD='${{ secrets.DB_PASSWORD }}' --env APP_URL=http://${{ secrets.IP }}:8084 ghcr.io/masterzydra/bio-manager:${{ github.ref_name }}
         docker image prune -f
