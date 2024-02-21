@@ -2,10 +2,10 @@
 
 <h1>Systeminformationen</h1>
 
-<table>
+<table class="scrollable">
     <tr>
         <td>Bio-Manager Version</td>
-        <td class="right">1.3.10</td>
+        <td class="right">2.0.0</td>
     </tr>
     <tr>
         <td><?= __('Developer') ?></td>
