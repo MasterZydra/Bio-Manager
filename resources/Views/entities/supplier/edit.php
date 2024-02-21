@@ -35,6 +35,17 @@
         <?= __('FullPayout') ?>
     </label><br>
 
+    <label>
+        <input type="hidden" name="hasNoPayout" value="0">
+        <input type="checkbox" name="hasNoPayout" value="1"
+            <?php
+            if ($supplier->getHasNoPayout()) {
+                echo ' checked';
+            }
+            ?>>
+        <?= __('NoPayout') ?>
+    </label><br>
+
     <button><?= __('Save') ?></button>
 </form>
 

@@ -11,6 +11,7 @@ class Supplier extends BaseModel
     private const NAME = 'name';
     private const IS_LOCKED = 'isLocked';
     private const HAS_FULL_PAYOUT = 'hasFullPayout';
+    private const HAS_NO_PAYOUT = 'hasNoPayout';
 
     protected static function new(array $data = []): self
     {
@@ -21,19 +22,21 @@ class Supplier extends BaseModel
     {
         if ($this->getId() === null) {
             Database::prepared(
-                'INSERT INTO ' . $this->getTableName() . ' (name, isLocked, hasFullPayout) VALUES (?, ?, ?)',
-                'sii',
-                $this->getName(),
-                Convert::boolToInt($this->getIsLocked()),
-                Convert::boolToInt($this->getHasFullPayout())
-            );
-        } else {
-            Database::prepared(
-                'UPDATE ' . $this->getTableName() . ' SET `name`=?, isLocked=?, hasFullPayout=? WHERE id=?',
+                'INSERT INTO ' . $this->getTableName() . ' (name, isLocked, hasFullPayout, hasNoPayout) VALUES (?, ?, ?, ?)',
                 'siii',
                 $this->getName(),
                 Convert::boolToInt($this->getIsLocked()),
                 Convert::boolToInt($this->getHasFullPayout()),
+                Convert::boolToInt($this->getHasNoPayout())
+            );
+        } else {
+            Database::prepared(
+                'UPDATE ' . $this->getTableName() . ' SET `name`=?, isLocked=?, hasFullPayout=?, hasNoPayout=? WHERE id=?',
+                'siiii',
+                $this->getName(),
+                Convert::boolToInt($this->getIsLocked()),
+                Convert::boolToInt($this->getHasFullPayout()),
+                Convert::boolToInt($this->getHasNoPayout()),
                 $this->getId()
             );
         }
@@ -71,5 +74,15 @@ class Supplier extends BaseModel
     public function setHasFullPayout(bool $value): self
     {
         return $this->setDataBool(self::HAS_FULL_PAYOUT, $value);
+    }
+
+    public function getHasNoPayout(): bool
+    {
+        return $this->getDataBool(self::HAS_NO_PAYOUT);
+    }
+
+    public function setHasNoPayout(bool $value): self
+    {
+        return $this->setDataBool(self::HAS_NO_PAYOUT, $value);
     }
 }

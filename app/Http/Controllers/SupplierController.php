@@ -37,6 +37,7 @@ class SupplierController extends BaseController implements ModelControllerInterf
             ->setFromHttpParam('name')
             ->setIsLocked(false)
             ->setHasFullPayout(false)
+            ->setHasNoPayout(false)
             ->save();
 
         Http::redirect('supplier');
@@ -58,7 +59,7 @@ class SupplierController extends BaseController implements ModelControllerInterf
     public function update(): void
     {
         Supplier::findById(Http::param('id'))
-            ->setFromHttpParams(['name', 'isLocked', 'hasFullPayout'])
+            ->setFromHttpParams(['name', 'isLocked', 'hasFullPayout', 'hasNoPayout'])
             ->save();
 
         Http::redirect('supplier');
