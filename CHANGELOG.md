@@ -8,6 +8,9 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ## [Unreleased]
 
+### Changed
+- Minor styling improvements
+
 ## v2.0.0 - 21.02.2024 - Same frontend with new backend
 
 ### Added
