@@ -23,7 +23,7 @@
     foreach ($recipients as $recipient): ?>
     <tr>
         <td><?= $recipient->getName() ?></td>
-        <td><?= mb_strimwidth($recipient->getStreet() . ' ' . $recipient->getPostalCode() . ' ' . $recipient->getCity(), 0, 50, '...') ?></td>
+        <td><?= mb_strimwidth($recipient->getStreet() . ', ' . $recipient->getPostalCode() . ' ' . $recipient->getCity(), 0, 50, '...') ?></td>
         <td class="center"><?= Convert::boolToTString($recipient->getIsLocked()) ?></td>
         <td><a href="recipient/edit?id=<?= $recipient->getId() ?>"><?=__('Edit') ?></a></td>
     </tr>
