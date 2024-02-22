@@ -32,7 +32,7 @@
             foreach ($distributions as $distribution) {
         ?>
             <tr>
-                <td><?= component('plotSelect', ['index' => $index, 'selected' => $distribution->getPlotId()]) ?></td>
+                <td><?= component('plotSelect', ['index' => $index, 'selected' => $distribution->getPlotId(), 'supplierId' => $deliveryNote->getSupplierId()]) ?></td>
                 <td>
                     <input name="amount[<?= $index ?>]" class="right" type="number" onkeyup="sumDistribution()"
                         value="<?= $distribution->getAmount() ?>" required
@@ -55,7 +55,7 @@
 <button onclick="deleteRow('distribution')">Flurstück entfernen</button>
 
 <div id="template" hidden>
-    <?= component('plotSelect', ['index' => '<index>']) ?>
+    <?= component('plotSelect', ['index' => '<index>', 'supplierId' => $deliveryNote->getSupplierId()]) ?>
     <input name="amount[<index>]" class="right" type="number" onkeyup="sumDistribution()" required>
 </div>
 
