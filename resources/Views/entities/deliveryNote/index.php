@@ -1,6 +1,7 @@
 <?php
-    use Framework\Authentication\Auth;
-    use Framework\Facades\Convert;
+
+use Framework\Facades\Format;
+
 ?>
 <?= component('layout.header') ?>
 
@@ -27,7 +28,7 @@
     <tr>
         <td class="center"><?= $deliveryNote->getYear() ?></td>
         <td class="center"><?= $deliveryNote->getNr() ?></td>
-        <td class="center"><?= $deliveryNote->getDeliveryDate() ?></td>
+        <td class="center"><?= Format::date($deliveryNote->getDeliveryDate()) ?></td>
         <td class="right"><?= $deliveryNote->getAmount() ?></td>
         <td><?= $deliveryNote->getSupplier()->getName() ?></td>
         <td><?= $deliveryNote->getProduct()->getName() ?></td>

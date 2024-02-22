@@ -50,7 +50,7 @@ while ($row = $dataSet->fetch_assoc()) {
 <tr>
     <td style="text-align: left;"><?= $row['nr'] ?></td>
     <td style="text-align: left;"><?= $row['name'] ?></td>
-    <td style="text-align: right;"><?= Format::Decimal($row['amount']) ?></td>
+    <td style="text-align: right;"><?= Format::decimal($row['amount']) ?></td>
 </tr>
 <?php } ?>
 
@@ -63,6 +63,6 @@ while ($row = $dataSet->fetch_assoc()) {
 <table cellpadding="5" cellspacing="0" style="width: 100%;" border="0">
 <tr>
 <td colspan="3"><b>Gesamtmenge in <?= setting('massUnit') ?>: </b></td>
-<td style="text-align: right;"><b><?= Format::Decimal($totalAmount) ?></b></td>
+<td style="text-align: right;"><b><?= Format::decimal($totalAmount) ?></b></td>
 </tr> 
 </table>

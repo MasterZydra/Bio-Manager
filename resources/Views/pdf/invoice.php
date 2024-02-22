@@ -23,7 +23,7 @@ Rechnungsdatum:
 
 <td width="15%" style="text-align: right;">
 <?= $invoice->getNr() ?><br>
-<?= date('d.m.Y', strtotime($invoice->getInvoiceDate())) ?>
+<?= Format::date($invoice->getInvoiceDate()) ?>
 </td>
 
 </tr>
@@ -67,10 +67,10 @@ foreach ($invoice->getDeliveryNotes() as $deliveryNote) { ?>
 
 <tr>
 <td style="text-align: center;"><?= $deliveryNote->getNr() ?></td>
-<td style="text-align: center;"><?= date("d.m.Y", strtotime($deliveryNote->getDeliveryDate())) ?></td>
+<td style="text-align: center;"><?= Format::date($deliveryNote->getDeliveryDate()) ?></td>
 <td style="text-align: center;"><?= $deliveryNote->getProduct()->getName() ?></td>
 <td style="text-align: right;"><?= $deliveryNote->getAmount() ?> <?= setting('massUnit') ?></td>
-<td style="text-align: center;"><?= Format::Currency($deliveryNote->getPositionPrice()) ?></td>
+<td style="text-align: center;"><?= Format::currency($deliveryNote->getPositionPrice()) ?></td>
 </tr>
 
 <?php } ?>
@@ -96,7 +96,7 @@ if ($umsatzsteuer > 0) { $netto = $totalAmount / (1 + $umsatzsteuer); $umsatzste
 
 <tr>
 <td colspan="3"><b>Gesamtbetrag: </b></td>
-<td style="text-align: center;"><b><?= Format::Currency($invoice->getTotalPrice()) ?></b></td>
+<td style="text-align: center;"><b><?= Format::currency($invoice->getTotalPrice()) ?></b></td>
 </tr> 
 
 </table>
@@ -112,5 +112,5 @@ if (isset($comment)) {
 
 <strong>Bankverbindung</strong><br>
 <?= setting('invoiceBankName') ?><br>
-IBAN: <?= Format::IBAN(setting('invoiceIBAN')) ?><br>
+IBAN: <?= Format::iban(setting('invoiceIBAN')) ?><br>
 BIC: <?= setting('invoiceBIC') ?>

@@ -5,7 +5,7 @@ namespace Framework\Facades;
 class Format
 {
     /** Split IBAN in groups of four digits each */
-    public static function IBAN(string $IBAN): string
+    public static function iban(string $IBAN): string
     {
         $i = 0;
         $ret = "";
@@ -19,15 +19,21 @@ class Format
         return $ret;
     }
 
-    /** Format the given value to e.g. `X.XXX,XX EUR` */
-    public static function Currency(float $value): string
+    /** Format the given value to `X.XXX,XX EUR` */
+    public static function currency(float $value): string
     {
-        return self::Decimal($value) . ' ' . setting('currencyUnit');
+        return self::decimal($value) . ' ' . setting('currencyUnit');
     }
 
-    /** Format the given value to e.g. `X.XXX,XX` */
-    public static function Decimal(float $value): string
+    /** Format the given value to `X.XXX,XX` */
+    public static function decimal(float $value): string
     {
         return number_format($value, 2, ',', '.');
+    }
+
+    /** Format the given date to `dd.mm.yyyy` */
+    public static function date(string $date): string
+    {
+        return date("d.m.Y", strtotime($date));
     }
 }

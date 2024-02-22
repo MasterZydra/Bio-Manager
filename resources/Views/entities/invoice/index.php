@@ -1,6 +1,8 @@
 <?php
-    use Framework\Authentication\Auth;
-    use Framework\Facades\Convert;
+
+use Framework\Facades\Convert;
+use Framework\Facades\Format;
+
 ?>
 <?= component('layout.header') ?>
 
@@ -26,7 +28,7 @@
     <tr>
         <td class="center"><?= $invoice->getYear() ?></td>
         <td class="center"><?= $invoice->getNr() ?></td>
-        <td class="center"><?= $invoice->getInvoiceDate() ?></td>
+        <td class="center"><?= Format::date($invoice->getInvoiceDate()) ?></td>
         <td><?= $invoice->getRecipient()->getName() ?></td>
         <td class="center"><?= Convert::boolToTString($invoice->getIsPaid()) ?></td>
         <td><a href="invoice/edit?id=<?= $invoice->getId() ?>"><?=__('Edit') ?> <a href="invoice/show?id=<?= $invoice->getId() ?>" target="_blank">PDF</a></td>

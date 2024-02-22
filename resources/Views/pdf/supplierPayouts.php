@@ -35,7 +35,7 @@ foreach ($deliveryNotes as $deliveryNote) {
     <td></td>
     <td style="text-align: right;">Summe:</td>
     <td style="text-align: right;"><?= $sumAmount ?></td>
-    <td style="text-align: right;"><?= Format::Currency($sumPayout) ?></td>
+    <td style="text-align: right;"><?= Format::currency($sumPayout) ?></td>
 </tr>
 </table><br><br>
 
@@ -64,9 +64,9 @@ foreach ($deliveryNotes as $deliveryNote) {
         $sumPayout += $price * $deliveryNote->getAmount();
     ?>
     <td style="text-align: right;"><?= $deliveryNote->getNr() ?></td>
-    <td style="text-align: center;"><?= date("d.m.Y", strtotime($deliveryNote->getDeliveryDate())) ?></td>
+    <td style="text-align: center;"><?= Format::date($deliveryNote->getDeliveryDate()) ?></td>
     <td style="text-align: right;"><?= $deliveryNote->getAmount() ?></td>
-    <td style="text-align: right;">x <?= $price ?> = <?= Format::Currency($price * $deliveryNote->getAmount()) ?></td>
+    <td style="text-align: right;">x <?= $price ?> = <?= Format::currency($price * $deliveryNote->getAmount()) ?></td>
 </tr>
 
 <?php } ?>
@@ -76,7 +76,7 @@ foreach ($deliveryNotes as $deliveryNote) {
     <td></td>
     <td style="text-align: right;">Summe:</td>
     <td style="text-align: right;"><?= $sumAmount ?></td>
-    <td style="text-align: right;"><?= Format::Currency($sumPayout) ?></td>
+    <td style="text-align: right;"><?= Format::currency($sumPayout) ?></td>
 </tr>
 </table><br><br>
 
