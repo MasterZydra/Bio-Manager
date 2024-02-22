@@ -42,9 +42,9 @@ function component(string $name, array $data = []): void
 }
 
 /** Translate the given label into user language */
-function __(string $label): string
+function __(string $label, ...$values): string
 {
-    return Translator::translate($label);
+    return Translator::translate($label, ...$values);
 }
 
 /** Get value for given settings name */

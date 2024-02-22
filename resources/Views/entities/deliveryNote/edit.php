@@ -23,7 +23,7 @@
     <label for="deliveryDate" class="required"><?= __('Date') ?>:</label><br>
     <input id="deliveryDate" name="deliveryDate" type="date" value="<?= $deliveryNote->getdeliveryDate() ?>" required autofocus><br>
 
-    <label for="amount" class="required"><?= __('Amount') ?> (<?= sprintf(__('inX'), setting('massUnit')) ?>):</label><br>
+    <label for="amount" class="required"><?= __('Amount') ?> (<?= __('inX', setting('massUnit')) ?>):</label><br>
     <input id="amount" name="amount" type="number" step="0.01" value="<?= $deliveryNote->getAmount() ?>" required><br>
 
 

@@ -18,11 +18,11 @@
     <?= component('recipientSelect', ['selected' => $price->getRecipientId()]) ?><br>
 
     <!-- Preis (pro getSetting('massUnit');) -->
-    <label for="price" class="required"><?= __('Price') ?> (<?= sprintf(__('XPerY'), setting('currencyUnit'), setting('massUnit')) ?>):</label><br>
+    <label for="price" class="required"><?= __('Price') ?> (<?= __('XPerY', setting('currencyUnit'), setting('massUnit')) ?>):</label><br>
     <input id="price" name="price" type="number" step="0.01" value="<?= $price->getPrice() ?>" required><br>
     
     <!-- Preis (pro getSetting('massUnit');) -->
-    <label for="pricePayout" class="required"><?= __('Payout') ?> (<?= sprintf(__('XPerY'), setting('currencyUnit'), setting('massUnit')) ?>):</label><br>
+    <label for="pricePayout" class="required"><?= __('Payout') ?> (<?= __('XPerY', setting('currencyUnit'), setting('massUnit')) ?>):</label><br>
     <input id="pricePayout" name="pricePayout" type="number" step="0.01" value="<?= $price->getPricePayout() ?>" required><br>
 
     <button><?= __('Save') ?></button>

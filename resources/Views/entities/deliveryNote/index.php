@@ -17,7 +17,7 @@ use Framework\Facades\Format;
         <th class="center"><?= __('Year') ?></th>
         <th class="center"><?= __('No.') ?></th>
         <th class="center"><?= __('Date') ?></th>
-        <th class="center"><?= __('Amount') ?> (<?= sprintf(__('inX'), setting('massUnit')) ?>)</th>
+        <th class="center"><?= __('Amount') ?> (<?= __('inX', setting('massUnit')) ?>)</th>
         <th class="center"><?= __('Supplier') ?></th>
         <th class="center"><?= __('Product') ?></th>
         <th class="center"><?= __('Recipient') ?></th>

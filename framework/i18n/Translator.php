@@ -42,7 +42,7 @@ class Translator
     }
 
     /** Translate the given label into user language */
-    public static function translate(string $label): string
+    public static function translate(string $label, ...$values): string
     {
         $lang = Language::getLanguage();
         if (!array_key_exists($lang, self::$labels)) {
@@ -56,7 +56,15 @@ class Translator
             }
             return $label;
         }
-        return self::$labels[$lang][$label];
+
+        $translation = self::$labels[$lang][$label];
+
+        // Fill placesholders with given values
+        if (isset($values)) {
+            $translation = sprintf($translation, ...$values);
+        }
+
+        return $translation;
     }
 
     /** Get the language code from the given filename */

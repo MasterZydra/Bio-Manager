@@ -17,8 +17,8 @@
         <th class="center"><?= __('Product') ?></th>
         <th class="center"><?= __('Recipient') ?></th>
         <th class="center"><?= __('Year') ?></th>
-        <th class="center"><?= __('Price') ?> (<?= sprintf(__('XPerY'), setting('currencyUnit'), setting('massUnit')) ?>)</th>
-        <th class="center"><?= __('Payout') ?> (<?= sprintf(__('XPerY'), setting('currencyUnit'), setting('massUnit')) ?>)</th>
+        <th class="center"><?= __('Price') ?> (<?= __('XPerY', setting('currencyUnit'), setting('massUnit')) ?>)</th>
+        <th class="center"><?= __('Payout') ?> (<?= __('XPerY', setting('currencyUnit'), setting('massUnit')) ?>)</th>
         <th class="center"><?= __('Actions') ?></th>
     </tr>
     <?php /** @var \App\Models\Price $price */

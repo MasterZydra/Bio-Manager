@@ -45,23 +45,23 @@ class PriceController extends BaseController implements ModelControllerInterface
         // Validate field types
         $isValid = true;
         if (!is_numeric(Http::param('year'))) {
-            Message::setMessage(sprintf(__('InvalidDataTypeForField'), __('Year')), Type::Error);
+            Message::setMessage(__('InvalidDataTypeForField', __('Year')), Type::Error);
             $isValid = false;
         }
         if (!is_numeric(Http::param('price'))) {
-            Message::setMessage(sprintf(__('InvalidDataTypeForField'), __('Price')), Type::Error);
+            Message::setMessage(__('InvalidDataTypeForField', __('Price')), Type::Error);
             $isValid = false;
         }
         if (!is_numeric(Http::param('pricePayout'))) {
-            Message::setMessage(sprintf(__('InvalidDataTypeForField'), __('Payout')), Type::Error);
+            Message::setMessage(__('InvalidDataTypeForField', __('Payout')), Type::Error);
             $isValid = false;
         }
         if (!is_numeric(Http::param('productId'))) {
-            Message::setMessage(sprintf(__('InvalidDataTypeForField'), __('Product')), Type::Error);
+            Message::setMessage(__('InvalidDataTypeForField', __('Product')), Type::Error);
             $isValid = false;
         }
         if (!is_numeric(Http::param('recipientId'))) {
-            Message::setMessage(sprintf(__('InvalidDataTypeForField'), __('Recipient')), Type::Error);
+            Message::setMessage(__('InvalidDataTypeForField', __('Recipient')), Type::Error);
             $isValid = false;
         }
         if (!$isValid) {
@@ -101,23 +101,23 @@ class PriceController extends BaseController implements ModelControllerInterface
         // Validate field types
         $isValid = true;
         if (!is_numeric(Http::param('year'))) {
-            Message::setMessage(sprintf(__('InvalidDataTypeForField'), __('Year')), Type::Error);
+            Message::setMessage(__('InvalidDataTypeForField', __('Year')), Type::Error);
             $isValid = false;
         }
         if (!is_numeric(Http::param('price'))) {
-            Message::setMessage(sprintf(__('InvalidDataTypeForField'), __('Price')), Type::Error);
+            Message::setMessage(__('InvalidDataTypeForField', __('Price')), Type::Error);
             $isValid = false;
         }
         if (!is_numeric(Http::param('pricePayout'))) {
-            Message::setMessage(sprintf(__('InvalidDataTypeForField'), __('Payout')), Type::Error);
+            Message::setMessage(__('InvalidDataTypeForField', __('Payout')), Type::Error);
             $isValid = false;
         }
         if (!is_numeric(Http::param('productId'))) {
-            Message::setMessage(sprintf(__('InvalidDataTypeForField'), __('Product')), Type::Error);
+            Message::setMessage(__('InvalidDataTypeForField', __('Product')), Type::Error);
             $isValid = false;
         }
         if (!is_numeric(Http::param('recipientId'))) {
-            Message::setMessage(sprintf(__('InvalidDataTypeForField'), __('Recipient')), Type::Error);
+            Message::setMessage(__('InvalidDataTypeForField', __('Recipient')), Type::Error);
             $isValid = false;
         }
         if (!$isValid) {
