@@ -8,6 +8,11 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ## [Unreleased]
 
+## v2.0.1 - 22.02.2024 - Minor styling improvements
+
+### Added
+- Added values parameter to `__()` so that placeholders can be used without `sprintf`
+
 ### Changed
 - Minor styling improvements
 
