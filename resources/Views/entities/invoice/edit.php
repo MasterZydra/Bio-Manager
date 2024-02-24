@@ -11,7 +11,11 @@ use \App\Models\DeliveryNote;
     <a href="/invoice"><?= __('ShowAllInvoices') ?></a>    
 </p>
 
-<form action="update" method="post">
+<?php if (!$invoice->allowEdit()) { ?>
+    <div class="message warning"><?= __('EntityCannotBeEdited') ?></div>
+<?php } ?>
+
+<form <?php if ($invoice->allowEdit()) { ?>action="update" method="post"<?php } ?>>
     <input name="id" type="hidden" value="<?= $invoice->getId() ?>">
 
     <label for="year"><?= __('Year') ?>:</label><br>
@@ -41,12 +45,16 @@ use \App\Models\DeliveryNote;
         'invoiceId' => $invoice->getId(),
     ]) ?><br>
 
+    <?php if ($invoice->allowEdit()) { ?>
     <button><?= __('Save') ?></button>
+    <?php } ?>
 </form>
 
+<?php if ($invoice->allowDelete() && $invoice->allowEdit()) { ?>
 <form action="destroy" method="post">
     <input name="id" type="hidden" value="<?= $invoice->getId() ?>">
     <button class="red"><?= __('Delete') ?></button>
 </form>
+<?php } ?>
 
 <?= component('layout.footer') ?>

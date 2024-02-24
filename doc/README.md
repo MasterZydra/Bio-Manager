@@ -157,6 +157,43 @@ use Framework\Database\Database;
 class Role extends BaseModel
 ```
 
+### Allow functions
+The allow functions are optional functions that can be added to a model for doing checks before the edit or delete operation.
+Possible checks could be permission checks to ensure that the current user is allowed to delete that entity. Another useful check is a dependency checks. Here you can check if a invoice is aleady paid and prevent the edit and delete operation in that case.
+
+**Signatures**
+```PHP
+    public function allowEdit(): bool;
+
+    public function allowDelete(): bool;
+```
+
+The `allowEdit` function gets executed if the `save()` function is called.  
+The `allowDelete` function gets executed if the `delete($id)` function is called.
+
+**Examples**
+```PHP
+    public function allowEdit(): bool
+    {
+        return match (true) {
+            $this->getIsPaid() => false,
+            // More checks...
+            default => true,
+        };
+    }
+
+    public function allowDelete(): bool
+    {
+        if ($this->getIsPaid()) {
+            return false;
+        }
+
+        // More checks...
+
+        return true;
+    }
+```
+
 ### Table name
 A model class is a wrapper for a database table. The name of the table must be the plural of the class name so that the model can resolve the table name.
 

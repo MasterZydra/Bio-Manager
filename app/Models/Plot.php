@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Framework\Database\BaseModel;
 use Framework\Database\Database;
+use Framework\Database\Query\ColType;
+use Framework\Database\Query\Condition;
 use Framework\Facades\Convert;
 
 class Plot extends BaseModel
@@ -19,6 +21,18 @@ class Plot extends BaseModel
         return new self($data);
     }
 
+    public function allowDelete(): bool
+    {
+        $volumeDistributions = VolumeDistribution::all(
+            VolumeDistribution::getQueryBuilder()->where(ColType::Int, 'plotId', Condition::Equal, $this->getId())
+        );
+
+        return match (true) {
+            count($volumeDistributions) > 0 => false,
+            default => true,
+        };
+    }
+
     public function save(): self
     {
         if ($this->getId() === null) {
@@ -32,6 +46,7 @@ class Plot extends BaseModel
                 Convert::boolToInt($this->getIsLocked())
             );
         } else {
+            $this->checkAllowEdit();
             Database::prepared(
                 'UPDATE ' . $this->getTableName() . ' SET nr=?, name=?, subdistrict=?, supplierId=?, isLocked=? WHERE id=?',
                 'sssiii',

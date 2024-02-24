@@ -29,6 +29,7 @@ class Setting extends BaseModel
                 $this->getValue()
             );
         } else {
+            $this->checkAllowEdit();
             Database::prepared(
                 'UPDATE ' . $this->getTableName() . ' SET `name`=?, description=?, value=? WHERE id=?',
                 'sssi',

@@ -45,6 +45,7 @@ return [
     'EditSupplier' => 'Edit supplier',
     'EditUser' => 'Edit user',
     'Email' => 'E-mail',
+    'EntityCannotBeEdited' => 'Entity cannot be edited',
     'English' => 'English',
     'Firstname' => 'Firstname',
     'ForcePasswordChange' => 'Force password change',

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Framework\Database\BaseModel;
 use Framework\Database\Database;
+use Framework\Database\Query\ColType;
+use Framework\Database\Query\Condition;
 
 class Price extends BaseModel
 {
@@ -16,6 +18,21 @@ class Price extends BaseModel
     protected static function new(array $data = []): self
     {
         return new self($data);
+    }
+
+    public function allowDelete(): bool
+    {
+        $deliveryNotes = DeliveryNote::all(
+            DeliveryNote::getQueryBuilder()
+                ->where(ColType::Int, 'year', Condition::Equal, $this->getYear())
+                ->where(ColType::Int, 'productId', Condition::Equal, $this->getProductId())
+                ->where(ColType::Int, 'recipientId', Condition::Equal, $this->getRecipientId())
+        );
+
+        return match (true) {
+            count($deliveryNotes) > 0 => false,
+            default => true,
+        };
     }
 
     public function save(): self
@@ -31,6 +48,7 @@ class Price extends BaseModel
                 $this->getRecipientId()
             );
         } else {
+            $this->checkAllowEdit();
             Database::prepared(
                 'UPDATE ' . $this->getTableName() . ' SET `year` = ?, price = ?, pricePayout = ?, productId = ?, recipientId = ? WHERE id = ?',
                 'iddiii',

@@ -11,7 +11,11 @@
     <a href="/deliveryNote"><?= __('ShowAllDeliveryNotes') ?></a>    
 </p>
 
-<form action="update" method="post">
+<?php if (!$deliveryNote->allowEdit()) { ?>
+    <div class="message warning"><?= __('EntityCannotBeEdited') ?></div>
+<?php } ?>
+
+<form <?php if ($deliveryNote->allowEdit()) { ?>action="update" method="post"<?php } ?>>
     <input name="id" type="hidden" value="<?= $deliveryNote->getId() ?>">
 
     <label for="year"><?= __('Year') ?>:</label><br>
@@ -53,12 +57,16 @@
     </a><br>
     <?php } ?>
 
+    <?php if ($deliveryNote->allowEdit()) { ?>
     <button><?= __('Save') ?></button>
+    <?php } ?>
 </form>
 
+<?php if ($deliveryNote->allowDelete() && $deliveryNote->allowEdit()) { ?>
 <form action="destroy" method="post">
     <input name="id" type="hidden" value="<?= $deliveryNote->getId() ?>">
     <button class="red"><?= __('Delete') ?></button>
 </form>
+<?php } ?>
 
 <?= component('layout.footer') ?>

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Framework\Database\BaseModel;
 use Framework\Database\Database;
+use Framework\Database\Query\ColType;
+use Framework\Database\Query\Condition;
 use Framework\Facades\Convert;
 
 class Supplier extends BaseModel
@@ -18,6 +20,22 @@ class Supplier extends BaseModel
         return new self($data);
     }
 
+    public function allowDelete(): bool
+    {
+        $deliveryNotes = DeliveryNote::all(
+            DeliveryNote::getQueryBuilder()->where(ColType::Int, 'supplierId', Condition::Equal, $this->getId())
+        );
+        $plots = Plot::all(
+            Plot::getQueryBuilder()->where(ColType::Int, 'supplierId', Condition::Equal, $this->getId())
+        );
+
+        return match (true) {
+            count($deliveryNotes) > 0 => false,
+            count($plots) > 0 => false,
+            default => true,
+        };
+    }
+
     public function save(): self
     {
         if ($this->getId() === null) {
@@ -30,6 +48,7 @@ class Supplier extends BaseModel
                 Convert::boolToInt($this->getHasNoPayout())
             );
         } else {
+            $this->checkAllowEdit();
             Database::prepared(
                 'UPDATE ' . $this->getTableName() . ' SET `name`=?, isLocked=?, hasFullPayout=?, hasNoPayout=? WHERE id=?',
                 'siiii',

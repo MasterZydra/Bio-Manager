@@ -27,6 +27,7 @@ class UserRole extends BaseModel
                 $this->getRoleId()
             );
         } else {
+            $this->checkAllowEdit();
             Database::prepared(
                 'UPDATE ' . $this->getTableName() . ' SET userId=?, roleId=? WHERE id=?',
                 'iii',

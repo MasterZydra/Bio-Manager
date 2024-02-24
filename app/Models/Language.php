@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Framework\Database\BaseModel;
 use Framework\Database\Database;
+use Framework\Database\Query\ColType;
+use Framework\Database\Query\Condition;
 
 class Language extends BaseModel
 {
@@ -13,6 +15,18 @@ class Language extends BaseModel
     protected static function new(array $data = []): self
     {
         return new self($data);
+    }
+
+    public function allowDelete(): bool
+    {
+        $users = User::all(
+            User::getQueryBuilder()->where(ColType::Int, 'languageId', Condition::Equal, $this->getId())
+        );
+
+        return match (true) {
+            count($users) > 0 => false,
+            default => true,
+        };
     }
 
     public function save(): self
@@ -25,6 +39,7 @@ class Language extends BaseModel
                 $this->getName()
             );
         } else {
+            $this->checkAllowEdit();
             Database::prepared(
                 'UPDATE ' . $this->getTableName() . ' SET code=?, `name`=? WHERE id=?',
                 'ssi',

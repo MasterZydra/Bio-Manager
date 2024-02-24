@@ -27,6 +27,22 @@ class DeliveryNote extends BaseModel
         return new self($data);
     }
 
+    public function allowEdit(): bool
+    {
+        return match (true) {
+            $this->getInvoiceId() !== null && $this->getInvoice()->getIsPaid() => false,
+            default => true,
+        };
+    }
+
+    public function allowDelete(): bool
+    {
+        return match (true) {
+            $this->getInvoiceId() !== null => false,
+            default => true,
+        };
+    }
+
     public function save(): self
     {
         if ($this->getId() === null) {
@@ -44,6 +60,7 @@ class DeliveryNote extends BaseModel
                 $this->getInvoiceId()
             );
         } else {
+            $this->checkAllowEdit();
             Database::prepared(
                 'UPDATE ' . $this->getTableName() . ' SET `year`=?, nr=?, deliveryDate=?, amount=?, productId=?, supplierId=?, recipientId=?, isInvoiceReady=?, invoiceId=? WHERE id=?',
                 'iisdiiiiii',
@@ -103,6 +120,11 @@ class DeliveryNote extends BaseModel
     public function getRecipient(): Recipient
     {
         return Recipient::findById($this->getRecipientId());
+    }
+
+    public function getInvoice(): Invoice
+    {
+        return Invoice::findById($this->getInvoiceId());
     }
 
     public static function nextDeliveryNoteNr(int $year = null): int

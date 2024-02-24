@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Framework\Database\BaseModel;
 use Framework\Database\Database;
+use Framework\Database\Query\ColType;
+use Framework\Database\Query\Condition;
 use Framework\Facades\Convert;
 
 class Recipient extends BaseModel
@@ -19,6 +21,26 @@ class Recipient extends BaseModel
         return new self($data);
     }
 
+    public function allowDelete(): bool
+    {
+        $deliveryNotes = DeliveryNote::all(
+            DeliveryNote::getQueryBuilder()->where(ColType::Int, 'recipientId', Condition::Equal, $this->getId())
+        );
+        $invoices = Invoice::all(
+            Invoice::getQueryBuilder()->where(ColType::Int, 'recipientId', Condition::Equal, $this->getId())
+        );
+        $prices = Price::all(
+            Price::getQueryBuilder()->where(ColType::Int, 'recipientId', Condition::Equal, $this->getId())
+        );
+
+        return match (true) {
+            count($deliveryNotes) > 0 => false,
+            count($invoices) > 0 => false,
+            count($prices) > 0 => false,
+            default => true,
+        };
+    }
+
     public function save(): self
     {
         if ($this->getId() === null) {
@@ -32,6 +54,7 @@ class Recipient extends BaseModel
                 Convert::boolToInt($this->getIsLocked())
             );
         } else {
+            $this->checkAllowEdit();
             Database::prepared(
                 'UPDATE ' . $this->getTableName() . ' SET `name`=?, street=?, postalCode=?, city=?, isLocked=? WHERE id=?',
                 'ssssii',

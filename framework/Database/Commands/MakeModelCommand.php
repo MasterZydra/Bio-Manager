@@ -38,6 +38,7 @@ class MakeModelCommand extends BaseCommand implements CommandInterface
             '        if ($this->getId() === null) {' . PHP_EOL .
             '            Database::prepared(\'INSERT INTO \' . $this->getTableName() . \' (...\');' . PHP_EOL .
             '        } else {' . PHP_EOL .
+            '            $this->checkAllowEdit();' . PHP_EOL .
             '            Database::prepared(\'UPDATE \' . $this->getTableName() . \' SET ...\');' . PHP_EOL .
             '        }' . PHP_EOL . PHP_EOL .
             '        return $this;' . PHP_EOL .

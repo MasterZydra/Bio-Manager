@@ -7,6 +7,13 @@ use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
 use Framework\Facades\Http;
 
+/**
+ * The BaseModel provides helper functions e.g. to get the table name, get a initialized query builder and
+ * type save getter and setter functions.
+ * 
+ * It also supports optional `allow` functions (`allowEdit` and `allowDelete`) that are called if a model
+ * implements them. If the return value is not true, the edit or delete operation throws an `OperationNotAllowedException`.
+ */
 abstract class BaseModel
 {
     protected const ID = 'id';
@@ -27,6 +34,15 @@ abstract class BaseModel
      * If getId() === null, then insert else update.
      */
     abstract public function save(): self;
+
+    protected function checkAllowEdit(): void
+    {
+        if (method_exists($this, 'allowDelete')) {
+            if (!$this->allowEdit()) {
+                throw new EditOperationNotAllowedException();
+            }
+        }
+    }
 
     /* Static functions */
 
@@ -69,8 +85,15 @@ abstract class BaseModel
 
     public static function delete(int $id): void
     {
-        if (self::findById($id)->getId() === null) {
+        $model = self::findById($id);
+        if ($model->getId() === null) {
             return;
+        }
+
+        if (method_exists($model, 'allowDelete')) {
+            if (!$model->allowDelete()) {
+                throw new DeleteOperationNotAllowedException();
+            }
         }
 
         Database::prepared('DELETE FROM ' . self::getTableName() . ' WHERE id=?', 'i', $id);

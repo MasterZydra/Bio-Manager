@@ -36,9 +36,11 @@
     <button><?= __('Save') ?></button>
 </form>
 
+<?php if ($recipient->allowDelete()) { ?>
 <form action="destroy" method="post">
     <input name="id" type="hidden" value="<?= $recipient->getId() ?>">
     <button class="red"><?= __('Delete') ?></button>
 </form>
+<?php } ?>
 
 <?= component('layout.footer') ?>

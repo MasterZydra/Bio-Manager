@@ -70,9 +70,11 @@
     <button><?= __('Save') ?></button>
 </form>
 
+<?php if ($user->allowDelete()) { ?>
 <form action="destroy" method="post">
     <input name="id" type="hidden" value="<?= $user->getId() ?>">
     <button class="red"><?= __('Delete') ?></button>
 </form>
+<?php } ?>
 
 <?= component('layout.footer') ?>

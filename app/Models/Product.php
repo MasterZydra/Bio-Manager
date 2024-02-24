@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Framework\Database\BaseModel;
 use Framework\Database\Database;
+use Framework\Database\Query\ColType;
+use Framework\Database\Query\Condition;
 use Framework\Facades\Convert;
 
 class Product extends BaseModel
@@ -16,6 +18,22 @@ class Product extends BaseModel
         return new self($data);
     }
 
+    public function allowDelete(): bool
+    {
+        $deliveryNotes = DeliveryNote::all(
+            DeliveryNote::getQueryBuilder()->where(ColType::Int, 'productId', Condition::Equal, $this->getId())
+        );
+        $prices = Price::all(
+            Price::getQueryBuilder()->where(ColType::Int, 'productId', Condition::Equal, $this->getId())
+        );
+
+        return match (true) {
+            count($deliveryNotes) > 0 => false,
+            count($prices) > 0 => false,
+            default => true,
+        };
+    }
+
     public function save(): self
     {
         if ($this->getId() === null) {
@@ -26,6 +44,7 @@ class Product extends BaseModel
                 Convert::boolToInt($this->getIsDiscontinued())
             );
         } else {
+            $this->checkAllowEdit();
             Database::prepared(
                 'UPDATE ' . $this->getTableName() . ' SET `name`=?, isDiscontinued=? WHERE id=?',
                 'sii',

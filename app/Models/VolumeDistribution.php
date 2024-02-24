@@ -29,6 +29,7 @@ class VolumeDistribution extends BaseModel
                 $this->getAmount()
             );
         } else {
+            $this->checkAllowEdit();
             Database::prepared(
                 'UPDATE ' . $this->getTableName() . ' SET deliveryNoteId=?, plotId=?, amount=? WHERE id=?',
                 'iidi',

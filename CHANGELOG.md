@@ -8,6 +8,9 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ## [Unreleased]
 
+### Added
+- Added support for `allow[Edit|Delete]` functions to prevent delete and edit operations of used entities
+
 ## v2.0.1 - 22.02.2024 - Minor styling improvements
 
 ### Added

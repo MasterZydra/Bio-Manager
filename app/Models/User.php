@@ -24,6 +24,18 @@ class User extends BaseModel
         return new self($data);
     }
 
+    public function allowDelete(): bool
+    {
+        $userRoles = UserRole::all(
+            UserRole::getQueryBuilder()->where(ColType::Int, 'userId', Condition::Equal, $this->getId())
+        );
+
+        return match (true) {
+            count($userRoles) > 0 => false,
+            default => true,
+        };
+    }
+
     public function save(): self
     {
         if ($this->getId() === null) {
@@ -39,6 +51,7 @@ class User extends BaseModel
                 $this->getLanguageId()
             );
         } else {
+            $this->checkAllowEdit();
             Database::prepared(
                 'UPDATE ' . $this->getTableName() . ' SET firstname=?, lastname=?, username=?, password=?, isLocked=?, isPwdChangeForced=?, languageId=? WHERE id=?',
                 'ssssiiii',

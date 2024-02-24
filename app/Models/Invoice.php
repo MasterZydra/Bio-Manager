@@ -22,6 +22,24 @@ class Invoice extends BaseModel
         return new self($data);
     }
 
+    public function allowEdit(): bool
+    {
+        $before = Invoice::findById($this->getId());
+
+        return match (true) {
+            $before->getIsPaid() => false,
+            default => true,
+        };
+    }
+
+    public function allowDelete(): bool
+    {
+        return match (true) {
+            $this->getIsPaid() => false,
+            default => true,
+        };
+    }
+
     public function save(): self
     {
         if ($this->getId() === null) {
@@ -35,6 +53,7 @@ class Invoice extends BaseModel
                 Convert::boolToInt($this->getIsPaid())
             );
         } else {
+            $this->checkAllowEdit();
             Database::prepared(
                 'UPDATE ' . $this->getTableName() . ' SET `year`=?, nr=?, invoiceDate=?, recipientId=?, isPaid=? WHERE id=?',
                 'iisiii',

@@ -16,6 +16,18 @@ class Role extends BaseModel
         return new self($data);
     }
 
+    public function allowDelete(): bool
+    {
+        $userRoles = UserRole::all(
+            UserRole::getQueryBuilder()->where(ColType::Int, 'roleId', Condition::Equal, $this->getId())
+        );
+
+        return match (true) {
+            count($userRoles) > 0 => false,
+            default => true,
+        };
+    }
+
     public function save(): self
     {
         if ($this->getId() === null) {
@@ -25,6 +37,7 @@ class Role extends BaseModel
                 $this->getName()
             );
         } else {
+            $this->checkAllowEdit();
             Database::prepared(
                 'UPDATE ' . $this->getTableName() . ' SET `name`=? WHERE id=?',
                 'si',

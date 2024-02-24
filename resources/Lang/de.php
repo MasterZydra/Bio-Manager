@@ -45,6 +45,7 @@ return [
     'EditSupplier' => 'Lieferant bearbeiten',
     'EditUser' => 'Benutzer bearbeiten',
     'Email' => 'E-Mail',
+    'EntityCannotBeEdited' => 'Entität kann nicht bearbeitet werden',
     'English' => 'Englisch',
     'Firstname' => 'Vorname',
     'ForcePasswordChange' => 'Passwortänderung erzwingen',
