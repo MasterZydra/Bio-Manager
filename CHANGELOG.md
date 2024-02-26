@@ -8,6 +8,11 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ## [Unreleased]
 
+## v2.1.1 - 26.02.2024 - Fixed huge logic issue with allowed functions
+
+### Fixed
+- Fixed issue that the `allowDelete` function was called when `allowEdit` should have been called
+
 ## v2.1.0 - 24.02.2024 - Used entities can no longer be deleted
 
 ### Added

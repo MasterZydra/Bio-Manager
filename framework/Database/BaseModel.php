@@ -37,7 +37,7 @@ abstract class BaseModel
 
     protected function checkAllowEdit(): void
     {
-        if (method_exists($this, 'allowDelete')) {
+        if (method_exists($this, 'allowEdit')) {
             if (!$this->allowEdit()) {
                 throw new EditOperationNotAllowedException();
             }
