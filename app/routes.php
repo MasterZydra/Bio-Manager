@@ -10,6 +10,7 @@
 
 use App\Http\Controllers\ActiveSuppliersController;
 use App\Http\Controllers\DeliveryNoteController;
+use App\Http\Controllers\DeveloperToolsController;
 use App\Http\Controllers\EditImprintSettingsController;
 use App\Http\Controllers\EditInvoiceSettingsController;
 use App\Http\Controllers\EditVolumeDistributionController;
@@ -77,6 +78,8 @@ if (Auth::isLoggedIn()) {
     }
 
     if (Auth::hasRole('Developer')) {
+        Router::addController('devTools', new DeveloperToolsController());
+        Router::addController('devTools', new DeveloperToolsController(), 'POST');
         Router::addController('cli', new WebCliController());
         Router::addController('cli', new WebCliController(), 'POST');
     }

@@ -113,6 +113,7 @@ if (Auth::hasRole('Developer')) { ?>
 <h2><?= __('Developer') ?></h2>
 
 <div class="box">
+    <a href="devTools"><?= __('Tools') ?></a><br>
     <a href="cli">CLI</a>
 </div>
 

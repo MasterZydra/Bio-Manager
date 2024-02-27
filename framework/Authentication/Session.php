@@ -11,10 +11,10 @@ class Session
         setcookie('PHPSESSID', session_id());
     }
 
-    public static function getValue(string $key, mixed $value = null): mixed
+    public static function getValue(string $key, mixed $default = null): mixed
     {
         if (!array_key_exists($key, $_SESSION)) {
-            return $value;
+            return $default;
         }
 
         return $_SESSION[$key];

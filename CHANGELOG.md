@@ -8,6 +8,11 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ## [Unreleased]
 
+## v2.2.1 - 27.02.2024 - Added developer setting
+
+### Added
+- Added developer setting to show error messages in production mode
+
 ## v2.2.0 - 27.02.2024 - New "orderBy" property for default sort order
 
 ### Added

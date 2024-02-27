@@ -1,5 +1,4 @@
 <?php
-    use Framework\Authentication\Auth;
     use Framework\Facades\Convert;
 ?>
 <?= component('layout.header') ?>

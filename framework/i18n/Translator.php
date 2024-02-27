@@ -3,6 +3,7 @@
 namespace Framework\i18n;
 
 use Framework\Config\Config;
+use Framework\Facades\DeveloperTools;
 use Framework\Facades\Env;
 use Framework\Facades\File;
 use Framework\Facades\Path;
@@ -51,7 +52,7 @@ class Translator
         }
 
         if (!array_key_exists($lang, self::$labels) || !(array_key_exists($label, self::$labels[$lang]))) {
-            if (Env::isDev()) {
+            if (Env::isDev() || DeveloperTools::showErrorMessages()) {
                 throw new LabelNotFoundException($lang, $label);
             }
             return $label;
