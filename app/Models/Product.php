@@ -13,6 +13,8 @@ class Product extends BaseModel
     private const NAME = 'name';
     private const IS_DISCONTINUED = 'isDiscontinued';
 
+    public static array $orderBy = ['isDiscontinued' => 'asc', 'name' => 'asc'];
+
     protected static function new(array $data = []): self
     {
         return new self($data);

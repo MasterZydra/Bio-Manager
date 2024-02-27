@@ -8,6 +8,11 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ## [Unreleased]
 
+## v2.2.0 - 27.02.2024 - New "orderBy" property for default sort order
+
+### Added
+- Added support for a default sort order that can be set with the static property `orderBy`
+
 ## v2.1.1 - 26.02.2024 - Fixed huge logic issue with allowed functions
 
 ### Fixed

@@ -16,6 +16,8 @@ class Plot extends BaseModel
     private const SUPPLIER_ID = 'supplierId';
     private const IS_LOCKED = 'isLocked';
 
+    public static array $orderBy = ['isLocked' => 'asc', 'nr' => 'asc'];
+
     protected static function new(array $data = []): self
     {
         return new self($data);

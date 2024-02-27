@@ -10,7 +10,7 @@ use Framework\Database\Query\Condition;
 //  $selected => Id that should be selected
 //  $supplierId => Filter the plots to the one belonging to given id
 
-$query = Plot::getQueryBuilder()->orderBy('nr');
+$query = Plot::getQueryBuilder();
 if (isset($supplierId)) {
     $query->where(ColType::Int, 'supplierId', Condition::Equal, $supplierId);
 }

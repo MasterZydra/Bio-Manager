@@ -9,6 +9,7 @@
 - [Views](#views)
 - [Localization](#localization)
 - [Models](#models)
+- [BaseModel](#basemodel)
 - [Query builder](#query-builder)
 - [Migrations](#migrations)
 - [Seeders](#seeders)
@@ -47,7 +48,7 @@ There are multiple ways for configuration:
 
 ### As function
 ```PHP
-# Render the view 'about' (/resources/Views/about.php)
+/** Render the view 'about' (/resources/Views/about.php) */
 Router::addFn('about', fn() => view('about'));
 ```
 
@@ -56,7 +57,7 @@ Router::addFn('about', fn() => view('about'));
 
 The controller class must implement the [`Framework\Routing\ControllerInterface`](../framework/Routing/ControllerInterface.php).
 ```PHP
-# The function 'execute()' is called in the AboutController class
+/** The function 'execute()' is called in the AboutController class */
 Router::addController('about', new AboutController());
 ```
 
@@ -66,7 +67,7 @@ Router::addController('about', new AboutController());
 The controller must implement the [`Framework\Routing\ModelControllerInterface`](../framework/Routing/ModelControllerInterface.php).
 
 ```PHP
-# Routes: user, user/show, user/create, user/store, etc.
+/** Routes: user, user/show, user/create, user/store, etc. */
 Router::addResource('user', new UserController());
 ```
 
@@ -129,24 +130,43 @@ return [
 ## Models
 > **Hint:** You can use the bioman CLI to create a new empty command: `make:model`
 
-### BaseModel functions
-It is recommended to use the BaseModel and name the identifier column `id`. This ways the following functions can be used for every model:
+A model can be used as a wrapper for a database table or to encapsulte application logic.
+If you extend your class from the [`BaseModel`](../framework/Database/BaseModel.php), you get access to helper functions.
+These already implement deletion, finding multiple or single instances, etc.
 
+Your table scheme should use the column `id` as primary key in order to use the BaseModel.
+
+See [BaseModel](#basemodel)
+
+-------------------------------------------------------------
+
+## BaseModel
+The [`BaseModel`](../framework/Database/BaseModel.php) provides logic to simplify the usage of a model that is stored in the database.
+
+The BaseModel assumes that the identifier column is named `id`.
+
+### Functions
 ```PHP
-# Get an empty query builder
-public static function getQueryBuilder(): WhereQueryBuilder
+/** Get an empty query builder */
+public static function getQueryBuilder(): WhereQueryBuilder;
 
-# Get an array of models
+/** Get an array of models */
 public static function all(WhereQueryBuilder $query = null): array;
 
-# Get the first model that matches the given query
+/** Get the first model that matches the given query */
 public static function find(WhereQueryBuilder $query): self;
 
-# Get the model with the given id
+/** Get the model with the given id */
 public static function findById(int $id): self;
 
-# Delete the model with the given id
+/** Delete the model with the given id */
 public static function delete(int $id): void;
+
+/** Set the given fields from the the eponymous HTTP parameters */
+public function setFromHttpParams(array $fields): self;
+
+/** Set the given field from the the eponymous HTTP parameter */
+public function setFromHttpParam(string $field, string $param = null): self;
 ```
 
 **Example model**
@@ -155,43 +175,6 @@ use Framework\Database\BaseModel;
 use Framework\Database\Database;
 
 class Role extends BaseModel
-```
-
-### Allow functions
-The allow functions are optional functions that can be added to a model for doing checks before the edit or delete operation.
-Possible checks could be permission checks to ensure that the current user is allowed to delete that entity. Another useful check is a dependency checks. Here you can check if a invoice is aleady paid and prevent the edit and delete operation in that case.
-
-**Signatures**
-```PHP
-    public function allowEdit(): bool;
-
-    public function allowDelete(): bool;
-```
-
-The `allowEdit` function gets executed if the `save()` function is called.  
-The `allowDelete` function gets executed if the `delete($id)` function is called.
-
-**Examples**
-```PHP
-    public function allowEdit(): bool
-    {
-        return match (true) {
-            $this->getIsPaid() => false,
-            // More checks...
-            default => true,
-        };
-    }
-
-    public function allowDelete(): bool
-    {
-        if ($this->getIsPaid()) {
-            return false;
-        }
-
-        // More checks...
-
-        return true;
-    }
 ```
 
 ### Table name
@@ -225,6 +208,55 @@ public function getPassword(): ?string
 {
     return $this->getDataStringOrNull(self::PASSWORD);
 }
+```
+
+### Allow functions
+The allow functions are optional functions that can be added to a model for doing checks before the edit or delete operation.
+Possible checks could be permission checks to ensure that the current user is allowed to delete that entity. Another useful check is a dependency checks. Here you can check if a invoice is aleady paid and prevent the edit and delete operation in that case.
+
+**Signatures**
+```PHP
+/* Gets executed if the `save()` function is called */
+public function allowEdit(): bool;
+
+/** Gets executed if the `delete($id)` function is called */
+public function allowDelete(): bool;
+```
+
+**Examples**
+```PHP
+public function allowEdit(): bool
+{
+    return match (true) {
+        $this->getIsPaid() => false,
+        // More checks...
+        default => true,
+    };
+}
+
+public function allowDelete(): bool
+{
+    if ($this->getIsPaid()) {
+        return false;
+    }
+
+    // More checks...
+
+    return true;
+}
+```
+
+### Default sort order
+You can use the [(Where)QueryBuilder](#query-builder) to set the sort order when calling `Model::all(...)`. This way you must set that order possibly on multiple locations in your source code.
+
+You can use the static property `orderBy` to set a default order.
+It will be used if no other sort order is passed via `QueryBuilder->orderBy(...)`.
+
+**Example**
+```PHP
+class Plot extends BaseModel
+{
+    public static array $orderBy = ['isLocked' => 'asc', 'nr' => 'asc'];
 ```
 
 -------------------------------------------------------------
@@ -285,7 +317,7 @@ return new class extends Migration
 {
     public function run(): void
     {
-        # code
+        // code
         ...
 ```
 
@@ -310,7 +342,7 @@ class UserSeeder extends Seeder implements SeederInterface
 {
     public function run(): void
     {
-        # code
+        // code
         ...
 ```
 

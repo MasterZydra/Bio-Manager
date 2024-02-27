@@ -54,4 +54,9 @@ class WhereQueryBuilder
     {
         return $this->queryBuilder->getColTypes();
     }
+
+    public function hasOrderBySection(): bool
+    {
+        return $this->queryBuilder->hasOrderBySection();
+    }
 }

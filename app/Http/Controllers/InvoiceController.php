@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\DeliveryNote;
 use App\Models\Invoice;
 use Framework\Authentication\Auth;
-use Framework\Database\Query\SortOrder;
 use Framework\Facades\Http;
 use Framework\PDF\PDF;
 use Framework\Routing\BaseController;
@@ -21,14 +20,7 @@ class InvoiceController extends BaseController implements ModelControllerInterfa
     {
         Auth::checkRole('Maintainer');
 
-        view(
-            'entities.invoice.index',
-            ['invoices' => Invoice::all(
-                Invoice::getQueryBuilder()
-                    ->orderBy('year', SortOrder::Desc)
-                    ->orderBy('nr', SortOrder::Desc)
-            )]
-        );
+        view('entities.invoice.index', ['invoices' => Invoice::all()]);
     }
 
     /**

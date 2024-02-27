@@ -15,6 +15,8 @@ class Price extends BaseModel
     private const PRODUCT_ID = 'productId';
     private const RECIPIENT_ID = 'recipientId';
 
+    public static array $orderBy = ['year' => 'desc', 'productId' => 'asc', 'recipientId' => 'asc'];
+
     protected static function new(array $data = []): self
     {
         return new self($data);

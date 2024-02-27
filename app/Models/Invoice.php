@@ -17,6 +17,8 @@ class Invoice extends BaseModel
     private const RECIPIENT_ID = 'recipientId';
     private const IS_PAID = 'isPaid';
 
+    public static array $orderBy = ['year' => 'desc', 'nr' => 'desc'];
+
     protected static function new(array $data = []): self
     {
         return new self($data);

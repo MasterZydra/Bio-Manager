@@ -15,6 +15,8 @@ class Supplier extends BaseModel
     private const HAS_FULL_PAYOUT = 'hasFullPayout';
     private const HAS_NO_PAYOUT = 'hasNoPayout';
 
+    public static array $orderBy = ['isLocked' => 'asc', 'name' => 'asc'];
+
     protected static function new(array $data = []): self
     {
         return new self($data);

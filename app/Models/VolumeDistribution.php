@@ -13,6 +13,8 @@ class VolumeDistribution extends BaseModel
     private const PLOT_ID = 'plotId';
     private const AMOUNT = 'amount';
 
+    public static array $orderBy = ['amount' => 'desc'];
+
     protected static function new(array $data = []): self
     {
         return new self($data);

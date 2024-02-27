@@ -19,6 +19,8 @@ class User extends BaseModel
     private const IS_PWD_CHANGE_FORCED = 'isPwdChangeForced';
     private const LANGUAGE_ID = 'languageId';
 
+    public static array $orderBy = ['isLocked' => 'asc', 'username' => 'asc'];
+
     protected static function new(array $data = []): self
     {
         return new self($data);

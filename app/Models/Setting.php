@@ -13,6 +13,8 @@ class Setting extends BaseModel
     private const DESCRIPTION = 'description';
     private const VALUE = 'value';
 
+    public static array $orderBy = ['name' => 'asc'];
+
     protected static function new(array $data = []): self
     {
         return new self($data);

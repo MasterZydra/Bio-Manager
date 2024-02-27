@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\DeliveryNote;
 use Framework\Authentication\Auth;
-use Framework\Database\Query\SortOrder;
 use Framework\Facades\Http;
 use Framework\Routing\BaseController;
 use Framework\Routing\ModelControllerInterface;
@@ -19,14 +18,7 @@ class DeliveryNoteController extends BaseController implements ModelControllerIn
     {
         Auth::checkRole('Maintainer');
 
-        view(
-            'entities.deliveryNote.index',
-            ['deliveryNotes' => DeliveryNote::all(
-                DeliveryNote::getQueryBuilder()
-                    ->orderBy('year', SortOrder::Desc)
-                    ->orderBy('nr', SortOrder::Desc)
-            )]
-        );
+        view('entities.deliveryNote.index', ['deliveryNotes' => DeliveryNote::all()]);
     }
 
     /**

@@ -16,6 +16,8 @@ class Recipient extends BaseModel
     private const CITY = 'city';
     private const IS_LOCKED = 'isLocked';
 
+    public static array $orderBy = ['isLocked' => 'asc', 'name' => 'asc'];
+
     protected static function new(array $data = []): self
     {
         return new self($data);

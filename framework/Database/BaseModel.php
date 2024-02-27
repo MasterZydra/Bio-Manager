@@ -5,6 +5,7 @@ namespace Framework\Database;
 use Exception;
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
+use Framework\Database\Query\SortOrder;
 use Framework\Facades\Http;
 
 /**
@@ -16,6 +17,8 @@ use Framework\Facades\Http;
  */
 abstract class BaseModel
 {
+    public static array $orderBy = [];
+
     protected const ID = 'id';
 
     public function __construct(
@@ -48,14 +51,23 @@ abstract class BaseModel
 
     public static function getQueryBuilder(): WhereQueryBuilder
     {
-        return new WhereQueryBuilder(self::getTableName());
+        return new WhereQueryBuilder(static::getTableName());
     }
 
     public static function all(WhereQueryBuilder $query = null): array
     {
         if ($query === null) {
-            $query = self::getQueryBuilder();
+            $query = static::getQueryBuilder();
         }
+
+        // Use default sort order if it is defined in the model and if no sort order is set via the query builder
+        if (!$query->hasOrderBySection() && count(static::$orderBy) > 0) {
+            foreach (static::$orderBy as $field => $sortOrderStr) {
+                $sortOrder = strtolower($sortOrderStr) === 'asc' ? SortOrder::Asc : SortOrder::Desc;
+                $query->orderBy($field, $sortOrder);
+            }
+        }
+
         $dataSet = Database::executeBuilder($query);
 
         if ($dataSet === false) {
@@ -71,7 +83,7 @@ abstract class BaseModel
 
     public static function find(WhereQueryBuilder $query): self
     {
-        $results = self::all($query);
+        $results = static::all($query);
         if ($results === []) {
             return static::new();
         }
@@ -80,12 +92,12 @@ abstract class BaseModel
 
     public static function findById(int $id): self
     {
-        return self::find(self::getQueryBuilder()->where(ColType::Int, 'id', Condition::Equal, $id));
+        return static::find(static::getQueryBuilder()->where(ColType::Int, 'id', Condition::Equal, $id));
     }
 
     public static function delete(int $id): void
     {
-        $model = self::findById($id);
+        $model = static::findById($id);
         if ($model->getId() === null) {
             return;
         }
@@ -96,14 +108,14 @@ abstract class BaseModel
             }
         }
 
-        Database::prepared('DELETE FROM ' . self::getTableName() . ' WHERE id=?', 'i', $id);
+        Database::prepared('DELETE FROM ' . static::getTableName() . ' WHERE id=?', 'i', $id);
     }
 
     /* Getter */
 
     public function getId(): ?int
     {
-        return $this->getDataIntOrNull(self::ID);
+        return $this->getDataIntOrNull(static::ID);
     }
 
     /* Magical getter and setter */

@@ -22,6 +22,8 @@ class DeliveryNote extends BaseModel
     private const IS_INVOICE_READY = 'isInvoiceReady';
     private const INVOICE_ID = 'invoiceId';
 
+    public static array $orderBy = ['year' => 'desc', 'nr' => 'desc'];
+
     protected static function new(array $data = []): self
     {
         return new self($data);

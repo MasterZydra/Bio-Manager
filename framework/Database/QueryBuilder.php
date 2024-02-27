@@ -105,6 +105,11 @@ class QueryBuilder
         return $types;
     }
 
+    public function hasOrderBySection(): bool
+    {
+        return $this->getOrderByStr() !== '';
+    }
+
     private function getWhereStr(): string
     {
         if ($this->isWhereEmpty()) {
