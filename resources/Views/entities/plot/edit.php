@@ -17,7 +17,8 @@
     <input id="name" name="name" type="text" value="<?= $plot->getName() ?>" required><br>
     
     <label for="subdistrict" class="required"><?= __('Subdistrict') ?>:</label><br>
-    <input id="subdistrict" name="subdistrict" type="text" value="<?= $plot->getSubdistrict() ?>" required><br>
+    <input id="subdistrict" name="subdistrict" type="text" value="<?= $plot->getSubdistrict() ?>" list="subdistricts" autocomplete="off" required><br>
+    <?= component('datalistSubdistricts') ?>
     
     <?= component('supplierSelect', ['selected' => $plot->getSupplierId()]) ?><br>
     

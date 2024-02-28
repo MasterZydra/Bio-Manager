@@ -8,6 +8,9 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ## [Unreleased]
 
+### Added
+- Added subdistrict recommendations to the create and edit form for plot
+
 ## v2.2.1 - 27.02.2024 - Added developer setting
 
 ### Added

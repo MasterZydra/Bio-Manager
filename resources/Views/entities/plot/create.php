@@ -14,8 +14,9 @@
     <input id="name" name="name" type="text" required><br>
     
     <label for="subdistrict" class="required"><?= __('Subdistrict') ?>:</label><br>
-    <input id="subdistrict" name="subdistrict" type="text" required><br>
-    
+    <input id="subdistrict" name="subdistrict" type="text" list="subdistricts" autocomplete="off" required><br>    
+    <?= component('datalistSubdistricts') ?>
+
     <?= component('supplierSelect') ?><br>
     
     <button><?= __('Create') ?></button>
