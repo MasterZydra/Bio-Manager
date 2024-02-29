@@ -26,7 +26,8 @@
     <input id="invoiceBankName" name="invoiceBankName" type="text" value="<?= setting('invoiceBankName') ?>" required><br>
 
     <label for="invoiceIBAN" class="required"><?= __('IBAN') ?>:</label><br>
-    <input id="invoiceIBAN" name="invoiceIBAN" type="text" value="<?= setting('invoiceIBAN') ?>" required><br>
+    <input id="invoiceIBAN" name="invoiceIBAN" type="text" value="<?= setting('invoiceIBAN') ?>" onchange="validateIbanInput()" required><br>
+    <div style="margin-bottom: 8px;"><span id="ibanValidMsg"></span></div>
 
     <label for="invoiceBIC" class="required"><?= __('BIC') ?>:</label><br>
     <input id="invoiceBIC" name="invoiceBIC" type="text" value="<?= setting('invoiceBIC') ?>" required><br>
@@ -41,5 +42,25 @@
 
     <button><?= __('Save') ?></button>
 </form>
+
+<script src="js/validateIBAN.js"></script>
+<script>
+
+function validateIbanInput()
+{
+    let msgSpan = document.getElementById('ibanValidMsg');
+    if (validateIBAN(document.getElementById('invoiceIBAN').value)) {
+        console.log("yes");
+        msgSpan.style = 'color: #4a8a16;';
+        msgSpan.textContent = '<?= __('IbanIsValid') ?>';
+    } else {
+        console.log("no");
+        msgSpan.style = 'color: #b01c1c;';
+        msgSpan.textContent = '<?= __('IbanIsNotValid') ?>';
+    }
+}
+
+validateIbanInput();
+</script>
 
 <?= component('layout.footer') ?>

@@ -10,6 +10,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ### Added
 - Added subdistrict recommendations to the create and edit form for plot
+- Added frontend validation to check if given IBAN is valid
 
 ## v2.2.1 - 27.02.2024 - Added developer setting
 

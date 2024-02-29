@@ -54,6 +54,8 @@ return [
     'German' => 'Deutsch',
     'Home' => 'Startseite',
     'IBAN' => 'IBAN',
+    'IbanIsNotValid' => 'IBAN ist nicht gültig',
+    'IbanIsValid' => 'IBAN ist gültig',
     'Imprint' => 'Impressum',
     'InsertSearchText' => 'Suchtext eingeben...',
     'InvalidDataTypeForField' => 'Ungültiger Datentyp für das Feld "%s"',
