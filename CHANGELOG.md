@@ -9,6 +9,14 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 ## [Unreleased]
 
 ### Added
+- Add function to remove leading spaces on the beginning of each line
+
+### Changed
+- Changed the behaviour of the function `render()` so that it removes leading spaces from the rendered HTML
+
+## v2.2.2 - 29.02.2024 - Improved UX with recommendations and validation
+
+### Added
 - Added subdistrict recommendations to the create and edit form for plot
 - Added frontend validation to check if given IBAN is valid
 
