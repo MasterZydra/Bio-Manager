@@ -2,6 +2,7 @@
 
 use App\Models\Setting;
 use Framework\Facades\Path;
+use Framework\Facades\Str;
 use Framework\i18n\Translator;
 
 /** Print the given string with line break */
@@ -20,7 +21,7 @@ function render(string $name, array $data = []): string
     require Path::join(__DIR__,  '..', 'resources', 'Views', str_replace('.', '/', $name) . '.php');
     $html = ob_get_contents();
     ob_end_clean();
-    return $html;
+    return Str::removeLeadingLineSpaces($html);
 }
 
 /** Render the given view */
