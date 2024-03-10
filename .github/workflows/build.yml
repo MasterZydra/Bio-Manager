@@ -96,7 +96,7 @@ jobs:
 
       # Remove untagged images to keep container registry clean
       - name: Prune untagged images
-        uses: vlaurin/action-ghcr-prune@v0.5.0
+        uses: vlaurin/action-ghcr-prune@v0.6.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           user: masterzydra
