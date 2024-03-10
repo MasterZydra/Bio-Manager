@@ -15,6 +15,7 @@ use App\Http\Controllers\EditImprintSettingsController;
 use App\Http\Controllers\EditInvoiceSettingsController;
 use App\Http\Controllers\EditVolumeDistributionController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\OpenVolumeDistributionsController;
 use App\Http\Controllers\PlotController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProductController;
@@ -62,7 +63,8 @@ if (Auth::isLoggedIn()) {
         // Analyses
         Router::addController('activeSuppiers', new ActiveSuppliersController());
         Router::addController('showSupplierPayouts', new SupplierPayoutsController());
-        Router::addController('showSupplierPayouts', new SupplierPayoutsController(), 'POST');    
+        Router::addController('showSupplierPayouts', new SupplierPayoutsController(), 'POST');
+        Router::addController('openVolumeDistributions', new OpenVolumeDistributionsController());
         Router::addController('showVolumeDistribution', new VolumeDistributionPdfController());
         Router::addController('showVolumeDistribution', new VolumeDistributionPdfController(), 'POST');
     }

@@ -11,6 +11,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 ### Added
 - Added function to remove leading spaces on the beginning of each line
 - Added support for `in` condition in query builder
+- Added statistics to get the delivery notes where the volume distribution does not match delivery amount
 
 ### Changed
 - Changed the behaviour of the function `render()` so that it removes leading spaces from the rendered HTML
