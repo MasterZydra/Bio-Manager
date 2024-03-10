@@ -81,7 +81,13 @@ class QueryBuilder
             if ($column['type'] === 'null') {
                 continue;
             }
-            $values[] = $column['value'];
+            if (is_array($column['value'])) {
+                foreach ($column['value'] as $value) {
+                    $values[] = $value;
+                }
+            } else {
+                $values[] = $column['value'];
+            }
         }
 
         return $values;
@@ -99,7 +105,13 @@ class QueryBuilder
             if ($column['type'] === 'null') {
                 continue;
             }
-            $types .= $column['type'];
+            if (is_array($column['value'])) {
+                foreach ($column['value'] as $value) {
+                    $types .= $column['type'];
+                }
+            } else {
+                $types .= $column['type'];
+            }
         }
 
         return $types;
@@ -126,10 +138,14 @@ class QueryBuilder
             if ($isFirst) {
                 $isFirst = false;
             }
+            $value = $column['type'] === 'null' ? 'NULL' : '?';
+            if (is_array($column['value'])) {
+                $value = '(' . implode(', ', array_fill(0, count($column['value']), '?')) . ')';
+            }
             $conditions .= sprintf('`%s` %s %s',
                 $column['column'],
                 $column['condition'],
-                $column['type'] === 'null' ? 'NULL' : '?'
+                $value
             );
         }
 

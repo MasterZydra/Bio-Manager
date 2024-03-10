@@ -53,6 +53,14 @@ class TestQueryBuilder extends TestCase
         $this->assertFalse($queryBuilder->isWhereEmpty());
         $this->assertEquals('i', $queryBuilder->getColTypes());
         $this->assertEquals([42], $queryBuilder->getValues());
+
+        $queryBuilder = QueryBuilder::new('users')
+            ->where(ColType::Int, 'id', Condition::In, [1, 3, 5])
+            ->where(ColType::Null, 'username', Condition::IsNot, 'NULL');
+        $this->assertEquals('SELECT * FROM `users` WHERE `id` IN (?, ?, ?) AND `username` IS NOT NULL', $queryBuilder->build());
+        $this->assertFalse($queryBuilder->isWhereEmpty());
+        $this->assertEquals('iii', $queryBuilder->getColTypes());
+        $this->assertEquals([1, 3, 5], $queryBuilder->getValues());
     }
 
     public function testOrderBy(): void

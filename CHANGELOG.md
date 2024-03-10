@@ -9,7 +9,8 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 ## [Unreleased]
 
 ### Added
-- Add function to remove leading spaces on the beginning of each line
+- Added function to remove leading spaces on the beginning of each line
+- Added support for `in` condition in query builder
 
 ### Changed
 - Changed the behaviour of the function `render()` so that it removes leading spaces from the rendered HTML
