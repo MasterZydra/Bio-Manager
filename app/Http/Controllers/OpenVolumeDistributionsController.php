@@ -36,6 +36,8 @@ class OpenVolumeDistributionsController extends BaseController implements Contro
             }
         }
 
+        $deliveryNotes = array_reverse($deliveryNotes);
+
         view('statistics.openVolumeDistributions', ['deliveryNotes' => $deliveryNotes]);
     }
 }

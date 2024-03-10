@@ -8,6 +8,11 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ## [Unreleased]
 
+## v2.3.1 - 10.03.2024 - Changed sort order for open volume distributions table
+
+### Changed
+- Changed sort order for open volume distributions table
+
 ## v2.3.0 - 10.03.2024 - Improvements to the framework and a new volume distribution statistic
 
 ### Added
