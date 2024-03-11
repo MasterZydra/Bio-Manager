@@ -14,6 +14,7 @@ use App\Http\Controllers\DeveloperToolsController;
 use App\Http\Controllers\EditImprintSettingsController;
 use App\Http\Controllers\EditInvoiceSettingsController;
 use App\Http\Controllers\EditVolumeDistributionController;
+use App\Http\Controllers\FinancialRevenueProfitStatsController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\OpenVolumeDistributionsController;
 use App\Http\Controllers\PlotController;
@@ -67,6 +68,7 @@ if (Auth::isLoggedIn()) {
         Router::addController('openVolumeDistributions', new OpenVolumeDistributionsController());
         Router::addController('showVolumeDistribution', new VolumeDistributionPdfController());
         Router::addController('showVolumeDistribution', new VolumeDistributionPdfController(), 'POST');
+        Router::addController('financialRevenueProfitStats', new FinancialRevenueProfitStatsController());
     }
 
     if (Auth::hasRole('Administrator')) {

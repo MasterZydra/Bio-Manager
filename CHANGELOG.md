@@ -8,6 +8,11 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ## [Unreleased]
 
+## v2.4.0 - 11.03.2024 - Added revenue and profit statistic
+
+### Added
+- Added renvenue and profit to Analyses area
+
 ## v2.3.1 - 10.03.2024 - Changed sort order for open volume distributions table
 
 ### Changed

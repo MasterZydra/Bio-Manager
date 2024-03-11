@@ -82,6 +82,11 @@ if (Auth::hasRole('Maintainer')) { ?>
     <a href="showVolumeDistribution"><?= __('ShowVolumeDistribution') ?></a>
 </div>
 
+<div class="box">
+    <strong><?= __('Finances') ?></strong><br>
+    <a href="financialRevenueProfitStats"><?= __('RevenueAndProfit') ?></a>
+</div>
+
 <?php }
 // Links for administration
 if (Auth::hasRole('Administrator')) { ?>
