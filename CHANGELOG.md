@@ -10,6 +10,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ### Added
 - Added component for line chart #59
+- Added statistic for amount development #31
 
 ## v2.4.0 - 11.03.2024 - Added revenue and profit statistic
 

@@ -16,6 +16,7 @@ return [
     'Administration' => 'Administration',
     'Administrator' => 'Administrator',
     'Amount' => 'Amount',
+    'AmountDevelopment' => 'Amount development',
     'AmountInVolumeDistribution' => 'Amount in volume distribution',
     'Analyses' => 'Analyses',
     'Author' => 'Author',

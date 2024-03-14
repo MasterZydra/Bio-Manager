@@ -9,6 +9,7 @@
  */
 
 use App\Http\Controllers\ActiveSuppliersController;
+use App\Http\Controllers\AmountDevelopmentStatsController;
 use App\Http\Controllers\DeliveryNoteController;
 use App\Http\Controllers\DeveloperToolsController;
 use App\Http\Controllers\EditImprintSettingsController;
@@ -69,6 +70,7 @@ if (Auth::isLoggedIn()) {
         Router::addController('showVolumeDistribution', new VolumeDistributionPdfController());
         Router::addController('showVolumeDistribution', new VolumeDistributionPdfController(), 'POST');
         Router::addController('financialRevenueProfitStats', new FinancialRevenueProfitStatsController());
+        Router::addController('amountDevelopmentStats', new AmountDevelopmentStatsController());
     }
 
     if (Auth::hasRole('Administrator')) {

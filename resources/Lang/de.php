@@ -16,6 +16,7 @@ return [
     'Administration' => 'Administration',
     'Administrator' => 'Administrator',
     'Amount' => 'Menge',
+    'AmountDevelopment' => 'Mengenentwicklung',
     'AmountInVolumeDistribution' => 'Menge in Mengenverteilung',
     'Analyses' => 'Auswertungen',
     'Author' => 'Autor',
