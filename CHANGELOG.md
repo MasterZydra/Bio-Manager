@@ -8,6 +8,9 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ## [Unreleased]
 
+### Added
+- Added component for line chart #59
+
 ## v2.4.0 - 11.03.2024 - Added revenue and profit statistic
 
 ### Added

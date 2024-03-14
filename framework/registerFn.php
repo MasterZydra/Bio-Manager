@@ -34,12 +34,17 @@ function view(string $name, array $data = []): void
 }
 
 /** Render the given component */
-function component(string $name, array $data = []): void
+function component(string $name, array $data = [], bool $once = false): void
 {
     if (count($data) > 0) {
         extract($data);
     }
-    require Path::join(__DIR__, '..', 'resources', 'Views', 'Components', str_replace('.', '/', $name) . '.php');
+    $path = Path::join(__DIR__, '..', 'resources', 'Views', 'Components', str_replace('.', '/', $name) . '.php');
+    if ($once) {
+        require_once $path;
+    } else {
+        require $path;
+    }
 }
 
 /** Translate the given label into user language */

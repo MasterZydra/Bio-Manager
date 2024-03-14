@@ -20,62 +20,15 @@
     <?php endforeach ?>
 </table>
 
-
-<div style="margin-top: 20px; background-color: white;max-width: 1200px;">
-    <canvas id="myChart"></canvas>
-</div>
-
-<script src="js/chart.umd.js"></script>
-
-<script>
-const ctx = document.getElementById('myChart');
-
-const handleResize = (chart) => {
-    chart.resize();
-}
-
-new Chart(ctx, {
-    type: 'line',
-    data: {
-        datasets: [
-            {
-                label: '<?= __('Revenue') ?>',
-                data: <?= json_encode(array_map(fn(array $line): float => $line['revenue'], $data)) ?>,
-                borderWidth: 1
-            },
-            {
-                label: '<?= __('Payouts') ?>',
-                data: <?= json_encode(array_map(fn(array $line): float => $line['payouts'], $data)) ?>,
-                borderWidth: 1
-            },
-            {
-                label: '<?= __('Profit') ?>',
-                data: <?= json_encode(array_map(fn(array $line): float => $line['profit'], $data)) ?>,
-                borderWidth: 1
-            },
-        ]
-    },
-    options: {
-        responsive: true,
-        onResize: handleResize,
-        maintainAspectRatio: true,
-        scales: {
-            x: {
-                title: {
-                    display: true,
-                    text: '<?= __('Year') ?>',
-                }
-            },
-            y: {
-                beginAtZero: true,
-                title: {
-                    display: true,
-                    text: '<?= __('inX', setting('currencyUnit')) ?>'
-                }
-            }
-        }
-    }
-});
-</script>
+<?= component('chart.line', [
+    'chartName' => 'revenueAndProfit',
+    'xTitle' => __('Year'),
+    'yTitle' => __('inX', setting('currencyUnit')),
+    'dataSet' => [
+        ['label' => __('Revenue'), 'data' => array_map(fn(array $line): float => $line['revenue'], $data)],
+        ['label' => __('Payouts'), 'data' => array_map(fn(array $line): float => $line['payouts'], $data)],
+        ['label' => __('Profit'), 'data' => array_map(fn(array $line): float => $line['profit'], $data)],
+    ]
+]) ?>
 
 <?= component('layout.footer') ?>
