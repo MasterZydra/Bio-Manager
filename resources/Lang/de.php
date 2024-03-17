@@ -99,6 +99,7 @@ return [
     'Plot' => 'Flurstück',
     'PostalCode' => 'Postleitzahl',
     'Price' => 'Preis',
+    'PriceDevelopment' => 'Preisentwicklung',
     'Product' => 'Produkt',
     'Profit' => 'Gewinn',
     'Provider' => 'Anbieter',

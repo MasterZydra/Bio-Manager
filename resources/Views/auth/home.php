@@ -85,7 +85,8 @@ if (Auth::hasRole('Maintainer')) { ?>
 
 <div class="box">
     <strong><?= __('Finances') ?></strong><br>
-    <a href="financialRevenueProfitStats"><?= __('RevenueAndProfit') ?></a>
+    <a href="financialRevenueProfitStats"><?= __('RevenueAndProfit') ?></a><br>
+    <a href="priceDevelopmentStats"><?= __('PriceDevelopment') ?></a>
 </div>
 
 <?php }

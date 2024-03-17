@@ -20,6 +20,7 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\OpenVolumeDistributionsController;
 use App\Http\Controllers\PlotController;
 use App\Http\Controllers\PriceController;
+use App\Http\Controllers\PriceDevelopmentStatsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RecipientController;
 use App\Http\Controllers\SettingController;
@@ -71,6 +72,7 @@ if (Auth::isLoggedIn()) {
         Router::addController('showVolumeDistribution', new VolumeDistributionPdfController(), 'POST');
         Router::addController('financialRevenueProfitStats', new FinancialRevenueProfitStatsController());
         Router::addController('amountDevelopmentStats', new AmountDevelopmentStatsController());
+        Router::addController('priceDevelopmentStats', new PriceDevelopmentStatsController());
     }
 
     if (Auth::hasRole('Administrator')) {

@@ -8,9 +8,12 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ## [Unreleased]
 
+## v2.5.0 - 17.03.2024 - Added statistic for amount and price development
+
 ### Added
-- Added component for line chart #59
-- Added statistic for amount development #31
+- Added component for line chart
+- Added statistic for amount development
+- Added statistic for price development
 
 ## v2.4.0 - 11.03.2024 - Added revenue and profit statistic
 

@@ -99,6 +99,7 @@ return [
     'Plot' => 'Plot',
     'PostalCode' => 'Postal code',
     'Price' => 'Price',
+    'PriceDevelopment' => 'Price development',
     'Product' => 'Product',
     'Profit' => 'Profit',
     'Provider' => 'Provider',
