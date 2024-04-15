@@ -59,4 +59,14 @@ class File
     {
         return array_filter($files, fn($file) => is_dir(Path::join($path, $file)));
     }
+
+    /** Create the directory structure if it does not already exist */
+    public static function mkdir(string $directory, bool $recursive = true): void
+    {
+        if (file_exists($directory)) {
+            return;
+        }
+        
+        mkdir($directory, recursive: $recursive);
+    }
 }
