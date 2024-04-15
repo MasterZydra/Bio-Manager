@@ -8,6 +8,9 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ## [Unreleased]
 
+### Added
+- Added class `CreateTableBlueprint` to create statements for generating tables in MySQL/MariaDB and SQLite
+
 ## v2.5.0 - 17.03.2024 - Added statistic for amount and price development
 
 ### Added
