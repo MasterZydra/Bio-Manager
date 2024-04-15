@@ -94,8 +94,7 @@ class MigrationRunner
             return false;
         }
 
-        /** @var \mysqli_result $result */
-        return $result->num_rows === 1;
+        return $result->numRows() === 1;
     }
 
     /** Extract the migration name out of the complete file path */
@@ -129,7 +128,6 @@ class MigrationRunner
             return false;
         }
 
-        /** @var \mysqli_result $result */
-        return $result->num_rows === 1;
+        return $result->numRows() === 1;
     }
 }

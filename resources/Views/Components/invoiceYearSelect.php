@@ -12,7 +12,7 @@ $dataSet = Database::executeBuilder(QueryBuilder::new('invoices')->select('DISTI
 
 $years = [];
 if ($dataSet !== false) {
-    while ($row = $dataSet->fetch_assoc()) {
+    while ($row = $dataSet->fetch()) {
         $years[] = $row['year'];
     }
 }

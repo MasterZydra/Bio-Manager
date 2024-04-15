@@ -94,10 +94,10 @@ class Invoice extends BaseModel
                 ->select('MAX(nr) + 1 AS nextId')
                 ->where(ColType::Int, 'year', Condition::Equal, $year)
         );
-        if ($dataSet === false || $dataSet->num_rows !== 1) {
+        if ($dataSet === false || $dataSet->numRows() !== 1) {
             return 1;
         }
-        $row = $dataSet->fetch_assoc();
+        $row = $dataSet->fetch();
         if ($row['nextId'] === null) {
             return 1;
         }

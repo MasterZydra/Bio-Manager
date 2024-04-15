@@ -75,7 +75,7 @@ abstract class BaseModel
         }
         
         $all = [];
-        while ($row = $dataSet->fetch_assoc()) {
+        while ($row = $dataSet->fetch()) {
             array_push($all, static::new($row));
         }
         return $all;

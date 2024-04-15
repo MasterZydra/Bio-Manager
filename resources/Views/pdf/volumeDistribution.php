@@ -40,7 +40,7 @@ $totalAmount = 0;
                     <td><b>Menge in <?= setting('massUnit') ?></b></td>
                 </tr>
 
-                <?php while ($row = $dataSet->fetch_assoc()) {
+                <?php while ($row = $dataSet->fetch()) {
                     $totalAmount += $row['amount'];
                 ?>
                     <tr>

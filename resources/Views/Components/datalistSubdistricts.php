@@ -7,7 +7,7 @@ $dataSet = Database::executeBuilder(QueryBuilder::new('plots')->select('DISTINCT
 
 $subdistricts = [];
 if ($dataSet !== false) {
-    while ($row = $dataSet->fetch_assoc()) {
+    while ($row = $dataSet->fetch()) {
         $subdistricts[] = $row['subdistrict'];
     }
 }

@@ -29,7 +29,7 @@ class OpenVolumeDistributionsController extends BaseController implements Contro
 
         $deliveryNotes = [];
         if ($dataSet !== false) {
-            while ($row = $dataSet->fetch_assoc()) {
+            while ($row = $dataSet->fetch()) {
                 $deliveryNote = DeliveryNote::findById($row['id']);
                 $deliveryNote->setCalcSum($row['calcSum']);
                 $deliveryNotes[] = $deliveryNote;

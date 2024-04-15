@@ -23,4 +23,13 @@ class MariaDbResult implements ResultInterface
         }
         return $row;
     }
+
+    public function numRows(): int
+    {
+        if ($this->result === false) {
+            return 0;
+        }
+
+        return $this->result->num_rows;
+    }
 }

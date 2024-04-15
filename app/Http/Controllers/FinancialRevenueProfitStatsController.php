@@ -21,7 +21,7 @@ class FinancialRevenueProfitStatsController extends BaseController implements Co
         $dataSet = Database::executeBuilder(QueryBuilder::new('invoices')->select('DISTINCT year'));
         $years = [];
         if ($dataSet !== false) {
-            while ($row = $dataSet->fetch_assoc()) {
+            while ($row = $dataSet->fetch()) {
                 $years[] = $row['year'];
             }
         }

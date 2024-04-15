@@ -16,7 +16,7 @@ class AmountDevelopmentStatsController extends BaseController implements Control
         $dataSet = Database::unprepared('SELECT year, SUM(amount) AS amount FROM deliveryNotes GROUP BY year ORDER BY year ASC');
         $data = [];
         if ($dataSet !== false) {
-            while ($row = $dataSet->fetch_assoc()) {
+            while ($row = $dataSet->fetch()) {
                 $data[$row['year']] = $row['amount'];
             }
         }
