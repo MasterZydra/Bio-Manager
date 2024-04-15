@@ -6,6 +6,7 @@ use Framework\Config\Config;
 use Framework\Facades\Convert;
 use RuntimeException;
 
+/** Create SQL statements for generating tables in MySQL/MariaDB and SQLite */
 class CreateTableBlueprint implements BlueprintInterface
 {
     private array $sql = [];

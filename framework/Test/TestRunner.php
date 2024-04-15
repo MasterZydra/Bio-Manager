@@ -21,6 +21,7 @@ class TestRunner
     /** Run all tests in the given test file path */
     public function run(): bool
     {
+        $GLOBALS['isTestRun'] = true;
         return $this->runUnitTests(Path::join(__DIR__, '..', 'tests'))
             && $this->runUnitTests($this->testFilePath);
     }
