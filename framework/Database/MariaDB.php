@@ -6,9 +6,9 @@ use mysqli;
 use mysqli_result;
 
 /** This class simplifies the connection to MariaDB and executing queries. */
-class MariaDB
+class MariaDB implements DatabaseInterface
 {
-    private ?mysqli $mysqli;
+    private ?mysqli $mysqli = null;
 
     public function __construct(
         private string $host,
@@ -43,17 +43,17 @@ class MariaDB
     }
 
     /** Execute the given query */
-    public function unprepared(string $query): mysqli_result|bool
+    public function unprepared(string $query): ResultInterface|false
     {
         if ($this->mysqli === null) {
             return false;
         }
 
-        return $this->mysqli->query($query);
+        return new MariaDbResult($this->mysqli->query($query));
     }
 
     /** Execute the given prepared statement */
-    public function prepared(string $query, string $colTypes, ...$values): mysqli_result|bool
+    public function prepared(string $query, string $colTypes, ...$values): ResultInterface|false
     {
         $stmt = $this->mysqli->prepare($query);
         if ($stmt === false) {
@@ -65,6 +65,6 @@ class MariaDB
             return false;
         }
 
-        return $stmt->get_result();
+        return new MariaDbResult($stmt->get_result());
     }
 }
