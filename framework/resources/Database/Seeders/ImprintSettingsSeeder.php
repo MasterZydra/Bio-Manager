@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Database\Seeders;
+namespace Framework\resources\Database\Seeders;
 
 use App\Models\Setting;
 use Framework\Database\Seeder\Seeder;

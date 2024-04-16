@@ -11,26 +11,26 @@ class SeederRunner
 
     public function __construct()
     {
-        $this->seederPath = Path::join(__DIR__, '..', '..', 'resources', 'Database', 'Seeders');
+        $this->seederPath = Path::join(__DIR__, '..', '..', '..', 'resources', 'Database', 'Seeders');
     }
 
     /** Apply all seeders */
     public function run(): void
     {
-        $this->runAllSeeders(Path::join(__DIR__, 'Seeders'));
+        $this->runAllSeeders(Path::join(__DIR__, '..', '..', 'resources', 'Database', 'Seeders'));
         $this->runAllSeeders($this->seederPath);
     }
 
     /** Run all the seeders */
-    private function runAllSeeders(string $migrationsPath): void
+    private function runAllSeeders(string $seedersPath): void
     {
-        $seederFiles = $this->getSeederFiles($migrationsPath);
+        $seederFiles = $this->getSeederFiles($seedersPath);
         foreach ($seederFiles as $seederFile) {
-            $this->runSeeder(Path::join($migrationsPath, $seederFile));
+            $this->runSeeder(Path::join($seedersPath, $seederFile));
         }
     }
 
-    /** Get all migration files from the migrations directory */
+    /** Get all seeder files from the seeders directory */
     private function getSeederFiles(string $seedersPath): array
     {
         $allFiles = File::findFilesInDir($seedersPath, onlyFiles: true);

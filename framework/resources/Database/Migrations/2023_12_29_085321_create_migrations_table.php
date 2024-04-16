@@ -1,6 +1,5 @@
 <?php
 
-use Framework\Database\CreateTableBlueprint;
 use Framework\Database\Database;
 use Framework\Database\Migration\Migration;
 
@@ -8,13 +7,7 @@ return new class extends Migration
 {
     public function run(): void
     {
-        $table = new CreateTableBlueprint('migrations');
-        $table->id();
-        $table->string('name', 255);
-        $table->timestamps();
-        
         Database::unprepared(
-            $table->build() .
             'CREATE TABLE migrations (' .
             'id INT auto_increment,' .
             'name VARCHAR(255) NOT NULL,' .

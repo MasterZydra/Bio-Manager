@@ -12,13 +12,13 @@ class MigrationRunner
 
     public function __construct()
     {
-        $this->migrationsPath = Path::join(__DIR__, '..', '..', 'resources', 'Database', 'Migrations');
+        $this->migrationsPath = Path::join(__DIR__, '..', '..', '..', 'resources', 'Database', 'Migrations');
     }
 
     /** Apply all migrations */
     public function run(): void
     {
-        $this->runAllMigrations(Path::join(__DIR__, 'Migrations'));
+        $this->runAllMigrations(Path::join(__DIR__, '..', '..', 'resources', 'Database', 'Migrations'));
         $this->runAllMigrations($this->migrationsPath);
     }
 

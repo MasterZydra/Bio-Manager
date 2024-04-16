@@ -1,12 +1,12 @@
 <?php
 
 use Framework\Database\Migration\Migration;
-use Framework\Database\Seeders\UserSeeder;
+use Framework\resources\Database\Seeders\ImprintSettingsSeeder;
 
 return new class extends Migration
 {
     public function run(): void
     {
-        (new UserSeeder())->run();
+        (new ImprintSettingsSeeder())->run();
     }
 };

@@ -5,4 +5,4 @@
 .env
 
 # Temporary test files
-tests/tmp
+resources/Tests/tmp
