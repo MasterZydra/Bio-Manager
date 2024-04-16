@@ -14,7 +14,7 @@ class TestRunner
         if ($testFilePath !== null) {
             $this->testFilePath = $testFilePath;
         } else {
-            $this->testFilePath = Path::join(__DIR__, '..', '..', 'tests');
+            $this->testFilePath = Path::join(__DIR__, '..', '..', 'resources', 'Tests');
         }
     }
 
@@ -22,7 +22,7 @@ class TestRunner
     public function run(): bool
     {
         $GLOBALS['isTestRun'] = true;
-        return $this->runUnitTests(Path::join(__DIR__, '..', 'tests'))
+        return $this->runUnitTests(Path::join(__DIR__, '..', 'resources', 'Tests'))
             && $this->runUnitTests($this->testFilePath);
     }
 
@@ -79,7 +79,7 @@ class TestRunner
                 $success = false;
                 throw $th;
             }
-            
+
         }
         return $success;
     }
