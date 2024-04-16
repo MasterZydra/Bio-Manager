@@ -10,7 +10,7 @@ use Framework\Database\SQLite\CreateTableBlueprint as SQLiteCreateTableBlueprint
 use RuntimeException;
 
 /** Create SQL statements for generating tables in MySQL/MariaDB and SQLite */
-class CreateTableBlueprint implements BlueprintInterface
+class CreateTableBlueprint implements BlueprintInterface, CreateTableBlueprintInterface
 {
     private ?CreateTableBlueprintInterface $blueprint = null;
 
@@ -41,14 +41,17 @@ class CreateTableBlueprint implements BlueprintInterface
         $this->blueprint->bool($column, $nullable, $default);
     }
 
-    public function int(string $column, bool $nullable = false): void
+    /**
+     * @param array $foreignKey `['table name' => 'table column']`
+     */
+    public function int(string $column, bool $nullable = false, array $foreignKey = []): void
     {
-        $this->blueprint->int($column, $nullable);
+        $this->blueprint->int($column, $nullable, $foreignKey);
     }
 
-    public function string(string $column, string $length, bool $nullable = false): void
+    public function string(string $column, string $length, bool $nullable = false, bool $unique = false): void
     {
-        $this->blueprint->string($column, $length, $nullable);
+        $this->blueprint->string($column, $length, $nullable, $unique);
     }
 
     public function timestamps(): void

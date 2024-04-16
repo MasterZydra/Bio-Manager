@@ -2,10 +2,10 @@
 
 namespace Framework\Database\SQLite;
 
-use Framework\Database\Interface\BlueprintInterface;
+use Framework\Database\Interface\CreateTableBlueprintInterface;
 use Framework\Facades\Convert;
 
-class CreateTableBlueprint implements BlueprintInterface
+class CreateTableBlueprint implements CreateTableBlueprintInterface
 {
     private array $sql = [];
     private array $afterSql = [];
@@ -25,14 +25,22 @@ class CreateTableBlueprint implements BlueprintInterface
         $this->sql[] = $column . ' TINYINT(1) ' . ($nullable ? '' : 'NOT ') . 'NULL DEFAULT ' . Convert::boolToInt($default);
     }
 
-    public function int(string $column, bool $nullable = false): void
+    public function int(string $column, bool $nullable = false, array $foreignKey = []): void
     {
         $this->sql[] = $column . ' INTEGER ' . ($nullable ? '' : 'NOT ') . 'NULL';
+        if (count($foreignKey) === 1) {
+            $this->sql[] =
+                'FOREIGN KEY (' . $column . ') ' .
+                'REFERENCES `' . array_keys($foreignKey)[0] . '` (`' . $foreignKey[array_keys($foreignKey)[0]] . '`)';
+        } 
     }
 
-    public function string(string $column, string $length, bool $nullable = false): void
+    public function string(string $column, string $length, bool $nullable = false, bool $unique = false): void
     {
             $this->sql[] = $column . ' VARCHAR(' . $length . ') ' . ($nullable ? '' : 'NOT ') . 'NULL';
+            if ($unique) {
+                $this->sql[] = 'UNIQUE(' . $column . ')';
+            }
     }
 
     public function timestamps(): void

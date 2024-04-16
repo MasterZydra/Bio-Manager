@@ -36,6 +36,10 @@ class TestMariaDbCreateTableBlueprint extends TestCase
         $blueprint = new CreateTableBlueprint('user');
         $blueprint->int('age', true);
         $this->assertEquals(['CREATE TABLE `user` (age INT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;'], $blueprint->build());
+
+        $blueprint = new CreateTableBlueprint('user');
+        $blueprint->int('roleId', foreignKey: ['roles' => 'id']);
+        $this->assertEquals(['CREATE TABLE `user` (roleId INT NOT NULL,CONSTRAINT `fkUserRoleId` FOREIGN KEY (roleId) REFERENCES `roles` (`id`) ON DELETE CASCADE) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;'], $blueprint->build());
     }
 
     public function testString(): void
@@ -47,6 +51,10 @@ class TestMariaDbCreateTableBlueprint extends TestCase
         $blueprint = new CreateTableBlueprint('user');
         $blueprint->string('firstname', 30, true);
         $this->assertEquals(['CREATE TABLE `user` (firstname VARCHAR(30) NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;'], $blueprint->build());
+
+        $blueprint = new CreateTableBlueprint('user');
+        $blueprint->string('firstname', 30, unique: true);
+        $this->assertEquals(['CREATE TABLE `user` (firstname VARCHAR(30) NOT NULL,UNIQUE KEY `ukUserFirstname` (firstname)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;'], $blueprint->build());
     }
 
     public function testTimestamps(): void

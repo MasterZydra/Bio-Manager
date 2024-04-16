@@ -9,9 +9,9 @@ interface CreateTableBlueprintInterface
 
     public function bool(string $column, bool $nullable = false, bool $default = false): void;
 
-    public function int(string $column, bool $nullable = false): void;
+    public function int(string $column, bool $nullable = false, array $foreignKey = []): void;
 
-    public function string(string $column, string $length, bool $nullable = false): void;
+    public function string(string $column, string $length, bool $nullable = false, bool $unique = false): void;
 
     public function timestamps(): void;
 

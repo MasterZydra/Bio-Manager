@@ -36,6 +36,10 @@ class TestSQLiteCreateTableBlueprint extends TestCase
         $blueprint = new CreateTableBlueprint('user');
         $blueprint->int('age', true);
         $this->assertEquals(['CREATE TABLE `user` (age INTEGER NULL);'], $blueprint->build());
+
+        $blueprint = new CreateTableBlueprint('user');
+        $blueprint->int('roleId', foreignKey: ['roles' => 'id']);
+        $this->assertEquals(['CREATE TABLE `user` (roleId INTEGER NOT NULL,FOREIGN KEY (roleId) REFERENCES `roles` (`id`));'], $blueprint->build());
     }
 
     public function testString(): void
@@ -47,6 +51,10 @@ class TestSQLiteCreateTableBlueprint extends TestCase
         $blueprint = new CreateTableBlueprint('user');
         $blueprint->string('firstname', 30, true);
         $this->assertEquals(['CREATE TABLE `user` (firstname VARCHAR(30) NULL);'], $blueprint->build());
+
+        $blueprint = new CreateTableBlueprint('user');
+        $blueprint->string('firstname', 30, unique: true);
+        $this->assertEquals(['CREATE TABLE `user` (firstname VARCHAR(30) NOT NULL,UNIQUE(firstname));'], $blueprint->build());
     }
 
     public function testTimestamps(): void

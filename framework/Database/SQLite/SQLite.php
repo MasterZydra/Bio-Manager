@@ -31,6 +31,7 @@ class SQLite implements DatabaseInterface
             File::mkdir($dirname);
         }
         $this->sqlite = new SQLite3($this->filename);
+        $this->sqlite->enableExceptions(true);
     }
 
     /** Close the open connection */
