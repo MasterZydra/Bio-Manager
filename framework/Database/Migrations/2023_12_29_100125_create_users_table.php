@@ -1,7 +1,7 @@
 <?php
 
 use Framework\Database\Database;
-use Framework\Database\Migration;
+use Framework\Database\Migration\Migration;
 
 return new class extends Migration
 {

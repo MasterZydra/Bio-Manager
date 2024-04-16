@@ -1,7 +1,8 @@
 <?php 
 
-namespace Framework\Database;
+namespace Framework\Database\Migration;
 
+use Framework\Database\Database;
 use Framework\Facades\File;
 use Framework\Facades\Path;
 

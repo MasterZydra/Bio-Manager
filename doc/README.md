@@ -311,7 +311,7 @@ A migration is only executed once. To execute every newly added migration, run t
 **Example**
 ```PHP
 use Framework\Database\Database;
-use Framework\Database\Migration;
+use Framework\Database\Migration\Migration;
 
 return new class extends Migration
 {

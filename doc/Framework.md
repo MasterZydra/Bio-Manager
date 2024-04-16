@@ -39,9 +39,9 @@ The session is used to store the messages. On each page load the [`header`](../r
 -------------------------------------------------------------
 
 ## Migrations
-The [migration runner](../framework/Database/MigrationRunner.php) checks the directories
+The [migration runner](../framework/Database/Migration/MigrationRunner.php) checks the directories
 [`resources/Database/Migrations`](../resources/Database/Migrations/) and[`framework/Database/Migrations`](../framework/Database/Migrations/) for migration files.
-The [migration runner](../framework/Database/MigrationRunner.php) checks if the migration was already executed by searching the table `migrations` for an entry with the migrations name. After executing a migration, its name is stored in the table `migrations` to keep track of already exeucted migrations.
+The [migration runner](../framework/Database/Migration/MigrationRunner.php) checks if the migration was already executed by searching the table `migrations` for an entry with the migrations name. After executing a migration, its name is stored in the table `migrations` to keep track of already exeucted migrations.
 
 -------------------------------------------------------------
 

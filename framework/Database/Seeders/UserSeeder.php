@@ -6,8 +6,8 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\UserRole;
 use Framework\Database\Database;
-use Framework\Database\Seeder;
-use Framework\Database\SeederInterface;
+use Framework\Database\Seeder\Seeder;
+use Framework\Database\Seeder\SeederInterface;
 
 class UserSeeder extends Seeder implements SeederInterface
 {

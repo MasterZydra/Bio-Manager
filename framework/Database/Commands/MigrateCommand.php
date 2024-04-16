@@ -4,7 +4,7 @@ namespace Framework\Database\Commands;
 
 use Framework\Cli\BaseCommand;
 use Framework\Cli\CommandInterface;
-use Framework\Database\MigrationRunner;
+use Framework\Database\Migration\MigrationRunner;
 
 class MigrateCommand extends BaseCommand implements CommandInterface
 {

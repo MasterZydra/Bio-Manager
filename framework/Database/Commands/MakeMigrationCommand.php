@@ -24,7 +24,7 @@ class MakeMigrationCommand extends BaseCommand implements CommandInterface
             $path,
             '<?php' . PHP_EOL . PHP_EOL .
             'use Framework\Database\Database;' . PHP_EOL .
-            'use Framework\Database\Migration;' . PHP_EOL . PHP_EOL .
+            'use Framework\Database\Migration\Migration;' . PHP_EOL . PHP_EOL .
             'return new class extends Migration' . PHP_EOL .
             '{' . PHP_EOL .
             '    public function run(): void' . PHP_EOL .

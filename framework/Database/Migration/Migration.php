@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Database;
+namespace Framework\Database\Migration;
 
 abstract class Migration implements MigrationInterface
 {
