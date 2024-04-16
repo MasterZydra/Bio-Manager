@@ -2,8 +2,8 @@
 
 namespace Framework\Database\SQLite;
 
-use Framework\Database\DatabaseInterface;
-use Framework\Database\ResultInterface;
+use Framework\Database\Interface\DatabaseInterface;
+use Framework\Database\Interface\ResultInterface;
 use Framework\Facades\File;
 use RuntimeException;
 use SQLite3;

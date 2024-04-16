@@ -2,8 +2,8 @@
 
 namespace Framework\Database\MariaDB;
 
-use Framework\Database\DatabaseInterface;
-use Framework\Database\ResultInterface;
+use Framework\Database\Interface\DatabaseInterface;
+use Framework\Database\Interface\ResultInterface;
 use mysqli;
 
 /** This class simplifies the connection to MariaDB and executing queries. */

@@ -3,6 +3,8 @@
 namespace Framework\Database;
 
 use Exception;
+use Framework\Database\Exception\DeleteOperationNotAllowedException;
+use Framework\Database\Exception\EditOperationNotAllowedException;
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
 use Framework\Database\Query\SortOrder;

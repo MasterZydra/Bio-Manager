@@ -2,7 +2,7 @@
 
 namespace Framework\Database\MariaDB;
 
-use Framework\Database\ResultInterface;
+use Framework\Database\Interface\ResultInterface;
 use mysqli_result;
 
 class MariaDbResult implements ResultInterface

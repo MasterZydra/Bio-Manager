@@ -3,6 +3,9 @@
 namespace Framework\Database;
 
 use Framework\Config\Config;
+use Framework\Database\Interface\BlueprintInterface;
+use Framework\Database\Interface\DatabaseInterface;
+use Framework\Database\Interface\ResultInterface;
 use Framework\Database\MariaDB\MariaDB;
 use Framework\Database\Query\QueryBuilder;
 use Framework\Database\Query\WhereQueryBuilder;

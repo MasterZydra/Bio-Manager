@@ -2,7 +2,7 @@
 
 namespace Framework\Database\SQLite;
 
-use Framework\Database\ResultInterface;
+use Framework\Database\Interface\ResultInterface;
 use SQLite3Result;
 
 class SQLiteResult implements ResultInterface
