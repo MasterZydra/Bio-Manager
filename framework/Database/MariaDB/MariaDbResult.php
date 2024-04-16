@@ -1,7 +1,8 @@
 <?php
 
-namespace Framework\Database;
+namespace Framework\Database\MariaDB;
 
+use Framework\Database\ResultInterface;
 use mysqli_result;
 
 class MariaDbResult implements ResultInterface

@@ -1,9 +1,10 @@
 <?php
 
-namespace Framework\Database;
+namespace Framework\Database\MariaDB;
 
+use Framework\Database\DatabaseInterface;
+use Framework\Database\ResultInterface;
 use mysqli;
-use mysqli_result;
 
 /** This class simplifies the connection to MariaDB and executing queries. */
 class MariaDB implements DatabaseInterface

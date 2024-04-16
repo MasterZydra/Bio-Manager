@@ -1,7 +1,9 @@
 <?php
 
-namespace Framework\Database;
+namespace Framework\Database\SQLite;
 
+use Framework\Database\DatabaseInterface;
+use Framework\Database\ResultInterface;
 use Framework\Facades\File;
 use RuntimeException;
 use SQLite3;
@@ -43,7 +45,7 @@ class SQLite implements DatabaseInterface
     }
 
     /** Execute the given query */
-    public function unprepared(string $query): ResultInterface|bool
+    public function unprepared(string $query): ResultInterface|false
     {
         if ($this->sqlite === null) {
             return false;
@@ -53,7 +55,7 @@ class SQLite implements DatabaseInterface
     }
 
     /** Execute the given prepared statement */
-    public function prepared(string $query, string $colTypes, ...$values): ResultInterface|bool
+    public function prepared(string $query, string $colTypes, ...$values): ResultInterface|false
     {
         $stmt = $this->sqlite->prepare($query);
         if ($stmt === false) {

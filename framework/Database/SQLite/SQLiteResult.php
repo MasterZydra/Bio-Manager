@@ -1,7 +1,8 @@
 <?php
 
-namespace Framework\Database;
+namespace Framework\Database\SQLite;
 
+use Framework\Database\ResultInterface;
 use SQLite3Result;
 
 class SQLiteResult implements ResultInterface
