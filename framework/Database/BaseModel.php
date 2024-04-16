@@ -6,6 +6,7 @@ use Exception;
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
 use Framework\Database\Query\SortOrder;
+use Framework\Database\Query\WhereQueryBuilder;
 use Framework\Facades\Http;
 
 /**

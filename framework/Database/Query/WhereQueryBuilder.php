@@ -1,11 +1,6 @@
 <?php
 
-namespace Framework\Database;
-
-use Framework\Database\Query\ColType;
-use Framework\Database\Query\Condition;
-use Framework\Database\Query\SortOrder;
-use Framework\Database\Query\WhereCombine;
+namespace Framework\Database\Query;
 
 class WhereQueryBuilder
 {

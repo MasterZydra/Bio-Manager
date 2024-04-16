@@ -1,7 +1,7 @@
 <?php
 
 use Framework\Database\Database;
-use Framework\Database\QueryBuilder;
+use Framework\Database\Query\QueryBuilder;
 
 $dataSet = Database::executeBuilder(QueryBuilder::new('plots')->select('DISTINCT subdistrict')->orderBy('subdistrict'));
 

@@ -1,8 +1,8 @@
 <?php
 
 use Framework\Database\Database;
+use Framework\Database\Query\QueryBuilder;
 use Framework\Database\Query\SortOrder;
-use Framework\Database\QueryBuilder;
 
 // Optional passed variables:
 //  $selected => Id that should be selected

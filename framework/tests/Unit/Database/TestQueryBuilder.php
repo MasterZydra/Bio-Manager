@@ -2,9 +2,9 @@
 
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
+use Framework\Database\Query\QueryBuilder;
 use Framework\Database\Query\SortOrder;
 use Framework\Database\Query\WhereCombine;
-use Framework\Database\QueryBuilder;
 use Framework\Test\TestCase;
 
 class TestQueryBuilder extends TestCase

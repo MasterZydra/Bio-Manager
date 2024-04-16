@@ -8,7 +8,7 @@ use Framework\Authentication\Auth;
 use Framework\Database\Database;
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
-use Framework\Database\QueryBuilder;
+use Framework\Database\Query\QueryBuilder;
 use Framework\Routing\BaseController;
 use Framework\Routing\ControllerInterface;
 

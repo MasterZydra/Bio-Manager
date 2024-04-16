@@ -6,7 +6,7 @@ use Framework\Database\BaseModel;
 use Framework\Database\Database;
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
-use Framework\Database\QueryBuilder;
+use Framework\Database\Query\QueryBuilder;
 use Framework\Facades\Convert;
 
 class Invoice extends BaseModel
