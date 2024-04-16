@@ -12,6 +12,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 - Added class `CreateTableBlueprint` to create statements for generating tables in MySQL/MariaDB and SQLite
 - Added test mode to class `Config` so env values can be changed in test runs
 - Added interface `ResultInterface` that all database providers use as return type for queries
+- Added wrapper SQLite for PHP SQLite3 class
 
 ## v2.5.0 - 17.03.2024 - Added statistic for amount and price development
 
