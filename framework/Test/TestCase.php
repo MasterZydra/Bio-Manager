@@ -13,25 +13,25 @@ class TestCase
     public function assertTrue(bool $assertion): void
     {
         if (!$assertion) {
-            throw new AssertionFailedException('true', $assertion ? 'true' : 'false');;
+            throw new AssertionFailedException('true', gettype(true), $assertion ? 'true' : 'false', gettype(true),);
         }
     }
 
     public function assertEquals(mixed $expected, mixed $actual): void
     {
         if (gettype($expected) !== gettype($actual)) {
-            throw new AssertionFailedException($this->mixedToString($expected), $this->mixedToString($actual));
+            throw new AssertionFailedException($this->mixedToString($expected), gettype($expected), $this->mixedToString($actual), gettype($actual));
         }
 
         if (gettype($expected) === 'array') {
             if (json_encode($expected) === json_encode($actual)) {
                 return;
             }
-            throw new AssertionFailedException($this->mixedToString($expected), $this->mixedToString($actual));
+            throw new AssertionFailedException($this->mixedToString($expected), gettype($expected), $this->mixedToString($actual), gettype($actual));
         }
 
         if ($expected !== $actual) {
-            throw new AssertionFailedException($this->mixedToString($expected), $this->mixedToString($actual));
+            throw new AssertionFailedException($this->mixedToString($expected), gettype($expected), $this->mixedToString($actual), gettype($actual));
         }
     }
 

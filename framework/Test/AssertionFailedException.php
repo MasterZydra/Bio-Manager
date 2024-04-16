@@ -8,16 +8,18 @@ use Exception;
 class AssertionFailedException extends Exception
 {
     public function __construct(
-        private string $expected,
-        private string $actual,
+        private string $expectedValue,
+        private string $expectedType,
+        private string $actualValue,
+        private string $actualType,
     ) {
         parent::__construct();
     }
 
     public function __toString()
     {
-        return 'Expected: "' . $this->expected . '"' . PHP_EOL .
-            'Actual:   "' . $this->actual . '"' . PHP_EOL;
+        return 'Expected: "' . $this->expectedValue . '" (' . $this->expectedType . ')' . PHP_EOL .
+            'Actual:   "' . $this->actualValue . '" (' . $this->actualType . ')' . PHP_EOL;
     }
 
     public function getTestCase(): string
