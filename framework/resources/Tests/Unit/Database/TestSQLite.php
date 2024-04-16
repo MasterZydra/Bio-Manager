@@ -7,7 +7,7 @@ use Framework\Test\TestCase;
 
 class TestSQLite extends TestCase
 {
-    private string $dbName = 'tests/tmp/db/testDb';
+    private string $dbName = 'resources/Tests/tmp/db/testDb';
 
     private function cleanup(): void
     {
@@ -26,40 +26,44 @@ class TestSQLite extends TestCase
         $this->assertTrue(file_exists($this->dbName));
     }
 
-    public function testTableCreate(): void {
+    public function testTableCreation(): void {
         $this->cleanup();
 
         $db = new SQLite($this->dbName);
         $db->connect();
 
-        // $blueprint = new CreateTableBlueprint('user');
-        // $blueprint->id();
-        // $blueprint->string('firstname', 30);
-        // $blueprint->int('age', true);
-        // $blueprint->bool('isLocked', default: true);
-        // $blueprint->timestamps();
+        // Create a table 'users
+        $blueprint = new CreateTableBlueprint('users');
+        $blueprint->id();
+        $blueprint->string('firstname', 30);
+        $blueprint->int('age', true);
+        $blueprint->bool('isLocked', default: true);
+        $blueprint->timestamps();
 
-        // Database::executeBlueprint($blueprint);
+        foreach ($blueprint->build() as $sql) {
+            $db->unprepared($sql);
+        }
 
-        // $db->unprepared('INSERT INTO user (firstname, age) VALUES (\'Max\', 42);');
-        // sleep(2);
-        // $db->unprepared('UPDATE user SET isLocked = 0 WHERE id = 1;');
-        // $db->unprepared('INSERT INTO user (firstname, age) VALUES (\'Maria\', 36);');
-        // /** @var \SQLite3Result $result */
-        // $result = $db->unprepared('SELECT * FROM user;');
+        // Insert some data
+        $db->unprepared('INSERT INTO users (firstname, age) VALUES (\'Max\', 42);');
+        $db->unprepared('INSERT INTO users (firstname, age) VALUES (\'Maria\', 36);');
 
-        // $data = [];
-        // while ($res = $result->fetchArray(SQLITE3_ASSOC)) {
-        //     $data[] = $res;
-        // }
-        // $this->assertEquals([], $data);
-        // $this->assertEquals("", "");
-    //     $db->unprepared("SELECT 
-    //     name
-    // FROM 
-    //     sqlite_schema
-    // WHERE 
-    //     type ='table' AND 
-    //     name NOT LIKE 'sqlite_%';");
+        // Wait a second. The 'updatedAt' column will change.
+        sleep(1);
+        $db->unprepared('UPDATE users SET isLocked = 0 WHERE id = 1;');
+
+        // Select all users
+        $result = $db->unprepared('SELECT * FROM users;');
+        $this->assertTrue($result !== false);
+
+        $user1 = $result->fetch();
+        $this->assertEquals(1, $user1['id']);
+        $this->assertEquals(42, $user1['age']);
+        $this->assertTrue($user1['createdAt'] !== $user1['updatedAt']);
+
+        $user2 = $result->fetch();
+        $this->assertEquals(2, $user2['id']);
+        $this->assertEquals(36, $user2['age']);
+        $this->assertEquals($user2['createdAt'], $user2['updatedAt']);
     }
 }
