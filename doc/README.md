@@ -335,8 +335,8 @@ Another way to use a seeder is to call it inside a migration, for example after 
 **Example**
 ```PHP
 use Framework\Database\Database;
-use Framework\Database\Seeder;
-use Framework\Database\SeederInterface;
+use Framework\Database\Seeder\Seeder;
+use Framework\Database\Seeder\SeederInterface;
 
 class UserSeeder extends Seeder implements SeederInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Database;
+namespace Framework\Database\Seeder;
 
 abstract class Seeder implements SeederInterface
 {

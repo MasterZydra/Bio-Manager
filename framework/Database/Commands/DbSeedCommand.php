@@ -4,7 +4,7 @@ namespace Framework\Database\Commands;
 
 use Framework\Cli\BaseCommand;
 use Framework\Cli\CommandInterface;
-use Framework\Database\SeederRunner;
+use Framework\Database\Seeder\SeederRunner;
 
 class DbSeedCommand extends BaseCommand implements CommandInterface
 {

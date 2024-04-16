@@ -1,6 +1,6 @@
 <?php 
 
-namespace Framework\Database;
+namespace Framework\Database\Seeder;
 
 use Framework\Facades\File;
 use Framework\Facades\Path;

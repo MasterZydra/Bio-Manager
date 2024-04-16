@@ -1,7 +1,7 @@
 <?php
 
-use Framework\Database\Seeder;
-use Framework\Database\SeederInterface;
+use Framework\Database\Seeder\Seeder;
+use Framework\Database\Seeder\SeederInterface;
 
 return new class extends Seeder implements SeederInterface
 {

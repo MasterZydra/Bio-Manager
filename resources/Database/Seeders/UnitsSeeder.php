@@ -3,8 +3,8 @@
 namespace Resources\Database\Seeders;
 
 use App\Models\Setting;
-use Framework\Database\Seeder;
-use Framework\Database\SeederInterface;
+use Framework\Database\Seeder\Seeder;
+use Framework\Database\Seeder\SeederInterface;
 
 class UnitsSeeder extends Seeder implements SeederInterface
 {
