@@ -7,7 +7,8 @@ use Framework\Facades\Convert;
 
 class CreateTableBlueprint implements CreateTableBlueprintInterface
 {
-    private array $sql = [];
+    private array $fields = [];
+    private array $keys = [];
     private array $afterSql = [];
 
     public function __construct(
@@ -17,21 +18,21 @@ class CreateTableBlueprint implements CreateTableBlueprintInterface
 
     public function id(): self
     {
-        $this->sql[] = 'id INTEGER PRIMARY KEY';
+        $this->fields[] = 'id INTEGER PRIMARY KEY';
         return $this;
     }
 
     public function bool(string $column, bool $nullable = false, bool $default = false): self
     {
-        $this->sql[] = $column . ' TINYINT(1) ' . ($nullable ? '' : 'NOT ') . 'NULL DEFAULT ' . Convert::boolToInt($default);
+        $this->fields[] = '`' . $column . '` TINYINT(1) ' . ($nullable ? '' : 'NOT ') . 'NULL DEFAULT ' . Convert::boolToInt($default);
         return $this;
     }
 
     public function int(string $column, bool $nullable = false, array $foreignKey = []): self
     {
-        $this->sql[] = $column . ' INTEGER ' . ($nullable ? '' : 'NOT ') . 'NULL';
+        $this->fields[] = '`' . $column . '` INTEGER ' . ($nullable ? '' : 'NOT ') . 'NULL';
         if (count($foreignKey) === 1) {
-            $this->sql[] =
+            $this->keys[] =
                 'FOREIGN KEY (' . $column . ') ' .
                 'REFERENCES `' . array_keys($foreignKey)[0] . '` (`' . $foreignKey[array_keys($foreignKey)[0]] . '`)';
         }
@@ -40,29 +41,26 @@ class CreateTableBlueprint implements CreateTableBlueprintInterface
 
     public function float(string $column, bool $nullable = false): self
     {
-        $this->sql[] = $column . ' REAL ' . ($nullable ? '' : 'NOT ') . 'NULL';
+        $this->fields[] = '`' . $column . '` REAL ' . ($nullable ? '' : 'NOT ') . 'NULL';
         return $this;
     }
 
     public function string(string $column, string $length, bool $nullable = false, bool $unique = false): self
     {
-        $this->sql[] = $column . ' VARCHAR(' . $length . ') ' . ($nullable ? '' : 'NOT ') . 'NULL';
-        if ($unique) {
-            $this->sql[] = 'UNIQUE(' . $column . ')';
-        }
+        $this->fields[] = '`' . $column . '` VARCHAR(' . $length . ') ' . ($nullable ? '' : 'NOT ') . 'NULL' . ($unique ? ' UNIQUE' : '');
         return $this;
     }
 
     public function date(string $column, bool $nullable = false): self
     {
-        $this->sql[] = $column . ' DATE ' . ($nullable ? '' : 'NOT ') . 'NULL';
+        $this->fields[] = '`' . $column . '` DATE ' . ($nullable ? '' : 'NOT ') . 'NULL';
         return $this;
     }
 
     public function timestamps(): self
     {
-        $this->sql[] = 'createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP';
-        $this->sql[] = 'updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP';
+        $this->fields[] = 'createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP';
+        $this->fields[] = 'updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP';
         // Add "on update" trigger
         $this->afterSql[] = 'CREATE TRIGGER ' . $this->table . '_updateAt AFTER UPDATE ON `' . $this->table . '` BEGIN UPDATE ' . $this->table . ' SET updatedAt=CURRENT_TIMESTAMP WHERE id = NEW.id; END;';
         return $this;
@@ -70,8 +68,13 @@ class CreateTableBlueprint implements CreateTableBlueprintInterface
 
     public function build(): array
     {
+        $sql = implode(',', $this->fields);
+        $keysSql = implode(',', $this->keys);
+        if ($keysSql !== '') {
+            $sql .= ',' . $keysSql;
+        }
         return [
-            'CREATE TABLE `' . $this->table . '` (' . implode(',', $this->sql) . ');',
+            'CREATE TABLE `' . $this->table . '` (' . $sql . ');',
             ...$this->afterSql
         ];
     }

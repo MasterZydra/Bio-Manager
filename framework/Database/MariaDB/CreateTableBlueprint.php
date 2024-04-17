@@ -23,13 +23,13 @@ class CreateTableBlueprint implements CreateTableBlueprintInterface
 
     public function bool(string $column, bool $nullable = false, bool $default = false): self
     {
-        $this->sql[] = $column . ' TINYINT(1) ' . ($nullable ? '' : 'NOT ') . 'NULL DEFAULT ' . Convert::boolToInt($default);
+        $this->sql[] = '`' . $column . '` TINYINT(1) ' . ($nullable ? '' : 'NOT ') . 'NULL DEFAULT ' . Convert::boolToInt($default);
         return $this;
     }
 
     public function int(string $column, bool $nullable = false, array $foreignKey = []): self
     {
-        $this->sql[] = $column . ' INT ' . ($nullable ? '' : 'NOT ') . 'NULL';
+        $this->sql[] = '`' . $column . '` INT ' . ($nullable ? '' : 'NOT ') . 'NULL';
         if (count($foreignKey) === 1) {
             $this->sql[] =
                 'CONSTRAINT `fk' . ucfirst($this->table) . ucfirst($column) . '` ' .
@@ -42,13 +42,13 @@ class CreateTableBlueprint implements CreateTableBlueprintInterface
 
     public function float(string $column, bool $nullable = false): self
     {
-        $this->sql[] = $column . ' FLOAT ' . ($nullable ? '' : 'NOT ') . 'NULL';
+        $this->sql[] = '`' . $column . '` FLOAT ' . ($nullable ? '' : 'NOT ') . 'NULL';
         return $this;
     }
 
     public function string(string $column, string $length, bool $nullable = false, bool $unique = false): self
     {
-        $this->sql[] = $column . ' VARCHAR(' . $length . ') ' . ($nullable ? '' : 'NOT ') . 'NULL';
+        $this->sql[] = '`' . $column . '` VARCHAR(' . $length . ') ' . ($nullable ? '' : 'NOT ') . 'NULL';
         if ($unique) {
             $this->sql[] = 'UNIQUE KEY `uk' . ucfirst($this->table) . ucfirst($column) . '` (' . $column . ')';
         }
@@ -57,7 +57,7 @@ class CreateTableBlueprint implements CreateTableBlueprintInterface
 
     public function date(string $column, bool $nullable = false): self
     {
-        $this->sql[] = $column . ' DATE ' . ($nullable ? '' : 'NOT ') . 'NULL';
+        $this->sql[] = '`' . $column . '` DATE ' . ($nullable ? '' : 'NOT ') . 'NULL';
         return $this;
     }
 
