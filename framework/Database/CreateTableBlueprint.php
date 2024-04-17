@@ -52,6 +52,12 @@ class CreateTableBlueprint implements BlueprintInterface, CreateTableBlueprintIn
         return $this;
     }
 
+    public function float(string $column, bool $nullable = false): self
+    {
+        $this->blueprint->float($column, $nullable);
+        return $this;
+    }
+
     public function string(string $column, string $length, bool $nullable = false, bool $unique = false): self
     {
         $this->blueprint->string($column, $length, $nullable, $unique);

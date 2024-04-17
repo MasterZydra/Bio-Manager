@@ -36,6 +36,15 @@ class TestMariaDbCreateTableBlueprint extends TestCase
         $this->assertEquals(['CREATE TABLE `user` (roleId INT NOT NULL,CONSTRAINT `fkUserRoleId` FOREIGN KEY (roleId) REFERENCES `roles` (`id`) ON DELETE CASCADE) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;'], $blueprint->build());
     }
 
+    public function testFloat(): void
+    {
+        $blueprint = (new CreateTableBlueprint('user'))->float('height');
+        $this->assertEquals(['CREATE TABLE `user` (height FLOAT NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;'], $blueprint->build());
+
+        $blueprint = (new CreateTableBlueprint('user'))->float('height', true);
+        $this->assertEquals(['CREATE TABLE `user` (height FLOAT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;'], $blueprint->build());
+    }
+
     public function testString(): void
     {
         $blueprint = (new CreateTableBlueprint('user'))->string('firstname', 30);
@@ -60,9 +69,10 @@ class TestMariaDbCreateTableBlueprint extends TestCase
             ->id()
             ->string('firstname', 30)
             ->int('age', true)
+            ->float('height')
             ->bool('isLocked', default: true)
             ->timestamps();
-        $this->assertEquals(['CREATE TABLE `user` (id INT auto_increment,PRIMARY KEY (id),firstname VARCHAR(30) NOT NULL,age INT NULL,isLocked TINYINT(1) NOT NULL DEFAULT 1,createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;'], $blueprint->build());
+        $this->assertEquals(['CREATE TABLE `user` (id INT auto_increment,PRIMARY KEY (id),firstname VARCHAR(30) NOT NULL,age INT NULL,height FLOAT NOT NULL,isLocked TINYINT(1) NOT NULL DEFAULT 1,createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;'], $blueprint->build());
     }
 
 }

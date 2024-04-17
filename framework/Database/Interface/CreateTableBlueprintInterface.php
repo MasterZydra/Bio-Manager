@@ -11,6 +11,8 @@ interface CreateTableBlueprintInterface
 
     public function int(string $column, bool $nullable = false, array $foreignKey = []): self;
 
+    public function float(string $column, bool $nullable = false): self;
+
     public function string(string $column, string $length, bool $nullable = false, bool $unique = false): self;
 
     public function timestamps(): self;

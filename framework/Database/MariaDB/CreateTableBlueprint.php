@@ -40,6 +40,12 @@ class CreateTableBlueprint implements CreateTableBlueprintInterface
         return $this;
     }
 
+    public function float(string $column, bool $nullable = false): self
+    {
+        $this->sql[] = $column . ' FLOAT ' . ($nullable ? '' : 'NOT ') . 'NULL';
+        return $this;
+    }
+
     public function string(string $column, string $length, bool $nullable = false, bool $unique = false): self
     {
         $this->sql[] = $column . ' VARCHAR(' . $length . ') ' . ($nullable ? '' : 'NOT ') . 'NULL';

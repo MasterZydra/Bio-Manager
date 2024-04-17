@@ -35,6 +35,15 @@ class TestSQLiteCreateTableBlueprint extends TestCase
         $this->assertEquals(['CREATE TABLE `user` (roleId INTEGER NOT NULL,FOREIGN KEY (roleId) REFERENCES `roles` (`id`));'], $blueprint->build());
     }
 
+    public function testFloat(): void
+    {
+        $blueprint = (new CreateTableBlueprint('user'))->float('height');
+        $this->assertEquals(['CREATE TABLE `user` (height REAL NOT NULL);'], $blueprint->build());
+
+        $blueprint = (new CreateTableBlueprint('user'))->float('height', true);
+        $this->assertEquals(['CREATE TABLE `user` (height REAL NULL);'], $blueprint->build());
+    }
+
     public function testString(): void
     {
         $blueprint = (new CreateTableBlueprint('user'))->string('firstname', 30);
@@ -65,11 +74,12 @@ class TestSQLiteCreateTableBlueprint extends TestCase
             ->id()
             ->string('firstname', 30)
             ->int('age', true)
+            ->float('height')
             ->bool('isLocked', default: true)
             ->timestamps();
         $this->assertEquals(
             [
-                'CREATE TABLE `user` (id INTEGER PRIMARY KEY,firstname VARCHAR(30) NOT NULL,age INTEGER NULL,isLocked TINYINT(1) NOT NULL DEFAULT 1,createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP);',
+                'CREATE TABLE `user` (id INTEGER PRIMARY KEY,firstname VARCHAR(30) NOT NULL,age INTEGER NULL,height REAL NOT NULL,isLocked TINYINT(1) NOT NULL DEFAULT 1,createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP);',
                 'CREATE TRIGGER user_updateAt AFTER UPDATE ON `user` BEGIN UPDATE user SET updatedAt=CURRENT_TIMESTAMP WHERE id = NEW.id; END;'
             ],
             $blueprint->build()
