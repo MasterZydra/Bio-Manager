@@ -1,5 +1,6 @@
 <?php
 
+use Framework\Database\CreateTableBlueprint;
 use Framework\Database\Database;
 use Framework\Database\Migration\Migration;
 
@@ -7,20 +8,14 @@ return new class extends Migration
 {
     public function run(): void
     {
-        Database::unprepared(
-            'CREATE TABLE prices (' .
-            'id INT auto_increment,' .
-            '`year` INT NOT NULL,' .
-            'price FLOAT NOT NULL,' .
-            'pricePayout FLOAT NOT NULL,' .
-            'productId INT NOT NULL,' .
-            'recipientId INT NOT NULL,' .
-            'createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,' .
-            'updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,' .
-            'PRIMARY KEY (id),' .
-            'CONSTRAINT `fkPriceProduct` FOREIGN KEY (productId) REFERENCES products (id) ON DELETE CASCADE,' .
-            'CONSTRAINT `fkPriceRecipient` FOREIGN KEY (recipientId) REFERENCES recipients (id) ON DELETE CASCADE' .
-            ') ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;'
+        Database::executeBlueprint((new CreateTableBlueprint('prices'))
+            ->id()
+            ->int('year')
+            ->float('price')
+            ->float('pricePayout')
+            ->int('productId', foreignKey: ['products' => 'id'])
+            ->int('recipientId', foreignKey: ['recipients' => 'id'])
+            ->timestamps()
         );
     }
 };

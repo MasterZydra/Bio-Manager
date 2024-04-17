@@ -1,5 +1,6 @@
 <?php
 
+use Framework\Database\CreateTableBlueprint;
 use Framework\Database\Database;
 use Framework\Database\Migration\Migration;
 
@@ -7,16 +8,11 @@ return new class extends Migration
 {
     public function run(): void
     {
-        Database::unprepared(
-            'CREATE TABLE products (' .
-            'id INT auto_increment,' .
-            'name VARCHAR(50) NOT NULL,' .
-            'isDiscontinued tinyint(1) NOT NULL DEFAULT 0,' .
-            'createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,' .
-            'updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,' .
-            'PRIMARY KEY (id),' .
-            'UNIQUE KEY `ukProductName` (name)' .
-            ') ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;'
+        Database::executeBlueprint((new CreateTableBlueprint('products'))
+            ->id()
+            ->string('name', 50, unique: true)
+            ->bool('isDiscontinued')
+            ->timestamps()
         );
     }
 };
