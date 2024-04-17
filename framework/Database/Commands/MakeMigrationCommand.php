@@ -23,13 +23,18 @@ class MakeMigrationCommand extends BaseCommand implements CommandInterface
         file_put_contents(
             $path,
             '<?php' . PHP_EOL . PHP_EOL .
+            'use Framework\Database\CreateTableBlueprint;' . PHP_EOL .
             'use Framework\Database\Database;' . PHP_EOL .
             'use Framework\Database\Migration\Migration;' . PHP_EOL . PHP_EOL .
             'return new class extends Migration' . PHP_EOL .
             '{' . PHP_EOL .
             '    public function run(): void' . PHP_EOL .
             '    {' . PHP_EOL .
-            '        Database::unprepared(\'CREATE TABLE ...\');' . PHP_EOL .
+            '        Database::executeBlueprint((new CreateTableBlueprint(\'tablename\'))' . PHP_EOL .
+            '            ->id()' . PHP_EOL .
+            '            ->string(\'column-name\', 255)' . PHP_EOL .
+            '            ->timestamps()' . PHP_EOL .
+            '        );' . PHP_EOL .
             '    }' . PHP_EOL .
             '};' . PHP_EOL
         );
