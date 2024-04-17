@@ -72,7 +72,7 @@ class Database
             return;
         }
         switch (Config::env('DB_CONNECTION')) {
-            case 'mysql':
+            case 'mariadb':
                 self::$db = new MariaDB(Config::env('DB_HOST'), intval(Config::env('DB_PORT')), Config::env('DB_DATABASE'), Config::env('DB_USERNAME'), Config::env('DB_PASSWORD'));
                 break;
 

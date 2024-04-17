@@ -37,6 +37,10 @@ DB_PORT=3306
 DB_DATABASE="bioman"
 DB_USERNAME="user"
 DB_PASSWORD="secret"
+
+# Or SQLite
+DB_CONNECTION="sqlite"
+DB_FILE="path/bioman.db"
 ```
 
 -------------------------------------------------------------

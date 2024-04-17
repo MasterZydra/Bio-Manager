@@ -123,7 +123,7 @@ class MigrationRunner
         // TODO Find a better solution for this
         $result = false;
         switch (Config::env('DB_CONNECTION')) {
-            case 'mysql':
+            case 'mariadb':
                 $result = Database::prepared(
                     'SELECT TABLE_NAME FROM information_schema.TABLES ' .
                     'WHERE TABLE_SCHEMA LIKE ? AND TABLE_TYPE LIKE \'BASE TABLE\' AND TABLE_NAME = \'migrations\'',

@@ -18,7 +18,7 @@ class CreateTableBlueprint implements BlueprintInterface, CreateTableBlueprintIn
         private string $table
     ){
         switch (Config::env('DB_CONNECTION')) {
-            case 'mysql':
+            case 'mariadb':
                 $this->blueprint = new MariaDBCreateTableBlueprint($table);
                 break;
 
