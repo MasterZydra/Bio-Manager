@@ -8,13 +8,13 @@ use mysqli_result;
 class MariaDbResult implements ResultInterface
 {
     public function __construct(
-        private mysqli_result|false $result,
+        private mysqli_result|bool $result,
     ) {
     }
 
     public function fetch(): array|false
     {
-        if ($this->result === false) {
+        if ($this->result === false || $this->result === true) {
             return false;
         }
 
