@@ -2,9 +2,11 @@
 
 namespace Framework\Database\Migration;
 
+use Framework\Config\Config;
 use Framework\Database\Database;
 use Framework\Facades\File;
 use Framework\Facades\Path;
+use RuntimeException;
 
 class MigrationRunner
 {
@@ -118,12 +120,26 @@ class MigrationRunner
     /** Checks if the table `migrations` is already created */
     private function doesMigrationsTableExists(): bool
     {
-        $result = Database::prepared(
-            'SELECT TABLE_NAME FROM information_schema.TABLES ' .
-            'WHERE TABLE_SCHEMA LIKE ? AND TABLE_TYPE LIKE \'BASE TABLE\' AND TABLE_NAME = \'migrations\'',
-            's',
-            Database::database()
-        );
+        // TODO Find a better solution for this
+        $result = false;
+        switch (Config::env('DB_CONNECTION')) {
+            case 'mysql':
+                $result = Database::prepared(
+                    'SELECT TABLE_NAME FROM information_schema.TABLES ' .
+                    'WHERE TABLE_SCHEMA LIKE ? AND TABLE_TYPE LIKE \'BASE TABLE\' AND TABLE_NAME = \'migrations\'',
+                    's',
+                    Database::database()
+                );
+                break;
+
+            case 'sqlite':
+                $result = Database::unprepared('SELECT name FROM sqlite_master WHERE type=\'table\' AND name=\'migrations\'');
+                break;
+            
+            default:
+                throw new RuntimeException('The database connection "' . Config::env('DB_CONNECTION') . '" is not supported');
+        }
+        
 
         if ($result === false) {
             return false;
