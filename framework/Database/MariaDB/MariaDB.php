@@ -46,16 +46,16 @@ class MariaDB implements DatabaseInterface
     /** Execute the given query */
     public function unprepared(string $query): ResultInterface|false
     {
-        if ($this->mysqli === null) {
-            return false;
-        }
-
-        return new MariaDbResult($this->mysqli->query($query));
+        $this->connect();
+        $result = new MariaDbResult($this->mysqli->query($query));
+        $this->disconnect();
+        return $result;
     }
 
     /** Execute the given prepared statement */
     public function prepared(string $query, string $colTypes, ...$values): ResultInterface|false
     {
+        $this->connect();
         $stmt = $this->mysqli->prepare($query);
         if ($stmt === false) {
             return false;
@@ -66,6 +66,8 @@ class MariaDB implements DatabaseInterface
             return false;
         }
 
-        return new MariaDbResult($stmt->get_result());
+        $result = new MariaDbResult($stmt->get_result());
+        $this->disconnect();
+        return $result;
     }
 }

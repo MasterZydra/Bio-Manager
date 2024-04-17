@@ -5,6 +5,7 @@ namespace Framework\Database\SQLite;
 use Framework\Database\Interface\DatabaseInterface;
 use Framework\Database\Interface\ResultInterface;
 use Framework\Facades\File;
+use Framework\Facades\Path;
 use RuntimeException;
 use SQLite3;
 
@@ -26,11 +27,12 @@ class SQLite implements DatabaseInterface
     /** Open connection to the DB */
     public function connect(): void
     {
-        $dirname = dirname($this->filename);
+        $path = Path::join(__DIR__, '..', '..', '..', $this->filename);
+        $dirname = dirname($path);
         if ($dirname !== '.') {
             File::mkdir($dirname);
         }
-        $this->sqlite = new SQLite3($this->filename);
+        $this->sqlite = new SQLite3($path);
         $this->sqlite->enableExceptions(true);
     }
 
@@ -48,16 +50,14 @@ class SQLite implements DatabaseInterface
     /** Execute the given query */
     public function unprepared(string $query): ResultInterface|false
     {
-        if ($this->sqlite === null) {
-            return false;
-        }
-
+        $this->connect();
         return new SQLiteResult($this->sqlite->query($query));
     }
 
     /** Execute the given prepared statement */
     public function prepared(string $query, string $colTypes, ...$values): ResultInterface|false
     {
+        $this->connect();
         $stmt = $this->sqlite->prepare($query);
         if ($stmt === false) {
             return false;
@@ -69,20 +69,10 @@ class SQLite implements DatabaseInterface
 
         $paramIndex = 1;
         foreach ($values as $value) {
-            $stmt->bindParam($paramIndex, $value, $this->charToType($colTypes[$paramIndex - 1]));
+            $stmt->bindValue($paramIndex, $value);
             $paramIndex += 1;
         }
 
         return new SQLiteResult($stmt->execute());
-    }
-
-    private function charToType(string $char): int
-    {
-        return match ($char) {
-            'i' => SQLITE3_INTEGER,
-            'd' => SQLITE3_FLOAT,
-            's' => SQLITE3_TEXT,
-            default => throw new RuntimeException('ColType "' . $char . '" is not supported')
-        };
     }
 }

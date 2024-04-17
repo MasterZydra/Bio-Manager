@@ -46,10 +46,7 @@ class Database
     public static function unprepared(string $query): ResultInterface|false
     {
         self::getDb();
-        self::$db->connect();
-        $result = self::$db->unprepared($query);
-        self::$db->disconnect();
-        return $result;
+        return self::$db->unprepared($query);
     }
 
     /**
@@ -60,10 +57,7 @@ class Database
     public static function prepared(string $query, string $colTypes, ...$values): ResultInterface|false
     {
         self::getDb();
-        self::$db->connect();
-        $result = self::$db->prepared($query, $colTypes, ...$values);
-        self::$db->disconnect();
-        return $result;
+        return self::$db->prepared($query, $colTypes, ...$values);
     }
 
     /** Get the database name */
