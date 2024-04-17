@@ -33,12 +33,12 @@ class TestSQLite extends TestCase
         $db->connect();
 
         // Create a table 'users
-        $blueprint = new CreateTableBlueprint('users');
-        $blueprint->id();
-        $blueprint->string('firstname', 30);
-        $blueprint->int('age', true);
-        $blueprint->bool('isLocked', default: true);
-        $blueprint->timestamps();
+        $blueprint = (new CreateTableBlueprint('users'))
+            ->id()
+            ->string('firstname', 30)
+            ->int('age', true)
+            ->bool('isLocked', default: true)
+            ->timestamps();
 
         foreach ($blueprint->build() as $sql) {
             $db->unprepared($sql);

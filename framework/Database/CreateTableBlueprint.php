@@ -31,32 +31,37 @@ class CreateTableBlueprint implements BlueprintInterface, CreateTableBlueprintIn
         }
     }
 
-    public function id(): void
+    public function id(): self
     {
         $this->blueprint->id();
+        return $this;
     }
 
-    public function bool(string $column, bool $nullable = false, bool $default = false): void
+    public function bool(string $column, bool $nullable = false, bool $default = false): self
     {
         $this->blueprint->bool($column, $nullable, $default);
+        return $this;
     }
 
     /**
      * @param array $foreignKey `['table name' => 'table column']`
      */
-    public function int(string $column, bool $nullable = false, array $foreignKey = []): void
+    public function int(string $column, bool $nullable = false, array $foreignKey = []): self
     {
         $this->blueprint->int($column, $nullable, $foreignKey);
+        return $this;
     }
 
-    public function string(string $column, string $length, bool $nullable = false, bool $unique = false): void
+    public function string(string $column, string $length, bool $nullable = false, bool $unique = false): self
     {
         $this->blueprint->string($column, $length, $nullable, $unique);
+        return $this;
     }
 
-    public function timestamps(): void
+    public function timestamps(): self
     {
         $this->blueprint->timestamps();
+        return $this;
     }
 
     public function build(): array

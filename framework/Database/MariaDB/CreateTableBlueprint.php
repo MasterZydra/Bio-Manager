@@ -14,18 +14,20 @@ class CreateTableBlueprint implements CreateTableBlueprintInterface
     ){
     }
 
-    public function id(): void
+    public function id(): self
     {
         $this->sql[] = 'id INT auto_increment';
         $this->sql[] = 'PRIMARY KEY (id)';
+        return $this;
     }
 
-    public function bool(string $column, bool $nullable = false, bool $default = false): void
+    public function bool(string $column, bool $nullable = false, bool $default = false): self
     {
         $this->sql[] = $column . ' TINYINT(1) ' . ($nullable ? '' : 'NOT ') . 'NULL DEFAULT ' . Convert::boolToInt($default);
+        return $this;
     }
 
-    public function int(string $column, bool $nullable = false, array $foreignKey = []): void
+    public function int(string $column, bool $nullable = false, array $foreignKey = []): self
     {
         $this->sql[] = $column . ' INT ' . ($nullable ? '' : 'NOT ') . 'NULL';
         if (count($foreignKey) === 1) {
@@ -34,21 +36,24 @@ class CreateTableBlueprint implements CreateTableBlueprintInterface
                 'FOREIGN KEY (' . $column . ') ' .
                 'REFERENCES `' . array_keys($foreignKey)[0] . '` (`' . $foreignKey[array_keys($foreignKey)[0]] . '`) ' .
                 'ON DELETE CASCADE';
-        } 
+        }
+        return $this;
     }
 
-    public function string(string $column, string $length, bool $nullable = false, bool $unique = false): void
+    public function string(string $column, string $length, bool $nullable = false, bool $unique = false): self
     {
         $this->sql[] = $column . ' VARCHAR(' . $length . ') ' . ($nullable ? '' : 'NOT ') . 'NULL';
         if ($unique) {
             $this->sql[] = 'UNIQUE KEY `uk' . ucfirst($this->table) . ucfirst($column) . '` (' . $column . ')';
         }
+        return $this;
     }
 
-    public function timestamps(): void
+    public function timestamps(): self
     {
         $this->sql[] = 'createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP';
         $this->sql[] = 'updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP';
+        return $this;
     }
 
     public function build(): array
