@@ -15,6 +15,8 @@ interface CreateTableBlueprintInterface
 
     public function string(string $column, string $length, bool $nullable = false, bool $unique = false): self;
 
+    public function date(string $column, bool $nullable = false): self;
+
     public function timestamps(): self;
 
     public function build(): array;

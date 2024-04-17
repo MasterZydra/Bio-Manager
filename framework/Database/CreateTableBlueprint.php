@@ -64,6 +64,12 @@ class CreateTableBlueprint implements BlueprintInterface, CreateTableBlueprintIn
         return $this;
     }
 
+    public function date(string $column, bool $nullable = false): self
+    {
+        $this->blueprint->date($column, $nullable);
+        return $this;
+    }
+
     public function timestamps(): self
     {
         $this->blueprint->timestamps();

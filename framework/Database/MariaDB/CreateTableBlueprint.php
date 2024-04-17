@@ -55,6 +55,12 @@ class CreateTableBlueprint implements CreateTableBlueprintInterface
         return $this;
     }
 
+    public function date(string $column, bool $nullable = false): self
+    {
+        $this->sql[] = $column . ' DATE ' . ($nullable ? '' : 'NOT ') . 'NULL';
+        return $this;
+    }
+
     public function timestamps(): self
     {
         $this->sql[] = 'createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP';

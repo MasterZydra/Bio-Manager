@@ -56,6 +56,15 @@ class TestSQLiteCreateTableBlueprint extends TestCase
         $this->assertEquals(['CREATE TABLE `user` (firstname VARCHAR(30) NOT NULL,UNIQUE(firstname));'], $blueprint->build());
     }
 
+    public function testDate(): void
+    {
+        $blueprint = (new CreateTableBlueprint('user'))->date('birthdate');
+        $this->assertEquals(['CREATE TABLE `user` (birthdate DATE NOT NULL);'], $blueprint->build());
+
+        $blueprint = (new CreateTableBlueprint('user'))->date('birthdate', true);
+        $this->assertEquals(['CREATE TABLE `user` (birthdate DATE NULL);'], $blueprint->build());
+    }
+
     public function testTimestamps(): void
     {
         $blueprint = (new CreateTableBlueprint('user'))->timestamps();

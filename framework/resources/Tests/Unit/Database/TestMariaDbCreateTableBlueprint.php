@@ -57,6 +57,15 @@ class TestMariaDbCreateTableBlueprint extends TestCase
         $this->assertEquals(['CREATE TABLE `user` (firstname VARCHAR(30) NOT NULL,UNIQUE KEY `ukUserFirstname` (firstname)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;'], $blueprint->build());
     }
 
+    public function testDate(): void
+    {
+        $blueprint = (new CreateTableBlueprint('user'))->date('birthdate');
+        $this->assertEquals(['CREATE TABLE `user` (birthdate DATE NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;'], $blueprint->build());
+
+        $blueprint = (new CreateTableBlueprint('user'))->date('birthdate', true);
+        $this->assertEquals(['CREATE TABLE `user` (birthdate DATE NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;'], $blueprint->build());
+    }
+
     public function testTimestamps(): void
     {
         $blueprint = (new CreateTableBlueprint('user'))->timestamps();
