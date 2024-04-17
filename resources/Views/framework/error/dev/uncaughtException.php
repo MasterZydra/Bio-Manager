@@ -11,8 +11,8 @@ Uncaught Exception in <code><?= $exception->getFile() ?>:<?= $exception->getLine
 <pre style="overflow: auto;"><?= $exception->getMessage() ?></pre>
 
 <?php // Show potential solutions
-if (str_starts_with($exception->getMessage(), 'Table \'') 
-        && str_ends_with($exception->getMessage(), '\' doesn\'t exist')
+if ((str_starts_with($exception->getMessage(), 'Table \'') && str_ends_with($exception->getMessage(), '\' doesn\'t exist')) ||
+    (str_starts_with($exception->getMessage(), 'Unable to prepare statement: ') && str_contains($exception->getMessage(), ', no such table:'))
 ) { ?>
     <h1>Potential solution</h1>
     <p>You can try to run the <strong><code>migrate</code></strong> command.</p>
