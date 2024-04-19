@@ -23,7 +23,7 @@ class OpenVolumeDistributionsController extends BaseController implements Contro
         FROM deliveryNotes
         LEFT JOIN volumeDistributions ON deliveryNotes.id = volumeDistributions.deliveryNoteId
         GROUP BY deliveryNotes.id
-        HAVING calcSum IS NULL OR calcSum != amount;';
+        HAVING calcSum IS NULL OR calcSum != deliveryNotes.amount;';
 
         $dataSet = Database::unprepared($sql);
 
