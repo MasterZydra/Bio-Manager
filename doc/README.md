@@ -325,6 +325,32 @@ return new class extends Migration
         ...
 ```
 
+### CreateTableBlueprint
+Each DBSM has its own specific syntax.
+The blueprint class `CreateTableBlueprint` can be used for the creation of a new table in MariaDB and SQLite.
+Each supported database driver implements the [`CreateTableBlueprintInterface`](../framework/Database/Interface/CreateTableBlueprintInterface.php).
+
+**Example**
+```PHP
+use Framework\Database\CreateTableBlueprint;
+use Framework\Database\Database;
+use Framework\Database\Migration\Migration;
+
+return new class extends Migration
+{
+    public function run(): void
+    {
+        Database::executeBlueprint((new CreateTableBlueprint('users'))
+            ->id()
+            ->string('name', 100)
+            ->date('lastLogin')
+            ->int('languageId', foreignKey: ['languages' => 'id'])
+            ->timestamps()
+        );
+    }
+};
+```
+
 -------------------------------------------------------------
 
 ## Seeders
