@@ -8,6 +8,8 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ## [Unreleased]
 
+## v2.6.0 - 19.04.2024 - Added support for SQLite
+
 ### Added
 - Added test mode to class `Config` so env values can be changed in test runs
 - Added support for SQLite
