@@ -127,6 +127,7 @@ return [
     'ShowDeliveryNotes' => 'Show all delivery notes',
     'ShowErrorMessages' => 'Show error messages',
     'ShowPayouts' => 'Show payouts',
+    'ShowSqlQueries' => 'Show SQL queries',
     'ShowVolumeDistribution' => 'Show volume distribution',
     'Street' => 'Street',
     'Subdistrict' => 'Subdistrict',

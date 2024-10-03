@@ -8,6 +8,9 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ## [Unreleased]
 
+### Added
+- Added developer feature to show the executed SQL queries
+
 ## v2.6.1 - 03.10.2024 - Bugfix in 'Revenue and Profits' view
 
 ### Fixed

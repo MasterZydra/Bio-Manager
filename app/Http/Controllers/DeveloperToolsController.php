@@ -21,6 +21,7 @@ class DeveloperToolsController extends BaseController implements ControllerInter
 
         if (Http::requestMethod() === 'POST') {
             DeveloperTools::setShowErrorMessages(Http::param('showErrorMessages') === '1');
+            DeveloperTools::setShowSqlQueries(Http::param('showSqlQueries') === '1');
 
             Http::redirect('/');
         }

@@ -28,4 +28,26 @@ class DeveloperTools
             Session::setValue('showErrorMessages', null);
         }
     }
+
+    public static function showSqlQueries(): bool
+    {
+        if (!Auth::hasRole('Developer')) {
+            return false;
+        }
+
+        return Session::getValue('showSqlQueries') === 'true';
+    }
+
+    public static function setShowSqlQueries(bool $value): void
+    {
+        if (!Auth::hasRole('Developer')) {
+            return;
+        }
+
+        if ($value) {
+            Session::setValue('showSqlQueries', 'true');
+        } else {
+            Session::setValue('showSqlQueries', null);
+        }
+    }
 }

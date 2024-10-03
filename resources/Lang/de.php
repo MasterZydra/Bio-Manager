@@ -126,6 +126,7 @@ return [
     'ShowAllUsers' => 'Alle Benutzer anzeigen',
     'ShowErrorMessages' => 'Fehlermeldungen anzeigen',
     'ShowPayouts' => 'Auszahlungen anzeigen',
+    'ShowSqlQueries' => 'SQL-Abfragen anzeigen',
     'ShowVolumeDistribution' => 'Mengenverteilung anzeigen',
     'Street' => 'Straße',
     'Subdistrict' => 'Gemarkung',

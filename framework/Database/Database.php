@@ -2,6 +2,7 @@
 
 namespace Framework\Database;
 
+use Framework\Authentication\Session;
 use Framework\Config\Config;
 use Framework\Database\Interface\BlueprintInterface;
 use Framework\Database\Interface\DatabaseInterface;
@@ -46,6 +47,9 @@ class Database
     public static function unprepared(string $query): ResultInterface|false
     {
         self::getDb();
+        if (Session::getValue('showSqlQueries') === 'true') {
+            echo $query . '<br>';
+        }
         return self::$db->unprepared($query);
     }
 
@@ -57,6 +61,9 @@ class Database
     public static function prepared(string $query, string $colTypes, ...$values): ResultInterface|false
     {
         self::getDb();
+        if (Session::getValue('showSqlQueries') === 'true') {
+            echo $query . '<br>';
+        }
         return self::$db->prepared($query, $colTypes, ...$values);
     }
 

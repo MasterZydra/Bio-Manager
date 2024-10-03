@@ -13,6 +13,15 @@
         <?= __('ShowErrorMessages') ?>
     </label><br>
 
+    <label>
+        <input type="hidden" name="showSqlQueries" value="0">
+        <input type="checkbox" name="showSqlQueries" value="1"
+            <?php if (Session::getValue('showSqlQueries') === 'true') {
+                echo ' checked';
+            } ?>>
+        <?= __('ShowSqlQueries') ?>
+    </label><br>
+
     <button><?= __('Save') ?></button>
 </form>
 
