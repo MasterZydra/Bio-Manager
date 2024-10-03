@@ -8,6 +8,11 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ## [Unreleased]
 
+## v2.6.1 - 03.10.2024 - Bugfix in 'Revenue and Profits' view
+
+### Fixed
+- Fixed SQL error in revenueAndProfits view if a year has no invoices
+
 ## v2.6.0 - 19.04.2024 - Added support for SQLite
 
 ### Added

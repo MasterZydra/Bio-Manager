@@ -43,9 +43,13 @@ class FinancialRevenueProfitStatsController extends BaseController implements Co
 
         $invoiceIds = array_map(fn(Invoice $invoice): int => $invoice->getId(), $invoices);
 
-        $deliveryNotes = DeliveryNote::all(DeliveryNote::getQueryBuilder()
-            ->where(ColType::Int, 'invoiceId', Condition::In, $invoiceIds)
-        );
+        $deliveryNotes = [];
+        if (count($invoiceIds) > 0) {
+            // TODO Where IN -> if array is empty, some condition that is always false?
+            $deliveryNotes = DeliveryNote::all(
+                DeliveryNote::getQueryBuilder()->where(ColType::Int, 'invoiceId', Condition::In, $invoiceIds)
+            );
+        }
 
         $revenue = 0.0;
         $payouts = 0.0;
