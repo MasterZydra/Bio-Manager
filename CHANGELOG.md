@@ -8,7 +8,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ## [Unreleased]
 
-### v2.6.2 - 12.12.2024 - New developer feature and bugfix for invoice logic
+## v2.6.2 - 12.12.2024 - New developer feature and bugfix for invoice logic
 
 ### Added
 - Added developer feature to show the executed SQL queries
