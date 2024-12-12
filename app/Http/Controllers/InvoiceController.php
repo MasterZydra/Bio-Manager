@@ -97,7 +97,14 @@ class InvoiceController extends BaseController implements ModelControllerInterfa
 
         foreach (Http::param('deliveryNote') as $deliveryNoteId) {
             $parts = explode('-', $deliveryNoteId);
-            DeliveryNote::findById($parts[0])
+            $deliveryNote = DeliveryNote::findById($parts[0]);
+
+            // Check if delivery note requires an update
+            if ($deliveryNote->getInvoiceId() === $invoice->getId()) {
+                continue;
+            }
+
+            $deliveryNote
                 ->setInvoiceId($parts[1] === "1" ? $invoice->getId(): null)
                 ->save();
         }

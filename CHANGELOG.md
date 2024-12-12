@@ -8,8 +8,13 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ## [Unreleased]
 
+### v2.6.2 - 12.12.2024 - New developer feature and bugfix for invoice logic
+
 ### Added
 - Added developer feature to show the executed SQL queries
+
+### Fixed
+- Fixed triggered exception if an invoice was set to "is paid" and saved
 
 ## v2.6.1 - 03.10.2024 - Bugfix in 'Revenue and Profits' view
 
