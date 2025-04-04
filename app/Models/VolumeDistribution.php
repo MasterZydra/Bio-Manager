@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Framework\Database\BaseModel;
 use Framework\Database\Database;
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
 
-class VolumeDistribution extends BaseModel
+class VolumeDistribution extends \Framework\Database\BaseModel
 {
     private const DELIVERY_NOTE_ID = 'deliveryNoteId';
     private const PLOT_ID = 'plotId';

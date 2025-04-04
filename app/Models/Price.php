@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Framework\Database\BaseModel;
 use Framework\Database\Database;
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
 
-class Price extends BaseModel
+class Price extends \Framework\Database\BaseModel
 {
     private const YEAR = 'year';
     private const PRICE = 'price';

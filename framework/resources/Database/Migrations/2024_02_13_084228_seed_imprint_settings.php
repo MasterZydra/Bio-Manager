@@ -1,9 +1,8 @@
 <?php
 
-use Framework\Database\Migration\Migration;
 use Framework\resources\Database\Seeders\ImprintSettingsSeeder;
 
-return new class extends Migration
+return new class extends \Framework\Database\Migration\Migration
 {
     public function run(): void
     {

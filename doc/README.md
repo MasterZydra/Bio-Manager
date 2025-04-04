@@ -175,10 +175,9 @@ public function setFromHttpParam(string $field, string $param = null): self;
 
 **Example model**
 ```PHP
-use Framework\Database\BaseModel;
 use Framework\Database\Database;
 
-class Role extends BaseModel
+class Role extends \Framework\Database\BaseModel
 ```
 
 ### Table name
@@ -258,7 +257,7 @@ It will be used if no other sort order is passed via `QueryBuilder->orderBy(...)
 
 **Example**
 ```PHP
-class Plot extends BaseModel
+class Plot extends \Framework\Database\BaseModel
 {
     public static array $orderBy = ['isLocked' => 'asc', 'nr' => 'asc'];
 ```
@@ -315,9 +314,8 @@ A migration is only executed once. To execute every newly added migration, run t
 **Example**
 ```PHP
 use Framework\Database\Database;
-use Framework\Database\Migration\Migration;
 
-return new class extends Migration
+return new class extends \Framework\Database\Migration\Migration
 {
     public function run(): void
     {
@@ -334,9 +332,8 @@ Each supported database driver implements the [`CreateTableBlueprintInterface`](
 ```PHP
 use Framework\Database\CreateTableBlueprint;
 use Framework\Database\Database;
-use Framework\Database\Migration\Migration;
 
-return new class extends Migration
+return new class extends \Framework\Database\Migration\Migration
 {
     public function run(): void
     {

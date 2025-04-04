@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use Framework\Database\BaseModel;
 use Framework\Database\Database;
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
 use Framework\Facades\Convert;
 
-class Plot extends BaseModel
+class Plot extends \Framework\Database\BaseModel
 {
     private const NR = 'nr';
     private const NAME = 'name';

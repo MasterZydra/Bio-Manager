@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Framework\Database\BaseModel;
 use Framework\Database\Database;
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
@@ -10,7 +9,7 @@ use Framework\Database\Query\WhereCombine;
 use Framework\Database\Query\QueryBuilder;
 use Framework\Facades\Convert;
 
-class DeliveryNote extends BaseModel
+class DeliveryNote extends \Framework\Database\BaseModel
 {
     private const YEAR = 'year';
     private const NR = 'nr';

@@ -1,11 +1,9 @@
 <?php
 
-// Start the PHP session
-
-use Framework\Authentication\Session;
 use Framework\Facades\Env;
 
-Session::start();
+// Start the PHP session
+\Framework\Authentication\Session::start();
 
 // Register the global available functions
 require __DIR__ . '/../framework/registerFn.php';
@@ -23,13 +21,10 @@ if (!Env::isCLI()) {
 // Register all available routes
 require __DIR__ . '/../app/routes.php';
 
-use Framework\i18n\Translator;
-use Framework\Routing\Router;
-
 // Read all label files
-Translator::readLabelFiles();
+\Framework\i18n\Translator::readLabelFiles();
 
 // Route to requested controller or view
 if (!Env::isCLI()) {
-    Router::run();
+    \Framework\Routing\Router::run();
 }

@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Framework\Database\BaseModel;
 use Framework\Database\Database;
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
 
-class Language extends BaseModel
+class Language extends \Framework\Database\BaseModel
 {
     private const CODE = 'code';
     private const NAME = 'name';

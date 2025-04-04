@@ -3,13 +3,12 @@
 namespace App\Models;
 
 use Framework\Authentication\Auth;
-use Framework\Database\BaseModel;
 use Framework\Database\Database;
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
 use Framework\Facades\Convert;
 
-class User extends BaseModel
+class User extends \Framework\Database\BaseModel
 {
     private const FIRSTNAME = 'firstname';
     private const LASTNAME = 'lastname';

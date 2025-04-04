@@ -4,6 +4,4 @@ require __DIR__ . '/framework/autoload.php';
 
 require __DIR__ . '/bootstrap/app.php';
 
-use \Framework\Cli\Cli;
-
-Cli::run();
+\Framework\Cli\Cli::run();

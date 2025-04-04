@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use Framework\Database\BaseModel;
 use Framework\Database\Database;
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
 use Framework\Facades\Convert;
 
-class Recipient extends BaseModel
+class Recipient extends \Framework\Database\BaseModel
 {
     private const NAME = 'name';
     private const STREET = 'street';

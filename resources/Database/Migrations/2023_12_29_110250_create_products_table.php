@@ -2,9 +2,8 @@
 
 use Framework\Database\CreateTableBlueprint;
 use Framework\Database\Database;
-use Framework\Database\Migration\Migration;
 
-return new class extends Migration
+return new class extends \Framework\Database\Migration\Migration
 {
     public function run(): void
     {

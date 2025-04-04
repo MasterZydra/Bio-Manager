@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use Framework\Database\BaseModel;
 use Framework\Database\Database;
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
 use Framework\Facades\Convert;
 
-class Supplier extends BaseModel
+class Supplier extends \Framework\Database\BaseModel
 {
     private const NAME = 'name';
     private const IS_LOCKED = 'isLocked';

@@ -25,9 +25,8 @@ class MakeModelCommand extends BaseCommand implements CommandInterface
             $path,
             '<?php' . PHP_EOL . PHP_EOL .
             'namespace App\Models;' . PHP_EOL . PHP_EOL .
-            'use Framework\Database\BaseModel;' . PHP_EOL .
             'use Framework\Database\Database;' . PHP_EOL . PHP_EOL .
-            'class ' . $modelName . ' extends BaseModel' . PHP_EOL .
+            'class ' . $modelName . ' extends \Framework\Database\BaseModel' . PHP_EOL .
             '{' . PHP_EOL .
             '    protected static function new(array $data = []): self' . PHP_EOL .
             '    {' . PHP_EOL .

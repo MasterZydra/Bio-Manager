@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Framework\Database\BaseModel;
 use Framework\Database\Database;
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
 
-class UserRole extends BaseModel
+class UserRole extends \Framework\Database\BaseModel
 {
     private const USER_ID = 'userId';
     private const ROLE_ID = 'roleId';
