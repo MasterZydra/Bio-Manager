@@ -59,7 +59,7 @@ abstract class BaseModel
         return new WhereQueryBuilder(static::getTableName());
     }
 
-    public static function all(WhereQueryBuilder $query = null): array
+    public static function all(?WhereQueryBuilder $query = null): array
     {
         if ($query === null) {
             $query = static::getQueryBuilder();
@@ -171,7 +171,7 @@ abstract class BaseModel
         return $this;
     }
 
-    public function setFromHttpParam(string $field, string $param = null): self
+    public function setFromHttpParam(string $field, ?string $param = null): self
     {
         if ($param === null) {
             $param = $field;

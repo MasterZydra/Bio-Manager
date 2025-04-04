@@ -84,7 +84,7 @@ class Invoice extends \Framework\Database\BaseModel
         return Recipient::findById($this->getRecipientId());
     }
 
-    public static function nextInvoiceNr(int $year = null): int
+    public static function nextInvoiceNr(?int $year = null): int
     {
         if ($year === null) {
             $year = intval(date('Y'));

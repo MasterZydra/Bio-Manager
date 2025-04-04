@@ -14,7 +14,7 @@ use Throwable;
 class ErrorHandler
 {
     public static function handleError(
-        int $errno, string $errstr, string $errfile = null, int $errline = null, array $errcontext = null
+        int $errno, string $errstr, ?string $errfile = null, ?int $errline = null, ?array $errcontext = null
     ): bool {
         ob_end_clean();
         if (Env::isDev() || DeveloperTools::showErrorMessages()) {
@@ -39,7 +39,7 @@ class ErrorHandler
     }
 
     private static function handleDevError(
-        int $errno, string $errstr, string $errfile = null, int $errline = null, array $errcontext = null
+        int $errno, string $errstr, ?string $errfile = null, ?int $errline = null, ?array $errcontext = null
     ): void {
         view(
             'framework.error.dev.uncaughtError',

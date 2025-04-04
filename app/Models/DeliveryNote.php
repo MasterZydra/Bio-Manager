@@ -130,7 +130,7 @@ class DeliveryNote extends \Framework\Database\BaseModel
         return Invoice::findById($this->getInvoiceId());
     }
 
-    public static function nextDeliveryNoteNr(int $year = null): int
+    public static function nextDeliveryNoteNr(?int $year = null): int
     {
         if ($year === null) {
             $year = intval(date('Y'));

@@ -16,7 +16,7 @@ class Translator
     private static array $labels = [];
 
     /** Read all label files and store the labels inside this class */
-    public static function readLabelFiles(string $languageDir = null): void
+    public static function readLabelFiles(?string $languageDir = null): void
     {
         // Store new language directory
         if ($languageDir !== null) {
