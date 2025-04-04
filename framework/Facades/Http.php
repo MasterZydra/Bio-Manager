@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Framework\Facades;
 
-use Exception;
 use Framework\Config\Config;
 
 class Http
@@ -32,7 +31,7 @@ class Http
             return $_POST[$name];
         }
 
-        throw new Exception(__METHOD__ . ': The method "' . self::requestMethod() . '" is not implemented');
+        throw new \Exception(__METHOD__ . ': The method "' . self::requestMethod() . '" is not implemented');
     }
 
     /** Redirect the user the the given route */

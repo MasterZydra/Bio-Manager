@@ -8,11 +8,8 @@ use App\Models\DeliveryNote;
 use App\Models\Invoice;
 use Framework\Authentication\Auth;
 use Framework\Facades\Http;
-use Framework\PDF\PDF;
-use Framework\Routing\BaseController;
-use Framework\Routing\ModelControllerInterface;
 
-class InvoiceController extends BaseController implements ModelControllerInterface
+class InvoiceController extends \Framework\Routing\BaseController implements \Framework\Routing\ModelControllerInterface
 {
     /**
      * Show list of all models
@@ -34,7 +31,7 @@ class InvoiceController extends BaseController implements ModelControllerInterfa
         Auth::checkRole('Maintainer');
 
         $invoice = Invoice::findById(Http::param('id'));
-        (new PDF())
+        (new \Framework\PDF\PDF())
             ->createPDF(setting('invoiceAuthor'), $invoice->PdfInvoiceName(), $invoice->PdfInvoiceName(), render('pdf.invoice', ['invoice' => $invoice]))
             ->showInBrowser($invoice->PdfInvoiceName());
     }

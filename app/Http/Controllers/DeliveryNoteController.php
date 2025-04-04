@@ -7,10 +7,8 @@ namespace App\Http\Controllers;
 use App\Models\DeliveryNote;
 use Framework\Authentication\Auth;
 use Framework\Facades\Http;
-use Framework\Routing\BaseController;
-use Framework\Routing\ModelControllerInterface;
 
-class DeliveryNoteController extends BaseController implements ModelControllerInterface
+class DeliveryNoteController extends \Framework\Routing\BaseController implements \Framework\Routing\ModelControllerInterface
 {
     /**
      * Show list of all models

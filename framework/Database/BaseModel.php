@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Framework\Database;
 
-use Exception;
 use Framework\Database\Exception\DeleteOperationNotAllowedException;
 use Framework\Database\Exception\EditOperationNotAllowedException;
 use Framework\Database\Query\ColType;
@@ -130,7 +129,7 @@ abstract class BaseModel
         // e.g. get('lastname')
         if ($name === 'get') {
             if (count($arguments) !== 1) {
-                throw new Exception('Getter function expects only one argument');
+                throw new \Exception('Getter function expects only one argument');
             }
             return $this->getData($arguments[0]);
         }
@@ -138,7 +137,7 @@ abstract class BaseModel
         // e.g. set('username', 'myusername')
         if ($name === 'set') {
             if (count($arguments) !== 2) {
-                throw new Exception('Getter function expects two arguments');
+                throw new \Exception('Getter function expects two arguments');
             }
             return $this->setData($arguments[0], $arguments[1]);
         }
@@ -157,7 +156,7 @@ abstract class BaseModel
 
         if ($prefix === 'set') {
             if (count($arguments) !== 1) {
-                throw new Exception('Setter functions expects only one argument');
+                throw new \Exception('Setter functions expects only one argument');
             }
             return $this->setData($property, $arguments[0]);
         }

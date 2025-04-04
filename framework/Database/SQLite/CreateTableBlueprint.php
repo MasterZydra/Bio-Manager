@@ -4,10 +4,9 @@ declare(strict_types = 1);
 
 namespace Framework\Database\SQLite;
 
-use Framework\Database\Interface\CreateTableBlueprintInterface;
 use Framework\Facades\Convert;
 
-class CreateTableBlueprint implements CreateTableBlueprintInterface
+class CreateTableBlueprint implements \Framework\Database\Interface\CreateTableBlueprintInterface
 {
     private array $fields = [];
     private array $keys = [];

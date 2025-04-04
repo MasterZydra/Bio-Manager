@@ -4,14 +4,12 @@ declare(strict_types = 1);
 
 namespace Framework\Database\MariaDB;
 
-use Framework\Database\Interface\DatabaseInterface;
 use Framework\Database\Interface\ResultInterface;
-use mysqli;
 
 /** This class simplifies the connection to MariaDB and executing queries. */
-class MariaDB implements DatabaseInterface
+class MariaDB implements \Framework\Database\Interface\DatabaseInterface
 {
-    private ?mysqli $mysqli = null;
+    private ?\mysqli $mysqli = null;
 
     public function __construct(
         private string $host,
@@ -30,7 +28,7 @@ class MariaDB implements DatabaseInterface
     /** Open connection to the DB */
     public function connect(): void
     {
-        $this->mysqli = new mysqli($this->host, $this->username, $this->password, $this->database, $this->port);
+        $this->mysqli = new \mysqli($this->host, $this->username, $this->password, $this->database, $this->port);
         mysqli_select_db($this->mysqli, $this->database);
     }
 

@@ -6,10 +6,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Price;
 use Framework\Authentication\Auth;
-use Framework\Routing\BaseController;
-use Framework\Routing\ControllerInterface;
 
-class PriceDevelopmentStatsController extends BaseController implements ControllerInterface
+class PriceDevelopmentStatsController extends \Framework\Routing\BaseController implements \Framework\Routing\ControllerInterface
 {
     public function execute(): void
     {

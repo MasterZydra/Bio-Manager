@@ -11,10 +11,8 @@ use Framework\Database\Database;
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
 use Framework\Database\Query\QueryBuilder;
-use Framework\Routing\BaseController;
-use Framework\Routing\ControllerInterface;
 
-class FinancialRevenueProfitStatsController extends BaseController implements ControllerInterface
+class FinancialRevenueProfitStatsController extends \Framework\Routing\BaseController implements \Framework\Routing\ControllerInterface
 {
     public function execute(): void
     {

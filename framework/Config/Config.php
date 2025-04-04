@@ -6,9 +6,8 @@ namespace Framework\Config;
 
 use Framework\Facades\Env;
 use Framework\Facades\Path;
-use Framework\Test\SupportsTestModeInterface;
 
-class Config implements SupportsTestModeInterface
+class Config implements \Framework\Test\SupportsTestModeInterface
 {
     private static ?array $env = null;
 

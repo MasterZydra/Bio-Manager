@@ -4,17 +4,14 @@ declare(strict_types = 1);
 
 namespace Framework\Database\SQLite;
 
-use Framework\Database\Interface\DatabaseInterface;
 use Framework\Database\Interface\ResultInterface;
 use Framework\Facades\File;
 use Framework\Facades\Path;
-use RuntimeException;
-use SQLite3;
 
 /** This class simplifies the connection to SQLite and executing queries. */
-class SQLite implements DatabaseInterface
+class SQLite implements \Framework\Database\Interface\DatabaseInterface
 {
-    private ?SQLite3 $sqlite = null;
+    private ?\SQLite3 $sqlite = null;
 
     public function __construct(
         private string $filename,
@@ -34,7 +31,7 @@ class SQLite implements DatabaseInterface
         if ($dirname !== '.') {
             File::mkdir($dirname);
         }
-        $this->sqlite = new SQLite3($path);
+        $this->sqlite = new \SQLite3($path);
         $this->sqlite->enableExceptions(true);
     }
 
@@ -66,7 +63,7 @@ class SQLite implements DatabaseInterface
         }
 
         if (count($values) !== strlen($colTypes)) {
-            throw new RuntimeException('Given amount of column types and values does not match');
+            throw new \RuntimeException('Given amount of column types and values does not match');
         }
 
         $paramIndex = 1;

@@ -7,10 +7,8 @@ namespace App\Http\Controllers;
 use App\Models\Recipient;
 use Framework\Authentication\Auth;
 use Framework\Facades\Http;
-use Framework\Routing\BaseController;
-use Framework\Routing\ModelControllerInterface;
 
-class RecipientController extends BaseController implements ModelControllerInterface
+class RecipientController extends \Framework\Routing\BaseController implements \Framework\Routing\ModelControllerInterface
 {
     /**
      * Show list of all models

@@ -4,11 +4,9 @@ declare(strict_types = 1);
 
 namespace Framework\Database\Commands;
 
-use Framework\Cli\BaseCommand;
-use Framework\Cli\CommandInterface;
 use Framework\Facades\Path;
 
-class MakeSeederCommand extends BaseCommand implements CommandInterface
+class MakeSeederCommand extends \Framework\Cli\BaseCommand implements \Framework\Cli\CommandInterface
 {
     private string $seedersPath = '';
 
@@ -25,6 +23,7 @@ class MakeSeederCommand extends BaseCommand implements CommandInterface
         file_put_contents(
             $path,
             '<?php' . PHP_EOL . PHP_EOL .
+            'declare(strict_types = 1);' . PHP_EOL . PHP_EOL .
             'namespace Resources\Database\Seeders;' . PHP_EOL . PHP_EOL .
             'use Framework\Database\Database;' . PHP_EOL .
             'use Framework\Database\Seeder;' . PHP_EOL .

@@ -4,15 +4,11 @@ declare(strict_types = 1);
 
 namespace Framework\Test\Commands;
 
-use Framework\Cli\BaseCommand;
-use Framework\Cli\CommandInterface;
-use Framework\Test\TestRunner;
-
-class TestRunCommand extends BaseCommand implements CommandInterface
+class TestRunCommand extends \Framework\Cli\BaseCommand implements \Framework\Cli\CommandInterface
 {
     public function execute(array $args): int
     {
-        $testRunner = new TestRunner();
+        $testRunner = new \Framework\Test\TestRunner();
         $testRunner->run();
         return 0;
     }

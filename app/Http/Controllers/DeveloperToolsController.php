@@ -7,10 +7,8 @@ namespace App\Http\Controllers;
 use Framework\Authentication\Auth;
 use Framework\Facades\DeveloperTools;
 use Framework\Facades\Http;
-use Framework\Routing\BaseController;
-use Framework\Routing\ControllerInterface;
 
-class DeveloperToolsController extends BaseController implements ControllerInterface
+class DeveloperToolsController extends \Framework\Routing\BaseController implements \Framework\Routing\ControllerInterface
 {
     public function execute(): void
     {

@@ -10,10 +10,8 @@ use Framework\Authentication\Session;
 use Framework\Facades\Http;
 use Framework\Message\Message;
 use Framework\Message\Type;
-use Framework\Routing\BaseController;
-use Framework\Routing\ControllerInterface;
 
-class LoginController extends BaseController implements ControllerInterface
+class LoginController extends \Framework\Routing\BaseController implements \Framework\Routing\ControllerInterface
 {
     public function execute(): void
     {

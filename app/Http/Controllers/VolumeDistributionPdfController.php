@@ -6,11 +6,8 @@ namespace App\Http\Controllers;
 
 use Framework\Authentication\Auth;
 use Framework\Facades\Http;
-use Framework\PDF\PDF;
-use Framework\Routing\BaseController;
-use Framework\Routing\ControllerInterface;
 
-class VolumeDistributionPdfController extends BaseController implements ControllerInterface
+class VolumeDistributionPdfController extends \Framework\Routing\BaseController implements \Framework\Routing\ControllerInterface
 {
     public function execute(): void
     {
@@ -28,7 +25,7 @@ class VolumeDistributionPdfController extends BaseController implements Controll
 
             $filename = 'Mengenverteilung ' . Http::param('invoiceYear');
 
-            (new PDF())
+            (new \Framework\PDF\PDF())
                 ->createPDF(setting('invoiceAuthor'), $filename, $filename, render('pdf.volumeDistribution', ['year' => Http::param('invoiceYear')]))
                 ->showInBrowser($filename);
             return;

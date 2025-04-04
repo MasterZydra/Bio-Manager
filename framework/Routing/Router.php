@@ -4,9 +4,6 @@ declare(strict_types = 1);
 
 namespace Framework\Routing;
 
-use Closure;
-use Exception;
-
 /**
  * Route the request to the correct view or controller.
  * Based on https://steampixel.de/einfaches-und-elegantes-url-routing-mit-php/
@@ -14,8 +11,8 @@ use Exception;
 class Router
 {
     private static array $routes = [];
-    private static ?Closure $pathNotFound = null;
-    private static ?Closure $methodNotAllowed = null;
+    private static ?\Closure $pathNotFound = null;
+    private static ?\Closure $methodNotAllowed = null;
 
     /** Register new routes for showing, creating, editing, etc. models */
     public static function addModel(string $expression, ModelControllerInterface $controller): void
@@ -54,7 +51,7 @@ class Router
     }
 
     /** Register new route and the given closure will be executed if the route is requested */
-    public static function addFn(string $expression, Closure $function, string $method = 'GET'): void
+    public static function addFn(string $expression, \Closure $function, string $method = 'GET'): void
     {
         array_push(
             self::$routes,
@@ -67,13 +64,13 @@ class Router
     }
 
     /** Define the behaviour for 404 */
-    public static function pathNotFound(Closure $function): void
+    public static function pathNotFound(\Closure $function): void
     {
         self::$pathNotFound = $function;
     }
 
     /** Define the behaviour for 405 */
-    public static function methodeNotAllowed(Closure $function): void
+    public static function methodeNotAllowed(\Closure $function): void
     {
         self::$methodNotAllowed = $function;
     }
@@ -183,7 +180,7 @@ class Router
             case 'update':
                 return 'POST';
             default:
-                throw new Exception('Route "' . $route . '" is not implemented');
+                throw new \Exception('Route "' . $route . '" is not implemented');
         }
     }
 }

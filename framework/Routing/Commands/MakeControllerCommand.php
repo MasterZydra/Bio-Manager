@@ -4,11 +4,9 @@ declare(strict_types = 1);
 
 namespace Framework\Routing\Commands;
 
-use Framework\Cli\BaseCommand;
-use Framework\Cli\CommandInterface;
 use Framework\Facades\Path;
 
-class MakeControllerCommand extends BaseCommand implements CommandInterface
+class MakeControllerCommand extends \Framework\Cli\BaseCommand implements \Framework\Cli\CommandInterface
 {
     private string $controllersPath = '';
 
@@ -26,10 +24,9 @@ class MakeControllerCommand extends BaseCommand implements CommandInterface
         file_put_contents(
             $path,
             '<?php' . PHP_EOL . PHP_EOL .
+            'declare(strict_types = 1);' . PHP_EOL . PHP_EOL .
             'namespace App\Http\Controllers;' . PHP_EOL . PHP_EOL .
-            'use Framework\Routing\BaseController;' . PHP_EOL .
-            'use Framework\Routing\ModelControllerInterface;' . PHP_EOL . PHP_EOL .
-            'class ' . $controllerName . 'Controller extends BaseController implements ModelControllerInterface' . PHP_EOL .
+            'class ' . $controllerName . 'Controller extends \Framework\Routing\BaseController implements \Framework\Routing\ModelControllerInterface' . PHP_EOL .
             '{' . PHP_EOL .
             '    /**' . PHP_EOL .
             '     * Show list of all models' . PHP_EOL .

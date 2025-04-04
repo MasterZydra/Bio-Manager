@@ -4,11 +4,7 @@ declare(strict_types = 1);
 
 namespace Framework\Authentication\Commands;
 
-use App\Models\User;
-use Framework\Cli\BaseCommand;
-use Framework\Cli\CommandInterface;
-
-class MakeUserCommand extends BaseCommand implements CommandInterface
+class MakeUserCommand extends \Framework\Cli\BaseCommand implements \Framework\Cli\CommandInterface
 {
     public function execute(array $args): int
     {
@@ -17,7 +13,7 @@ class MakeUserCommand extends BaseCommand implements CommandInterface
         $username = $this->input('Username:');
         $password = $this->input('Password:');
 
-        (new User())
+        (new \App\Models\User())
             ->setFirstname($firstname)
             ->setLastname($lastname)
             ->setUsername($username)

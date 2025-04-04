@@ -9,10 +9,8 @@ use App\Models\User;
 use App\Models\UserRole;
 use Framework\Authentication\Auth;
 use Framework\Facades\Http;
-use Framework\Routing\BaseController;
-use Framework\Routing\ModelControllerInterface;
 
-class UserController extends BaseController implements ModelControllerInterface
+class UserController extends \Framework\Routing\BaseController implements \Framework\Routing\ModelControllerInterface
 {
     /**
      * Show list of all models

@@ -7,10 +7,8 @@ namespace App\Http\Controllers;
 use App\Models\Plot;
 use Framework\Authentication\Auth;
 use Framework\Facades\Http;
-use Framework\Routing\BaseController;
-use Framework\Routing\ModelControllerInterface;
 
-class PlotController extends BaseController implements ModelControllerInterface
+class PlotController extends \Framework\Routing\BaseController implements \Framework\Routing\ModelControllerInterface
 {
     /**
      * Show list of all models

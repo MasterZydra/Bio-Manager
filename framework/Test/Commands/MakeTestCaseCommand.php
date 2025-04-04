@@ -4,11 +4,9 @@ declare(strict_types = 1);
 
 namespace Framework\Test\Commands;
 
-use Framework\Cli\BaseCommand;
-use Framework\Cli\CommandInterface;
 use Framework\Facades\Path;
 
-class MakeTestCaseCommand extends BaseCommand implements CommandInterface
+class MakeTestCaseCommand extends \Framework\Cli\BaseCommand implements \Framework\Cli\CommandInterface
 {
     private string $testFilePath = '';
 
@@ -25,6 +23,7 @@ class MakeTestCaseCommand extends BaseCommand implements CommandInterface
         file_put_contents(
             $path,
             '<?php' . PHP_EOL . PHP_EOL .
+            'declare(strict_types = 1);' . PHP_EOL . PHP_EOL .
             'return new class extends \Framework\Test\TestCase' . PHP_EOL .
             '{' . PHP_EOL .
             '    public function testFunction(): void' . PHP_EOL .

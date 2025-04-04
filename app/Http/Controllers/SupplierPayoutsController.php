@@ -10,11 +10,8 @@ use Framework\Authentication\Auth;
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
 use Framework\Facades\Http;
-use Framework\PDF\PDF;
-use Framework\Routing\BaseController;
-use Framework\Routing\ControllerInterface;
 
-class SupplierPayoutsController extends BaseController implements ControllerInterface
+class SupplierPayoutsController extends \Framework\Routing\BaseController implements \Framework\Routing\ControllerInterface
 {
     public function execute(): void
     {
@@ -45,7 +42,7 @@ class SupplierPayoutsController extends BaseController implements ControllerInte
 
             $deliveryNotes = DeliveryNote::all($queryBuilder);
 
-            (new PDF())
+            (new \Framework\PDF\PDF())
                 ->createPDF(setting('invoiceAuthor'), $filename, $filename, render('pdf.supplierPayouts', ['deliveryNotes' => $deliveryNotes, 'invoice' => $invoice]))
                 ->showInBrowser($filename);
             return;

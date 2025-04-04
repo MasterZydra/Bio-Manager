@@ -9,10 +9,8 @@ use Framework\Authentication\Auth;
 use Framework\Facades\Http;
 use Framework\Message\Message;
 use Framework\Message\Type;
-use Framework\Routing\BaseController;
-use Framework\Routing\ControllerInterface;
 
-class ChangePasswordController extends BaseController implements ControllerInterface
+class ChangePasswordController extends \Framework\Routing\BaseController implements \Framework\Routing\ControllerInterface
 {
     public function execute(): void
     {

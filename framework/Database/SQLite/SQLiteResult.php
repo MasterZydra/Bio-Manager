@@ -4,13 +4,10 @@ declare(strict_types = 1);
 
 namespace Framework\Database\SQLite;
 
-use Framework\Database\Interface\ResultInterface;
-use SQLite3Result;
-
-class SQLiteResult implements ResultInterface
+class SQLiteResult implements \Framework\Database\Interface\ResultInterface
 {
     public function __construct(
-        private SQLite3Result|false $result,
+        private \SQLite3Result|false $result,
     ) {
     }
 

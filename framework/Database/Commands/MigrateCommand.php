@@ -4,17 +4,13 @@ declare(strict_types = 1);
 
 namespace Framework\Database\Commands;
 
-use Framework\Cli\BaseCommand;
-use Framework\Cli\CommandInterface;
-use Framework\Database\Migration\MigrationRunner;
-
-class MigrateCommand extends BaseCommand implements CommandInterface
+class MigrateCommand extends \Framework\Cli\BaseCommand implements \Framework\Cli\CommandInterface
 {
     public function execute(array $args): int
     {
         echo 'Applied migrations:' . PHP_EOL;
 
-        $migrationRunner = new MigrationRunner();
+        $migrationRunner = new \Framework\Database\Migration\MigrationRunner();
         $migrationRunner->run();
         return 0;
     }

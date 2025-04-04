@@ -8,7 +8,6 @@ use Framework\Config\Config;
 use Framework\Database\Database;
 use Framework\Facades\File;
 use Framework\Facades\Path;
-use RuntimeException;
 
 class MigrationRunner
 {
@@ -139,7 +138,7 @@ class MigrationRunner
                 break;
             
             default:
-                throw new RuntimeException('The database connection "' . Config::env('DB_CONNECTION') . '" is not supported');
+                throw new \RuntimeException('The database connection "' . Config::env('DB_CONNECTION') . '" is not supported');
         }
         
 

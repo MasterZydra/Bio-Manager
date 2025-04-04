@@ -4,11 +4,9 @@ declare(strict_types = 1);
 
 namespace Framework\Cli\Commands;
 
-use Framework\Cli\BaseCommand;
-use Framework\Cli\CommandInterface;
 use Framework\Facades\Path;
 
-class MakeCommandCommand extends BaseCommand implements CommandInterface
+class MakeCommandCommand extends \Framework\Cli\BaseCommand implements \Framework\Cli\CommandInterface
 {
     private string $commandsPath = '';
 
@@ -27,9 +25,8 @@ class MakeCommandCommand extends BaseCommand implements CommandInterface
         file_put_contents(
             $path,
             '<?php' . PHP_EOL . PHP_EOL .
-            'use Framework\Cli\BaseCommand;' . PHP_EOL .
-            'use Framework\Cli\CommandInterface;' . PHP_EOL . PHP_EOL .
-            'class ' . $commandClassName . 'Command extends BaseCommand implements CommandInterface' . PHP_EOL .
+            'declare(strict_types = 1);' . PHP_EOL . PHP_EOL .
+            'class ' . $commandClassName . 'Command extends \Framework\Cli\BaseCommand implements \Framework\Cli\CommandInterface' . PHP_EOL .
             '{' . PHP_EOL .
             '    public function execute(array $args): int' . PHP_EOL .
             '    {' . PHP_EOL .

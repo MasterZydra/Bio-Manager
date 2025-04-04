@@ -4,12 +4,10 @@ declare(strict_types = 1);
 
 namespace Framework\Error;
 
-use Exception;
 use Framework\Cli\Cli;
 use Framework\Facades\DeveloperTools;
 use Framework\Facades\Env;
 use Framework\Facades\Http;
-use Throwable;
 
 class ErrorHandler
 {
@@ -26,7 +24,7 @@ class ErrorHandler
         }
     }
 
-    public static function handleException(Throwable $exception): void
+    public static function handleException(\Throwable $exception): void
     {
         ob_end_clean();
         if (Env::isDev() || DeveloperTools::showErrorMessages()) {
@@ -53,7 +51,7 @@ class ErrorHandler
         );
     }
 
-    private static function handleDevException(Throwable $exception): void
+    private static function handleDevException(\Throwable $exception): void
     {
         $commandWhiteList = ['migrate'];
 
@@ -65,7 +63,7 @@ class ErrorHandler
             try {
                 Cli::runWebCli($command, false);
                 Http::redirect(Http::requestUri());
-            } catch (Exception $exception) {
+            } catch (\Exception $exception) {
                 view('framework.error.dev.uncaughtException', ['exception' => $exception]);
                 exit();
             }

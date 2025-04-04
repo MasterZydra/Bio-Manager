@@ -6,10 +6,8 @@ namespace App\Http\Controllers;
 
 use Framework\Authentication\Auth;
 use Framework\Database\Database;
-use Framework\Routing\BaseController;
-use Framework\Routing\ControllerInterface;
 
-class AmountDevelopmentStatsController extends BaseController implements ControllerInterface
+class AmountDevelopmentStatsController extends \Framework\Routing\BaseController implements \Framework\Routing\ControllerInterface
 {
     public function execute(): void
     {

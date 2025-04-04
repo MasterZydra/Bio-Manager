@@ -8,10 +8,8 @@ use App\Models\DeliveryNote;
 use Framework\Authentication\Auth;
 use Framework\Database\Database;
 use Framework\Facades\Http;
-use Framework\Routing\BaseController;
-use Framework\Routing\ControllerInterface;
 
-class OpenVolumeDistributionsController extends BaseController implements ControllerInterface
+class OpenVolumeDistributionsController extends \Framework\Routing\BaseController implements \Framework\Routing\ControllerInterface
 {
     public function execute(): void
     {

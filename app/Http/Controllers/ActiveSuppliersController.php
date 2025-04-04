@@ -6,11 +6,8 @@ namespace App\Http\Controllers;
 
 use Framework\Authentication\Auth;
 use Framework\Facades\Http;
-use Framework\PDF\PDF;
-use Framework\Routing\BaseController;
-use Framework\Routing\ControllerInterface;
 
-class ActiveSuppliersController extends BaseController implements ControllerInterface
+class ActiveSuppliersController extends \Framework\Routing\BaseController implements \Framework\Routing\ControllerInterface
 {
     public function execute(): void
     {
@@ -21,7 +18,7 @@ class ActiveSuppliersController extends BaseController implements ControllerInte
             return;
         }
 
-        (new PDF())
+        (new \Framework\PDF\PDF())
             ->createPDF(setting('invoiceAuthor'), 'Aktive_Lieferanten', 'Aktive_Lieferanten', render('pdf.activeSuppliers'))
             ->showInBrowser('Aktive_Lieferanten_' . date('Y_m_d'));
     }

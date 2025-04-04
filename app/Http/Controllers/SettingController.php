@@ -7,10 +7,8 @@ namespace App\Http\Controllers;
 use App\Models\Setting;
 use Framework\Authentication\Auth;
 use Framework\Facades\Http;
-use Framework\Routing\BaseController;
-use Framework\Routing\ModelControllerInterface;
 
-class SettingController extends BaseController implements ModelControllerInterface
+class SettingController extends \Framework\Routing\BaseController implements \Framework\Routing\ModelControllerInterface
 {
     /**
      * Show list of all models

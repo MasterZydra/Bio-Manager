@@ -4,10 +4,8 @@ declare(strict_types = 1);
 
 namespace Framework\Test;
 
-use Exception;
-
 /** The AssertionFailedException is thrown if a assertion function in the `TestCase` failed. */
-class AssertionFailedException extends Exception
+class AssertionFailedException extends \Exception
 {
     public function __construct(
         private string $expectedValue,

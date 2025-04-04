@@ -4,13 +4,10 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers;
 
-use App\Models\Setting;
 use Framework\Authentication\Auth;
 use Framework\Facades\Http;
-use Framework\Routing\BaseController;
-use Framework\Routing\ControllerInterface;
 
-class EditImprintSettingsController extends BaseController implements ControllerInterface
+class EditImprintSettingsController extends \Framework\Routing\BaseController implements \Framework\Routing\ControllerInterface
 {
     public function execute(): void
     {
@@ -42,6 +39,6 @@ class EditImprintSettingsController extends BaseController implements Controller
 
     private function settingFromParam(string $name): void
     {
-        Setting::findByName($name)->setValue(Http::param($name))->save();
+        \App\Models\Setting::findByName($name)->setValue(Http::param($name))->save();
     }
 }

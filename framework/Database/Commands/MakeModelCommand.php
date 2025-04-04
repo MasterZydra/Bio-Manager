@@ -4,11 +4,9 @@ declare(strict_types = 1);
 
 namespace Framework\Database\Commands;
 
-use Framework\Cli\BaseCommand;
-use Framework\Cli\CommandInterface;
 use Framework\Facades\Path;
 
-class MakeModelCommand extends BaseCommand implements CommandInterface
+class MakeModelCommand extends \Framework\Cli\BaseCommand implements \Framework\Cli\CommandInterface
 {
     private string $modelPath = '';
 
@@ -26,6 +24,7 @@ class MakeModelCommand extends BaseCommand implements CommandInterface
         file_put_contents(
             $path,
             '<?php' . PHP_EOL . PHP_EOL .
+            'declare(strict_types = 1);' . PHP_EOL . PHP_EOL .
             'namespace App\Models;' . PHP_EOL . PHP_EOL .
             'use Framework\Database\Database;' . PHP_EOL . PHP_EOL .
             'class ' . $modelName . ' extends \Framework\Database\BaseModel' . PHP_EOL .

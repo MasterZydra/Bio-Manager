@@ -7,10 +7,8 @@ namespace Framework\Cli\Controllers;
 use Framework\Authentication\Auth;
 use Framework\Cli\Cli;
 use Framework\Facades\Http;
-use Framework\Routing\BaseController;
-use Framework\Routing\ControllerInterface;
 
-class WebCliController extends BaseController implements ControllerInterface
+class WebCliController extends \Framework\Routing\BaseController implements \Framework\Routing\ControllerInterface
 {
     public function execute(): void
     {

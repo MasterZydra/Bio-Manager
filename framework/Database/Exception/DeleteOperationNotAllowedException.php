@@ -4,10 +4,8 @@ declare(strict_types = 1);
 
 namespace Framework\Database\Exception;
 
-use Exception;
-
 /** The DeleteOperationNotAllowedException is thrown if a entity is not allowed to be deleted */
-class DeleteOperationNotAllowedException extends Exception
+class DeleteOperationNotAllowedException extends \Exception
 {
     public function __construct()
     {

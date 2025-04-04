@@ -9,10 +9,8 @@ use Framework\Authentication\Auth;
 use Framework\Facades\Http;
 use Framework\Message\Message;
 use Framework\Message\Type;
-use Framework\Routing\BaseController;
-use Framework\Routing\ModelControllerInterface;
 
-class PriceController extends BaseController implements ModelControllerInterface
+class PriceController extends \Framework\Routing\BaseController implements \Framework\Routing\ModelControllerInterface
 {
     /**
      * Show list of all models

@@ -97,9 +97,7 @@ The default directory is [`app/Http/Controllers`](../app/Http/Controllers/).
 
 **Example**
 ```PHP
-use Framework\Routing\BaseController;
-
-class AboutController extends BaseController
+class AboutController extends \Framework\Routing\BaseController
 ```
 
 -------------------------------------------------------------
@@ -387,11 +385,9 @@ The [`BaseCommand`](../framework/Cli/BaseCommand.php) class can be used as base 
 
 **Example**
 ```PHP
-use Framework\Cli\BaseCommand;
-use Framework\Cli\CommandInterface;
 use Framework\Test\TestRunner;
 
-class TestRun extends BaseCommand implements CommandInterface
+class TestRun extends \Framework\Cli\BaseCommand implements \Framework\Cli\CommandInterface
 ```
 
 -------------------------------------------------------------

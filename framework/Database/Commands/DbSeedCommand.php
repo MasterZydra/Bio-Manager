@@ -4,17 +4,13 @@ declare(strict_types = 1);
 
 namespace Framework\Database\Commands;
 
-use Framework\Cli\BaseCommand;
-use Framework\Cli\CommandInterface;
-use Framework\Database\Seeder\SeederRunner;
-
-class DbSeedCommand extends BaseCommand implements CommandInterface
+class DbSeedCommand extends \Framework\Cli\BaseCommand implements \Framework\Cli\CommandInterface
 {
     public function execute(array $args): int
     {
         echo 'Applied seeders:' . PHP_EOL;
 
-        $seederRunner = new SeederRunner();
+        $seederRunner = new \Framework\Database\Seeder\SeederRunner();
         $seederRunner->run();
         return 0;
     }

@@ -4,13 +4,10 @@ declare(strict_types = 1);
 
 namespace Framework\Database\MariaDB;
 
-use Framework\Database\Interface\ResultInterface;
-use mysqli_result;
-
-class MariaDbResult implements ResultInterface
+class MariaDbResult implements \Framework\Database\Interface\ResultInterface
 {
     public function __construct(
-        private mysqli_result|bool $result,
+        private \mysqli_result|bool $result,
     ) {
     }
 
