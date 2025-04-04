@@ -1,6 +1,5 @@
 <?php
 
-use Framework\Database\Database;
 use Framework\Database\SQLite\CreateTableBlueprint;
 use Framework\Database\SQLite\SQLite;
 
@@ -64,5 +63,40 @@ return new class extends \Framework\Test\TestCase
         $this->assertEquals(2, $user2['id']);
         $this->assertEquals(36, $user2['age']);
         $this->assertEquals($user2['createdAt'], $user2['updatedAt']);
+    }
+
+    public function testUniqueConstraint(): void
+    {
+        $this->cleanup();
+
+        $db = new SQLite($this->dbName);
+        $db->connect();
+
+        // Create a table 'users
+        $blueprint = new CreateTableBlueprint('users');
+        $blueprint->id();
+        $blueprint->string('name', 30, unique: true);
+
+        foreach ($blueprint->build() as $sql) {
+            $db->unprepared($sql);
+        }
+
+        // Insert some data
+        $db->unprepared('INSERT INTO users (`name`) VALUES (\'Max\');');
+        $isError = false;
+        try {
+            $db->unprepared('INSERT INTO users (`name`) VALUES (\'Max\');');
+        } catch (\Throwable $th) {
+            $isError = true;
+        }
+        $this->assertTrue($isError);
+
+        // Select all users
+        $result = $db->unprepared('SELECT * FROM users;');
+        $this->assertTrue($result !== false);
+
+        $user1 = $result->fetch();
+        $this->assertEquals(1, $user1['id']);
+        $this->assertEquals('Max', $user1['name']);
     }
 };
