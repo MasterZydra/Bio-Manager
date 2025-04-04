@@ -11,7 +11,7 @@ class MakeTestCaseCommand extends BaseCommand implements CommandInterface
     private string $testFilePath = '';
 
     public function __construct() {
-        $this->testFilePath = Path::join(__DIR__, '..', '..', '..', 'tests');
+        $this->testFilePath = Path::join(__DIR__, '..', '..', '..', 'resources', 'Tests');
     }
 
     public function execute(array $args): int
@@ -23,15 +23,14 @@ class MakeTestCaseCommand extends BaseCommand implements CommandInterface
         file_put_contents(
             $path,
             '<?php' . PHP_EOL . PHP_EOL .
-            'use Framework\Test\TestCase;' . PHP_EOL . PHP_EOL .
-            'class Test' . ucfirst($controllerName) . ' extends TestCase' . PHP_EOL .
+            'return new class extends \Framework\Test\TestCase' . PHP_EOL .
             '{' . PHP_EOL .
             '    public function testFunction(): void' . PHP_EOL .
             '    {' . PHP_EOL .
             '        $this->assertTrue(/* condition */);' . PHP_EOL .
             '        $this->assertEquals(\'expected\', /* code */);' . PHP_EOL .
             '    }' . PHP_EOL .
-            '}' . PHP_EOL
+            '};' . PHP_EOL
         );
 
         printLn('Created test case "' . $filename . '"');

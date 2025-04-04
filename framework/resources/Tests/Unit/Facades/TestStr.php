@@ -1,9 +1,8 @@
 <?php
 
 use Framework\Facades\Str;
-use Framework\Test\TestCase;
 
-class TestStr extends TestCase
+return new class extends \Framework\Test\TestCase
 {
     public function testRemoveLeadingLineSpaces(): void
     {
@@ -16,6 +15,5 @@ class TestStr extends TestCase
             'Noting' . PHP_EOL . 'ToDo' . PHP_EOL . 'Here',
             Str::removeLeadingLineSpaces('Noting' . PHP_EOL . 'ToDo' . PHP_EOL . 'Here')
         );
-
     }
-}
+};

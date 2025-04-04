@@ -3,9 +3,8 @@
 use Framework\Database\Database;
 use Framework\Database\SQLite\CreateTableBlueprint;
 use Framework\Database\SQLite\SQLite;
-use Framework\Test\TestCase;
 
-class TestSQLite extends TestCase
+return new class extends \Framework\Test\TestCase
 {
     private string $dbName = 'resources/Tests/tmp/db/testDb';
 
@@ -66,4 +65,4 @@ class TestSQLite extends TestCase
         $this->assertEquals(36, $user2['age']);
         $this->assertEquals($user2['createdAt'], $user2['updatedAt']);
     }
-}
+};

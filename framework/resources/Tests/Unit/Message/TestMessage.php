@@ -2,9 +2,8 @@
 
 use Framework\Message\Message;
 use Framework\Message\Type;
-use Framework\Test\TestCase;
 
-class TestMessage extends TestCase
+return new class extends \Framework\Test\TestCase
 {
     public function testSetMessage(): void
     {
@@ -20,4 +19,4 @@ class TestMessage extends TestCase
         Message::setMessage('Test success message', Type::Success);
         $this->assertEquals([['message' => 'Test success message', 'type' => 'success']], Message::getMessages());
     }
-}
+};

@@ -1,9 +1,8 @@
 <?php
 
 use Framework\Facades\URL;
-use Framework\Test\TestCase;
 
-class TestURL extends TestCase
+return new class extends \Framework\Test\TestCase
 {
     public function testJoin(): void
     {
@@ -17,4 +16,4 @@ class TestURL extends TestCase
             URL::join('/product/', '/edit')
         );
     }
-}
+};

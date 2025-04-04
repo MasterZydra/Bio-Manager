@@ -5,9 +5,8 @@ use Framework\Database\Query\Condition;
 use Framework\Database\Query\QueryBuilder;
 use Framework\Database\Query\SortOrder;
 use Framework\Database\Query\WhereCombine;
-use Framework\Test\TestCase;
 
-class TestQueryBuilder extends TestCase
+return new class extends \Framework\Test\TestCase
 {
     public function testSelect(): void
     {
@@ -79,4 +78,4 @@ class TestQueryBuilder extends TestCase
         $this->assertEquals('', $queryBuilder->getColTypes());
         $this->assertEquals([], $queryBuilder->getValues());
     }
-}
+};

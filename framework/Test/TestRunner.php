@@ -57,10 +57,7 @@ class TestRunner
     /** Run all test methods in the given unit test file */
     private function runUnitTestFile(string $testFilePath, string $filepath): bool
     {
-        $filename = basename($filepath);
-        require Path::join($testFilePath, 'Unit', $filepath);
-        $testCaseName = str_replace('.php', '', $filename);
-        $testCase = new $testCaseName();
+        $testCase = require Path::join($testFilePath, 'Unit', $filepath);
         $methods = get_class_methods($testCase);
 
         $success = true;

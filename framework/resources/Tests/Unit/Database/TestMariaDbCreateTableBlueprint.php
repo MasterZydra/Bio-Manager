@@ -1,9 +1,8 @@
 <?php
 
 use Framework\Database\MariaDB\CreateTableBlueprint;
-use Framework\Test\TestCase;
 
-class TestMariaDbCreateTableBlueprint extends TestCase
+return new class extends \Framework\Test\TestCase
 {
     public function testId(): void
     {
@@ -83,5 +82,4 @@ class TestMariaDbCreateTableBlueprint extends TestCase
             ->timestamps();
         $this->assertEquals(['CREATE TABLE `user` (id INT auto_increment,PRIMARY KEY (id),`firstname` VARCHAR(30) NOT NULL,`age` INT NULL,`height` FLOAT NOT NULL,`isLocked` TINYINT(1) NOT NULL DEFAULT 1,createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;'], $blueprint->build());
     }
-
-}
+};

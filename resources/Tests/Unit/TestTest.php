@@ -1,8 +1,6 @@
 <?php
 
-use \Framework\Test\TestCase;
-
-class TestTest extends TestCase
+return new class extends \Framework\Test\TestCase
 {
     public function testCase1(): void
     {
@@ -13,4 +11,4 @@ class TestTest extends TestCase
     {
         $this->assertTrue(true);
     }
-}
+};

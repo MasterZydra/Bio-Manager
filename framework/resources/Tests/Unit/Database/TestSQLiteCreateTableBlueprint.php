@@ -1,9 +1,8 @@
 <?php
 
 use Framework\Database\SQLite\CreateTableBlueprint;
-use Framework\Test\TestCase;
 
-class TestSQLiteCreateTableBlueprint extends TestCase
+return new class extends \Framework\Test\TestCase
 {
     public function testId(): void
     {
@@ -94,5 +93,4 @@ class TestSQLiteCreateTableBlueprint extends TestCase
             $blueprint->build()
         );
     }
-
-}
+};

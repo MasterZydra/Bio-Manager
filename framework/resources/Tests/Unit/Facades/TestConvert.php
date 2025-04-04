@@ -1,13 +1,12 @@
 <?php
 
 use Framework\Facades\Convert;
-use Framework\Test\TestCase;
 
-class TestConvert extends TestCase
+return new class extends \Framework\Test\TestCase
 {
     public function testBoolToInt(): void
     {
         $this->assertEquals(1, Convert::boolToInt(true));
         $this->assertEquals(0, Convert::boolToInt(false));
     }
-}
+};

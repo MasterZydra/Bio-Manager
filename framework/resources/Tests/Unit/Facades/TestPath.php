@@ -1,9 +1,8 @@
 <?php
 
 use Framework\Facades\Path;
-use Framework\Test\TestCase;
 
-class TestPath extends TestCase
+return new class extends \Framework\Test\TestCase
 {
     public function testJoin(): void
     {
@@ -17,4 +16,4 @@ class TestPath extends TestCase
             Path::join('/var', 'testOne.php')
         );
     }
-}
+};
