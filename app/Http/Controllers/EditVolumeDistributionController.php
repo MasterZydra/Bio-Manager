@@ -47,9 +47,9 @@ class EditVolumeDistributionController extends BaseController implements Control
             // Create the new distributions
             for ($i=0; $i < count($plots); $i++) {
                 (new VolumeDistribution())
-                    ->setDeliveryNoteId(Http::param('id'))
-                    ->setPlotId($plots[$i])
-                    ->setAmount($amounts[$i])
+                    ->setDeliveryNoteId(intval(Http::param('id')))
+                    ->setPlotId(intval($plots[$i]))
+                    ->setAmount(floatval($amounts[$i]))
                     ->save();
             }
             // TODO Improve: Check if already exists -> yes: Remove from list

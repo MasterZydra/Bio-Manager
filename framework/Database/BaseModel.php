@@ -95,12 +95,12 @@ abstract class BaseModel
         return $results[0];
     }
 
-    public static function findById(int $id): self
+    public static function findById(string|int $id): self
     {
-        return static::find(static::getQueryBuilder()->where(ColType::Int, 'id', Condition::Equal, $id));
+        return static::find(static::getQueryBuilder()->where(ColType::Int, 'id', Condition::Equal, intval($id)));
     }
 
-    public static function delete(int $id): void
+    public static function delete(string|int $id): void
     {
         $model = static::findById($id);
         if ($model->getId() === null) {

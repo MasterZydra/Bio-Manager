@@ -24,7 +24,7 @@ class FinancialRevenueProfitStatsController extends BaseController implements Co
         $years = [];
         if ($dataSet !== false) {
             while ($row = $dataSet->fetch()) {
-                $years[] = $row['year'];
+                $years[] = intval($row['year']);
             }
         }
 

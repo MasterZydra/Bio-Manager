@@ -46,9 +46,9 @@ class VolumeDistribution extends \Framework\Database\BaseModel
         return $this;
     }
 
-    public static function allByDeliveryNoteId(int $deliveryNoteId): array
+    public static function allByDeliveryNoteId(string|int $deliveryNoteId): array
     {
-        return self::all(self::getQueryBuilder()->where(ColType::Int, 'deliveryNoteId', Condition::Equal, $deliveryNoteId));
+        return self::all(self::getQueryBuilder()->where(ColType::Int, 'deliveryNoteId', Condition::Equal, intval($deliveryNoteId)));
     }
 
     public function getDeliveryNote(): DeliveryNote

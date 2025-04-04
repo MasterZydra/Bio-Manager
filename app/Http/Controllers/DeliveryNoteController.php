@@ -44,7 +44,7 @@ class DeliveryNoteController extends BaseController implements ModelControllerIn
 
         (new DeliveryNote())
             ->setFromHttpParams(['year', 'productId', 'supplierId', 'recipientId'])
-            ->setNr(DeliveryNote::nextDeliveryNoteNr(Http::param('year')))
+            ->setNr(DeliveryNote::nextDeliveryNoteNr(intval(Http::param('year'))))
             ->setDeliveryDate(date('Y-m-d'))
             ->setAmount(null)
             ->setInvoiceId(null)
