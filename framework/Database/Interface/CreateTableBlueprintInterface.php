@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Framework\Database\Interface;
 
 /** Create SQL statements for generating tables */

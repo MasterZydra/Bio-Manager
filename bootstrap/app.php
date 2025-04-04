@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 use Framework\Facades\Env;
 
 // Start the PHP session

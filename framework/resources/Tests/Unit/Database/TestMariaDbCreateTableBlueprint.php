@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 use Framework\Database\MariaDB\CreateTableBlueprint;
 
 return new class extends \Framework\Test\TestCase

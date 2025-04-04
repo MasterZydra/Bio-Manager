@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 use Framework\Authentication\Commands\MakeUserCommand;
 use Framework\Cli\Cli;
 use Framework\Cli\Commands\MakeCommandCommand;

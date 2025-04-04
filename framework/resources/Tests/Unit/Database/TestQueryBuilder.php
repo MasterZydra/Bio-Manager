@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 use Framework\Database\Query\ColType;
 use Framework\Database\Query\Condition;
 use Framework\Database\Query\QueryBuilder;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Framework\Facades;
 
 /** The String facade provides helper functions for more complex string operations */

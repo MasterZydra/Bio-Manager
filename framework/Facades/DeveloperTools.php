@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Framework\Facades;
 
 use Framework\Authentication\Auth;

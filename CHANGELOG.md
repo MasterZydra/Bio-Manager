@@ -10,6 +10,7 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ### Added
 - Added tests for SQLite
+- Added strict_types to every file
 
 ### Changed
 - Changed the test case implementation to fix issue that class name must be unique

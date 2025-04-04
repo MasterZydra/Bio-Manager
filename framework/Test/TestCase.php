@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Framework\Test;
 
 /** Every unit test should base on this class. It provides the assertion functions. */

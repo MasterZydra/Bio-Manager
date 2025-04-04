@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 use Framework\Database\Seeder\Seeder;
 use Framework\Database\Seeder\SeederInterface;
 

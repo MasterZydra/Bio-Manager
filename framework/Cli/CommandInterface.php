@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Framework\Cli;
 
 /** Every command that shall be available in the bioman CLI must implement this interface */

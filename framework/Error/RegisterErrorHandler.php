@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 use Framework\Error\ErrorHandler;
 use Framework\Facades\DeveloperTools;
 use Framework\Facades\Env;

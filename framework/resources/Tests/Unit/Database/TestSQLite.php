@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 use Framework\Database\SQLite\CreateTableBlueprint;
 use Framework\Database\SQLite\SQLite;
 

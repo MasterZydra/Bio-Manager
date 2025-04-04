@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Framework\Config;
 
 /** The ConfigReader is used to read e.g. the `.env` file */

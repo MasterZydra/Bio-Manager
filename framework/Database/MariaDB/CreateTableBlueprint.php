@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Framework\Database\MariaDB;
 
 use Framework\Database\Interface\CreateTableBlueprintInterface;

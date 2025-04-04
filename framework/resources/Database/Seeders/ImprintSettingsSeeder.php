@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Framework\resources\Database\Seeders;
 
 use App\Models\Setting;

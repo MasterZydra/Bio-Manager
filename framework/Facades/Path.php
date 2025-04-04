@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Framework\Facades;
 
 /** The Path facade provides helper functions for working with paths */

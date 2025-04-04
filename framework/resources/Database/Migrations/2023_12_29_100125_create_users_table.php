@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 use Framework\Database\CreateTableBlueprint;
 use Framework\Database\Database;
 

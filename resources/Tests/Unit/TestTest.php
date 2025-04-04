@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 return new class extends \Framework\Test\TestCase
 {
     public function testCase1(): void
