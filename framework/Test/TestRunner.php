@@ -10,7 +10,7 @@ class TestRunner
 {
     private string $testFilePath = '';
 
-    public function __construct(string $testFilePath = null) {
+    public function __construct(?string $testFilePath = null) {
         if ($testFilePath !== null) {
             $this->testFilePath = $testFilePath;
         } else {

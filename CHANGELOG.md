@@ -8,6 +8,10 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ## [Unreleased]
 
+### Changed
+- Changed the test case implementation to fix issue that class name must be unique
+- Changed function signatures for PHP 8.4 compatibility
+
 ## v2.6.2 - 12.12.2024 - New developer feature and bugfix for invoice logic
 
 ### Added
