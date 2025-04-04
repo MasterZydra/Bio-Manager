@@ -47,7 +47,7 @@ class CreateTableBlueprint implements CreateTableBlueprintInterface
         return $this;
     }
 
-    public function string(string $column, string $length, bool $nullable = false, bool $unique = false): self
+    public function string(string $column, int $length, bool $nullable = false, bool $unique = false): self
     {
         $this->fields[] = '`' . $column . '` VARCHAR(' . $length . ') ' . ($nullable ? '' : 'NOT ') . 'NULL' . ($unique ? ' UNIQUE' : '');
         return $this;

@@ -60,7 +60,7 @@ class CreateTableBlueprint implements BlueprintInterface, CreateTableBlueprintIn
         return $this;
     }
 
-    public function string(string $column, string $length, bool $nullable = false, bool $unique = false): self
+    public function string(string $column, int $length, bool $nullable = false, bool $unique = false): self
     {
         $this->blueprint->string($column, $length, $nullable, $unique);
         return $this;

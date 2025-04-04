@@ -161,6 +161,8 @@ abstract class BaseModel
             }
             return $this->setData($property, $arguments[0]);
         }
+
+        return null;
     }
 
     public function setFromHttpParams(array $fields): self

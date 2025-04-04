@@ -99,7 +99,7 @@ class InvoiceController extends BaseController implements ModelControllerInterfa
 
         foreach (Http::param('deliveryNote') as $deliveryNoteId) {
             $parts = explode('-', $deliveryNoteId);
-            $deliveryNote = DeliveryNote::findById($parts[0]);
+            $deliveryNote = DeliveryNote::findById(intval($parts[0]));
 
             // Check if delivery note requires an update
             if ($deliveryNote->getInvoiceId() === $invoice->getId()) {
