@@ -68,7 +68,7 @@ class PriceController extends \Framework\Routing\BaseController implements \Fram
             Http::redirect('price/create');
         }
 
-        (new Price())
+        new Price()
             ->setYear(intval(Http::param('year')))
             ->setPrice(floatval(Http::param('price')))
             ->setPricePayout(floatval(Http::param('pricePayout')))

@@ -33,7 +33,7 @@ return new class extends \Framework\Test\TestCase
         $db->connect();
 
         // Create a table 'users
-        $blueprint = (new CreateTableBlueprint('users'))
+        $blueprint = new CreateTableBlueprint('users')
             ->id()
             ->string('firstname', 30)
             ->int('age', true)

@@ -9,7 +9,7 @@ return new class extends \Framework\Database\Migration\Migration
 {
     public function run(): void
     {
-        Database::executeBlueprint((new CreateTableBlueprint('prices'))
+        Database::executeBlueprint(new CreateTableBlueprint('prices')
             ->id()
             ->int('year')
             ->float('price')

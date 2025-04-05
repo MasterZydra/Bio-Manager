@@ -42,9 +42,9 @@ class UserController extends \Framework\Routing\BaseController implements \Frame
     {
         Auth::checkRole('Administrator');
 
-        (new User())
+        new User()
             ->setFromHttpParams(['firstname', 'lastname', 'username', 'password', 'isLocked', 'isPwdChangeForced'])
-            ->setLanguageId(Http::param('languageId') === '' ? null : Http::param('languageId'))
+            ->setLanguageId(Http::param('languageId') === '' ? null : intval(Http::param('languageId')))
             ->save();
 
         $user = User::findByUsername(Http::param('username'));
@@ -91,7 +91,7 @@ class UserController extends \Framework\Routing\BaseController implements \Frame
         /** @var \App\Models\User */
         $user = User::findById(Http::param('id'))
             ->setFromHttpParams(['firstname', 'lastname', 'username', 'isLocked', 'isPwdChangeForced'])
-            ->setLanguageId(Http::param('languageId') === '' ? null : Http::param('languageId'));
+            ->setLanguageId(Http::param('languageId') === '' ? null : intval(Http::param('languageId')));
 
         if (Http::param('password', '') !== '') {
             $user->setPassword(Http::param('password'));

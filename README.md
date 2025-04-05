@@ -46,7 +46,7 @@ Because the docker image `serversideup/php:8.X-fpm-apache` is used as base image
 The default values from [`.env.example`](.env.example) can be overwritten by setting the new value as environment variable.
 
 ```bash
-docker run -p 8080:80 --env SSL_MODE=off --env DB_USERNAME=root --env DB_PASSWORD=toor ghcr.io/masterzydra/bio-manager:latest
+docker run -p 8080:8080 --env SSL_MODE=off --env DB_USERNAME=root --env DB_PASSWORD=toor ghcr.io/masterzydra/bio-manager:latest
 ```
 
 ### Default credentials
@@ -69,12 +69,12 @@ docker restart mariadb
 
 Run the application:
 ```bash
-docker run --rm -d --network host -e PUID=$UID -e PGID=$UID --env SSL_MODE=off --name bioman -v $(pwd):/var/www/html:z ghcr.io/masterzydra/bio-manager:latest
+docker run --rm -d --network host --env SSL_MODE=off --name bioman -v $(pwd):/var/www/html:z ghcr.io/masterzydra/bio-manager:latest
 ```
 
 Execute the bioman CLI:
 > **Hint:** If you add the following to your `~/.bash_aliases`, you can call the bioman CLI with just `bioman`:  
-> `alias bioman="docker exec -it bioman /command/s6-setuidgid webuser php bioman"`
+> `alias bioman="docker exec -it bioman php bioman"`
 ```bash
-docker exec -it bioman /command/s6-setuidgid webuser php bioman
+docker exec -it bioman php bioman
 ```

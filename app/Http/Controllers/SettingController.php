@@ -40,7 +40,7 @@ class SettingController extends \Framework\Routing\BaseController implements \Fr
     {
         Auth::checkRole('Administrator');
 
-        (new Setting())
+        new Setting()
             ->setFromHttpParams(['name', 'description', 'value'])
             ->save();
 

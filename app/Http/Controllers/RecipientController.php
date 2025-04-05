@@ -40,7 +40,7 @@ class RecipientController extends \Framework\Routing\BaseController implements \
     {
         Auth::checkRole('Maintainer');
 
-        (new Recipient())
+        new Recipient()
             ->setFromHttpParams(['name', 'street', 'postalCode', 'city'])
             ->setIsLocked(false)
             ->save();

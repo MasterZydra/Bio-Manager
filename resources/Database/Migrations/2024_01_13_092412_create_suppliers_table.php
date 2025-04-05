@@ -9,7 +9,7 @@ return new class extends \Framework\Database\Migration\Migration
 {
     public function run(): void
     {
-        Database::executeBlueprint((new CreateTableBlueprint('suppliers'))
+        Database::executeBlueprint(new CreateTableBlueprint('suppliers')
             ->id()
             ->string('name', 50, unique: true)
             ->bool('isLocked')

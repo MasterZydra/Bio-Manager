@@ -40,7 +40,7 @@ class ProductController extends \Framework\Routing\BaseController implements \Fr
     {
         Auth::checkRole('Maintainer');
 
-        (new Product())
+        new Product()
             ->setFromHttpParam('name')
             ->setIsDiscontinued(false)
             ->save();

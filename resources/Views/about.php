@@ -5,7 +5,7 @@
 <table class="scrollable">
     <tr>
         <td>Bio-Manager Version</td>
-        <td class="right">2.6.2</td>
+        <td class="right">2.7.0</td>
     </tr>
     <tr>
         <td><?= __('Developer') ?></td>

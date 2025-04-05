@@ -42,7 +42,7 @@ class SupplierPayoutsController extends \Framework\Routing\BaseController implem
 
             $deliveryNotes = DeliveryNote::all($queryBuilder);
 
-            (new \Framework\PDF\PDF())
+            new \Framework\PDF\PDF()
                 ->createPDF(setting('invoiceAuthor'), $filename, $filename, render('pdf.supplierPayouts', ['deliveryNotes' => $deliveryNotes, 'invoice' => $invoice]))
                 ->showInBrowser($filename);
             return;

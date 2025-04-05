@@ -9,7 +9,7 @@ return new class extends \Framework\Database\Migration\Migration
 {
     public function run(): void
     {
-        Database::executeBlueprint((new CreateTableBlueprint('userRoles'))
+        Database::executeBlueprint(new CreateTableBlueprint('userRoles')
             ->id()
             ->int('userId', foreignKey: ['users' => 'id'])
             ->int('roleId', foreignKey: ['roles' => 'id'])

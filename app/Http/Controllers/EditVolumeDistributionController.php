@@ -44,7 +44,7 @@ class EditVolumeDistributionController extends \Framework\Routing\BaseController
 
             // Create the new distributions
             for ($i=0; $i < count($plots); $i++) {
-                (new VolumeDistribution())
+                new VolumeDistribution()
                     ->setDeliveryNoteId(intval(Http::param('id')))
                     ->setPlotId(intval($plots[$i]))
                     ->setAmount(floatval($amounts[$i]))

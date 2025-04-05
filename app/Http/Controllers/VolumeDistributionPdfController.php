@@ -25,7 +25,7 @@ class VolumeDistributionPdfController extends \Framework\Routing\BaseController 
 
             $filename = 'Mengenverteilung ' . Http::param('invoiceYear');
 
-            (new \Framework\PDF\PDF())
+            new \Framework\PDF\PDF()
                 ->createPDF(setting('invoiceAuthor'), $filename, $filename, render('pdf.volumeDistribution', ['year' => Http::param('invoiceYear')]))
                 ->showInBrowser($filename);
             return;

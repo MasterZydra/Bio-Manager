@@ -25,10 +25,8 @@ class MakeSeederCommand extends \Framework\Cli\BaseCommand implements \Framework
             '<?php' . PHP_EOL . PHP_EOL .
             'declare(strict_types = 1);' . PHP_EOL . PHP_EOL .
             'namespace Resources\Database\Seeders;' . PHP_EOL . PHP_EOL .
-            'use Framework\Database\Database;' . PHP_EOL .
-            'use Framework\Database\Seeder;' . PHP_EOL .
-            'use Framework\Database\SeederInterface;' . PHP_EOL . PHP_EOL .
-            'class ' . $seederName . 'Seeder extends Seeder implements SeederInterface' . PHP_EOL .
+            'use Framework\Database\Database;' . PHP_EOL . PHP_EOL .
+            'class ' . $seederName . 'Seeder extends \Framework\Database\Seeder\Seeder implements \Framework\Database\Seeder\SeederInterface' . PHP_EOL .
             '{' . PHP_EOL .
             '    public function run(): void' . PHP_EOL .
             '    {' . PHP_EOL .

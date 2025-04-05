@@ -40,7 +40,7 @@ class PlotController extends \Framework\Routing\BaseController implements \Frame
     {
         Auth::checkRole('Maintainer');
 
-        (new Plot())
+        new Plot()
             ->setFromHttpParams(['nr', 'name', 'subdistrict', 'supplierId'])
             ->setIsLocked(false)
             ->save();

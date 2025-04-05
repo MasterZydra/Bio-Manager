@@ -9,7 +9,7 @@ return new class extends \Framework\Database\Migration\Migration
 {
     public function run(): void
     {
-        Database::executeBlueprint((new CreateTableBlueprint('settings'))
+        Database::executeBlueprint(new CreateTableBlueprint('settings')
             ->id()
             ->string('name', 100, unique: true)
             ->string('description', 255)

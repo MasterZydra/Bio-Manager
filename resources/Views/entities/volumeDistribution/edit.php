@@ -43,7 +43,7 @@
     </table>
     <table class="completeWidth">
         <tr>
-            <th width="70%" class="center">Summe über die Flurstücke</th>
+            <th width="70%" class="center"><?= __('SumOfAllPlots') ?></th>
             <th width="30%" class="right" id="distSum"></th>
         </tr>
     </table>
@@ -51,8 +51,8 @@
     <button><?= __('Save') ?></button>
 </form>
 
-<button onclick="addRow('distribution')">Flurstück hinzufügen</button>
-<button onclick="deleteRow('distribution')">Flurstück entfernen</button>
+<button onclick="addRow('distribution')"><?= __('AddPlot') ?></button>
+<button onclick="deleteRow('distribution')"><?= __('DeletePlot') ?></button>
 
 <div id="template" hidden>
     <?= component('plotSelect', ['index' => '<index>', 'supplierId' => $deliveryNote->getSupplierId()]) ?>

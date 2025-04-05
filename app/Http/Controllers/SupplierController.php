@@ -40,7 +40,7 @@ class SupplierController extends \Framework\Routing\BaseController implements \F
     {
         Auth::checkRole('Maintainer');
 
-        (new Supplier())
+        new Supplier()
             ->setFromHttpParam('name')
             ->setIsLocked(false)
             ->setHasFullPayout(false)

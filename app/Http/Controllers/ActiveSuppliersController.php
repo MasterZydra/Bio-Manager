@@ -18,7 +18,7 @@ class ActiveSuppliersController extends \Framework\Routing\BaseController implem
             return;
         }
 
-        (new \Framework\PDF\PDF())
+        new \Framework\PDF\PDF()
             ->createPDF(setting('invoiceAuthor'), 'Aktive_Lieferanten', 'Aktive_Lieferanten', render('pdf.activeSuppliers'))
             ->showInBrowser('Aktive_Lieferanten_' . date('Y_m_d'));
     }

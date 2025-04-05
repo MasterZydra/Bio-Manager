@@ -31,7 +31,7 @@ class InvoiceController extends \Framework\Routing\BaseController implements \Fr
         Auth::checkRole('Maintainer');
 
         $invoice = Invoice::findById(Http::param('id'));
-        (new \Framework\PDF\PDF())
+        new \Framework\PDF\PDF()
             ->createPDF(setting('invoiceAuthor'), $invoice->PdfInvoiceName(), $invoice->PdfInvoiceName(), render('pdf.invoice', ['invoice' => $invoice]))
             ->showInBrowser($invoice->PdfInvoiceName());
     }
@@ -55,10 +55,10 @@ class InvoiceController extends \Framework\Routing\BaseController implements \Fr
     {
         Auth::checkRole('Maintainer');
 
-        $year = Http::param('year');
-        $nr = Invoice::nextInvoiceNr(Http::param('year'));
+        $year = intval(Http::param('year'));
+        $nr = Invoice::nextInvoiceNr($year);
 
-        (new Invoice())
+        new Invoice()
             ->setYear($year)
             ->setNr($nr)
             ->setInvoiceDate(date('Y-m-d'))

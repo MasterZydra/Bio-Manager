@@ -8,12 +8,15 @@ Types of changes: `Added`, `Changed`, `Deprecate`, `Removed`, `Fixed`, `Secruity
 
 ## [Unreleased]
 
+## v2.7.0 - 05.04.2025 - Code improvements and upgrade to PHP 8.4
+
 ### Added
 - Added tests for SQLite
 - Added strict_types to every file
 
 ### Changed
 - Changed the test case implementation to fix issue that class name must be unique
+- Changed PHP version in docker image to PHP 8.4
 
 ### Fixed
 - Fixed PHP 8.4 compatibility

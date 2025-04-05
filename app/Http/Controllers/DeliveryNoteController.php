@@ -40,7 +40,7 @@ class DeliveryNoteController extends \Framework\Routing\BaseController implement
     {
         Auth::checkRole('Maintainer');
 
-        (new DeliveryNote())
+        new DeliveryNote()
             ->setFromHttpParams(['year', 'productId', 'supplierId', 'recipientId'])
             ->setNr(DeliveryNote::nextDeliveryNoteNr(intval(Http::param('year'))))
             ->setDeliveryDate(date('Y-m-d'))

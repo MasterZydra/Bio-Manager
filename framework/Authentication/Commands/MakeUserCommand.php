@@ -13,7 +13,7 @@ class MakeUserCommand extends \Framework\Cli\BaseCommand implements \Framework\C
         $username = $this->input('Username:');
         $password = $this->input('Password:');
 
-        (new \App\Models\User())
+        new \App\Models\User()
             ->setFirstname($firstname)
             ->setLastname($lastname)
             ->setUsername($username)

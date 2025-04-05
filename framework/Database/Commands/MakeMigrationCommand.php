@@ -30,7 +30,7 @@ class MakeMigrationCommand extends \Framework\Cli\BaseCommand implements \Framew
             '{' . PHP_EOL .
             '    public function run(): void' . PHP_EOL .
             '    {' . PHP_EOL .
-            '        Database::executeBlueprint((new CreateTableBlueprint(\'tablename\'))' . PHP_EOL .
+            '        Database::executeBlueprint(new CreateTableBlueprint(\'tablename\')' . PHP_EOL .
             '            ->id()' . PHP_EOL .
             '            ->string(\'column-name\', 255)' . PHP_EOL .
             '            ->timestamps()' . PHP_EOL .

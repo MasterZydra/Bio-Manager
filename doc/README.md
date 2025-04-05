@@ -335,7 +335,7 @@ return new class extends \Framework\Database\Migration\Migration
 {
     public function run(): void
     {
-        Database::executeBlueprint((new CreateTableBlueprint('users'))
+        Database::executeBlueprint(new CreateTableBlueprint('users')
             ->id()
             ->string('name', 100)
             ->date('lastLogin')
@@ -360,10 +360,8 @@ Another way to use a seeder is to call it inside a migration, for example after 
 **Example**
 ```PHP
 use Framework\Database\Database;
-use Framework\Database\Seeder\Seeder;
-use Framework\Database\Seeder\SeederInterface;
 
-class UserSeeder extends Seeder implements SeederInterface
+class UserSeeder extends \Framework\Database\Seeder\Seeder implements \Framework\Database\Seeder\SeederInterface
 {
     public function run(): void
     {

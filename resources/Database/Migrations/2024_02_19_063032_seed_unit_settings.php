@@ -8,6 +8,6 @@ return new class extends \Framework\Database\Migration\Migration
 {
     public function run(): void
     {
-        (new UnitsSeeder())->run();
+        new UnitsSeeder()->run();
     }
 };

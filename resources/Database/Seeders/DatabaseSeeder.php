@@ -2,13 +2,10 @@
 
 declare(strict_types = 1);
 
-use Framework\Database\Seeder\Seeder;
-use Framework\Database\Seeder\SeederInterface;
-
-return new class extends Seeder implements SeederInterface
+return new class extends \Framework\Database\Seeder\Seeder implements \Framework\Database\Seeder\SeederInterface
 {
     public function run(): void
     {
-        // e.g. (new UserSeeder())->run();
+        // e.g. new UserSeeder()->run();
     }
 };

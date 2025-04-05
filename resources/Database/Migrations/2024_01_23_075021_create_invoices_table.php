@@ -9,7 +9,7 @@ return new class extends \Framework\Database\Migration\Migration
 {
     public function run(): void
     {
-        Database::executeBlueprint((new CreateTableBlueprint('invoices'))
+        Database::executeBlueprint(new CreateTableBlueprint('invoices')
             ->id()
             ->int('year')
             ->int('nr')
